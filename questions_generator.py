@@ -27,7 +27,7 @@ class GenerateQuestions:
         self.options = webdriver.ChromeOptions()
 
         # --- Add these two lines here ---
-        # self.options.add_argument("--headless")
+        self.options.add_argument("--headless")
         self.options.add_argument("--window-size=1920,1080")
         # ---------------------------------
 
@@ -67,10 +67,10 @@ class GenerateQuestions:
         menu_item.click()
 
     def ask_question(self, question_gotten):
+        self.driver.get(f"{BASE_URL}/?mode=deep")
         wait = WebDriverWait(self.driver, 1200)
 
         try:
-            self.driver.get(f"{BASE_URL}/?mode=deep")
 
             # # wait for the form containing the textarea
             form = wait.until(
