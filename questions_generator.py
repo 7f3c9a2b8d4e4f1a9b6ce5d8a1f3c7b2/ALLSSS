@@ -74,7 +74,7 @@ class GenerateQuestions:
             EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
         )
 
-        for _ in range(5):
+        for _ in range(10):
             try:
 
                 # # wait for the form containing the textarea
@@ -109,6 +109,7 @@ class GenerateQuestions:
             except Exception as a:
                 print(f"There was an error")
                 print(f"{self.driver.current_url}")
+                time.sleep(10)
                 continue
 
                 # In your Deepwiki class where you save to questions.json
