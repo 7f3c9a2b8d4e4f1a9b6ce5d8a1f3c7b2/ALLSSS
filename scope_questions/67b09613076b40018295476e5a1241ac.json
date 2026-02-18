@@ -1,0 +1,127 @@
+[
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_CacheFileds.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_cff44add-eaf9-48a2-9231-b38abcbc2e03?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_8d53d3da-923f-4f04-b7c0-5d36caa19db1?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_d13d6d4e-5300-4929-8d63-dda065018814?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b1b0f7bc-ab29-4c83-9102-3887daed9101?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_6b56113a-a5ee-434b-af8f-edfae8e258fa?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_2718df71-09fe-49c8-a82d-57f61d91902e?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b6b5bb80-f7be-40f2-a402-dd7128e586f7?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_2ee4c504-4f0d-4b99-a987-8c4c939d9cdc?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.MultiToken/TokenContract_Views.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b0a66e57-69a7-48c0-8a75-a70056ceed5e?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContractConstants.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_438db640-48aa-4c0c-9018-6b5bce909107?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContractReferenceState.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_5fef8ea1-2f1d-41b5-851a-0d386e87e3ea?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContractState.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_5232de61-00c9-48f3-8fe8-73b68141fa12?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContract_ACS1.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_081bdc8a-05a0-4dd6-983c-21cb2f2a2aa0?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContract_Create.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_85d5d06c-c8ec-4020-8c97-9fae212b2f33?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContract_Helpers.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_d9e50256-c200-4c92-93f7-96c60f3088d1?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContract_UseChain.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_7d2d7205-5918-4442-972d-c0e2fb097464?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.NFT/NFTContract_View.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_ff5a0e8b-6d95-4109-92fb-de7ac87cd0bb?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Parliament/Parliament.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_052e2ab0-9ba4-4c29-999d-7ea888989062?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Parliament/ParliamentConstants.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_3a3fd1e1-64e8-46e1-88e4-4c7fdd940802?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_ce3fb798-9feb-45ae-a51d-a4ca9aad80a2?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Parliament/ParliamentState.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_f10ff863-28cf-447c-8df8-2c5037dbea1a?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Parliament/Parliament_Constants.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_6f3f7eda-d793-4dc2-b469-426cc8da8728?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Parliament/Parliament_Helper.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_b8dfb9b1-f679-40c5-97e1-42ed24c3685b?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Profit/ContractsReferences.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_392ec25c-b9a3-49af-8089-6fddfbbf4a0c?mode=deep",
+    "questions_generated": false
+  },
+  {
+    "question": "contract/AElf.Contracts.Profit/Models/RemovedDetails.cs",
+    "url": "https://deepwiki.com/search/-generate-150-targeted-securit_93590ca6-dffe-4021-a710-cd7dbb0868d9?mode=deep",
+    "questions_generated": false
+  }
+]
