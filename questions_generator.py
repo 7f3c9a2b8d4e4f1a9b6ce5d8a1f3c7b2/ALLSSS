@@ -56,7 +56,7 @@ class GenerateQuestions:
             self.driver.quit()
 
     def toggle_deep_research(self):
-        wait = WebDriverWait(self.driver, 1200)
+        wait = WebDriverWait(self.driver, 20)
 
         xpath = '//button[.//span[normalize-space(text())="Fast"]]'
         btn = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
@@ -67,49 +67,51 @@ class GenerateQuestions:
         menu_item.click()
 
     def ask_question(self, question_gotten):
-        self.driver.get(f"{BASE_URL}/?mode=deep")
         wait = WebDriverWait(self.driver, 1200)
-        print("1")
-        try:
+        self.driver.get(BASE_URL)
 
-            # # wait for the form containing the textarea
-            form = wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
-            )
+        wait.until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
+        )
 
-            print("2")
+        for _ in range(5):
+            try:
 
-            # find the textarea inside the form
-            textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
-            # self.toggle_deep_research()
+                # # wait for the form containing the textarea
+                form = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
+                )
 
-            print("3")
+                # find the textarea inside the form
+                textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
+                self.toggle_deep_research()
 
-            # type the question
-            textarea.click()
-            textarea.clear()
-            formatted_question = question_generator(question_gotten)
+                # type the question
+                textarea.click()
+                textarea.clear()
+                formatted_question = question_generator(question_gotten)
 
-            # Use JavaScript to set the textarea value directly. It's more reliable for large text.
-            self.driver.execute_script("arguments[0].value = arguments[1];", textarea, formatted_question)
-            # Dispatch an 'input' event to make sure the web application detects the change.
-            self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
-                                       textarea)
-            print("4")
-            textarea.send_keys(".. ")
+                # Use JavaScript to set the textarea value directly. It's more reliable for large text.
+                self.driver.execute_script("arguments[0].value = arguments[1];", textarea, formatted_question)
+                # Dispatch an 'input' event to make sure the web application detects the change.
+                self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
+                                           textarea)
+                textarea.send_keys(".. ")
 
-            textarea.send_keys(Keys.ENTER)
+                textarea.send_keys(Keys.ENTER)
 
-            time.sleep(10)
-            current_url = self.driver.current_url
+                time.sleep(10)
+                current_url = self.driver.current_url
 
-            # add the current url to collections
-            self.save_to_questions(question_gotten, current_url)
-        except Exception as a:
-            print(f"There was an error in index : {a}")
-            print(f"{self.driver.current_url}")
+                # add the current url to collections
+                self.save_to_questions(question_gotten, current_url)
+                break
+            except Exception as a:
+                print(f"There was an error")
+                print(f"{self.driver.current_url}")
+                continue
 
-            # In your Deepwiki class where you save to questions.json
+                # In your Deepwiki class where you save to questions.json
 
     def save_to_questions(self, question_gotten, url):
         """Save question and URL to questions.json"""
