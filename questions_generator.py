@@ -27,7 +27,7 @@ class GenerateQuestions:
         self.options = webdriver.ChromeOptions()
 
         # --- Add these two lines here ---
-        self.options.add_argument("--headless")
+        # self.options.add_argument("--headless")
         self.options.add_argument("--window-size=1920,1080")
         # ---------------------------------
 
@@ -56,7 +56,7 @@ class GenerateQuestions:
             self.driver.quit()
 
     def toggle_deep_research(self):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 1200)
 
         xpath = '//button[.//span[normalize-space(text())="Fast"]]'
         btn = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))

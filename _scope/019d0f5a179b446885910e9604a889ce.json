@@ -1,0 +1,18 @@
+[
+  "contract/AElf.Contracts.TokenHolder/ContractsReferences.cs",
+  "contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs",
+  "contract/AElf.Contracts.TokenHolder/TokenHolderContractState.cs",
+  "contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs",
+  "contract/AElf.Contracts.Treasury/ContractsReferences.cs",
+  "contract/AElf.Contracts.Treasury/TreasuryContract.cs",
+  "contract/AElf.Contracts.Treasury/TreasuryContractConstants.cs",
+  "contract/AElf.Contracts.Treasury/TreasuryContractState.cs",
+  "contract/AElf.Contracts.Treasury/TreasuryContract_ACS1_TransactionFeeProvider.cs",
+  "contract/AElf.Contracts.Vote/ContractsReferences.cs",
+  "contract/AElf.Contracts.Vote/ViewMethods.cs",
+  "contract/AElf.Contracts.Vote/VoteContract.cs",
+  "contract/AElf.Contracts.Vote/VoteContractConstants.cs",
+  "contract/AElf.Contracts.Vote/VoteContractState.cs",
+  "contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs",
+  "contract/AElf.Contracts.Vote/VoteExtensions.cs"
+]
