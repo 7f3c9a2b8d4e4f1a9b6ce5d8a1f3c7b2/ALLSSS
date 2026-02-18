@@ -1,0 +1,4 @@
+[
+  "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Multi-Function] [State Consistency] If UpdateConnector() changes Weight mid-transaction, can ongoing Buy()/Sell() use inconsistent weights? (Critical)",
+  "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Multi-Function] [Connector Enable Race] Can EnableConnector() and Buy() execute simultaneously, causing one to use uninitialized DepositBalance? (Critical)"
+]
