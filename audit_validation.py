@@ -68,77 +68,97 @@ class Validator:
     def ask_question(self, filename, question_gotten):
         wait = WebDriverWait(self.driver, 1200)
 
-        try:
-            self.driver.get(BASE_URL)
+        wait.until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
+        )
 
-            # # wait for the form containing the textarea
-            form = wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
-            )
+        for _ in range(10):
+            try:
+                self.driver.get(BASE_URL)
 
-            # find the textarea inside the form
-            textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
-            self.toggle_deep_research()
+                # # wait for the form containing the textarea
+                form = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
+                )
 
-            # type the question
-            textarea.click()
-            textarea.clear()
-            used_question = f"{question_gotten}".split("## Recommendation")[0]
-            formatted_question = validation_format(used_question)
+                # find the textarea inside the form
+                textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
+                self.toggle_deep_research()
 
-            # Use JavaScript to set the textarea value directly. It's more reliable for large text.
-            self.driver.execute_script("arguments[0].value = arguments[1];", textarea, formatted_question)
-            # Dispatch an 'input' event to make sure the web application detects the change.
-            self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
-                                       textarea)
-            textarea.send_keys(".. ")
+                # type the question
+                textarea.click()
+                textarea.clear()
+                used_question = f"{question_gotten}".split("## Recommendation")[0]
+                formatted_question = validation_format(used_question)
 
-            textarea.send_keys(Keys.ENTER)
+                # Use JavaScript to set the textarea value directly. It's more reliable for large text.
+                self.driver.execute_script("arguments[0].value = arguments[1];", textarea, formatted_question)
+                # Dispatch an 'input' event to make sure the web application detects the change.
+                self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
+                                           textarea)
+                textarea.send_keys(".. ")
 
-            time.sleep(10)
-            current_url = self.driver.current_url
+                textarea.send_keys(Keys.ENTER)
 
-            # add the current url to validated
-            self.save_to_validated(filename, current_url)
-        except Exception as a:
-            print(f"There was an error in index : {a}")
+                time.sleep(10)
+                current_url = self.driver.current_url
+
+                # add the current url to validated
+                self.save_to_validated(filename, current_url)
+                break
+            except Exception as a:
+                print(f"There was an error ")
+                print(f"{self.driver.current_url}")
+                time.sleep(10)
+                continue
+
 
     def scan_past_vuln(self, filename, question_gotten):
         wait = WebDriverWait(self.driver, 1200)
 
-        try:
-            self.driver.get(BASE_URL)
+        wait.until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
+        )
 
-            # # wait for the form containing the textarea
-            form = wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
-            )
+        for _ in range(10):
+            try:
+                self.driver.get(BASE_URL)
 
-            # find the textarea inside the form
-            textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
-            self.toggle_deep_research()
+                # # wait for the form containing the textarea
+                form = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
+                )
 
-            # type the question
-            textarea.click()
-            textarea.clear()
-            formatted_question = scan_format(question_gotten)
+                # find the textarea inside the form
+                textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
+                self.toggle_deep_research()
 
-            # Use JavaScript to set the textarea value directly. It's more reliable for large text.
-            self.driver.execute_script("arguments[0].value = arguments[1];", textarea, formatted_question)
-            # Dispatch an 'input' event to make sure the web application detects the change.
-            self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
-                                       textarea)
-            textarea.send_keys(".. ")
+                # type the question
+                textarea.click()
+                textarea.clear()
+                formatted_question = scan_format(question_gotten)
 
-            textarea.send_keys(Keys.ENTER)
+                # Use JavaScript to set the textarea value directly. It's more reliable for large text.
+                self.driver.execute_script("arguments[0].value = arguments[1];", textarea, formatted_question)
+                # Dispatch an 'input' event to make sure the web application detects the change.
+                self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
+                                           textarea)
+                textarea.send_keys(".. ")
 
-            time.sleep(10)
-            current_url = self.driver.current_url
+                textarea.send_keys(Keys.ENTER)
 
-            # add the current url to validated
-            self.save_to_validated(filename, current_url)
-        except Exception as a:
-            print(f"There was an error in index : {a}")
+                time.sleep(10)
+                current_url = self.driver.current_url
+
+                # add the current url to validated
+                self.save_to_validated(filename, current_url)
+                self.save_to_validated(filename, current_url)
+                break
+            except Exception as a:
+                print(f"There was an error ")
+                print(f"{self.driver.current_url}")
+                time.sleep(10)
+                continue
 
     def save_to_validated(self, filename, url):
         """Save question and URL to collections.json"""
