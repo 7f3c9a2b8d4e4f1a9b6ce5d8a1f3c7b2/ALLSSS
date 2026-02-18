@@ -1,0 +1,4 @@
+[
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Missing Random Number] Can randomNumber be null or empty causing transaction generation to succeed with invalid data? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: GenerateTransaction()] [RefBlock Manipulation] Can RefBlockNumber be set to CurrentHeight causing reference to non-finalized block? (Medium)"
+]

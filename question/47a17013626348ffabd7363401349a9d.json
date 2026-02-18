@@ -1,0 +1,5 @@
+[
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Multiple Extra Block Producers] If multiple miners have IsExtraBlockProducer=true due to data corruption, which one does GetExtraBlockProducerInformation().First() select and can this cause consensus fork? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [MustExceededCurrentRound Flag] When mustExceededCurrentRound=false and extra block producer calls with eligible time, can they repeatedly return GetExtraBlockMiningTime() without any rate limiting? (Medium)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Distance Calculation] At line 28-29, can (GetExtraBlockMiningTime().AddMilliseconds(miningInterval) - currentBlockTime) underflow if currentBlockTime is far in future? (Medium)"
+]

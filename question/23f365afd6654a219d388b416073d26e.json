@@ -1,0 +1,6 @@
+[
+  "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Unit Test Coverage] Empty implementations may pass basic unit tests - are integration tests checking actual fee enforcement? (Medium)",
+  "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Governance Test Gap] Have tests verified Parliament proposals for NFT fee changes work end-to-end despite empty implementation? (Medium)",
+  "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Intentional Design] Are these stub implementations intentional for NFT beta phase, or accidental omissions that should be completed? (Critical)",
+  "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Production Readiness] Is NFTContract considered production-ready with non-functional ACS1 implementation, or is it marked experimental? (Critical)"
+]

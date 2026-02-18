@@ -1,0 +1,23 @@
+[
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can RealTimeMinersInformation have more miners than MaximumMinersCount allows, bypassing miner count limits? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can RealTimeMinersInformation contain miners not in the Election contract's victory list, bypassing election? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Cryptographic Security] Can randomNumber parameter be a predictable or attacker-controlled value, compromising VRF security? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Cryptographic Security] Can randomNumber be reused from a previous term, allowing random number replay attacks? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Cryptographic Security] Does Create() validate randomNumber length matches VRF output requirements? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Information Leakage] By excluding RandomNumber in ToRound(), is sensitive VRF data properly protected from observation? (Low)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Timing] Can Create() be called with a Round from far in the future, scheduling premature term transitions? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Timing] Can Create() be called with a Round from far in the past, causing stale term transition? (Medium)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can BlockchainAge in NextTermInput be less than current blockchain age, causing time reversal? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can ConfirmedIrreversibleBlockHeight decrease compared to current LIB, violating irreversibility? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can MainChainMinersRoundNumber on side chain be ahead of actual main chain round, causing sync issues? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Denial of Service] Can Create() with extremely large RealTimeMinersInformation (e.g., millions of miners) cause memory exhaustion? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Denial of Service] Can repeated calls to Create() with different inputs for the same term cause state confusion? (Medium)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Denial of Service] Can ToRound() on corrupted NextTermInput throw unhandled exceptions that halt consensus? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RoundIdForValidation be zero or negative, bypassing round ID validation in ProcessNextTerm? (Medium)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RoundIdForValidation mismatch the calculated sum of expected mining times, indicating tampered input? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integration] Does Create() ensure RealTimeMinersInformation miners match the top N candidates from Election contract? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integration] Can Create() accept miners that were marked as evil nodes by Election contract, bypassing punishment? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integration] Can Create() include miners whose votes were insufficient for election, violating vote thresholds? (Critical)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Economic Security] Does NextTermInput from Create() trigger mining reward calculations, and can incorrect values cause reward manipulation? (High)",
+  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Economic Security] Can BlockchainAge manipulation in NextTermInput affect mining reward halving calculations? (High)"
+]

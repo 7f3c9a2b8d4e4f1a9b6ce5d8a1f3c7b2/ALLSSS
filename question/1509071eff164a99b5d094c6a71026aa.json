@@ -1,0 +1,9 @@
+[
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [LastProfitPeriod Update] Line 908 updates LastProfitPeriod to period + 1 in non-view mode. Can this cause off-by-one errors where next claim starts at wrong period? (Medium)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Symbol List] Line 851 uses scheme.ReceivedTokenSymbols or targetSymbol. Can empty symbol list cause no profits to be processed even when they exist? (Medium)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [IsReleased Check] Line 881 only transfers if IsReleased is true. Can unreleased periods have profits that beneficiaries can never claim? (High)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Virtual Transfer] Lines 887-895 use SendVirtualInline. Can failures in virtual transfer be detected or do they fail silently? (High)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [View Mode] Lines 846 and 876 check isView flag. Can view mode calculations differ from actual claiming due to state changes, misleading users? (Low)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Target Period] Line 856 calculates targetPeriod as Min of CurrentPeriod - 1 and EndPeriod. Can CurrentPeriod being 0 or 1 cause underflow issues? (Medium)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: SafeCalculateProfits()] [Precision Loss] Lines 958-961 convert to decimal and back to long. Can this cause rounding errors where sum of parts < whole, leaking or locking profits? (Critical)"
+]

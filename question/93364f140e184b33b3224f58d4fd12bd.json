@@ -1,0 +1,7 @@
+[
+  "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [Collision Probability] What is the collision probability in IsCreatedMap, and is it acceptable? (Low)",
+  "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Burn Flag Persistence] Once IsBurned is set in NftInfoMap, can it ever be unset? (Medium)",
+  "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Negative Transfer Detection] Are negative amounts properly caught before BalanceMap updates? (High)",
+  "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Minter Limit] Is there a maximum number of minters per protocol in MinterListMap? (Low)",
+  "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Infinite Approval] Can AllowanceMap store maximum int64 value for infinite approval, and is this secure? (Medium)"
+]

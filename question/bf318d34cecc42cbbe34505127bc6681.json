@@ -1,0 +1,5 @@
+[
+  "[File: contract/AElf.Contracts.Profit/ProfitContractConstants.cs] [Constants: All] [Immutability Governance Gap] None of the 5 constants have on-chain governance mechanisms to adjust them post-deployment. Could critical issues arising from inappropriate constant values require full contract redeployment, disrupting active profit schemes? (Medium)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContractConstants.cs] [Constants: MaximumProfitReceivingDuePeriodCount + DefaultMaximumProfitReceivingPeriodCountOfOneTime] [Storage-Computation Mismatch] With max 1024 due periods stored but only 100 claimable per transaction, would claiming all profits from a maxed-out scheme require 11+ transactions, creating poor UX and high costs? (Medium)",
+  "[File: contract/AElf.Contracts.Profit/ProfitContractConstants.cs] [Constants: TokenAmountLimit] [Constraint Inadequacy] The limit of 5 tokens for method fees has no relationship to the number of different token symbols that can be distributed as profits (unlimited). Could this mismatch create scenarios where profit distribution tokens cannot be used for fees? (Low)"
+]

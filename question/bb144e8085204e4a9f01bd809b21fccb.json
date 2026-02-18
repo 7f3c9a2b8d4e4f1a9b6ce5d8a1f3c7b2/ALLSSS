@@ -1,0 +1,11 @@
+[
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetOrganization()] [Null Return] Can returning empty Organization at line 15 be exploited by callers expecting null checks? (Low)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetOrganization()] [Information Leak] Can GetOrganization expose sensitive organization data to unauthorized callers? (Low)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [Null Proposal] Can returning empty ProposalOutput at line 21 instead of null cause caller confusion? (Low)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [ToBeReleased Flag] Can the ToBeReleased calculation at line 24 be manipulated through concurrent threshold changes? (Medium)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [Count Accuracy] Do the approval/rejection/abstention counts at lines 36-38 properly reflect only valid member votes? (Medium)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [Information Leak] Can proposal details at lines 28-40 leak sensitive contract call information? (Low)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateOrganizationAddress()] [Determinism] Is address calculation at lines 46-47 deterministic and collision-resistant? (High)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ValidateOrganizationExist()] [Timing Attack] Can existence check at line 53 be used for timing attacks to enumerate organizations? (Low)",
+  "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ValidateProposerInWhiteList()] [Whitelist Check] Can the Contains check at line 61 be bypassed through address manipulation? (Medium)"
+]

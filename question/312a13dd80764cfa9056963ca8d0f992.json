@@ -1,0 +1,6 @@
+[
+  "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SavePreviousTermInformation()] [CandidateVotes Null Handling] Lines 471-473 check if votes is null and default to 0 - can this misrepresent candidates who had votes but whose CandidateVotes entry was deleted? (Medium)",
+  "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SavePreviousTermInformation()] [ObtainedActiveVotedVotesAmount Manipulation] Line 473 uses ObtainedActiveVotedVotesAmount - can voters manipulate this by timing vote withdrawals just before snapshot? (High)",
+  "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SavePreviousTermInformation()] [ElectionResult Dictionary] Lines 469-476 build ElectionResult - can duplicate pubkeys in Candidates.Value cause dictionary key collision exceptions? (Medium)",
+  "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation(private overload)] [CandidateInformationMap Null Return] Line 485 returns early if candidateInformation is null - can this cause miners who produced blocks to not get credit in their Terms list? (High)"
+]

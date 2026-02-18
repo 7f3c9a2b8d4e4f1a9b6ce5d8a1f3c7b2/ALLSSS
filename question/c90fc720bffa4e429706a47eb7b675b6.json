@@ -1,0 +1,7 @@
+[
+  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Line 50] [Null Return] State.TransactionFees[input.Value] could be null - does the caller handle null MethodFees objects correctly? (Low)",
+  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Line 67] [Null Check Placement] The null check for State.TransactionFees[methodName] comes after List creation - could this cause resource waste if called frequently with non-existent methods? (Low)",
+  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Line 71] [Compound Condition] The condition checks both !symbols.Contains(methodFee.Symbol) AND methodFee.BasicFee > 0 - what happens if BasicFee is 0 but the symbol should still be tracked? (Medium)",
+  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Line 74-77] [Conditional Return] The early return based on IsSizeFeeFree might skip important size fee symbols - is this intentional or a bug? (High)",
+  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Line 80] [Early Exit] Returning symbols early if State.SymbolListToPayTxSizeFee.Value is null means size fees are ignored - can this state be forced to null? (High)"
+]

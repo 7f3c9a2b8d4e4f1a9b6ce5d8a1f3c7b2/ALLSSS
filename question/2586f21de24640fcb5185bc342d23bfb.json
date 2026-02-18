@@ -1,0 +1,7 @@
+[
+  "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains()] [Authorization Bypass] Can an attacker exploit the Contains() method if organizationMembers_ contains duplicate addresses, allowing them to vote multiple times on the same proposal since the check would pass for the same address multiple times? (High)",
+  "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains()] [Null Reference] What happens if Contains() is called with a null address parameter - does it throw an exception or return false, and could this cause denial of service in calling contracts that rely on this check? (Medium)",
+  "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count()] [Integer Overflow] Could organizationMembers_.Count overflow if an extremely large number of members are added, causing Count() to return incorrect values that break threshold validation logic? (Medium)",
+  "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Empty()] [Logic Error] Does Empty() correctly handle the edge case where organizationMembers_ is null versus an empty collection, potentially causing different behavior in validation that checks Empty()? (Low)",
+  "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Class: OrganizationMemberList] [Thread Safety] Since this is a partial class, are the organizationMembers_ operations thread-safe, or could concurrent modifications during proposal voting cause race conditions? (Medium)"
+]

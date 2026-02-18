@@ -1,0 +1,4 @@
+[
+  "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: ValidateContractOperation()] [Version Increment Bypass] Can the version check contractOperation.Version == currentVersion + 1 at line 404 be bypassed by manipulating currentVersion parameter or skipping versions? (High)",
+  "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: ValidateContractOperation()] [Chain ID Spoofing] Can contractOperation.ChainId at line 405 be forged to match Context.ChainId, allowing cross-chain contract deployments? (High)"
+]

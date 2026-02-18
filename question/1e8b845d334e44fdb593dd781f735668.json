@@ -1,0 +1,4 @@
+[
+  "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [All Constants] [Type Safety] Are these constants declared as 'const int'? Could there be overflow issues if they're used in calculations with other integers, or type coercion issues when compared with string.Length (which returns int)? (Low)",
+  "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForDescription] [Arithmetic] If the 10200 value is used in any arithmetic operations (e.g., calculating storage costs), could integer overflow occur when multiplied by the number of proposals or other factors? (Low)"
+]
