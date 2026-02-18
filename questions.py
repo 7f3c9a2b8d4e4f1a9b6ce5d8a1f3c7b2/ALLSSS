@@ -346,6 +346,7 @@ scope_files = [
 ]
 
 
+
 def question_generator(target_file: str) -> str:
         """
         Generates targeted security audit questions for a specific AElf smart contract file.
@@ -360,94 +361,111 @@ def question_generator(target_file: str) -> str:
         prompt = f"""
 # **Generate 150+ Targeted Security Audit Questions for AElf Core Smart Contracts (C#)**
 
-## **Context**
-
-The target project is **AElf**'s C# smart-contract suite that runs on the AElf blockchain. Major domains:
-- **Consensus (AEDPoS)**: round generation, miner lists, time slots, secret sharing, consensus command generation, maximum miner count and emergency behaviours.
-- **Governance & Authorization**: Parliament, Referendum, Association multi-sig, Configuration, Genesis (BasicContractZero) method fee provider, organization thresholds, proposal lifecycle, proposer whitelists.
-- **Economics & Treasury**: Economic parameters, Treasury reserves, Profit distributions, TokenHolder dividends, method-fee collection and distribution.
-- **Tokens & Assets**: MultiToken (fungible/NFT issuance, mint/burn, allowances), NFT contract, TokenConverter (Bancor-based swap/price curve), TokenHolder staking/lockers.
-- **Cross-Chain**: CrossChain indexing/verification, side-chain block header validation, merkle proofs, irreversible block height handling.
-- **Elections & Voting**: Election and Vote contracts, candidate management, elector vote locking and reward settlement.
-
-## **Scope**
-
-**CRITICAL TARGET FILE**: Focus question generation EXCLUSIVELY on `{target_file}`
-
-Questions must be generated from `{target_file}` only. If you cannot reach 150 questions from this file, produce as many high-quality, file-specific questions as possible. If the file exceeds ~1000 lines, go up to 300+ questions. Do not return empty results.
-
-## **Core AElf Components** (for reference only)
-
-```python
-core_components = [
-    "contract/AElf.Contracts.Consensus.AEDPoS/*",
-    "contract/AElf.Contracts.CrossChain/*",
-    "contract/AElf.Contracts.Parliament/*",
-    "contract/AElf.Contracts.Referendum/*",
-    "contract/AElf.Contracts.Association/*",
-    "contract/AElf.Contracts.Configuration/*",
-    "contract/AElf.Contracts.Economic/*",
-    "contract/AElf.Contracts.Treasury/*",
-    "contract/AElf.Contracts.Profit/*",
-    "contract/AElf.Contracts.Vote/*",
-    "contract/AElf.Contracts.Election/*",
-    "contract/AElf.Contracts.MultiToken/*",
-    "contract/AElf.Contracts.NFT/*",
-    "contract/AElf.Contracts.TokenConverter/*",
-    "contract/AElf.Contracts.TokenHolder/*",
-    "contract/AElf.Contracts.Genesis/*",
-]
-```
-
-## **Critical Invariant Areas**
-
-- **Auth & Governance**: proposal creation/approval thresholds, organization auth (Parliament/Association/Referendum), proposer whitelist checks, method fee provider auth, token whitelist/blacklist rules.
-- **Consensus Safety**: round updates, miner list transitions, time-slot validation, consensus command correctness, LIB height calculations, secret-sharing flows, punishment and dividends distribution.
-- **Token & Supply Integrity**: mint/burn constraints, allowance/approval checks, fee deductions, lock/unlock flows, NFT issuance uniqueness, delegation logic.
-- **Economic & Treasury Accounting**: Profit/Treasury share calculations, donation/release mechanics, dividend pool distribution, TokenHolder reward math.
-- **Cross-Chain Verification**: merkle proof validation, index heights, parent-chain info integrity, side-chain creation/indexing security, re-org handling.
-- **Converter & Pricing**: Bancor formula correctness, reserve balances, price slippage limits, insufficient reserve handling.
-
-## **In-Scope Vulnerability Categories**
-
-- Authorization/governance bypass enabling unauthorized proposal execution, token mint/burn, fee changes, or config updates.
-- Consensus or cross-chain validation flaws enabling fake headers, incorrect round transitions, or mining schedule corruption.
-- Accounting/math errors causing supply inflation/deflation, dividend misallocation, or fee leakage.
-- Lock/vesting/approval bugs allowing premature withdrawals or denial of rewards.
-- Pricing or reserve-handling mistakes in TokenConverter leading to underpriced swaps or pool depletion.
-- DOS vectors that freeze governance, consensus progress, cross-chain indexing, or token operations through valid calls.
-
-## **Question Format Template**
-
-Each question MUST follow this Python list format:
-
-```python
-questions = [
-    "[File: {target_file}] [Function: functionName()] [Vulnerability Type] Specific exploit scenario with preconditions, violated invariant, attacker action, and concrete impact? (High)",
-]
-```
-
-## **Output Requirements**
-
-Generate questions focusing EXCLUSIVELY on `{target_file}` that:
-- Reference real functions/methods/logic blocks in `{target_file}`
-- Include concrete exploit paths, not generic checks
-- Tie each question to math logic, business logic, or invariant breaks
-- Prioritize questions likely to result in **valid vulnerabilities**
-- Avoid low-signal or non-exploitable questions
-- Include severity `(Critical/High/Medium/Low)` in each question
-- Use exact Python list format
-
-## **Target Question Count**
-
-- Small files: 80-150 questions when possible
-- Medium files: 150+ questions
-- Very large files (>1000 lines): 300+ questions
-- If code size limits quantity, output as many quality questions as possible
-
-Begin generating questions for `{target_file}` now.
 """
         return prompt
+
+# def question_generator(target_file: str) -> str:
+#         """
+#         Generates targeted security audit questions for a specific AElf smart contract file.
+#
+#         Args:
+#             target_file: The specific file path to focus question generation on.
+#                         (e.g., "contract/AElf.Contracts.MultiToken/TokenContract.cs")
+#
+#         Returns:
+#             A formatted prompt string for generating security questions.
+#         """
+#         prompt = f"""
+# # **Generate 150+ Targeted Security Audit Questions for AElf Core Smart Contracts (C#)**
+#
+# ## **Context**
+#
+# The target project is **AElf**'s C# smart-contract suite that runs on the AElf blockchain. Major domains:
+# - **Consensus (AEDPoS)**: round generation, miner lists, time slots, secret sharing, consensus command generation, maximum miner count and emergency behaviours.
+# - **Governance & Authorization**: Parliament, Referendum, Association multi-sig, Configuration, Genesis (BasicContractZero) method fee provider, organization thresholds, proposal lifecycle, proposer whitelists.
+# - **Economics & Treasury**: Economic parameters, Treasury reserves, Profit distributions, TokenHolder dividends, method-fee collection and distribution.
+# - **Tokens & Assets**: MultiToken (fungible/NFT issuance, mint/burn, allowances), NFT contract, TokenConverter (Bancor-based swap/price curve), TokenHolder staking/lockers.
+# - **Cross-Chain**: CrossChain indexing/verification, side-chain block header validation, merkle proofs, irreversible block height handling.
+# - **Elections & Voting**: Election and Vote contracts, candidate management, elector vote locking and reward settlement.
+#
+# ## **Scope**
+#
+# **CRITICAL TARGET FILE**: Focus question generation EXCLUSIVELY on `{target_file}`
+#
+# Questions must be generated from `{target_file}` only. If you cannot reach 150 questions from this file, produce as many high-quality, file-specific questions as possible. If the file exceeds ~1000 lines, go up to 300+ questions. Do not return empty results.
+#
+# ## **Core AElf Components** (for reference only)
+#
+# ```python
+# core_components = [
+#     "contract/AElf.Contracts.Consensus.AEDPoS/*",
+#     "contract/AElf.Contracts.CrossChain/*",
+#     "contract/AElf.Contracts.Parliament/*",
+#     "contract/AElf.Contracts.Referendum/*",
+#     "contract/AElf.Contracts.Association/*",
+#     "contract/AElf.Contracts.Configuration/*",
+#     "contract/AElf.Contracts.Economic/*",
+#     "contract/AElf.Contracts.Treasury/*",
+#     "contract/AElf.Contracts.Profit/*",
+#     "contract/AElf.Contracts.Vote/*",
+#     "contract/AElf.Contracts.Election/*",
+#     "contract/AElf.Contracts.MultiToken/*",
+#     "contract/AElf.Contracts.NFT/*",
+#     "contract/AElf.Contracts.TokenConverter/*",
+#     "contract/AElf.Contracts.TokenHolder/*",
+#     "contract/AElf.Contracts.Genesis/*",
+# ]
+# ```
+#
+# ## **Critical Invariant Areas**
+#
+# - **Auth & Governance**: proposal creation/approval thresholds, organization auth (Parliament/Association/Referendum), proposer whitelist checks, method fee provider auth, token whitelist/blacklist rules.
+# - **Consensus Safety**: round updates, miner list transitions, time-slot validation, consensus command correctness, LIB height calculations, secret-sharing flows, punishment and dividends distribution.
+# - **Token & Supply Integrity**: mint/burn constraints, allowance/approval checks, fee deductions, lock/unlock flows, NFT issuance uniqueness, delegation logic.
+# - **Economic & Treasury Accounting**: Profit/Treasury share calculations, donation/release mechanics, dividend pool distribution, TokenHolder reward math.
+# - **Cross-Chain Verification**: merkle proof validation, index heights, parent-chain info integrity, side-chain creation/indexing security, re-org handling.
+# - **Converter & Pricing**: Bancor formula correctness, reserve balances, price slippage limits, insufficient reserve handling.
+#
+# ## **In-Scope Vulnerability Categories**
+#
+# - Authorization/governance bypass enabling unauthorized proposal execution, token mint/burn, fee changes, or config updates.
+# - Consensus or cross-chain validation flaws enabling fake headers, incorrect round transitions, or mining schedule corruption.
+# - Accounting/math errors causing supply inflation/deflation, dividend misallocation, or fee leakage.
+# - Lock/vesting/approval bugs allowing premature withdrawals or denial of rewards.
+# - Pricing or reserve-handling mistakes in TokenConverter leading to underpriced swaps or pool depletion.
+# - DOS vectors that freeze governance, consensus progress, cross-chain indexing, or token operations through valid calls.
+#
+# ## **Question Format Template**
+#
+# Each question MUST follow this Python list format:
+#
+# ```python
+# questions = [
+#     "[File: {target_file}] [Function: functionName()] [Vulnerability Type] Specific exploit scenario with preconditions, violated invariant, attacker action, and concrete impact? (High)",
+# ]
+# ```
+#
+# ## **Output Requirements**
+#
+# Generate questions focusing EXCLUSIVELY on `{target_file}` that:
+# - Reference real functions/methods/logic blocks in `{target_file}`
+# - Include concrete exploit paths, not generic checks
+# - Tie each question to math logic, business logic, or invariant breaks
+# - Prioritize questions likely to result in **valid vulnerabilities**
+# - Avoid low-signal or non-exploitable questions
+# - Include severity `(Critical/High/Medium/Low)` in each question
+# - Use exact Python list format
+#
+# ## **Target Question Count**
+#
+# - Small files: 80-150 questions when possible
+# - Medium files: 150+ questions
+# - Very large files (>1000 lines): 300+ questions
+# - If code size limits quantity, output as many quality questions as possible
+#
+# Begin generating questions for `{target_file}` now.
+# """
+#         return prompt
 
 
 def validation_format(report: str) -> str:

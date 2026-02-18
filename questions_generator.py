@@ -69,7 +69,7 @@ class GenerateQuestions:
     def ask_question(self, question_gotten):
         self.driver.get(f"{BASE_URL}/?mode=deep")
         wait = WebDriverWait(self.driver, 1200)
-
+        print("1")
         try:
 
             # # wait for the form containing the textarea
@@ -77,9 +77,13 @@ class GenerateQuestions:
                 EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
             )
 
+            print("2")
+
             # find the textarea inside the form
             textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
             # self.toggle_deep_research()
+
+            print("3")
 
             # type the question
             textarea.click()
@@ -91,6 +95,7 @@ class GenerateQuestions:
             # Dispatch an 'input' event to make sure the web application detects the change.
             self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
                                        textarea)
+            print("4")
             textarea.send_keys(".. ")
 
             textarea.send_keys(Keys.ENTER)
