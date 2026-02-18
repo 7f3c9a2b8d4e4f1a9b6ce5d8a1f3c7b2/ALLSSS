@@ -70,7 +70,7 @@ class GenerateQuestions:
         wait = WebDriverWait(self.driver, 1200)
 
         try:
-            self.driver.get(BASE_URL)
+            self.driver.get(f"{BASE_URL}/?mode=deep")
 
             # # wait for the form containing the textarea
             form = wait.until(
@@ -79,7 +79,7 @@ class GenerateQuestions:
 
             # find the textarea inside the form
             textarea = form.find_element(By.CSS_SELECTOR, 'textarea')
-            self.toggle_deep_research()
+            # self.toggle_deep_research()
 
             # type the question
             textarea.click()
