@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [Whitelist Race Condition] At line 78, IsInWhiteList is checked after GetAllowance at line 75. Can an attacker be added to whitelist between allowance check and whitelist check, causing inconsistent state where allowance is recorded but not decremented? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5968cb7-1ccb-4837-839f-335793bfabe0?mode=deep",
+    "timestamp": "2026-02-19 04:48:31.338035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [DealWithExternalInfoDuringTransfer Duplication] DealWithExternalInfoDuringTransfer is called at lines 81-82 for whitelisted transfers and lines 92-93 for normal transfers. Can this double-handling cause state duplication or double-spending of external info? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9040c798-e838-4ba8-9860-7cb7610a22bd?mode=deep",
+    "timestamp": "2026-02-19 04:48:54.011953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [Allowance Deduction After Transfer] At line 94, State.Allowances is decremented AFTER DoTransfer at line 91. Can reentrancy during DoTransfer allow the same allowance to be used multiple times before deduction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b696748-8a03-4415-bfff-a570e884bef5?mode=deep",
+    "timestamp": "2026-02-19 04:49:16.804252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [AllowanceSymbol Confusion] At line 94, allowanceSymbol (from GetAllowance) is used, not sourceSymbol. If allowanceSymbol points to wildcard allowance but the transfer is for specific NFT, can this cause incorrect allowance deduction tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fd6be07-a5d4-43c0-9cbc-5b9aa01942dd?mode=deep",
+    "timestamp": "2026-02-19 04:49:40.121233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [Negative Allowance via Sub()] At line 94, allowance.Sub(amount) is used. If allowance < amount (shouldn't happen due to earlier checks), can Sub cause underflow or exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05fead10-2591-4cbb-a1ac-f1ef715dba2a?mode=deep",
+    "timestamp": "2026-02-19 04:50:04.102381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [Address Validation Timing] AssertValidInputAddress is called at lines 71-72 before allowance checks. Can an attacker pass invalid addresses that pass validation but become invalid by the time DoTransfer executes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff5cb338-5114-46f6-aa56-36344b2b25ae?mode=deep",
+    "timestamp": "2026-02-19 04:50:29.250752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [GetAllowance Out Parameter Mutation] At line 75, GetAllowance has an out parameter allowanceSymbol. If GetAllowance throws after setting allowanceSymbol, can this leave inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58c0334c-f0c0-413c-b51e-660caa85dea8?mode=deep",
+    "timestamp": "2026-02-19 04:50:55.204652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [Memo Parameter Injection] The memo parameter is passed to DoTransfer and DealWithExternalInfoDuringTransfer but never validated. Can an attacker inject malicious data via memo to exploit downstream processing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8280d884-2f6a-4792-a981-839a084718d9?mode=deep",
+    "timestamp": "2026-02-19 04:51:21.132949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [Allowance Fallback Hierarchy Exploit] At lines 103-113, if sourceSymbol allowance is insufficient, the function falls back to collection allowance (NFT) or all-symbol allowance (Token). Can an attacker structure allowances to exploit this hierarchy and transfer more than intended? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad9637e8-36e3-4cfe-98da-92680eac2ed0?mode=deep",
+    "timestamp": "2026-02-19 04:51:47.188741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [GetSymbolType Inconsistency] At line 103, GetSymbolType determines Token vs NFT handling. If GetSymbolType returns inconsistent results for the same symbol across calls, can this cause allowance confusion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58e5cf63-c984-46ac-8fd0-45377d3ef802?mode=deep",
+    "timestamp": "2026-02-19 04:52:13.251108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [NFT Collection Allowance Double Dip] At lines 110-112, for NFTs, both GetNftCollectionAllSymbolAllowance and GetAllSymbolAllowance are checked. Can an attacker consume collection allowance first, then fall back to all-symbol allowance, effectively double-spending? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b39d1ec-17fe-45a6-bfd7-6a0ced22e62b?mode=deep",
+    "timestamp": "2026-02-19 04:52:38.733484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [Out Parameter Overwrite] The allowanceSymbol out parameter is set multiple times (lines 100, 106, 110, 112). If intermediate values are used before final assignment, can this cause incorrect allowance deduction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a8a6a18-77be-4506-b9c5-30cbdcf7bdb1?mode=deep",
+    "timestamp": "2026-02-19 04:53:04.931507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [Early Return Bypass] At line 102, if allowance >= amount, the function returns immediately. Can an attacker structure allowances such that specific-symbol allowance just meets the threshold, preventing fallback checks that would reveal unauthorized access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d776c8f-75be-42d4-bc12-aa4600d6aea3?mode=deep",
+    "timestamp": "2026-02-19 04:53:31.404346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [Token Type Default Behavior] At line 104-107, if tokenType == SymbolType.Token, only GetAllSymbolAllowance is checked. Can NFT collections masquerading as Tokens bypass collection-specific allowance checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_acf5e62c-f997-448e-b641-fea9fcc6eeec?mode=deep",
+    "timestamp": "2026-02-19 04:54:01.807897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllowance()] [Allowance Comparison Race] At line 111, allowance >= amount is checked after calling GetNftCollectionAllSymbolAllowance. Can allowance value change between retrieval and comparison due to concurrent transactions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e6759f1-9df3-4d1c-94ea-f7c2592bf382?mode=deep",
+    "timestamp": "2026-02-19 04:54:29.272386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllSymbolAllowance()] [Universal Wildcard Security] At line 121, GetAllSymbolIdentifier() returns '*'. If an attacker gains approval for '*', can they transfer ALL tokens from the owner, including newly created ones? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_955490b6-53b9-4964-bba8-ab4fdfb2fa61?mode=deep",
+    "timestamp": "2026-02-19 04:55:00.739669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllSymbolAllowance()] [State Access Atomicity] At line 122, State.Allowances[from][spender][allowanceSymbol] is accessed. Can concurrent modifications to this state cause race conditions in allowance retrieval? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f2a8d06-a729-4500-a75f-daa3d6851eb6?mode=deep",
+    "timestamp": "2026-02-19 04:55:30.852564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionAllSymbolAllowance()] [Collection Wildcard Scope] At line 128, GetNftCollectionAllSymbolIdentifier constructs 'AAA-*' pattern. Can this wildcard match unintended NFTs if collection prefix is too short or contains special characters? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56b8b0d0-5f5b-49b4-803e-6768ba2985c3?mode=deep",
+    "timestamp": "2026-02-19 04:56:04.087341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionAllSymbolAllowance()] [SourceSymbol Parameter Trust] The sourceSymbol parameter is passed directly to GetNftCollectionAllSymbolIdentifier without validation. Can malformed sourceSymbol cause incorrect collection identifier construction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ecdeb6e8-ccab-434d-a5c1-355b5b0ac1a5?mode=deep",
+    "timestamp": "2026-02-19 04:56:32.571158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionAllSymbolIdentifier()] [Symbol Split Vulnerability] At line 135, sourceSymbol.Split(NFTSymbolSeparator)[0] assumes the separator exists. Can an attacker provide a symbol without separator (e.g., 'TOKEN') causing IndexOutOfRangeException or returning the full symbol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc14109f-2bed-47dc-b1b9-57cc88bce12a?mode=deep",
+    "timestamp": "2026-02-19 04:57:03.392859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionAllSymbolIdentifier()] [Multiple Separator Handling] At line 135, Split returns an array. If sourceSymbol contains multiple separators (e.g., 'A-B-C-1'), does [0] correctly extract 'A' or does it return unexpected prefix? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73c31f1c-6995-4b11-b682-e949bf8a14a1?mode=deep",
+    "timestamp": "2026-02-19 04:57:33.900443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionAllSymbolIdentifier()] [AllSymbolIdentifier Injection] At line 135, the result is constructed as {prefix}-{AllSymbolIdentifier}. Can an attacker craft sourceSymbol to inject additional wildcards or special characters? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56684768-5b43-45d4-ac68-96c6332c9d51?mode=deep",
+    "timestamp": "2026-02-19 04:58:01.817652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetAllSymbolIdentifier()] [Constant Return Manipulation] At line 141, TokenContractConstants.AllSymbolIdentifier.ToString() is returned. If this constant is mutable or can be shadowed, can an attacker change the universal wildcard identifier? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1656b859-f777-4ca0-bc17-4e97113e0602?mode=deep",
+    "timestamp": "2026-02-19 04:58:32.459570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionSymbol()] [Symbol Split Array Access] At line 156, words = symbol.Split(NFTSymbolSeparator). At line 159, Assert checks words.Length == 2, but at line 158, if words.Length == 1, null is returned. Can symbols with 3+ parts (e.g., 'A-B-C') bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7bc029a9-adda-43a8-acfb-4bed6e9f0b8b?mode=deep",
+    "timestamp": "2026-02-19 04:59:00.359431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: GetNftCollectionSymbol()] [IsValidItemId Bypass] At line 159, IsValidItemId(words[1]) validates the item ID. Can an attacker provide symbols like 'NFT-' (empty item ID) that pass the length check but fail item ID validation after state modifications? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_199c8012-ffc0-4d5c-a354-271b0c5687ea?mode=deep",
+    "timestamp": "2026-02-19 04:59:32.434607",
+    "report_generated": false
+  }
+]
