@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Initialization Race] If two transactions simultaneously call methods that invoke RequiredMaximumMinersCountControllerSet at line 31-43 when State.MaximumMinersCountController.Value is null, can both bypass the return at line 33 and both call State.ParliamentContract.GetDefaultOrganizationAddress, causing double-initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_154c6241-5fa4-4740-a93b-33f59a55b042?mode=deep",
+    "timestamp": "2026-02-19 10:02:19.329943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Parliament Dependency] If EnsureParliamentContractAddressSet at line 34 fails or State.ParliamentContract.Value is null/invalid, does the GetDefaultOrganizationAddress.Call at line 38 fail ungracefully, causing all functions that call RequiredMaximumMinersCountControllerSet to become unusable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb08e73b-030e-44b3-b800-10db7be65d3e?mode=deep",
+    "timestamp": "2026-02-19 10:02:41.743638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Malicious Default Org] If State.ParliamentContract.GetDefaultOrganizationAddress.Call returns an address controlled by an attacker (e.g., Parliament contract bug), does State.MaximumMinersCountController.Value get initialized with attacker-controlled OwnerAddress, allowing immediate takeover of SetMaximumMinersCount? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8160dcb4-fe08-4927-a92a-952a11ef81b2?mode=deep",
+    "timestamp": "2026-02-19 10:03:04.136947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Reentrancy] Can the State.ParliamentContract.GetDefaultOrganizationAddress.Call at line 38 trigger a callback that re-enters RequiredMaximumMinersCountControllerSet before State.MaximumMinersCountController.Value is set at line 42, causing multiple initialization attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96a42904-b7b3-4d38-a4a0-c50979e6d406?mode=deep",
+    "timestamp": "2026-02-19 10:03:26.952201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Authority Validation] The function doesn't validate that the returned organization address from GetDefaultOrganizationAddress is non-zero or valid. Can a null/zero address be set as OwnerAddress at line 38, making the authorization check at SetMaximumMinersCount line 17 always fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc52f6ca-fc7c-43af-971a-60a36be6f362?mode=deep",
+    "timestamp": "2026-02-19 10:03:51.136728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Contract Address Trust] The ContractAddress is set to State.ParliamentContract.Value at line 39. If this address is later changed or points to a malicious contract, does the AuthorityInfo remain valid for CheckOrganizationExist verification in ChangeMaximumMinersCountController? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0cd7e72a-c97e-44b5-ae35-b7b605d129be?mode=deep",
+    "timestamp": "2026-02-19 10:04:16.570253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Initialization Timing] If RequiredMaximumMinersCountControllerSet is called before the Parliament contract has initialized its default organization, can GetDefaultOrganizationAddress return an empty/invalid address that permanently locks the MaximumMinersCount controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae003e08-b186-4568-a493-0d4c8e00ac17?mode=deep",
+    "timestamp": "2026-02-19 10:04:41.791336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [State Check Bypass] The check at line 33 uses != null which could pass if State.MaximumMinersCountController.Value is an empty AuthorityInfo object (not null but with empty fields). Can this cause re-initialization with different Parliament organization? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e345498-75a6-4526-8a26-7f50b2d16366?mode=deep",
+    "timestamp": "2026-02-19 10:05:07.833318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Cross-Contract Failure] If State.ParliamentContract.GetDefaultOrganizationAddress.Call fails or reverts at line 38, does RequiredMaximumMinersCountControllerSet leave State.MaximumMinersCountController.Value null, causing all subsequent calls to SetMaximumMinersCount and ChangeMaximumMinersCountController to fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_deb96d37-6a66-4d52-a221-ec7924747ecd?mode=deep",
+    "timestamp": "2026-02-19 10:05:34.481556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Governance Lockout] If Parliament default organization changes after initialization (e.g., via Parliament governance), does State.MaximumMinersCountController.Value remain pointing to the old organization, creating a governance deadlock where neither old nor new Parliament can control MaximumMinersCount? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74d94c82-a516-455d-b638-8d592d5a8f39?mode=deep",
+    "timestamp": "2026-02-19 10:06:01.690731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Immutability Assumption] The early return at line 33 assumes once State.MaximumMinersCountController.Value is set it never needs re-initialization. If ChangeMaximumMinersCountController sets it to an invalid AuthorityInfo, can RequiredMaximumMinersCountControllerSet never fix it because the != null check passes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e31cec29-7a69-4d18-aa5a-31c905bd0ad2?mode=deep",
+    "timestamp": "2026-02-19 10:06:30.075316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Missing Error Handling] If EnsureParliamentContractAddressSet at line 34 throws an exception, does the function fail without setting State.MaximumMinersCountController.Value, but subsequent calls still return early at line 33 if a partial state was written? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_809f199b-9c4f-49b2-94a9-e2695ccf44f3?mode=deep",
+    "timestamp": "2026-02-19 10:06:58.499253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Default Org Security] Does the function verify that GetDefaultOrganizationAddress returns a Parliament organization with valid proposers and threshold, or can an empty organization with no members be set as the controller? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e000e73-4c5f-4a81-97c1-b4aa13d219ac?mode=deep",
+    "timestamp": "2026-02-19 10:07:28.662270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [State Pollution] If a malicious contract sets State.MaximumMinersCountController.Value to a non-null but invalid AuthorityInfo before RequiredMaximumMinersCountControllerSet is first called, does the early return at line 33 prevent proper initialization with Parliament's default organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f76d53c-3a22-41cb-a82d-44cb2a683523?mode=deep",
+    "timestamp": "2026-02-19 10:07:58.826451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Constructor Ordering] If RequiredMaximumMinersCountControllerSet is called during contract initialization before the Parliament contract is deployed, does GetDefaultOrganizationAddress fail, making the entire consensus contract unusable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a8523a1-a358-44dc-a603-9996d9fb8035?mode=deep",
+    "timestamp": "2026-02-19 10:08:26.996981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Atomicity] If the transaction fails after State.MaximumMinersCountController.Value is set at line 42 but before function return, is the state change persisted or rolled back? Can this create inconsistent initialization state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6050ed04-409a-4b2b-b0ec-82c7b90dbc62?mode=deep",
+    "timestamp": "2026-02-19 10:18:07.512732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Authority Centralization] By hardcoding Parliament as the default controller, does this create a single point of failure where Parliament compromise = consensus parameter control, violating defense-in-depth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f483311-3240-4e67-9c34-e22f76ed9198?mode=deep",
+    "timestamp": "2026-02-19 10:18:30.074215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Circular Dependency] If the Parliament contract's initialization also depends on AEDPoS contract being initialized (e.g., for consensus), can RequiredMaximumMinersCountControllerSet create a deadlock where neither contract can initialize? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39875248-e587-4d86-8b8c-6536cdf5f911?mode=deep",
+    "timestamp": "2026-02-19 10:18:52.529487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Replay Attack] If the blockchain is forked or reset, can RequiredMaximumMinersCountControllerSet initialize with a different Parliament default organization on the fork, causing chain-split in governance authority? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f37a274-e44f-4bf1-be82-56c14eba2d72?mode=deep",
+    "timestamp": "2026-02-19 10:19:16.031659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Contract Upgrade] If the Parliament contract is upgraded and GetDefaultOrganizationAddress returns a different address, does State.MaximumMinersCountController.Value remain pointing to the old organization because of the early return at line 33? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57c44df8-c66c-4da0-919d-277fe1e71992?mode=deep",
+    "timestamp": "2026-02-19 10:19:40.785152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Authorization Bypass] If RequiredMaximumMinersCountControllerSet at line 47 initializes State.MaximumMinersCountController.Value in the same transaction, can AssertSenderAddressWith at line 48 be bypassed because Context.Sender might equal the newly initialized default organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36c5ba74-dbe3-4f60-94c0-08ade5dca19f?mode=deep",
+    "timestamp": "2026-02-19 10:20:05.899725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Invalid Authority] If CheckOrganizationExist at line 49 validates input.ContractAddress exists but doesn't verify input.OwnerAddress is actually an organization in that contract, can an attacker set OwnerAddress to any address with ContractAddress pointing to a valid Parliament contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58f1378f-d7b7-40a5-a1b7-31a35a4aded8?mode=deep",
+    "timestamp": "2026-02-19 10:20:31.588425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Contract Validation Gap] CheckOrganizationExist at line 49 calls ValidateOrganizationExist on input.ContractAddress, but what if input.ContractAddress points to a malicious contract that always returns true for ValidateOrganizationExist? Can this bypass proper organization validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a7ffee3-18dc-407f-82eb-4c124051f738?mode=deep",
+    "timestamp": "2026-02-19 10:20:57.847207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Ownership Transfer] Can the current controller transfer ownership to an address that no one controls (e.g., burn address) at line 52, permanently locking the MaximumMinersCount parameter and preventing any future updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc8dc643-1f99-47ed-97c2-85efa7d16423?mode=deep",
+    "timestamp": "2026-02-19 10:21:25.854765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Reentrancy] Can CheckOrganizationExist's cross-contract call to ValidateOrganizationExist at line 49 trigger a callback that re-enters ChangeMaximumMinersCountController before State.MaximumMinersCountController.Value is updated at line 52? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f2cd2ae-bc0d-4df3-8c45-fbff1a5fd857?mode=deep",
+    "timestamp": "2026-02-19 10:21:53.453895",
+    "report_generated": false
+  }
+]
