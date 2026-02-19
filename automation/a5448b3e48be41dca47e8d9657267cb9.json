@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [NextRound Creation] NextRoundInput.Create at line 169 might fail or return invalid data - is there error handling for failed round creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5e169f0-eaa2-42a5-84b9-2b536f79dee5?mode=deep",
+    "timestamp": "2026-02-19 09:46:29.283933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [NextTerm Creation] NextTermInput.Create at line 177 creates term transition - can this be called by non-authorized miners or at wrong times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e5a484b-019a-4ff2-ad7a-34d3d6d1beee?mode=deep",
+    "timestamp": "2026-02-19 09:46:51.632095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Default Case Execution] Default case at line 180 returns empty TransactionList - can undefined behaviours silently produce no transactions, halting consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8490436a-9eaa-414b-ab16-7ed4afbcf923?mode=deep",
+    "timestamp": "2026-02-19 09:47:14.343559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Transaction Generation Function] GenerateTransaction is called for all behaviours but implementation is not shown - can this function be exploited to create unauthorized transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76a26318-96a5-4e55-9d6e-ccfb5457f4b6?mode=deep",
+    "timestamp": "2026-02-19 09:47:37.557802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Integration: GetConsensusCommand + ValidateConsensusAfterExecution] Can a miner obtain a valid consensus command but have different headerInformation validated after execution, causing state inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c071e33-60a3-4ee7-853d-42169cea0d91?mode=deep",
+    "timestamp": "2026-02-19 09:48:02.008980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Integration: GenerateConsensusTransactions + ValidateConsensusBeforeExecution] Are the transactions generated at line 73 guaranteed to pass validation at line 80, or can timing cause validation failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33e8d3d1-e3f8-4328-949b-f7320c344104?mode=deep",
+    "timestamp": "2026-02-19 09:48:27.151016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Race Condition: Multiple Validators] Can concurrent calls to ValidateConsensusAfterExecution cause TOCTOU issues when checking and updating round information between lines 87-124? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_785ca52f-027d-4d64-af7b-1af6fcb7ddbe?mode=deep",
+    "timestamp": "2026-02-19 09:48:52.960247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [State Consistency: Round Recovery] RecoverFromUpdateValue and RecoverFromTinyBlock at lines 90-97 modify headerInformation in-memory - can this cause validation to pass but execution to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bba0d199-219c-4b68-9877-44e3ba7ab72f?mode=deep",
+    "timestamp": "2026-02-19 09:49:22.847029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Timing Attack: Blockchain Start Timestamp] Does GetBlockchainStartTimestamp at line 37 return consistent values across calls, or can timestamp manipulation affect consensus command generation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7407e230-4095-4418-bef2-f0301b70454c?mode=deep",
+    "timestamp": "2026-02-19 09:49:55.629276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Block Production Monopolization] Can a miner with BlocksCount at exactly -1 produce one more block before being forced to NextRound, effectively getting one extra block compared to the intended limit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b499c4b-ac4f-41b1-9bd6-c89fa11e2f7c?mode=deep",
+    "timestamp": "2026-02-19 09:50:23.724531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Round Number Boundary] The check at line 30 requires RoundNumber > 2 - can rounds 1 and 2 allow unlimited blocks without continuous production checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bd3b4c5-8cd5-4a4a-815d-291da28da4f6?mode=deep",
+    "timestamp": "2026-02-19 09:50:53.439960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [Miner Replacement Attack] Can an attacker register multiple pubkeys via Election contract and swap between them using GetNewestPubkey to bypass continuous block limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05a7a9e4-64fa-4a07-824d-95ff58c3a3e2?mode=deep",
+    "timestamp": "2026-02-19 09:51:22.487612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [Hash Collision Exploitation] If two different rounds produce the same hash at line 100, can an invalid round pass validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5c6b73f-677f-48c2-acc4-e4e54e0345ab?mode=deep",
+    "timestamp": "2026-02-19 09:51:58.646077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Transaction Order Dependency] Are the generated transactions order-dependent, and can reordering UpdateValue/TinyBlock/NextRound transactions cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7be6535-6ef3-4c9f-9d6e-b98873cc2871?mode=deep",
+    "timestamp": "2026-02-19 09:52:35.898541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Context.CurrentBlockTime Manipulation] Is Context.CurrentBlockTime at lines 35, 42, 46, and 53 trusted, or can block timestamp manipulation affect consensus behaviour selection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b17e7a5-75fa-4eb8-a1af-94c111c17f8b?mode=deep",
+    "timestamp": "2026-02-19 09:53:06.214917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [String Conversion Vulnerability] Multiple ToHex() conversions on ByteString at lines 92, 97, 117, 139, 149 - can malformed ByteStrings cause conversion errors or exploits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99fc5805-c8d1-446b-a5c2-7924025905d5?mode=deep",
+    "timestamp": "2026-02-19 09:53:44.638030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateConsensusTransactions()] [Pubkey Format Validation] Pubkey.Any() check at line 66 only validates non-empty - can pubkeys with invalid hex format pass and cause downstream errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e46a67e-9b8d-4fcb-b550-9f4ef65427c5?mode=deep",
+    "timestamp": "2026-02-19 09:54:23.854044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Global State: _processingBlockMinerPubkey] The global field _processingBlockMinerPubkey set at line 19 - can reentrancy or concurrent calls cause it to be overwritten mid-execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81b30aad-3404-4b71-aabf-5f87c04358ed?mode=deep",
+    "timestamp": "2026-02-19 09:55:01.682188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [Replacement Validation Logic] The assertion at lines 120-123 validates replacement correctness - can an attacker craft newMiners and officialNewestMiners to satisfy the union check while being invalid? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f724d66-d5c6-4c2c-88b6-8174c37cd7a5?mode=deep",
+    "timestamp": "2026-02-19 09:55:41.732554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Invalid Command Propagation] When InvalidConsensusCommand is returned at lines 21, 24, 27, 52 - does this halt consensus permanently or can recovery occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb45f3e6-30bf-4bd5-9516-6f4863d76eda?mode=deep",
+    "timestamp": "2026-02-19 09:56:21.569027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Namespace Method Calls] GenerateTransaction calls at lines 144, 154, 169, 177 assume a method exists in the current contract - can missing method implementations cause runtime failures? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7169459a-391e-478f-8855-9553f5617372?mode=deep",
+    "timestamp": "2026-02-19 09:57:03.097791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [Error Message Information Leakage] Validation failure message at lines 109-112 includes full round information - can this leak sensitive consensus data to attackers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a57322a-acd2-4052-be85-0f6a15769418?mode=deep",
+    "timestamp": "2026-02-19 09:57:45.478054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Behaviour Provider Initialization] MainChainConsensusBehaviourProvider and SideChainConsensusBehaviourProvider constructors at lines 40-46 - can null parameters cause initialization failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc8266e9-3fc2-4340-87d3-676049932ed0?mode=deep",
+    "timestamp": "2026-02-19 09:58:28.316162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [LINQ Performance] Multiple LINQ operations (Except, Select, Union, Count) at lines 105-122 on potentially large miner lists - can this cause performance DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_727e4b08-62a9-416d-8837-e40dd1a16b60?mode=deep",
+    "timestamp": "2026-02-19 09:59:12.241671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateConsensusTransactions()] [Protobuf Merge Semantics] MergeFrom at line 64 and 72 - can repeated fields or map fields in protobuf be exploited to merge malicious data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c048cd4a-7940-40ad-b808-deea5d17647a?mode=deep",
+    "timestamp": "2026-02-19 09:59:57.040083",
+    "report_generated": false
+  }
+]
