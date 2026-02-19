@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Timing Attack] If currentBlockTime is attacker-controlled or manipulated, can they schedule all mining times in a narrow window to cause network congestion or fork? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d852af5-5891-4b15-8a68-5dce3224476f?mode=deep",
+    "timestamp": "2026-02-19 13:12:52.840535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Timing Attack] The first miner's time is currentBlockTime + miningInterval (not + 0). Could this gap be exploited for censorship if the extra block producer delays their block? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc64f5c2-2452-4742-83b0-82bcec40a335?mode=deep",
+    "timestamp": "2026-02-19 13:13:15.138649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Timing Attack] If miningInterval is set extremely small (1ms), could the expected mining times be so close that network latency causes miners to produce blocks out of order? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8419da94-8a7f-4dbb-b0fd-25def86df464?mode=deep",
+    "timestamp": "2026-02-19 13:13:37.800473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Edge Case] If Pubkeys contains only one miner, does the consensus still function correctly with Order=1, and does the single miner get all block production slots? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20d62ee5-4f39-416e-b749-56e366d8e331?mode=deep",
+    "timestamp": "2026-02-19 13:14:01.569366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Edge Case] If Pubkeys contains more miners than Int32.MaxValue can index, does the for loop fail or wrap causing incorrect Order assignments? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eea75b02-23ee-4a63-8240-9d9bef69617d?mode=deep",
+    "timestamp": "2026-02-19 13:14:25.752683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Edge Case] What happens if Pubkeys contains exactly 2 miners with identical first bytes? Does the sort become non-deterministic across nodes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea7f1937-2755-41ee-b8de-a008239f362c?mode=deep",
+    "timestamp": "2026-02-19 13:14:51.798659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Edge Case] If ByteString.ToHex() returns different case (uppercase vs lowercase) on different platforms, could this cause key mismatches in RealTimeMinersInformation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c6ef78e-2904-438f-9689-9d3116e159a2?mode=deep",
+    "timestamp": "2026-02-19 13:15:17.168364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Access Control] The methods are marked 'internal'. Are there any public wrappers that call this without proper authorization checks, allowing anyone to trigger term transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6759e1b8-90c2-4ee2-ab1f-d89c1af7d843?mode=deep",
+    "timestamp": "2026-02-19 13:15:43.608144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Access Control] Who controls the MinerList.Pubkeys collection? If it's mutable by external actors, can they manipulate it right before this method is called to control miner ordering? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_163ef5c5-c85c-480f-8314-80b1fa989ba4?mode=deep",
+    "timestamp": "2026-02-19 13:16:13.972056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Determinism] The LINQ orderby and ToDictionary operations - are these guaranteed to produce identical results on all nodes with the same input, or could .NET framework differences cause consensus forks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2163d83b-a578-41e6-bfb4-959592448cd4?mode=deep",
+    "timestamp": "2026-02-19 13:16:45.611710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Determinism] If two nodes have slightly different currentBlockTime values when calling this method, do they generate Rounds with different ExpectedMiningTime values, causing fork? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd54e8b7-7cb8-4b79-8552-02a624500822?mode=deep",
+    "timestamp": "2026-02-19 13:17:18.172428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Determinism] The sort stability - if multiple pubkeys have the same first byte value, is the relative order preserved consistently across all nodes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65b5fcfa-6f86-4223-bdeb-3b4668afa749?mode=deep",
+    "timestamp": "2026-02-19 13:17:47.051472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Assumption Violation] The method assumes Pubkeys represents the validated next miner set. If this list hasn't been properly voted on or approved, could unauthorized miners be added to consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8eb3b56-c593-4383-9518-f9384f8966a4?mode=deep",
+    "timestamp": "2026-02-19 13:18:17.016687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Assumption Violation] Does the method assume miningInterval is always positive and reasonable (e.g., 4000ms)? If set to 1 or Int32.MaxValue, could it break consensus timing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a50005c-b54e-4498-9929-c1e1a1d7fe48?mode=deep",
+    "timestamp": "2026-02-19 13:18:46.279213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Assumption Violation] The code assumes all ByteString pubkeys are valid, parseable, and unique. If these assumptions are violated, what security failures occur? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c0d269b-5f7a-465c-b980-ac63c821d04f?mode=deep",
+    "timestamp": "2026-02-19 13:19:16.448084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] If Pubkeys contains millions of entries, does the sorting and loop iteration consume excessive gas or CPU, making term transitions economically infeasible? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_966c109e-9fbc-4489-9c5f-875724d58899?mode=deep",
+    "timestamp": "2026-02-19 13:19:52.802938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] The ToDictionary() and orderby operations allocate temporary collections. With a large Pubkeys list, could this cause out-of-memory errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac0bf49a-d6c7-457f-94a7-a798e69e1995?mode=deep",
+    "timestamp": "2026-02-19 13:20:26.571124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] Each MinerInRound object is created and added to RealTimeMinersInformation. Could creating thousands of objects exceed contract execution limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8994480-5ea3-44db-852c-6dbd475b6ec8?mode=deep",
+    "timestamp": "2026-02-19 13:21:01.829104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Cryptographic] Using only the first byte of pubkeys for sorting reduces 256-bit entropy to 8 bits. Could this make the miner ordering predictable and exploitable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d619f4a4-f4f2-4028-b41f-e4192b16e4cc?mode=deep",
+    "timestamp": "2026-02-19 13:21:31.700707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Cryptographic] Since PreviousInValue is Hash.Empty, the first VRF computation in the new term has no cryptographic binding. Can this be exploited for grinding attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57019c5e-1537-4d2e-955c-0bfff524d5c2?mode=deep",
+    "timestamp": "2026-02-19 13:22:01.581118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Cryptographic] If pubkey generation can be influenced by miners, could they grind keys with specific first bytes to always be sorted first and become the extra block producer? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ae72d47-a002-4673-b1af-6a08ee7c45f3?mode=deep",
+    "timestamp": "2026-02-19 13:22:37.645292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Interoperability] The Round object returned - if consumed by other contracts or off-chain systems expecting different field values, could initialization choices here cause integration failures? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7fbfc6e-8339-4067-9fc9-53b0c297f2ec?mode=deep",
+    "timestamp": "2026-02-19 13:23:13.572197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Interoperability] The method uses extension methods (Add, Mul, AddMilliseconds). If these aren't overflow-safe, could they introduce vulnerabilities not visible in this file? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf731b5e-17c6-4c30-b023-e75cb73691df?mode=deep",
+    "timestamp": "2026-02-19 13:23:43.774103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Code Quality] The comment 'Should be careful during validation' for PreviousInValue = Hash.Empty indicates special handling is needed. If this requirement isn't documented elsewhere, could validators incorrectly reject valid blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82f33c6e-0559-44ac-b58b-bcc0dfb041a0?mode=deep",
+    "timestamp": "2026-02-19 13:24:20.626847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Code Quality] The partial class structure means other logic for MinerList exists elsewhere. Could methods in other files modify Pubkeys during this method's execution causing inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40ef79f9-28de-4517-9f98-832b27e974cb?mode=deep",
+    "timestamp": "2026-02-19 13:24:57.595900",
+    "report_generated": false
+  }
+]
