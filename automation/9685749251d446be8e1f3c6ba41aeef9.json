@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Secret Sharing] Can an attacker bypass the IsSecretSharingEnabled check at line 122 through race conditions or configuration manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9312db55-213f-4b5a-a8dd-def2bb48f93d?mode=deep",
+    "timestamp": "2026-02-19 08:53:41.993799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Can an attacker provide mismatched encrypted/decrypted pieces (lines 139-146) that pass validation but fail during secret reconstruction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3073014b-2485-47e5-9ca7-247e5be48bc1?mode=deep",
+    "timestamp": "2026-02-19 08:54:04.219061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Does the function verify that encrypted pieces are properly formatted before adding them (line 140-141), or can garbage data corrupt the secret sharing state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fba2d926-2e2c-44a5-803a-b1c3fac4c226?mode=deep",
+    "timestamp": "2026-02-19 08:54:26.695473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Can an attacker inject decrypted pieces for non-existent miners (line 144) that are skipped by the ContainsKey check, allowing state pollution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90c4a4fa-05ab-4147-9a90-ac6b8a3c10cc?mode=deep",
+    "timestamp": "2026-02-19 08:54:50.288762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Does the revealedInValues update at line 152 properly validate that the revealed value matches the expected hash, or can attackers reveal incorrect values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0873b01f-5382-4c6b-9f90-703b46503b82?mode=deep",
+    "timestamp": "2026-02-19 08:55:14.958577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Can the condition at lines 150-151 checking for Hash.Empty or null PreviousInValue be exploited to overwrite legitimate values with attacker-controlled data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b13e592e-8e11-400a-826d-51d42e2bdfb3?mode=deep",
+    "timestamp": "2026-02-19 08:55:40.804834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Secret Sharing] Can RevealSharedInValues at line 189 fail silently without proper error handling, leaving incomplete secret reconstruction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edbbf3c3-a3aa-432a-9895-70aba8d5198c?mode=deep",
+    "timestamp": "2026-02-19 08:56:06.477427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusBlockExtraData()] [Secret Sharing] Does DeleteSecretSharingInformation at line 50 properly clean up sensitive data, or can it leave remnants that leak private information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f11dac7-7191-43c7-81de-11679174ffef?mode=deep",
+    "timestamp": "2026-02-19 08:56:32.203333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Can an attacker DoS the secret sharing by providing extremely large EncryptedPieces dictionaries that exceed gas limits during iteration (line 139-141)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_685a540b-7c5b-46b6-a8ac-13811f56b5db?mode=deep",
+    "timestamp": "2026-02-19 08:57:04.013988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Secret Sharing] Does the function prevent duplicate decrypted pieces from the same miner (line 145-146) that could skew threshold calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63965e49-7f75-46e2-b870-d7191fca637a?mode=deep",
+    "timestamp": "2026-02-19 08:57:35.828701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Business Logic] Can a miner call this function multiple times in the same block to increment their ProducedBlocks counter artificially (lines 60-61), gaining undeserved rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46b1b9b6-c7b6-43c7-bede-19687f9ccf2e?mode=deep",
+    "timestamp": "2026-02-19 08:58:09.744109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Business Logic] Does the ApplyNormalConsensusData call at line 111-112 validate that the pubkey is authorized to produce blocks at this time slot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30b45c49-43fb-4669-9c3f-ffb828c056d0?mode=deep",
+    "timestamp": "2026-02-19 08:58:44.359213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Business Logic] Can the ActualMiningTimes list (line 62-63) grow unbounded if called repeatedly, causing storage bloat and gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7553fe8-fbaa-4e07-955d-a285a8f3e53b?mode=deep",
+    "timestamp": "2026-02-19 08:59:15.237359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Business Logic] Does the previousRound check at line 97 properly handle edge cases where RoundNumber == 1, preventing signature manipulation in the genesis round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_674b6b19-9bc7-4f7e-a529-e7a37276c888?mode=deep",
+    "timestamp": "2026-02-19 08:59:49.211214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForTinyBlock()] [Business Logic] Can a miner produce unlimited tiny blocks by repeatedly calling this function (lines 158-163), bypassing block production limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51932f70-4179-4000-bde3-cb7254949af4?mode=deep",
+    "timestamp": "2026-02-19 09:00:25.068352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Business Logic] Does the function verify that it's actually time for a new round before calling GenerateNextRoundInformation (line 176), or can it be triggered prematurely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c722222-a928-4288-9825-ebc8ccb62c21?mode=deep",
+    "timestamp": "2026-02-19 09:00:59.031651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Business Logic] Can a non-mining node call this function to trigger round transitions, disrupting the intended consensus flow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b31e02b-ef7b-4a22-8054-0216ab623e80?mode=deep",
+    "timestamp": "2026-02-19 09:01:33.087093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [Business Logic] Does GenerateFirstRoundOfNextTerm at line 209 validate that the current term has completed, or can attackers trigger premature term transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e57f6a4f-d183-447c-9ec5-fe61835088a7?mode=deep",
+    "timestamp": "2026-02-19 09:02:06.290928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [Business Logic] Can the ProducedTinyBlocks assignment at line 212 be exploited to claim credit for block production that didn't occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_feb703f3-6891-4d01-a3a1-ce035efa4a2f?mode=deep",
+    "timestamp": "2026-02-19 09:02:42.552459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusBlockExtraData()] [Business Logic] Does the behaviour-based dispatch (lines 26-48) properly validate transition rules, or can attackers force invalid behaviour sequences? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ad470db-1fc3-4528-9370-a91837198420?mode=deep",
+    "timestamp": "2026-02-19 09:03:21.327888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Reentrancy] Can ApplyNormalConsensusData at line 111-112 trigger external calls that reenter GetConsensusBlockExtraData, causing double-counting of ProducedBlocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_809cf687-963b-445b-be62-b413605a24df?mode=deep",
+    "timestamp": "2026-02-19 09:03:56.896659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Race Condition] Can two miners call this function simultaneously for the same round, causing race conditions in currentRound updates (lines 58-63)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a170250e-3e50-4a7d-b12d-e14befaa35c4?mode=deep",
+    "timestamp": "2026-02-19 09:04:33.332944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Race Condition] Can concurrent calls to UpdateLatestSecretPieces corrupt the EncryptedPieces or DecryptedPieces maps (lines 140-146) through race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9df081e9-9631-4ddd-bb4b-972fdf6f1270?mode=deep",
+    "timestamp": "2026-02-19 09:05:09.919670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Race Condition] Can multiple miners trigger NextRound simultaneously, creating duplicate or conflicting nextRound data (line 176)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_648569c9-f6bf-4051-ad1b-29813f8c3e80?mode=deep",
+    "timestamp": "2026-02-19 09:05:46.996982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [Race Condition] Can concurrent NextTerm triggers create multiple first rounds of the next term (line 209), corrupting term boundaries? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87053d4d-1e63-4f08-a6bd-357ce3047d4b?mode=deep",
+    "timestamp": "2026-02-19 09:06:23.851836",
+    "report_generated": false
+  }
+]
