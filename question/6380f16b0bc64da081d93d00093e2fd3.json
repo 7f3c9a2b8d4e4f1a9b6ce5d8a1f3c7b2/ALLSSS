@@ -1,5 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Uninitialized Method] If State.TransactionFees[methodName] is never set, what default MethodFees does GetMethodFee return, and is this safe? (Medium)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [First Call Behavior] On the first DonateResourceToken call, State.LastPayRentTime.Value is null - does PayRental correctly initialize or can this be exploited? (Medium)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: AllCalculateFeeCoefficients] [Never Initialized] Since State.AllCalculateFeeCoefficients is never initialized or used, does its default null state pose any risk? (Low)"
-]
