@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Token: LockId Collision] At line 128, LockId equals input.VoteId. Can VoteId collision cause lock conflicts in token contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50d2a366-9d68-4e68-8ecb-0fb7af9dc6f9?mode=deep",
+    "timestamp": "2026-02-19 02:19:09.354864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Token: Symbol Validation] At line 31, AcceptedCurrency is checked in whitelist but not validated for format. Can invalid symbol cause token contract calls to fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b770e78a-d9a7-4571-8b63-7c56456689ee?mode=deep",
+    "timestamp": "2026-02-19 02:19:31.521800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Token: Lock Amount Zero] If amount calculated at lines 94-103 is zero, will token lock at line 124-130 succeed or fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5193b334-e51f-4be1-81d7-76a1d0713f5c?mode=deep",
+    "timestamp": "2026-02-19 02:19:54.170312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Quadratic: TicketCost Validation] At line 102, TicketCost.Mul(currentVotesCount) is calculated without validating TicketCost > 0. Can zero or negative TicketCost break economics? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8e93a1c-3f80-449c-a234-98b5c62a3482?mode=deep",
+    "timestamp": "2026-02-19 02:20:17.957306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Quadratic: Vote Count Reset] QuadraticVotesCountMap at line 100 increments indefinitely. Should count reset per snapshot or voting item? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ff1ceef-e870-4f05-9067-c49f3e092932?mode=deep",
+    "timestamp": "2026-02-19 02:20:42.365794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Quadratic: Cost Progression] At line 102, cost is linear (TicketCost * count), not quadratic. Is this intended or should it be TicketCost * count^2? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d649b07-4e1d-4e1e-bb46-1f6af0f7b6b2?mode=deep",
+    "timestamp": "2026-02-19 02:21:08.137627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Quadratic: Counter Persistence] QuadraticVotesCountMap at line 100 persists across snapshots. Should it be reset when TakeSnapshot() is called? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffb9f0e7-c7e2-433a-986a-ebafa773a091?mode=deep",
+    "timestamp": "2026-02-19 02:21:34.162118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Quadratic: Withdrawal Impact] When withdrawing quadratic vote, should QuadraticVotesCountMap be decremented to allow revoting at lower cost? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe2ff3f8-4590-4d9e-ae3e-1be925ffa9c4?mode=deep",
+    "timestamp": "2026-02-19 02:22:03.151281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Quadratic: Amount Display] At line 119, UpdateVotingResult is called with amount (line 102 calc) for quadratic voting but with 1 for vote count. Is Results map storing token amounts or vote counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37f1261f-3c92-428b-9ffe-3ba5fb67c269?mode=deep",
+    "timestamp": "2026-02-19 02:22:30.566642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Snapshot: Historical Modification] At line 253, previous snapshot's SnapshotEndTimestamp is modified after creation. Can this affect merkle proofs or historical queries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbf0dbc8-fcc8-48a5-9a77-bcf0d7884f05?mode=deep",
+    "timestamp": "2026-02-19 02:22:57.005555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Snapshot: Progressive Voting] At lines 269-270, VotersCount and VotesAmount carry over to next snapshot. Are new votes in new snapshot additional or replacement? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ba772bf-9bf2-4fa7-a56b-ec8532ba8c1e?mode=deep",
+    "timestamp": "2026-02-19 02:23:23.519753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Snapshot: Cross-Snapshot Withdrawal] Withdraw() at line 207 uses votingRecord.SnapshotNumber. Can voter withdraw from old snapshot affecting new snapshot's carried-over counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95a7c82f-e149-4087-99e1-d5a5992e4c5c?mode=deep",
+    "timestamp": "2026-02-19 02:23:51.157523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Snapshot: Concurrent TakeSnapshot] Can sponsor call TakeSnapshot() multiple times in parallel, causing snapshot number inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ac40d33-4ff7-4aaf-8b99-bd91319725dc?mode=deep",
+    "timestamp": "2026-02-19 02:24:20.014586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Snapshot: Hash Collision] At line 368-374, GetVotingResultHash uses VotingItemId and SnapshotNumber. Can same hash occur for different items? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc1dba6c-60a8-4f4a-b82f-755873219d43?mode=deep",
+    "timestamp": "2026-02-19 02:24:48.461054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Auth: Sponsor Privilege Abuse] Sponsor has control over Register, TakeSnapshot, AddOption, RemoveOption. Can malicious sponsor manipulate voting unfairly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_086730b2-245f-4fbb-95c1-fe6de6243dd9?mode=deep",
+    "timestamp": "2026-02-19 02:25:20.877910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Auth: Delegated Voting Trust] At lines 386-388, delegated voting requires sponsor to be sender. Can sponsor vote on behalf of users who never consented? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b34f107b-9828-4d49-8f75-ebf26bfe4cfc?mode=deep",
+    "timestamp": "2026-02-19 02:25:54.282508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Auth: Withdrawal Permission] At lines 197-200, withdrawal permission differs by IsLockToken. Can this be exploited to prevent legitimate withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c41d805-3241-4d6f-b50b-dd54fcbb6d3a?mode=deep",
+    "timestamp": "2026-02-19 02:26:25.963114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Auth: Option Modification] At lines 283, 306, 317, 329, only sponsor can modify options. Can sponsor collude with voters to manipulate outcomes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9204c1d6-c4d9-420c-b345-a8308b7d0d05?mode=deep",
+    "timestamp": "2026-02-19 02:26:57.963712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Auth: Context.Sender Validation] Throughout contract, Context.Sender is used for authorization. Can sender be spoofed in delegated call scenarios? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a59b6494-520c-4dea-97c8-086d988fa8f2?mode=deep",
+    "timestamp": "2026-02-19 02:27:25.440896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Input: Option String Length] At lines 294, 307, 333, option length is checked against 1024. Can exactly 1024-char option cause off-by-one errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd8d04aa-beec-4fd4-a3da-8afcebb19b75?mode=deep",
+    "timestamp": "2026-02-19 02:27:56.412138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Input: Negative Amounts] At line 96, input.Amount is used directly without checking >= 0. Can negative amounts corrupt vote totals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e48a54e-eb98-4ccd-a2ff-19bed363e2af?mode=deep",
+    "timestamp": "2026-02-19 02:28:24.714200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Input: Null Hash Handling] At lines 387-388, null checks for voter and VoteId. Can Hash.Empty or Address.Zero bypass these checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5737aa4b-f10d-429f-86c1-44315215d88d?mode=deep",
+    "timestamp": "2026-02-19 02:28:54.723319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Input: Timestamp Validation] At line 361, only checks EndTimestamp > StartTimestamp. Can past timestamps or far-future timestamps cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_137b1e16-1d92-430d-9007-401748be07da?mode=deep",
+    "timestamp": "2026-02-19 02:29:22.012627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Input: Empty Options Array] At line 49, options are added without checking array is non-empty. Can voting item with zero options be created? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c960069c-b131-4e37-820a-bac2d9944de3?mode=deep",
+    "timestamp": "2026-02-19 02:29:55.957250",
+    "report_generated": false
+  }
+]
