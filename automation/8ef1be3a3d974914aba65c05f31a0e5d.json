@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [OutValue Preimage Attack] Can attacker generate multiple InValues with same OutValue hash to corrupt random number generation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e18f98f-08af-4a45-8fa9-f3131c478841?mode=deep",
+    "timestamp": "2026-02-19 08:30:23.153239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Encrypted Pieces Size] Is there a limit on size of each encrypted piece value to prevent state bloat? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7eae43e5-48fe-4035-b612-d10f9fe206e2?mode=deep",
+    "timestamp": "2026-02-19 08:30:45.326428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Decrypted Piece Validation] Are decrypted pieces validated to actually decrypt corresponding encrypted pieces? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f24252a-80d2-48fa-b24f-db625a458e38?mode=deep",
+    "timestamp": "2026-02-19 08:31:07.876234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Revealed InValue Validation] Does function verify revealedInValue hashes to expected OutValue before updating PreviousInValue? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d7bcc60-91d5-4d70-ab4d-d3462cf572a1?mode=deep",
+    "timestamp": "2026-02-19 08:31:33.642753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForTinyBlock()] [Non-Miner Tiny Block] Can non-current-round miner produce tiny blocks by providing valid pubkey of actual miner? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f864abc-827a-4134-961b-4f838002bf8d?mode=deep",
+    "timestamp": "2026-02-19 08:31:57.719284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForTinyBlock()] [Tiny Block Spam] Without secret sharing or signature requirements, can attacker spam tiny blocks for any miner? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28dcb367-5d4a-45a0-ac73-bec257d750d8?mode=deep",
+    "timestamp": "2026-02-19 08:32:22.431591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Time Validation] Does GenerateNextRoundInformation validate Context.CurrentBlockTime is after currentRound end time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca5c6e05-9dd7-4b41-9f29-a1f07402fc56?mode=deep",
+    "timestamp": "2026-02-19 08:32:49.971267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Premature Next Round] Can miner trigger next round before current round naturally ends, breaking time slot allocation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6b25daf-6c9e-4ba0-aa12-e0e80c6c3908?mode=deep",
+    "timestamp": "2026-02-19 08:33:17.921598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Replaced Miner Attack] Can replaced miner (not in nextRound) produce extra block without revealing secrets, gaining unfair advantage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d9774c4-da4e-4922-9bca-c3a1052ce881?mode=deep",
+    "timestamp": "2026-02-19 08:33:49.461009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [Mining Interval Zero] Can State.MiningInterval.Value be zero or negative, causing invalid round generation at line 209? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78d79055-9a80-4820-a5ed-299a30aaf23e?mode=deep",
+    "timestamp": "2026-02-19 08:34:22.160238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [Unauthorized Term Trigger] Is there validation that pubkey has authority to trigger term transition? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d493c28e-3c70-4891-9fae-9c2334a738ea?mode=deep",
+    "timestamp": "2026-02-19 08:34:51.853256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [RoundId Zero Bypass] Can assertion at line 210 be bypassed if RoundId generation fails but doesn't return 0? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39308a76-b942-489a-9d03-fcac932c94df?mode=deep",
+    "timestamp": "2026-02-19 08:35:25.571195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusBlockExtraData()] [Information Initialization] When switch doesn't match any case, is information with default values returned causing consensus failure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_101a75ad-ab41-4a66-b179-1a17d24816c7?mode=deep",
+    "timestamp": "2026-02-19 08:35:59.373200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusBlockExtraData()] [DeleteSecretSharingInformation Timing] Can secrets be extracted between line 50 execution and actual deletion? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b9871cc-ba2d-4e8b-8179-9bf4dafa94b2?mode=deep",
+    "timestamp": "2026-02-19 08:36:33.029700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [OutValue Reuse] Can same OutValue be used across multiple rounds compromising randomness? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3f75143-3c0b-40de-a788-9e8ebcf9355c?mode=deep",
+    "timestamp": "2026-02-19 08:37:05.141272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Signature Correlation] Can signatures calculated at lines 69, 92, 101, 106 be correlated to predict future values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_120c9614-b074-40c6-92b5-94b875347f9d?mode=deep",
+    "timestamp": "2026-02-19 08:37:41.906722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Hash.Empty Semantics] When previousInValue is set to Hash.Empty at lines 70, 85, what impact on ApplyNormalConsensusData? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4eaaa57c-b96a-4385-922e-1d5dffefccee?mode=deep",
+    "timestamp": "2026-02-19 08:38:18.204103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Self-Check Failure] When self-check fails at lines 81-85, logging occurs but previousInValue=Hash.Empty - can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_493c4707-8d25-4b7a-8ef5-37d7d4832990?mode=deep",
+    "timestamp": "2026-02-19 08:38:55.302813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [ImpliedIrreversibleBlockHeight Advance] Can miner advance ImpliedIrreversibleBlockHeight at line 118 without actual irreversibility consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49df662b-5d82-4ad8-a886-181bd4872cc4?mode=deep",
+    "timestamp": "2026-02-19 08:39:32.888725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [EncryptedPieces Limit] Is there maximum number of encrypted pieces to prevent unbounded state growth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7e0196d-6a39-4abb-9916-f91449b19181?mode=deep",
+    "timestamp": "2026-02-19 08:40:11.983933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [DecryptedPieces Authenticity] Can malicious miner provide fake decrypted pieces that don't match encrypted ones? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1daa47ae-46bb-45e7-b610-237de07c62b2?mode=deep",
+    "timestamp": "2026-02-19 08:40:49.571554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [RevealedInValues Timing] Can attacker reveal InValues prematurely to gain advantage in consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a978e6fd-32d5-4be7-b254-168a7a871752?mode=deep",
+    "timestamp": "2026-02-19 08:41:28.405696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [PreviousInValue Override] Can legitimate PreviousInValue be overridden if it was set between checks at line 150? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbbb7ea4-e234-457b-b440-cd94facdcee7?mode=deep",
+    "timestamp": "2026-02-19 08:42:00.129115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AED\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs (L1-221)\n```csharp\nusing System.Linq;\nusing AElf.CSharp.Core;\nusing AElf.Sdk.CSharp;\nusing AElf.Types;\nusing Google.Protobuf;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\n// ReSharper disable once InconsistentNaming\npublic partial class AEDPoSContract\n{\n    private BytesValue GetConsensusBlockExtraData(BytesValue input, bool isGeneratingTransactions = false)\n    {\n        var triggerInformation = new AElfConsensusTriggerInformation();\n        triggerInformation.MergeFrom(input.Value);\n\n        Assert(triggerInformation.Pubkey.Any(),",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dad4afa0-983b-452a-8e30-404196ee30a5?mode=deep",
+    "timestamp": "2026-02-19 08:42:38.869457",
+    "report_generated": false
+  }
+]
