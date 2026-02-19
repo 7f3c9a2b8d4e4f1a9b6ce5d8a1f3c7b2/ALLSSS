@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: DefaultOrganizationMinimalApprovalThreshold=6667] [Threshold Naming Confusion] Does the word 'Default' in constant names imply these are intended to be customizable, and could developers mistakenly believe they can modify these values leading to unsafe initialization patterns? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c62f936-90d4-4096-b3dd-69c98eed0db0?mode=deep",
+    "timestamp": "2026-02-19 13:21:13.551381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: AbstractVoteTotal=10000] [Multiplication Overflow Path] In calculations like 'rejectionMemberCount * AbstractVoteTotal', if rejectionMemberCount exceeds int32.MaxValue / 10000 (approximately 214,748), does integer overflow cause the rejection check to fail and allow proposals to pass despite majority rejection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcfa9f34-6fc3-4b46-b485-e49130e40741?mode=deep",
+    "timestamp": "2026-02-19 13:21:35.673780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All thresholds] [Comparison Operator Precedence] In multi-condition threshold checks, can operator precedence errors cause incorrect evaluation of (approval >= threshold) AND (rejection <= maxRejection) conditions, allowing proposals to pass with invalid vote distributions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_948a84a6-4c3f-48e9-a4ff-ae5fa909bdc6?mode=deep",
+    "timestamp": "2026-02-19 13:21:58.176100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: MinimalVoteThreshold=7500, MinimalApprovalThreshold=6667] [Impossible Threshold Configuration] Can a scenario exist where 75% participation is required (7500) but only 66.67% approval needed (6667), and miners are split 66.67% approve, 8.33% abstain, making it impossible to reach both thresholds simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa258233-c918-4ace-8709-f61bb9742d4c?mode=deep",
+    "timestamp": "2026-02-19 13:22:21.155223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: MaximalAbstentionThreshold=2000, MaximalRejectionThreshold=2000] [Dual Threshold Block] Can 20% miners abstain AND 20% miners reject (40% total non-approval) while 60% approve, and does this fail to meet MinimalApprovalThreshold=6667, creating a permanent deadlock state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f53d0647-13c1-4fda-bdd5-0fdc732d59c4?mode=deep",
+    "timestamp": "2026-02-19 13:22:44.828865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Validation Skip via Emergency] When creating Emergency Response Organization with hardcoded 90% thresholds, does the system skip validation against these default constants, and can this be exploited to create organizations with invalid threshold combinations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a141188-c9f7-4c10-a39d-018861c89fab?mode=deep",
+    "timestamp": "2026-02-19 13:23:10.344111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Custom Organization Validation Bypass] When creating custom organizations via CreateOrganization(), can attackers provide ProposalReleaseThreshold values that violate the mathematical relationships validated for default organization (e.g., approval + abstention + rejection > 100%)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96e1fc8b-d5f1-4965-96d4-b5172957b449?mode=deep",
+    "timestamp": "2026-02-19 13:23:35.580380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [System Contract Override] Can other system contracts (Consensus, Election, Token) create Parliament organizations with custom thresholds via CreateOrganizationBySystemContract(), bypassing these default constants and creating governance organizations with 0% approval requirements? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20f8aa50-a2c3-4bb3-845a-20cde9ff80f7?mode=deep",
+    "timestamp": "2026-02-19 13:24:01.595036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Genesis Contract Manipulation] During system initialization, can the Genesis contract exploit the initialization flow to set up a default Parliament organization with manipulated constant values before these constants are locked in? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f06b0c39-77c1-483d-bf85-3c48c1b7cf30?mode=deep",
+    "timestamp": "2026-02-19 13:24:28.447654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All thresholds] [Release Timing Attack] Can a proposer wait until exactly MinimalApprovalThreshold=6667 is met, then immediately call Release() before miners who oppose can vote reject, exploiting the race condition between threshold checking and release execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a38e36a-d418-414b-9430-43f29edc4196?mode=deep",
+    "timestamp": "2026-02-19 13:24:57.402957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All thresholds] [Threshold Check vs Execution Gap] Is there a time gap between checking IsReleaseThresholdReached() and executing the proposal in Release(), and can miners change their votes during this gap to invalidate the threshold check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c388992-7721-4a6d-81b9-667266ce098b?mode=deep",
+    "timestamp": "2026-02-19 13:25:27.251241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Whitelist-Threshold Interaction] When ProposerAuthorityRequired=true, can whitelisted proposers create proposals that only whitelisted addresses can vote on, effectively bypassing the MinimalApprovalThreshold=6667 by reducing the parliament size to whitelisted miners only? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52d901aa-8764-47fa-8385-35d2ec6f5b29?mode=deep",
+    "timestamp": "2026-02-19 13:25:56.966397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Parliament Member Proposing] When ParliamentMemberProposingAllowed=true, does this expand the potential proposer set and enable more attack vectors for creating malicious proposals that exploit threshold boundaries? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdb59dc6-b62d-4dfe-ab2f-08a97b510aa4?mode=deep",
+    "timestamp": "2026-02-19 13:26:26.496177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Holistic Threshold Attack] Can an attacker combine multiple threshold exploits (e.g., controlling 66.67% for approval, preventing 25% from voting to avoid MinimalVoteThreshold, ensuring <20% rejection) to systematically pass malicious proposals while appearing to follow governance rules? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d6cf23d-09f6-4038-b252-298ef2e715de?mode=deep",
+    "timestamp": "2026-02-19 13:26:55.827734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Constant Dependency Chain] If these constants are used to derive other governance parameters elsewhere in the system, can changing related parameters (while keeping these constants fixed) create inconsistent governance states that enable bypass attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6299375-b2b0-4d06-8926-dd34a842edeb?mode=deep",
+    "timestamp": "2026-02-19 13:27:26.253657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: DefaultOrganizationMinimalApprovalThreshold=6667] [Governance Centralization Risk] Does the 66.67% approval threshold (2/3 majority) provide insufficient security margin for critical operations like contract upgrades, cross-chain transfers, or economic parameter changes, allowing a narrow majority to make irrevocable changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13cd8643-882b-425b-83c7-cb7c7d45e3ab?mode=deep",
+    "timestamp": "2026-02-19 13:27:57.424329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Constants.cs] [Constants: All] [Constant Testing Coverage] Are these specific constant values (6667, 2000, 7500, 10000) adequately tested for edge cases, boundary conditions, and mathematical correctness, or could untested corner cases exist that enable exploitation in production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b14667b-62c2-4d93-9242-b30bbd0a5779?mode=deep",
+    "timestamp": "2026-02-19 13:28:27.296651",
+    "report_generated": false
+  }
+]
