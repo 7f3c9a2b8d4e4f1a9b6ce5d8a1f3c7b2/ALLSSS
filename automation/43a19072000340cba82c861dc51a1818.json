@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Missing Context.Sender Check] Does SetMethodFee() lack any validation of Context.Sender, allowing any address including EOAs to call it? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db93606b-a0da-47a2-bb83-6e786187bda7?mode=deep",
+    "timestamp": "2026-02-19 04:53:37.221952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Missing Context.Sender Check] Does ChangeMethodFeeController() lack validation of Context.Sender against current controller's OwnerAddress? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f60bfbfb-52a0-4e8b-9204-f8b1796f6a9c?mode=deep",
+    "timestamp": "2026-02-19 04:53:59.434817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Missing OnlyOwner Modifier] Do the write methods lack an owner/admin check pattern (Context.Sender == State.Owner.Value) that's common in other contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f50179bb-1d2d-44ff-9b9d-a5716953217b?mode=deep",
+    "timestamp": "2026-02-19 04:54:21.809139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Missing AssertSenderAddressWith Helper] Does ChangeMethodFeeController() not use the AssertSenderAddressWith(address) helper pattern to validate caller authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa657323-7ff7-470c-8df1-2b3e8de85cb6?mode=deep",
+    "timestamp": "2026-02-19 04:54:45.236378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Reentrancy During State Update] If SetMethodFee() were implemented with state writes, could an attacker use reentrancy to call SetMethodFee() again mid-execution before state is finalized? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1cb07fd-98ea-4269-88dc-def0db196dfe?mode=deep",
+    "timestamp": "2026-02-19 04:55:08.990306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Controller Reentrancy] If ChangeMethodFeeController() wrote to state, could reentrancy allow an attacker to change controller twice in one transaction? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98d42759-db75-48e9-98ae-8cb9d1e6dc0a?mode=deep",
+    "timestamp": "2026-02-19 04:55:33.877146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Non-View State Read] Is GetMethodFee() marked as view-only in protobuf but performs string operations that could theoretically be optimized away in a proper implementation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e935c442-a2a7-4838-8475-9acc5413b160?mode=deep",
+    "timestamp": "2026-02-19 04:55:59.033515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [View Method Instantiation] Does GetMethodFeeController() unnecessarily instantiate a new AuthorityInfo object on each call instead of returning a cached value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2cc87b7-f584-45be-84f4-5eaddacc230c?mode=deep",
+    "timestamp": "2026-02-19 04:56:24.645553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Stub Implementation Risk] Are these stub implementations intentional placeholders for future development, or production code that should be functional, creating deployment risk? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e53e26f-80e8-4fdc-8bf3-f173592aa2d6?mode=deep",
+    "timestamp": "2026-02-19 04:56:50.795627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Testing Coverage Gap] Can integration tests pass with these stub implementations because they return success (Empty), hiding the fact that no actual functionality exists? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59b36bc5-3dcf-4c90-b2eb-b8d02c201a7e?mode=deep",
+    "timestamp": "2026-02-19 04:57:17.918177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Silent Failure Pattern] Does returning Empty() instead of throwing exceptions create a silent failure pattern where errors go unnoticed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31a2f98c-ceba-4f47-8eb9-e0d880314836?mode=deep",
+    "timestamp": "2026-02-19 04:57:45.491890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Documentation Mismatch] Do XML comments or external documentation describe ACS1 behavior that doesn't match the actual stub implementations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9db036dd-4ef0-4e02-a101-e2da0210ae1c?mode=deep",
+    "timestamp": "2026-02-19 04:58:13.691479",
+    "report_generated": false
+  }
+]
