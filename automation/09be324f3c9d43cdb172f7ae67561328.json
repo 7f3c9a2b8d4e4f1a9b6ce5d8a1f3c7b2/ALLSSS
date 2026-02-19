@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [OutValue Size] Line 16 copies OutValue which should be a Hash - if providedInformation.OutValue is an abnormally large or small hash (wrong hash function), does copying it corrupt the round state or cause protobuf serialization issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a861d0b-3010-41bd-95f8-50a003707169?mode=deep",
+    "timestamp": "2026-02-19 01:12:03.183419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Signature Size] Line 17 copies Signature - similarly, if Signature is malformed (wrong size, wrong format), can this corrupt state or cause downstream validation failures? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf3587d7-446d-4090-abd5-d3e1329b9faa?mode=deep",
+    "timestamp": "2026-02-19 01:12:25.170350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [PreviousInValue Null] Lines 18, 28-29 copy PreviousInValue - if it's null or empty, does this represent a sentinel value for \\",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee6ee4b5-8718-418e-ab4f-7e2261f7a431?mode=deep",
+    "timestamp": "2026-02-19 01:12:47.391108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Dictionary Enumeration Order] Lines 22-30 iterate over providedRound.RealTimeMinersInformation - is dictionary enumeration order deterministic? If not, can non-deterministic updates cause different nodes to have different round states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45e44ebb-3aaf-4fcc-aaa3-042dacd8494e?mode=deep",
+    "timestamp": "2026-02-19 01:13:10.569205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Order Value Bounds] Lines 24-27 copy order values - are there bounds checks (e.g., 1 <= order <= minerCount)? Can out-of-bounds orders (0, negative, > minerCount) cause array index errors or undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0bcda05-5575-4efd-9d44-9d80b59a5538?mode=deep",
+    "timestamp": "2026-02-19 01:13:34.847694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Supposed vs Final Order Mismatch] Lines 24-25 and 26-27 independently copy SupposedOrderOfNextRound and FinalOrderOfNextRound - if providedRound has them mismatched (e.g., Supposed=5, Final=2), does this violate the invariant that Final should equal Supposed unless there were collisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9a99d65-7cd6-460a-b6b5-593c12002659?mode=deep",
+    "timestamp": "2026-02-19 01:14:00.377333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Partial Update Risk] Only updating ImpliedIrreversibleBlockHeight and ActualMiningTimes (lines 43-44) while leaving OutValue, Signature, PreviousInValue untouched - can this create logical inconsistency where the miner has mining timestamps but no cryptographic proof? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a36e860-0a21-4921-944d-7f1fc9944a13?mode=deep",
+    "timestamp": "2026-02-19 01:14:26.078939",
+    "report_generated": false
+  }
+]
