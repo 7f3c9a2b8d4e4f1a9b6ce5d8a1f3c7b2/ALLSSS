@@ -88,5 +88,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce84574a-2d9d-4207-903a-9d5cf1bb23f9?mode=deep",
     "timestamp": "2026-02-19 10:27:25.260782",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization Bypass] Can an attacker exploit the authorization check at line 18 by front-running ChangeMethodFeeController to set themselves as OwnerAddress before calling SetMethodFee to set arbitrary method fees including zero fees for critical cross-chain operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47e0f673-44a8-4527-bc9e-2eb93f92be2d?mode=deep",
+    "timestamp": "2026-02-19 10:49:05.138222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Race Condition] If RequiredMethodFeeControllerSet() at line 16 initializes State.MethodFeeController.Value during the same transaction block as SetMethodFee, can an attacker exploit the timing window between initialization and authorization check at line 18 to bypass access control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee73ffbb-ba68-4d8d-bce4-368514da1d6c?mode=deep",
+    "timestamp": "2026-02-19 10:49:27.192623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [State Manipulation] Can an attacker call SetMethodFee with the same MethodName multiple times in succession at line 19 to overwrite previously set fees without additional validation, potentially causing fee inconsistency or DOS by setting extremely high fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdeb7862-278e-4d00-8abe-0b9255718481?mode=deep",
+    "timestamp": "2026-02-19 10:49:50.549079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Input Validation] The foreach loop at line 14 iterates through input.Fees without checking for duplicate Symbol entries - can an attacker submit MethodFees with duplicate token symbols to bypass AssertValidToken checks or cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a32ad977-60d5-4bc2-bb4a-f22939ab4d44?mode=deep",
+    "timestamp": "2026-02-19 10:50:14.357486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [DOS Attack] Can an attacker submit a MethodFees input with an extremely large Fees collection at line 14, causing the foreach loop to consume excessive gas and DOS the SetMethodFee function by exceeding block gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccd32aca-8c54-4721-9020-2a2c4df743ee?mode=deep",
+    "timestamp": "2026-02-19 10:50:39.357057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Business Logic] Does the function at lines 12-22 validate that input.MethodName corresponds to an actual CrossChain contract method before setting fees at line 19, or can an attacker set fees for non-existent methods to bloat state storage? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f10510be-23b8-4b1e-bb0b-1d2567be275f?mode=deep",
+    "timestamp": "2026-02-19 10:51:04.207262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Manipulation] Can the controller at line 18 set method fees to zero for critical methods like ProposeCrossChainIndexing or ReleaseCrossChainIndexingProposal, contradicting the fee-free logic in GetMethodFee and creating inconsistent fee behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_840a7df4-1093-4c75-ba8d-31e0521b4bfc?mode=deep",
+    "timestamp": "2026-02-19 10:51:29.404216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Token Validation Bypass] If AssertValidToken at line 14 only checks IsTokenAvailableForMethodFee but not token existence, can an attacker set fees using a valid-but-nonexistent token symbol that passes validation but causes runtime errors during fee collection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8326ecf9-8d64-4724-93e4-2dfc8897bff0?mode=deep",
+    "timestamp": "2026-02-19 10:51:56.330380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Integer Overflow] When AssertValidToken checks methodFee.BasicFee >= 0 at line 14, can an attacker exploit this by setting extremely large positive BasicFee values (near int64 max) that cause overflow during fee multiplication or accumulation in downstream fee collection logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e8669e8-8ce4-491d-a9df-c7787966d9f9?mode=deep",
+    "timestamp": "2026-02-19 10:52:22.643273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization Timing] If State.MethodFeeController.Value.OwnerAddress at line 18 is a multi-sig contract, can an attacker exploit the authorization check by changing the multi-sig threshold or members between SetMethodFee calls to gain unauthorized fee control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a09fbab3-7e20-45e6-9b1e-8e6dc1b27f16?mode=deep",
+    "timestamp": "2026-02-19 10:52:51.832010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Authorization Bypass] Can an attacker exploit the AssertSenderAddressWith check at line 27 by front-running this function with a malicious transaction that changes State.MethodFeeController.Value.OwnerAddress before the legitimate controller can execute their controller change? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_527610ea-9216-4a57-ae4d-dc8cdb00da23?mode=deep",
+    "timestamp": "2026-02-19 10:53:21.133384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Invalid Organization] If CheckOrganizationExist at line 28 returns false but execution continues due to a logic error in ValidateOrganizationExist, can an attacker set an invalid or non-existent organization as the new controller at line 31, permanently bricking fee management? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62a0620e-82a0-4be6-80f6-ef41e3824670?mode=deep",
+    "timestamp": "2026-02-19 10:53:50.295838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Cross-Contract Call Vulnerability] Can an attacker exploit the Context.Call to ValidateOrganizationExist at lines 82-84 by providing a malicious ContractAddress in input.ContractAddress that returns true for any OwnerAddress, bypassing organization validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_329cf680-5f01-4bcd-b4bc-dc508ce93a0d?mode=deep",
+    "timestamp": "2026-02-19 10:54:20.164910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Reentrancy] Can an attacker create a malicious organization contract that reenters ChangeMethodFeeController during the CheckOrganizationExist call at line 28, allowing them to change the controller multiple times or manipulate state before validation completes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e553bbe-8d67-4549-9cb7-10d7e8c18bd7?mode=deep",
+    "timestamp": "2026-02-19 10:54:51.082891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Controller Lock] If the new AuthorityInfo at line 31 points to a contract with no proposal mechanisms or a permanently locked organization, can an attacker brick the fee controller by transferring control to an address that can never authorize fee changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e45bf668-3007-4d87-9483-57d4dc4ac06a?mode=deep",
+    "timestamp": "2026-02-19 10:55:21.780984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Input Validation] Does the function validate that input.OwnerAddress at line 31 is not the zero address or an invalid address before setting it as the new controller, or can an attacker DOS fee management by setting an unreachable controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a9d7b80-7597-4ead-91d1-d8e3dbea32cb?mode=deep",
+    "timestamp": "2026-02-19 10:55:52.930585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [State Consistency] If ChangeMethodFeeController at line 31 updates State.MethodFeeController.Value without emitting an event or maintaining a history, can an attacker perform unauthorized controller changes that cannot be audited or detected? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76e5b791-29b4-48e6-8908-dc923f3ba6c1?mode=deep",
+    "timestamp": "2026-02-19 10:56:24.411540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Race Condition] Can two legitimate controller change transactions compete in the same block at lines 24-33, causing the second transaction to succeed even if the first transaction should have invalidated it by changing the controller? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8324e86-1541-4b49-927c-7968a6d99e1b?mode=deep",
+    "timestamp": "2026-02-19 10:56:57.102659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Organization Validation Bypass] If input.ContractAddress at line 28 points to a contract that doesn't implement ValidateOrganizationExist but returns a default true value, can an attacker bypass organization validation and set arbitrary controllers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c46dee5-d630-40a9-8e06-3ee821d17f38?mode=deep",
+    "timestamp": "2026-02-19 10:57:29.886604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [DOS via External Call] Can an attacker provide an input.ContractAddress at line 28 that points to a contract with an intentionally gas-intensive ValidateOrganizationExist implementation, causing CheckOrganizationExist to exceed gas limits and DOS controller changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_516ac596-8bba-4d00-b70e-86556e9e9f44?mode=deep",
+    "timestamp": "2026-02-19 10:58:01.253373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Business Logic Inconsistency] The hardcoded list at lines 39-42 returns IsSizeFeeFree=true for ProposeCrossChainIndexing and ReleaseCrossChainIndexingProposal - can this conflict with fees set via SetMethodFee for the same methods, creating fee collection inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b71f9cbe-387b-415a-bae5-9f145923fb18?mode=deep",
+    "timestamp": "2026-02-19 10:58:34.068950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Authorization Bypass] Since GetMethodFee at lines 37-49 is a view function with no access control, can an attacker query fee information to identify zero-fee or low-fee methods and exploit them for spam attacks or DOS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a50893c9-a78e-4676-8fb3-d43735353a69?mode=deep",
+    "timestamp": "2026-02-19 10:59:07.239846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [State Inconsistency] If State.TransactionFees[input.Value] at line 48 returns null for a method, does the caller handle null properly, or can this cause runtime errors in fee collection logic that assumes all methods have defined fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de1fa3dd-7095-4519-a7eb-7d8d4d8e1a46?mode=deep",
+    "timestamp": "2026-02-19 10:59:41.067636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Input Validation] Does GetMethodFee validate input.Value at line 38 for null or empty strings before using it as a dictionary key at line 48, or can an attacker cause state access errors by providing malformed method names? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d772d1d-3a6f-4de8-9094-dab615a8c339?mode=deep",
+    "timestamp": "2026-02-19 11:00:16.338792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Fee-Free Methods] Can an attacker exploit the hardcoded fee-free methods at lines 40-41 by repeatedly calling ProposeCrossChainIndexing or ReleaseCrossChainIndexingProposal without paying fees to spam the contract and exhaust resources? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4447b16-f2f9-4b8e-93dd-20c42d3ed26d?mode=deep",
+    "timestamp": "2026-02-19 11:00:50.048680",
+    "report_generated": false
   }
 ]
