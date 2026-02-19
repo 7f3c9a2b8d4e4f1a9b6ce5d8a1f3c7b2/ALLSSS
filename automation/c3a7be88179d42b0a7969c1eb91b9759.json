@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [Authorization Bypass] Can an attacker set themselves as admin for an initial miner's pubkey by exploiting the parliament default address check when State.CandidateAdmins[pubkey] is null, bypassing the intended owner verification at lines 27-40? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a6f98f4-b36a-472a-bccd-765831f61418?mode=deep",
+    "timestamp": "2026-02-19 11:44:10.265687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [Access Control] Can the parliament default address forcibly change any candidate admin without permission checks, allowing governance to seize control of candidate operations at lines 27-28? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d87c52b-a1fe-41a0-a159-f4548ada8510?mode=deep",
+    "timestamp": "2026-02-19 11:44:32.635201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [State Inconsistency] If InitialPubkeyMap[input.Pubkey] returns a different pubkey than input.Pubkey, can an attacker exploit the mapping at line 26 to bypass permission checks by using an unmapped variant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_330326c5-a635-4779-ae83-1dae13326fc6?mode=deep",
+    "timestamp": "2026-02-19 11:44:55.702519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [Logic Error] Can an attacker register as admin for a banned pubkey by exploiting that IsPubkeyBanned check at line 23 only checks input.Pubkey but not the resolved InitialPubkeyMap value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e8b7316-d8ee-4e81-a277-eb8fa2ddc1f5?mode=deep",
+    "timestamp": "2026-02-19 11:45:18.957254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [State Corruption] If ManagedCandidatePubkeysMap[input.Admin] already contains the pubkey, does line 47-48 duplicate the entry causing state bloat or incorrect removal logic later? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bbb2a858-3431-4aba-9ea3-a2832aaaf7df?mode=deep",
+    "timestamp": "2026-02-19 11:45:43.352494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [Access Control] Can Context.Sender manipulate their ManagedCandidatePubkeysMap at lines 51-54 even if they are not the old admin, since removal happens unconditionally? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0ff74e6-2ba6-4970-a4d7-c67ee466a6cd?mode=deep",
+    "timestamp": "2026-02-19 11:46:08.418618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [DoS] Can an attacker cause denial of service by repeatedly calling SetCandidateAdmin to bloat the ManagedCandidatePubkeysMap with duplicate entries at lines 46-49? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28337869-9498-458f-a6b9-5b93dc3a6772?mode=deep",
+    "timestamp": "2026-02-19 11:46:35.412069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [State Inconsistency] If State.CandidateAdmins[pubkey] is set but IsCurrentCandidateOrInitialMiner returns false later, can this create orphaned admin entries that cannot be removed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1519808-6e36-46a7-bc4d-2edf5706e907?mode=deep",
+    "timestamp": "2026-02-19 11:47:02.640003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [Authorization] Can an attacker front-run a legitimate SetCandidateAdmin call when State.CandidateAdmins[pubkey] is null to steal admin control before the original candidate sets their admin? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3477ed50-718e-49d9-a038-20da2e76a3ca?mode=deep",
+    "timestamp": "2026-02-19 11:47:35.417901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: SetCandidateAdmin()] [Logic Error] Does the check at line 21 allow setting admin for initial miners who have quit or been banned, violating the intended restriction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb7f2c3a-1aa1-4ac6-85c6-ba6b7259f0f4?mode=deep",
+    "timestamp": "2026-02-19 11:48:09.380749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: IsPubkeyBanned()] [State Manipulation] Can an attacker bypass banned status by using a pubkey variant not in BannedPubkeyMap (e.g., different case, encoding) at line 63? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6aed07c1-eac7-4e52-b11b-0f72380df127?mode=deep",
+    "timestamp": "2026-02-19 11:48:41.801638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: IsCurrentCandidateOrInitialMiner()] [Logic Error] Can a candidate who quit election but remains in InitialMiners bypass restrictions since line 79-80 checks InitialMiners.Value.Value without verifying current status? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bf4a0c5-ae93-40ee-a0da-fdea3c2919e5?mode=deep",
+    "timestamp": "2026-02-19 11:49:15.046390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: IsCurrentCandidateOrInitialMiner()] [State Race] If CandidateInformationMap[pubkey].IsCurrentCandidate changes between check at line 77-78 and subsequent operations, can this create TOCTOU vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_661ac69c-bd9c-4363-83fb-34a674a5aec7?mode=deep",
+    "timestamp": "2026-02-19 11:49:45.009267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [Authorization Bypass] Can an attacker announce election for any public key by calling with a signature they don't own if RecoverPublicKey at line 95 fails or returns unexpected results? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_daf84e97-7962-4139-8550-0cd780240a23?mode=deep",
+    "timestamp": "2026-02-19 11:50:17.690248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [Access Control] Can an address that already manages other candidates become a candidate themselves, violating the check at line 102 if ManagedCandidatePubkeysMap[address] is checked with wrong address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05f5c870-ba58-4b55-8fb5-756ab7f093b6?mode=deep",
+    "timestamp": "2026-02-19 11:50:45.469076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [Token Lock Bypass] If LockCandidateNativeToken at line 108 fails silently or can be called with zero allowance, can candidates announce election without locking required tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d04d710-7417-49c5-a2f4-e2089cc3d11f?mode=deep",
+    "timestamp": "2026-02-19 11:51:17.226782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [State Inconsistency] Can a candidate announce election multiple times if the check in nested AnnounceElection(recoveredPublicKey) at line 96 doesn't properly prevent re-announcement? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88d85655-7fd0-459d-b3ac-73279fd5d3c3?mode=deep",
+    "timestamp": "2026-02-19 11:51:49.446932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [DoS] Can an attacker drain token allowances by repeatedly calling AnnounceElection and having LockCandidateNativeToken transfer tokens even if the candidate registration fails later? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb5d141f-7204-496f-9777-69c77d272ccd?mode=deep",
+    "timestamp": "2026-02-19 11:52:19.676804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [Logic Error] Can an attacker set input.Admin to an address they control (not association), and later use that admin to quit election and steal locked tokens meant for the candidate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c0b4645-96a8-4e75-8bf4-8ad8918d0cc8?mode=deep",
+    "timestamp": "2026-02-19 11:52:52.863428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [State Corruption] If State.Candidates.Value.Value.Count at line 112 is manipulated or counts incorrectly, can this allow unlimited candidates into DataCentersRankingList bypassing capacity limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd37f834-63f7-4724-8bed-e7b279d6c23c?mode=deep",
+    "timestamp": "2026-02-19 11:53:26.788236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [Access Control] Does line 101 properly validate that input (admin address) has value, or can an attacker pass Address.Zero or invalid address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2919793-a4ed-41d6-a2e2-44e91fa29096?mode=deep",
+    "timestamp": "2026-02-19 11:54:02.084674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [Reentrancy] Can AddCandidateAsOption at line 110 trigger a callback that allows reentrant calls to AnnounceElection before state is fully updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2105c7f-4313-4eca-a3ef-8631f312a7a9?mode=deep",
+    "timestamp": "2026-02-19 11:54:39.196401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(Address)] [State Inconsistency] If RegisterCandidateToSubsidyProfitScheme at line 115 fails, does the candidate remain in DataCentersRankingList without subsidy registration, breaking profit distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a34f24f-ea54-470f-a6e9-dc9f9bd5ef83?mode=deep",
+    "timestamp": "2026-02-19 11:55:17.293296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Authorization Bypass] Can any address call AnnounceElectionFor to register arbitrary public keys as candidates without requiring signature from the candidate, enabling forced registration at lines 121-142? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a3ab140-c992-4b08-933c-14d525a965e0?mode=deep",
+    "timestamp": "2026-02-19 11:55:55.458635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Access Control] Is there any permission check preventing malicious actors from calling AnnounceElectionFor to spam candidate registrations and lock tokens from Context.Sender? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dde1ea4e-1002-4f6b-8ade-dd3520c94038?mode=deep",
+    "timestamp": "2026-02-19 11:56:32.569426",
+    "report_generated": false
+  }
+]
