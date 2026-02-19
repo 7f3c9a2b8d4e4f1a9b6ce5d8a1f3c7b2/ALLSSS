@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Miner List Update Failure Revert] If SetMinerList() returns false, the entire transaction reverts with Assert(false). But State.FirstRoundNumberOfEachTerm[nextRound.TermNumber] and AddRoundInformation(nextRound) may have already been called. Can this create partial term transition state that corrupts consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1cc7a096-72c8-4e0a-bf70-b94232c08a03?mode=deep",
+    "timestamp": "2026-02-19 13:09:14.185700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Treasury Release Manipulation] DonateMiningReward() determines if Treasury.Release should be called. If an attacker manipulates donation logic to always return true, can they trigger premature or excessive treasury releases, draining the treasury or breaking the release schedule? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5d24020-b671-4e60-9d27-47308707aaef?mode=deep",
+    "timestamp": "2026-02-19 13:09:36.643002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Previous Round Retrieval Failure] TryToGetPreviousRoundInformation() is Asserted to succeed. If it fails (returning false), the transaction reverts but partial state updates may have occurred. Can this happen during the first term transition where there is no previous round, causing term transition DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d2a268d-d9a4-41cb-875e-8b7081f37d04?mode=deep",
+    "timestamp": "2026-02-19 13:09:59.325658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Election Snapshot Inconsistency] TakeElectionSnapshotInput uses previousRound.GetMinedBlocks(), termNumber from the old term, and previousRound.RoundNumber. If these values are inconsistent due to prior state corruption, can it create incorrect voting power snapshots that affect election outcomes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef75b36b-0973-4d22-824e-639d9634d4c1?mode=deep",
+    "timestamp": "2026-02-19 13:10:22.583260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Produced Blocks Number Update Timing] UpdateProducedBlocksNumberOfSender(nextRound) is called after resetting ProducedBlocks to 0. If this function relies on accurate produced blocks counts, can the reset cause incorrect updates that break producer statistics? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_634f3701-c27c-4a28-922a-2c5062722a88?mode=deep",
+    "timestamp": "2026-02-19 13:10:47.004435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Current Miner Information Update Race] UpdateCurrentMinerInformationToElectionContract(previousRound) uses previousRound data. If previousRound was manipulated in a prior attack, can this propagate corrupted miner performance data to the election contract, affecting future elections? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f7f5274-d4ef-467d-9e31-fbef3efbabde?mode=deep",
+    "timestamp": "2026-02-19 13:11:11.954054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [First Round Number Mapping Overflow] State.FirstRoundNumberOfEachTerm[nextRound.TermNumber] is set without bounds checking. Can an attacker force term numbers to grow extremely large through repeated term transitions, causing state storage overflow or making term number lookups prohibitively expensive? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c659da14-bfe7-4f98-abb4-8702deb0c9d0?mode=deep",
+    "timestamp": "2026-02-19 13:11:39.390722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: RecordMinedMinerListOfCurrentRound()] [Cleanup Race Condition] The function removes round information for roundNumber - 3. If multiple round transitions happen rapidly and cleanup doesn't complete, can old miner list data accumulate and cause state bloat, or can premature cleanup remove data still needed for LIB calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1aa99d1b-9ca2-4b3f-ae8f-6b194f988020?mode=deep",
+    "timestamp": "2026-02-19 13:12:08.682999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: RecordMinedMinerListOfCurrentRound()] [Negative Round Number Underflow] The cleanup checks if removeTargetRoundNumber > 0 after calling currentRound.RoundNumber.Sub(3). Can this underflow during the first three rounds cause unexpected behavior or bypass the cleanup null check? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92a5fd00-ed9a-4572-b8d8-50ac517a14ea?mode=deep",
+    "timestamp": "2026-02-19 13:12:39.489347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: RecordMinedMinerListOfCurrentRound()] [Mined Miners Incomplete Data] GetMinedMiners() returns miners who actually produced blocks. If this list is incomplete due to prior state corruption or filtering logic errors, can the recorded miner list misrepresent actual block production, affecting reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5795713-ecfb-492a-9a56-2270a3727694?mode=deep",
+    "timestamp": "2026-02-19 13:13:11.072098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Miner Not In Round Attack] The function accesses currentRound.RealTimeMinersInformation[_processingBlockMinerPubkey] without checking if the key exists. If PreCheck() allows a miner from previousRound but they're not in currentRound, can this cause a KeyNotFoundException that halts consensus processing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e87ccdb-c6a9-4f52-81ed-559c9722dad1?mode=deep",
+    "timestamp": "2026-02-19 13:13:39.824940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Actual Mining Time Manipulation] ActualMiningTimes.Add(updateValueInput.ActualMiningTime) accepts any timestamp from the input. Can a malicious miner provide future or past timestamps to manipulate time slot calculations, affect LIB calculations via ImpliedIrreversibleBlockHeight, or break round timing invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87586b0e-f168-465f-9a04-f4ae36cb9b28?mode=deep",
+    "timestamp": "2026-02-19 13:14:13.976737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Produced Blocks Overflow] ProducedBlocks and ProducedTinyBlocks are incremented by 1 using Add(1) without overflow checking. Can a long-running miner cause integer overflow that wraps their production count back to zero, allowing them to mine infinitely while appearing to have low production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3eb7e3ff-3cf0-49ab-b567-9a24d970e38f?mode=deep",
+    "timestamp": "2026-02-19 13:14:47.087067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Secret Sharing Bypass] IsSecretSharingEnabled() controls whether PerformSecretSharing() is called. Can an attacker manipulate this configuration check to disable secret sharing mid-consensus, breaking the random number generation protocol and making consensus predictable? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fb11e1c-c787-469f-af58-9177fd561f6e?mode=deep",
+    "timestamp": "2026-02-19 13:15:15.528965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Tune Order Injection] The function iterates updateValueInput.TuneOrderInformation and sets FinalOrderOfNextRound for miners. Can an attacker include tuneOrder entries for miners not in the round or with invalid order values to corrupt next round's miner ordering, breaking time slot assignments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbfc1214-61f0-4f0f-8cbd-e482bfa7779d?mode=deep",
+    "timestamp": "2026-02-19 13:15:48.143248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Previous In Value Bypass] If updateValueInput.PreviousInValue == Hash.Empty, the minerInRound.PreviousInValue is not set. Can a malicious miner deliberately omit their previous in value to avoid random number verification in secret sharing, weakening randomness without detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a60f3125-aa22-406e-9ec7-9788c421ee35?mode=deep",
+    "timestamp": "2026-02-19 13:16:21.223750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [LIB Height Manipulation] The LastIrreversibleBlockHeightCalculator uses currentRound and previousRound to calculate libHeight. If either round contains manipulated ImpliedIrreversibleBlockHeight values from malicious miners, can this cause incorrect LIB calculations that confirm invalid blocks or delay finality? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6bcdebc-4873-4688-8e59-6e7dfe65c6b2?mode=deep",
+    "timestamp": "2026-02-19 13:16:55.431210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [LIB Monotonicity Violation] The check 'currentRound.ConfirmedIrreversibleBlockHeight < libHeight' prevents LIB from going backward. But can an attacker with multiple colluding miners provide identical ImpliedIrreversibleBlockHeight values to freeze LIB at a low height, preventing finality and enabling long-range reorganization attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c730b06d-aa00-4642-b04a-cdda53558daf?mode=deep",
+    "timestamp": "2026-02-19 13:17:30.627580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [IrreversibleBlockFound Event Injection] The IrreversibleBlockFound event is fired when LIB increases. Can an attacker manipulate LIB calculations to fire this event with incorrect heights, causing listening contracts or cross-chain protocols to accept unconfirmed blocks as final? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_341c9be5-ab69-48a8-b184-5fb4a0108934?mode=deep",
+    "timestamp": "2026-02-19 13:18:08.374953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Confirmed Round Number Desync] ConfirmedIrreversibleBlockRoundNumber is set to currentRound.RoundNumber.Sub(1). If currentRound.RoundNumber is 1 or 0, can this underflow cause ConfirmedIrreversibleBlockRoundNumber to wrap to a very large value, breaking round-based queries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e44f7aab-c64c-4577-80ee-789ac3327a92?mode=deep",
+    "timestamp": "2026-02-19 13:18:44.731115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Round Information Update Failure] TryToUpdateRoundInformation(currentRound) is Asserted to succeed. If it fails after all in-memory modifications to currentRound, the transaction reverts but _processingBlockMinerPubkey remains set. Can this leave the contract in an inconsistent state for the next transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afa1871b-7631-407c-a472-f5f667de3672?mode=deep",
+    "timestamp": "2026-02-19 13:19:18.256923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Supposed Order Self-Assignment] FinalOrderOfNextRound is initially set to updateValueInput.SupposedOrderOfNextRound for the current miner. Can a miner assign themselves an order of 0 or an invalid value to break round generation, or claim first position every round to gain mining advantages? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72c6b5d5-0d53-4c84-b308-37c8e096fd1a?mode=deep",
+    "timestamp": "2026-02-19 13:19:53.361557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Encrypted Pieces Overflow] EncryptedPieces.Add(input.EncryptedPieces) adds encrypted data without size limits. Can an attacker submit extremely large EncryptedPieces data structures to cause state bloat DoS, making block processing prohibitively expensive for validators? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26187790-45f9-4fe5-87c5-f3d3fdf2e053?mode=deep",
+    "timestamp": "2026-02-19 13:20:28.177810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Decrypted Pieces Injection] The function iterates input.DecryptedPieces and adds them to round.RealTimeMinersInformation[decryptedPreviousInValue.Key].DecryptedPieces[publicKey]. Can an attacker provide DecryptedPieces for miners not in the round to cause KeyNotFoundException, or inject fake decrypted values to corrupt secret sharing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d9318e8-48f7-42cc-88d0-1a2995330d59?mode=deep",
+    "timestamp": "2026-02-19 13:21:04.460776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Miners Previous In Values Overwrite] The function sets round.RealTimeMinersInformation[previousInValue.Key].PreviousInValue for each entry in input.MinersPreviousInValues. Can an attacker overwrite other miners' PreviousInValue with incorrect hashes, breaking random number verification for those miners in the next round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f65f8272-6855-4fb6-a8db-146528e0a35d?mode=deep",
+    "timestamp": "2026-02-19 13:21:41.157948",
+    "report_generated": false
+  }
+]
