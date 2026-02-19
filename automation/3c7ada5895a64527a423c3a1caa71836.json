@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [TotalSupply Mismatch] Line 44 copies TotalSupply from tokenCreateInput, but if TokenContract modifies this during creation, could there be a mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b81f5aaf-038f-43ac-9e6f-e988087bef4f?mode=deep",
+    "timestamp": "2026-02-19 04:20:08.058065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Creator Mismatch] At line 45, protocolInfo.Creator uses tokenCreateInput.Issuer, but what if TokenContract.Create changed the issuer internally? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67ce990c-9c10-40a5-95cb-cd2a7c69006d?mode=deep",
+    "timestamp": "2026-02-19 04:20:30.151091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [IsTokenIdReuse Flag] At line 48, if input.IsTokenIdReuse has security implications, should it be validated or restricted to certain users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_164b5a55-ea9e-4c9a-a61b-bf8e7c1f6de0?mode=deep",
+    "timestamp": "2026-02-19 04:20:52.435094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [IssueChainId Storage] At line 49, IssueChainId is stored from tokenCreateInput, but is this validated against current chain or cross-chain requirements? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_994fe7f5-351e-4f24-ae59-cbb07816d62d?mode=deep",
+    "timestamp": "2026-02-19 04:21:15.193248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [IsBurnable Flag Mismatch] If tokenCreateInput.IsBurnable at line 50 differs from what TokenContract actually stored, could this cause inconsistent burn behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e683368-c3c5-4095-bb88-42eb37cece89?mode=deep",
+    "timestamp": "2026-02-19 04:21:39.040635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [NftType Override] At line 51, if input.NftType differs from what was used to generate the symbol, could this cause type mismatch issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_797cbea6-2e5f-473c-a1f3-5bc5766c2c05?mode=deep",
+    "timestamp": "2026-02-19 04:22:03.615300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Event Data Integrity] At lines 55-67, the NFTProtocolCreated event is fired with tokenCreateInput data - if this data was modified by TokenContract, is the event accurate? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5be091e9-ff0a-4900-b5e0-2003b176fffd?mode=deep",
+    "timestamp": "2026-02-19 04:22:28.709535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Missing Event Data] Does the NFTProtocolCreated event include all critical fields, or are some fields like MinterList omitted creating blind spots for indexers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c0b7994-57f4-4c9d-83e6-68e49ad073a3?mode=deep",
+    "timestamp": "2026-02-19 04:22:54.255543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Event Before State] The event is fired at line 55 before returning the symbol at line 69 - could transaction reversion after event emission cause false positives? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b48fce55-315f-4847-bd19-ee5cee189217?mode=deep",
+    "timestamp": "2026-02-19 04:23:22.925841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Return Value Mismatch] At lines 69-72, the returned symbol should match the created protocol, but is there verification it matches State.NftProtocolMap[symbol]? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1e67310-eec2-48ab-b094-8bf08039f8c7?mode=deep",
+    "timestamp": "2026-02-19 04:23:52.560446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Missing Random Number Provider] At line 77, only TokenContract address is set, but GetSymbol() needs RandomNumberProviderContract - could this cause failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45508d10-61f0-4b7e-bb3b-60e4cc33360b?mode=deep",
+    "timestamp": "2026-02-19 04:24:19.638582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [NFT Type Map DOS] At line 78, InitialNFTTypeNameMap() is called, but if this fails or is uninitialized, does CrossChainCreate() fail for all protocols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc65b437-7c7b-4dc3-9cc2-c3d87ee6106e?mode=deep",
+    "timestamp": "2026-02-19 04:24:48.067874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [TOCTOU Race] Between the check at line 79 that protocol doesn't exist and storing at line 108, could another transaction create the same protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10a6bb29-0c75-4e18-bd5d-b25d7fcfb7e9?mode=deep",
+    "timestamp": "2026-02-19 04:25:14.782531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Symbol Validation] At line 79, only symbol existence is checked, but is the symbol format validated to match expected NFT symbol patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34d6b9fb-153d-4d93-9bbc-d082e0e13af0?mode=deep",
+    "timestamp": "2026-02-19 04:25:44.802639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Assertion vs Return] Line 79 uses Assert rather than returning an error - does this prevent proper error handling in cross-chain scenarios? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_566fa620-8f39-4882-ab99-64f29fbb7a74?mode=deep",
+    "timestamp": "2026-02-19 04:26:14.867991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [External Call Trust] At lines 80-83, GetTokenInfo is called on TokenContract - if TokenContract returns malicious data, could it corrupt the NFT protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bc93c6c-40ef-4c7f-ad89-7f9604eb719a?mode=deep",
+    "timestamp": "2026-02-19 04:26:43.916204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Token Not Found] At lines 84-85, if token doesn't exist, an exception is thrown - but could an attacker bypass this by creating a minimal token? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_521ebb0e-df5a-4e56-b869-dd9c42265aa4?mode=deep",
+    "timestamp": "2026-02-19 04:27:13.377593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Empty Symbol Check] Line 84 checks for empty symbol, but what if symbol is whitespace-only or contains null bytes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_169c18b4-4df1-4448-905c-23a4ba2ebd8e?mode=deep",
+    "timestamp": "2026-02-19 04:27:41.700093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Missing Key Attack] At line 87, baseUri is extracted from ExternalInfo.Value[NftBaseUriMetadataKey] - what if this key doesn't exist in the dictionary? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41fe92cb-38ea-4f0f-a716-6712e8a6414e?mode=deep",
+    "timestamp": "2026-02-19 04:28:08.430111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Type Parsing Error] At line 88, bool.Parse() is used for IsTokenIdReuse - what if the value is not a valid boolean string causing parse exception? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c31b00d7-f803-4e74-b913-a37009e94a8b?mode=deep",
+    "timestamp": "2026-02-19 04:28:37.561455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Malicious Boolean Value] Could an attacker set NftTokenIdReuseMetadataKey to 'True', 'TRUE', '1', 'yes' etc. and cause inconsistent parsing behavior at line 88? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72b49e5a-481b-4639-bed9-cb05bdf9d7ea?mode=deep",
+    "timestamp": "2026-02-19 04:29:06.674550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [ExternalInfo Injection] If tokenInfo.ExternalInfo contains attacker-controlled keys, could they inject metadata that bypasses validation at lines 87-88? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44e3f365-394d-49ce-bc67-c4558dcdc871?mode=deep",
+    "timestamp": "2026-02-19 04:29:37.361668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [BaseUri Null/Empty] If baseUri at line 87 is null or empty string, does this cause issues in NFT URI resolution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_852c3f37-997b-4a23-966e-880132a7f493?mode=deep",
+    "timestamp": "2026-02-19 04:30:07.315558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Symbol Substring Attack] At line 89, input.Symbol.Substring(0, 2) extracts first 2 chars - what if symbol length < 2 causing index out of range? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6598bf86-2c14-4566-a0ea-cb5a3cf45516?mode=deep",
+    "timestamp": "2026-02-19 04:30:40.737538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [NFT Type Not Found] At lines 91-93, if nftTypeFullName is null, an exception is thrown - but could an attacker create protocols with invalid types before validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1931ed76-e3b6-4509-81e2-6b1cc64c08e6?mode=deep",
+    "timestamp": "2026-02-19 04:31:09.303791",
+    "report_generated": false
+  }
+]
