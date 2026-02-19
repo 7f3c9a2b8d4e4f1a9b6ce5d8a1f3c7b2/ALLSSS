@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [LastProfitPeriod Update] Line 908 updates LastProfitPeriod to period + 1 in non-view mode. Can this cause off-by-one errors where next claim starts at wrong period? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2775d0bf-15a0-41a2-bfa3-18d547942f59?mode=deep",
+    "timestamp": "2026-02-19 01:52:13.382614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Symbol List] Line 851 uses scheme.ReceivedTokenSymbols or targetSymbol. Can empty symbol list cause no profits to be processed even when they exist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f548220-a407-4b4d-96c0-82d27772aade?mode=deep",
+    "timestamp": "2026-02-19 01:52:35.268287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [IsReleased Check] Line 881 only transfers if IsReleased is true. Can unreleased periods have profits that beneficiaries can never claim? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_966f2e79-6e75-4171-a059-0ddf2074ecf5?mode=deep",
+    "timestamp": "2026-02-19 01:52:57.575086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Virtual Transfer] Lines 887-895 use SendVirtualInline. Can failures in virtual transfer be detected or do they fail silently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e306c6be-0599-4ab8-9bb8-54f9b4066e3a?mode=deep",
+    "timestamp": "2026-02-19 01:53:20.496740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [View Mode] Lines 846 and 876 check isView flag. Can view mode calculations differ from actual claiming due to state changes, misleading users? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8495425e-fcd6-429b-8060-49b561046172?mode=deep",
+    "timestamp": "2026-02-19 01:53:44.560070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Target Period] Line 856 calculates targetPeriod as Min of CurrentPeriod - 1 and EndPeriod. Can CurrentPeriod being 0 or 1 cause underflow issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ea3501e-3267-42d4-b9ba-7b8373149735?mode=deep",
+    "timestamp": "2026-02-19 01:54:10.120930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: SafeCalculateProfits()] [Precision Loss] Lines 958-961 convert to decimal and back to long. Can this cause rounding errors where sum of parts < whole, leaking or locking profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_961f545b-54a1-46cd-8c1e-7b5997ec46e4?mode=deep",
+    "timestamp": "2026-02-19 01:54:35.604713",
+    "report_generated": false
+  }
+]
