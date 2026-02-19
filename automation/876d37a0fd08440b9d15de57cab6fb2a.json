@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Integer Overflow] If providedRound.ConfirmedIrreversibleBlockHeight is set to long.MaxValue and baseRound.ConfirmedIrreversibleBlockHeight undergoes arithmetic operations elsewhere before comparison, could integer overflow cause the validation at line 16 to incorrectly pass, allowing stale LIB heights to be accepted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_046fedad-a4e7-4692-a8b8-931494626734?mode=deep",
+    "timestamp": "2026-02-19 08:05:56.971485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Bypass] The validation at lines 14-17 only checks if providedRound LIB values are non-zero before comparing with baseRound. If an attacker provides providedRound.ConfirmedIrreversibleBlockHeight = 0 and providedRound.ConfirmedIrreversibleBlockRoundNumber = 0, does this bypass allow accepting blocks with uninitialized/malicious LIB data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_412a601c-3ce3-4709-8a21-d337c00aa5c0?mode=deep",
+    "timestamp": "2026-02-19 08:06:18.997052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Consensus Safety] At line 16, if baseRound.ConfirmedIrreversibleBlockHeight equals providedRound.ConfirmedIrreversibleBlockHeight but baseRound.ConfirmedIrreversibleBlockRoundNumber is greater, the first condition fails. However, if baseRound.ConfirmedIrreversibleBlockRoundNumber equals providedRound value, could a malicious miner exploit this to provide stale round data that matches exactly, bypassing validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_044f7004-f622-444f-84b4-9eb55a202b6c?mode=deep",
+    "timestamp": "2026-02-19 08:06:41.222360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Lines 14-21 check if providedRound LIB values went backwards compared to baseRound, but there's no upper bound check. Can an attacker provide providedRound.ConfirmedIrreversibleBlockHeight = long.MaxValue to DOS the system by creating unreachable LIB targets? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a46e7a7b-f4f6-4282-abad-050ff7ec0d88?mode=deep",
+    "timestamp": "2026-02-19 08:07:04.182015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Race Condition] Between lines 11-12 when baseRound and providedRound are extracted from validationContext, if another transaction modifies the state's baseRound before the comparison at line 16, could this TOCTOU vulnerability allow inconsistent LIB validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4150e988-dd94-4a63-b405-3f2bcbf16b6a?mode=deep",
+    "timestamp": "2026-02-19 08:07:28.184981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] At line 16, the condition uses OR logic (||) between height and round number checks. If baseRound.ConfirmedIrreversibleBlockHeight > providedRound value but baseRound.ConfirmedIrreversibleBlockRoundNumber <= providedRound value, validation fails. Is this correct, or should it use AND (&&) to ensure both must regress before rejecting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c2fd51d-afe9-4e59-bf95-0d594579959e?mode=deep",
+    "timestamp": "2026-02-19 08:07:53.403838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Null Reference] Lines 11-12 extract baseRound and providedRound from validationContext without null checks. If validationContext.BaseRound or validationContext.ProvidedRound is null, would the comparisons at lines 16-17 throw NullReferenceException, causing consensus halting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4900c4b0-c416-494b-938d-106712a78f64?mode=deep",
+    "timestamp": "2026-02-19 08:08:18.611107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Boundary Condition] At lines 14-15, the validation checks if providedRound LIB values != 0 before comparing. What happens if providedRound.ConfirmedIrreversibleBlockHeight = 1 (minimal valid value) and baseRound value is 1000? Does the validation correctly reject this massive backwards jump? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf76d2ec-60ef-47e1-8ab1-417a06c1b15f?mode=deep",
+    "timestamp": "2026-02-19 08:08:45.836189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Lines 14-21 validate ConfirmedIrreversibleBlock fields, but there's no validation that providedRound.ConfirmedIrreversibleBlockRoundNumber corresponds to a valid past round number. Can an attacker provide arbitrary round numbers that don't exist in chain history? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9b6260f-2f38-4935-b589-2e13e420cfc4?mode=deep",
+    "timestamp": "2026-02-19 08:09:14.913488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Consensus Attack] The validation at line 16 only ensures LIB height/round doesn't go backwards. If an attacker controls enough miners to produce blocks with the same LIB values repeatedly (no progression), can they prevent finality advancement while still passing validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2be51ae2-0869-46e8-afba-89fcf940fde6?mode=deep",
+    "timestamp": "2026-02-19 08:09:44.782136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Attack] At line 23, providedRound.RealTimeMinersInformation.ContainsKey(pubkey) checks if the sender exists in providedRound, but what if the attacker crafts a providedRound where their pubkey is missing? This bypasses lines 23-30 validation entirely. Is this intentional or an exploit? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97b14607-9314-4225-8e47-f8aef915f792?mode=deep",
+    "timestamp": "2026-02-19 08:10:15.139964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Null Reference] At line 25, the code accesses baseRound.RealTimeMinersInformation[pubkey] without checking ContainsKey first. If pubkey exists in providedRound but not in baseRound (e.g., new miner), would this cause KeyNotFoundException and DOS the validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1998f9a-8ead-4d75-8a19-dcfbdb0e9f46?mode=deep",
+    "timestamp": "2026-02-19 08:10:45.952108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Bypass] Lines 24-26 only validate ImpliedIrreversibleBlockHeight if providedRound value != 0. Can a malicious miner set their ImpliedIrreversibleBlockHeight to 0 to bypass this check even when they should have a valid implied LIB? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d700ba6b-d328-4325-9a1d-babf4c805a74?mode=deep",
+    "timestamp": "2026-02-19 08:11:18.020718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Authorization Bypass] At line 13, pubkey is extracted from validationContext.SenderPubkey. If the pubkey validation in earlier stages can be bypassed, could an attacker use a different pubkey than their actual identity to skip the miner-specific validation at lines 23-30? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9a5665c-24ef-4afa-810c-6920c5d96abe?mode=deep",
+    "timestamp": "2026-02-19 08:11:50.385111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Integer Overflow] At line 25, if baseRound.RealTimeMinersInformation[pubkey].ImpliedIrreversibleBlockHeight is near long.MaxValue and providedRound value is set through arithmetic that overflows, could the comparison incorrectly pass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df2b8a49-aa6e-41eb-9c3d-22e458145691?mode=deep",
+    "timestamp": "2026-02-19 08:12:21.670743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Lines 23-30 check ImpliedIrreversibleBlockHeight for the sender, but don't validate this value against the ConfirmedIrreversibleBlockHeight checked in lines 14-21. Can ImpliedIrreversibleBlockHeight be set higher than ConfirmedIrreversibleBlockHeight, creating inconsistent LIB state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0804d39b-ce3c-4b19-8b52-a5b37ce668c3?mode=deep",
+    "timestamp": "2026-02-19 08:12:53.484760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Consensus Safety] If multiple miners collude and all set their ImpliedIrreversibleBlockHeight values in providedRound to 0, does this bypass the validation at lines 23-30 for all of them, allowing coordinated LIB manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdba54fa-a849-4c82-bf19-910ce55381b2?mode=deep",
+    "timestamp": "2026-02-19 08:13:25.733825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Data Integrity] At line 25, the comparison assumes baseRound.RealTimeMinersInformation[pubkey] exists and has valid data. If baseRound is corrupted or has missing miner entries, could this cause validation failures for honest miners while malicious actors craft rounds where they're absent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e2ebc83-9b58-4314-b614-cdb48bfebdc2?mode=deep",
+    "timestamp": "2026-02-19 08:13:58.983777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Race Condition] Between line 23 checking providedRound.RealTimeMinersInformation.ContainsKey and line 24 accessing the value, could concurrent state modifications cause the key to be removed, leading to KeyNotFoundException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ea9f44b-fe98-4ff3-b34b-b848fde2bfd4?mode=deep",
+    "timestamp": "2026-02-19 08:14:32.211682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] Lines 23-30 only validate ImpliedIrreversibleBlockHeight for the sender (pubkey). Should validation check ALL miners in providedRound to ensure no miner's implied LIB went backwards, not just the block producer? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00a724d3-852b-406b-aa60-8ada00a55b8e?mode=deep",
+    "timestamp": "2026-02-19 08:15:03.881676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] At line 32, validationResult.Success is set to true without checking any other conditions. Are there additional LIB invariants that should be validated before marking success? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9a7e4ed-d71c-4488-b08e-1edf349b343f?mode=deep",
+    "timestamp": "2026-02-19 08:15:36.036936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Error Handling] Lines 19-20 and 28-29 set error messages but don't log them. If validation fails silently, could this hide consensus attacks until they cause chain splits or data loss? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbe783e5-e706-4ccd-af92-40afd0ee27d8?mode=deep",
+    "timestamp": "2026-02-19 08:16:08.209921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Flow] The function returns early at lines 20 and 29 on validation failure, but line 10 creates ValidationResult with Success defaulting to false. If both validations pass, does line 32 correctly override this default? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05659c87-39a1-48b4-a091-0909f456361e?mode=deep",
+    "timestamp": "2026-02-19 08:16:37.735736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] The function doesn't validate that validationContext itself is non-null. If ValidateHeaderInformation is called with null context, would line 11 throw NullReferenceException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a42cca34-325e-4687-8d1f-d332533adef7?mode=deep",
+    "timestamp": "2026-02-19 08:17:10.948716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Information Disclosure] Error messages at lines 19 and 28 reveal internal state details ('Incorrect lib information', 'Incorrect implied lib height'). Could attackers use these specific error messages to probe and reverse-engineer validation logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0ea043a-1ac5-4b1a-a6ed-743daa91c552?mode=deep",
+    "timestamp": "2026-02-19 08:17:43.606747",
+    "report_generated": false
+  }
+]
