@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Side Channel] Does IsCurrentMiner() check take constant time, or can timing variations leak information about miner list structure or specific addresses? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9c21781-6d3b-4889-af99-ca4f4ab0b20f?mode=deep",
+    "timestamp": "2026-02-19 05:59:55.611207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Permission Escalation] Can a contract gain miner permissions temporarily through delegate calls or proxy patterns, then use those permissions for unauthorized indexing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3a41f75-771d-46b8-8df4-952092fd79d9?mode=deep",
+    "timestamp": "2026-02-19 06:00:17.845314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Memory Exhaustion] At line 43, can maliciously crafted protobuf data cause ParseFrom to allocate excessive memory, DoS-ing the node? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2cd9ccc-4af0-4ae3-b1e2-452645d55915?mode=deep",
+    "timestamp": "2026-02-19 06:00:40.326465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Deserialization Attack] Can nested or recursive protobuf structures in input.Value cause stack overflow or infinite loops during parsing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b8ab031-777c-4c49-b4fa-59fd0a1e35eb?mode=deep",
+    "timestamp": "2026-02-19 06:01:03.287436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Type Confusion] If ParseFrom succeeds but creates AElfConsensusHeaderInformation with unexpected field types or nulls, can subsequent access cause runtime errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_563041ea-6790-45a0-82f3-2f1e206555cd?mode=deep",
+    "timestamp": "2026-02-19 06:01:27.242253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Overflow] If consensusInformation.Round.RoundNumber + MainChainRoundNumber overflows long max value, can comparisons behave incorrectly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b332c69-2059-47c2-8f79-e1b67e35f23d?mode=deep",
+    "timestamp": "2026-02-19 06:01:53.099395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Negative Values] Can consensusInformation.Round.RoundNumber be negative, bypassing the <= check at line 46 and corrupting state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f183ba7-941a-4ead-94e6-ffbae19571b6?mode=deep",
+    "timestamp": "2026-02-19 06:02:18.300262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Gap Detection] Does the function detect unreasonably large gaps in round numbers (e.g., jumping 1000+ rounds), indicating possible main chain compromise? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bea15eaf-c17f-44a4-bb26-3c1f066273f8?mode=deep",
+    "timestamp": "2026-02-19 06:02:44.317203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Key Length] Does the function validate that RealTimeMinersInformation keys have valid public key length (64 hex chars), or can short/long keys be accepted? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45764200-6f38-4b18-9c8a-3667cb195c7a?mode=deep",
+    "timestamp": "2026-02-19 06:03:14.806195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Case Sensitivity] At line 60, does FromHexString handle mixed case hex correctly, or can case variation cause same public key to be treated as different miners? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_997d0912-1705-4467-a864-4937f3455a5a?mode=deep",
+    "timestamp": "2026-02-19 06:03:46.607202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Null Keys] Can RealTimeMinersInformation contain null or empty string keys, causing FromHexString to fail at line 60? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a620765e-099d-446a-a321-0d39c9f9639a?mode=deep",
+    "timestamp": "2026-02-19 06:04:20.485790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Miner Order] Does the order of miners in RealTimeMinersInformation.Keys matter for security (e.g., for distribution ordering), and can attacker manipulate this order? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31968d0b-3fd3-4654-a482-e9d36851b0cf?mode=deep",
+    "timestamp": "2026-02-19 06:04:55.193805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: DistributeResourceTokensToPreviousMiners()] [Single Miner] If minerList.Count is 1, does amount calculation at line 81 give entire balance to one miner, creating centralization risk? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3bc919c-f4af-42f5-953f-acc918c39015?mode=deep",
+    "timestamp": "2026-02-19 06:05:24.187629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: DistributeResourceTokensToPreviousMiners()] [Maximum Miners] If minerList.Count is extremely large (e.g., 10000), can amount become so small (< 1 token unit) that distribution is skipped at line 83, starving all miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78466e38-4c12-4142-8617-d6f447b82030?mode=deep",
+    "timestamp": "2026-02-19 06:05:58.637023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs (L1-99)\n```csharp\nusing System.Linq;\nusing AElf.Contracts.MultiToken;\nusing AElf.CSharp.Core;\nusing AElf.Sdk.CSharp;\nusing AElf.Types;\nusing Google.Protobuf;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\npublic partial class AEDPoSContract\n{\n    public override BytesValue GetChainInitializationInformation(BytesValue input)\n    {\n        return new BytesValue\n        {\n            Value = new MinerListWithRoundNumber\n            {\n                MinerList = GetCurrentMinerList(new Empty()),\n                RoundNumber = State.CurrentRoundNumber.Value\n            }.ToByteString()\n        };\n    }\n\n    public override BoolValue CheckCrossChainIndexingPermission(Address input)\n    {\n        return IsCurrentMiner(input);\n    }\n\n    #region UpdateConsensusInformation\n\n    public override Empty UpdateInformationFromCrossChain(BytesValue input)\n    {\n        Assert(\n            Context.Sender == Context.GetContractAddressByName(SmartContractConstants.CrossChainContractSystemName),",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_461229f5-9c97-430d-b3f6-a08026ed7a4e?mode=deep",
+    "timestamp": "2026-02-19 06:06:31.533241",
+    "report_generated": false
+  }
+]
