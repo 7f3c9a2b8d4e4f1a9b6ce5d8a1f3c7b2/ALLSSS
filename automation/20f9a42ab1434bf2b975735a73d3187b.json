@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialTreasuryContract()] [Re-initialization Vulnerability] Can an attacker front-run the initialization if State.Initialized.Value check at line 44 is bypassed through transaction ordering, allowing them to create malicious profit schemes with attacker-controlled parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_575a18c2-84cd-4588-835c-25ad44d40691?mode=deep",
+    "timestamp": "2026-02-19 02:36:12.270263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialTreasuryContract()] [Profit Scheme Misconfiguration] The loop at lines 56-68 creates 7 schemes with hardcoded DelayDistributePeriodCount and CanRemoveBeneficiaryDirectly settings - can these immutable settings be exploited if scheme indices 2, 5, 6 (Subsidy, FlexibleReward, WelcomeReward) allow malicious direct beneficiary removal before legitimate distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a27c959-ce0e-401b-9e24-32d8f1375d7c?mode=deep",
+    "timestamp": "2026-02-19 02:36:34.346727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialTreasuryContract()] [State Consistency] If CreateScheme calls at line 60 fail silently or partially succeed, can the contract end up in an inconsistent state where State.Initialized.Value is true but fewer than 7 schemes exist, breaking InitialMiningRewardProfitItem's assertion at line 88? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b1751eb-c5fd-461d-8b07-207c52e45648?mode=deep",
+    "timestamp": "2026-02-19 02:36:56.674629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialTreasuryContract()] [Symbol List Manipulation] The SymbolList initialization at lines 72-75 only contains NativeSymbol - can this cause issues if SetSymbolList is never called and multi-token distributions are attempted, leading to missing token distributions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce9e0dfd-057f-4045-a74c-4a964ce0e12e?mode=deep",
+    "timestamp": "2026-02-19 02:37:20.264286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialTreasuryContract()] [Delay Period Exploit] The DelayDistributePeriodCount=1 for scheme index 3 (Welfare) at line 64 - can attackers exploit this one-period delay to frontrun welfare distributions and manipulate vote weights to maximize their share before distribution occurs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90188c63-01d6-4ba1-899a-b363174672ad?mode=deep",
+    "timestamp": "2026-02-19 02:37:44.077072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialMiningRewardProfitItem()] [Double Initialization] The assertion at line 82 only checks State.TreasuryHash.Value == null - if InitialTreasuryContract was called but this function wasn't, can subsequent calls with different managingSchemeIds overwrite critical scheme references? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efc28276-f450-4bc6-9eac-d13034a11bd9?mode=deep",
+    "timestamp": "2026-02-19 02:38:09.980638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialMiningRewardProfitItem()] [Scheme Count Manipulation] Line 88 asserts managingSchemeIds.Count == 7, but if the ProfitContract was compromised or returned malicious data, could incorrect scheme IDs be assigned to State variables at lines 90-96, causing treasury funds to flow to attacker schemes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d906c83-33b4-4057-aa0d-bd1c6dc646b3?mode=deep",
+    "timestamp": "2026-02-19 02:38:35.270034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialMiningRewardProfitItem()] [Manager Reset Attack] The ResetManager calls at lines 102-111 transfer control of SubsidyHash and WelfareHash to electionContractAddress without verifying it's legitimate - if electionContractAddress is null or malicious, can this permanently lock these schemes or redirect funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5cfe626-26b6-48ca-a204-1cb30467f6af?mode=deep",
+    "timestamp": "2026-02-19 02:39:00.957111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialMiningRewardProfitItem()] [Virtual Address Collision] The TreasuryVirtualAddress computed at lines 116-118 uses hash concatenation - can an attacker precompute collisions to predict this address and frontrun token transfers to drain treasury funds before distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d389ec29-25e8-42fc-964a-8bc553adeca3?mode=deep",
+    "timestamp": "2026-02-19 02:39:27.939935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: InitialMiningRewardProfitItem()] [BuildTreasury Reentrancy] BuildTreasury() called at line 114 makes external ProfitContract calls - can reentrancy during initialization corrupt the weight settings or scheme hierarchy before virtual address is set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_713c4842-3753-40a3-9229-ce78e753f8f5?mode=deep",
+    "timestamp": "2026-02-19 02:39:57.799243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [Authorization Bypass] Line 127 only checks Context.Sender == State.AEDPoSContract.Value - if AEDPoSContract.Value is never initialized or can be reset, can any address call Release and trigger unauthorized profit distributions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b226b65-8ab1-42c9-b25e-2ebcf597239b?mode=deep",
+    "timestamp": "2026-02-19 02:40:28.203051",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [Period Manipulation] Release uses input.PeriodNumber at line 132 and 138 without validation - can an attacker call with arbitrary future or past periods to skip distributions, double-distribute, or manipulate miner reward calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bc8b6fe-6f51-49cb-9519-682985c8ddd1?mode=deep",
+    "timestamp": "2026-02-19 02:41:00.144464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [Miner List Extraction] Lines 141-145 merge currentMinerList and previousTermInformation miners - if these lists contain duplicates, can a miner receive double shares in UpdateBasicMinerRewardWeights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9abe348-fe2b-471c-a104-a7a2de4fdee5?mode=deep",
+    "timestamp": "2026-02-19 02:41:30.776529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [Replace Candidate State Pollution] Lines 146-153 check ReplaceCandidateMap and remove entries - if RecordMinerReplacement is called multiple times for the same term, can attacker-controlled pubkeys accumulate in the map and qualify as 'new miners' to claim welcome rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53a3e967-39bf-4a81-ad02-b355684fc9fe?mode=deep",
+    "timestamp": "2026-02-19 02:41:59.577531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [Initial Miner Exclusion Bypass] Line 156 filters out initial miners using GetInitialMinerList() - if round 1 data is corrupted or AEDPoSContract returns empty, can initial miners falsely qualify for welcome rewards in every term? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73d27aef-9d61-42bb-8270-fe62066d78ba?mode=deep",
+    "timestamp": "2026-02-19 02:42:28.168604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [LatestMinedTerm Logic Error] Line 156 checks State.LatestMinedTerm[p] == 0 - but UpdateStateAfterDistribution at line 164 sets it to previousTermInformation.TermNumber - can miners who skip exactly one term re-qualify as 'new' and claim duplicate welcome rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7609ea50-b892-4011-a82b-5f4ea4cb9f1a?mode=deep",
+    "timestamp": "2026-02-19 02:43:00.038018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [Distribution Order Dependency] UpdateStateBeforeDistribution (line 162) and UpdateStateAfterDistribution (line 164) modify beneficiary weights and LatestMinedTerm state - can the ordering be exploited if ReleaseTreasurySubProfitItems fails or reverts, leaving state inconsistent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e5a5a72-82ed-4f3f-aa6d-3ab3bc8f09d8?mode=deep",
+    "timestamp": "2026-02-19 02:43:28.219810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Release()] [AmountsMap Zero Injection] Line 133 creates AmountsMap with all values set to 0L - if ProfitContract uses this to determine distribution amounts instead of actual balances, can this cause all treasury funds to remain locked indefinitely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfc7ad4b-7d71-441b-aac9-f2d9a1038c47?mode=deep",
+    "timestamp": "2026-02-19 02:43:57.532638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Amount Validation Bypass] Line 176 only checks input.Amount > 0 but doesn't validate max bounds - can an attacker pass Amount = long.MaxValue to cause overflow in later calculations at lines 228-229 when adding to existing donations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b997fbf7-c3f9-4673-822b-8ecac6ae3592?mode=deep",
+    "timestamp": "2026-02-19 02:44:29.850831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Token Availability Race] Lines 181-182 check IsTokenAvailableForMethodFee and return empty if false - can this allow worthless tokens to bypass validation if called before method fee whitelist is updated, locking them in treasury? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99a29f4a-e4c0-4298-82c7-c9d1440e4549?mode=deep",
+    "timestamp": "2026-02-19 02:45:01.824017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Symbol Conversion Ambiguity] Lines 188-192 determine conversion path based on isNativeSymbol and CanExchangeWithNativeSymbol - can an attacker donate a token that passes both checks, causing double-donation through the needToConvert logic at line 204? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a17dfcb7-aa99-4258-82b0-b0c291efc7a1?mode=deep",
+    "timestamp": "2026-02-19 02:45:30.329820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Self-Donation Approval Bypass] Line 194 skips TransferFrom if Context.Sender == Context.Self - can a malicious internal function call Donate to approve and contribute funds from treasury's own balance to itself, inflating profit distributions artificially? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5098f5b0-5adb-4c0d-9f48-046e9f1f38b1?mode=deep",
+    "timestamp": "2026-02-19 02:45:59.775028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [TransferFrom Authorization] Lines 195-202 use TransferFrom without checking allowance first - if sender didn't approve treasury, will this silently fail or revert, and can partial failures corrupt DonatedDividends state at line 239? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8350d41d-cd7b-4061-98f2-9f019262f705?mode=deep",
+    "timestamp": "2026-02-19 02:46:32.064861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [ConvertToNativeToken Slippage] Line 207 calls ConvertToNativeToken without slippage protection - can an attacker sandwich this transaction to extract value during token conversion, reducing donated amount to treasury? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20e7ffc3-6b17-4df6-a19f-70bf3464c000?mode=deep",
+    "timestamp": "2026-02-19 02:47:05.665888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Approval Race Condition] Lines 211-216 approve full amount to ProfitContract before contributing - can a compromised ProfitContract or reentering contract drain approved tokens beyond the ContributeProfits amount at line 222? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62893337-c7c2-4e34-9b15-d47b04e5d855?mode=deep",
+    "timestamp": "2026-02-19 02:47:38.197981",
+    "report_generated": false
+  }
+]
