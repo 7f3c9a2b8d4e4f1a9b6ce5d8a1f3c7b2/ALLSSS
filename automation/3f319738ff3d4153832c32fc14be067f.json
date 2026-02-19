@@ -1,0 +1,50 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateCrossChainDataBeforeIndexing()] [DoS Vector] Lines 472-475 validate all parent and side chain block data calling ValidateParentChainBlockData and ValidateSideChainBlockData - can these unbounded loops cause gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2db5e57e-4379-45f0-a891-4562a683abf5?mode=deep",
+    "timestamp": "2026-02-19 04:30:20.225789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateSideChainBlockData()] [Height Manipulation] Lines 704-714 validate sequential height by checking target != sideChainHeight but never validate heights don't have gaps in case of reorganization - can attacker submit non-sequential blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f59aee9-ccf4-46ab-8eef-95dad8ae6cd4?mode=deep",
+    "timestamp": "2026-02-19 04:30:42.606427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateSideChainBlockData()] [State Inconsistency] Lines 693-718 group and validate multiple chains' data but return false on first error without rolling back partial validation - can this corrupt state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48aac2bc-de0b-4221-b395-e3838ac17a87?mode=deep",
+    "timestamp": "2026-02-19 04:31:04.930357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateSideChainBlockData()] [Validation Gap] Line 701 checks if info == null or SideChainStatus == Terminated but never validates chain wasn't recently terminated - can attacker index stale data for just-terminated chain? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_535ccd6b-1792-42b5-bb11-781f2e25a691?mode=deep",
+    "timestamp": "2026-02-19 04:31:27.988286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateParentChainBlockData()] [Height Manipulation] Lines 728-729 check parentChainId and currentHeight + 1 == blockData.Height but never validate blockData.Height > 0 - can attacker submit negative or zero heights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b027ed1-5b1c-47ab-bd59-876fb3667822?mode=deep",
+    "timestamp": "2026-02-19 04:31:52.116796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateParentChainBlockData()] [Merkle Path Validation] Lines 731-734 check if merkle paths already exist but never validate the paths themselves are well-formed - can attacker inject malformed merkle paths? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22e79bd4-4a33-4ed4-b769-5b805e3e664e?mode=deep",
+    "timestamp": "2026-02-19 04:32:17.040832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ValidateParentChainBlockData()] [Integer Overflow] Line 736 increments currentHeight with 'currentHeight += 1' without overflow check - can this overflow causing height to wrap to negative? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bd92602-c122-4d0c-953b-c7722a0cf95d?mode=deep",
+    "timestamp": "2026-02-19 04:32:42.443116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: IndexParentChainBlockData()] [Reentrancy] Lines 784-788 call UpdateConsensusInformation which is external call without reentrancy guard - can consensus contract reenter during update to corrupt indexing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74e1bdfa-ffb9-43dd-99bc-1cd77757b117?mode=deep",
+    "timestamp": "2026-02-19 04:33:08.291859",
+    "report_generated": false
+  }
+]
