@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypeFullNameMap] [Full Name Collision] Can different short names map to the same full name in NFTTypeFullNameMap? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_053cdc2f-ab47-4dbd-a697-8055d03532e9?mode=deep",
+    "timestamp": "2026-02-19 13:13:44.167131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypeFullNameMap] [Empty Values] Can NFTTypeFullNameMap contain empty or null full name values? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f6eff30-6423-4330-8883-f64bfda08f4a?mode=deep",
+    "timestamp": "2026-02-19 13:14:06.357946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypeFullNameMap] [Length Limits] Are there length limits on full names in NFTTypeFullNameMap to prevent storage abuse? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e95523a9-4230-4b2b-b784-84be3b4760b7?mode=deep",
+    "timestamp": "2026-02-19 13:14:28.879794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: ParliamentDefaultAddress] [Address Manipulation] Can ParliamentDefaultAddress (SingletonState<Address>) be changed to grant unauthorized governance access? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e8d7a55-eb79-46e8-a7aa-5de09eceeacd?mode=deep",
+    "timestamp": "2026-02-19 13:14:52.359989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: ParliamentDefaultAddress] [Initialization Race] Can ParliamentDefaultAddress be set incorrectly during initialization, bypassing parliament governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2dc157e3-c9ff-4045-8b60-4900727d016a?mode=deep",
+    "timestamp": "2026-02-19 13:15:16.782752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: ParliamentDefaultAddress] [Zero Address] Can ParliamentDefaultAddress be set to zero or invalid address, breaking governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db20be19-1d73-45c6-a38a-876791d31028?mode=deep",
+    "timestamp": "2026-02-19 13:15:42.399773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: ParliamentDefaultAddress] [Lazy Loading] Does lazy loading of ParliamentDefaultAddress create a window for exploitation before proper initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62fe1789-6eb8-492c-b2a3-1931126d9f33?mode=deep",
+    "timestamp": "2026-02-19 13:16:07.874040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: ParliamentDefaultAddress] [Permanent Lock] If ParliamentDefaultAddress is set incorrectly, can it be corrected or is the contract permanently locked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55490c18-a4be-4450-b068-1e77ad344b29?mode=deep",
+    "timestamp": "2026-02-19 13:16:34.368345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Type Registry Manipulation] Can the NFTTypes (SingletonState<NFTTypes>) registry be manipulated to add unauthorized NFT types? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29cc0fd3-3027-4642-9f4e-151a8f5d7fbf?mode=deep",
+    "timestamp": "2026-02-19 13:17:00.415576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Initialization Override] Can NFTTypes initialization be triggered multiple times to override default types? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0c42a23-ab6c-4634-81b0-96b5688bb1f2?mode=deep",
+    "timestamp": "2026-02-19 13:17:26.138771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Inconsistent State] Can NFTTypes become inconsistent with NFTTypeShortNameMap and NFTTypeFullNameMap? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_796096c2-1619-44a7-ac81-63c6de83ec0d?mode=deep",
+    "timestamp": "2026-02-19 13:17:53.208110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Duplicate Keys] Can NFTTypes.Value dictionary contain duplicate keys or values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efb15a98-500d-4904-9c58-63a017f91f77?mode=deep",
+    "timestamp": "2026-02-19 13:18:20.476054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Removal Impact] When removing types from NFTTypes, what happens to existing protocols using those types? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b83b7067-d835-4c50-96f2-79f8d9b0b6df?mode=deep",
+    "timestamp": "2026-02-19 13:18:51.200450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Type Count Limits] Is there a limit on the number of NFT types that can be added to NFTTypes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63a2686d-82a6-451d-a5bd-400b879a8aef?mode=deep",
+    "timestamp": "2026-02-19 13:19:22.463101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Unauthorized Operators] Can OperatorMap (MappedState<string, Address, AddressList>) be manipulated to grant unauthorized operator access? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32e817ff-6479-4689-8e13-1afa313259f0?mode=deep",
+    "timestamp": "2026-02-19 13:19:50.961612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Operator Bypass] Can operators in OperatorMap bypass allowance checks for unlimited token transfers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83e99ad8-3203-41ba-8b4c-87b3d29d3b84?mode=deep",
+    "timestamp": "2026-02-19 13:20:22.343907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Self Operator] Can addresses add themselves as operators without owner approval via OperatorMap manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f45964b8-63fd-4762-89e5-b4afc4ef6bf5?mode=deep",
+    "timestamp": "2026-02-19 13:20:51.527812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Duplicate Operators] Can OperatorMap contain duplicate operator addresses for the same owner-protocol pair? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02d531c4-348c-40a7-bb94-ab4067baa9f7?mode=deep",
+    "timestamp": "2026-02-19 13:21:20.779175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Removal Race Condition] Can operators execute transfers while being removed from OperatorMap, causing double-spend? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_070119ac-9e71-47b5-94b8-bfb3b31892ae?mode=deep",
+    "timestamp": "2026-02-19 13:21:53.272178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Protocol Validation] Does OperatorMap validate that the protocol exists before adding operators? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_130fb20b-0b0e-4e2f-aa59-d79a393e566b?mode=deep",
+    "timestamp": "2026-02-19 13:22:22.332919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Unbounded Growth] Can OperatorMap grow unboundedly per protocol-owner pair, causing storage exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_191110ed-fc15-4f94-9f63-f06e5f3e625e?mode=deep",
+    "timestamp": "2026-02-19 13:22:50.951516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Zero Address Operator] Can zero or invalid addresses be added as operators in OperatorMap? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c3681e9-03ca-423e-a00e-bd0a3b2d15c1?mode=deep",
+    "timestamp": "2026-02-19 13:23:19.006582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap + NftInfoMap] [Supply Consistency] Can total BalanceMap entries exceed NftInfoMap.Quantity, breaking supply integrity? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e811c539-458f-457b-a91d-a24685d03ace?mode=deep",
+    "timestamp": "2026-02-19 13:23:45.897287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap + MinterListMap] [Minter Desync] Can MinterListMap and NftProtocolMap.Creator become desynchronized, breaking authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73af91b3-ef99-4e43-a295-c8c72a9225e7?mode=deep",
+    "timestamp": "2026-02-19 13:24:11.764116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap + BalanceMap] [Over-Approval] Can AllowanceMap approvals exceed actual BalanceMap balances? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3945bea2-8a73-430f-9718-2cc2c885c51b?mode=deep",
+    "timestamp": "2026-02-19 13:24:38.151366",
+    "report_generated": false
+  }
+]
