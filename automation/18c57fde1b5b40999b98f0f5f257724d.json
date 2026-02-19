@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Integer Overflow] Can a malicious caller pass int.MaxValue as offset parameter to cause timestamp overflow in AddMilliseconds(), potentially wrapping mining time to past and enabling double-mining in same slot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_555d6f47-2314-4b9e-9c6f-eba7a54e3c2c?mode=deep",
+    "timestamp": "2026-02-19 02:03:43.230180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Integer Overflow] Can negative offset values cause timestamp underflow when AddMilliseconds() is called with negative int.MinValue, potentially arranging mining time before blockchain genesis? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc8be3c7-da2f-45dd-a414-8bd3a9072317?mode=deep",
+    "timestamp": "2026-02-19 02:04:05.286067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Timestamp Manipulation] If currentBlockTime is already at Timestamp.MaxValue and offset > 0, does AddMilliseconds() overflow detection work correctly or could it produce invalid future timestamp? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_569b1256-4aac-4287-8a78-d0f4cbd148c1?mode=deep",
+    "timestamp": "2026-02-19 02:04:27.619524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Input Validation] Does the function validate that offset is within reasonable bounds (e.g., not exceeding one round duration) to prevent scheduling mining times years in the future? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0fc1aa85-a9f5-42c2-8a8a-4332d2768952?mode=deep",
+    "timestamp": "2026-02-19 02:04:50.962272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Denial of Service] Can an attacker repeatedly call this with offset=0 to create mining times equal to currentBlockTime, causing miners to conflict on identical timestamps? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e49223c5-1483-4006-a94c-03bef3be2efd?mode=deep",
+    "timestamp": "2026-02-19 02:05:14.791577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Precision Loss] Does AddMilliseconds() correctly handle fractional milliseconds in offset or could precision loss in Duration conversion cause scheduled times to be 1ms earlier than intended? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0db8496-1026-4e16-b89c-5cc22c497227?mode=deep",
+    "timestamp": "2026-02-19 02:05:39.796931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Race Condition] If multiple miners call ArrangeMiningTimeWithOffset with same currentBlockTime and offset simultaneously, could they receive identical mining times causing block production conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78a8a420-c785-4894-a48f-3815da653202?mode=deep",
+    "timestamp": "2026-02-19 02:06:06.916171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeMiningTimeWithOffset()] [Nanos Overflow] When offset % 1000 is converted to nanos in AddMilliseconds (line 19 of TimestampExtensions), can the multiplication by 1000000 overflow if offset is crafted to have remainder 999? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6fa5b7c-2242-423e-9b04-b98b8b123dcc?mode=deep",
+    "timestamp": "2026-02-19 02:06:36.150873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Consensus Bypass] If round.GetExpectedMiningTime(pubkey) returns long.MaxValue (miner not in round) and currentBlockTime is recent, does Max() select currentBlockTime allowing unauthorized miner to produce blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_562d7604-37e6-4232-b5b9-deee14c9e262?mode=deep",
+    "timestamp": "2026-02-19 02:07:03.528646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Time Slot Violation] Can a miner whose expected time has passed manipulate currentBlockTime parameter to be in the past, allowing Max() to return currentBlockTime and mine outside their designated slot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28668547-7a06-4d15-b98f-3eb5c3d030e6?mode=deep",
+    "timestamp": "2026-02-19 02:07:33.342684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Round Information Staleness] If round object contains stale ExpectedMiningTime data and currentBlockTime is fresh, does the Max() comparison prioritize stale future time over current time, causing miners to wait unnecessarily? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6acadc86-13a4-45bf-8a4d-b836d7a93024?mode=deep",
+    "timestamp": "2026-02-19 02:08:04.939795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Null Reference] What happens if round.GetExpectedMiningTime(pubkey) returns null instead of Timestamp with long.MaxValue for non-existent miners - does Max() comparison throw exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cf93aed-ea0a-498c-99e5-016b29d731fe?mode=deep",
+    "timestamp": "2026-02-19 02:08:39.039394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Timestamp Comparison] If expected mining time and currentBlockTime are exactly equal, which timestamp instance does Max() return, and could object reference issues cause consensus commands to use wrong instance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_714ec7d5-3d6c-4cda-b64c-c9c656a05349?mode=deep",
+    "timestamp": "2026-02-19 02:09:07.933251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Mining Interval Bypass] If GetExpectedMiningTime returns time T and currentBlockTime is T+1ms, does returning currentBlockTime allow miner to skip their proper interval and mine immediately? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9362494-6681-4278-9ef3-03c1d1f2d137?mode=deep",
+    "timestamp": "2026-02-19 02:09:41.787516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Round Transition] During round transition when old round's expected times are in past but new round not yet established, does currentBlockTime become the de-facto mining time for all miners causing conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d119cbc-9f69-4a30-84b0-2f47796b60e7?mode=deep",
+    "timestamp": "2026-02-19 02:10:16.569353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Denial of Service] Can a Byzantine miner provide corrupted round object where all miners' ExpectedMiningTime equals Timestamp.MinValue, forcing Max() to always select currentBlockTime and disrupting scheduled mining? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3706a969-4c22-450d-becd-a2c7c81b27ab?mode=deep",
+    "timestamp": "2026-02-19 02:10:46.268624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Parameter Injection] Is there validation that the 'round' parameter passed to this function matches the actual current consensus round, or could stale/future round objects be injected? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f0d3300-4af9-4785-bc5f-0f4f405f446a?mode=deep",
+    "timestamp": "2026-02-19 02:11:18.207171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeNormalBlockMiningTime()] [Pubkey Validation] Does the function verify that pubkey exists in round.RealTimeMinersInformation before calling GetExpectedMiningTime, or rely on GetExpectedMiningTime returning sentinel value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebe1efca-f36a-4c03-b8bb-2ba5b31a999f?mode=deep",
+    "timestamp": "2026-02-19 02:11:46.672207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Abnormal Time Calculation] In Round.ArrangeAbnormalMiningTime(), if distanceToRoundStartTime calculation overflows when currentBlockTime >> GetRoundStartTime, can it return negative missedRoundsCount causing past timestamps? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c527a2cf-03a8-45ed-8de9-56d0823979a5?mode=deep",
+    "timestamp": "2026-02-19 02:12:20.477591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Division by Zero] In ArrangeAbnormalMiningTime line 34, if TotalMilliseconds(miningInterval) returns 0 due to single miner with 0 interval, does the Div() operation cause division by zero exception? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2082defb-ae0c-46a4-bc1b-a9d98336f151?mode=deep",
+    "timestamp": "2026-02-19 02:12:53.653309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Extra Block Producer Bypass] If GetExtraBlockProducerInformation() returns miner with pubkey matching parameter and mustExceededCurrentRound=false, can miner repeatedly get GetExtraBlockMiningTime() without advancing rounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca7cd8be-4282-4ce5-b634-f1f58c9f8193?mode=deep",
+    "timestamp": "2026-02-19 02:13:27.421435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Time Slot Collision] When calculating futureRoundStartTime.AddMilliseconds(minerInRound.Order.Mul(miningInterval)), can two miners with same Order value receive identical timestamps causing block conflicts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6203ba03-8e58-4b4e-bb73-927463f377c1?mode=deep",
+    "timestamp": "2026-02-19 02:13:57.365711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Missed Rounds Overflow] If a miner is offline for months and distanceToRoundStartTime is extremely large, can missedRoundsCount overflow in Div() operation causing incorrect future time calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67b82573-aa56-491f-9a6a-18500e7bb3f2?mode=deep",
+    "timestamp": "2026-02-19 02:14:27.774207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Negative Distance] At line 28-30 of ArrangeAbnormalMiningTime, if (GetExtraBlockMiningTime().AddMilliseconds(miningInterval) - currentBlockTime) produces negative distance, does the > 0 check correctly handle it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddb6e699-d655-4018-a2c8-142f460f5126?mode=deep",
+    "timestamp": "2026-02-19 02:15:04.095940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Round Information Access] Does ArrangeAbnormalMiningTime validate that pubkey exists in RealTimeMinersInformation before accessing minerInRound at line 24, or can KeyNotFoundException crash consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89152eeb-46b1-4648-9d2a-3458334b21b3?mode=deep",
+    "timestamp": "2026-02-19 02:15:40.932200",
+    "report_generated": false
+  }
+]
