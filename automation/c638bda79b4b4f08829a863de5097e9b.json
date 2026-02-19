@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Integer Underflow] Could currentRound.RoundNumber.Sub(1) at line 280 underflow when RoundNumber is 0 or 1, setting ConfirmedIrreversibleBlockRoundNumber to a huge value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ed0b7c8-9fdb-4e70-b571-575718c2f0cf?mode=deep",
+    "timestamp": "2026-02-19 11:52:47.725388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Event Manipulation] Can the IrreversibleBlockFound event at lines 275-278 be fired with a fake libHeight that doesn't match actual irreversible block height, misleading external systems? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5bd13571-449b-4f6a-9f7d-c14ae0ed9e62?mode=deep",
+    "timestamp": "2026-02-19 11:53:10.375705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [State Consistency] If Context.Fire throws an exception at line 275, does the entire transaction revert or continue with partial state updates to LIB height? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79ab5226-1f76-4638-ba30-47735982081c?mode=deep",
+    "timestamp": "2026-02-19 11:53:33.232566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [State Consistency] If TryToUpdateRoundInformation fails at line 284, the Assert reverts - but have currentRound modifications at lines 242-280 already been committed to memory? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9dfb8dfe-5cfd-4481-909c-2d6fe1ce520a?mode=deep",
+    "timestamp": "2026-02-19 11:53:56.950090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [Race Condition] Between TryToGetCurrentRoundInformation at line 240 and TryToUpdateRoundInformation at line 284, can another transaction modify the round, causing the update to overwrite newer data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7416c354-7b90-467d-9f55-68e84629ddc1?mode=deep",
+    "timestamp": "2026-02-19 11:54:21.559738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Input Validation] Can input.EncryptedPieces at line 290 contain malformed or excessively large data that causes DoS when added to minerInRound.EncryptedPieces? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bdd0546-791d-4091-8f30-2a8e3c0ad5b2?mode=deep",
+    "timestamp": "2026-02-19 11:54:46.749888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Authorization] Can input.DecryptedPieces at line 291 contain keys for miners who didn't authorize the decryption, allowing unauthorized access to their secret pieces? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77ff7207-58f5-4d9f-affa-bbac66978e29?mode=deep",
+    "timestamp": "2026-02-19 11:55:12.800713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [DoS] If input.DecryptedPieces or input.MinersPreviousInValues contain very large dictionaries (lines 291-296), can the foreach loops consume excessive gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_898f20af-5069-48f5-9185-a957c9e189c4?mode=deep",
+    "timestamp": "2026-02-19 11:55:39.778848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Logic Error] At line 292-293, DecryptedPieces are added with publicKey as the key - can duplicate keys cause the Add to fail or overwrite existing decrypted pieces? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2951f8fe-07a8-4898-8759-69967b640591?mode=deep",
+    "timestamp": "2026-02-19 11:56:13.251984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Cryptographic Bypass] Can input.MinersPreviousInValues at line 295 contain incorrect hash values that don't match actual miner secrets, breaking secret sharing verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc275fa4-ff87-4201-80b3-8e3f5b581faa?mode=deep",
+    "timestamp": "2026-02-19 11:56:47.628356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [State Consistency] If round.RealTimeMinersInformation doesn't contain a key from DecryptedPieces or MinersPreviousInValues, do lines 292 or 296 throw exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a566576-55be-4638-bc33-4d87908fbec7?mode=deep",
+    "timestamp": "2026-02-19 11:57:16.253111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [Authorization] If _processingBlockMinerPubkey is not validated to be in currentRound.RealTimeMinersInformation, can line 303 throw an exception or update wrong miner data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_883357c9-b41c-465e-867b-4e57b7126749?mode=deep",
+    "timestamp": "2026-02-19 11:57:46.911784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [Integer Overflow] Can minerInRound.ProducedBlocks.Add(1) at line 305 or minerInRound.ProducedTinyBlocks.Add(1) at line 306 overflow with repeated calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4503ec0f-6d0e-4d5e-853d-bc42ee17e997?mode=deep",
+    "timestamp": "2026-02-19 11:58:16.502166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [Input Validation] Is tinyBlockInput.ActualMiningTime at line 304 validated to be within expected time bounds, or can miners set arbitrary timestamps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc730c1e-28df-418b-a39c-d3a735ce5f1d?mode=deep",
+    "timestamp": "2026-02-19 11:58:49.975955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [Logic Error] Does ProcessTinyBlock increment block counts even if no actual block was produced, allowing miners to inflate their production statistics? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_315cd7c6-8815-4eb4-95f0-2af1170afc3c?mode=deep",
+    "timestamp": "2026-02-19 11:59:19.810679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [State Consistency] If TryToUpdateRoundInformation fails at line 308, the Assert reverts - but has TryToGetCurrentRoundInformation already read stale data at line 301? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9124fcac-2c22-490f-8b7e-98d48fea98b2?mode=deep",
+    "timestamp": "2026-02-19 11:59:57.541986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Authorization Bypass] Can an attacker exploit the logic at lines 326-328 where a miner in previousRound but not currentRound is allowed (for failed miner NextTerm case) to perform unauthorized consensus updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d964764-0d25-4caa-a843-1af268ded747?mode=deep",
+    "timestamp": "2026-02-19 12:00:27.636675",
+    "report_generated": false
+  }
+]
