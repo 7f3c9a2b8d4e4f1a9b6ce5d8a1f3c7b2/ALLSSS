@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization Bypass] If State.MethodFeeController.Value.OwnerAddress is manipulated or set to zero address before the assertion, can an attacker with zero address as sender bypass the authorization check and set arbitrary method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_babae632-a9d7-46f8-b22d-090df9a4b1b0?mode=deep",
+    "timestamp": "2026-02-19 06:51:38.345297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Reentrancy] Can an attacker trigger reentrancy through the AssertValidToken call to State.TokenContract.IsTokenAvailableForMethodFee, manipulating State.TransactionFees before the final assignment, causing fee configuration inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_813a6146-04c2-4354-be5d-c502bc0bd862?mode=deep",
+    "timestamp": "2026-02-19 06:52:00.516461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [State Manipulation] If RequiredMethodFeeControllerSet() initializes State.MethodFeeController.Value during the call but an attacker has already manipulated State.DefaultOrganizationAddress.Value to their controlled address, can they gain unauthorized control over method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22838343-4bd8-4b2a-9dd3-e614ca4b4ed9?mode=deep",
+    "timestamp": "2026-02-19 06:52:23.295441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Input Validation] If input.Fees contains duplicate symbols with different BasicFee values, will the loop at line 12 validate all entries but only the last fee setting persists, allowing inconsistent fee states? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eba6f2bb-ef42-469d-ab58-78101b6d3d28?mode=deep",
+    "timestamp": "2026-02-19 06:52:46.575585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [DoS] Can an attacker pass an input.Fees array with thousands of entries, each requiring external token validation calls, causing the transaction to exceed gas limits and preventing legitimate fee updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc623318-e13d-4dc9-b690-eb38709b3f9e?mode=deep",
+    "timestamp": "2026-02-19 06:53:10.753573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Business Logic] If input.MethodName is an empty string or null, will State.TransactionFees store a fee configuration that can never be retrieved or used, causing permanent storage waste and potential fee bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba69f995-7242-4f80-8abb-197a08bb69aa?mode=deep",
+    "timestamp": "2026-02-19 06:53:35.619420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Race Condition] If two concurrent SetMethodFee calls occur with the same input.MethodName but different fees, can the second call overwrite the first without any versioning or nonce check, leading to inconsistent fee application? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06f36d47-c284-41ff-9bba-86cea5d0c84a?mode=deep",
+    "timestamp": "2026-02-19 06:54:01.288089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Integer Overflow] If methodFee.BasicFee is set to Int64.MaxValue and the fee charging mechanism adds additional fees, can this cause an overflow leading to zero or negative fees being charged? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08038b28-4f6d-4cc0-b0b9-f1d968509cb0?mode=deep",
+    "timestamp": "2026-02-19 06:54:27.543194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization] If State.MethodFeeController.Value.OwnerAddress is a contract address with complex authorization logic, can an attacker exploit that contract to impersonate the controller and set malicious fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da356ed6-32c1-4fca-bf48-089ee98afdd0?mode=deep",
+    "timestamp": "2026-02-19 06:54:53.962745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [External Call] If State.TokenContract.IsTokenAvailableForMethodFee reverts or returns unexpected data, can this leave the method fee configuration in a partially updated state where some fees are validated but the assignment fails? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d3c33d6-7100-48da-a319-2b05ca49e52f?mode=deep",
+    "timestamp": "2026-02-19 06:55:24.611541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Token Validation] Can an attacker set fees for a token that is marked as available at validation time but becomes unavailable later, causing fee collection to fail and blocking all method executions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e43604e-aee8-4796-b6f3-d7fbef8b2025?mode=deep",
+    "timestamp": "2026-02-19 06:55:55.741210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [State Consistency] If the assertion at line 15 fails after partial fee validation in the loop, are there any side effects from the AssertValidToken calls that persist, causing state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29fc88f3-2538-4bf4-bee3-b2835b6925c8?mode=deep",
+    "timestamp": "2026-02-19 06:56:23.544910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Validation Bypass] If input.Fees is an empty array, will the function skip all validation and allow setting a MethodFees object with no fees, potentially bypassing fee requirements entirely for that method? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed4bc69a-3da6-4ee4-b77a-b24aa18dcdbc?mode=deep",
+    "timestamp": "2026-02-19 06:56:50.919338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Special Methods] Can an attacker set fees for critical governance methods like CreateProposal or Release, making them economically infeasible to call and effectively freezing Parliament governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af417bc2-c3db-4226-8ab8-b6616be4de5a?mode=deep",
+    "timestamp": "2026-02-19 06:57:21.909481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Symbol Validation] If methodFee.Symbol contains special characters, Unicode, or is excessively long, can this bypass token validation or cause storage corruption when stored in State.TransactionFees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80460eba-6bde-48fa-8471-cf6a016f5b41?mode=deep",
+    "timestamp": "2026-02-19 06:57:53.259394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Authorization Bypass] If an attacker controls State.DefaultOrganizationAddress.Value at initialization, can they set themselves as the initial controller through RequiredMethodFeeControllerSet and then change it to any address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_271d1505-4d58-4679-8b2e-c80b4b3c7a08?mode=deep",
+    "timestamp": "2026-02-19 06:58:20.613001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Organization Validation] If CheckOrganizationExist returns true for a malicious contract that doesn't implement proper organization logic, can an attacker gain permanent control over method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3da9141e-c5b4-4227-946c-85b37f094943?mode=deep",
+    "timestamp": "2026-02-19 06:58:51.432547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Reentrancy] Can an attacker create a malicious organization contract that reenters ChangeMethodFeeController during the CheckOrganizationExist call, changing the controller multiple times in a single transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b405c9db-cfcf-49be-af7b-86d1b6faac7e?mode=deep",
+    "timestamp": "2026-02-19 06:59:19.187976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [State Consistency] If CheckOrganizationExist succeeds but the organization is immediately destroyed/disabled after the check, will State.MethodFeeController.Value point to an invalid organization, freezing all fee updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab806718-cd28-449d-9ed3-c8e841228dd5?mode=deep",
+    "timestamp": "2026-02-19 06:59:47.554524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Input Validation] If input.OwnerAddress is null or zero address, will CheckOrganizationExist properly validate this, or can a null controller be set causing all future fee operations to fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc89b590-cf72-45c9-b24b-d28fc7eec037?mode=deep",
+    "timestamp": "2026-02-19 07:00:20.167012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Input Validation] If input.ContractAddress points to a non-existent contract or EOA address, will the Context.Call in CheckOrganizationExist fail gracefully or allow invalid controller assignment? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d366bb54-8760-433a-9a31-ab3d57448383?mode=deep",
+    "timestamp": "2026-02-19 07:00:52.623927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Authority Lockout] If the current controller changes to an organization address where no one holds sufficient voting power, can the system become permanently locked from fee updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65ec5d99-a42c-4fc3-ae1d-885b7993b766?mode=deep",
+    "timestamp": "2026-02-19 07:01:21.220154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Race Condition] Can two concurrent ChangeMethodFeeController calls from the same legitimate controller cause the second to fail with 'Unauthorized behavior' due to the first changing the controller address mid-execution? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_725ac1b1-6bb6-4a5f-8c31-4f9eccb5d13f?mode=deep",
+    "timestamp": "2026-02-19 07:01:50.247909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [External Call] If input.ContractAddress is a malicious contract that returns true for ValidateOrganizationExist but implements no actual organization logic, can it be used to capture fee control permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1593003e-50e5-46f1-a0d4-96a52632edb3?mode=deep",
+    "timestamp": "2026-02-19 07:02:23.618155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Business Logic] Can an attacker change the controller to an organization with zero members or impossible approval thresholds, effectively freezing the fee control mechanism forever? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93f6e8d4-67e3-4cc3-a158-85a18b7392ab?mode=deep",
+    "timestamp": "2026-02-19 07:02:56.886576",
+    "report_generated": false
+  }
+]
