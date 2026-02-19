@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Multiple Extra Block Producers] If multiple miners have IsExtraBlockProducer=true due to data corruption, which one does GetExtraBlockProducerInformation().First() select and can this cause consensus fork? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb51ab4a-8bad-44b6-8232-8b43bba39af2?mode=deep",
+    "timestamp": "2026-02-19 05:02:40.052547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [MustExceededCurrentRound Flag] When mustExceededCurrentRound=false and extra block producer calls with eligible time, can they repeatedly return GetExtraBlockMiningTime() without any rate limiting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9a2f8e3-bea9-4e79-a756-face70fd7997?mode=deep",
+    "timestamp": "2026-02-19 05:03:02.453739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MiningTimeArrangingService.cs] [Function: ArrangeExtraBlockMiningTime()] [Distance Calculation] At line 28-29, can (GetExtraBlockMiningTime().AddMilliseconds(miningInterval) - currentBlockTime) underflow if currentBlockTime is far in future? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e8205b8-5bb7-4499-9814-6d2c9eeebf6b?mode=deep",
+    "timestamp": "2026-02-19 05:03:25.146121",
+    "report_generated": false
+  }
+]
