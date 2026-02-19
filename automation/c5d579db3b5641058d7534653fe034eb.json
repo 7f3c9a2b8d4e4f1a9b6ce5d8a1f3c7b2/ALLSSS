@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Partial Failure Recovery] If an exception occurs partway through the loop in lines 22-30 (e.g., due to missing key in RealTimeMinersInformation), are some miners updated while others are not, leaving the round in an inconsistent state with mixed old/new data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8de135f5-134e-4f3d-9aa6-03bed5273bfc?mode=deep",
+    "timestamp": "2026-02-19 11:50:27.605057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [ActualMiningTimes Capacity] Line 20 repeatedly adds to ActualMiningTimes without checking list size - in a long-running chain with many re-orgs or validation retries, can this list grow unbounded, causing memory exhaustion DoS or protobuf serialization failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3488d61-3dfc-44c1-8ad1-f608fef7cfeb?mode=deep",
+    "timestamp": "2026-02-19 11:50:49.612805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [ImpliedIrreversibleBlockHeight Decrease] Line 19 overwrites ImpliedIrreversibleBlockHeight - if providedInformation contains a lower value than currently stored (e.g., due to malicious input or stale data), can the LIB height move backwards, violating the monotonicity invariant and enabling reversal of finalized blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7a6e136-5126-4b62-b6f7-010e64ff0fdb?mode=deep",
+    "timestamp": "2026-02-19 11:51:11.908894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [OutValue Consistency] After line 16 copies OutValue, is it ever validated that Hash(InValue) == OutValue? If not, can miners provide mismatched OutValue that doesn't correspond to any valid InValue, breaking the verifiable random function property? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b4770df-cad9-45b6-9c94-5da754fb9f50?mode=deep",
+    "timestamp": "2026-02-19 11:51:35.545359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Signature Chain Break] Line 17 copies Signature which should be calculated from current InValue and previous round's signatures - if this signature doesn't match the expected calculation, does it break the cryptographic chain of signatures, enabling attackers to forge future signatures? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fdd93a4-37cf-4d06-994c-db699fb4aac1?mode=deep",
+    "timestamp": "2026-02-19 11:51:59.315253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [PreviousInValue Verification] Line 18 and lines 28-29 copy PreviousInValue but never verify it matches Hash(previous OutValue) or the committed value from the previous round - can miners lie about their PreviousInValue to hide the fact they generated OutValue maliciously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6befa368-2b42-4fcb-8a6f-6a1a70b1166a?mode=deep",
+    "timestamp": "2026-02-19 11:52:24.599113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Mining Reward Manipulation] If ActualMiningTimes (line 20) is used to calculate mining rewards or penalties, and an attacker can inject duplicate or fake timestamps, can they claim multiple rewards for a single block or avoid penalties for missing their time slot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32aa9944-1fd2-4a7e-bb6a-36f794309a26?mode=deep",
+    "timestamp": "2026-02-19 11:52:50.083915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Order Favoritism] Lines 24-27 allow providedRound to set SupposedOrderOfNextRound and FinalOrderOfNextRound - if an attacker consistently sets their order to 1 (first miner in next round), can they gain an unfair advantage in transaction fee collection or MEV extraction by always mining first? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_672c6296-26a1-4799-8c7a-1e4fc8e36088?mode=deep",
+    "timestamp": "2026-02-19 11:53:17.496304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Tiny Block Threshold Bypass] If ActualMiningTimes contains excessive entries (line 20), can a malicious miner inflate their apparent mining activity to avoid being counted against the tiny blocks quota, escaping punishment for producing empty blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da8ac1f1-704f-4a2d-a77d-ba096c53a8fb?mode=deep",
+    "timestamp": "2026-02-19 11:53:46.064130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Authorization Bypass] Similar to RecoverFromUpdateValue, providedRound is not validated - can an attacker craft a malicious tiny block with arbitrary ImpliedIrreversibleBlockHeight (line 43) to manipulate LIB calculation, causing premature finality or preventing finality of honest blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db78cecb-b62f-412a-9cdd-b011fa85c4c4?mode=deep",
+    "timestamp": "2026-02-19 11:54:14.626257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Input Validation] Lines 37-39 only check ContainsKey but never validate providedRound structure - can an attacker provide a Round with wrong round number, term, or miner list to cause state corruption during tiny block processing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_190c6d0d-4fca-449d-88a5-8cf66c5ee950?mode=deep",
+    "timestamp": "2026-02-19 11:54:44.693642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [LIB Manipulation] Line 43 blindly copies ImpliedIrreversibleBlockHeight without bounds checking or monotonicity validation - can an attacker set this to 0, negative value, or MAX_INT64 to corrupt the LIB tracking and break finality consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92d84ab5-be47-49c1-b3da-076606cde91a?mode=deep",
+    "timestamp": "2026-02-19 11:55:15.294319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Timestamp Manipulation] Line 44 adds providedInformation.ActualMiningTimes without validation - can an attacker provide timestamps from the future, past, or other rounds to corrupt tiny block tracking and evade tiny block penalties? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_454a0b8d-28a3-4130-8a19-111e9815564c?mode=deep",
+    "timestamp": "2026-02-19 11:55:47.172167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Replay Attack] No replay protection - can an attacker repeatedly submit the same tiny block data to add duplicate ActualMiningTimes entries (line 44), inflating their mining count to bypass tiny block quotas? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b8b01c5-1dd9-49c7-ae1c-e1a42e4df408?mode=deep",
+    "timestamp": "2026-02-19 11:56:19.358459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Partial Field Update] Only ImpliedIrreversibleBlockHeight and ActualMiningTimes are updated, unlike RecoverFromUpdateValue which updates many more fields - can this asymmetry cause inconsistent state where some consensus fields are from tiny blocks and others from update value blocks, confusing the consensus logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a44a88cb-7203-401b-b78c-4c4303f3c4fe?mode=deep",
+    "timestamp": "2026-02-19 11:56:52.676479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Missing Loop for Other Miners] Unlike RecoverFromUpdateValue (lines 22-30), RecoverFromTinyBlock only updates the sender's information - is this correct, or should tiny blocks also update SupposedOrderOfNextRound/FinalOrderOfNextRound for all miners? Can miners exploit this difference to cause inconsistent next round ordering? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e65ed4ac-f2e9-4d69-a166-e1caa8f2ebda?mode=deep",
+    "timestamp": "2026-02-19 11:57:25.460246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [ActualMiningTimes Accumulation] Line 44 keeps adding to ActualMiningTimes - if a miner produces many tiny blocks (empty blocks), can this list grow unbounded, causing DoS or breaking protobuf size limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d40eee07-20e5-4c7e-ae9f-bf0ae84bb74a?mode=deep",
+    "timestamp": "2026-02-19 11:57:57.952115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Null Reference Risk] Lines 41-42 access RealTimeMinersInformation[pubkey] without null checks - can this cause unhandled exceptions during tiny block validation, leading to DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46896a9f-c3fe-4b22-b3a7-0f8476d6d8fc?mode=deep",
+    "timestamp": "2026-02-19 11:58:31.287365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Early Return State] Lines 37-39 return 'this' unchanged if pubkey checks fail - is it safe to continue with an unrecovered round for tiny blocks, or can miners exploit this to skip validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15e7a54c-d530-4172-b801-eb17bca41b26?mode=deep",
+    "timestamp": "2026-02-19 11:59:05.033263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue() and RecoverFromTinyBlock()] [Behavior Discrimination] RecoverFromUpdateValue updates many fields including order information for all miners (lines 22-30), while RecoverFromTinyBlock only updates two fields for the sender - can a malicious miner strategically alternate between UpdateValue and TinyBlock behaviors to create inconsistent round states where some miners have updated orders and others don't? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_563d5c53-8d02-46c7-846c-0b5bc2b252cb?mode=deep",
+    "timestamp": "2026-02-19 11:59:38.629236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue() and RecoverFromTinyBlock()] [ActualMiningTimes Duplication] Both functions add to ActualMiningTimes (lines 20, 44) - if a miner sends both UpdateValue and TinyBlock transactions for the same block, can ActualMiningTimes contain duplicate timestamps, breaking mining count logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_acf92fca-64ee-49d1-b5e6-85d138886cf2?mode=deep",
+    "timestamp": "2026-02-19 12:00:11.973175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue() and RecoverFromTinyBlock()] [LIB Consistency] Both functions update ImpliedIrreversibleBlockHeight (lines 19, 43) - if UpdateValue and TinyBlock provide different LIB heights for the same block, which one wins? Can miners exploit race conditions by sending both transaction types with conflicting LIB values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_827859c5-6d76-4a0b-8d81-76340dabd63c?mode=deep",
+    "timestamp": "2026-02-19 12:00:44.976090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue() and RecoverFromTinyBlock()] [Missing Mutual Exclusion] Nothing prevents both RecoverFromUpdateValue and RecoverFromTinyBlock from being called for the same miner in the same round - can this lead to double-counting in ActualMiningTimes or conflicting field values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4bd7de8-6fec-4332-983c-102575311281?mode=deep",
+    "timestamp": "2026-02-19 12:01:18.808335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [VRF Grinding] Since OutValue and Signature (lines 16-17) are copied without verification, can a miner generate thousands of candidate blocks with different nonces/random values until they find one that produces an OutValue leading to favorable SupposedOrderOfNextRound, then submit only that block? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0217329-cd88-4aba-8d99-ffc25e5947f7?mode=deep",
+    "timestamp": "2026-02-19 12:01:52.054473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Secret Sharing Failure] If PreviousInValue (lines 18, 28-29) is not properly validated against committed values, can the secret sharing scheme break down, allowing miners to collaborate on choosing favorable next round orders by revealing their secrets early to each other? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f2b0e9f-b49f-4089-ac60-bd4688d3f3bf?mode=deep",
+    "timestamp": "2026-02-19 12:02:21.994266",
+    "report_generated": false
+  }
+]
