@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: SetFeeRate()] [Decimal Parsing Culture] AssertedDecimal() doesn't specify culture - can different locales parse '0.5' vs '0,5' differently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2961ab1c-6330-431b-858e-306e93d03c43?mode=deep",
+    "timestamp": "2026-02-19 15:17:35.290176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: SetFeeRate()] [Fee Rate Retroactive Effect] SetFeeRate() applies immediately - can controller frontrun user transactions to change fees mid-execution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6454197-34e8-420d-a8d9-f5f86f14fd8d?mode=deep",
+    "timestamp": "2026-02-19 15:17:57.403285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: SetFeeRate()] [State Update Ordering] State.FeeRate.Value is updated with ToString(CultureInfo.InvariantCulture) - can this create inconsistencies if GetFeeRate() parses differently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67204191-e43a-463a-b108-3033bc699a66?mode=deep",
+    "timestamp": "2026-02-19 15:18:19.849975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [Double Enable] Can EnableConnector() be called multiple times for the same token, causing DepositBalance to be overwritten or doubled? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_909e008d-cd8d-45d0-ba8e-904d787c079d?mode=deep",
+    "timestamp": "2026-02-19 15:18:42.830743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [GetNeededDeposit Race] GetNeededDeposit() is called to calculate needDeposit, but can token supply/balance change between calculation and actual deposit? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d754f56-a26a-460f-96db-ea93162c3b81?mode=deep",
+    "timestamp": "2026-02-19 15:19:06.667917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [Deposit Amount Zero] If needDeposit.NeedAmount = 0, no TransferFrom occurs but connectors are enabled - can this create connectors with 0 deposit balance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e6227c3-d22d-4331-bbc5-896fe4440923?mode=deep",
+    "timestamp": "2026-02-19 15:19:32.986863",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [AmountToTokenConvert Manipulation] Can input.AmountToTokenConvert be set to reduce needDeposit calculation, then later those tokens withdrawn? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef10b41a-5d92-4ebc-bf1d-7ed3a1ce9147?mode=deep",
+    "timestamp": "2026-02-19 15:19:59.912165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [Connector State Overwrite] State.DepositBalance[toConnector.Symbol] is directly set to needDeposit.NeedAmount - does this ignore previous DepositBalance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20994443-bf0f-4d06-9895-dc133cd7a64a?mode=deep",
+    "timestamp": "2026-02-19 15:20:25.749258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [Both Connectors Enabled] Both toConnector and fromConnector have IsPurchaseEnabled set to true - but are state updates atomic? Can only one be enabled on failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31aaf345-1712-45de-b72a-c99be94bea43?mode=deep",
+    "timestamp": "2026-02-19 15:20:51.442216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [TransferFrom Failure Handling] If either TransferFrom (for deposit or token convert) fails, does the entire function revert cleanly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92313ada-7e5d-47d6-b9ff-48f6f9879a50?mode=deep",
+    "timestamp": "2026-02-19 15:21:19.598116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: EnableConnector()] [IsDepositAccount Check] toConnector must be deposit account - but what if toConnector.IsDepositAccount is modified between AddPairConnector() and EnableConnector()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6314cf5f-ba47-4db0-9e5a-fec32ac3818a?mode=deep",
+    "timestamp": "2026-02-19 15:21:49.133489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: ChangeConnectorController()] [Controller Validation] CheckOrganizationExist() is called but can a malicious organization address be passed that exists but doesn't provide expected governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a00a7c76-4765-4f6f-9797-7bdf1d7c0e6f?mode=deep",
+    "timestamp": "2026-02-19 15:22:16.431205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: ChangeConnectorController()] [Authorization Check] AssertPerformedByConnectorController() is called first - can this be bypassed if State.ConnectorController.Value is manipulated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32c143f0-c2a9-434e-b140-91a86cd4d475?mode=deep",
+    "timestamp": "2026-02-19 15:22:46.215642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: ChangeConnectorController()] [Immediate Effect] New controller takes effect immediately - can old controller perform actions in the same block/transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71549944-2417-459b-83bd-1be3220cdb11?mode=deep",
+    "timestamp": "2026-02-19 15:23:16.539228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: MigrateConnectorTokens()] [Migration Idempotency] The check '!oldConnectorTokenSymbol.StartsWith(NewNtTokenPrefix)' prevents double migration, but can this be bypassed with custom symbols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de0d4c84-a7b5-4357-8f46-5772f34a3a0e?mode=deep",
+    "timestamp": "2026-02-19 15:23:47.687681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: MigrateConnectorTokens()] [State Inconsistency] If State.Connectors[oldConnectorTokenSymbol] is null, connector data is lost - can this cause orphaned DepositBalance entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_239d81a2-e51d-4e3e-b567-6bcd60d1a151?mode=deep",
+    "timestamp": "2026-02-19 15:24:18.890695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: MigrateConnectorTokens()] [DepositBalance Migration] State.DepositBalance[newConnectorTokenSymbol] = State.DepositBalance[oldConnectorTokenSymbol] - is old entry deleted? Can both exist simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cbc560b-d50d-41d5-b729-ef744f0f0a4a?mode=deep",
+    "timestamp": "2026-02-19 15:24:48.662086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: MigrateConnectorTokens()] [PayTxFee vs PayRental] Migration only affects tokens in PayTxFeeSymbolListName and PayRentalSymbolListName - can other resource tokens be left unmigrated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f44de89-0fe6-4ca4-af4a-2da2e7fd9c10?mode=deep",
+    "timestamp": "2026-02-19 15:25:21.193280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: MigrateConnectorTokens()] [Authorization Missing] MigrateConnectorTokens() doesn't call AssertPerformedByConnectorController() - can anyone trigger migration? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_980328f5-e32f-498b-8471-6d6d0c2790e2?mode=deep",
+    "timestamp": "2026-02-19 15:25:52.653877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: MigrateConnectorTokens()] [RelatedSymbol Update] State.Connectors[resourceTokenSymbol].RelatedSymbol is updated to newConnectorTokenSymbol, but is the reverse relationship (new connector's RelatedSymbol) updated correctly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8aa3f18-d6e3-4684-8a1b-e48ef40dbe1a?mode=deep",
+    "timestamp": "2026-02-19 15:26:25.143892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Division by Zero] The formula bt / (bf + a) - can bf + a ever equal 0 or cause division by zero? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59cea95b-79e4-4780-8c91-b2f077b46a57?mode=deep",
+    "timestamp": "2026-02-19 15:26:58.484605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Negative Balance] If fromConnectorBalance or toConnectorBalance <= 0, InvalidValueException is thrown - but are negative balances possible in normal operation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfa1e6f5-9141-4e40-b024-fdfa37f074c7?mode=deep",
+    "timestamp": "2026-02-19 15:27:31.664212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Weight Ratio Extreme] When wf/wt creates extreme ratios (e.g., 0.001/0.999), can Exp(y * Ln(x)) overflow or underflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a98a414-056e-48b6-9ed0-5ea13194feac?mode=deep",
+    "timestamp": "2026-02-19 15:28:02.992095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Precision Loss] Converting to (long) at the end - can significant precision be lost, especially with small amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_403068d4-b0eb-409a-b2f7-3d4a100cb41f?mode=deep",
+    "timestamp": "2026-02-19 15:28:31.607375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Equal Weight Bypass] When wf == wt, the formula reduces to bt / (bf + a) * a - can this be exploited to avoid exponential calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53b722f5-a726-460e-8d3e-6439213c0148?mode=deep",
+    "timestamp": "2026-02-19 15:29:01.336190",
+    "report_generated": false
+  }
+]
