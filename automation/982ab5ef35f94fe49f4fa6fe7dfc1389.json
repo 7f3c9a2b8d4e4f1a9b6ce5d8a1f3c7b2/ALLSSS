@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Scheme Lifecycle] [AutoDistributeThreshold Update] Can AutoDistributeThreshold be modified after creation to adapt to changing conditions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5228fea4-50fd-44eb-b6fd-f0efb6875f7a?mode=deep",
+    "timestamp": "2026-02-19 09:02:22.404369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Beneficiary] [AddBeneficiary Line 39-67] Can a scheme have both 'manager-added' beneficiaries (via AddBeneficiary) and 'self-registered' beneficiaries (via RegisterForProfits) simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87708190-7c4f-4233-b2d7-812019a0b242?mode=deep",
+    "timestamp": "2026-02-19 09:02:44.564222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Beneficiary] [Conflict] If a user is added via AddBeneficiary and then calls RegisterForProfits, which takes precedence and could this cause share calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2be6c03f-510e-494d-a470-a8506378a478?mode=deep",
+    "timestamp": "2026-02-19 09:03:09.971437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Beneficiary] [RemoveBeneficiary Line 70-98] Can RemoveBeneficiary be called on users who registered via RegisterForProfits, bypassing their lock period? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09134a33-ec79-4a94-8b24-e10da933244d?mode=deep",
+    "timestamp": "2026-02-19 09:03:32.632138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Beneficiary] [Share Tracking] Are shares tracked separately for AddBeneficiary vs RegisterForProfits, or could manager manipulation affect self-registered users? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08f6da79-9247-40bb-b44e-37844afc25f7?mode=deep",
+    "timestamp": "2026-02-19 09:03:56.538616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Lock Mechanism] [RegisterForProfits Line 157-158] Lock ID generation uses Context.GenerateId with concatenated addresses - is this collision-resistant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d722f63-d00e-4a60-9660-194826fae8eb?mode=deep",
+    "timestamp": "2026-02-19 09:04:21.033647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Lock Mechanism] [State.LockIds] LockIds is nested mapping (manager -> user -> lockId) - if a user registers for multiple schemes, is each tracked separately? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad369429-22f8-4a6d-9193-712aabfd110b?mode=deep",
+    "timestamp": "2026-02-19 09:04:47.054641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Lock Mechanism] [State.LockTimestamp] LockTimestamp is indexed by lockId not by manager+user - could there be confusion if lockIds collide? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f38d7bd-36db-4354-a64b-f7c9fc72a739?mode=deep",
+    "timestamp": "2026-02-19 09:05:12.894426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Lock Mechanism] [Withdraw Line 238] LockIds is removed but LockTimestamp is not - does this cause state bloat with orphaned timestamps? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd015463-3c24-4578-a71c-d132b77149d9?mode=deep",
+    "timestamp": "2026-02-19 09:05:41.417272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Lock Mechanism] [Multi-Lock] Can a user register multiple times by calling RegisterForProfits with different amounts, or does the 'already registered' check prevent this? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_769d6c0e-81ee-409f-b180-74c5c810db0e?mode=deep",
+    "timestamp": "2026-02-19 09:06:09.522746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Period] [DistributeProfits Line 144] Period is incremented after distribution - could two distributions happen in the same period if called concurrently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05969934-ca14-43e3-a85c-9979e1432732?mode=deep",
+    "timestamp": "2026-02-19 09:06:38.323405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Period] [RegisterForProfits Line 204] Period is incremented during auto-distribution - is this the same period as manual distribution would use? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1deb6f9d-3493-4457-9b64-aff80d4c28b0?mode=deep",
+    "timestamp": "2026-02-19 09:07:07.924494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Period] [UpdateTokenHolderProfitScheme Line 297] Period is synced from originScheme.CurrentPeriod - what if they diverge due to race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82ea35a3-d9bf-4ae0-96ac-caf9f36e1c5e?mode=deep",
+    "timestamp": "2026-02-19 09:07:38.015747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Period] [Overflow] Period is int64 - in a long-running system, could period overflow and wrap to negative? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28b14caf-58fd-449d-9ac4-855ae85be3ef?mode=deep",
+    "timestamp": "2026-02-19 09:08:08.206599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Period] [Backward Period] If originScheme.CurrentPeriod goes backward (bug/attack), could this cause fund loss or distribution issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_269a76d5-92ff-4d70-9352-9e229aec247a?mode=deep",
+    "timestamp": "2026-02-19 09:08:38.436624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Auto-Distribution] [RegisterForProfits Line 179-206] Auto-distribution triggers on ANY threshold being met - is this the intended behavior or should ALL thresholds be met? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e27f1f0d-ddd7-415d-b121-356d3a9b815e?mode=deep",
+    "timestamp": "2026-02-19 09:09:07.413411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Auto-Distribution] [RegisterForProfits Line 198] AmountsMap is set to 0 for the triggering token - should it distribute the actual balance instead? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e95459cb-3571-4f3f-937e-2a013b71b8ea?mode=deep",
+    "timestamp": "2026-02-19 09:09:35.596514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Auto-Distribution] [RegisterForProfits Line 199] Break statement exits after first threshold - are subsequent thresholds never checked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73912b8b-8f01-412f-8668-b96f36cbbf73?mode=deep",
+    "timestamp": "2026-02-19 09:10:04.483188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Auto-Distribution] [DOS] Can an attacker game the auto-distribution by registering small amounts repeatedly to trigger distributions at unfavorable times? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad0b6f64-8384-43f3-a28e-88312e50079c?mode=deep",
+    "timestamp": "2026-02-19 09:10:34.040168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Auto-Distribution] [Gas Griefing] If AutoDistributeThreshold has many entries, could RegisterForProfits consume excessive gas even if no distribution occurs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_224ec25c-756c-46cb-b983-77aad176dace?mode=deep",
+    "timestamp": "2026-02-19 09:11:01.412138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Shares] [AddBeneficiary Line 55] Shares are accumulated without checking for overflow - could this wrap to negative? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75f79451-0300-475a-adda-2b8040a835a7?mode=deep",
+    "timestamp": "2026-02-19 09:11:29.999375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Shares] [RemoveBeneficiary Line 93] Sub operation could underflow if input.Amount > lockedAmount despite the check on line 85? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_390c6f51-6f53-4132-89c2-f237e3347010?mode=deep",
+    "timestamp": "2026-02-19 09:11:56.982485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Shares] [RegisterForProfits Line 174] Shares equal input.Amount - should shares be calculated differently based on token decimals or time? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcaff5da-f610-4d02-97f4-e0228db4c3dd?mode=deep",
+    "timestamp": "2026-02-19 09:12:24.726704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Shares] [Profit Distribution] How are shares converted to actual profit amounts - is the calculation in ProfitContract vulnerable to precision loss? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_464cf31e-7101-47af-8a74-2e121324bf84?mode=deep",
+    "timestamp": "2026-02-19 09:12:55.280550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Shares] [Zero Shares] Can beneficiaries have zero shares, and if so, does this cause division by zero in profit calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fde6a44e-04b9-4397-87a5-ac2d6885b1c8?mode=deep",
+    "timestamp": "2026-02-19 09:13:26.763707",
+    "report_generated": false
+  }
+]
