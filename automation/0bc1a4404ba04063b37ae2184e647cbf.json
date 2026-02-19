@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowances] [Negative Allowance] After ModifyFreeFeeAllowanceAmount subtracts from State.TransactionFeeFreeAllowances, can the allowance become negative due to missing bounds checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5ee9479-2012-4404-b17b-04fda3bbb72f?mode=deep",
+    "timestamp": "2026-02-19 01:23:51.180695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowances] [Allowance Cloning] When State.TransactionFeeFreeAllowances[address][symbol] is set to ConfigMap[symbol].FreeAllowances.Clone(), does Clone() deep copy nested maps or create reference issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_157ad04a-1589-4d62-baf9-bf267e5be3ae?mode=deep",
+    "timestamp": "2026-02-19 01:24:13.595881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowances] [Stale Allowance] If State.TransactionFeeFreeAllowances[address][symbol] is not refreshed before use, can users consume stale allowances that should have been reset? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e090e981-324a-4eb7-93a0-14b864ccfcf5?mode=deep",
+    "timestamp": "2026-02-19 01:24:35.979961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowances] [Balance Check Bypass] Can State.TransactionFeeFreeAllowances be accessed even when State.Balances[address][symbol] drops below threshold after initial qualification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79040076-e8c6-4f6e-bb2a-9dd737287f34?mode=deep",
+    "timestamp": "2026-02-19 01:25:00.022311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowances] [Allowance Double Dip] Can ChargeBaseFee and ChargeSizeFee both deduct from the same State.TransactionFeeFreeAllowances[address][symbol], allowing double usage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee5767fd-5304-48fd-abba-b11baa46e363?mode=deep",
+    "timestamp": "2026-02-19 01:25:24.457902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowances] [Nested Map Key Collision] With State.TransactionFeeFreeAllowances[Address][string][TransactionFeeFreeAllowanceMap], can nested map key collisions corrupt allowance data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46560eb4-f418-48f6-8de8-469237c0a16e?mode=deep",
+    "timestamp": "2026-02-19 01:25:49.192120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesLastRefreshTimes] [Time Manipulation] If State.TransactionFeeFreeAllowancesLastRefreshTimes[address][symbol] is set to future timestamp, can this prevent allowance refresh indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce7c1a2b-d618-4622-a234-d39f01f2341e?mode=deep",
+    "timestamp": "2026-02-19 01:26:17.506479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesLastRefreshTimes] [Null Timestamp] When State.TransactionFeeFreeAllowancesLastRefreshTimes[address][symbol] is null, does the refresh check in SetOrRefreshTransactionFeeFreeAllowances handle it correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8173db5d-ed05-4a19-925e-e6edd4d8f050?mode=deep",
+    "timestamp": "2026-02-19 01:26:45.210320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesLastRefreshTimes] [Timestamp Overflow] When calculating (Context.CurrentBlockTime - State.TransactionFeeFreeAllowancesLastRefreshTimes[address][symbol]).Seconds, can timestamp arithmetic overflow? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f08a20f-ab78-4f8e-8a56-884ac4c2856e?mode=deep",
+    "timestamp": "2026-02-19 01:27:18.155191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesLastRefreshTimes] [Refresh Seconds Bypass] If RefreshSeconds comparison uses > instead of >=, can users exploit exact boundary times to get extra refresh cycles? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_482b9ed1-99e5-4be1-bab4-c971cc2bb66f?mode=deep",
+    "timestamp": "2026-02-19 01:27:52.127872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesLastRefreshTimes] [Block Time Manipulation] Can validators manipulate Context.CurrentBlockTime to affect State.TransactionFeeFreeAllowancesLastRefreshTimes comparisons and allowance refresh timing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_638b4034-9182-4306-8130-22e7c7848c02?mode=deep",
+    "timestamp": "2026-02-19 01:28:24.747161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesLastRefreshTimes] [Inconsistent Refresh] If State.TransactionFeeFreeAllowancesLastRefreshTimes is updated but State.TransactionFeeFreeAllowances is not refreshed due to an error, can this create state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0bf5b3d0-d781-46e2-8c1c-66533197dcd5?mode=deep",
+    "timestamp": "2026-02-19 01:28:52.437442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [States: TransactionFees + SymbolListToPayTxSizeFee] [Fee Calculation Bypass] If State.TransactionFees[method].IsSizeFeeFree is false but State.SymbolListToPayTxSizeFee is null, does ChargeSizeFee fail or skip charging? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_851ba5f0-5b5b-49b1-a0ab-aa2d7d8e48d7?mode=deep",
+    "timestamp": "2026-02-19 01:29:25.655644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [States: Rental + ResourceAmount + OwningRental] [Rental Math Overflow] In PayRental calculation using all three states, can the chain of multiplications duration.Mul(ResourceAmount).Mul(Rental).Add(OwningRental) cause overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e618e17d-d47e-4fa3-a410-bb043ba67950?mode=deep",
+    "timestamp": "2026-02-19 01:29:58.954346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [States: LastPayRentTime + SideChainCreator + Rental] [Rental Initialization Attack] Can an attacker set State.SideChainCreator right before State.LastPayRentTime initialization to avoid paying accumulated rental debt? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cce472f4-04f5-4918-bbfa-4fbeab502c76?mode=deep",
+    "timestamp": "2026-02-19 01:30:34.323262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [States: TransactionFeeFreeAllowances + TransactionFeeFreeAllowancesLastRefreshTimes] [Refresh Desync] If State.TransactionFeeFreeAllowancesLastRefreshTimes is updated but allowance refresh fails, can users exploit the timestamp without using allowances? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c97055f7-9716-4788-8b6d-6a93ec9136d8?mode=deep",
+    "timestamp": "2026-02-19 01:31:10.491421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [States: TransactionFeeFreeAllowancesConfigMap + TransactionFeeFreeAllowancesSymbolList] [Config-List Desync] Can State.TransactionFeeFreeAllowancesSymbolList reference symbols not in ConfigMap, causing null reference or missing config errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffb86ad4-24d1-4663-97e5-ed660ab7289c?mode=deep",
+    "timestamp": "2026-02-19 01:31:46.645516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [States: MethodFeeFreeAllowances + TransactionFeeFreeAllowances] [Allowance System Confusion] Do State.MethodFeeFreeAllowances* and State.TransactionFeeFreeAllowances* represent different allowance systems, and can their separation create exploitable gaps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a56839d-625c-4cb7-89d2-bef37f243967?mode=deep",
+    "timestamp": "2026-02-19 01:32:20.652467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Initialization Race] Can State.TransactionFees be set before State.MethodFeeController is properly initialized, bypassing all authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ce904ac-ee7a-4c8a-94a2-86ab86c02547?mode=deep",
+    "timestamp": "2026-02-19 01:32:55.930805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [One-Time Set Vulnerability] Since State.SideChainCreator can only be set once with no update mechanism, what happens if the creator key is lost or compromised? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_653c078b-5036-4afb-bcac-bafbb92ab8bd?mode=deep",
+    "timestamp": "2026-02-19 01:33:31.672517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Controller Check] Does AssertControllerForSymbolToPayTxSizeFee properly validate the controller before allowing State.SymbolListToPayTxSizeFee updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e6874fd-133c-41eb-9eaa-611ff35ad527?mode=deep",
+    "timestamp": "2026-02-19 01:34:08.335348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental + ResourceAmount] [Rental Controller Bypass] Can AssertControllerForSideChainRental be bypassed to maliciously modify State.Rental or State.ResourceAmount? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efc584de-9f71-4a1e-8555-01cb43b50e1a?mode=deep",
+    "timestamp": "2026-02-19 01:34:41.130540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFeeFreeAllowancesConfigMap] [Parliament Control] Does ConfigTransactionFeeFreeAllowances properly verify sender is GetDefaultParliamentController().OwnerAddress before modifying State.TransactionFeeFreeAllowancesConfigMap? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95271b71-575b-4643-892d-ea425cb7c3cd?mode=deep",
+    "timestamp": "2026-02-19 01:35:14.949936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [All States] [State Migration] If state variables in TokenContractState_ChargeFee.cs need to be upgraded, is there a safe migration mechanism or can this break existing state data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb5ce669-5a89-4b9f-bd0d-3564252a63f3?mode=deep",
+    "timestamp": "2026-02-19 01:35:49.133932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [All States] [Direct State Access] Can external contracts directly read state variables from TokenContractState_ChargeFee.cs, potentially leaking sensitive fee configuration data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3fb0b24-6da1-44ad-9d0c-05baba792979?mode=deep",
+    "timestamp": "2026-02-19 01:36:21.155668",
+    "report_generated": false
+  }
+]
