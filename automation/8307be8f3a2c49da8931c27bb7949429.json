@@ -1,0 +1,98 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee() private] [IsBurnable Only] Relying solely on tokenInfo.IsBurnable means any burnable token can pay method fees - can this allow attacker-created burnable tokens with zero value to be used for fee payment, bypassing economic security? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75204a9b-8878-4c6d-a6d9-f1bedbbea6f1?mode=deep",
+    "timestamp": "2026-02-19 07:44:13.681746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetReservedExternalInfoKeyList()] [Hardcoded Keys] GetReservedExternalInfoKeyList() returns hardcoded external info keys from TokenContractConstants - can these keys be bypassed if external info validation doesn't properly restrict using reserved keys? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06f5826f-f23d-4751-863a-40ad63443124?mode=deep",
+    "timestamp": "2026-02-19 07:44:35.729412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetReservedExternalInfoKeyList()] [Key Collision] If user-provided external info keys collide with LockCallbackExternalInfoKey, LogEventExternalInfoKey, TransferCallbackExternalInfoKey, or UnlockCallbackExternalInfoKey, can this cause callback/logging mechanisms to malfunction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0cb5f893-5d18-4c16-9260-0ecfd673861e?mode=deep",
+    "timestamp": "2026-02-19 07:44:58.320925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [Whitelist Logic] IsAddressInCreateWhiteList() allows zero smart contract, parliament controller, economic contract, and cross-chain contract - can one of these whitelisted addresses be compromised to bypass create restrictions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a815c87a-e913-44d6-915f-d628d874ad0d?mode=deep",
+    "timestamp": "2026-02-19 07:45:21.489631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [GetDefaultParliamentController] The function calls GetDefaultParliamentController().OwnerAddress - if parliament controller is manipulated, can attacker addresses become whitelisted for token creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c76e3f7-d9e1-4760-8c7e-7f711b56295c?mode=deep",
+    "timestamp": "2026-02-19 07:45:45.895087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [System Contract Names] The function uses SmartContractConstants.EconomicContractSystemName and CrossChainContractSystemName - if these system contract addresses change or are maliciously registered, can IsAddressInCreateWhiteList() incorrectly whitelist attacker contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1a525d5-4334-4282-9547-0577f70b5e6e?mode=deep",
+    "timestamp": "2026-02-19 07:46:10.719199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenAlias()] [Collection Symbol Resolution] GetTokenAlias() calls GetNftCollectionSymbol(input.Value, true) - if this doesn't properly validate NFT vs non-NFT symbols, can it return incorrect collection symbols causing wrong alias lookups? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0e8f050-0f09-4f57-b6df-1c97aaa042f0?mode=deep",
+    "timestamp": "2026-02-19 07:46:36.439122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenAlias()] [ExtractAliasSetting] The function calls ExtractAliasSetting(tokenInfo) and discards the first returned value - is the discarded value security-relevant, and can extracting only alias cause incomplete validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62c1a320-8478-480b-a19f-36a3826176e5?mode=deep",
+    "timestamp": "2026-02-19 07:47:05.468153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenAlias()] [Null TokenInfo] If GetTokenInfo(collectionSymbol) returns null, does ExtractAliasSetting handle null input gracefully, or can it cause null reference exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e10b3436-66e9-4a14-aafa-9b8a49914b16?mode=deep",
+    "timestamp": "2026-02-19 07:47:32.680199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolByAlias()] [Alias Resolution] GetSymbolByAlias() returns GetActualTokenSymbol(input.Value) wrapped in StringValue - if alias mappings are inconsistent, can this return symbols that don't match the user's intent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f2ae9a6-ed41-49d2-81b5-f5a997f43bc1?mode=deep",
+    "timestamp": "2026-02-19 07:48:04.961976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolByAlias()] [Null Input] Does GetSymbolByAlias() validate input.Value is non-null before calling GetActualTokenSymbol(), or can null aliases cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_039f2672-800f-4ace-b407-47215184a742?mode=deep",
+    "timestamp": "2026-02-19 07:48:33.066945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetActualTokenSymbol()] [Null Coalescing] GetActualTokenSymbol() uses null coalescing operator to return State.SymbolAliasMap[aliasOrSymbol] ?? aliasOrSymbol if State.TokenInfos[aliasOrSymbol] is null - can this logic incorrectly return aliasOrSymbol when it's actually an invalid symbol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_012f1d2f-1b25-46da-8da8-06b9c0a58318?mode=deep",
+    "timestamp": "2026-02-19 07:49:02.084136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetActualTokenSymbol()] [Alias Priority] The function prioritizes direct symbol lookup (State.TokenInfos) over alias mapping - can this be exploited if a symbol and an alias have the same name, causing ambiguity in which token is actually referenced? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d9660f6-ffbf-41a3-99bd-093c0032de30?mode=deep",
+    "timestamp": "2026-02-19 07:49:35.481260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetActualTokenSymbol()] [Unregistered Alias] If State.SymbolAliasMap[aliasOrSymbol] returns null and State.TokenInfos[aliasOrSymbol] is also null, GetActualTokenSymbol() returns the input unchanged - can this cause operations to proceed with invalid symbols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30660449-4fa8-4619-baeb-9762ba7e2459?mode=deep",
+    "timestamp": "2026-02-19 07:50:08.908739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsInTransferBlackList()] [Blacklist Scope] IsInTransferBlackList() checks State.TransferBlackList[input] - does this blacklist apply to all token types, or can it be bypassed by transferring specific token symbols that aren't covered? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_311d8abf-809a-48e8-921c-725e179bae7a?mode=deep",
+    "timestamp": "2026-02-19 07:50:41.280190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsInTransferBlackList()] [Address Validation] Does IsInTransferBlackList() validate that input is a valid address before lookup, or can null/zero addresses return misleading blacklist status? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84e93872-3ce4-496c-8660-00d259f7e107?mode=deep",
+    "timestamp": "2026-02-19 07:51:11.025263",
+    "report_generated": false
+  }
+]
