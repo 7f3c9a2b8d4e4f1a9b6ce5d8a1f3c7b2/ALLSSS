@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] Can previousRoundId be negative or zero, potentially allowing consensus state corruption by creating commands with invalid round references that break round progression invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77729491-3f3e-4d7d-8151-85b28a8b2838?mode=deep",
+    "timestamp": "2026-02-19 13:38:08.819552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] If previousRoundId is greater than currentRound.RoundId, does this create a temporal paradox where a miner can reference future rounds, enabling time-travel attacks on consensus ordering? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4f0c8bd-a405-4719-ac13-25188003770e?mode=deep",
+    "timestamp": "2026-02-19 13:38:30.969058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] Can currentRound be null when passed to the base constructor, causing null reference exceptions during GetAEDPoSConsensusCommand() execution when accessing CurrentRound fields? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3915bdb-b1b9-4a58-8f28-6d5cfd63a6a5?mode=deep",
+    "timestamp": "2026-02-19 13:38:53.552094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] Can pubkey be null or empty string, allowing anonymous miners to generate consensus commands without proper identity verification, bypassing miner authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d60f7745-8073-490c-8454-668d4907ac7d?mode=deep",
+    "timestamp": "2026-02-19 13:39:16.525415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] Can currentBlockTime be null, causing null reference exceptions when ArrangeNormalBlockMiningTime attempts to compare timestamps for mining time arrangement? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efe9c76d-9d78-4ce0-8eb5-625a7441487c?mode=deep",
+    "timestamp": "2026-02-19 13:39:40.628456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] Can currentBlockTime have negative Seconds value, allowing miners to produce blocks in the past and violate temporal ordering of the blockchain? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6f3edcd-e41e-41ed-a1a7-2514daeb1d08?mode=deep",
+    "timestamp": "2026-02-19 13:40:06.911507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Input Validation] Can currentBlockTime be far in the future (e.g., year 2100), enabling miners to skip ahead in consensus rounds and claim unearned mining slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a235196-53ef-4b72-aa9e-791b4e931179?mode=deep",
+    "timestamp": "2026-02-19 13:40:34.618923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [State Consistency] If previousRoundId equals currentRound.RoundId, does this indicate same-round transition which should be impossible, potentially allowing duplicate round processing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57593b62-c75f-465f-9446-198c2a39c996?mode=deep",
+    "timestamp": "2026-02-19 13:41:01.304866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [State Consistency] If previousRoundId + 1 != currentRound.RoundId, does this indicate skipped rounds, and should this scenario be validated to prevent consensus gaps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bbca7bf-b284-44ab-bd76-e269e9ad3965?mode=deep",
+    "timestamp": "2026-02-19 13:41:32.460759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: NormalBlockCommandStrategy()] [Authorization] Is there validation that pubkey exists in currentRound.RealTimeMinersInformation before allowing consensus command generation, or can unauthorized miners create commands? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78fa1fc0-11dc-4055-bc3b-8eac71a147af?mode=deep",
+    "timestamp": "2026-02-19 13:42:01.081918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Null Reference] If ArrangeNormalBlockMiningTime returns null, does ConsensusCommand.ArrangedMiningTime accept null values, causing mining schedule corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cbad44a-9e09-4d7a-b30a-2ca2d9aa5d53?mode=deep",
+    "timestamp": "2026-02-19 13:42:32.503290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Time Manipulation] Can ArrangeNormalBlockMiningTime return a timestamp before currentBlockTime, violating causality and allowing miners to mine blocks in the past? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6539304a-e645-409d-8747-16655fde40b2?mode=deep",
+    "timestamp": "2026-02-19 13:43:07.225552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Time Manipulation] Can a malicious miner manipulate CurrentBlockTime input to ArrangeNormalBlockMiningTime to always receive immediate mining rights, enabling unfair block production advantage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0f9511d-9be1-4d03-8fab-f45f882b2519?mode=deep",
+    "timestamp": "2026-02-19 13:43:43.491510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [DOS] If CurrentRound.RealTimeMinersInformation doesn't contain Pubkey, does GetExpectedMiningTime return Timestamp with Seconds=long.MaxValue, causing integer overflow in subsequent calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0964954e-9c7d-4ad0-92fa-21d9aa4c2f78?mode=deep",
+    "timestamp": "2026-02-19 13:44:15.909469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Authorization] Does ArrangeNormalBlockMiningTime validate that the pubkey has permission to mine in the current round, or can any pubkey request mining time arrangement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8dfe235-cff9-442a-8986-ab7d6db3900a?mode=deep",
+    "timestamp": "2026-02-19 13:44:51.687126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] Is Behaviour=UpdateValue always correct for normal blocks, or can this strategy be invoked in contexts where UpdateValue is inappropriate (e.g., during term change)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10fe6664-ab8a-4cd7-ab08-04fca7e8eb86?mode=deep",
+    "timestamp": "2026-02-19 13:45:22.358727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] Can CurrentRound.RoundId be zero or negative, causing invalid RoundId in the hint and breaking round identification in consensus validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e4f6f11-478e-4a11-95f4-95b8877df1bc?mode=deep",
+    "timestamp": "2026-02-19 13:45:57.944236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] If _previousRoundId is stale or from a different blockchain fork, does the hint enable acceptance of commands from incorrect consensus history? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08d64eda-992c-49ab-be0e-560ed349a1ac?mode=deep",
+    "timestamp": "2026-02-19 13:46:27.183671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] Can an attacker provide previousRoundId from a side-chain or different network, causing cross-chain consensus confusion in multi-chain deployments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b6bdfa5-c39d-4d75-815c-3953540f834f?mode=deep",
+    "timestamp": "2026-02-19 13:47:02.713163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Serialization] Can malformed data in AElfConsensusHint.ToByteString() create invalid consensus commands that pass initial validation but fail during execution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04ff3f0b-53cb-4aac-a8a3-2e824ede3b79?mode=deep",
+    "timestamp": "2026-02-19 13:47:37.727002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Arithmetic Overflow] Can GetExpectedMiningTime(Pubkey) return Timestamp.Seconds = long.MaxValue, causing AddMilliseconds(MiningInterval) to overflow and wrap to negative, corrupting MiningDueTime? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b2ff265-15d7-41f3-8d6a-ea7f148fef96?mode=deep",
+    "timestamp": "2026-02-19 13:48:12.576509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Arithmetic Overflow] If MiningInterval is int.MaxValue, does AddMilliseconds cause Timestamp overflow when added to expected mining time, potentially setting MiningDueTime in the past? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5095474b-dd2d-417b-bb2e-035a78995107?mode=deep",
+    "timestamp": "2026-02-19 13:48:48.223567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Time Logic] If MiningInterval is negative due to calculation errors in GetMiningInterval(), does AddMilliseconds(MiningInterval) set MiningDueTime before expected mining time, violating mining schedule? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c378892-8e0e-4b00-9c75-11450bfa7acf?mode=deep",
+    "timestamp": "2026-02-19 13:49:25.685838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Time Logic] Can MiningDueTime be before ArrangedMiningTime, creating an impossible mining window where cancellation occurs before mining can begin? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3885fec8-1925-4c9c-b16f-f4512f2604b5?mode=deep",
+    "timestamp": "2026-02-19 13:50:04.667727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [DOS] If MiningInterval is zero, does MiningDueTime equal expected mining time exactly, providing no buffer for mining and causing all mining attempts to miss their deadlines? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b75e7ea-ce60-4a91-9cf5-7e87011f3e43?mode=deep",
+    "timestamp": "2026-02-19 13:50:43.504490",
+    "report_generated": false
+  }
+]
