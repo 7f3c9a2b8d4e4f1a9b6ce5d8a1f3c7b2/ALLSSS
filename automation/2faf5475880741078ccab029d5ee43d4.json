@@ -136,5 +136,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_107ad596-f959-42b8-9839-7b4c5074e301?mode=deep",
     "timestamp": "2026-02-19 03:39:01.161271",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ClaimProfits()] [Share Removal] Lines 787-797 remove shares from TotalShares and CachedDelayTotalShares after claiming. Can this cause negative TotalShares if shares were already removed in RemoveBeneficiary but details weren't cleared? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dae9ee82-87f9-4595-bc0a-4a527e668ce5?mode=deep",
+    "timestamp": "2026-02-19 04:00:54.747975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ClaimProfits()] [Period Calculation] Line 774 calls GetMaximumPeriodCountForProfitableDetail which divides MaxPeriodCount by profitableDetailCount. Can profitableDetailCount=0 cause division by zero or return invalid period count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1cf2899e-34ca-46a0-b5c6-e4a1451f7754?mode=deep",
+    "timestamp": "2026-02-19 04:01:16.823828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ClaimProfits()] [State Modification] Lines 801-806 rebuild ProfitDetails removing claimed entries. Can concurrent ClaimProfits calls for same beneficiary cause race conditions where some details are processed twice or lost? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6eb29efd-da4b-4d2d-8f6b-83a43f19d213?mode=deep",
+    "timestamp": "2026-02-19 04:01:39.607604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ClaimProfits()] [LastProfitPeriod Init] Lines 780-782 set LastProfitPeriod=StartPeriod if it was 0. If StartPeriod > CurrentPeriod due to DelayDistributePeriodCount, does this skip the first actual profitable period? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b073081b-2d02-45db-9919-3d294e33b0e4?mode=deep",
+    "timestamp": "2026-02-19 04:02:02.702141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Period Loop] Lines 860-912 loop from LastProfitPeriod to maxProfitPeriod. If maxProfitPeriod - LastProfitPeriod is extremely large (e.g., long.MaxValue), can this cause out-of-gas failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0fff1f04-cd61-456a-9221-67556137cea3?mode=deep",
+    "timestamp": "2026-02-19 04:02:26.903676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Max Period Calculation] Lines 857-859 calculate maxProfitPeriod with complex Min logic. Can EndPeriod=long.MaxValue and large maxProfitReceivingPeriodCount cause overflow when adding LastProfitPeriod + maxProfitReceivingPeriodCount? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a2bad5d-460c-460f-b1e5-62004716a719?mode=deep",
+    "timestamp": "2026-02-19 04:02:51.733792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Profit Calculation] Line 873-874 uses SafeCalculateProfits which may round down. Can rounding always favor the house, causing users to permanently lose small profit amounts across many periods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09d80984-3110-4c14-bfab-1ae1e29ae6ab?mode=deep",
+    "timestamp": "2026-02-19 04:03:16.865518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [IsReleased Check] Line 881 checks IsReleased before transferring. Can DistributedProfitsInfo exist with profits but IsReleased=false, preventing legitimate claims even after distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56fb14b1-ea16-414c-b5ce-30320e93d31c?mode=deep",
+    "timestamp": "2026-02-19 04:03:42.218992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Virtual Transfer] Lines 887-895 use SendVirtualInline for profit transfer. Can a reentrant call during this transfer manipulate profitDetail.LastProfitPeriod before line 917 updates it, causing double-claims? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_541ea4c7-8316-490b-adf9-2f8141e06fdc?mode=deep",
+    "timestamp": "2026-02-19 04:04:12.348789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [LastProfitPeriod Update] Line 908 sets lastProfitPeriod = period + 1 inside non-view mode. If transfer at line 887-895 fails but doesn't revert, does lastProfitPeriod still increment, skipping that period's profits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d26293c-f304-4dd4-aaa5-e4c749b3ce51?mode=deep",
+    "timestamp": "2026-02-19 04:04:44.128472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: ProfitAllPeriods()] [Symbol List] Line 851 creates symbol list from targetSymbol or ReceivedTokenSymbols. Can ReceivedTokenSymbols contain removed/invalid symbols causing unnecessary iterations and gas waste? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed7b9484-0870-4287-8ea4-b6b9e16c83a4?mode=deep",
+    "timestamp": "2026-02-19 04:05:17.098361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: SafeCalculateProfits()] [Precision Loss] Lines 958-961 use decimal arithmetic then cast to long. Can this cause systematic rounding errors where sum of individual allocations is less than totalAmount, losing tokens in virtual addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db0c55fc-c8f5-4e18-bf09-bbfaa069ab2f?mode=deep",
+    "timestamp": "2026-02-19 04:05:47.406454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: SafeCalculateProfits()] [Division by Zero] If totalShares is 0, line 961 performs division by zero. Although callers should prevent this, can any edge case reach this function with totalShares=0, causing contract failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cdd516b-994e-4553-9cb1-eb33c157dbe8?mode=deep",
+    "timestamp": "2026-02-19 04:06:21.149904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: SafeCalculateProfits()] [Parameter Confusion] Function signature shows (totalAmount, shares, totalShares) but usage might confuse parameter order. Can incorrect parameter passing cause massive over-allocation or zero allocation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_461efd9b-4c3f-4991-bdbf-f8b3cfa0d5df?mode=deep",
+    "timestamp": "2026-02-19 04:06:51.865315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: SafeCalculateProfits()] [Negative Results] If shares > totalShares due to corruption, can the calculation produce negative results that get cast to huge positive longs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddbccc52-1d64-4cfb-8d04-8254112bd9fa?mode=deep",
+    "timestamp": "2026-02-19 04:07:26.736522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GenerateSchemeId()] [Collision Risk] Line 968 uses createSchemeInput.Token for ID generation if provided. Can multiple schemes use the same token value to create ID collisions, bypassing the uniqueness check in CreateScheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e85c027-7c36-4552-845f-9efc206c3876?mode=deep",
+    "timestamp": "2026-02-19 04:08:01.797568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GenerateSchemeId()] [Predictable IDs] Lines 969-970 use scheme count for ID generation. Can an attacker predict future scheme IDs and pre-create malicious state at those addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6dc03aa3-86ed-4149-9a4a-a4a07d195c06?mode=deep",
+    "timestamp": "2026-02-19 04:08:35.404566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GenerateSchemeId()] [Manager Confusion] Line 966 determines manager from input or sender. If input.Manager is set, can the sender create schemes for other managers, then manipulate the manager's scheme list? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b097904-1f74-457a-8dfe-4d56424894a9?mode=deep",
+    "timestamp": "2026-02-19 04:09:05.798596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GetNewScheme()] [VirtualAddress] Line 944 converts schemeId to virtual address. Is this address deterministic and collision-free? Can attackers pre-fund this address before scheme creation to manipulate initial state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc312af4-27d2-4aa8-8e5f-60b9fd0de82e?mode=deep",
+    "timestamp": "2026-02-19 04:09:38.459159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GetNewScheme()] [Default Period] Line 947 sets CurrentPeriod to 1. Can this cause off-by-one errors in period calculations where period 0 is expected but never exists? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_711d8893-531d-4e90-a0f3-d8f8f9ace3b4?mode=deep",
+    "timestamp": "2026-02-19 04:10:07.603687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GetNewScheme()] [Delay Count] Line 949 sets DelayDistributePeriodCount from input without validation. Can extremely large values cause integer overflows when added to CurrentPeriod in AddBeneficiary line 188? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d8f9d3d-5013-4309-b551-316f0889b1ce?mode=deep",
+    "timestamp": "2026-02-19 04:10:35.404514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Cross-Function: CreateScheme + AddBeneficiary] [Race Condition] Can an attacker front-run scheme creation to add themselves as beneficiary before the legitimate creator, gaining unauthorized profit shares from period 1? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6527fc3-c807-44ff-a203-187fd9d675b0?mode=deep",
+    "timestamp": "2026-02-19 04:11:07.990374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Cross-Function: DistributeProfits + ClaimProfits] [Reentrancy] During SendVirtualInline in DistributeProfits, can a malicious token contract reenter ClaimProfits to claim profits before distribution completes, double-spending distributed amounts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc823dc4-74c9-4e6c-b160-c885af6d82da?mode=deep",
+    "timestamp": "2026-02-19 04:11:36.949545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Cross-Function: AddSubScheme + RemoveSubScheme] [State Corruption] Can rapidly adding and removing the same sub-scheme cause SubSchemes list and ProfitDetailsMap to become desynchronized, leading to profit calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0440e866-da5b-4086-a183-378445423067?mode=deep",
+    "timestamp": "2026-02-19 04:12:10.871668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Cross-Function: AddBeneficiary + RemoveBeneficiary] [Share Accounting] If AddBeneficiary and RemoveBeneficiary are called in quick succession with overlapping ProfitDetails, can shares be double-counted or lost in TotalShares accounting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9987885f-b69c-4a68-8a7d-21d738686210?mode=deep",
+    "timestamp": "2026-02-19 04:12:39.907799",
+    "report_generated": false
   }
 ]
