@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: AcceptCrossChainIndexingProposal()] [Premature Reset Attack] Can ResetChainIndexingProposal() be called before data is actually indexed, allowing attacker to erase valid proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83d5a2b7-ed7f-4fcc-a87e-7b3b497efa07?mode=deep",
+    "timestamp": "2026-02-19 11:45:40.474175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: AcceptCrossChainIndexingProposal()] [Cross-Chain Data Loss] If ResetChainIndexingProposal() removes the proposal but the data was never recorded, can this cause permanent loss of cross-chain sync? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad1f7fac-e391-4c21-a70e-be7f9ef71d94?mode=deep",
+    "timestamp": "2026-02-19 11:46:02.540348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: BindParentChainHeight()] [Double Binding Attack] The assertion at line 29 checks if binding exists, but can State.ChildHeightToParentChainHeight be manipulated to have value 0 even when bound? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_43e6828e-31ca-438f-ae9a-43eaed310a03?mode=deep",
+    "timestamp": "2026-02-19 11:46:25.028131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: AddIndexedTxRootMerklePathInParentChain()] [Merkle Path Override] The assertion at line 55 checks for null, but can an attacker race to bind a fake merkle path before legitimate indexing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65a82fb7-9f11-4fda-9817-f5b9542b7102?mode=deep",
+    "timestamp": "2026-02-19 11:46:48.673587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ChargeSideChainIndexingFee()] [Amount Validation Bypass] If amount <= 0 check passes but amount is exactly 0, can side chain be created without locking any tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11f53eff-d7e7-44e6-871e-c77701b32dc5?mode=deep",
+    "timestamp": "2026-02-19 11:47:12.958999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: UnlockTokenAndResource()] [Balance Check Bypass] If balance <= 0 early return at line 78, but balance was manipulated to negative value, can tokens remain locked forever? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_112a4e45-d9aa-475c-8408-8e33899965ac?mode=deep",
+    "timestamp": "2026-02-19 11:47:38.177288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: AssertValidSideChainCreationRequest()] [Allowance Check Timing] Allowance is checked at line 108-117 but not locked - can attacker use same allowance for multiple requests before actual charge? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10abca2a-8209-42aa-9b41-bcdaf2d52c20?mode=deep",
+    "timestamp": "2026-02-19 11:48:04.174254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: AssertValidSideChainCreationRequest()] [Expired Request Bypass] At line 104, if Context.CurrentBlockTime >= proposedRequest.ExpiredTime passes but proposal is immediately resubmitted, can this bypass the intended waiting period? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5acd8442-3fbb-4c56-8091-0bef17d809ef?mode=deep",
+    "timestamp": "2026-02-19 11:48:32.397047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: AssertValidSideChainTokenInfo()] [Token Supply Overflow] If SideChainTokenTotalSupply > MaxLong - InitialIssueList.Sum(), can token creation overflow total supply? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_276c7080-9327-451a-a8d6-7fcaeea5a1c8?mode=deep",
+    "timestamp": "2026-02-19 11:48:59.729855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: CreateSideChainToken()] [Token Symbol Collision] Can SideChainTokenSymbol collide with existing native or resource tokens, causing double-spend vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f605885-af90-4907-984f-3555065b192a?mode=deep",
+    "timestamp": "2026-02-19 11:49:30.212284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: GetChainId()] [ChainId Collision] Can serialNumber + Context.ChainId produce duplicate chainIds across different parent chains? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9672816-e9ce-466a-bdd2-838985569969?mode=deep",
+    "timestamp": "2026-02-19 11:50:00.773303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ProposeNewSideChain()] [Proposal Expiration Bypass] Can attacker manipulate Context.CurrentBlockTime to extend proposal expiry beyond SideChainCreationProposalExpirationTimePeriod? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47cdadb4-6ce8-4ee7-b340-511fdf118938?mode=deep",
+    "timestamp": "2026-02-19 11:50:30.506817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ProposeCrossChainBlockData()] [Proposal Token Collision] Can proposalToken = HashHelper.ConcatAndCompute(Context.PreviousBlockHash, chainId) collide if PreviousBlockHash can be predicted or manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5028aebb-6760-46a3-868b-5f6f04b69594?mode=deep",
+    "timestamp": "2026-02-19 11:51:00.984843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ProposeCrossChainBlockData()] [Already Proposed Check Bypass] Can TryGetIndexingProposal() return false for existing proposal due to state corruption, allowing duplicate proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b54ca0c-61b3-4147-9fb5-51910fadc1a9?mode=deep",
+    "timestamp": "2026-02-19 11:51:30.921388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ValidateCrossChainDataBeforeIndexing()] [Empty Data After Validation] If both side chain and parent chain validation pass but result in empty validated data, can empty CrossChainDataDto cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00891b11-7328-426e-80b7-75e80fd971c9?mode=deep",
+    "timestamp": "2026-02-19 11:52:01.200368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ValidateSideChainBlockData()] [Height Sequencing Attack] Can attacker provide blocks with correct sequential heights but fake transaction merkle roots that pass initial validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c243bd15-3086-4e06-81f7-595f97920708?mode=deep",
+    "timestamp": "2026-02-19 11:52:30.330403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ValidateParentChainBlockData()] [Height Duplication Check] Can attacker provide duplicate parent chain heights in different proposals to bypass the State.ChildHeightToParentChainHeight != 0 check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65986510-023f-4de0-b794-4de604084c4d?mode=deep",
+    "timestamp": "2026-02-19 11:53:00.396554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: IndexParentChainBlockData()] [Consensus Data Injection] At line 784, can attacker inject malicious bytes in ExtraData[ConsensusExtraDataName] to compromise consensus through UpdateConsensusInformation()? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abe3ec8b-2c1a-4184-9fde-0182e293d45f?mode=deep",
+    "timestamp": "2026-02-19 11:53:31.207647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: IndexParentChainBlockData()] [Merkle Path Injection] Can attacker manipulate IndexedMerklePath to bind incorrect parent heights to child heights, breaking verification? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6aab95f1-f5b2-4b05-8bde-41454f9f5152?mode=deep",
+    "timestamp": "2026-02-19 11:54:01.629453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: IndexSideChainBlockData()] [Indexing Fee Calculation Overflow] At lines 842-855, can indexingPrice * blockCount overflow during fee calculation if IndexingPrice is MaxLong? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5d2abc4-9dd2-4a31-9172-32ec160a55f6?mode=deep",
+    "timestamp": "2026-02-19 11:57:23.459442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: IndexSideChainBlockData()] [Arrears Manipulation] Can attacker manipulate lockedToken calculation to always trigger IndexingFeeDebt status and accumulate unbounded arrears? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_444adc16-872f-443a-a457-b1cf44006766?mode=deep",
+    "timestamp": "2026-02-19 11:57:48.567388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: IndexSideChainBlockData()] [Proposer Address Spoofing] Can formattedProposerAddress.ToBase64() be manipulated to credit arrears/fees to wrong addresses in ArrearsInfo? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6505bf78-cd1b-45f6-b420-4f5b3167f896?mode=deep",
+    "timestamp": "2026-02-19 11:58:14.579010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: EnsureTransactionOnlyExecutedOnceInOneBlock()] [Race Condition] Can two transactions execute at same Context.CurrentHeight if State.LatestExecutedHeight update is not atomic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf2cee08-8273-4125-863c-b6cf1fd1206b?mode=deep",
+    "timestamp": "2026-02-19 11:58:40.936353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ClearCrossChainIndexingProposalIfExpired()] [Infinite Loop DOS] If ChainIndexingProposalCollections contains many expired proposals, can the foreach loop consume excessive gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fdf66d38-fed9-477c-b2ff-949e44f65040?mode=deep",
+    "timestamp": "2026-02-19 11:59:09.361921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: CheckProposalExpired()] [Expired Time Manipulation] Can proposalInfo.ExpiredTime be manipulated to never expire, preventing proposal cleanup? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c84142d2-0656-4b48-99d4-d60aa8b981e4?mode=deep",
+    "timestamp": "2026-02-19 11:59:38.097740",
+    "report_generated": false
+  }
+]
