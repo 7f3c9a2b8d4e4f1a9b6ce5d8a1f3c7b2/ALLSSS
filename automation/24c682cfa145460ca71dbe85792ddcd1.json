@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Edge Case] When RealTimeMinersInformation is empty on line 23, does ContainsKey always return false, potentially bypassing critical miner validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13b10333-2c80-4583-979b-6b7c04916bc0?mode=deep",
+    "timestamp": "2026-02-19 02:52:31.560998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Identity Validation] Does the function validate that pubkey on line 13 is a valid public key format, or can arbitrary strings be used as dictionary keys? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6218a98-1429-4a8a-8abb-2fe79979e1a8?mode=deep",
+    "timestamp": "2026-02-19 02:52:53.616677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Identity Validation] Can an attacker use the same pubkey for multiple miners in RealTimeMinersInformation on line 23, causing validation logic to only check one miner's implied LIB? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14a87229-d93e-4ff1-8e4d-81c791fa49c9?mode=deep",
+    "timestamp": "2026-02-19 02:53:15.972119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Authorization] Why doesn't the function verify that the sender associated with pubkey on line 13 is authorized to produce blocks for the current time slot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_944625f5-f02a-4df3-8c12-5e9209eb8a9c?mode=deep",
+    "timestamp": "2026-02-19 02:53:39.058024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Data Integrity] Can providedRound be a deep copy of baseRound with minor modifications, bypassing validation checks on lines 16-17 due to subtle reference issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb292b4a-6a26-4a9f-9b59-9adf2fadcfaf?mode=deep",
+    "timestamp": "2026-02-19 02:54:03.788328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Data Integrity] Does the function verify that providedRound data has not been tampered with since being signed by the miner, or is unsigned data accepted on line 12? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44dd4a31-f88b-4fe7-b103-13b191bb876d?mode=deep",
+    "timestamp": "2026-02-19 02:54:29.191738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Data Integrity] Can RealTimeMinersInformation on line 23 contain duplicate or conflicting entries for the same miner, causing undefined validation behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0407ff69-5056-4ff6-9b19-6b890c5b2ae1?mode=deep",
+    "timestamp": "2026-02-19 02:54:56.317096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Protocol Violation] Does the validation allow ConfirmedIrreversibleBlockRoundNumber to increase without corresponding ConfirmedIrreversibleBlockHeight increase on lines 16-17, violating consensus protocol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0b7449a-20b5-423b-80cd-f5ea276e3a16?mode=deep",
+    "timestamp": "2026-02-19 02:55:24.998818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Protocol Violation] Can a miner's ImpliedIrreversibleBlockHeight on line 24 be higher than ConfirmedIrreversibleBlockHeight, and does this create protocol inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ea013d9-feb0-4f8a-825b-c55e59500363?mode=deep",
+    "timestamp": "2026-02-19 02:55:55.099507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Protocol Violation] Does the function enforce that LIB can only move forward, or can it accept scenarios where LIB temporarily decreases due to reorganizations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3ef8e1b-a644-41cf-980c-d8d5c4d38044?mode=deep",
+    "timestamp": "2026-02-19 02:56:25.915416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] Should the comparison on line 16 be >= instead of >, preventing provided rounds from having equal confirmed LIB height to base rounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5741dc9e-9f9d-4fea-8250-6a695834aa94?mode=deep",
+    "timestamp": "2026-02-19 02:56:57.033103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] Should the comparison on line 17 be >= instead of >, preventing round number equality between base and provided rounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1840b1ec-7018-4536-b7b7-2d983a9a164d?mode=deep",
+    "timestamp": "2026-02-19 02:57:30.261622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] Should the comparison on line 25-26 use >= instead of >, preventing implied LIB height equality which might indicate stale miner state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7817662-2323-4f86-b48e-91b31f463559?mode=deep",
+    "timestamp": "2026-02-19 02:58:04.470196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] Does the OR operator on line 16-17 create a logical flaw where only one condition needs to fail instead of both, weakening validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff7dc8f9-8687-44bb-a5d0-c4a1e0f557cd?mode=deep",
+    "timestamp": "2026-02-19 02:58:37.986286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Access] Can accessing providedRound.RealTimeMinersInformation[pubkey] on line 24 throw KeyNotFoundException if pubkey was removed between ContainsKey check on line 23? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f1fd85d-42ea-460b-b771-bfe656c81d62?mode=deep",
+    "timestamp": "2026-02-19 02:59:11.037687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Access] Can accessing baseRound.RealTimeMinersInformation[pubkey] on line 25 throw KeyNotFoundException if pubkey doesn't exist in baseRound, bypassing validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41dceb91-4702-4a9b-956e-43743ac2bf05?mode=deep",
+    "timestamp": "2026-02-19 02:59:44.605286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Access] Does the function handle the case where pubkey exists in providedRound but not in baseRound, potentially causing exception on line 25? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8457b79-8738-4642-8174-6692e5b927db?mode=deep",
+    "timestamp": "2026-02-19 03:00:18.111645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Access] Can RealTimeMinersInformation dictionary be modified during iteration if validation is called concurrently, causing concurrent modification exceptions on line 23? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca038d40-f882-4692-9db3-d0a09de54686?mode=deep",
+    "timestamp": "2026-02-19 03:00:52.922431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Information Disclosure] Does the error message on line 19 'Incorrect lib information' leak sensitive consensus state information that could aid attackers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f612f198-133c-45e2-9e54-85e2d30d2861?mode=deep",
+    "timestamp": "2026-02-19 03:01:27.058964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Information Disclosure] Does the error message on line 28 'Incorrect implied lib height' reveal which specific miner validation failed, enabling targeted attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4360d25b-7414-4698-adf7-87dd5ffe5797?mode=deep",
+    "timestamp": "2026-02-19 03:02:03.144309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Logging] Why doesn't the function log validation failures on lines 19-20 and 28-29 for audit and debugging purposes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afc9857f-4fbb-49fc-8ef4-74349fbf6d63?mode=deep",
+    "timestamp": "2026-02-19 03:02:38.412120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Boundary Condition] What happens when ConfirmedIrreversibleBlockHeight reaches maximum long value on line 16, can this cause overflow in subsequent operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79a5f4ac-0fc2-41df-90dd-093681f76985?mode=deep",
+    "timestamp": "2026-02-19 03:03:13.950723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Boundary Condition] When ConfirmedIrreversibleBlockRoundNumber approaches maximum value on line 17, is there protection against rollover to negative or zero? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b4ba214-3ba4-4593-9bd5-cae2eb9ad74c?mode=deep",
+    "timestamp": "2026-02-19 03:03:46.648333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Boundary Condition] Can ImpliedIrreversibleBlockHeight on line 24 be set to maximum long value causing comparison issues on line 25-26? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6540e264-50a4-4312-a156-5fce1fd105b1?mode=deep",
+    "timestamp": "2026-02-19 03:04:19.691979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Cross-Check] Why doesn't the function verify consistency between multiple miners' ImpliedIrreversibleBlockHeight values in RealTimeMinersInformation on line 23-26? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09141e0a-9a92-48aa-afa0-1ef7eda0df38?mode=deep",
+    "timestamp": "2026-02-19 03:04:50.503284",
+    "report_generated": false
+  }
+]
