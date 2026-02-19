@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Missing Random Number] Can randomNumber be null or empty causing transaction generation to succeed with invalid data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76346646-ada7-47e9-b534-d0ea712c9b5d?mode=deep",
+    "timestamp": "2026-02-19 11:05:28.566277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: GenerateTransaction()] [RefBlock Manipulation] Can RefBlockNumber be set to CurrentHeight causing reference to non-finalized block? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc6d1ce0-9518-40d5-844f-fa79feacc0e6?mode=deep",
+    "timestamp": "2026-02-19 11:05:50.818568",
+    "report_generated": false
+  }
+]
