@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()/Reject()/Abstain()] [Allowance Exhaustion] After TransferFrom succeeds, allowance is depleted. Can users re-approve and vote again with new allowance, effectively voting multiple times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2abf3eea-0274-4b7c-9515-bb4e6f89de20?mode=deep",
+    "timestamp": "2026-02-19 15:22:16.312034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: UnlockToken() in Referendum_Helper.cs] [Transfer Failure Handling] If Transfer at line 79-86 fails, does state cleanup at line 87 still execute, permanently losing the receipt and locking tokens forever? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fdf6106d-25c3-4109-b8da-c7eb20479135?mode=deep",
+    "timestamp": "2026-02-19 15:22:39.110845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [Virtual Address Funding] Tokens are transferred to GetProposalVirtualAddress(proposalId) at line 51. Can attackers pre-fund this address to manipulate balance checks or reentrancy guards? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bb480f8-eb96-40a3-9438-1a1acdef2459?mode=deep",
+    "timestamp": "2026-02-19 15:23:02.125653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Release()] [Virtual Execution Context] SendVirtualInlineBySystemContract uses a virtual address calculated from organization hash. Can this bypass authorization checks in target contracts that trust system contract calls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77c233ce-aba4-4be2-8f47-a01db2c1ce3f?mode=deep",
+    "timestamp": "2026-02-19 15:23:25.995529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateProposal()] [Duplicate Proposal Detection] Line 163 checks if proposal exists, but with hash-based IDs, can attackers create nearly-identical proposals that differ only in non-validated fields? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7cbec1c-3f5c-4f83-8041-7787d39534ed?mode=deep",
+    "timestamp": "2026-02-19 15:23:50.824895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Validate() in Referendum_Helper.cs] [ProposerWhiteList Validation] Empty() check at line 93 only validates count > 0, but can whitelist contain only invalid/zero addresses, passing validation but preventing legitimate proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60b0d041-d4e7-46cb-906b-23e2e624b74e?mode=deep",
+    "timestamp": "2026-02-19 15:24:16.149929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CalculateOrganizationAddress()] [Address Collision] Organization address is deterministic from input. Can two different CreateOrganizationInput sets produce the same hash and address, causing organization conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab0f3c63-98d7-4b8f-8614-518fed91955e?mode=deep",
+    "timestamp": "2026-02-19 15:24:44.762175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: ReclaimVoteToken()] [Partial Reclaim] Can a user who voted Approve, Reject, AND Abstain (if possible) reclaim only one receipt, leaving others locked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8acb1b5a-42d2-4aa9-8b05-360cbd343f04?mode=deep",
+    "timestamp": "2026-02-19 15:25:14.411216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [Lock ID Uniqueness] Lock ID at line 44-45 uses proposalId and lockedAddress. If the same user votes on multiple proposals, are lock IDs unique? Can collisions occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04d68339-1a19-49ba-9d92-53a157708047?mode=deep",
+    "timestamp": "2026-02-19 15:25:43.554910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()/Reject()/Abstain()] [Vote Weight Calculation] GetAllowance returns current allowance, not balance. Can users vote with minimal allowance, then increase it after voting to manipulate effective vote weight? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d994b33f-e44e-4a10-b6bf-b916d98c6f8d?mode=deep",
+    "timestamp": "2026-02-19 15:26:11.850611",
+    "report_generated": false
+  }
+]
