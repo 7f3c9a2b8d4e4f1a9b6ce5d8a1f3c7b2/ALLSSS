@@ -82,5 +82,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90e13add-115b-43cf-a171-dd4875279e97?mode=deep",
     "timestamp": "2026-02-19 07:03:22.134358",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Unvalidated Reference Initialization] Can an attacker exploit the lack of explicit initialization validation for ParliamentContract reference to cause null reference exceptions when GetDefaultConfigurationController() is called before the reference is set, leading to denial of service in configuration operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7668e83e-961d-459e-9bdc-052b100dfc7f?mode=deep",
+    "timestamp": "2026-02-19 07:25:43.901525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Unvalidated Reference Initialization] Can an attacker trigger operations that rely on TokenContract before it's initialized, causing null reference exceptions and preventing fee-related configuration operations from executing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9529baf1-9623-4f87-ab17-94402c174c94?mode=deep",
+    "timestamp": "2026-02-19 07:26:05.905287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Contract Address Poisoning] If ParliamentContract.Value is set during initialization without validating the contract address exists or implements the expected interface, can an attacker cause the Configuration contract to interact with a malicious contract address, bypassing governance controls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64e06fa0-34d0-4f8d-848a-afd87669db71?mode=deep",
+    "timestamp": "2026-02-19 07:26:28.468706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Contract Address Poisoning] If TokenContract reference is set to a malicious contract address during initialization, can an attacker manipulate fee-related operations by returning false data from token balance/allowance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e229b62-252e-4033-87e8-cb76e9b6c928?mode=deep",
+    "timestamp": "2026-02-19 07:26:52.452483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Missing Contract Existence Check] Since ParliamentContract is set using Context.GetContractAddressByName, can an attacker exploit scenarios where the Parliament contract hasn't been deployed yet, causing the Configuration contract to reference a zero/invalid address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b4e5468-a408-4696-9233-c28a3dbe25e8?mode=deep",
+    "timestamp": "2026-02-19 07:27:16.982431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Internal Visibility Bypass] Can malicious code within the same assembly modify the internal ParliamentContract reference to point to an attacker-controlled contract, bypassing all governance authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_932f215f-b023-43d3-bc4b-6717f133eabd?mode=deep",
+    "timestamp": "2026-02-19 07:27:42.014946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Internal Visibility Bypass] Can malicious code within the AElf.Contracts.Configuration namespace directly modify the internal TokenContract reference to bypass fee collection mechanisms? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e3e74b6-5ed8-45a2-b2c9-c7438bac8461?mode=deep",
+    "timestamp": "2026-02-19 07:28:07.665537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Partial Class: ConfigurationState] [Partial Class Injection] Can an attacker add another partial class definition in ConfigurationState that exposes public setters for ParliamentContract or TokenContract, enabling unauthorized reference modification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f33d0afd-4b90-4a3e-bc64-27a2eed2373c?mode=deep",
+    "timestamp": "2026-02-19 07:28:33.836277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Partial Class: ConfigurationState] [State Pollution via Partial Class] Can an attacker define additional partial class members that shadow or interfere with the ParliamentContract and TokenContract references, causing unexpected behavior in governance operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a11c2179-8b28-46f2-a6dc-f890c8aaffd6?mode=deep",
+    "timestamp": "2026-02-19 07:29:01.893664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Reentrancy via Referenced Contract] If ParliamentContract is set to a malicious contract, can an attacker perform reentrancy attacks when Configuration contract calls Parliament methods, manipulating state between external calls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5616231b-1e06-4c48-8f33-58f9507e62b6?mode=deep",
+    "timestamp": "2026-02-19 07:29:29.490085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Reentrancy via Referenced Contract] Can an attacker exploit reentrancy through malicious TokenContract callbacks during fee-related operations, allowing unauthorized configuration changes mid-transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9621a376-2af8-41d1-840e-53d9c6bd9c46?mode=deep",
+    "timestamp": "2026-02-19 07:30:01.282917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Malicious Contract Return Values] If ParliamentContract reference points to a malicious contract, can it return false authorization data to GetDefaultOrganizationAddress calls, granting unauthorized users configuration controller privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6dbb481-6221-4430-9139-8ba8d9ea10b3?mode=deep",
+    "timestamp": "2026-02-19 07:30:33.483045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Malicious Contract Return Values] Can a malicious TokenContract return manipulated balance/allowance data to bypass fee requirements or cause incorrect fee deductions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b623f734-6106-45fa-8bd1-b196601769b8?mode=deep",
+    "timestamp": "2026-02-19 07:31:01.337329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [State Desynchronization] If the ParliamentContract address changes due to contract upgrade but the reference isn't updated, can this cause the Configuration contract to interact with an outdated Parliament contract, leading to governance inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00f2103f-3ba4-4a87-994e-e1d0c18fd825?mode=deep",
+    "timestamp": "2026-02-19 07:31:34.571087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [State Desynchronization] During contract upgrades, if TokenContract reference isn't properly migrated, can fee collection operations fail or interact with the wrong token contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbdf943f-b54b-4cd2-bde6-0f90c966540c?mode=deep",
+    "timestamp": "2026-02-19 07:32:08.261637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Reference Staleness] Can an attacker exploit scenarios where ParliamentContract.Value is cached but the actual Parliament contract has been upgraded or replaced, causing authorization checks to use outdated contract logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd43bdbd-c016-4216-90e7-de963f232bfa?mode=deep",
+    "timestamp": "2026-02-19 07:32:43.767778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Reference Staleness] If TokenContract reference becomes stale after a MultiToken contract upgrade, can this lead to incorrect fee calculations or token operation failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf82909c-f8b4-47f5-82a6-6500a35d3c07?mode=deep",
+    "timestamp": "2026-02-19 07:33:19.531539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [DOS via Unavailable Contract] If ParliamentContract.Value points to a contract that has been destroyed or is permanently unavailable, can this cause all configuration operations requiring Parliament authorization to fail indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9469a111-4d09-4563-8dc1-dbffc4a0b6c5?mode=deep",
+    "timestamp": "2026-02-19 07:33:53.281359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [DOS via Unavailable Contract] Can an attacker cause permanent DOS of fee-related configuration operations if TokenContract reference points to a destroyed or non-responsive contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af511ed8-08cf-4900-aa37-11b4bc989391?mode=deep",
+    "timestamp": "2026-02-19 07:34:26.934904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Infinite Loop via Malicious Contract] If ParliamentContract is a malicious contract that causes infinite loops or excessive gas consumption in its methods, can this DOS all Configuration contract operations that call Parliament? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_599f0f38-0848-4407-86b8-db13145d8840?mode=deep",
+    "timestamp": "2026-02-19 07:35:01.533974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Infinite Loop via Malicious Contract] Can a malicious TokenContract cause DOS by consuming all gas when Configuration contract calls token-related methods for fee operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b1bb89d-b34c-47b4-a6c9-b845fa51ef45?mode=deep",
+    "timestamp": "2026-02-19 07:35:38.256221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Interface Mismatch] Can ParliamentContract reference be set to a contract that doesn't implement ParliamentContractReferenceState interface, causing runtime errors when methods are called? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95954ee8-a55d-4aac-b998-9c7165578e1a?mode=deep",
+    "timestamp": "2026-02-19 07:36:12.758044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Interface Mismatch] Can TokenContract reference point to a contract that doesn't implement TokenContractReferenceState interface, breaking fee collection functionality? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72e91ac2-1ea7-404c-99ef-1ff9fb5cece2?mode=deep",
+    "timestamp": "2026-02-19 07:36:42.247198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Contract Version Incompatibility] If ParliamentContract reference points to an older version of Parliament contract with incompatible method signatures, can this cause authorization checks to fail or behave unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_515985f6-7f26-4fdf-ab48-986973cf7b56?mode=deep",
+    "timestamp": "2026-02-19 07:37:17.025236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Contract Version Incompatibility] Can version mismatches between expected TokenContractReferenceState interface and actual MultiToken contract implementation cause fee operations to fail silently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94a7355e-51fa-4d15-8791-1fc2521be49b?mode=deep",
+    "timestamp": "2026-02-19 07:37:48.234612",
+    "report_generated": false
   }
 ]
