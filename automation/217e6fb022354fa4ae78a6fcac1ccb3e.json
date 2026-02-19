@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Invariant Violation] After all miners call ApplyNormalConsensusData(), should every miner have a unique FinalOrderOfNextRound in range [1, minersCount]? The current conflict resolution may fail to guarantee this if conflicts exceed available positions. (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1cf312de-7aca-426f-82e8-daacabf2475e?mode=deep",
+    "timestamp": "2026-02-19 02:38:55.187611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Missing Validation] Does the function verify that RealTimeMinersInformation[pubkey] exists and is properly initialized before accessing its fields at lines 12-16, or can this cause null reference issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c178b733-6f49-4ac3-954a-a8c6b39b4131?mode=deep",
+    "timestamp": "2026-02-19 02:39:17.896554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [State Validation] After conflict resolution at lines 28-40, is there validation that the resulting FinalOrderOfNextRound values across all miners are unique and within valid bounds, or are invalid states silently accepted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1587dfe2-076f-4b5e-aae0-e5bbefa22f20?mode=deep",
+    "timestamp": "2026-02-19 02:39:40.185296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Order Collision] If GetAbsModulus(sigNum, minersCount) returns the same value for multiple miners (hash collision or intentional grinding), and +1 is applied at line 21, can multiple miners end up with the same supposedOrderOfNextRound simultaneously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8990cf66-546a-4a11-9434-65a113187ac8?mode=deep",
+    "timestamp": "2026-02-19 02:40:02.849494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Order Bounds] The supposedOrderOfNextRound is calculated as GetAbsModulus(sigNum, minersCount) + 1, giving range [1, minersCount]. However, FinalOrderOfNextRound can be assigned values up to minersCount*2 at line 31. Is this discrepancy handled correctly by the system? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20162093-2eb5-4759-93b8-43b3717c5068?mode=deep",
+    "timestamp": "2026-02-19 02:40:26.510089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Zero Order] If GetAbsModulus() returns 0 and +1 is applied, supposedOrderOfNextRound becomes 1. If minersCount is 1, all miners would get order 1. Does this break the consensus round progression? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16c6eeb1-ecac-4fc5-bdc9-9b99b5d6425b?mode=deep",
+    "timestamp": "2026-02-19 02:40:50.848033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [DoS via Exception] If RealTimeMinersInformation dictionary operations throw exceptions (e.g., concurrent modification, corrupted state), can this halt all consensus progress by preventing any miner from successfully calling ApplyNormalConsensusData()? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21b63bba-ac0f-4b82-bc92-abf6ba848945?mode=deep",
+    "timestamp": "2026-02-19 02:41:15.209342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Griefing] Can a malicious miner repeatedly call ApplyNormalConsensusData() with different signatures to force other miners' FinalOrderOfNextRound values to keep changing through conflict resolution, causing instability in the next round's miner schedule? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63b34322-9d55-486e-afc1-3def3805add8?mode=deep",
+    "timestamp": "2026-02-19 02:41:39.377828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Liveness] If the conflict resolution loop at lines 28-40 fails to assign valid orders to all conflicted miners, can this leave some miners without a valid FinalOrderOfNextRound, preventing them from participating in the next round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c13c2085-089d-4f6b-8dbd-1fd690657153?mode=deep",
+    "timestamp": "2026-02-19 02:42:04.972063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Edge Case] If minersCount at line 18 is 1 (single miner network), does the entire order assignment logic still work correctly, or does the conflict resolution create issues with a single miner having to resolve conflicts with itself? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92bf46d2-dc5e-436a-8689-38229dfb1ef8?mode=deep",
+    "timestamp": "2026-02-19 02:42:29.591947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Edge Case] If RealTimeMinersInformation has more entries than expected (e.g., due to corruption or attack), can the minersCount value at line 18 mismatch with the actual number of expected miners, causing order assignments to exceed valid ranges? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b72948d1-06b0-471a-a987-6b7a71c417f4?mode=deep",
+    "timestamp": "2026-02-19 02:42:54.806374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Integer Limit] If minersCount grows very large (e.g., thousands of miners), can the calculation at line 31 'minersCount * 2' overflow Int32.MaxValue, causing the loop bound to wrap to negative values? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f4b13b2-3f51-46c1-996d-5195ac2dc32f?mode=deep",
+    "timestamp": "2026-02-19 02:43:20.811493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Silent Failure] At line 10, if the pubkey is not in RealTimeMinersInformation, the function returns 'this' immediately without any error or event emission. Can this silent failure mask attacks or bugs where invalid miners are calling the function? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbaab580-210b-4833-ab18-a863c06de128?mode=deep",
+    "timestamp": "2026-02-19 02:43:46.175461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Side Effects] The function modifies the Round object in place and returns it at line 46. If the caller expects the original Round to remain unchanged, can this cause unexpected behavior in the calling contract? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3b49c8a-acfd-452c-90ee-cfcb7155c677?mode=deep",
+    "timestamp": "2026-02-19 02:44:12.119962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Return Validation] Does the calling contract validate the returned Round object to ensure all invariants are maintained after ApplyNormalConsensusData() completes, or are invalid states propagated silently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b3bbc6c-0e0e-42e1-9bfb-ff0f495ba756?mode=deep",
+    "timestamp": "2026-02-19 02:44:38.579245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Conditional Assignment] At lines 14-16, PreviousInValue is only set if it's currently Hash.Empty or null. If a miner's PreviousInValue was previously set incorrectly, can they never correct it, leading to permanent consensus verification failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_421fcbcf-e24e-4614-9d4c-5edbc0a94122?mode=deep",
+    "timestamp": "2026-02-19 02:45:05.196701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Null Check] The condition at line 14 checks for both Hash.Empty and null. Is this redundant, or are there cases where PreviousInValue could be null vs Hash.Empty, and does handling differ? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87af60ae-e7c0-4d2b-98a9-8c21dac16697?mode=deep",
+    "timestamp": "2026-02-19 02:45:34.701469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [First-Write-Wins] Since PreviousInValue is immutable after first write (lines 14-16), if an attacker can call ApplyNormalConsensusData() before the legitimate miner, can they permanently set an incorrect PreviousInValue for that miner? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1973ef8-928e-4dc0-867e-4d4c48fa43e6?mode=deep",
+    "timestamp": "2026-02-19 02:46:06.245974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Query Performance] At lines 25-26, the Where() and ToList() operations iterate through all RealTimeMinersInformation.Values. If this dictionary is large, can this cause significant gas consumption on every call? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8902918d-809e-4e97-9b8a-2e981b7f4d70?mode=deep",
+    "timestamp": "2026-02-19 02:46:38.229573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Collection Modification] If RealTimeMinersInformation is modified during the Where() query at line 25 (e.g., by a concurrent call), can this throw a collection modified exception and halt execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f274a68-1efa-41b1-8d56-ea6eecc3c18a?mode=deep",
+    "timestamp": "2026-02-19 02:47:10.236040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Memory Allocation] The ToList() call at line 26 creates a new list in memory. If conflicts is very large, can this cause memory pressure or allocation failures in resource-constrained environments? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2745c4ed-7563-43e0-8caf-10de4ac16f18?mode=deep",
+    "timestamp": "2026-02-19 02:47:40.666078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Documentation Gap] The comment at line 29 states 'Multiple conflicts is unlikely', but provides no justification. If multiple conflicts are actually possible, does the conflict resolution algorithm handle them correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae5fb9cd-9ebb-413d-9900-d9ddecd45c4d?mode=deep",
+    "timestamp": "2026-02-19 02:48:14.764590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Assumption Violation] Line 29's comment assumes multiple conflicts are unlikely, but if an attacker intentionally creates multiple conflicts through signature grinding, can they exploit the conflict resolution logic's apparent lack of robustness for this case? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0af63008-942c-4af3-9f6e-684207733e2f?mode=deep",
+    "timestamp": "2026-02-19 02:48:48.584573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Modulo Bias] At line 33, the expression 'i % minersCount' is used to wrap orders. If i ranges from supposedOrderOfNextRound+1 to minersCount*2, does this create duplicate maybeNewOrder values across multiple loop iterations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a827084-fe40-412d-b013-8d45751c8106?mode=deep",
+    "timestamp": "2026-02-19 02:49:22.845171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ApplyNormalConsensusData.cs] [Function: ApplyNormalConsensusData()] [Order Wrapping] When i > minersCount at line 33, maybeNewOrder = i % minersCount. If minersCount = 10 and i = 20, maybeNewOrder = 0. But the comment implies orders should be [1, minersCount]. Is there a fencepost error? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86462e87-bd8b-471a-9c64-05c9d5bcdbc6?mode=deep",
+    "timestamp": "2026-02-19 02:49:56.748847",
+    "report_generated": false
+  }
+]
