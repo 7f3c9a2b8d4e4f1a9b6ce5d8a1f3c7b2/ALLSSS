@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [JSON Parsing Trust] Lines 328-330 parse JSON from ExternalInfo without validation - can malformed JSON cause parsing exception that leaves lock in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c56ee035-a378-4c4a-8969-750987fad41e?mode=deep",
+    "timestamp": "2026-02-19 12:17:54.800298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [Callback Info Structure] Lines 328-330 parse CallbackInfo with ContractAddress and MethodName - can attacker set these to arbitrary contracts/methods to call privileged functions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64132d1d-5a88-46aa-8b84-ab9813e229d7?mode=deep",
+    "timestamp": "2026-02-19 12:18:17.179803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [External Info Key] Line 326 checks for 'LockCallbackExternalInfoKey' - can attacker inject multiple callback keys or override this key to bypass intended callbacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f6552ee-644a-44aa-b5ac-ae8e00bb9cc0?mode=deep",
+    "timestamp": "2026-02-19 12:18:39.742668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [FireExternalLogEvent Call] Line 334 calls FireExternalLogEvent after SendInline - can log event processing cause additional reentrancy or state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f6e6563-54bc-4023-b356-2c3e65fa9d10?mode=deep",
+    "timestamp": "2026-02-19 12:19:02.975854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringTransfer()] [Transfer Callback Timing] Lines 341-346 perform callback during transfer - can callback revert transfer or cause double-spend by modifying balances during callback execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c0d986d-d9f7-47f4-8b12-aeb6597ea9f3?mode=deep",
+    "timestamp": "2026-02-19 12:19:27.256685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringTransfer()] [Same Pattern as Locking] Lines 337-350 duplicate pattern from Locking function - do both share same vulnerabilities regarding reentrancy and callback trust? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2d89bc4-84a6-4c1f-9d64-221ed9290220?mode=deep",
+    "timestamp": "2026-02-19 12:19:52.418962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringUnlock()] [Unlock Callback Exploit] Lines 352-365 handle unlock callbacks - can attacker unlock tokens, trigger callback that relocks, and repeat to drain gas or cause DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b96e8fc1-c5df-4bb5-9db0-e2a6e92d0677?mode=deep",
+    "timestamp": "2026-02-19 12:20:18.137248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringUnlock()] [Callback Input Parameter] Line 361 sends TransferFromInput as parameter - does callback contract properly validate this input or can malicious callback misuse it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f61a42fc-8879-411d-ae38-c2bbcf17c84d?mode=deep",
+    "timestamp": "2026-02-19 12:20:47.478470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: FireExternalLogEvent()] [Log Event Name Trust] Line 372 uses ExternalInfo value directly as log event name - can attacker inject special characters or exploit log parsing vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a25ef644-bbe0-4fde-854c-4ab8a9be6b76?mode=deep",
+    "timestamp": "2026-02-19 12:21:20.493522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: FireExternalLogEvent()] [Non-Indexed Data] Line 374 stores entire TransferFromInput as NonIndexed - can large input cause log size DoS or exceed block limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1677541-fee7-4c0b-be36-6b81643fb4df?mode=deep",
+    "timestamp": "2026-02-19 12:21:54.151885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: FireExternalLogEvent()] [Self Address in Log] Line 373 sets Address = Context.Self - can this be spoofed in scenarios where Self is manipulated through delegatecall? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d425a8e-11e9-4f2f-aa36-77b87b81f02d?mode=deep",
+    "timestamp": "2026-02-19 12:22:27.908468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetTokenInfo()] [Alias Resolution] Lines 409-413 resolve symbol aliases - can circular alias (A->B, B->A) cause infinite loop or stack overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba4ed2a1-66fb-420d-bfa4-e60b558f995c?mode=deep",
+    "timestamp": "2026-02-19 12:22:57.771105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetTokenInfo()] [Alias Shadowing] If symbol 'TOKEN' exists and alias 'TOKEN2' points to 'TOKEN', can operations on 'TOKEN2' bypass authorization checks meant for 'TOKEN'? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebf00ece-8d9e-406c-b936-8611167a10bd?mode=deep",
+    "timestamp": "2026-02-19 12:23:30.880334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetTokenInfo()] [Null Return Without Assert] Function returns null if token not found (line 415) - do all callers properly handle null, or can this cause NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d5d9fab-b851-4708-95d6-9f8446352363?mode=deep",
+    "timestamp": "2026-02-19 12:24:06.242982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetTokenInfo()] [State Read Race] Lines 407-413 perform multiple State reads - can concurrent modification cause inconsistent token info to be returned? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32f1662a-c948-4266-803a-e73a1dec11e6?mode=deep",
+    "timestamp": "2026-02-19 12:24:42.273092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: SetTokenInfo()] [Direct State Write] Lines 420-421 directly write to State.TokenInfos without validation - can this bypass all token creation checks if called from vulnerable function? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e3e0a1a-6a8b-42e6-9ac1-2230ebff05a8?mode=deep",
+    "timestamp": "2026-02-19 12:25:18.924140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: SetTokenInfo()] [No InsensitiveTokenExisting Update] SetTokenInfo updates State.TokenInfos but doesn't update State.InsensitiveTokenExisting - can this cause inconsistency with RegisterTokenInfo? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d857ff7d-0032-4494-9469-4a49a7efa7e9?mode=deep",
+    "timestamp": "2026-02-19 12:25:49.789871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetIssueChainId()] [No Null Check] Line 268 calls GetTokenInfo then line 269 accesses IssueChainId - can null tokenInfo cause NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4698b9ac-4032-42ed-a92e-eec4d6ff4c45?mode=deep",
+    "timestamp": "2026-02-19 12:26:25.361324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsInTransferBlackListInternal()] [Simple Boolean Check] Line 426 directly returns State.TransferBlackList[address] - can attacker exploit default false value for uninitialized addresses? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c95fe07e-79f1-43f0-a9f1-733bec22870c?mode=deep",
+    "timestamp": "2026-02-19 12:26:56.302215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsInTransferBlackListInternal()] [No Event on Check] Function doesn't emit event when blacklist address attempts transfer - can this allow silent censorship without audit trail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34ae5fb9-66c6-4404-91b3-f57783e7e71f?mode=deep",
+    "timestamp": "2026-02-19 12:27:24.650015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetBalance()] [GetActualTokenSymbol Undefined] Line 169 calls GetActualTokenSymbol which is not defined in this file - can implementation in other file have vulnerabilities that bypass symbol validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_493d2ecc-5fd8-4582-ab07-749f5babcd79?mode=deep",
+    "timestamp": "2026-02-19 12:27:56.437763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Multiple Functions] [State Consistency] Functions modify State directly without transaction-level consistency checks - can partial transaction execution leave contract in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac8c23ae-c404-4524-a419-e217b3d9cc4b?mode=deep",
+    "timestamp": "2026-02-19 12:28:28.439200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Multiple Functions] [No Access Control in Helpers] Helper functions like ModifyBalance and SetTokenInfo have no access control - can they be called by any contract function, even unauthorized ones? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11b62cb3-80a9-46fa-ad42-d7683baabd7d?mode=deep",
+    "timestamp": "2026-02-19 12:29:00.373899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Multiple Functions] [Assert vs Require] Functions use Assert() for validation - does Assert() properly revert state changes in C# smart contracts or can failed assertions leave partial state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c957afe-fddf-4301-ad8c-42dd08bb2e78?mode=deep",
+    "timestamp": "2026-02-19 12:29:31.880011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [AssertValidSymbolAndAmount] [Symbol Validation] Lines 83-84 validate symbol format but line 85 only checks amount > 0 - can amount be long.MaxValue causing overflow in downstream operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce168c33-4dbd-4f29-a5e3-db2011ee9807?mode=deep",
+    "timestamp": "2026-02-19 12:30:04.013446",
+    "report_generated": false
+  }
+]
