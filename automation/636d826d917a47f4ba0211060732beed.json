@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Validation Timing] If CheckOrganizationExist returns true at line 49 but the organization is immediately dissolved before line 52 executes, does State.MaximumMinersCountController.Value get set to an invalid organization reference? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9fd9b7e-c21b-45c3-a246-c8f4857e0be3?mode=deep",
+    "timestamp": "2026-02-19 06:14:52.270888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Cross-Contract Trust] CheckOrganizationExist trusts input.ContractAddress to implement ValidateOrganizationExist correctly. Can an attacker deploy a malicious contract that implements this interface to always return true, allowing any OwnerAddress to be set as controller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fa2e4b8-0e7f-4af5-8bcd-e503eb6701c8?mode=deep",
+    "timestamp": "2026-02-19 06:15:14.177879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Missing Input Validation] The function doesn't check if input.OwnerAddress == input.ContractAddress, can setting them equal create circular reference issues or bypass organization checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d13c68c9-e41c-452e-8abe-3eca56ab84f6?mode=deep",
+    "timestamp": "2026-02-19 06:15:36.458410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Null Input] If input.OwnerAddress or input.ContractAddress is null, does CheckOrganizationExist fail gracefully or does State.MaximumMinersCountController.Value get set to a partially null AuthorityInfo at line 52? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ba850cb-15a9-4dd5-9583-7a220e159810?mode=deep",
+    "timestamp": "2026-02-19 06:15:59.673128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Authority Downgrade] Can the controller change from Parliament (requiring multi-sig) to a Referendum organization (potentially 1-person majority) at line 52, effectively downgrading security of MaximumMinersCount parameter control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_961abf21-ed3c-4de5-b5cb-91eaaf469727?mode=deep",
+    "timestamp": "2026-02-19 06:16:23.658407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Governance Capture] If an attacker gains temporary control of the current controller organization through a voting attack, can they immediately call ChangeMaximumMinersCountController to transfer control to their own organization, making the capture permanent? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_febe3f1d-4298-4de8-94b2-b8f4d8fb727e?mode=deep",
+    "timestamp": "2026-02-19 06:16:49.099448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Contract Type Validation] Does CheckOrganizationExist verify that input.ContractAddress is actually a Parliament, Association, or Referendum contract, or can it be set to any contract implementing ValidateOrganizationExist (e.g., a MultiToken contract)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5e33f14-6c81-421b-8686-e00675458a35?mode=deep",
+    "timestamp": "2026-02-19 06:17:14.210055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [State Consistency] If CheckOrganizationExist returns false but the assertion at line 50 is somehow bypassed (compiler bug, VM issue), does line 52 execute with invalid input, corrupting State.MaximumMinersCountController.Value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb2ad760-0a48-43d9-a19f-6a51ac199652?mode=deep",
+    "timestamp": "2026-02-19 06:17:40.150053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Front-Running] Can an attacker front-run a legitimate ChangeMaximumMinersCountController call by gaining temporary controller access and changing it first, blocking the legitimate change? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5417212c-b58a-45c3-8ec6-515e862bc654?mode=deep",
+    "timestamp": "2026-02-19 06:18:10.250543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Emergency Response] If the current controller is compromised, is there any emergency mechanism to override ChangeMaximumMinersCountController, or is the only recourse to gain majority in the compromised organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95e755e2-1ecd-43ec-bf4d-1f2cffe272e7?mode=deep",
+    "timestamp": "2026-02-19 06:18:40.006632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Atomicity] If the transaction reverts after State.MaximumMinersCountController.Value is updated at line 52, is the state change rolled back properly or can it leave the controller in an inconsistent state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5edcdede-e52e-4834-949f-3e7d2e8990fa?mode=deep",
+    "timestamp": "2026-02-19 06:19:09.899054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Organization Lifecycle] If input.OwnerAddress points to an organization that gets deleted after this function executes, does State.MaximumMinersCountController.Value reference a non-existent organization, breaking all future SetMaximumMinersCount calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b2f78ae-2028-4111-8309-b9e7acd55f51?mode=deep",
+    "timestamp": "2026-02-19 06:19:42.225421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Cross-Chain Controller] Can input.ContractAddress point to a contract on a different chain (via cross-chain addressing), allowing cross-chain control of MaximumMinersCount and potential cross-chain attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_781ec677-dc9d-4e43-9901-be1f2879cb81?mode=deep",
+    "timestamp": "2026-02-19 06:20:10.170213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Validation Bypass] If ValidateOrganizationExist is gas-intensive and CheckOrganizationExist times out or reverts, can the assertion at line 50 be bypassed in some edge cases where organizationExist remains uninitialized? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79621ecf-2aab-40b7-bd14-a823446cc249?mode=deep",
+    "timestamp": "2026-02-19 06:20:37.683124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Same Value Update] The function doesn't check if input == State.MaximumMinersCountController.Value. Can repeatedly setting the same controller waste gas or trigger unnecessary state changes that could be exploited for DOS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d21d1c52-ba4b-43de-8167-459a1cf2dc17?mode=deep",
+    "timestamp": "2026-02-19 06:21:10.685045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Authority Chain] Can an attacker set input.OwnerAddress to the address of a defunct organization that still validates as existing but can never execute proposals, effectively freezing MaximumMinersCount control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99224e19-3ad9-4817-ba74-c167f4c4e1bf?mode=deep",
+    "timestamp": "2026-02-19 06:21:43.146100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Initialization Dependency] If ChangeMaximumMinersCountController is called before RequiredMaximumMinersCountControllerSet has ever initialized State.MaximumMinersCountController.Value, can line 47 initialize it to Parliament while line 48 checks a different sender, creating confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c9989f7-b2e1-4ba2-ae43-d1b9e629e509?mode=deep",
+    "timestamp": "2026-02-19 06:22:12.935992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Contract Interface Mismatch] If input.ContractAddress points to a contract that doesn't properly implement ValidateOrganizationExist (wrong signature, different semantics), can CheckOrganizationExist return false positives or crash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a70d782e-3cda-44e2-903e-d17c0fa9d358?mode=deep",
+    "timestamp": "2026-02-19 06:22:46.190017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Governance Deadlock] Can the controller change ownership to an organization that requires unanimous approval, making it impossible to ever change the controller again if one member becomes unavailable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_638b7d7b-3c41-470a-ab95-eb84cedbb49a?mode=deep",
+    "timestamp": "2026-02-19 06:23:17.284873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Malicious Organization] If input.OwnerAddress is an organization controlled by malicious actors who can pass proposals at will, does ChangeMaximumMinersCountController enable immediate hostile takeover of consensus parameter control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0429a598-c522-480f-b9a3-96aff5649303?mode=deep",
+    "timestamp": "2026-02-19 06:23:49.693776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Integer Validation] The assertion at line 61 checks input.Value <= State.MinerIncreaseInterval.Value, but if State.MinerIncreaseInterval.Value is 0 or negative, can input.Value be set to any negative value, causing division by zero in GetAutoIncreasedMinersCount at line 94? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0893f21e-16f8-48d7-ad7c-193fac7375d5?mode=deep",
+    "timestamp": "2026-02-19 06:24:22.309234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Authorization] The assertion at line 59-60 checks Context.Sender == State.MaximumMinersCountController.Value.OwnerAddress, reusing the same controller as SetMaximumMinersCount. Is this appropriate or should MinerIncreaseInterval have a separate controller for separation of concerns? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_725d6435-bb24-486b-89eb-19661036b0f3?mode=deep",
+    "timestamp": "2026-02-19 06:24:50.137690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Direction Constraint] The assertion at line 61 only allows decreasing the interval (input.Value <= current). Can this constraint be exploited by setting interval to 0, then never being able to increase it again, freezing auto-increase at the current miner count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f054e7a3-e7e6-4244-899d-13e7c6d0154b?mode=deep",
+    "timestamp": "2026-02-19 06:25:21.527032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Division by Zero] If SetMinerIncreaseInterval sets State.MinerIncreaseInterval.Value to 0 at line 62, does GetAutoIncreasedMinersCount's division at line 94 (.Div(State.MinerIncreaseInterval.Value)) cause a division by zero exception? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ab9fbc6-d656-4c12-95f7-43d3ee1f0928?mode=deep",
+    "timestamp": "2026-02-19 06:25:53.539936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Consensus Impact] If MinerIncreaseInterval is set to a very small value (e.g., 1 second), does GetAutoIncreasedMinersCount at line 93-94 add 2 miners per second, causing rapid inflation of miner count that could overwhelm consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fec69940-20bd-44e3-a97c-e4ae57992b25?mode=deep",
+    "timestamp": "2026-02-19 06:26:25.488102",
+    "report_generated": false
+  }
+]
