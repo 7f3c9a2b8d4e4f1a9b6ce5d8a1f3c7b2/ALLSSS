@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Validation Completeness] If the provided IEnumerable contains duplicate provider instances, will they all execute in the foreach loop, potentially performing redundant expensive checks and wasting gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3a23418-a904-408e-babc-9b61cca087eb?mode=deep",
+    "timestamp": "2026-02-19 08:37:25.461719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Consensus Bypass] If only 1-2 basic providers are registered (missing critical validators like LibInformationValidationProvider or UpdateValueValidationProvider), could attackers exploit unchecked consensus behaviors to manipulate rounds, terms, or LIB heights? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_752603f9-614c-4859-814d-351237e0d9d7?mode=deep",
+    "timestamp": "2026-02-19 08:37:47.622305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Lazy Evaluation] If _headerInformationValidationProviders is a lazily-evaluated IEnumerable (e.g., LINQ query), could the foreach loop trigger expensive enumeration or database queries on every validation call, causing performance degradation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cfa87a0-9d6f-4ba6-8462-0738fecf984b?mode=deep",
+    "timestamp": "2026-02-19 08:38:09.893159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Iterator Invalidation] If the underlying collection backing _headerInformationValidationProviders is modified during foreach iteration (even from another thread), could this throw InvalidOperationException and crash validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3aa4fa0a-65a4-4b11-acc8-d8b72f502b20?mode=deep",
+    "timestamp": "2026-02-19 08:38:33.673178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Consensus Manipulation] If attackers can control which providers are included in _headerInformationValidationProviders through a vulnerability in the calling code (AEDPoSContract_Validation.cs), could they exclude TimeSlotValidationProvider to produce blocks outside their assigned time slots? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31320d98-1dbb-4d10-8537-9bd3a8f10e79?mode=deep",
+    "timestamp": "2026-02-19 08:38:57.584811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Consensus Manipulation] If MiningPermissionValidationProvider is not included in _headerInformationValidationProviders due to a construction bug, could unauthorized nodes produce blocks without being in the miner list, compromising the AEDPoS consensus model? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_193a2584-c314-4373-b170-b72c4a35faec?mode=deep",
+    "timestamp": "2026-02-19 08:39:23.099627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Consensus Manipulation] If ContinuousBlocksValidationProvider is omitted from the provider list, could a malicious miner produce excessive consecutive blocks (violating tiny block limits), monopolizing block production and harming decentralization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b54619bb-269b-4c64-81ea-33f7ec7a7b04?mode=deep",
+    "timestamp": "2026-02-19 08:39:49.049411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Null Input] If validationContext parameter is null, will the foreach loop at line 18 immediately pass it to the first provider's ValidateHeaderInformation(), likely causing NullReferenceException in the provider rather than failing gracefully? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afc05eec-87ab-4c1a-a923-5697c412b558?mode=deep",
+    "timestamp": "2026-02-19 08:40:15.814793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Invalid Context] If validationContext has null or invalid fields (BaseRound=null, ExtraData=null), are these caught before provider execution, or does each provider need to defensively check, risking inconsistent error handling? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51314f90-6c0a-4370-934e-75f3ff33aca3?mode=deep",
+    "timestamp": "2026-02-19 08:40:42.623409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Logic Bug] At line 22, only checks !result.Success - if a provider returns ValidationResult with Success=null (nullable bool) or an unconventional falsy value, could this bypass the failure check and continue iteration incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8391279f-0fff-4fe1-8222-973b54c0a6c9?mode=deep",
+    "timestamp": "2026-02-19 08:41:10.415355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Short-Circuit Logic] Since the method returns immediately on first failure (line 22), if a provider returns Success=false for a minor issue, could this mask a more severe violation that a later provider would have detected, hiding the root cause from operators? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_465c42f7-540e-4009-8e99-351f708414d3?mode=deep",
+    "timestamp": "2026-02-19 08:41:38.346878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Constructor] [Type Safety] If _headerInformationValidationProviders contains objects that implement IHeaderInformationValidationProvider but are not the expected consensus validators, could this introduce malicious validation logic that appears legitimate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6b81a70-ea59-4632-a30b-2eab6122a818?mode=deep",
+    "timestamp": "2026-02-19 08:42:07.469366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Interface Contract] If a provider's ValidateHeaderInformation() violates the implicit contract by returning a ValidationResult with Success=true for invalid consensus data, does this service have any secondary validation to detect such misbehavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f189df9b-d32f-4d99-9800-79604f0bc820?mode=deep",
+    "timestamp": "2026-02-19 08:42:36.935359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Gas Inefficiency] Does executing all providers in sequence (potentially 5-7 validators) on every block validation consume excessive gas, and could an attacker exploit this by triggering maximum-cost validation paths repeatedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a65a5b13-6735-495c-a312-90bf039fcbe0?mode=deep",
+    "timestamp": "2026-02-19 08:43:07.980040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Optimization Miss] Since providers are checked in order and exit on first failure, if expensive validators are placed early in the IEnumerable, could this cause unnecessary gas consumption when cheaper validators would have caught the issue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c336a3a-3a05-4db8-9f6a-1ca539fd1af0?mode=deep",
+    "timestamp": "2026-02-19 08:43:38.197987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Non-Determinism] If the IEnumerable iteration order for _headerInformationValidationProviders is not deterministic (e.g., from a hash-based collection), could different nodes execute providers in different orders, causing consensus fork due to divergent validation outcomes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3958b6c4-d900-4d37-aa55-eef380fa4b71?mode=deep",
+    "timestamp": "2026-02-19 08:44:06.942184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Consensus Fork] If provider implementations have non-deterministic behavior (e.g., time-dependent checks, random number usage), could the foreach loop produce different ValidationResults on different nodes, breaking consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3bfc5a0-2fe6-424e-82bb-78b6eff46adf?mode=deep",
+    "timestamp": "2026-02-19 08:44:37.102481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Constructor] [Input Validation] The constructor does not verify that all required validator types are present in _headerInformationValidationProviders - could this allow incomplete validation configurations that miss critical consensus checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc28d56e-c071-4dad-ba2f-84ee082debec?mode=deep",
+    "timestamp": "2026-02-19 08:45:05.281305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Constructor] [Duplication Check] Does the constructor allow duplicate provider instances in _headerInformationValidationProviders, potentially causing the same validation to run multiple times and waste resources? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67e8508e-cc76-46cf-9548-71b6ee011b63?mode=deep",
+    "timestamp": "2026-02-19 08:45:35.095317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Constructor] [Immutability] Since _headerInformationValidationProviders is set once in the constructor and never modified, if the required validators change during runtime (e.g., after a protocol upgrade), does this service need recreation, and could stale instances use outdated validation logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0137de1f-5e39-4dad-8b34-9ea29b8e8adc?mode=deep",
+    "timestamp": "2026-02-19 08:46:05.031344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Stateless Design] Since the service is stateless (no mutable fields), if providers maintain internal state that becomes corrupted, does this service have any mechanism to detect or reset provider state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_236a4689-6166-43f3-9fd8-b0b83a0dae1f?mode=deep",
+    "timestamp": "2026-02-19 08:46:35.679801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Error Message Propagation] At line 22, the method returns the provider's ValidationResult unchanged - if the provider's Message field contains sensitive data (e.g., private keys, internal state), could this leak confidential information to callers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3977d89-e324-43b6-8838-259c72099c4a?mode=deep",
+    "timestamp": "2026-02-19 08:47:06.487017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Error Context Loss] Since only the first failing provider's result is returned (line 22), if multiple validators would fail, does this lose important context about the full extent of consensus violations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7c5e36c-1d45-4812-8e07-c4e2b10537ef?mode=deep",
+    "timestamp": "2026-02-19 08:47:36.024269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Calling Context Dependency] Since this service depends on the caller (AEDPoSContract_Validation.cs) to provide the correct provider list based on extraData.Behaviour, if the caller has a bug in provider selection logic, could wrong validators run for NextRound/NextTerm transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75a01652-98cc-40c7-89fa-7cfa9e29b9f3?mode=deep",
+    "timestamp": "2026-02-19 08:48:05.262962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Behavior-Specific Validation] The service itself is behavior-agnostic - if the caller forgets to include behavior-specific validators (e.g., UpdateValueValidationProvider for UpdateValue behavior), could consensus violations specific to that behavior pass unvalidated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77b8f7c0-9be9-4c39-a268-ffc9274e89e8?mode=deep",
+    "timestamp": "2026-02-19 08:48:32.910416",
+    "report_generated": false
+  }
+]
