@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Dictionary Key Error] Line 162 uses nftTypes.Value.Remove(input.Value) - can this throw if key doesn't exist, despite line 157 assertion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8ff2882-3ae3-4ba1-b9dd-249204103712?mode=deep",
+    "timestamp": "2026-02-19 11:43:26.557256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Create() DOS] After removal, Create() calling GetSymbol will fail at line 33 of Helpers if NFT type not found - can this permanently DOS protocol creation for that type? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d28cfff-80a3-476d-8cf8-c8f80ca2ef5c?mode=deep",
+    "timestamp": "2026-02-19 11:43:48.831977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Event Timing] NFTTypeRemoved event fires at line 164 after state changes - if event emission fails, are state changes still persisted? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9aa1e56-65e0-45e4-8bff-4e7267f5b914?mode=deep",
+    "timestamp": "2026-02-19 11:44:11.143726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Null Input] No validation that input or input.Value is not null before line 156 - can null inputs cause NullReferenceException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cdbcbfc-ff99-4757-9572-56b1e95eeb75?mode=deep",
+    "timestamp": "2026-02-19 11:44:34.720709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Lazy Initialization Exploit] Lines 173-175 lazily initialize State.ParliamentContract.Value - can first caller manipulate SmartContractConstants to point to malicious contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04992dc4-fad9-4463-8f9b-7d62fb7dee76?mode=deep",
+    "timestamp": "2026-02-19 11:44:58.697427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Default Address Cache Poisoning] Lines 177-179 cache Parliament default address - if Parliament updates default address, cached value becomes stale, allowing old address to retain control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10396320-523b-4451-9b21-b8d4d642da86?mode=deep",
+    "timestamp": "2026-02-19 11:45:23.680753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [External Call Trust] GetDefaultOrganizationAddress.Call at line 179 trusts Parliament contract - can compromised Parliament return attacker's address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a056c36-1403-4923-bf44-a7f6a4e24c74?mode=deep",
+    "timestamp": "2026-02-19 11:45:49.110694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Reentrancy] GetDefaultOrganizationAddress.Call at line 179 is external - can reentrant calls manipulate Context.Sender before line 181 check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a5277a2-d9e4-46b3-bcb3-bd4eac64470d?mode=deep",
+    "timestamp": "2026-02-19 11:46:15.694235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Error Message] Line 181 returns generic 'No permission' - does this leak information about whether sender validation failed vs other issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f0cb04b-a802-4d2b-bf31-111646f79f48?mode=deep",
+    "timestamp": "2026-02-19 11:46:45.104054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: GetTokenExternalInfo()] [Metadata Validation Bypass] Line 186 only calls AssertMetadataKeysAreCorrect if input.Metadata != null - can attacker pass empty Metadata object to bypass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a01cc22d-204e-4e8a-992f-2d9d4fd49aaf?mode=deep",
+    "timestamp": "2026-02-19 11:47:11.445851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: GetTokenExternalInfo()] [Reserved Key Injection] Lines 196-199 forcibly add three reserved keys - if input.Metadata already contains these, are they overwritten or does duplicate key exception occur? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d1b7b89-c46c-4e72-ab61-eeebd062e7e8?mode=deep",
+    "timestamp": "2026-02-19 11:47:38.521936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: GetTokenExternalInfo()] [Metadata Key Validation] AssertMetadataKeysAreCorrect checks keys but not values - can malicious metadata values (e.g., extremely long strings) cause storage DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c66a2b8-0ef2-4a73-b53e-588298288035?mode=deep",
+    "timestamp": "2026-02-19 11:48:09.202277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: GetTokenExternalInfo()] [NftType Value Injection] Line 196 stores input.NftType without validation - can non-existent or malicious type strings corrupt ExternalInfo? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30eeead8-6212-4fc1-8060-e0a038ce2768?mode=deep",
+    "timestamp": "2026-02-19 11:48:39.482144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: GetTokenExternalInfo()] [Boolean String Conversion] Line 199 converts bool to string - can this create parsing issues in CrossChainCreate line 88 if ToString() format differs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b672e8ee-5dc3-4d38-ac06-2dfde3544aa5?mode=deep",
+    "timestamp": "2026-02-19 11:49:10.746530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create() + CrossChainCreate()] [Mainchain-Sidechain Desync] Create() only works on mainchain (line 16) while CrossChainCreate() has no chain restriction - can this cause protocols to exist on sidechains but not mainchain? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08059362-ad1d-4bf5-bc5d-7480750350f9?mode=deep",
+    "timestamp": "2026-02-19 11:49:42.167443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create() + CrossChainCreate()] [Symbol Format Divergence] Create() generates 11-char symbols via GetSymbol(), CrossChainCreate() accepts arbitrary symbols - can sidechain protocols have invalid symbol formats? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_449252f3-4a44-4a23-89a8-aa608e944abe?mode=deep",
+    "timestamp": "2026-02-19 11:50:10.303166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create() + CrossChainCreate()] [Minter List Divergence] Create() allows custom minterList (line 36), CrossChainCreate() only sets issuer as minter (line 110) - can this cause minter privilege loss during cross-chain sync? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c9d2748-ede2-4ca6-ae70-916fd2551a0a?mode=deep",
+    "timestamp": "2026-02-19 11:50:39.749016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create() + CrossChainCreate()] [Protocol Override] CrossChainCreate checks protocol doesn't exist (line 79), but Create() doesn't - can Create() be called multiple times for same NFT type creating duplicate protocols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c8e6441-db76-4f70-b0f8-faf3eb885549?mode=deep",
+    "timestamp": "2026-02-19 11:51:10.204757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType() + RemoveNFTType()] [Type Lifecycle Race] AddNFTType and RemoveNFTType modify same state - can concurrent calls cause type to be both added and removed, leaving corrupted state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2659ac2b-a6e9-4be6-ba55-3b7b9c0d6e00?mode=deep",
+    "timestamp": "2026-02-19 11:51:40.735091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType() + Create()] [New Type Usage Race] If AddNFTType adds a type while Create() is executing GetSymbol(), can symbol generation fail due to race in InitialNFTTypeNameMap()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b4e7c36-c0b6-462b-92e0-8a5cce55cc5a?mode=deep",
+    "timestamp": "2026-02-19 11:52:12.584383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [MultiToken Contract Malicious Behavior] If TokenContract.Create at line 34 is malicious/compromised, can it return success but not actually create token, causing NFT protocol without underlying token? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_321a4b25-928b-475d-a1f7-9cb1393648ef?mode=deep",
+    "timestamp": "2026-02-19 11:52:43.717095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Random Provider Failure] If RandomNumberProviderContract fails during GetSymbol(), does Create() properly handle errors or leave partial state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72da501a-549f-4e44-b440-0f88dc0993f2?mode=deep",
+    "timestamp": "2026-02-19 11:53:14.260398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Token Contract Data Injection] GetTokenInfo at line 80 returns tokenInfo controlled by TokenContract - can malicious TokenContract return fake data to corrupt NFT protocols? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb8d89c5-dfba-4722-b482-18af2e43efd9?mode=deep",
+    "timestamp": "2026-02-19 11:53:42.619925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Parliament Contract Replacement] If Parliament contract is upgraded/replaced after line 174 caches it, can old cached contract become invalid? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d228925f-b936-40d9-9d19-d477e65bc035?mode=deep",
+    "timestamp": "2026-02-19 11:54:12.270617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Gas Exhaustion] MinterList at line 36 is unbounded - can attacker pass massive minter list causing gas exhaustion and DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dcf2d7dc-ed7c-4e63-aa8d-c61175d39b95?mode=deep",
+    "timestamp": "2026-02-19 11:54:42.567271",
+    "report_generated": false
+  }
+]
