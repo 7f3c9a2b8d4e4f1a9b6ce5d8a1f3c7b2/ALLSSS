@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Round Transition Validation] This validates order assignments within a round, but doesn't check if orders are consistent across round transitions. Could miners manipulate their orders when transitioning to a new round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a914e30-b3d2-4d71-bb94-ab8989dbdefa?mode=deep",
+    "timestamp": "2026-02-19 03:54:13.141529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Time Slot Derivation] FinalOrderOfNextRound is used elsewhere to calculate mining time slots. If this validation passes but orders are malicious (e.g., all in a tight range), could miners cause time slot collisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47f9ae9b-7611-46b8-840d-ed11af90665e?mode=deep",
+    "timestamp": "2026-02-19 03:54:35.262576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Secret Sharing Impact] AEDPoS uses secret sharing for consensus. If FinalOrderOfNextRound assignments can be manipulated, could this affect the randomness or security of secret sharing in subsequent rounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_904098ce-8138-4910-a3a0-3b0429393e9a?mode=deep",
+    "timestamp": "2026-02-19 03:54:58.380333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundM\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs (L1-26)\n```csharp\nusing System.Linq;\nusing AElf.Standards.ACS4;\n\n// ReSharper disable once CheckNamespace\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\npublic class NextRoundMiningOrderValidationProvider : IHeaderInformationValidationProvider\n{\n    public ValidationResult ValidateHeaderInformation(ConsensusValidationContext validationContext)\n    {\n        // Miners that have determined the order of the next round should be equal to\n        // miners that mined blocks during current round.\n        var validationResult = new ValidationResult();\n        var providedRound = validationContext.ProvidedRound;\n        var distinctCount = providedRound.RealTimeMinersInformation.Values.Where(m => m.FinalOrderOfNextRound > 0)\n            .Distinct().Count();\n        if (distinctCount != providedRound.RealTimeMinersInformation.Values.Count(m => m.OutValue != null))\n        {\n            validationResult.Message =",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_355304e2-96c7-46e4-93ff-15ba593b70b4?mode=deep",
+    "timestamp": "2026-02-19 03:55:21.431052",
+    "report_generated": false
+  }
+]
