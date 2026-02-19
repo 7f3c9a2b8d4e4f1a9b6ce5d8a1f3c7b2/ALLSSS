@@ -1,0 +1,140 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [Treasury Release Incorrect Triggering] If cached _isMainChain causes Release() to be called on wrong chain at line 83, could this drain side-chain funds or fail to release main-chain treasury when required, breaking economic model? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b534cf3e-fb5c-4b1f-a572-a848e5c3be69?mode=deep",
+    "timestamp": "2026-02-19 04:46:23.255894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [IsInMinerList False Negative] If PreCheck at lines 326-327 evaluates IsInMinerList with Context.RecoverPublicKey() but uses cached _processingBlockMinerPubkey for authorization decisions, could signature verification pass but wrong miner identity be authorized? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_046a6c85-0414-459f-8e2b-239e78d191b3?mode=deep",
+    "timestamp": "2026-02-19 04:46:45.568226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [MinerInRound Null Reference] At lines 242, 303 of ProcessConsensusInformation, if stale _processingBlockMinerPubkey doesn't exist in currentRound.RealTimeMinersInformation, could dictionary lookup throw KeyNotFoundException, causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c150760f-3a53-4963-990b-5adbb0a91f33?mode=deep",
+    "timestamp": "2026-02-19 04:47:07.882563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [Evil Miner Detection Bypass] At lines 139-154 of ProcessNextRound, if cached _isMainChain=false on main chain, could evil miners escape detection and punishment, allowing continuous malicious behavior without Election contract marking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12094cae-16ba-49b8-b9cf-1b554cabb4c5?mode=deep",
+    "timestamp": "2026-02-19 04:47:30.595095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [Random Hash Verification with Wrong Key] At line 77 of ProcessConsensusInformation, if ECVrfVerify uses Context.RecoverPublicKey() but _processingBlockMinerPubkey is stale and used elsewhere, could verification succeed but event attribution fail, breaking random number audit trail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3dc89eb-0035-4c1b-8634-f87fef3eecfa?mode=deep",
+    "timestamp": "2026-02-19 04:47:54.729065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [Cached vs State Value Desync] Since IsMainChain property at lines 12-20 of HelpMethods only sets _isMainChain from State if null, if State.IsMainChain.Value changes mid-execution, could cached value become stale within single complex transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91bccab6-62cf-4ea2-a0c3-01ba378b0b54?mode=deep",
+    "timestamp": "2026-02-19 04:48:20.434774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [Tiny Block Continuous Production Limit Bypass] If _processingBlockMinerPubkey is wrong in ResetLatestProviderToTinyBlocksCount, could attacker produce unlimited continuous tiny blocks by avoiding BlocksCount decrement for their actual pubkey? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65b86a56-7327-420d-a235-9b7330c7b4c9?mode=deep",
+    "timestamp": "2026-02-19 04:48:45.377714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [Period Seconds Configuration Error] In GetConsensusCommand at line 42, if cached _isMainChain is wrong, could MainChainConsensusBehaviourProvider receive/not receive State.PeriodSeconds.Value incorrectly, breaking time slot calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b267060-1388-4d69-bfa0-23ab9313c200?mode=deep",
+    "timestamp": "2026-02-19 04:49:11.075521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [TuneOrderInformation Misapplication] At lines 259-260 of ProcessUpdateValue, if wrong miner's FinalOrderOfNextRound is updated due to stale _processingBlockMinerPubkey in current context, could round ordering be corrupted for next term? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58b9fc45-b03b-426c-b9cb-8cda59cb03ab?mode=deep",
+    "timestamp": "2026-02-19 04:49:39.448447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [ImpliedIrreversibleBlockHeight Misassignment] At line 248 of ProcessUpdateValue, if ImpliedIrreversibleBlockHeight is written to wrong miner due to cache pollution, could LIB calculation at line 268-282 produce incorrect height, breaking finality guarantees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f780546e-5bb6-4858-ac86-d4124a6d08e2?mode=deep",
+    "timestamp": "2026-02-19 04:50:09.049660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [Blockchain Start Timestamp Logic Skip] If cached _isMainChain is false during first round on main chain, could SetBlockchainStartTimestamp at line 123 be skipped or executed with wrong parameters, breaking all time-based consensus logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d007ae01-1383-4f83-bbe7-70793ad789ef?mode=deep",
+    "timestamp": "2026-02-19 04:50:38.424274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [Round.ToString Miner Highlight Error] When logging at line 73 with ToString(_processingBlockMinerPubkey), if cached pubkey is stale, could debug logs highlight wrong miner, severely complicating consensus debugging and incident response? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0fe1d209-1b11-48df-b33a-a3992ee7eb1e?mode=deep",
+    "timestamp": "2026-02-19 04:51:08.459347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [UpdateMinersCount to Election Incorrect Call] At lines 126-135 of ProcessNextRound, if cached _isMainChain triggers Election contract call on side chain, could this create invalid cross-contract state or cause Election contract to reject transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a06cb04e-8abd-45ab-be84-dec9c331ee60?mode=deep",
+    "timestamp": "2026-02-19 04:51:36.657839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [EncryptedPieces Wrong Miner Storage] At line 290 of PerformSecretSharing, if _processingBlockMinerPubkey is stale, could EncryptedPieces be stored in wrong miner's record, causing secret sharing protocol to fail when pieces need to be decrypted later? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc8d9eca-40d1-4342-83fe-77b7288bc039?mode=deep",
+    "timestamp": "2026-02-19 04:52:08.079172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [PreviousInValue Overwrite Attack] At line 264 of ProcessUpdateValue, if cached pubkey causes PreviousInValue to be written to wrong miner, could attacker manipulate which miner's value is considered for random number generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1375fe47-7feb-4656-9a3f-f6ef8cf054e0?mode=deep",
+    "timestamp": "2026-02-19 04:52:39.734637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [DonateMiningReward Wrong Chain Execution] At line 203 of ProcessNextTerm, if cached _isMainChain affects DonateMiningReward logic, could rewards be donated/not donated incorrectly, breaking economic incentive model? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c99ccd42-44c9-40b6-af4d-6d7574a9e3cf?mode=deep",
+    "timestamp": "2026-02-19 04:53:11.024103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [Signature Field Corruption] At line 244 of ProcessUpdateValue, if Signature is assigned to wrong miner due to cache pollution, could subsequent signature verification or secret sharing fail, halting consensus progression? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab9cb66f-5fcb-4407-8ebe-18332e45aa88?mode=deep",
+    "timestamp": "2026-02-19 04:53:42.598116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [SecretSharingInformation Event Wrong Chain] If cached _isMainChain affects Context.Fire(SecretSharingInformation) at line 110-115, could side chains receive main chain secret sharing events or vice versa, corrupting random number generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8858f041-bc21-4d77-9866-552a3cd75e8d?mode=deep",
+    "timestamp": "2026-02-19 04:54:13.659153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [OutValue Assignment to Wrong Miner] At line 245 of ProcessUpdateValue, if OutValue is assigned to incorrect miner, could the consensus random hash chain be broken, allowing predictability or manipulation of future random numbers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69081bef-6e5f-43d7-926e-231c55fe3077?mode=deep",
+    "timestamp": "2026-02-19 04:54:44.958119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [SupposedOrderOfNextRound Manipulation] At lines 246-247 of ProcessUpdateValue, if wrong miner gets SupposedOrderOfNextRound and FinalOrderOfNextRound, could attacker control mining order in next round, enabling time slot manipulation or DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee187d9a-ef93-4e36-8bdd-aa15df04d3ac?mode=deep",
+    "timestamp": "2026-02-19 04:55:16.485399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [IrreversibleBlockFound Event Wrong Chain] At line 275-278 of ProcessUpdateValue, if cached _isMainChain causes IrreversibleBlockFound to fire on wrong chain, could cross-chain indexing or finality tracking be corrupted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_346613ca-8a0c-403f-b4a4-e53569e04aa6?mode=deep",
+    "timestamp": "2026-02-19 04:55:47.604630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _processingBlockMinerPubkey] [ProducedBlocks Increment Wrong Target] At lines 251-252 of ProcessUpdateValue, if ProducedBlocks/ProducedTinyBlocks are incremented for wrong miner, could reward distribution be completely inverted, enriching non-producers at expense of actual miners? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_541dc3e4-b44e-4df5-8c45-d73193828647?mode=deep",
+    "timestamp": "2026-02-19 04:56:18.596273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_CacheFileds.cs] [Field: _isMainChain] [Cached Field Never Cleared Warning Ignored] The comment at lines 5-6 explicitly warns to clear cache after each transaction - if _isMainChain is never cleared anywhere in codebase, is this a systematic vulnerability affecting all chain-type-dependent logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_330c50cf-35f9-4cdc-a646-ba791f0896d9?mode=deep",
+    "timestamp": "2026-02-19 04:56:49.693817",
+    "report_generated": false
+  }
+]
