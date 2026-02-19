@@ -1,0 +1,281 @@
+# Audit Report
+
+## Title
+Missing Range Validation on Mining Orders Allows Consensus DoS via Invalid Order Assignment
+
+## Summary
+The AEDPoS consensus contract fails to validate the range of mining order values in `TuneOrderInformation` when processing `UpdateValue` transactions. A malicious miner can inject out-of-range order values (e.g., 100, 101) that corrupt the consensus state, causing all subsequent attempts to generate the next round to throw exceptions and halt the blockchain.
+
+## Finding Description
+
+The vulnerability exists across three interconnected failures in the consensus validation logic:
+
+**1. Insufficient Validation in NextRoundMiningOrderValidationProvider**
+
+The validation provider only checks that the count of distinct miners with assigned orders matches the count of miners who mined, but does NOT verify that order values are within the valid range [1, minersCount]: [1](#0-0) 
+
+**2. Missing Validation in UpdateValue Processing**
+
+When `UpdateValue` is called, `ProcessUpdateValue` blindly applies all values from `TuneOrderInformation` without any validation: [2](#0-1) 
+
+The `UpdateValueValidationProvider` only checks that OutValue and Signature are properly filled, but does NOT validate `TuneOrderInformation`: [3](#0-2) 
+
+**3. Validation Provider Not Applied to UpdateValue**
+
+Critically, `NextRoundMiningOrderValidationProvider` is only added when the behavior is `NextRound`, NOT when it's `UpdateValue`: [4](#0-3) 
+
+**Exploitation Path:**
+
+A malicious miner submits an `UpdateValue` transaction with `TuneOrderInformation` containing out-of-range order values for all active miners (e.g., orders 100, 101, 102, 103 for a 4-miner network). These corrupted values are persisted to state.
+
+When any miner attempts to produce the next round block, `GetConsensusExtraDataForNextRound` calls `GenerateNextRoundInformation`: [5](#0-4) 
+
+Which calls the Round extension method that directly assigns `FinalOrderOfNextRound` as `Order`: [6](#0-5) 
+
+This then invokes `BreakContinuousMining`, which assumes orders 1 and 2 exist and calls `First()` operations that throw `InvalidOperationException` when no miner has those orders: [7](#0-6) 
+
+Additionally, `GetMiningInterval` assumes miners with Order 1 and 2 exist and will throw `IndexOutOfRangeException`: [8](#0-7) 
+
+## Impact Explanation
+
+**Severity: HIGH - Complete Consensus Failure**
+
+This vulnerability causes catastrophic failure of the consensus mechanism:
+
+1. **Consensus Halt**: Once invalid orders are injected, every miner attempting to produce the next round block encounters the same exception during block preparation, preventing ANY new blocks from being produced.
+
+2. **Network-Wide DoS**: The entire blockchain stops functioning - no transactions can be processed, no blocks can be produced.
+
+3. **Recovery Difficulty**: Recovery requires either:
+   - Manual state intervention to fix the corrupted `FinalOrderOfNextRound` values
+   - Hard fork to bypass the corrupted round
+   - Network restart with state rollback
+
+4. **No Fund Loss but Critical Availability Impact**: While no funds are directly stolen, the complete unavailability of the blockchain is a critical security failure affecting all users and operations.
+
+The impact meets HIGH severity criteria as it completely breaks the consensus integrity and causes a high-confidence DoS of all consensus operations.
+
+## Likelihood Explanation
+
+**Probability: HIGH - Easy to Execute**
+
+The attack has minimal barriers:
+
+1. **Attacker Requirements**: Only requires being an active miner in the current mining schedule - no special privileges or elevated permissions needed.
+
+2. **Attack Complexity**: Extremely low - single malicious `UpdateValue` transaction with crafted `TuneOrderInformation` parameter mapping each miner to an out-of-range order value.
+
+3. **No Economic Cost**: Beyond standard transaction fees, there is no economic deterrent. The attack doesn't require stake loss or significant resource investment.
+
+4. **Public Attack Surface**: `UpdateValue` is a public RPC method: [9](#0-8) 
+
+5. **Authorization Check Insufficient**: The only check is `PreCheck()` which merely verifies the sender is in the current or previous miner list, but doesn't prevent malicious order assignments: [10](#0-9) 
+
+## Recommendation
+
+Add comprehensive validation for `TuneOrderInformation` values in `ProcessUpdateValue`:
+
+```csharp
+private void ProcessUpdateValue(UpdateValueInput updateValueInput)
+{
+    TryToGetCurrentRoundInformation(out var currentRound);
+    var minersCount = currentRound.RealTimeMinersInformation.Count;
+
+    // Validate TuneOrderInformation ranges
+    foreach (var tuneOrder in updateValueInput.TuneOrderInformation)
+    {
+        Assert(tuneOrder.Value >= 1 && tuneOrder.Value <= minersCount, 
+            $"Invalid order {tuneOrder.Value} for miner {tuneOrder.Key}. Must be between 1 and {minersCount}.");
+        Assert(currentRound.RealTimeMinersInformation.ContainsKey(tuneOrder.Key),
+            $"Miner {tuneOrder.Key} not in current round.");
+    }
+
+    // Check for duplicate orders
+    var proposedOrders = updateValueInput.TuneOrderInformation.Values.ToList();
+    Assert(proposedOrders.Count == proposedOrders.Distinct().Count(),
+        "Duplicate mining orders detected in TuneOrderInformation.");
+
+    // Rest of existing logic...
+    var minerInRound = currentRound.RealTimeMinersInformation[_processingBlockMinerPubkey];
+    // ... continue as before
+}
+```
+
+Additionally, consider adding the order range validation to `UpdateValueValidationProvider` for defense-in-depth.
+
+## Proof of Concept
+
+```csharp
+[Fact]
+public async Task MaliciousMinerCanHaltConsensusWithInvalidOrders()
+{
+    // Setup: Initialize consensus with 4 miners
+    var miners = new[] { "MinerA", "MinerB", "MinerC", "MinerD" };
+    await InitializeConsensusWithMiners(miners);
+    
+    // Attack: Miner A submits UpdateValue with out-of-range orders
+    var maliciousUpdateValue = new UpdateValueInput
+    {
+        OutValue = Hash.FromString("valid_out_value"),
+        Signature = ByteString.CopyFromUtf8("valid_signature"),
+        ActualMiningTime = TimestampHelper.GetUtcNow(),
+        SupposedOrderOfNextRound = 1,
+        TuneOrderInformation = {
+            { "MinerA", 100 },  // Invalid: out of range
+            { "MinerB", 101 },  // Invalid: out of range
+            { "MinerC", 102 },  // Invalid: out of range
+            { "MinerD", 103 }   // Invalid: out of range
+        },
+        RandomNumber = ByteString.CopyFromUtf8("random")
+    };
+    
+    // Execute malicious UpdateValue - should succeed without validation
+    var updateResult = await MinerAStub.UpdateValue.SendAsync(maliciousUpdateValue);
+    updateResult.TransactionResult.Status.ShouldBe(TransactionResultStatus.Mined);
+    
+    // Verify state corruption
+    var currentRound = await ConsensusStub.GetCurrentRoundInformation.CallAsync(new Empty());
+    currentRound.RealTimeMinersInformation["MinerA"].FinalOrderOfNextRound.ShouldBe(100);
+    
+    // Attempt to generate next round - this should throw exception and halt consensus
+    var exception = await Assert.ThrowsAsync<Exception>(async () =>
+    {
+        await MinerBStub.GetConsensusExtraData.CallAsync(new BytesValue 
+        { 
+            Value = new AElfConsensusTriggerInformation 
+            { 
+                Behaviour = AElfConsensusBehaviour.NextRound,
+                Pubkey = ByteStringHelper.FromHexString("MinerB")
+            }.ToByteString() 
+        });
+    });
+    
+    // Verify consensus is halted - exception thrown during next round generation
+    exception.Message.ShouldContain("Sequence contains no matching element");
+}
+```
+
+**Notes**
+
+The vulnerability is confirmed through code analysis showing:
+
+1. The validation gap exists across validation providers that don't check order ranges
+2. `ProcessUpdateValue` directly applies unvalidated `TuneOrderInformation` values 
+3. Subsequent round generation assumes valid order ranges and throws exceptions when they're violated
+4. The attack requires only active miner status, making it highly feasible
+5. The impact is complete consensus halt requiring manual intervention
+
+This represents a critical flaw in the consensus validation logic that breaks the fundamental availability guarantee of the blockchain.
+
+### Citations
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs (L15-21)
+```csharp
+        var distinctCount = providedRound.RealTimeMinersInformation.Values.Where(m => m.FinalOrderOfNextRound > 0)
+            .Distinct().Count();
+        if (distinctCount != providedRound.RealTimeMinersInformation.Values.Count(m => m.OutValue != null))
+        {
+            validationResult.Message = "Invalid FinalOrderOfNextRound.";
+            return validationResult;
+        }
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs (L259-260)
+```csharp
+        foreach (var tuneOrder in updateValueInput.TuneOrderInformation)
+            currentRound.RealTimeMinersInformation[tuneOrder.Key].FinalOrderOfNextRound = tuneOrder.Value;
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs (L316-331)
+```csharp
+    private bool PreCheck()
+    {
+        TryToGetCurrentRoundInformation(out var currentRound);
+        TryToGetPreviousRoundInformation(out var previousRound);
+
+        _processingBlockMinerPubkey = Context.RecoverPublicKey().ToHex();
+
+        // Though we've already prevented related transactions from inserting to the transaction pool
+        // via ConstrainedAEDPoSTransactionValidationProvider,
+        // this kind of permission check is still useful.
+        if (!currentRound.IsInMinerList(_processingBlockMinerPubkey) &&
+            !previousRound.IsInMinerList(_processingBlockMinerPubkey)) // Case a failed miner performing NextTerm
+            return false;
+
+        return true;
+    }
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs (L10-20)
+```csharp
+    public ValidationResult ValidateHeaderInformation(ConsensusValidationContext validationContext)
+    {
+        // Only one Out Value should be filled.
+        if (!NewConsensusInformationFilled(validationContext))
+            return new ValidationResult { Message = "Incorrect new Out Value." };
+
+        if (!ValidatePreviousInValue(validationContext))
+            return new ValidationResult { Message = "Incorrect previous in value." };
+
+        return new ValidationResult { Success = true };
+    }
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs (L79-88)
+```csharp
+            case AElfConsensusBehaviour.UpdateValue:
+                validationProviders.Add(new UpdateValueValidationProvider());
+                // Is confirmed lib height and lib round number went down? (Which should not happens.)
+                validationProviders.Add(new LibInformationValidationProvider());
+                break;
+            case AElfConsensusBehaviour.NextRound:
+                // Is sender's order of next round correct?
+                validationProviders.Add(new NextRoundMiningOrderValidationProvider());
+                validationProviders.Add(new RoundTerminateValidationProvider());
+                break;
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs (L173-176)
+```csharp
+    private AElfConsensusHeaderInformation GetConsensusExtraDataForNextRound(Round currentRound,
+        string pubkey, AElfConsensusTriggerInformation triggerInformation)
+    {
+        GenerateNextRoundInformation(currentRound, Context.CurrentBlockTime, out var nextRound);
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs (L26-32)
+```csharp
+        foreach (var minerInRound in minersMinedCurrentRound.OrderBy(m => m.FinalOrderOfNextRound))
+        {
+            var order = minerInRound.FinalOrderOfNextRound;
+            nextRound.RealTimeMinersInformation[minerInRound.Pubkey] = new MinerInRound
+            {
+                Pubkey = minerInRound.Pubkey,
+                Order = order,
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs (L79-84)
+```csharp
+        var firstMinerOfNextRound = nextRound.RealTimeMinersInformation.Values.First(i => i.Order == 1);
+        var extraBlockProducerOfCurrentRound = GetExtraBlockProducerInformation();
+        if (firstMinerOfNextRound.Pubkey == extraBlockProducerOfCurrentRound.Pubkey)
+        {
+            var secondMinerOfNextRound =
+                nextRound.RealTimeMinersInformation.Values.First(i => i.Order == 2);
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs (L76-80)
+```csharp
+        var firstTwoMiners = RealTimeMinersInformation.Values.Where(m => m.Order == 1 || m.Order == 2)
+            .ToList();
+
+        return Math.Abs((int)(firstTwoMiners[1].ExpectedMiningTime - firstTwoMiners[0].ExpectedMiningTime)
+            .Milliseconds());
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract.cs (L98-100)
+```csharp
+    public override Empty UpdateValue(UpdateValueInput input)
+    {
+        ProcessConsensusInformation(input);
+```
