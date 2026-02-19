@@ -1,0 +1,98 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: GetChainInitializationData()] [Malicious Consensus Info] Can GetInitialConsensusInformation() return attacker-controlled data that compromises side chain from genesis? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a113045-e9f3-42c4-bf0a-a4a5bfa1276f?mode=deep",
+    "timestamp": "2026-02-19 14:55:06.658102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: CreateDefaultOrganizationForIndexingFeePriceManagement()] [Organization Member List] At line 660-663, can organizationMembers list be empty or have only attacker address, allowing unilateral fee control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e7bacf1-d299-4a75-9914-c7623b58ab87?mode=deep",
+    "timestamp": "2026-02-19 14:55:28.713960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: CreateDefaultOrganizationForIndexingFeePriceManagement()] [Approval Threshold Attack] MinimalApprovalThreshold = organizationMembers.Count at line 641 - can this be manipulated to 0 if list is empty? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a85a917-9a98-4c75-840d-c3f9ee8d5393?mode=deep",
+    "timestamp": "2026-02-19 14:55:52.049238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ValidateAuthorityInfoExists()] [False Positive Validation] Can malicious ContractAddress return true for ValidateOrganizationExist with fake organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbb2df43-530b-4e0c-b8e2-bc9171d0a1df?mode=deep",
+    "timestamp": "2026-02-19 14:56:15.016022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Helper: ValidateParliamentOrganization()] [Organization Validation Bypass] Can a non-parliament organization pass validation if it mimics Parliament structure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_954f5524-e76b-427d-9bd9-ea12e9fe68a1?mode=deep",
+    "timestamp": "2026-02-19 14:56:38.761724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Cross-Function: CreateSideChain->DisposeSideChain] Can an attacker create and immediately dispose a side chain to lock tokens in virtual address without proper token return? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04be28df-e415-4bcf-a42b-433557ac8e5b?mode=deep",
+    "timestamp": "2026-02-19 14:57:03.009459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Cross-Function: RequestSideChainCreation->ReleaseSideChainCreation] Can attacker front-run ReleaseSideChainCreation to manipulate State.SideChainSerialNumber causing chainId conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d62f8690-2c9a-4261-ba59-dda776ecb80c?mode=deep",
+    "timestamp": "2026-02-19 14:57:28.358245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Cross-Function: ProposeCrossChainIndexing->ReleaseCrossChainIndexingProposal] Can attacker call ReleaseCrossChainIndexingProposal with chainIds not in pending proposals, causing revert and blocking legitimate releases? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_277079b5-d40b-43de-bb96-c84ed93bc82b?mode=deep",
+    "timestamp": "2026-02-19 14:57:53.851792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Cross-Function: AdjustIndexingFeePrice->IndexSideChainBlockData] Can rapid fee price changes between propose and release cause fee miscalculation for indexers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97bd567c-c40c-4c24-b00d-b23bc7f580f8?mode=deep",
+    "timestamp": "2026-02-19 14:58:20.287260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Cross-Function: Recharge->IndexSideChainBlockData] Can attacker recharge minimum amount to reactivate chain, get one block indexed with fee, then let it fall back into debt? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_932494a3-d6e0-4861-8b1d-4fbe0842ff33?mode=deep",
+    "timestamp": "2026-02-19 14:58:47.761288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [State: CurrentSideChainHeight] Can State.CurrentSideChainHeight be decremented or manipulated through reorganization attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e883bc7-605a-4d89-bc44-87534c9b8661?mode=deep",
+    "timestamp": "2026-02-19 14:59:17.050427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [State: IndexingPendingProposal] Can State.IndexingPendingProposal.Value become null unexpectedly, causing NullReferenceException in critical paths? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd52e503-3127-473d-8181-5a4c46204a7f?mode=deep",
+    "timestamp": "2026-02-19 14:59:47.005455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [State: ProposedSideChainCreationRequestState] Can this mapping grow unbounded with expired proposals if cleanup mechanism fails? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6104579e-956b-412b-8fae-812730e227de?mode=deep",
+    "timestamp": "2026-02-19 15:00:17.594684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [State: SideChainInfo] Can SideChainInfo be modified after Terminated status to resurrect dead chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b29dbf69-cd4c-4299-9e0a-10fa636959a5?mode=deep",
+    "timestamp": "2026-02-19 15:00:48.717583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [State: ParentChainTransactionStatusMerkleTreeRoot] Can merkle roots be overwritten for already-indexed parent chain heights, enabling double-spend? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05a423d5-e62e-4bd8-89d0-8a1da878c9b5?mode=deep",
+    "timestamp": "2026-02-19 15:01:20.056052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Reentrancy: TransferFrom] Can TransferFrom at line 173 in CreateSideChain trigger callback allowing reentrancy before state updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e197d1a-6cf4-4b9b-92e2-1e195e2f26bd?mode=deep",
+    "timestamp": "2026-02-19 15:01:51.999732",
+    "report_generated": false
+  }
+]
