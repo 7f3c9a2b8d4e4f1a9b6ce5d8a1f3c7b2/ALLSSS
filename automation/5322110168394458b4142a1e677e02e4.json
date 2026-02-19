@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Vote() Quadratic] [Cost Calculation] At line 102, amount = votingItem.TicketCost.Mul(currentVotesCount) - can an attacker exploit that cost is linear in vote count rather than quadratic, enabling cheaper vote buying than intended in quadratic voting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_918cc0f8-d24e-40d6-a22c-e6199305cbac?mode=deep",
+    "timestamp": "2026-02-19 05:32:19.216777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Vote() Quadratic] [Vote Count Persistence] QuadraticVotesCountMap at line 100 persists across withdrawals - if an attacker votes, withdraws, then votes again with the same VoteId, does the count continue incrementing or reset? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab5825bb-ae65-4ed3-82a2-fd4cc089eb17?mode=deep",
+    "timestamp": "2026-02-19 05:32:41.391739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Vote() Quadratic] [Amount Handling] In quadratic voting at line 99-102, the calculated amount is used for locking at line 129, but UpdateVotingResult at line 119 receives '1' not 'amount' - can this cause mismatch between locked tokens and recorded votes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3785e5c3-6e93-4cb5-b395-3fad92407af4?mode=deep",
+    "timestamp": "2026-02-19 05:33:03.633036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Vote() Quadratic] [Integer Precision] The multiplication at line 102 of TicketCost * currentVotesCount can lose precision if TicketCost has decimal places - can this cause rounding errors that accumulate over many votes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfdf87cd-2fe4-46ed-9ec0-2c42f3083789?mode=deep",
+    "timestamp": "2026-02-19 05:33:26.941893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Vote() Quadratic] [Sybil Resistance] Can an attacker create many VoteIds and vote once with each to bypass the increasing cost of quadratic voting, since each VoteId starts with QuadraticVotesCountMap[voteId]=0? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23fe0ee6-0e07-4be8-b3f9-1d47fe10432a?mode=deep",
+    "timestamp": "2026-02-19 05:33:50.778970",
+    "report_generated": false
+  }
+]
