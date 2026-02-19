@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Path Completeness] [Missing Event Emission Paths] If Transfer or TransferFrom emit events that modify event storage state, are these paths declared, or could parallel transactions corrupt event state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3810d1f-311a-4789-bfd7-cc127bb02fc1?mode=deep",
+    "timestamp": "2026-02-19 10:47:03.933486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Path Completeness] [Cross-Contract Call Paths] If token transfers trigger callbacks to recipient contracts (e.g., ERC777 hooks), are recipient contract state modifications declared in paths? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87ee4e3f-8c17-4bb4-8ec4-8fe4d6b04de7?mode=deep",
+    "timestamp": "2026-02-19 10:47:26.473950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Path Completeness] [Reentrancy Paths] If Transfer or TransferFrom can cause reentrant calls back to the token contract, are paths for reentrant state access properly declared? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a8d4920-e117-4ef6-9e3a-18d4603649a8?mode=deep",
+    "timestamp": "2026-02-19 10:47:49.018105",
+    "report_generated": false
+  }
+]
