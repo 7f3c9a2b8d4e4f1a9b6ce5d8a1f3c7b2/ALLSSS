@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Mint()] [Authorization Bypass] Can an unauthorized caller mint NFTs if the minter list is empty or improperly initialized, bypassing the permission check in PerformMint() and allowing arbitrary token creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a6f8e6c-d4b9-4377-8715-b42eb486eeba?mode=deep",
+    "timestamp": "2026-02-19 14:11:43.776343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Mint()] [Metadata Validation] Can an attacker inject malicious metadata keys that bypass AssertMetadataKeysAreCorrect() validation if the validation logic is incomplete, potentially corrupting protocol-level metadata or overwriting reserved keys? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2555c92-3fbf-4287-8a92-d0060d946548?mode=deep",
+    "timestamp": "2026-02-19 14:12:05.848362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Mint()] [Null Input Handling] Can an attacker pass a null MintInput or null Metadata that causes the function to skip validation at line 14, allowing minting with unvalidated or default parameters that violate protocol constraints? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7cdd8df7-10de-4cc3-a043-0b4ea48c2a1a?mode=deep",
+    "timestamp": "2026-02-19 14:12:28.207562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Mint()] [Supply Inflation] If PerformMint() is called with Quantity=0 or negative values, can it bypass supply tracking updates while still minting tokens, causing supply accounting mismatches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13cf7800-2286-45a3-9e05-2934eda8da54?mode=deep",
+    "timestamp": "2026-02-19 14:12:51.100746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Transfer()] [Reentrancy Attack] Can an attacker exploit the event emission at line 25 before state updates complete in DoTransfer(), creating a reentrancy vector if the Transferred event triggers external contract calls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2c13837-588c-4b9a-b8dc-e1e83ce868e9?mode=deep",
+    "timestamp": "2026-02-19 14:13:15.197714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Transfer()] [Self-Transfer Exploitation] Can an attacker transfer to their own address (Context.Sender == input.To) to manipulate balance states, bypass locks, or generate fraudulent transfer events without actual token movement? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_499ccb94-3e64-498b-b962-df6720c60e91?mode=deep",
+    "timestamp": "2026-02-19 14:13:40.844094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Transfer()] [Zero Address Transfer] Can tokens be transferred to the zero address (Address.Zero) as there's no validation of input.To, effectively burning tokens without updating supply metrics and breaking accounting invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d7c516a-de09-4f4e-ad26-eac3592ee4e0?mode=deep",
+    "timestamp": "2026-02-19 14:14:06.324485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Transfer()] [Token Hash Collision] Can an attacker craft a Symbol and TokenId combination that produces a hash collision with existing tokens via CalculateTokenHash(), allowing unauthorized transfers of different NFTs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_182f2b00-7025-4e7f-98b9-febbc80a0656?mode=deep",
+    "timestamp": "2026-02-19 14:14:32.705719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Transfer()] [Amount Overflow] What happens if input.Amount is set to long.MaxValue and causes an overflow in DoTransfer's Add() operation at line 54, potentially corrupting recipient balance state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1531f59-938e-4dbd-985b-eaa715740b67?mode=deep",
+    "timestamp": "2026-02-19 14:15:00.221658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: DoTransfer()] [Race Condition] Can two concurrent transfers from the same address create a race condition in balance checking at line 52 and subtraction at line 53, allowing double-spending if state reads aren't atomic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63f2b1e6-a5bb-43eb-ba50-5303f4a25b74?mode=deep",
+    "timestamp": "2026-02-19 14:15:28.607475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: DoTransfer()] [Insufficient Balance Edge Case] At line 52, if State.BalanceMap[tokenHash][from] returns null/uninitialized, does the comparison fail safely or allow transfers with insufficient balance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_730b058d-d93e-47d8-a215-da3890e9d2b5?mode=deep",
+    "timestamp": "2026-02-19 14:16:00.963754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: DoTransfer()] [Integer Underflow] Can the Sub() operation at line 53 cause an underflow if the balance map returns an unexpected value, potentially wrapping to a large positive number? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98e32407-b251-42f7-8dcb-120002856077?mode=deep",
+    "timestamp": "2026-02-19 14:16:29.638359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: DoTransfer()] [Early Return Bypass] At line 50, if amount==0 causes an early return, can this be exploited to emit fake transfer events in the calling function without actually performing validation or state changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79246bde-e2c8-42da-8df8-af8ca016cdaa?mode=deep",
+    "timestamp": "2026-02-19 14:16:56.427082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: DoTransfer()] [Balance State Corruption] Can the Add() operation at line 54 overflow if the recipient's balance is near long.MaxValue, corrupting the recipient's balance state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae851180-db83-4c4d-8c38-6685c4b08c9c?mode=deep",
+    "timestamp": "2026-02-19 14:17:23.219203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Operator Bypass] Can an attacker become an operator without proper authorization if State.OperatorMap[input.Symbol][input.From] is null or uninitialized at line 60, causing isOperator to default to false incorrectly? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8eb7c19c-3d23-4494-b460-23101fb89f29?mode=deep",
+    "timestamp": "2026-02-19 14:17:50.710264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Allowance Underflow] At line 66, if the allowance subtraction using Sub() underflows due to concurrent TransferFrom calls, can it result in negative allowances or bypass the allowance check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9195b32f-7daf-4af9-9b8f-6796a2d1ad34?mode=deep",
+    "timestamp": "2026-02-19 14:18:18.212574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Operator Privilege Escalation] If an attacker is added to the operator list for a symbol, can they transfer ANY token of that symbol from ANY owner without allowance checks, violating per-token access control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5621cab-649e-49cc-b636-9d61c094b1ef?mode=deep",
+    "timestamp": "2026-02-19 14:18:46.446382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Allowance Check Bypass] At lines 62-67, if isOperator is true, allowance checks are entirely skipped - can a malicious operator drain all tokens of a symbol without any approval limits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d02d8f0-69c4-4f60-98c6-dd8fcc86e8fb?mode=deep",
+    "timestamp": "2026-02-19 14:19:18.692131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Null Owner Exploitation] Can input.From be set to a null or uninitialized address to manipulate the operator or allowance map lookups, bypassing security checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77ebe76a-f89b-44d0-bce9-4b141aa32e6b?mode=deep",
+    "timestamp": "2026-02-19 14:19:47.419494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Double Transfer Event] Can an attacker call TransferFrom with amount=0 to emit transfer events without actually moving tokens, creating misleading on-chain history? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_908cb592-95f4-464b-90a0-82b874402745?mode=deep",
+    "timestamp": "2026-02-19 14:20:17.993355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: TransferFrom()] [Allowance Race Condition] Between checking allowance at line 65 and updating it at line 66, can another transaction consume the same allowance, causing a double-spend scenario? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3515d3d-0d2a-44bc-a25c-7400d7b08d9c?mode=deep",
+    "timestamp": "2026-02-19 14:20:47.269107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Burn()] [Authorization Double-Check] At lines 91-92, the function requires BOTH sufficient balance AND minter status - can a non-minter with balance be unable to burn their own tokens, violating user ownership rights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8e1400a-7ed9-405d-b4f8-f45e259c3c92?mode=deep",
+    "timestamp": "2026-02-19 14:21:13.969923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Burn()] [Supply Accounting Mismatch] At lines 95-96, both nftProtocolInfo.Supply and nftInfo.Quantity are decremented - can desynchronization between these values occur if one update fails, causing supply tracking corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc938d4d-ada2-4c6e-b345-06cd5b6c50c5?mode=deep",
+    "timestamp": "2026-02-19 14:21:44.703415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Burn()] [Burn State Inconsistency] At line 99, if nftInfo.Quantity reaches 0 and IsTokenIdReuse is false, IsBurned is set to true - can this token still be reminted due to incomplete cleanup, causing duplicate tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83277bdd-80bd-4167-9d2c-3c51cdf1d963?mode=deep",
+    "timestamp": "2026-02-19 14:22:12.870878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Burn()] [Minter List Bypass] Can an empty minterList at line 89 allow anyone to burn tokens since the Contains() check at line 92 would always be false, bypassing the permission check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_507f59b9-d5ef-48c8-be70-80f3105e0453?mode=deep",
+    "timestamp": "2026-02-19 14:22:46.031553",
+    "report_generated": false
+  }
+]
