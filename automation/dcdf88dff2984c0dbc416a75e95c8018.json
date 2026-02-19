@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Integer Underflow] At line 113, round.RoundNumber.Sub(1) is used to access previous round - if round.RoundNumber is 0, can this underflow causing access to round -1 or a wrapped-around large positive number? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_478a7348-02d4-47ca-a687-7275fb7a328d?mode=deep",
+    "timestamp": "2026-02-19 13:06:50.619194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Secret Sharing Leak] The SecretSharingInformation event at lines 110-115 fires whenever roundNumber > 1 and IsMinerListJustChanged is false - can attackers trigger this repeatedly to leak previous round secrets before they should be revealed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0a3bb63-7932-438d-9971-dded8b054738?mode=deep",
+    "timestamp": "2026-02-19 13:07:12.591941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [State Inconsistency] At lines 113-114, State.Rounds[round.RoundNumber.Sub(1)] is accessed multiple times - if another transaction modifies this round between accesses, could inconsistent round data be included in the SecretSharingInformation event? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99884ed5-b9cd-4703-87ee-cbc12236c110?mode=deep",
+    "timestamp": "2026-02-19 13:07:34.807240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [DOS via Memory] The comment at line 107 says 'No need to share secret pieces if miner list just changed', but the condition at line 107 only checks !round.IsMinerListJustChanged - can attackers set IsMinerListJustChanged=false on every round to force secret sharing events on every round, exhausting memory? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9dffd10c-0551-4c72-929f-246d064a9795?mode=deep",
+    "timestamp": "2026-02-19 13:07:57.448869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Round Removal Logic] At line 118, roundNumberToRemove = round.RoundNumber.Sub(KeepRounds) - if round.RoundNumber < KeepRounds, can this result in removing round 0 or negative rounds, or does .Sub() prevent underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdcddfae-9341-45bb-bc43-a04f4ebefeff?mode=deep",
+    "timestamp": "2026-02-19 13:08:21.773981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Conditional Removal] Lines 119-123 only remove old rounds when GetMaximumBlocksCount() == MaximumTinyBlocksCount - can attackers manipulate GetMaximumBlocksCount() to prevent round removal, causing unbounded state growth and eventual storage exhaustion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cdd35c4-adcf-41f8-870f-082392c6e852?mode=deep",
+    "timestamp": "2026-02-19 13:08:46.870225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Boundary Check] The check roundNumberToRemove > 1 at line 120 means round 1 is never removed, but what prevents attackers from adding duplicate round 1 data multiple times, corrupting the first round information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd60758d-08c1-4a29-bb25-fe1e117d7af3?mode=deep",
+    "timestamp": "2026-02-19 13:09:12.772271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Authorization Missing] This function has no access control - can unauthorized callers add arbitrary round information, injecting fake miner lists, time slots, or consensus data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfba1afa-cdc0-4c1e-9933-5163a455731b?mode=deep",
+    "timestamp": "2026-02-19 13:09:39.706775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Event Replay] Can the SecretSharingInformation event at lines 110-115 be triggered multiple times for the same round by re-adding round information, allowing observers to collect duplicate secret shares? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e50cf56b-d916-432e-bad2-f566a45df8bf?mode=deep",
+    "timestamp": "2026-02-19 13:10:07.044038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Previous Round Access] At line 113, accessing State.Rounds[round.RoundNumber.Sub(1)] assumes the previous round exists - if it was already removed by the cleanup logic at line 123, will this return null/empty causing the event to contain invalid previous round data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0911391-6bbd-4459-ae44-e92a95e4aac7?mode=deep",
+    "timestamp": "2026-02-19 13:10:35.709383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundInformation()] [Null Check Issue] At line 129, the function checks if ri == null and returns false, but State.Rounds.Set() at line 130 is called regardless - if ri is null, does this create a new round entry instead of updating an existing one? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_378a21a3-44d9-42e6-be8d-dcc4aaa7c1e8?mode=deep",
+    "timestamp": "2026-02-19 13:11:03.911953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundInformation()] [Silent Overwrite] If ri is not null but is different from the input round parameter, the function silently overwrites it without validation - can attackers replace legitimate round information with malicious data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_708ea46f-ad59-49b3-b10b-38876af0c893?mode=deep",
+    "timestamp": "2026-02-19 13:11:31.976812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundInformation()] [Missing Authorization] Like AddRoundInformation, this function has no access control - can anyone update round information for any round number, corrupting consensus state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c25ba493-f21b-44c0-ae9f-d00c8ffe6d9b?mode=deep",
+    "timestamp": "2026-02-19 13:12:00.585030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundInformation()] [Return Value Ambiguity] The function returns false when ri is null, but what does true mean - that the round existed before or that the update succeeded? Can callers misinterpret this? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7732d70f-7638-4c0f-82b7-544d83376903?mode=deep",
+    "timestamp": "2026-02-19 13:12:30.701934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundInformation()] [Race Condition] Between reading ri at line 128 and setting the new round at line 130, could another transaction modify State.Rounds[round.RoundNumber], causing a lost update? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a339f7bd-d836-41a2-ab02-812dd9140e05?mode=deep",
+    "timestamp": "2026-02-19 13:13:00.820269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [Block Height Collision] The assertion at line 136 prevents execution when LatestExecutedHeight equals CurrentHeight - but what if multiple independent methods call this helper in the same block? Will only the first method succeed, blocking legitimate operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b22d1c60-cf1f-47c7-8eae-cea3c1e35b1d?mode=deep",
+    "timestamp": "2026-02-19 13:13:29.458081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [Generic Error Message] The assertion message 'Cannot execute this tx.' at line 136 doesn't specify which transaction or method is affected - can this make debugging difficult and hide the actual cause of consensus failures? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_adf38be5-b44e-4a7c-b198-2ec0a9bcc926?mode=deep",
+    "timestamp": "2026-02-19 13:13:59.126011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [State Update Timing] State.LatestExecutedHeight.Value is updated at line 137 after the assertion - if the assertion passes but the transaction reverts later, will LatestExecutedHeight still be updated, preventing retry in the same block? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a50ff96-6a25-4b2f-b25b-3278b267194f?mode=deep",
+    "timestamp": "2026-02-19 13:14:28.528330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [DOS Attack] Can an attacker deliberately call methods using this helper to set LatestExecutedHeight, then causing all subsequent calls in the same block to fail, effectively blocking consensus operations for that block? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e54cf761-dd8d-4215-8ede-ca52316ea222?mode=deep",
+    "timestamp": "2026-02-19 13:14:56.260271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [Initialization Issue] If LatestExecutedHeight is never initialized (defaults to 0), will the first call at block height 0 fail, or will it only activate after the first successful execution? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17d4e7b8-32ad-4e68-8bbb-ae7b76e6d1c9?mode=deep",
+    "timestamp": "2026-02-19 13:15:25.163241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [Cross-Method Coordination] If multiple different methods rely on this helper, does it enforce that only ONE method across the entire contract executes per block, or should it be per-method? If global, this creates severe DOS risks. (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6f7e637-3e8a-4fae-a04e-6a200e32b44c?mode=deep",
+    "timestamp": "2026-02-19 13:15:53.689251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTokenContractAddressSet()] [Contract Address Spoofing] At line 144, GetContractAddressByName is called with a string constant - can an attacker register a malicious contract with the same name before initialization, causing TokenContract.Value to point to an attacker-controlled contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0189914-1b5c-42a0-9cc5-7d4027a4de1f?mode=deep",
+    "timestamp": "2026-02-19 13:16:21.513327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTokenContractAddressSet()] [Lazy Initialization Race] The null check at line 142 and assignment at line 143-144 are not atomic - can multiple concurrent calls cause GetContractAddressByName to be invoked multiple times, potentially with different results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3f43d7e-170d-46e2-8721-3812d8b1095c?mode=deep",
+    "timestamp": "2026-02-19 13:16:49.909992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTokenContractAddressSet()] [No Validation] After retrieving the contract address, there's no validation that it's a valid token contract - could GetContractAddressByName return null or an incorrect address, causing all token operations to fail silently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97946faf-5170-4fc9-a1a2-6f4a813105f0?mode=deep",
+    "timestamp": "2026-02-19 13:17:18.507427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTokenContractAddressSet()] [Immutability Issue] Once State.TokenContract.Value is set at line 143, it cannot be updated - if the token contract needs to be upgraded or migrated, will consensus be permanently stuck with the old contract address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae339d32-18a6-4ab4-8b5f-284b8ce27915?mode=deep",
+    "timestamp": "2026-02-19 13:17:46.932331",
+    "report_generated": false
+  }
+]
