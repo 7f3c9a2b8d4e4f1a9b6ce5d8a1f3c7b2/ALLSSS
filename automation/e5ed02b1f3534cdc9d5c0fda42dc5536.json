@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Race] Can multiple concurrent calls to functions that invoke RequiredMethodFeeControllerSet() cause race conditions where the controller is initialized multiple times with different values, leading to inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9297bc79-7e6c-471a-83c5-cacfbb029f4c?mode=deep",
+    "timestamp": "2026-02-19 13:42:00.974491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Default Authority] If State.ParliamentContract.GetDefaultOrganizationAddress returns a zero address or invalid address at line 59, will this create a permanently broken controller that cannot authorize any fee changes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa559caa-2d34-4993-9caa-925c50e2128f?mode=deep",
+    "timestamp": "2026-02-19 13:42:22.850877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Lazy Initialization] Can an attacker exploit the lazy initialization pattern by calling GetMethodFeeController() or SetMethodFee() before the Parliament contract is properly deployed, forcing initialization with invalid default values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90a0fd9c-cad9-43fb-8e30-b70289f46f08?mode=deep",
+    "timestamp": "2026-02-19 13:42:44.949054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Contract Dependency] If Context.GetContractAddressByName() returns null or an invalid address for the Parliament contract at lines 54-55, will the subsequent call to GetDefaultOrganizationAddress at line 59 fail, and how does this affect the initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9df01ed6-3c16-463b-8ed1-66f9c4d3c968?mode=deep",
+    "timestamp": "2026-02-19 13:43:07.613959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Manipulation] Can an attacker front-run the first legitimate transaction that triggers RequiredMethodFeeControllerSet() to ensure the Parliament contract returns a malicious default organization address, gaining permanent control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d3a8cdc-158b-48f9-b3ed-1e37ce2b8b28?mode=deep",
+    "timestamp": "2026-02-19 13:43:31.212995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Early Return] The early return at line 52 when State.MethodFeeController.Value != null means the controller can never be reinitialized - can this lead to issues if the controller becomes invalid or compromised? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8240fd8-3ffb-4553-a077-751b098c7f7c?mode=deep",
+    "timestamp": "2026-02-19 13:43:56.661558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Cross-Contract Call] Can a malicious Parliament contract return different addresses for GetDefaultOrganizationAddress() on different calls, creating inconsistency in which organization controls method fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bc7fff4-4403-43cc-b1f4-266a85a0bf3a?mode=deep",
+    "timestamp": "2026-02-19 13:44:21.828297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Immutability] Once State.MethodFeeController.Value is set, it can only be changed via ChangeMethodFeeController() - if the default organization is compromised during initialization, can this compromise be fixed without breaking authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8f53d65-ae02-40ef-8c93-8a04f03151c9?mode=deep",
+    "timestamp": "2026-02-19 13:44:47.631013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Null Check Logic] The null check at line 52 only checks if the value is not null - could State.MethodFeeController.Value be set to a non-null but invalid AuthorityInfo object that bypasses this check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_542a7061-7d1e-4764-b2ff-84a6a90c4310?mode=deep",
+    "timestamp": "2026-02-19 13:45:15.681435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Parliament Contract Cache] Why is State.ParliamentContract.Value cached at line 53-55? Could an attacker exploit the timing between contract deployment and this caching to inject a malicious Parliament contract address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29e4d056-b565-4bd6-a288-2048c25f5a80?mode=deep",
+    "timestamp": "2026-02-19 13:45:42.904450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Null Return] If State.TransactionFees[input.Value] has never been set, will this return null at line 37, and can calling code handle null returns safely, or will this cause downstream errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_277d2962-5d88-48ca-add7-2779db8cfa6f?mode=deep",
+    "timestamp": "2026-02-19 13:46:10.971223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Input Validation] If input.Value is null, empty, or contains special characters, can this cause unexpected behavior in the state lookup, potentially returning fees for the wrong method? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_088d2c24-7474-4784-913d-2c2ed81e577c?mode=deep",
+    "timestamp": "2026-02-19 13:46:40.960391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [State Consistency] If fees are updated via SetMethodFee() during a GetMethodFee() call, is there any guarantee of read consistency, or could this return stale or partially updated fee data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0e564f1-eb0d-4cbe-b8fb-65d0c14be2ae?mode=deep",
+    "timestamp": "2026-02-19 13:47:11.685325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Missing Validation] Should GetMethodFee() validate that the returned MethodFees object contains valid token symbols and non-negative amounts before returning, to prevent returning corrupted fee data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37c2e373-282e-40f8-86f6-cc95ce37d8d7?mode=deep",
+    "timestamp": "2026-02-19 13:47:43.262922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [Side Effect Initialization] Calling GetMethodFeeController() triggers RequiredMethodFeeControllerSet() at line 42 - can an attacker exploit this to force controller initialization at an inopportune time, such as before the Parliament contract is ready? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c709043-eb43-4c6c-b875-0cae75528b12?mode=deep",
+    "timestamp": "2026-02-19 13:48:15.266042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [View Function State Change] GetMethodFeeController() is a view function but can modify state through RequiredMethodFeeControllerSet() - does this violate the principle that view functions should be read-only, and can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_281407e7-40b2-436b-8d72-ddb0686e38c9?mode=deep",
+    "timestamp": "2026-02-19 13:48:45.844439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [Null Return] Can State.MethodFeeController.Value still be null after RequiredMethodFeeControllerSet() is called at line 42 if initialization fails, causing a null reference when the result is accessed by calling code? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af7a3f8e-34a4-4acd-a085-c6fabe55c6dd?mode=deep",
+    "timestamp": "2026-02-19 13:49:16.775283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [Initialization Timing] Can calling GetMethodFeeController() very early in contract lifecycle cause different initialization results compared to waiting for normal usage, creating timing-dependent authorization issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0546e640-1255-4d07-b146-8bd1eb55e88c?mode=deep",
+    "timestamp": "2026-02-19 13:49:48.296936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Cross-Contract Trust] The function at lines 73-75 blindly trusts the response from authorityInfo.ContractAddress - can a malicious contract always return true to bypass organization validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be6d7302-d7b9-4031-9bf3-cde760857fab?mode=deep",
+    "timestamp": "2026-02-19 13:50:19.256425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Call Failure] If the Context.Call() at line 73 fails or throws an exception, will this be caught and returned as false, or will it cause the entire transaction to revert? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60b477c5-358b-4bad-ab24-6924864a69ca?mode=deep",
+    "timestamp": "2026-02-19 13:50:45.886129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Null Input] If authorityInfo.ContractAddress is null or authorityInfo.OwnerAddress is null, will Context.Call() handle this gracefully or cause a contract failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aef38a0c-b864-4bf2-8ec3-1b430efbff9e?mode=deep",
+    "timestamp": "2026-02-19 13:51:12.230007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Reentrancy Vector] Can the contract at authorityInfo.ContractAddress perform a reentrancy attack during the ValidateOrganizationExist call, calling back into EconomicContract functions before CheckOrganizationExist returns? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a120041-a76c-4553-a105-1eaa3a45afe6?mode=deep",
+    "timestamp": "2026-02-19 13:51:38.924146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Value Manipulation] Can a malicious contract return a BoolValue with Value=true for any input, bypassing the organization existence check and allowing unauthorized controller changes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5b8082d-71c9-4f00-b2fa-0c3573b66261?mode=deep",
+    "timestamp": "2026-02-19 13:52:08.238025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Contract Interface] Is there any verification that authorityInfo.ContractAddress actually implements the ValidateOrganizationExist method, or will calling a contract without this method cause a failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d8bdd19-392d-4f01-8687-571a2a6baf35?mode=deep",
+    "timestamp": "2026-02-19 13:52:38.192841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Gas Limit] Can the contract at authorityInfo.ContractAddress consume excessive gas during ValidateOrganizationExist, causing CheckOrganizationExist() to fail and preventing legitimate controller changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_813b4650-5cfc-44a0-9cff-d7f052bd7290?mode=deep",
+    "timestamp": "2026-02-19 13:53:10.162076",
+    "report_generated": false
+  }
+]
