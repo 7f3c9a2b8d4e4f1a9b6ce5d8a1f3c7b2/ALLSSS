@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Edge Case] [Gas Limits] Can setting fees for methods with names near gas limit cause transaction failure? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bbb8c47-ea8a-4997-9a67-ba9e04ab2dce?mode=deep",
+    "timestamp": "2026-02-19 12:34:40.514278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Edge Case] [Storage Collision] Can method name hash collide with other state variable keys? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9eefabae-693f-4a13-9b2c-3c337269d9c5?mode=deep",
+    "timestamp": "2026-02-19 12:35:02.621255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Front-Running] Can attacker monitor mempool for SetMethodFee transactions and front-run with ChangeMethodFeeController to gain control before fees are set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5aa1553a-6b97-4eb3-b5d2-71332a699560?mode=deep",
+    "timestamp": "2026-02-19 12:35:25.198979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Sandwich Attack] Can attacker sandwich legitimate ChangeMethodFeeController between two SetMethodFee calls to set malicious fees during controller transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ee7b4a0-b924-4ed2-b01a-42cfc1b5ff13?mode=deep",
+    "timestamp": "2026-02-19 12:35:48.476003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Time Delay] If there's governance time delay, can attacker change fees after proposal approval but before execution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_545354b0-1a18-4947-93f2-6c834d2e5e1b?mode=deep",
+    "timestamp": "2026-02-19 12:36:12.427766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Organization Takeover] If attacker gains control of controller organization, can they set all fees to maximum and DoS contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e87a8510-c5a0-483a-ad39-c07d34e95f47?mode=deep",
+    "timestamp": "2026-02-19 12:36:38.005477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Token Manipulation] Can attacker create custom token, get it whitelisted through compromised governance, then set excessive fees in that token? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f824fe03-e3c6-44f7-9304-9e689b9e7715?mode=deep",
+    "timestamp": "2026-02-19 12:37:03.537318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [State Rollback] If blockchain reorganization occurs, can fee changes be rolled back while dependent operations persist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6644bb2-d1c8-4154-9314-8d72467bdd1c?mode=deep",
+    "timestamp": "2026-02-19 12:37:30.059568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Contract Upgrade] If TokenHolderContract is upgraded, can attacker exploit migration to reset or manipulate fee controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa8b8f65-8ad2-4101-af27-8654926d8233?mode=deep",
+    "timestamp": "2026-02-19 12:37:57.394154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Cross-Contract] Can attacker exploit interaction between TokenHolder and MultiToken contracts to bypass fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9db28f09-9b19-4eb2-92ac-f70f1fcda0c4?mode=deep",
+    "timestamp": "2026-02-19 12:38:28.557131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Attack Scenario] [Batch Exploitation] Can attacker submit batch of transactions exploiting race conditions across multiple functions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a06eeb00-4fc9-42ed-a518-34c64ce1b2ec?mode=deep",
+    "timestamp": "2026-02-19 12:39:01.267534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [State Management] [Stale References] Can State.TokenContract.Value or State.ParliamentContract.Value become stale if system contracts are upgraded? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94c41e6c-ec1c-4e84-96af-ca673fe8bdb3?mode=deep",
+    "timestamp": "2026-02-19 12:39:34.012965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [State Management] [State Migration] If State.TransactionFees format changes, is there migration path without breaking existing fee configurations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a026e8a-d8e9-4545-827e-2ae52e31cddf?mode=deep",
+    "timestamp": "2026-02-19 12:40:05.677356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [State Management] [State Deletion] Can method fees be deleted by setting them to null, and is this secure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e5f2bbe-3070-487f-a3dd-4842271116e2?mode=deep",
+    "timestamp": "2026-02-19 12:40:33.172495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [State Management] [State Overflow] Is there limit\n\n### Citations\n\n**File:** contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs (L1-90)\n```csharp\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS1;\nusing AElf.Standards.ACS3;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.TokenHolder;\n\npublic partial class TokenHolderContract\n{\n    public override Empty SetMethodFee(MethodFees input)\n    {\n        foreach (var methodFee in input.Fees) AssertValidToken(methodFee.Symbol, methodFee.BasicFee);\n        RequiredMethodFeeControllerSet();\n\n        Assert(Context.Sender == State.MethodFeeController.Value.OwnerAddress,",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_430626cc-632e-4bd3-9da7-38a678bde5ee?mode=deep",
+    "timestamp": "2026-02-19 12:41:01.615744",
+    "report_generated": false
+  }
+]
