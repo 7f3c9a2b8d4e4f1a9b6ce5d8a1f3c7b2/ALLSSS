@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Economics] Can controller set methodFee.BasicFee to maximum value in foreach at line 12, making methods prohibitively expensive and DOSing contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf23aa83-d41d-43ef-a3e0-121f1a1ab1e8?mode=deep",
+    "timestamp": "2026-02-19 12:59:42.604422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Distribution] Does SetMethodFee at line 16 validate that fees will be correctly collected and distributed according to AElf's fee model? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4456d261-d0dd-4dde-8525-3a67a21750c2?mode=deep",
+    "timestamp": "2026-02-19 13:00:04.519702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Interface Compliance] Does CheckOrganizationExist verify that ValidateOrganizationExist at line 73 returns valid BoolValue before accessing .Value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9b79365-4f36-43a5-9284-8de12e464b8e?mode=deep",
+    "timestamp": "2026-02-19 13:00:26.650385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Interface Compliance] Does AssertValidToken verify that IsTokenAvailableForMethodFee at line 83 returns valid BoolValue before accessing .Value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38436bcf-cef2-49ff-a39b-72a10b40e767?mode=deep",
+    "timestamp": "2026-02-19 13:00:49.306168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Interface Compliance] Does RequiredMethodFeeControllerSet verify that GetDefaultOrganizationAddress at line 58 returns valid Address before using? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86de4215-d961-4033-b8d5-77d1fb677d0a?mode=deep",
+    "timestamp": "2026-02-19 13:01:12.996619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [State: Contract References] [Upgrade Path] If Parliament or Token contracts are upgraded, can State.ParliamentContract.Value and State.TokenContract.Value be updated without breaking functionality? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52ebd4f0-20bd-4eb8-abfe-ee332188115f?mode=deep",
+    "timestamp": "2026-02-19 13:01:38.434015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Migration] Can ChangeMethodFeeController migrate from Parliament default to custom organization without leaving orphaned proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_028eb9b4-2834-4c55-a71b-ad8678869de3?mode=deep",
+    "timestamp": "2026-02-19 13:02:05.176865",
+    "report_generated": false
+  }
+]
