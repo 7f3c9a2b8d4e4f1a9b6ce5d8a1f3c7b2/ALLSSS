@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: MinimalApprovalThreshold + MinimalVoteThresholdThreshold] [Combined Threshold] With 80% participation (8000) required and 66.67% approval (6667) required, does consuming code correctly calculate that proposals need 53.36% absolute approval (0.8 * 0.6667)? If not, can proposals pass with only 66.67% of 80% participants while claiming supermajority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f4994ab-18ca-4999-a791-f4c1a114b9c0?mode=deep",
+    "timestamp": "2026-02-19 06:46:30.689797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: MaximalAbstentionThreshold + MaximalRejectionThreshold + MinimalApprovalThreshold] [Threshold Gaming] Can voters collude to cast exactly 10% abstention and 10% rejection (consuming MaximalAbstentionThreshold and MaximalRejectionThreshold) while ensuring remaining 80% contains 66.67% approval, enabling proposals to pass at minimum thresholds without safety margin? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d82abba-e1d9-4c88-9ae5-8ff39d044039?mode=deep",
+    "timestamp": "2026-02-19 06:46:53.186971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: All Thresholds] [Const Immutability Risk] Since all threshold constants are hardcoded and immutable, if an attacker discovers mathematical edge cases in threshold relationships (e.g., approval 6667 + abstention 1000 + rejection 1000 = 8667, leaving 1333 basis points unaccounted), can governance system be upgraded to fix threshold bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f8e3d36-48d0-45a1-b361-c91001617b6a?mode=deep",
+    "timestamp": "2026-02-19 06:47:15.797389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: MinimalApprovalThreshold + MinimalVoteThresholdThreshold] [Quorum Bypass] If MinimalVoteThresholdThreshold (80%) checks participation but MinimalApprovalThreshold (66.67%) checks approval of participants only, can attackers ensure exactly 80% participation where 83.3% of participants approve (66.67% * 80% = 53.33% absolute), passing proposals with bare minimum support? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0400063a-1135-4b9d-b503-580f20bb20a3?mode=deep",
+    "timestamp": "2026-02-19 06:47:38.854316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: ContractProposalExpirationTimePeriod + All Voting Thresholds] [Expiration Race] During the 259200-second proposal window, if vote counts change due to token transfers affecting voting power, can attackers time token movements to ensure threshold checks (6667, 1000, 1000, 8000) are met at expiration moment but weren't met during majority of voting period? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_393af540-fa83-4d2c-94c1-103b7f563356?mode=deep",
+    "timestamp": "2026-02-19 06:48:03.302714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: DefaultCodeCheckProposalExpirationTimePeriod + MinimalApprovalThreshold] [Fast-Track Attack] With code check proposals expiring in 900 seconds, is there sufficient time for 66.67% approval voting? If network latency causes vote delays, can attackers exploit the short window where threshold validation fails due to timing, not actual vote counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddfb2c42-f5e4-4aff-91f8-e93a492acdf9?mode=deep",
+    "timestamp": "2026-02-19 06:48:27.930924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: All] [Upgrade Impossibility] Since all six constants are compile-time const values, if any threshold proves inadequate during live exploitation (e.g., 15-minute code check is too short), can the governance system respond? Or does fixing require contract redeployment with potential state migration risks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b61432f6-e330-42aa-a5db-03f64442a34b?mode=deep",
+    "timestamp": "2026-02-19 06:48:55.753233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: All] [Cross-Chain Incompatibility] If these constants are referenced by cross-chain bridges or side-chain contracts expecting configurable parameters, can discrepancies in threshold values between chains cause governance decisions to succeed on main chain but fail on side chains, creating inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00625948-8fdd-4def-9980-f2ea5f31ba61?mode=deep",
+    "timestamp": "2026-02-19 06:49:22.531039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: ContractProposalExpirationTimePeriod] [Network Condition Mismatch] The 259200-second (72 hour) expiration assumes consistent block production. During network degradation or consensus failures, can proposal expiration times drift significantly from wall-clock time, either expiring proposals too early or keeping them open too long? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fa31708-5278-4dc6-8e9c-3c2f1aef185f?mode=deep",
+    "timestamp": "2026-02-19 06:49:54.507517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: DefaultCodeCheckProposalExpirationTimePeriod] [Emergency Response] If a critical vulnerability requires emergency code patch deployment, is the 900-second minimum expiration for code check proposals sufficient? Or can attackers exploit the forced delay to continue attacking while patches are pending? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ced28ffa-2b0b-43aa-93a0-99193df0c916?mode=deep",
+    "timestamp": "2026-02-19 06:50:27.394830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: MinimalApprovalThreshold, MaximalAbstentionThreshold, MaximalRejectionThreshold] [Basis Point Confusion] All threshold constants use basis points (10000 = 100%). If consuming contracts mix basis points with percentage values, can calculation errors cause thresholds to be enforced at 100x wrong magnitude (e.g., requiring 6667% instead of 66.67%)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_43012b1a-2aa1-40eb-a1a9-c6e8971f613c?mode=deep",
+    "timestamp": "2026-02-19 06:50:55.090191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Participation Calculation] If MinimalVoteThresholdThreshold (8000) represents 80% participation but consuming code calculates total_votes / eligible_voters without handling newly registered or removed voters during voting period, can participation percentage be computed incorrectly, allowing proposals to pass with insufficient participation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76dd6220-4bcd-428f-971f-bd3739a5659c?mode=deep",
+    "timestamp": "2026-02-19 06:51:24.600023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: All] [Public Visibility] Since all constants are public const, can external malicious contracts read these values and design attacks specifically tailored to threshold boundaries (e.g., submitting exactly 6667 basis points approval) to minimize security margin? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b056350-f42a-49de-b8fd-0ddd0ba290bb?mode=deep",
+    "timestamp": "2026-02-19 06:51:56.612013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: All] [Reflection Attack] Can external contracts use reflection or similar mechanisms to discover and exploit assumptions about these constants, such as assuming MaximalAbstentionThreshold + MaximalRejectionThreshold < MinimalApprovalThreshold, enabling attacks when this assumption doesn't hold (1000 + 1000 < 6667)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a368411-ca69-4183-aa7e-bd4838a6c67f?mode=deep",
+    "timestamp": "2026-02-19 06:52:29.438373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalApprovalThreshold] [Private Constant Risk] MinimalApprovalThreshold is declared private const. If consuming code in BasicContractZero incorrectly copies this value instead of referencing it, can the copy desynchronize during contract upgrades, causing some functions to use old threshold (6667) while others use updated value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8bbfdfb-f91d-4ed0-b146-84c8bb2c0131?mode=deep",
+    "timestamp": "2026-02-19 06:52:58.938291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: MaximalAbstentionThreshold, MaximalRejectionThreshold] [Private Access] Since these are private const, if other contracts in the Genesis suite need to reference these thresholds but cannot access them, can inconsistent local definitions emerge, creating threshold enforcement discrepancies across related contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_320ce576-854e-4943-b0b2-66e1338e16de?mode=deep",
+    "timestamp": "2026-02-19 06:53:29.166199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Naming Convention] The double 'Threshold' in the name may indicate naming confusion in consuming code. If developers confuse 'vote threshold' with 'approval threshold', can validation logic incorrectly use 8000 (80%) as approval requirement instead of 6667 (66.67%), blocking legitimate proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd9ab9f7-026f-4e06-a5e3-deddc1ab446a?mode=deep",
+    "timestamp": "2026-02-19 06:54:05.898062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: ContractProposalExpirationTimePeriod] [Max Timestamp] When adding 259200 to current timestamp, if current timestamp is near Int64.MaxValue or DateTime.MaxValue, can overflow cause proposals to expire in the past (e.g., year 1970), enabling immediate execution without review period? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a4861e8-0791-4e1b-ae5c-577d5c4c71ba?mode=deep",
+    "timestamp": "2026-02-19 06:54:41.801693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: DefaultCodeCheckProposalExpirationTimePeriod] [Zero Block Time] If blockchain experiences zero-time blocks (multiple blocks with same timestamp), can code check proposals spanning 900 seconds expire prematurely when block timestamps don't advance, enabling malicious code deployment without proper review? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d93a3721-bed3-4809-8241-d110ee0481a8?mode=deep",
+    "timestamp": "2026-02-19 06:55:19.913632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalApprovalThreshold] [Single Voter] When total voters = 1, does consuming code correctly enforce that 1 approval vote = 100% >= 66.67%? Or can edge cases in percentage calculation cause single-voter proposals to incorrectly require impossible fractional votes (0.6667 of 1 vote)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd53ab9f-4e37-48c7-9690-d7fa139150a5?mode=deep",
+    "timestamp": "2026-02-19 06:55:58.891057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [All Abstain] If all voters abstain (100% abstention > 10% MaximalAbstentionThreshold), does the proposal correctly fail? Or can edge cases in vote counting allow all-abstention proposals to pass if no rejection votes exist, violating the maximal abstention constraint? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27d7cbe5-c74a-422e-be06-bf3ae117d291?mode=deep",
+    "timestamp": "2026-02-19 06:56:39.313281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [No Votes Cast] If no votes are cast (0 approvals, 0 rejections, 0 abstentions), does comparison with MaximalRejectionThreshold (1000) handle division by zero gracefully? Or can zero-vote proposals incorrectly pass/fail based on undefined percentage calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de677ef9-07b6-45be-99d8-60a60ff05d13?mode=deep",
+    "timestamp": "2026-02-19 06:57:20.737312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Maximum Participation] When participation = 100% (all eligible voters vote), does the system correctly validate 10000 >= 8000? Or can maximum participation edge cases cause integer overflow in comparison (participation_count * 10000 >= eligible_voters * 8000)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa564dd9-00a7-43fe-b066-c2d67c30ce4a?mode=deep",
+    "timestamp": "2026-02-19 06:58:03.493995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: All Thresholds] [Negative Values] If consuming code doesn't validate vote counts >= 0 before calculating percentages against these positive constants, can negative vote counts enable threshold bypass (e.g., -1000 rejection votes making rejection_rate negative, passing MaximalRejectionThreshold check)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_262a5d5f-dcb1-4216-be33-966930e8888b?mode=deep",
+    "timestamp": "2026-02-19 06:58:48.003685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: Expiration Periods] [Genesis Block] If proposals are created at block timestamp = 0 (genesis), does adding ContractProposalExpirationTimePeriod (259200) or DefaultCodeCheckProposalExpirationTimePeriod (900) create valid expiration times? Or can genesis-time proposals have undefined behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0926e401-cc75-46f0-ad8d-ab0fc6a0beb2?mode=deep",
+    "timestamp": "2026-02-19 06:59:33.150172",
+    "report_generated": false
+  }
+]
