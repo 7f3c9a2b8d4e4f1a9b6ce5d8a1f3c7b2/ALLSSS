@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Day Overflow] At line 197, only checks info.Day > 0, with no upper bound. Could setting Day to max int32 cause overflow issues when calculating lockDays.Div(DaySec) or in comparison logic at line 581? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9439091-8258-4497-8d6b-f1f897f9fa9f?mode=deep",
+    "timestamp": "2026-02-19 05:49:57.127257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Duplicate Day Check Bypass] At line 201, checks for duplicate Day values using GroupBy. However, if two VoteWeightInterest entries have Days that differ by 1 but both match the same vote duration due to rounding, could this cause ambiguous weight calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13499c85-37dd-4c38-94e6-aa94fd86f64c?mode=deep",
+    "timestamp": "2026-02-19 05:50:19.549005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Retroactive Application] The function allows changing VoteWeightInterestList at any time, but existing votes use weights calculated at vote time. Could changing this retroactively benefit new voters over existing voters, violating fairness? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bccdec6-c529-40cb-91f0-45a76d38c1a7?mode=deep",
+    "timestamp": "2026-02-19 05:50:42.212107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [OrderBy Manipulation] At line 203, orderList is sorted by Day. If the input already has specific ordering that affects business logic, could sorting break assumptions about interest tier precedence? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3837eac0-eae0-4b35-a08a-d0ed9446b6e4?mode=deep",
+    "timestamp": "2026-02-19 05:51:05.175268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightProportion()] [Proportion Overflow] At line 213, only checks TimeProportion > 0 and AmountProportion > 0, but no upper bounds. At line 585, votesAmount.Mul(AmountProportion).Div(TimeProportion) is calculated. Could extreme proportions cause overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70e35b72-07e6-4021-8797-3a9c5d09f7bf?mode=deep",
+    "timestamp": "2026-02-19 05:51:29.432258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightProportion()] [Zero Division Risk] If TimeProportion is set to a very small value like 1 while AmountProportion is max int32, the division at line 585 could cause dramatic weight inflation. Should there be ratio bounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1eb3494-efc7-4424-beda-c212a52b0349?mode=deep",
+    "timestamp": "2026-02-19 05:51:54.458495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVoteWeightInterestController()] [Controller Takeover] At line 220, AssertPerformedByVoteWeightInterestController checks current controller, then line 222 changes it. Could a malicious controller change to an address they control, then immediately set malicious VoteWeightInterest parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c562cb6-f1fc-4d45-91da-9f033ba3f0d7?mode=deep",
+    "timestamp": "2026-02-19 05:52:20.325275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVoteWeightInterestController()] [CheckOrganizationExist Validation] At line 221, CheckOrganizationExist validates the authority. But if this only checks contract existence without verifying it's a valid governance organization, could arbitrary addresses be set as controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72696ae2-03ea-4a7c-872e-a4ade9f50bc5?mode=deep",
+    "timestamp": "2026-02-19 05:52:47.046260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UnlockTokensOfVoter()] [Address Override Risk] At line 274, voterAddress ?? Context.Sender is used. If voterAddress is provided by a caller function incorrectly, could tokens be unlocked to the wrong address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2df20ae4-602c-43bf-880b-44fd17e9c724?mode=deep",
+    "timestamp": "2026-02-19 05:53:14.225445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UnlockTokensOfVoter()] [Lock ID Collision] At line 277, LockId = input (voteId). If voteId collides with another lock ID in the TokenContract, could unlocking affect unrelated locked tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_894002d5-20a4-4ccd-8870-07c65ebcb7cd?mode=deep",
+    "timestamp": "2026-02-19 05:53:47.293983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Ector.cs] [Function: RetrieveTokensFromVoter()] [Double Token Retrieval] At lines 284-293, both ShareSymbol and VoteSymbol tokens are transferred from voter. If the voter doesn't have sufficient balance of one symbol, does TransferFrom fail or partial succeed, leaving inconsistent token states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db558d0e-479e-4a93-910e-b119208a1b89?mode=deep",
+    "timestamp": "2026-02-19 05:54:15.672666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: RetrieveTokensFromVoter()] [TransferFrom Allowance] TransferFrom at line 286 requires prior approval. If the voter never approved the ElectionContract to spend their SHARE/VOTE tokens, does this silently fail or revert the entire operation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_052f0324-1f21-402f-accd-66d3412f503c?mode=deep",
+    "timestamp": "2026-02-19 05:54:43.375399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: RemoveBeneficiaryOfVoter()] [Beneficiary Not Found] If RemoveBeneficiary is called for a voter who was never added as beneficiary (e.g., due to prior error), does the ProfitContract silently ignore this or throw, potentially DOS'ing legitimate withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cba4b2b2-2e4e-47ed-b0ec-250316974e2c?mode=deep",
+    "timestamp": "2026-02-19 05:55:10.939028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: LockTokensOfVoter()] [Lock ID Reuse] At line 334, LockId is set to voteId. If voteId is reused (due to hash collision or GenerateVoteId logic flaw), could this cause lock state corruption in TokenContract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd07db53-2a8a-4630-8615-795e18dbed37?mode=deep",
+    "timestamp": "2026-02-19 05:55:39.666405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: LockTokensOfVoter()] [Insufficient Balance] If Context.Sender doesn't have sufficient NativeSymbol balance (line 333), does the Lock operation fail gracefully or leave the vote in partially created state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6078f643-19f9-479d-90c6-73eb10c31ae9?mode=deep",
+    "timestamp": "2026-02-19 05:56:12.778998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: TransferTokensToVoter()] [Election Contract Balance] At lines 346-354, SHARE and VOTE tokens are transferred from Context.Self (ElectionContract) to voter. If the ElectionContract doesn't have sufficient balance of these tokens, could vote creation fail after locks are already applied? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fef7c64-bb9d-43fb-921d-ece7065b2aae?mode=deep",
+    "timestamp": "2026-02-19 05:56:40.864598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: TransferTokensToVoter()] [Token Symbol Hardcoding] ShareSymbol and VoteSymbol are hardcoded constants. If these tokens don't exist or have different symbols in deployment, does this cause all votes to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c065b1b0-3b45-4c1d-9dc5-f578848e9b0b?mode=deep",
+    "timestamp": "2026-02-19 05:57:09.946420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: CallVoteContractVote()] [Vote Contract State] If VoteContract.Vote at line 359 fails after tokens are locked and transferred (in Vote function call flow), are tokens permanently locked without vote records? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_976d9144-92f8-46d6-9919-70cd4e490949?mode=deep",
+    "timestamp": "2026-02-19 05:57:44.895309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: AddBeneficiaryToVoter()] [EndPeriod Calculation] At line 379, GetEndPeriod(lockSeconds) is called. If GetEndPeriod returns a period that's already past (e.g., due to CurrentPeriod overflow), could the beneficiary never receive welfare profits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b64656d0-d6be-4ebb-a0c0-9a60fbb4ac2b?mode=deep",
+    "timestamp": "2026-02-19 05:58:14.180136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: AddBeneficiaryToVoter()] [Shares Overflow] At line 377, Shares = votesWeight. If votesWeight is calculated to be extremely large (via GetVotesWeight with malicious parameters), could this cause overflow in profit distribution calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4bcf8a7e-0881-4897-99b1-65ff0077361e?mode=deep",
+    "timestamp": "2026-02-19 05:58:41.337870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: AddBeneficiaryToVoter()] [Duplicate Beneficiary] If AddBeneficiary is called twice for the same voter with the same voteId, does ProfitContract properly handle duplicate additions or could shares be double-counted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2eff77cf-dc07-4156-968d-ca1c13049180?mode=deep",
+    "timestamp": "2026-02-19 05:59:11.839415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [Token Parameter Manipulation] At lines 404-405, if voteMinerInput.Token is not null, voteId is Context.GenerateId(Context.Self, voteMinerInput.Token). Could an attacker provide a malicious Token value to create predictable or colliding voteIds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c720f2c5-c5ff-4fe1-a74a-995b0a4cf9f3?mode=deep",
+    "timestamp": "2026-02-19 06:18:26.462542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [Vote ID Collision] At lines 407-411, voteId is generated from CandidatePubkey and candidateVotesCount. If two voters vote for the same candidate at the exact same candidateVotesCount, could voteIds collide? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7ec9688-b7b6-4371-a0f9-ece360d3f429?mode=deep",
+    "timestamp": "2026-02-19 06:18:49.020022",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [Null Candidate Votes] At line 408, State.CandidateVotes[voteMinerInput.CandidatePubkey]?.ObtainedActiveVotedVotesAmount ?? 0. If CandidateVotes is null, candidateVotesCount is 0. Could this cause vote ID collisions for first votes to different candidates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5967d012-758f-40a7-9b6c-e395ef92d4fb?mode=deep",
+    "timestamp": "2026-02-19 06:19:12.264517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [Negative Lock Duration] At line 429, lockSeconds = (input.EndTimestamp - Context.CurrentBlockTime).Seconds. If input.EndTimestamp is in the past, lockSeconds could be negative. Does AssertValidLockSeconds at line 430 catch this? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6390b8f-9eae-4edd-a0a7-64200809d50a?mode=deep",
+    "timestamp": "2026-02-19 06:19:36.138464",
+    "report_generated": false
+  }
+]
