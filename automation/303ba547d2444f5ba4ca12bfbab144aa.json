@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Instantiation Context] In AEDPoSContract_ACS4_ConsensusInformationProvider.cs at lines 44-46, SideChainConsensusBehaviourProvider is instantiated when IsMainChain is false - can an attacker manipulate the IsMainChain flag to force side chain consensus rules on a main chain, bypassing term change mechanisms? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfb0665c-046f-41ac-ac7f-29b74eeba140?mode=deep",
+    "timestamp": "2026-02-19 03:30:49.807035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Instantiation Context] When SideChainConsensusBehaviourProvider is instantiated in GetConsensusCommand, the _processingBlockMinerPubkey comes from untrusted input (BytesValue parameter) - can an attacker provide an arbitrary pubkey that isn't in the current round's miner list to cause behaviour determination errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50870f5c-16a0-413b-9ba4-77fc5edb3f7b?mode=deep",
+    "timestamp": "2026-02-19 03:31:12.329607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Instantiation Context] The maximumBlocksCount parameter comes from GetMaximumBlocksCount() - if this method returns different values between calls, can it create inconsistencies in tiny block production limits during the same round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52c6e8b4-12d1-457a-856f-14731c000977?mode=deep",
+    "timestamp": "2026-02-19 03:31:35.191689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Instantiation Context] Since Context.CurrentBlockTime is used during instantiation, if the blockchain time can be manipulated by miners (e.g., within allowed drift), can this affect consensus behaviour determination in a way that benefits the manipulating miner? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c314cc47-8534-40a0-bd3a-f0213902982f?mode=deep",
+    "timestamp": "2026-02-19 03:31:58.123896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Command Generation] After GetConsensusBehaviour() returns NextRound, the calling code generates a NextRound transaction via GenerateTransactionListByExtraData - can side chains be stuck in a loop where NextRound is called repeatedly without making progress if the NextRound transaction fails? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67bf4979-893c-43f5-a63c-90d6b1c25c02?mode=deep",
+    "timestamp": "2026-02-19 03:32:22.394272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Behaviour Validation] The calling code checks if behaviour == AElfConsensusBehaviour.Nothing to return InvalidConsensusCommand - but SideChainConsensusBehaviourProvider never explicitly returns Nothing (only through inherited logic), can this hide error conditions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0e88980-2f19-4c2e-ae99-269ba5274515?mode=deep",
+    "timestamp": "2026-02-19 03:32:47.439485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [State Dependency] The currentRound parameter comes from TryToGetCurrentRoundInformation() - if round information is stale or hasn't been updated, can SideChainConsensusBehaviourProvider make decisions based on outdated state, causing consensus inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c61f2ca8-26be-476c-bc73-ccc69aea53f6?mode=deep",
+    "timestamp": "2026-02-19 03:33:13.070883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Cross-Chain Security] Since side chains don't support NextTerm behaviour, if a side chain's security depends on periodic validator rotation (like main chains), does the permanent miner set create a centralization risk? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_958946d2-8dfe-415c-a7f0-faa3965e6147?mode=deep",
+    "timestamp": "2026-02-19 03:33:40.086994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Cross-Chain Security] Can the difference in consensus behaviour between main and side chains (NextTerm vs NextRound) be exploited to cause inconsistencies when verifying cross-chain merkle proofs or block headers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39cb9f5c-4455-4f92-a315-7c3496370dd8?mode=deep",
+    "timestamp": "2026-02-19 03:34:12.083882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Cross-Chain Security] If a side chain needs to update its validator set, and consensus doesn't support NextTerm, is there an alternative governance mechanism, or can the side chain become permanently controlled by the initial validators? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_926a90af-e19d-4a60-a9cd-0cd03875ca3e?mode=deep",
+    "timestamp": "2026-02-19 03:34:44.032554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Side Chain Governance] Without NextTerm behaviour, can side chains implement time-based parameter updates, fee schedule changes, or other governance actions that main chains tie to term transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ceffea88-859a-466a-bc05-e25eedb5692a?mode=deep",
+    "timestamp": "2026-02-19 03:35:11.218145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Parent Chain Interaction] When a side chain only returns NextRound, does this affect how the parent main chain verifies side chain consensus progression through cross-chain indexing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90bfa28e-bbd4-43e9-9210-b7652f1febb5?mode=deep",
+    "timestamp": "2026-02-19 03:35:40.144908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Deployment Model] If a side chain is initialized with malicious or colluding validators, and NextTerm is never called, can these validators maintain permanent control without any consensus-level mechanism for replacement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7be1dd07-e03a-4696-98d3-42b7d37ea442?mode=deep",
+    "timestamp": "2026-02-19 03:36:14.832856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Design Decision] The comment at line 17 says 'Simply return NEXT_ROUND for side chain' - does this simplification eliminate necessary safety checks present in MainChainConsensusBehaviourProvider (checking blockchain start timestamp, period seconds, term number)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a64d1a8d-80f9-427b-ace2-6d3ce28ecdca?mode=deep",
+    "timestamp": "2026-02-19 03:36:50.039184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Design Decision] MainChainConsensusBehaviourProvider checks NeedToChangeTerm() and single-node conditions - by not having these checks, can side chains get into invalid consensus states that main chains would prevent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1d21792-0a5d-4a56-96fc-83727bb35293?mode=deep",
+    "timestamp": "2026-02-19 03:37:25.468417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Constructor Design] Unlike MainChainConsensusBehaviourProvider which takes blockchainStartTimestamp and periodSeconds, SideChainConsensusBehaviourProvider doesn't - does this mean side chains cannot enforce time-based consensus rules? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21e848fb-cf8b-4c13-a7df-ebaecb1a0f94?mode=deep",
+    "timestamp": "2026-02-19 03:37:55.797067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Minimal Override] By only overriding one method and not overriding GetConsensusBehaviour() or adding any validation, does this class implicitly trust all inherited logic is safe for side chains without side-chain-specific checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53f1ca52-9276-4668-9bed-30f002601fef?mode=deep",
+    "timestamp": "2026-02-19 03:38:32.108988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Base Class Dependency] The class completely relies on ConsensusBehaviourProviderBase's logic - if the base class has vulnerabilities in time slot checking, tiny block counting, or round handling, are side chains automatically vulnerable without any override-level mitigations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38c1c8c3-5eaa-45aa-921f-ee936805263e?mode=deep",
+    "timestamp": "2026-02-19 03:39:10.542088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Edge Case] If a side chain has only one miner in RealTimeMinersInformation.Keys, does the GetConsensusBehaviourToTerminateCurrentRound override returning NextRound cause different behaviour than MainChain which explicitly handles single-node scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8c36951-b898-4bb5-b9f6-a75c58c9a3d6?mode=deep",
+    "timestamp": "2026-02-19 03:39:48.929425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Edge Case] If CurrentRound.RoundNumber is 1 on a side chain, both the inherited HandleMinerInNewRound() and GetConsensusBehaviourToTerminateCurrentRound() return NextRound - is there redundancy or a potential double-increment issue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fbbc300-81d5-4717-82b9-213a254d400c?mode=deep",
+    "timestamp": "2026-02-19 03:40:28.195009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Edge Case] If all miners in a side chain round have mined their blocks (ActualMiningTimes.Count >= maximumBlocksCount) and time slots have passed, can the final miner's call to GetConsensusBehaviour() correctly terminate the round via NextRound? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd2aaa28-ac97-47ef-b9fc-dde62f8f19c2?mode=deep",
+    "timestamp": "2026-02-19 03:41:07.049501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Edge Case] If CurrentRound.IsMinerListJustChanged is true on a side chain (indicating first round of a term), but side chains don't have terms, does this flag's presence create confusion or incorrect behaviour? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3bc6e33-42bc-46f9-9fff-fdda93825a0a?mode=deep",
+    "timestamp": "2026-02-19 03:41:44.746226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Edge Case] If a side chain miner's ActualMiningTimes list is empty but OutValue is not null (corrupted state), can the inherited logic incorrectly skip HandleMinerInNewRound() and make wrong behaviour decisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c700ffe4-dd1f-43d3-b664-8017bbdf7225?mode=deep",
+    "timestamp": "2026-02-19 03:42:15.141056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Edge Case] When ExtraBlockProducerOfPreviousRound is set on a side chain, can the extra block production window (lines 104-112 in base) be exploited to mine more blocks than intended since term transitions never reset this status? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b98c09a7-899c-45dc-ab17-43a02069aca8?mode=deep",
+    "timestamp": "2026-02-19 03:42:44.939036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Concurrency] If multiple side chain nodes simultaneously instantiate SideChainConsensusBehaviourProvider with the same currentRound but slightly different currentBlockTime, can they arrive at different consensus behaviours causing a fork? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_009adf8b-ec3f-480e-8188-de9a318c325b?mode=deep",
+    "timestamp": "2026-02-19 03:43:21.719266",
+    "report_generated": false
+  }
+]
