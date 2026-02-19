@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Hash Collision] Can an attacker craft two different VotingRegisterInput objects with different Options but identical sponsor addresses to produce the same hash after Options.Clear(), enabling voting item substitution attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64851dd6-7d25-4b4e-bf87-8a67a8a83ed2?mode=deep",
+    "timestamp": "2026-02-19 02:33:22.123211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Input Validation] Does the function validate that votingItemInput is non-null before calling Clone(), potentially causing NullReferenceException and DOS when processing malformed voting registration requests? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a7ecb95-f9b8-4b25-82f1-7819bbaf196b?mode=deep",
+    "timestamp": "2026-02-19 02:33:44.203482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Input Validation] Does the function validate that sponsorAddress is non-null or non-empty before hashing, allowing zero-address sponsors to create voting items with predictable hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0cd73386-543e-45f4-868f-ae857aa2c666?mode=deep",
+    "timestamp": "2026-02-19 02:34:06.444020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Data Mutation] Does the input.Options.Clear() operation on the cloned object have any unintended side effects if VotingRegisterInput implements INotifyPropertyChanged or has event handlers that could leak state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60b101b4-c87a-4ca7-a8e2-724b0064dea5?mode=deep",
+    "timestamp": "2026-02-19 02:34:29.346788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Determinism] If VotingRegisterInput contains fields beyond Options that are non-deterministic (timestamps, random IDs), can two legitimate voting items with same logical content produce different hashes, breaking voting item uniqueness guarantees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5374e321-98c7-4adf-9324-7ee187d5c74e?mode=deep",
+    "timestamp": "2026-02-19 02:34:53.379530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Clone Security] Does the Clone() method perform deep cloning of nested objects within VotingRegisterInput, or could shallow cloning allow mutation of the original object through the cloned reference, affecting hash consistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dea41851-451c-4574-815a-c35b4bc768ce?mode=deep",
+    "timestamp": "2026-02-19 02:35:19.180789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Hash Preimage Attack] Can an attacker who knows a valid hash reverse-engineer the VotingRegisterInput content using HashHelper.ConcatAndCompute characteristics, potentially reconstructing sensitive voting item details? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c7b1554-d6de-4d91-8411-1c5213e711cd?mode=deep",
+    "timestamp": "2026-02-19 02:35:44.445971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Partial Data Hashing] By clearing Options before hashing, does the function allow an attacker to register multiple voting items with different option sets but identical hashes, leading to vote tallying corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4956d72-0b69-4153-908c-9596ce0fa830?mode=deep",
+    "timestamp": "2026-02-19 02:36:11.865780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Concatenation Order] Does HashHelper.ConcatAndCompute guarantee a specific concatenation order, or could hash(A||B) equal hash(B||A), allowing sponsor address swapping to produce colliding voting item IDs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce2c0e29-9408-4a31-b6e2-0f79cfb83739?mode=deep",
+    "timestamp": "2026-02-19 02:36:39.145479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Length Extension Attack] Is HashHelper.ConcatAndCompute vulnerable to length extension attacks where an attacker appends data to ComputeFrom(input) to forge valid voting item hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72f60ae5-8073-4ae7-8301-508a69dba99f?mode=deep",
+    "timestamp": "2026-02-19 02:37:07.220762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Input Validation] Does the function validate that votingResult is non-null before accessing VotingItemId and SnapshotNumber, potentially causing NullReferenceException when processing vote tallying results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97933313-edfe-4f1e-b953-f0e05a6c6f28?mode=deep",
+    "timestamp": "2026-02-19 02:37:35.707938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Partial Data Hashing] By only hashing VotingItemId and SnapshotNumber while ignoring other VotingResult fields, can an attacker create two voting results with identical hashes but different vote counts or voter lists, causing result verification failures? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bec2cfc-1d9d-48b0-9c12-6edd974ed57b?mode=deep",
+    "timestamp": "2026-02-19 02:38:05.058802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Hash Collision] Can two VotingResult objects with different actual vote outcomes but same VotingItemId and SnapshotNumber produce identical hashes, allowing fraudulent vote result substitution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4121dc65-8042-4099-8b07-cfc599fe891f?mode=deep",
+    "timestamp": "2026-02-19 02:38:35.144514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Object Creation] Does creating a new VotingResult object for hashing introduce memory allocation overhead that could enable DOS attacks through repeated hash computation requests? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8de54479-9717-44b0-95e1-e3e6c37c74ad?mode=deep",
+    "timestamp": "2026-02-19 02:39:03.106856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Data Consistency] If VotingResult contains additional fields (vote totals, timestamps, voter addresses) not included in hash computation, can these fields be modified after hash generation without detection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e727391-edf2-46e7-81d4-81efc2ecdb7f?mode=deep",
+    "timestamp": "2026-02-19 02:39:30.192655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Snapshot Manipulation] Does the function validate SnapshotNumber is within valid range, or can an attacker supply negative/overflow values to create hash collisions with legitimate voting results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18dae901-7f7e-44ef-840c-db5a1fcc1d5e?mode=deep",
+    "timestamp": "2026-02-19 02:39:57.763834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [VotingItemId Validation] Does the function check if VotingItemId is a valid Hash (non-null, proper length), or can malformed IDs cause hash computation errors or create predictable hash values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78558f91-0a5c-4b15-ab17-6ba89e67bf19?mode=deep",
+    "timestamp": "2026-02-19 02:40:24.248749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Hash Algorithm Consistency] Do both GetHash methods use the same underlying hash algorithm through HashHelper, or could algorithm differences allow cross-function hash collisions between voting items and voting results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f1f682f-bc31-4e01-b2da-312d3da7f40e?mode=deep",
+    "timestamp": "2026-02-19 02:40:52.815822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Determinism] Are both hash functions fully deterministic across different node environments, or could differences in serialization, encoding, or hash algorithm implementation cause consensus failures? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dac03587-d722-4578-b086-f16ba9b18b40?mode=deep",
+    "timestamp": "2026-02-19 02:41:21.726482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Gas Cost] Do these hash operations have bounded gas costs, or could extremely large VotingRegisterInput or VotingResult objects cause excessive gas consumption leading to transaction failure or DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36391b78-060b-4f1a-aa69-eaf371385ef7?mode=deep",
+    "timestamp": "2026-02-19 02:41:48.176775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Class: VoteExtensions] [Static Class Security] As a static class with no state, could concurrent calls to GetHash methods from multiple transactions cause any race conditions or state corruption in HashHelper dependencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_159b4a9c-103e-4c6b-bccd-93d40865d18a?mode=deep",
+    "timestamp": "2026-02-19 02:42:13.850132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Class: VoteExtensions] [Namespace Visibility] Is the public visibility of VoteExtensions appropriate, or could malicious contracts import and misuse these hash functions to forge voting-related hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a089bda0-2ab2-430c-a209-823c21daebc7?mode=deep",
+    "timestamp": "2026-02-19 02:42:41.936848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Dependency Security] Does HashHelper.ComputeFrom handle circular references in VotingRegisterInput, or could crafted inputs with self-referential structures cause infinite loops or stack overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d37108f-a531-40a9-8807-63bab0e6299c?mode=deep",
+    "timestamp": "2026-02-19 02:43:10.788416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Dependency Security] Does HashHelper.ConcatAndCompute validate the length of concatenated hashes, or could integer overflow in length calculations cause hash truncation or corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcb57e1a-65f4-4cf8-ae88-dc1a0d530295?mode=deep",
+    "timestamp": "2026-02-19 02:43:38.459159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Dependency Security] If HashHelper uses SHA256 or similar, is there protection against birthday attacks where attackers generate voting items/results with colliding hashes by computing 2^128 combinations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_acd15dae-d637-49fd-be2b-5ebaf799f1e0?mode=deep",
+    "timestamp": "2026-02-19 02:44:06.918910",
+    "report_generated": false
+  }
+]
