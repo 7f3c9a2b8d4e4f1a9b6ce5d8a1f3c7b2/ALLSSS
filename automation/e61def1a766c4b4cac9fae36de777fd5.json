@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Fee Bypass] Can an attacker exploit the hardcoded list at lines 40-44 (InitialAElfConsensusContract, FirstRound, UpdateValue, UpdateTinyBlockInformation, NextRound, NextTerm) to execute these methods without paying size fees even if State.TransactionFees has different settings? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27ca167b-d3d7-4a36-b667-24fa62d6a647?mode=deep",
+    "timestamp": "2026-02-19 13:42:46.364417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Inconsistent State] If State.TransactionFees[input.Value] at line 51 returns null for a method not in the hardcoded list, does this cause a null reference exception in fee calculation logic elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dcc9f379-7233-4128-80f0-4146f3450f8b?mode=deep",
+    "timestamp": "2026-02-19 13:43:08.284742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [DOS Attack] Can an attacker call GetMethodFee with extremely long input.Value strings to cause string comparison overhead in the Contains check at line 44, degrading view performance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90273615-83c0-448f-af35-6dff586fa64c?mode=deep",
+    "timestamp": "2026-02-19 13:43:30.431402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Logic Bug] Does the IsSizeFeeFree = true setting in the returned MethodFees at line 48 override any BasicFee settings that might exist in State.TransactionFees for these methods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1cf2f8b-4c7e-41b5-b23a-0ee5cbbd9f9c?mode=deep",
+    "timestamp": "2026-02-19 13:43:53.194154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Fee Manipulation] Can an attacker change their method name to match one of the hardcoded strings (e.g., 'NextRound') to bypass all fee charges even for non-consensus operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39d120e3-6635-419c-87bd-52dffa60a703?mode=deep",
+    "timestamp": "2026-02-19 13:44:17.301170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Incomplete Data] When returning MethodFees with only MethodName and IsSizeFeeFree set (lines 45-49), does this cause consuming code to incorrectly assume Fees list is empty when it might have entries in State.TransactionFees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5ebbeb3-8ff4-4014-b074-b09ac2aa6ca7?mode=deep",
+    "timestamp": "2026-02-19 13:44:43.043850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [State Inconsistency] If SetMethodFee has never been called for a method name, does State.TransactionFees[input.Value] at line 51 return null or a default MethodFees instance, and how does this affect fee charging? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3407e5ef-5603-4541-a2df-b0f37351ffcf?mode=deep",
+    "timestamp": "2026-02-19 13:45:10.231802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Case Sensitivity] Are the string comparisons in the Contains check at line 44 case-sensitive, and can an attacker bypass free-fee methods by using different casing (e.g., 'nextround' vs 'NextRound')? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f18ecdee-2521-4fe1-9c65-d7742c62b9e6?mode=deep",
+    "timestamp": "2026-02-19 13:45:38.949100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Whitespace Attack] Can an attacker add leading/trailing whitespace to input.Value to bypass the Contains check at line 44 and avoid the IsSizeFeeFree logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4317ca1a-1475-4d96-b9dc-be114cd80d69?mode=deep",
+    "timestamp": "2026-02-19 13:46:08.984653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Method Spoofing] Does the function verify that the requested method name actually exists in the contract, or can it return fee information for non-existent methods? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3451347d-d230-49a1-bd9a-997a654883d3?mode=deep",
+    "timestamp": "2026-02-19 13:46:39.635559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Race Condition] Can multiple concurrent calls to RequiredMethodFeeControllerSet pass the null check at line 66 and both call EnsureParliamentContractAddressSet and set State.MethodFeeController.Value, causing duplicate initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82f8a149-94f9-4405-9a71-a077bce6fa46?mode=deep",
+    "timestamp": "2026-02-19 13:47:10.205180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Dependency Failure] If State.ParliamentContract.GetDefaultOrganizationAddress.Call at line 71 returns null or zero address, does this set State.MethodFeeController.Value to an invalid authority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e64860f4-0596-41e7-921c-17c4e8e0b255?mode=deep",
+    "timestamp": "2026-02-19 13:47:38.095469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Reentrancy] Can the external call to GetDefaultOrganizationAddress at line 71 be exploited for reentrancy to re-enter RequiredMethodFeeControllerSet and set multiple different controllers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d0f8915-1823-4572-9df4-1b9d6030cd37?mode=deep",
+    "timestamp": "2026-02-19 13:48:10.440531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Corruption] If EnsureParliamentContractAddressSet at line 67 reverts, is State.MethodFeeController.Value left in a partially initialized state from a previous transaction? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f3c3376-180b-46df-abb8-276e50136b59?mode=deep",
+    "timestamp": "2026-02-19 13:48:43.707909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Authority Override] Can an attacker front-run the first call to RequiredMethodFeeControllerSet and call ChangeMethodFeeController before initialization completes, setting a malicious controller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c68444a3-f904-4d3e-9d25-4c62153754b5?mode=deep",
+    "timestamp": "2026-02-19 13:49:12.641726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Centralization Risk] Does setting OwnerAddress to Parliament's default organization at line 71 create a single point of failure if Parliament is compromised or malfunctions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_063e8962-e5f8-4a28-a9d8-376115eeea1a?mode=deep",
+    "timestamp": "2026-02-19 13:49:44.577431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Contract Reference] If State.ParliamentContract.Value at line 72 is set to an incorrect or malicious contract address, does this allow unauthorized fee controller management? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0eb02d7-aa9a-4efc-8a52-58d71f345fad?mode=deep",
+    "timestamp": "2026-02-19 13:50:17.028239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Timing] Can an attacker delay calling any function that triggers RequiredMethodFeeControllerSet, leaving State.MethodFeeController.Value uninitialized and vulnerable to exploitation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c55e6d3-5cdd-4151-97c5-0ead92455cec?mode=deep",
+    "timestamp": "2026-02-19 13:50:47.688468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Default Bypass] If the defaultAuthority constructed at lines 69-73 has ContractAddress set to a contract that doesn't implement authorization correctly, can this permanently compromise fee control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1051db2-f26e-49ef-8d51-ab778f9a63db?mode=deep",
+    "timestamp": "2026-02-19 13:51:15.163350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Idempotency] Is RequiredMethodFeeControllerSet properly idempotent, or can calling it multiple times after State.MethodFeeController.Value is set cause state inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f5eb555-cfc2-4241-9978-d56378734f81?mode=deep",
+    "timestamp": "2026-02-19 13:51:44.002240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [External Call Risk] Can the Context.Call at lines 85-87 to an untrusted authorityInfo.ContractAddress execute arbitrary code or cause reentrancy attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_351ae8ce-50be-45bd-915e-762f60b4fbf1?mode=deep",
+    "timestamp": "2026-02-19 13:52:16.911804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Value Manipulation] Can a malicious contract at authorityInfo.ContractAddress return a crafted BoolValue that causes .Value property access to fail or return unexpected results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6bef73e-e26c-4160-9239-d098cdc2bb06?mode=deep",
+    "timestamp": "2026-02-19 13:52:48.139176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Gas Exhaustion] Can the external call at lines 85-87 consume unbounded gas if authorityInfo.ContractAddress implements ValidateOrganizationExist with an infinite loop? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3dfee249-b844-4586-a119-ad46bb624ee9?mode=deep",
+    "timestamp": "2026-02-19 13:53:21.594956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Method Spoofing] Does the function verify that the called method name 'ValidateOrganizationExist' actually exists at authorityInfo.ContractAddress, or does it fail silently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb653ff8-eb36-40e8-9002-641436830956?mode=deep",
+    "timestamp": "2026-02-19 13:53:54.563003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Contract Verification] Does CheckOrganizationExist verify that authorityInfo.ContractAddress is actually an authorization contract (Parliament/Association/Referendum) before making the call? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a24dfa4a-91ff-4a5e-a200-2883fa8645d8?mode=deep",
+    "timestamp": "2026-02-19 13:54:22.328315",
+    "report_generated": false
+  }
+]
