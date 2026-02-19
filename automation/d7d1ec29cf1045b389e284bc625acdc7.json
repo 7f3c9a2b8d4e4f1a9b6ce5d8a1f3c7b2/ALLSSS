@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Computation Attack] ValidateHeaderInformation has simple O(1) logic - but if called for every block proposal, can an attacker flood the network with proposals to exhaust validator CPU? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_706ab1ec-2757-46c3-9878-7f60d5042bdd?mode=deep",
+    "timestamp": "2026-02-19 12:56:29.339205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Side Chain Exploitation] Does ContinuousBlocksValidationProvider apply identically to main chain and side chains, and can side chain miners exploit different initialization or round counting to bypass limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75b7f626-057f-44c0-a328-09144515765f?mode=deep",
+    "timestamp": "2026-02-19 12:56:51.567462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Cross-Chain State] If LatestPubkeyToTinyBlocksCount is synchronized across chains, can an attacker exploit inconsistent cross-chain state to produce blocks on one chain while their counter is decremented on another? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e7fc0c3-7229-4aea-b4f9-dc02b7dca87e?mode=deep",
+    "timestamp": "2026-02-19 12:57:13.965330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Round Number Edge] At exactly RoundNumber==3, does the first validation occur correctly, or is there a boundary condition where rounds 2->3 transition allows extra blocks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db0867d0-562c-40f9-992e-59e0118f01fa?mode=deep",
+    "timestamp": "2026-02-19 12:57:36.799017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Miner Count Edge] At exactly RealTimeMinersInformation.Count==2, validation applies - can a miner exploit the 2->1 transition to produce multiple blocks as the last miner drops out? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59c5d3c6-a5bc-4e72-80ae-539202abe017?mode=deep",
+    "timestamp": "2026-02-19 12:58:00.716944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [BlocksCount Boundary] At BlocksCount==-1, validation correctly rejects - but can ResetLatestProviderToTinyBlocksCount have integer underflow that skips -1 and goes to a large negative number, bypassing the check? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb81ace1-476a-42c2-a3ac-1fc2583c5ca2?mode=deep",
+    "timestamp": "2026-02-19 12:58:27.469193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Empty Pubkey] If Pubkey is empty string or null, does string comparison on line 18 behave correctly, or can an attacker use empty pubkey to always mismatch and bypass validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55ed4e19-33d0-4339-b116-e91ce3ba43e9?mode=deep",
+    "timestamp": "2026-02-19 12:58:52.996506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Network Split] During network partition, if different partitions have different LatestPubkeyToTinyBlocksCount values, can a miner produce blocks on both sides exceeding limits when partitions merge? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_743beb14-4910-4ebe-bd16-a839dc64f9b2?mode=deep",
+    "timestamp": "2026-02-19 12:59:18.956662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Chain Reorganization] If a chain reorg occurs, does LatestPubkeyToTinyBlocksCount roll back correctly, or can a miner exploit stale counter values to produce blocks that were valid pre-reorg but invalid post-reorg? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21b1a0d7-d060-464c-88cb-bcad47bf5713?mode=deep",
+    "timestamp": "2026-02-19 12:59:49.011272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Time Manipulation] If miners can manipulate block timestamps, can they cause round transitions that reset continuous block counters more frequently than intended, bypassing limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a54fc9ca-502f-493d-b9d3-9be887be50dc?mode=deep",
+    "timestamp": "2026-02-19 13:00:15.634318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Consensus Stall] If all miners except one are offline and Count==1 bypass activates, can the remaining miner produce blocks indefinitely without continuous block limits, enabling censorship or double-spend attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33f1d823-06fb-4a61-a536-37553b9ab03e?mode=deep",
+    "timestamp": "2026-02-19 13:00:44.974540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Negative Round] Can ProvidedRound.RoundNumber be negative, and if so, does the >2 check on line 13 incorrectly pass negative values that should be rejected? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bb2513c-b532-450b-9feb-4598c3ad9377?mode=deep",
+    "timestamp": "2026-02-19 13:01:13.777547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Zero Miners] If RealTimeMinersInformation is empty (Count==0), does Count!=1 pass on line 14, and is this correct behavior or should zero miners be rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf5ac607-4382-44cb-92a6-8b2c52390275?mode=deep",
+    "timestamp": "2026-02-19 13:01:41.525603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Duplicate Miners] If RealTimeMinersInformation contains duplicate entries inflating Count, can a single miner appear as multiple miners to bypass the single miner exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f22c3d46-43f0-43ad-87f2-081c0bc5041c?mode=deep",
+    "timestamp": "2026-02-19 13:02:12.348476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [BlocksCount Overflow] Can BlocksCount be set to Int64.MaxValue, and when ResetLatestProviderToTinyBlocksCount decrements, does it overflow to negative without triggering the <0 check? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cce81757-3e49-4117-9be5-6f0f30d824fd?mode=deep",
+    "timestamp": "2026-02-19 13:02:43.082498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Order] ContinuousBlocksValidationProvider runs after MiningPermissionValidationProvider and TimeSlotValidationProvider - can a block fail other validators but still update LatestPubkeyToTinyBlocksCount, causing state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cf5aca9-b6f0-4c8e-bba0-0d12d4284e2a?mode=deep",
+    "timestamp": "2026-02-19 13:03:12.015357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Multi-Validator Bypass] If MiningPermissionValidationProvider has bugs allowing unauthorized miners, can those miners also bypass ContinuousBlocksValidationProvider by not being in LatestPubkeyToTinyBlocksCount tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f5159e5-2d37-4226-94d6-8d6508c1498f?mode=deep",
+    "timestamp": "2026-02-19 13:03:44.302979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validator Independence] Does ContinuousBlocksValidationProvider depend on UpdateValueValidationProvider or other validators running first, and can skipping those validators cause this one to misbehave? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_348bca74-0453-4007-947b-9f8576b9d9d7?mode=deep",
+    "timestamp": "2026-02-19 13:04:16.648616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [State Race] If multiple blocks are validated concurrently, can they all read the same LatestPubkeyToTinyBlocksCount value before any decrements are written, allowing all to pass when some should fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12688aa0-56fe-4868-a6d2-ade63ad891df?mode=deep",
+    "timestamp": "2026-02-19 13:04:48.426864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Atomic Update] Is the read on line 16 and the update in ResetLatestProviderToTinyBlocksCount atomic, or can interleaving cause lost updates where a decrement is overwritten? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c61edb6c-458d-414f-a493-d2a9f196a507?mode=deep",
+    "timestamp": "2026-02-19 13:05:21.631455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Transaction Rollback] If ValidateHeaderInformation passes but the block is later rejected and transaction rolled back, does LatestPubkeyToTinyBlocksCount decrement get rolled back or persist incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d11a49da-8e02-4d93-93fa-834b0d741b99?mode=deep",
+    "timestamp": "2026-02-19 13:05:52.272054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Collusion Attack] Can miners collude to time their blocks such that each produces maximum continuous blocks in sequence without triggering validation, effectively controlling block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b529af0c-0c00-47db-bdf2-09cf95c25fa2?mode=deep",
+    "timestamp": "2026-02-19 13:06:25.487832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Grief Attack] Can a miner deliberately exhaust their BlocksCount to negative to force validation failures, then switch identity, repeatedly griefing the network with rejected blocks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51c48d76-9d18-4511-b511-22c22646a65f?mode=deep",
+    "timestamp": "2026-02-19 13:06:57.575847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [MEV Extraction] By producing maximum continuous blocks, can a miner extract maximum MEV by reordering transactions across multiple blocks under their control? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8d938db-d53d-415b-8044-0bfbc1a1927e?mode=deep",
+    "timestamp": "2026-02-19 13:07:30.039366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Bootstrap Attack] During network genesis in rounds 1-2 when validation is skipped, can an attacker establish mining dominance by producing excessive blocks before validation activates at round 3? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7d6c9a0-9ebf-4d9c-bbcc-696ff1d1fe0a?mode=deep",
+    "timestamp": "2026-02-19 13:08:03.690156",
+    "report_generated": false
+  }
+]
