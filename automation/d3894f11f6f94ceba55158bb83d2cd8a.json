@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: NativeTokenPrefix] [Case Sensitivity] Is the prefix 'nt' case-sensitive? Could attackers create tokens with symbols 'NT', 'Nt', 'nT' to impersonate native token connectors and steal funds from confused users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb76f8fb-3cc2-47bf-ab74-7916ae740a1d?mode=deep",
+    "timestamp": "2026-02-19 12:40:16.831668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: NativeTokenToResourceBalance] [Balance Discrepancy] The value 10_000_000_00000000 (10 million tokens) is 10x larger than NativeTokenConnectorInitialVirtualBalance. Does this asymmetry in paired connectors create arbitrage opportunities in the Bancor pricing between native-to-resource and resource-to-native swaps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fdf3520-404f-4175-9256-a69154b0a122?mode=deep",
+    "timestamp": "2026-02-19 12:40:38.985223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: NativeTokenToResourceBalance] [Liquidity Risk] With 10 million native tokens allocated per resource connector but actual issued supply potentially much larger, could this create liquidity fragmentation where trading certain resource pairs becomes impossible due to insufficient connector reserves? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76940d53-5d8c-43f7-a102-ec4673313265?mode=deep",
+    "timestamp": "2026-02-19 12:41:02.225069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: NativeTokenToResourceBalance] [Price Discovery] Is the 10_000_000_00000000 balance properly calibrated to establish fair initial pricing between native tokens and resource tokens, or could this value cause immediate mispricing exploitable by MEV bots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eea62991-620a-424c-92d9-152dce909d01?mode=deep",
+    "timestamp": "2026-02-19 12:41:25.813973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenSymbol] [Symbol Squatting] The hardcoded 'VOTE' symbol could conflict with existing tokens on the chain. Does CreateElectionTokens() check if 'VOTE' is already registered, or would initialization fail catastrophically if the symbol is taken? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf1cd464-db2d-4a83-8a29-4759cfdab4d0?mode=deep",
+    "timestamp": "2026-02-19 12:41:49.932624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenSymbol] [Governance Attack] Since 'VOTE' tokens are issued entirely to ElectionContract at initialization, could an attacker who compromises ElectionContract gain control over 1 billion VOTE tokens and manipulate all election outcomes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45184ad4-4af8-45c8-9b2e-37dc7e36deb1?mode=deep",
+    "timestamp": "2026-02-19 12:42:16.007522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenSymbol] [String Validation] The symbol 'VOTE' lacks validation for length, special characters, or reserved keywords. Could malicious deployment parameters override this to inject symbols that break token transfer logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b401388-4773-466b-abf9-0a389ba3ee2a?mode=deep",
+    "timestamp": "2026-02-19 12:42:44.010311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ShareTokenSymbol] [Dual Token Confusion] With both 'VOTE' and 'SHARE' tokens issued at identical supply (1 billion) and decimals (8), could users confuse these tokens leading to sending SHARE tokens to VOTE-only addresses and vice versa, causing permanent loss? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3280fd7e-0dae-4dee-9ee9-59707dbb284b?mode=deep",
+    "timestamp": "2026-02-19 12:43:13.858755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ShareTokenSymbol] [Purpose Ambiguity] The constant defines 'SHARE' but lacks documentation on its purpose. Could this token be exploited for unintended use cases, or is there insufficient separation between SHARE and VOTE token permissions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01d51c67-23b1-4f8b-b532-d3b3b994854d?mode=deep",
+    "timestamp": "2026-02-19 12:43:45.405602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenTotalSupply] [Supply Concentration] The entire 1_000_000_000_00000000 supply (1 billion tokens) of both VOTE and SHARE is issued immediately to ElectionContract. Does this create a centralization risk where ElectionContract becomes a single point of failure controlling all voting power? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56b18fc3-1fe1-4559-92de-342e1c04df21?mode=deep",
+    "timestamp": "2026-02-19 12:44:18.848008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenTotalSupply] [Inflation Risk] Is 1 billion election tokens sufficient for long-term network growth, or could this fixed supply create deflation as more validators join, forcing later hard forks to increase supply? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89029d26-9413-4498-9de6-ab4e0d8803ce?mode=deep",
+    "timestamp": "2026-02-19 12:44:49.171621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenTotalSupply] [Distribution Control] Since CreateElectionTokens() issues all 1 billion tokens to ElectionContract without vesting or distribution schedules, could early exploits of ElectionContract allow attackers to dump the entire supply and crash voting token value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_240d62f3-d6ee-4bca-accb-c3fb526a9a5b?mode=deep",
+    "timestamp": "2026-02-19 12:45:19.877337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenDecimals] [Consistency] All tokens (resource, election, native) use 8 decimals. While consistent, could this create issues if future tokens need different precision for voting weights, share calculations, or fee divisions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_322f473b-e660-43fb-9c18-4e13451f333f?mode=deep",
+    "timestamp": "2026-02-19 12:45:54.772433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenDecimals] [Voting Precision] With 8 decimals, the minimum voting unit is 0.00000001 tokens. Could this enable voting manipulation through dust voting or rounding exploits in vote weight calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87ece29f-5909-4854-b377-32e64bb42bd0?mode=deep",
+    "timestamp": "2026-02-19 12:46:28.613014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: MemoMaxLength] [Validation Bypass] The 64-byte limit is checked in AssertValidMemo() using UTF-8 byte count. Could attackers bypass this by using multi-byte UTF-8 characters to inject more semantic content while staying under 64 bytes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55321a25-f322-4af2-b4cc-9e6ab324ef8d?mode=deep",
+    "timestamp": "2026-02-19 12:47:02.317548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: MemoMaxLength] [DoS Vector] If memo validation is missing in some code paths that use economic contract methods, could attackers send extremely long memos that bypass the 64-byte check and cause gas exhaustion or storage bloat? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7658be59-d5c1-4759-abe3-ceee96abb3e4?mode=deep",
+    "timestamp": "2026-02-19 12:47:36.594816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: MemoMaxLength] [Encoding Issues] Does the 64-byte limit properly account for all UTF-8 encoding edge cases, or could certain character sequences cause the byte count to be miscalculated, allowing longer memos through? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc85008b-cbd4-4df2-81a9-598063cc5e7d?mode=deep",
+    "timestamp": "2026-02-19 12:48:07.842594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: PayTxFeeSymbolListName] [List Injection] The string 'SymbolListToPayTxFee' is used to retrieve context variables. Could an attacker who controls chain variables inject malicious symbols into this list, creating fake resource tokens that bypass fee validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_364d5647-4580-4c21-940c-d26077484d1d?mode=deep",
+    "timestamp": "2026-02-19 12:48:38.163627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: PayTxFeeSymbolListName] [Empty List Risk] If Context.Variables.GetStringArray('SymbolListToPayTxFee') returns empty or null during CreateResourceTokens(), would initialization silently succeed without creating fee payment tokens, breaking the entire fee payment system? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8609d54-66c9-474d-9c8d-8dd04ff4d13c?mode=deep",
+    "timestamp": "2026-02-19 12:49:14.290824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: PayTxFeeSymbolListName] [Symbol Duplication] If the same symbol appears in both PayTxFeeSymbolListName and PayRentalSymbolListName lists, does CreateResourceTokens() attempt to create the token twice causing initialization failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_747593b2-6a9e-42a9-8ac7-3c36c777d16a?mode=deep",
+    "timestamp": "2026-02-19 12:49:44.269444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: PayRentalSymbolListName] [Rental Bypass] Could an attacker modify the 'SymbolListToPayRental' context variable to exclude certain resource tokens, allowing them to use resources without paying rental fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d7d6fc0-52a4-480c-97c6-701960c58e21?mode=deep",
+    "timestamp": "2026-02-19 12:50:18.627634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: PayRentalSymbolListName] [List Manipulation] Is there validation that PayRentalSymbolListName returns valid, non-empty symbol strings? Could injection of empty strings, special characters, or excessively long symbols break connector creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d764cd2f-74ca-408f-8b44-127d8743a2d1?mode=deep",
+    "timestamp": "2026-02-19 12:50:53.146679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: ResourceTokenTotalSupply + ResourceTokenInitialVirtualBalance] [Economic Imbalance] The ratio between actual supply (500M) and virtual balance (0.001) is 5x10^14. Does this extreme ratio create Bancor formula edge cases where the price calculation fails mathematically or produces irrational results? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba9c9822-5743-4e6b-9a3e-050686e0ca0f?mode=deep",
+    "timestamp": "2026-02-19 12:51:22.235683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: NativeTokenConnectorInitialVirtualBalance + NativeTokenToResourceBalance] [Connector Asymmetry] The 10:1 ratio between these paired connector balances violates standard Bancor symmetric connector assumptions. Could this asymmetry be exploited for arbitrage by rapidly swapping between directions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7855257c-580a-4e87-8270-29bdc18dc443?mode=deep",
+    "timestamp": "2026-02-19 12:51:58.091520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: ElectionTokenTotalSupply + ElectionTokenSymbol] [Governance Capture] With 1 billion VOTE tokens issued to ElectionContract at initialization, does the system have sufficient safeguards against ElectionContract bugs that could allow unauthorized VOTE token transfers to attackers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03f16eda-63eb-45fc-9c32-7d4845dbb9f4?mode=deep",
+    "timestamp": "2026-02-19 12:52:31.132934",
+    "report_generated": false
+  }
+]
