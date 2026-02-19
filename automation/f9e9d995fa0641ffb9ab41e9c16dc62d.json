@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: CandidateVotes, DataCentersRankingList] [Ranking Desync] Can vote amounts in CandidateVotes differ from the corresponding amounts in DataCentersRankingList, causing incorrect subsidy beneficiary selection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5df4d1e-e682-4869-a265-0c280af60319?mode=deep",
+    "timestamp": "2026-02-19 15:00:49.862608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: Candidates, CandidateInformationMap] [Candidate Existence Mismatch] Can a pubkey exist in Candidates list but not in CandidateInformationMap (or vice versa), breaking candidate validation and voting logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4430ba8a-e4ad-4db2-9b6e-cd909c0efe71?mode=deep",
+    "timestamp": "2026-02-19 15:01:12.125606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: BannedPubkeyMap, Candidates] [Banned Candidate Active] Can a pubkey be marked as banned in BannedPubkeyMap while still appearing in Candidates list, allowing banned candidates to receive votes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ddb9350-f328-46fc-a108-1f5a1fdc3fd2?mode=deep",
+    "timestamp": "2026-02-19 15:01:34.501979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: InitialMiners, Candidates] [Initial Miner Duplicate] Can initial miners from InitialMiners also appear in Candidates list, causing confusion about their status and potentially double subsidies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e008ab74-3d84-4574-8d6d-4a1f779c0ce0?mode=deep",
+    "timestamp": "2026-02-19 15:01:58.347850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: LockTimeMap, ElectorVotes] [Lock-Vote Orphans] Can vote IDs in ElectorVotes.ActiveVotingRecordIds lack corresponding entries in LockTimeMap, allowing votes without lock time restrictions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc00e538-abf9-4c21-a1bd-6c918ef49a00?mode=deep",
+    "timestamp": "2026-02-19 15:02:23.336768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: CandidateAdmins, ManagedCandidatePubkeysMap] [Admin-Managed Bidirectional Consistency] If CandidateAdmins maps pubkey X to admin A, but ManagedCandidatePubkeysMap doesn't include X in A's list, can this cause permission check bypasses or failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91020369-c0d3-41a5-90d4-e448dcf66ba7?mode=deep",
+    "timestamp": "2026-02-19 15:02:49.544415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: CandidateReplacementMap, CandidateVotes] [Replaced Candidate Votes] When a candidate pubkey is replaced in CandidateReplacementMap, are votes properly migrated from old to new pubkey in CandidateVotes, or can votes be lost? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e3e421b-7586-49b1-b3a5-a347b9ffabbd?mode=deep",
+    "timestamp": "2026-02-19 15:03:15.096832",
+    "report_generated": false
+  }
+]
