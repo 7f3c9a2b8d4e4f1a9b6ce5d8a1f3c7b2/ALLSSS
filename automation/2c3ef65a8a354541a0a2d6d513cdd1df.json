@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFeeFreeAllowance()] [Refresh Time Race] TransactionFeeFreeAllowancesLastRefreshTimes is a WritePath - if multiple parallel transactions try to refresh the same allowance, could race conditions cause incorrect refresh timing or allowance amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d9cfd43-8c24-4757-9b06-e74b220ace95?mode=deep",
+    "timestamp": "2026-02-19 03:15:11.167961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFeeFreeAllowance()] [Address Conversion] from.ToBase58() is called for path creation - if Address.ToBase58() can produce inconsistent strings for the same address, could this cause path mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49630dc2-7433-4f34-8d43-192c7529a46d?mode=deep",
+    "timestamp": "2026-02-19 03:15:33.133779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetPath()] [Address Consistency] GetPath uses Context.Self as the address for all paths - if Context.Self can be manipulated or spoofed, could this cause paths to point to wrong contract state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f357a1a-183a-40a5-89e7-ca25afdfd424?mode=deep",
+    "timestamp": "2026-02-19 03:15:55.805540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetPath()] [Path Parts Ordering] StatePath.Parts are constructed from varargs - if the ordering of parts matters for state key construction and callers provide wrong order, could this cause path collisions or mismatches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc2ddf3e-f1f8-4889-90ac-f0460deae6ee?mode=deep",
+    "timestamp": "2026-02-19 03:16:18.661377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetPath()] [Empty Parts Array] If GetPath is called with empty parts array, is an empty path created that could match any state, or does this cause errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_129e2737-b879-4d75-8fb7-2f5c4689c1ab?mode=deep",
+    "timestamp": "2026-02-19 03:16:42.358984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetPath()] [Null Parts] If any element in the parts array is null, could this cause null reference exceptions or create invalid paths? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8105459f-7383-4973-a25c-739e41f1b208?mode=deep",
+    "timestamp": "2026-02-19 03:17:07.080196",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetPath()] [Path Separator Issues] StatePath.Parts uses collection initializer - does the underlying state system use separators between parts, and could specially crafted part values (with separators) cause path confusion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39d1d465-65c4-4e8d-810b-33ab793964e1?mode=deep",
+    "timestamp": "2026-02-19 03:17:32.533610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Integration] [Transaction Fee Delegation Race] Transfer and TransferFrom both call AddPathForDelegatees - if delegator changes their delegation list after path calculation but before execution, could wrong accounts pay fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a519141-4c7c-4db2-bb22-030579d91829?mode=deep",
+    "timestamp": "2026-02-19 03:18:00.810773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Integration] [Missing Cross-Call Paths] If Transfer or TransferFrom internally call other contract methods that modify state, are those cross-contract state modifications declared in WritePaths? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86fe2d00-1de7-4308-8ddf-c2172dfa42c1?mode=deep",
+    "timestamp": "2026-02-19 03:18:30.574244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Integration] [Read-Write Mismatch] Some paths are in ReadPaths (like TokenInfos) but not WritePaths - if the actual execution writes to these paths, could this cause undetected conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0ed3e4d-d33c-434c-9281-064e0d568ab7?mode=deep",
+    "timestamp": "2026-02-19 03:18:58.449766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Integration] [Allowance Deduction Path] For TransferFrom, AddPathForAllowance is called but the actual allowance deduction might access additional state - are all allowance-related state modifications covered? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9608d09f-c70a-4c5a-bde0-64794605620b?mode=deep",
+    "timestamp": "2026-02-19 03:19:29.988272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Integration] [Fee Collector State] AddPathForTransactionFee adds paths for fee payers but not collectors - if fee collector balances are modified by parallel transactions, could this cause accounting inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_733579f3-eb70-4b6b-bc4c-62d45a84ca5f?mode=deep",
+    "timestamp": "2026-02-19 03:20:01.399132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [NFT Handling] [Collection vs Item Paths] AddPathForAllowance distinguishes NFT and NftCollection types - if an attacker transfers an NFT item while another approves the collection, are both transactions correctly serialized? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65dd9c47-3f9d-4c24-90bd-1d7e4336a168?mode=deep",
+    "timestamp": "2026-02-19 03:20:34.620736",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [NFT Handling] [Ownership Transfer Race] NFT transfers should update ownership records - if these records aren't in WritePaths, could parallel NFT transfers of the same token ID both succeed causing double ownership? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ade43fd-cad8-4db1-940c-97250a58d960?mode=deep",
+    "timestamp": "2026-02-19 03:21:06.006463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [NFT Handling] [Token ID Missing from Path] The balance paths don't include specific NFT token IDs - if two transfers of different NFT IDs from the same collection run in parallel, will they conflict on collection balance even though they could be independent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69357163-81e6-4d7f-baad-11054965fa8b?mode=deep",
+    "timestamp": "2026-02-19 03:21:34.578737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [NFT Handling] [Collection Symbol Identifier] GetNftCollectionAllSymbolIdentifier() is called for NFT types - if this identifier is not unique per collection or can collide, could this cause false conflicts or missed conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00a994bb-47ca-4aea-8f48-b03bdac49a2a?mode=deep",
+    "timestamp": "2026-02-19 03:22:07.084296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Input Parsing] [TransferInput Parser Failure] If TransferInput.Parser.ParseFrom(txn.Params) throws an exception for malformed input, does GetResourceInfo catch it, or does the entire path calculation fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b42a0b67-7d24-482b-8560-d10959f38df2?mode=deep",
+    "timestamp": "2026-02-19 03:22:40.399098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Input Parsing] [TransferFromInput Parser Failure] If TransferFromInput.Parser.ParseFrom(txn.Params) throws an exception, could this be exploited to cause DoS by forcing all transactions to become non-parallelizable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31f317c4-c044-49cd-a5ec-7352e09fe551?mode=deep",
+    "timestamp": "2026-02-19 03:23:15.356878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Input Parsing] [Malicious Input Data] If txn.Params contains deliberately malformed protobuf data that partially parses, could this cause incorrect path calculations leading to race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d18adf18-39ed-4e56-a321-bc4c03145b42?mode=deep",
+    "timestamp": "2026-02-19 03:23:49.930453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Input Parsing] [Address Validation] Parsed addresses (args.To, args.From) are used directly in path construction - if these addresses are invalid or maliciously crafted, could this cause path collisions or errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8dc37bc7-c42c-4c3b-b994-67ac1d598d67?mode=deep",
+    "timestamp": "2026-02-19 03:24:26.171814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Symbol Handling] [Symbol Case Sensitivity] If args.Symbol from parsed input has different casing than stored symbol, will GetPath create different paths causing parallel execution of conflicting transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c618bb7c-44c6-4b61-af58-d899d8a3a2ab?mode=deep",
+    "timestamp": "2026-02-19 03:25:03.530752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Symbol Handling] [Symbol Validation] args.Symbol is used directly in path construction without validation - if symbol contains special characters or path separators, could this cause path injection attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f771992-8f13-4ed9-bf34-4bede43f03ee?mode=deep",
+    "timestamp": "2026-02-19 03:25:41.862777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Symbol Handling] [Empty Symbol] If args.Symbol is empty string, does GetPath create a valid path, or could empty symbols cause path collisions across different tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c23550a7-cfa3-4a39-8799-adee66002939?mode=deep",
+    "timestamp": "2026-02-19 03:26:17.879706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Symbol Handling] [Symbol Length Limits] If args.Symbol is extremely long, could this cause path size limits to be exceeded or performance degradation in path comparison? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d7032dc-2c93-4a90-be06-03f7a23556cd?mode=deep",
+    "timestamp": "2026-02-19 03:26:52.268777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [State Access] [Nested Map Access] GetDelegateeList uses nested map access State.TransactionFeeDelegateInfoMap[delegator][to][methodName] - if any intermediate level is null, could this throw null reference exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2097248-b56c-4f74-b096-c65c8061aa16?mode=deep",
+    "timestamp": "2026-02-19 03:27:26.292215",
+    "report_generated": false
+  }
+]
