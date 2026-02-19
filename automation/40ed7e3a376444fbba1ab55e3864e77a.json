@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ChangeOrganizationProposerWhiteList()] [Member-Proposer Mismatch] Can new whitelist contain only non-members, creating scenario where no member can propose, deadlocking governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0bcf0a2-6b65-4c5d-ba59-75e413c7040c?mode=deep",
+    "timestamp": "2026-02-19 04:42:47.940304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AddMember()] [Member Count Threshold] When adding member at line 237, can new member count violate ProposalReleaseThreshold invariants checked in Association_Helper.cs lines 72-80? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fdbe704-275e-44a3-8bd7-e2eb154d977d?mode=deep",
+    "timestamp": "2026-02-19 04:43:10.221100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AddMember()] [Duplicate Addition] Does Validate() at line 238 prevent adding duplicate members via AnyDuplicate check, or can same address be added multiple times if state update races occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d56bbe10-e4b7-4d58-a8a1-ffa4623d1c09?mode=deep",
+    "timestamp": "2026-02-19 04:43:32.767352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AddMember()] [Retroactive Voting] Can newly added member immediately vote on existing proposals, potentially changing approved status retroactively? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_932eb499-17fd-4da8-a166-330b910d7cb6?mode=deep",
+    "timestamp": "2026-02-19 04:43:56.067878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AddMember()] [Authorization Bypass] At line 235, can attacker manipulate Context.Sender to be organization address without going through proper proposal release process? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f14b78a-eb8e-42ad-bc6b-6b9de238a0ee?mode=deep",
+    "timestamp": "2026-02-19 04:44:20.363603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AddMember()] [Threshold Violation] After adding member, can (MaximalAbstentionThreshold + MinimalApprovalThreshold) exceed new member count, violating invariant at Association_Helper.cs line 77-78? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67cd9444-0d78-48ca-a759-ca229a4856dc?mode=deep",
+    "timestamp": "2026-02-19 04:44:45.179037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AddMember()] [Null Address Addition] Does Validate() prevent adding null or zero addresses as members, or can invalid addresses be added breaking voting logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01dd995c-3632-440d-bbce-2090f175742f?mode=deep",
+    "timestamp": "2026-02-19 04:45:10.551912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ChangeMember()] [Atomic Operation Failure] If Remove at line 252 succeeds but Add at line 254 fails validation, is organization left in inconsistent state with one fewer member? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebca8018-8399-4a8f-961d-854b627f0703?mode=deep",
+    "timestamp": "2026-02-19 04:45:36.304634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ChangeMember()] [Active Voter Replacement] Can old member be replaced while they have active votes on proposals, causing their votes to be counted for non-member? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c796c32a-d96e-42a3-86b4-968c6590f4b0?mode=deep",
+    "timestamp": "2026-02-19 04:46:02.105916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ChangeMember()] [Remove Validation] Does line 253 assert removeResult, but can removal fail silently if oldMember voted on proposals, causing state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ecde8a2-c0bd-4fdf-8160-12ec317f3ae7?mode=deep",
+    "timestamp": "2026-02-19 04:46:29.639893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ChangeMember()] [Duplicate Replacement] Can newMember already exist in OrganizationMembers before ChangeMember, with AnyDuplicate check failing only after oldMember is removed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52a7aca8-b111-4539-842e-ebbf18ea3eed?mode=deep",
+    "timestamp": "2026-02-19 04:46:57.827811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ChangeMember()] [Self-Replacement Attack] Can member replace themselves with another address they control, effectively getting fresh voting rights on existing proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ed0ed70-4ba2-4f10-ba81-256f2375a06f?mode=deep",
+    "timestamp": "2026-02-19 04:47:28.709141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: RemoveMember()] [Member Count Underflow] After removing member at line 270, can member count drop below MinimalVoteThreshold, making all future proposals unapprovable? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f73f0d4-7473-41a2-9764-858ae6360463?mode=deep",
+    "timestamp": "2026-02-19 04:47:56.405919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: RemoveMember()] [Threshold Invariant] After removal, can (MinimalApprovalThreshold > remaining member count) occur, violating invariant at Association_Helper.cs line 72? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c00e418f-9b1f-47e5-92a7-bce8c6bda4c1?mode=deep",
+    "timestamp": "2026-02-19 04:48:26.942067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: RemoveMember()] [Active Proposal Impact] Does removing member at line 270 invalidate their existing votes on active proposals, or do votes persist causing non-member votes to count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cadef789-9c25-419f-a3c6-2b68a33e0f6d?mode=deep",
+    "timestamp": "2026-02-19 04:48:56.535061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: RemoveMember()] [Proposer-Member Dependency] Can removed member still be in ProposerWhiteList, allowing non-members to create proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c87131e-a0e9-446f-9d21-1f516c7f2683?mode=deep",
+    "timestamp": "2026-02-19 04:49:24.547440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: RemoveMember()] [Removal Failure Handling] At line 271, if removeResult is false, does assert prevent state update, or can function proceed with failed removal? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b2a0950-95e1-4485-b8ea-28d5d5862ad6?mode=deep",
+    "timestamp": "2026-02-19 04:49:52.884340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: RemoveMember()] [Last Member Removal] Can organization remove all members, leaving empty OrganizationMemberList that violates Empty() check in Validate()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6a2c53c-d1c2-4da1-973e-cdd67f0639b4?mode=deep",
+    "timestamp": "2026-02-19 04:50:22.735226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ClearProposal()] [Timing Attack] At line 286, can attacker front-run proposer's Release() call with ClearProposal() immediately after expiry, preventing legitimate proposal execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f58426e-cc73-4881-a6e4-627a124c748c?mode=deep",
+    "timestamp": "2026-02-19 04:50:50.738355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ClearProposal()] [Anyone Can Clear] Does 'anyone can clear' at line 284 allow malicious actors to DOS governance by clearing proposals immediately upon expiry before release? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71c35ee2-bd80-43d6-83c4-ce727db75b2c?mode=deep",
+    "timestamp": "2026-02-19 04:51:19.731615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ClearProposal()] [Expired Proposal Release Race] Between ExpiredTime check at line 286 and Remove at line 287, can proposer still Release() if release check occurs before ClearProposal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0ff3d0a-c7ff-4713-8301-17f155666596?mode=deep",
+    "timestamp": "2026-02-19 04:51:46.608950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ClearProposal()] [Storage Cleanup DOS] Can attacker spam proposal creation then use ClearProposal to repeatedly churn storage, causing excessive gas costs for nodes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b359648-a58f-4593-9818-d4496a2793e9?mode=deep",
+    "timestamp": "2026-02-19 04:52:15.132704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsReleaseThresholdReached()] [Rejection Count Logic] At Association_Helper.cs line 36-38, does Count() include non-member rejections if member was removed after voting, causing incorrect rejection threshold calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bc6afda-c2ef-4eaf-9f83-0e2f9838fc1f?mode=deep",
+    "timestamp": "2026-02-19 04:52:44.232013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsReleaseThresholdReached()] [Abstention Priority] At Association_Helper.cs line 30-31, if both rejection and abstention thresholds are exceeded, which takes precedence, or can conflicting states exist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_294c86b7-3198-4787-8cee-acaabd05b593?mode=deep",
+    "timestamp": "2026-02-19 04:53:11.588804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsReleaseThresholdReached()] [Vote Count Filtering] At Association_Helper.cs line 49, does filtering approvals by OrganizationMemberList.Contains prevent counting removed member votes, or can timing allow invalid counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ed1fa28-b449-4ce3-a380-e8046137c408?mode=deep",
+    "timestamp": "2026-02-19 04:53:38.276463",
+    "report_generated": false
+  }
+]
