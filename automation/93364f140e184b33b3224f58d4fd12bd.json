@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [Collision Probability] What is the collision probability in IsCreatedMap, and is it acceptable? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32c4b060-9ce2-4515-9544-97e61d00aa53?mode=deep",
+    "timestamp": "2026-02-19 08:41:30.948414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Burn Flag Persistence] Once IsBurned is set in NftInfoMap, can it ever be unset? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6d3fe26-d94a-4fb6-9b54-4353752d5450?mode=deep",
+    "timestamp": "2026-02-19 08:41:52.884184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Negative Transfer Detection] Are negative amounts properly caught before BalanceMap updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e955c53-8e38-46da-b32e-dd8687ec35c2?mode=deep",
+    "timestamp": "2026-02-19 08:42:15.188582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Minter Limit] Is there a maximum number of minters per protocol in MinterListMap? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d64915c-4eec-402f-af12-563f0b7d8532?mode=deep",
+    "timestamp": "2026-02-19 08:42:38.495112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Infinite Approval] Can AllowanceMap store maximum int64 value for infinite approval, and is this secure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d388a0c-5f7d-45b7-90d4-27f2bacb61ae?mode=deep",
+    "timestamp": "2026-02-19 08:43:02.552315",
+    "report_generated": false
+  }
+]
