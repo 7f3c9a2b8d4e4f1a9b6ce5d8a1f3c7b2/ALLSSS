@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeTransactionFees()] [Authorization Bypass] Can an attacker bypass AssertTransactionGeneratedByPlugin() check by manipulating Context.TransactionId to equal Context.OriginTransactionId, allowing direct fee charging without plugin execution and enabling unauthorized fee collection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4296565b-bd38-45cb-b71d-c58e4e1a5aaa?mode=deep",
+    "timestamp": "2026-02-19 00:49:19.129102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: AssertPermissionAndInput()] [Input Validation] If input.MethodName or input.ContractAddress is set to empty string (not null), does the assertion at line 131 fail to catch it, allowing fee charging with invalid parameters and potential state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e10e0b9-6a01-4cd3-af88-a432d6f2abf0?mode=deep",
+    "timestamp": "2026-02-19 00:49:41.079276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeTransactionFees()] [Early Return Bypass] When State.ChainPrimaryTokenSymbol.Value is null at line 29, the function returns success without charging fees - can this be exploited during chain initialization to execute transactions without payment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ef33302-4994-4cdc-87b5-0ba6499643da?mode=deep",
+    "timestamp": "2026-02-19 00:50:03.696698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeResourceToken()] [Authorization Bypass] The AssertTransactionGeneratedByPlugin check at line 568 can be bypassed if Context.TransactionId manipulation is possible - can attackers charge arbitrary resource tokens without proper plugin validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d18539a-4d1a-440b-a758-fc3e3b3d8bb9?mode=deep",
+    "timestamp": "2026-02-19 00:50:26.631908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: SetFeeReceiver()] [Authorization Escalation] Only State.SideChainCreator.Value can set fee receiver at line 1214, but if SideChainCreator is never set or set to zero address, does this permanently lock the fee receiver configuration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b2c0b45-06b6-4d70-af03-9d2236865227?mode=deep",
+    "timestamp": "2026-02-19 00:50:50.444715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeFromDelegations()] [Block Height Manipulation] At line 186, delegation is only used if Context.Transaction.RefBlockNumber >= delegations.BlockHeight - can an attacker manipulate RefBlockNumber to use future delegations prematurely or bypass older delegations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6c2ebeb-2e82-4a0b-b878-73107e4bf724?mode=deep",
+    "timestamp": "2026-02-19 00:51:16.116091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeFromDelegations()] [Delegation Double-Spend] If multiple transactions in the same block reference the same delegatee, can the delegation amount be consumed multiple times before ModifyDelegation at line 202 updates state, causing delegation overdraft? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdb11a87-54da-48bf-8f34-75572506b59e?mode=deep",
+    "timestamp": "2026-02-19 00:51:42.558182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyDelegation()] [Underflow Risk] At lines 221-222 and 232-233, delegation amounts are decremented with .Sub() without checking if delegations have already been fully consumed - can this cause integer underflow in delegation tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46c9ced9-2200-47c4-a199-a0837ddeb1e5?mode=deep",
+    "timestamp": "2026-02-19 00:52:08.926079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeFromDelegations()] [Unlimited Delegation Bypass] When delegations.IsUnlimitedDelegate is true at line 200, ModifyDelegation is skipped - can unlimited delegatees be exploited to charge infinite fees without balance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fbf2e79-4adf-475d-aaed-ac5a0711df78?mode=deep",
+    "timestamp": "2026-02-19 00:52:35.212039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeFromDelegations()] [Delegation State Inconsistency] Lines 174-176 read from either TransactionFeeDelegateInfoMap or TransactionFeeDelegateesMap - if both exist with conflicting data, which takes precedence and can this cause delegation amount discrepancies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8ad3014-718d-47f8-809e-3f6a2802357f?mode=deep",
+    "timestamp": "2026-02-19 00:53:06.528208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: TryToChargeDelegateBaseFee()] [Delegation Validation Race] At line 829-831, delegation sufficiency is checked but state is not locked - can concurrent transactions exploit the time gap between check and charge to overdraft delegations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02efa4c0-82e9-4f38-8487-9a75067d2703?mode=deep",
+    "timestamp": "2026-02-19 00:53:38.944060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyDelegation()] [State Path Confusion] Lines 218-220 and 229-231 use ?? operator to select delegation state path - if both paths exist with different delegatee addresses, can this cause deduction from wrong account? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67d733a2-8c45-4fdd-8b46-fa91e600bdab?mode=deep",
+    "timestamp": "2026-02-19 00:54:09.018185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeFromDelegations()] [Foreach Loop Early Exit] The loop at line 183-207 breaks on first successful charge - can delegatees manipulate ordering to ensure their delegation is never consumed while others pay fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_235c9234-0638-41ab-ade0-472251999f97?mode=deep",
+    "timestamp": "2026-02-19 00:54:37.312432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyBalance()] [Balance Underflow] At line 248, ModifyBalance(fromAddress, symbol, -amount) is called without explicit underflow check - can negative balance occur if GetBalance returns stale data or amount exceeds actual balance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5d59722-97e0-4a63-a347-c3e16c63f9ab?mode=deep",
+    "timestamp": "2026-02-19 00:55:07.073774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyBalance()] [Blacklist Check Bypass] The blacklist check at line 240 only validates fromAddress, but if fromAddress is a delegatee paying for delegator, does the delegator bypass blacklist restrictions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96c85a89-efe5-4753-8f25-194750daefd5?mode=deep",
+    "timestamp": "2026-02-19 00:55:37.772891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyBalance()] [Allowance State Inconsistency] Lines 259-265 modify free fee allowance after balance is already deducted - can transaction revert after balance change but before allowance update, causing accounting mismatch? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52ad2923-cd1a-4a45-bb1c-e6517632892a?mode=deep",
+    "timestamp": "2026-02-19 00:56:13.740630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetAvailableBalance()] [Balance Calculation Error] At line 454, available balance is calculated as GetBalance().Sub(amountChargedForBaseFee) when symbols match - if amountChargedForBaseFee > GetBalance(), does Sub() underflow or revert? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06f7b3f9-b1c6-43c8-8638-b0b9897cab67?mode=deep",
+    "timestamp": "2026-02-19 00:56:49.716957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetAvailableBalance()] [Allowance Double-Count] Lines 456-459 calculate availableAllowance by subtracting amountChargedForBaseAllowance - can this allowance be counted twice if used for both base fee and size fee in same transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41219cc1-7073-44dc-9b06-76924d0e8cb1?mode=deep",
+    "timestamp": "2026-02-19 00:57:21.315425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetBalanceCalculatedBaseOnPrimaryToken()] [Division Precision Loss] At line 1365-1366, balance is multiplied then divided by weights - can this cause rounding errors that accumulate over multiple transactions, leading to fee leakage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44b789f8-8b71-442b-b4ef-bca0d29e686f?mode=deep",
+    "timestamp": "2026-02-19 00:57:56.070088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetBalanceCalculatedBaseOnPrimaryToken()] [Weight Manipulation] If tokenInfo.AddedTokenWeight is 0 at line 1366, does division by zero occur or can extremely high weights cause overflow in multiplication at line 1365? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8213642-d9b0-4c85-9dc9-0468940aa9ab?mode=deep",
+    "timestamp": "2026-02-19 00:58:30.476162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeTransactionFeesToBill()] [Delegation Asymmetry] At line 286-289, if delegations != null and base fee fails, size fee is not charged - but for users (line 299), both must succeed - can this inconsistency be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6ee1d41-8622-49a3-9190-f8fbc2fca2ee?mode=deep",
+    "timestamp": "2026-02-19 00:59:03.990664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeBaseFee()] [Partial Charge Exploit] At line 349-353, if charging fails but symbolToChargeBaseFee is not null, existing balance/allowance are added to bill - can this partial charge break fee atomicity requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa203a89-143a-46e7-8275-39c58a5c2206?mode=deep",
+    "timestamp": "2026-02-19 00:59:35.643487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeBaseFee()] [Allowance Priority Vulnerability] Lines 359-369 prioritize free allowance over balance - can users manipulate allowance refresh timing to avoid paying from actual balance, getting perpetual free transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07f02933-64fb-4d25-8de8-d0888866d57b?mode=deep",
+    "timestamp": "2026-02-19 01:00:02.776244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeSizeFee()] [Symbol Selection Bypass] Lines 393-415 get available symbol from input.SymbolsToPayTxSizeFee - can attacker omit primary token from this list to force charging from token with manipulated balance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_233f217d-82ad-4ec3-b9fb-8e6a69a8bdaa?mode=deep",
+    "timestamp": "2026-02-19 01:00:35.734296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeSizeFee()] [Weight Calculation Overflow] At line 403-404, txSizeFeeAmount is multiplied by AddedTokenWeight then divided by BaseTokenWeight - can this overflow if weights are set to MAX_LONG values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f19b2076-c01f-4e20-b3ae-acb206197aee?mode=deep",
+    "timestamp": "2026-02-19 01:01:10.341834",
+    "report_generated": false
+  }
+]
