@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [VotedItems Null Reference] At line 209, votedItems is retrieved without null check - if State.VotedItemsMap[votingRecord.Voter] is null (user never voted before), can this cause null reference exception at line 210? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_552be759-4f63-4506-822c-0a69789080f0?mode=deep",
+    "timestamp": "2026-02-19 02:20:24.084132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [VotedItems Key Missing] At lines 210-211, if votedItems.VotedItemVoteIds doesn't contain votingItem.VotingItemId.ToHex() key, can the dictionary access throw KeyNotFoundException, preventing withdrawal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1636b358-c86e-451f-923c-ec76caa744e8?mode=deep",
+    "timestamp": "2026-02-19 02:20:46.187909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Authorization Bypass] At line 245, only the Sponsor can take snapshots - can an attacker become the sponsor through a separate exploit and manipulate snapshot timing to freeze votes at advantageous moments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87aa9205-7973-4b27-85f0-e2834587a9c2?mode=deep",
+    "timestamp": "2026-02-19 02:21:08.530918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Boundary Check Error] At line 247, the check is CurrentSnapshotNumber - 1 < TotalSnapshotNumber, but at line 256 it requires CurrentSnapshotNumber == SnapshotNumber - can an attacker exploit the mismatch between these checks to take snapshots out of order? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5fc23cb-33c8-428a-b539-7ef00d58d909?mode=deep",
+    "timestamp": "2026-02-19 02:21:31.273308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Race Condition] Between checking the snapshot number at line 256 and incrementing it at line 259, can another transaction take the snapshot first, causing the increment at line 259 to skip a snapshot number? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6596e50-fe76-4585-abf2-87e688218681?mode=deep",
+    "timestamp": "2026-02-19 02:21:55.309229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Integer Overflow] At line 258, nextSnapshotNumber is calculated as input.SnapshotNumber.Add(1) - can an attacker provide SnapshotNumber=long.MaxValue causing overflow to long.MinValue? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f763a7a-e885-4232-ae00-a8b01fceca41?mode=deep",
+    "timestamp": "2026-02-19 02:22:19.948502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [State Inconsistency] At lines 269-270, the new VotingResult is initialized with VotersCount and VotesAmount from the previous snapshot - can an attacker exploit this to carry over inflated counts if previous snapshot results were manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c1a12b8-f00c-4044-9d8e-ae52b7d2fa92?mode=deep",
+    "timestamp": "2026-02-19 02:22:44.706416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Missing Results Initialization] At lines 264-271, the new VotingResult doesn't initialize the Results map - can votes in the new snapshot fail to record properly if the Results map needs initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4ab60e1-1370-4b30-be3b-0f8a37ed6a09?mode=deep",
+    "timestamp": "2026-02-19 02:23:12.023632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Timestamp Manipulation] At line 253, SnapshotEndTimestamp is set to Context.CurrentBlockTime, and at line 268 SnapshotStartTimestamp is also set to Context.CurrentBlockTime - can the same timestamp for end and start cause time-based validation issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_252936b7-d696-49f5-b9be-1a7cc23fd67e?mode=deep",
+    "timestamp": "2026-02-19 02:23:38.064705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Early Snapshot] There's no validation that enough time has passed since CurrentSnapshotStartTimestamp at line 253 - can an attacker take snapshots immediately after each other, creating many empty snapshots? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e93a804-1c1f-4e54-bff6-24755d7cc11a?mode=deep",
+    "timestamp": "2026-02-19 02:24:08.949489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: TakeSnapshot()] [Final Snapshot] What happens after the final snapshot (when CurrentSnapshotNumber == TotalSnapshotNumber) - can voting continue but votes aren't recorded in any snapshot, causing vote loss? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84675289-e49a-4007-81a2-ed1039b31b70?mode=deep",
+    "timestamp": "2026-02-19 02:24:39.659326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOption()] [Authorization Bypass] At line 283, only Sponsor can add options - but can an attacker who becomes sponsor (through exploit) add malicious options with special characters that break option validation in other functions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4126933-401b-45fb-aded-a90ae16f30d0?mode=deep",
+    "timestamp": "2026-02-19 02:25:12.273538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOption()] [Duplicate Option] At line 295, Assert checks if option already exists - but can an attacker add an option that differs only in whitespace or special characters that are normalized later, causing duplicate counting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a8fa282-d0dd-4f73-bec0-2876bee12f37?mode=deep",
+    "timestamp": "2026-02-19 02:25:43.463563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOption()] [Options Count] At line 285, the check is Options.Count < MaximumOptionsCount, then at line 287 the option is added - can an attacker exploit the race between check and add to exceed maximum options if multiple AddOption calls happen concurrently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4d2a4e8-b412-4c12-8620-95c359b54485?mode=deep",
+    "timestamp": "2026-02-19 02:26:14.978663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOption()] [Options Limit Bypass] The check at line 285 prevents exceeding 64 options - but can an attacker initially register with 64 options at Register() (which doesn't check) and then try to add more, causing assertion failure that locks option management? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f23374c6-556f-43c9-953f-7adedb54f924?mode=deep",
+    "timestamp": "2026-02-19 02:26:42.698456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOption()] [Option Length] At line 294, option length must be <= 1024 chars - but can an attacker add an option with exactly 1024 chars containing non-ASCII or special characters that cause storage or display issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_383f8693-7fa1-476b-acdf-8aac40bb8e39?mode=deep",
+    "timestamp": "2026-02-19 02:27:14.077571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOption()] [Active Voting] Can an attacker add new options while voting is active, allowing them to vote for newly added options that weren't available when other voters cast their votes, creating unfair advantage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7114373-53ef-4124-a8bb-1a762d22a723?mode=deep",
+    "timestamp": "2026-02-19 02:27:46.429223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOption()] [Vote Orphaning] At lines 308-309, an option is removed without checking if existing votes have been cast for it - can this orphan votes and cause VotingResult.Results to contain keys for options that no longer exist in votingItem.Options? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1950254-b7b8-4743-a1d1-0592fd1dd5ef?mode=deep",
+    "timestamp": "2026-02-19 02:28:17.473937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOption()] [Result Inconsistency] After removing an option at line 309, the Results map in VotingResult still contains votes for that option - can this cause accounting errors where VotesAmount doesn't match the sum of votes for valid options? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_beaa8790-0732-4fdb-8433-b404eba461b2?mode=deep",
+    "timestamp": "2026-02-19 02:28:45.095912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOption()] [Authorization Timing] At line 306, only Sponsor can remove options - can the sponsor remove all options after voting has started, effectively preventing any new votes and freezing the voting process? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e0cfae7-16c1-4c61-8043-fe4b370290c4?mode=deep",
+    "timestamp": "2026-02-19 02:29:13.646672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOption()] [Option Validation] At line 308, Assert checks if option exists - but if the option exists in Results but not in Options (added then removed then added again), can this cause logic errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_752cd489-268b-4cdf-9785-ae29e97fa128?mode=deep",
+    "timestamp": "2026-02-19 02:29:44.184776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Batch Processing Error] At line 318, each option is validated with AssertOption() - can an attacker provide a list where the last option causes the assertion at line 320 to fail, but previous options were already validated and added at line 319? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f6cedb6-9046-452a-a081-3efdd612512a?mode=deep",
+    "timestamp": "2026-02-19 02:30:14.064432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Partial Addition] At line 319, options are added with AddRange() before the count check at line 320 - if the count check fails, can the options remain added with a revert or is state corrupted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d6eda75-909b-4596-bae0-b50e9c5f2fc5?mode=deep",
+    "timestamp": "2026-02-19 02:30:40.286616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Empty List] Can an attacker call AddOptions() with an empty list, causing no assertion failures but wasting gas and potentially bypassing expected validation logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d31e5bc0-7299-419b-86de-46e4d0807a08?mode=deep",
+    "timestamp": "2026-02-19 02:31:08.980230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOptions()] [Partial Removal] At lines 330-335, options are removed one by one - if an assertion fails mid-loop, can some options be removed while others remain, leaving the voting item in an inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2da04abb-acbd-4079-88cb-4066ee28bc16?mode=deep",
+    "timestamp": "2026-02-19 02:31:34.191497",
+    "report_generated": false
+  }
+]
