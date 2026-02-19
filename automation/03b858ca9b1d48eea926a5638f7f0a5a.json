@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Integer Overflow] Does using int.MaxValue (2147483647) for ArrangedMiningTime.Seconds at line 25 cause overflow issues when converted to Timestamp or used in time comparisons with miners expecting valid timestamps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12fce910-0c46-439a-818e-4f3c7727afe3?mode=deep",
+    "timestamp": "2026-02-19 00:54:24.368538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Consensus Bypass] Can an attacker exploit the static InvalidConsensusCommand at line 23 by manipulating calling code to return this command inappropriately, allowing unauthorized mining prevention or DOS of legitimate miners? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90dc7185-12d7-451e-a7ec-a71c04b79600?mode=deep",
+    "timestamp": "2026-02-19 00:54:46.411043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Immutability Violation] Is the InvalidConsensusCommand at line 23 truly immutable, or can the returned ConsensusCommand object be modified after retrieval, potentially corrupting the singleton pattern and affecting multiple callers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ab41fab-d978-4226-9639-d56a938edb41?mode=deep",
+    "timestamp": "2026-02-19 00:55:09.799478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Time Manipulation] Can the hardcoded int.MaxValue timestamp at line 25 be exploited in edge cases where timestamp arithmetic wraps around or overflows, potentially creating valid mining windows instead of invalid ones? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3665222c-b741-4be6-9423-bbbc45ddaeb4?mode=deep",
+    "timestamp": "2026-02-19 00:55:32.799344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Behaviour Enumeration] Is the AElfConsensusBehaviour.Nothing value at line 28 properly validated by all consumers, or can code paths misinterpret 'Nothing' as a valid mining behaviour instead of a prohibition signal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e6eed7b-c311-4a89-aff5-436da4cd07cc?mode=deep",
+    "timestamp": "2026-02-19 00:55:56.813793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Object Initialization] Does the object initializer syntax at lines 23-30 guarantee atomic initialization, or can concurrent access during class loading create partially initialized InvalidConsensusCommand instances? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c22da4ea-483a-46b8-956b-c7c3a649afc7?mode=deep",
+    "timestamp": "2026-02-19 00:56:21.717801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Hint Serialization] Can the ByteString.CopyFrom(ToByteArray()) serialization at line 26 fail or produce inconsistent byte arrays, causing InvalidConsensusCommand to become valid or unpredictable across calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dccb3677-37db-4461-ab78-9553a786d46c?mode=deep",
+    "timestamp": "2026-02-19 00:56:47.976315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Memory Exhaustion] Does each access to InvalidConsensusCommand at line 23 create new AElfConsensusHint and ByteString objects, potentially causing memory exhaustion if called repeatedly in loops or DOS attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29eeef32-71d7-443d-b4db-2588fe620145?mode=deep",
+    "timestamp": "2026-02-19 00:57:15.319305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Protobuf Compatibility] Can the Google.Protobuf serialization at line 26 produce different byte representations across library versions, causing InvalidConsensusCommand to be rejected or accepted inconsistently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d267567-1279-4807-a67f-9a71d18ab8ad?mode=deep",
+    "timestamp": "2026-02-19 00:57:42.326317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Property: InvalidConsensusCommand] [Null Reference] Can the ToByteArray() call at line 26-29 return null or throw exceptions in edge cases, causing the Hint field to be null and breaking consumers expecting valid ByteString data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68eebdd5-101c-4b99-a01c-e84226c51082?mode=deep",
+    "timestamp": "2026-02-19 00:58:09.895430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Null Injection] Can null be passed as commandStrategy at line 15, causing NullReferenceException when GetConsensusCommand() is called at line 34, potentially crashing consensus or enabling DOS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_254b102d-78b7-4d71-91e2-96e5a29513db?mode=deep",
+    "timestamp": "2026-02-19 00:58:36.987649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Malicious Strategy] Can an attacker inject a malicious ICommandStrategy implementation at line 15 that returns manipulated ConsensusCommands, bypassing round validation or granting unauthorized mining slots? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_330cd703-8ef7-4313-a077-92453463260e?mode=deep",
+    "timestamp": "2026-02-19 00:59:05.239588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Strategy Validation] Is there any validation of the commandStrategy parameter at line 15 to ensure it's a legitimate strategy instance (FirstRound, NormalBlock, TerminateRound, TinyBlock) and not a compromised object? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03935a25-dc67-4469-80e9-374905997ea4?mode=deep",
+    "timestamp": "2026-02-19 00:59:34.974048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Type Confusion] Can reflection or type confusion attacks substitute unexpected ICommandStrategy implementations at line 15, bypassing the intended strategy pattern and corrupting consensus command generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80c05032-d153-47f4-be42-59fc9c2d8cab?mode=deep",
+    "timestamp": "2026-02-19 01:00:04.350568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Thread Safety] Is the assignment of _commandStrategy at line 17 thread-safe, or can race conditions during concurrent instantiation cause strategy instances to be swapped or corrupted? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc181c3a-85ea-43db-8bf2-7f088b85ab56?mode=deep",
+    "timestamp": "2026-02-19 01:00:31.946445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [State Mutation] Can the injected commandStrategy instance at line 15 be mutated after construction, allowing attackers to modify Round, Pubkey, or CurrentBlockTime fields in the strategy to corrupt consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40a0fb3a-a5dd-47ee-979f-3f3a67f547bc?mode=deep",
+    "timestamp": "2026-02-19 01:00:59.642146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Access Control] Does the private class modifier at line 11 properly restrict instantiation, or can external code use reflection to create ConsensusCommandProvider instances with malicious strategies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_274ec69b-9479-471a-b2e8-c2dd4e9d59fe?mode=deep",
+    "timestamp": "2026-02-19 01:01:27.101380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Constructor: ConsensusCommandProvider()] [Immutability] Is the _commandStrategy field at line 13 truly readonly, preventing reassignment after construction, or can advanced reflection techniques modify it to inject new strategies mid-execution? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1f2889f-9b0f-493e-ac2c-5b4f0020daed?mode=deep",
+    "timestamp": "2026-02-19 01:01:57.992287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Method: GetConsensusCommand()] [Strategy Exception] If _commandStrategy.GetConsensusCommand() at line 34 throws an exception (null round, invalid pubkey, time validation failure), does the method propagate unhandled exceptions that crash consensus or can it be caught to DOS block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e31aa5c9-f33c-4b99-bb1d-dfd599ef4350?mode=deep",
+    "timestamp": "2026-02-19 01:02:28.712382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Method: GetConsensusCommand()] [Return Value Validation] Does GetConsensusCommand() at line 32 validate the ConsensusCommand returned from the strategy at line 34, or can null, malformed, or invalid commands pass through unchecked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3720a0d0-2a38-45f6-b904-e132aaa698c0?mode=deep",
+    "timestamp": "2026-02-19 01:02:56.285344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusCommandProvider.cs] [Method: GetConsensusCommand()] [Reentrancy] Can the strategy's GetConsensusCommand() call at line 34 trigger reentrant calls back into ConsensusCommandProvider or AEDPoSContract methods, causing state inconsistency or infinite recursion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a37787a-e8fe-44ac-a31e-e39043dcc3d7?mode=deep",
+    "timestamp": "2026-02-19 01:03:26.348399",
+    "report_generated": false
+  }
+]
