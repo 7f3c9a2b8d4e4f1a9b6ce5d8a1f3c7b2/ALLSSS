@@ -1,6 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNftMetadataReservedKeys()] [Metadata Keys] Can the hardcoded reserved keys (lines 101-105) conflict with user-defined metadata causing data loss? (Low)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNftMetadataReservedKeys()] [Key Management] If reserved keys are modified in future versions, can existing NFTs break validation? (Low)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Type Safety] Is the balance returned as long sufficient to hold maximum possible NFT quantities, or can overflow occur? (Low)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Type Safety] Can allowance values stored as long overflow if extremely large approvals are granted? (Low)"
-]
