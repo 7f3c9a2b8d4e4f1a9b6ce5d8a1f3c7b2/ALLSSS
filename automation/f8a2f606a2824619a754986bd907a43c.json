@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganization()] [Authorization Bypass] Can an attacker create multiple organizations with the same input parameters by exploiting the double-check pattern at lines 17-18 and 30-31, potentially causing race conditions or organization address collisions that could bypass governance controls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc97368a-12de-4982-9e05-5556fe735d84?mode=deep",
+    "timestamp": "2026-02-19 14:52:47.752065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganization()] [State Consistency] If Validate() passes at line 28 but State.Organizations[organizationAddress] is set by another transaction between lines 28-30, does the second check at line 30 prevent duplicate organization creation, or could this lead to lost organization events and inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_745c9ce0-f745-41aa-b7f3-97a52ba89c3c?mode=deep",
+    "timestamp": "2026-02-19 14:53:10.100866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganization()] [Input Validation] Can an attacker create an organization with ProposalReleaseThreshold values that pass Validate() but make it impossible to ever release proposals (e.g., MinimalApprovalThreshold > total token supply), effectively creating a permanent governance deadlock? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd60c749-f07f-42a6-b489-f96eb72df108?mode=deep",
+    "timestamp": "2026-02-19 14:53:32.618932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganization()] [Token Symbol Validation] At line 23, TokenSymbol is set without verifying token existence until Validate() is called. Could a front-running attacker create an organization with a token symbol before the token is created, then control governance once the token exists? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f240bf5-351e-46a4-8afd-8199275f406e?mode=deep",
+    "timestamp": "2026-02-19 14:53:56.037535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganization()] [Whitelist Manipulation] Can an attacker create an organization with an empty ProposerWhiteList that passes initial validation but later exploit ChangeOrganizationProposerWhiteList() to add unauthorized proposers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02e1652b-d2c1-436f-8791-3b73bd148783?mode=deep",
+    "timestamp": "2026-02-19 14:54:20.219445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganizationBySystemContract()] [Authorization Escalation] At line 44, the check only verifies Context.Sender is a system contract. Can a malicious system contract create organizations on behalf of arbitrary users by manipulating input.OrganizationCreationInput fields? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d66bd30-8d22-4456-9c4a-d3a635c3175c?mode=deep",
+    "timestamp": "2026-02-19 14:54:46.355318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganizationBySystemContract()] [Callback Injection] At lines 47-48, Context.SendInline sends organizationAddress to an arbitrary method. Can an attacker specify a malicious OrganizationAddressFeedbackMethod that performs reentrancy or state manipulation attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_972761b3-c84c-45cd-87ee-e64b992c01c4?mode=deep",
+    "timestamp": "2026-02-19 14:55:12.219795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganizationBySystemContract()] [Reentrancy] Does the SendInline call at line 48 allow the receiving contract to re-enter CreateOrganizationBySystemContract or other Referendum methods before organization creation completes, potentially creating inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d73fb428-578a-498b-b0fc-0a120cadb2b8?mode=deep",
+    "timestamp": "2026-02-19 14:55:41.111691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateProposal()] [Authorization Bypass] AssertIsAuthorizedProposer at line 55 checks Context.Sender against the whitelist. Can an attacker bypass this by creating a proposal through CreateProposalBySystemContract with a fake OriginProposer that's in the whitelist? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b76ce0ee-86ea-477b-afc6-bacf90adc34e?mode=deep",
+    "timestamp": "2026-02-19 14:56:11.845320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateProposal()] [Proposal ID Collision] If GenerateProposalId in Referendum_Helper.cs uses input.Token or HashHelper.ComputeFrom(input), can an attacker craft inputs to generate identical proposal IDs, overwriting existing proposals or causing assertion failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c043655-15e7-43a5-80d0-4db9752b005c?mode=deep",
+    "timestamp": "2026-02-19 14:56:42.768621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateProposalBySystemContract()] [Authority Confusion] At line 65, OriginProposer is checked against the whitelist, but Context.Sender (the system contract) creates the proposal. Could this allow system contracts to create proposals with arbitrary execution context? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96068bfa-858f-4379-9c79-83558ec6c8ca?mode=deep",
+    "timestamp": "2026-02-19 14:57:13.986327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateNewProposal() in Referendum_Helper.cs] [Timestamp Manipulation] Proposal validation checks Context.CurrentBlockTime < proposal.ExpiredTime. Can a miner manipulate block timestamps to immediately expire proposals or extend voting windows beyond intended limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a497626-66cf-4d94-be54-965163ccb9ba?mode=deep",
+    "timestamp": "2026-02-19 14:57:46.011678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateNewProposal() in Referendum_Helper.cs] [Input Validation] At line 172, Proposer is set to Context.Sender. In CreateProposalBySystemContract flow, does this mean the system contract becomes the Proposer, potentially blocking Release() calls at line 166? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27e848f4-2b9b-4293-b9e4-0134acf34b77?mode=deep",
+    "timestamp": "2026-02-19 14:58:16.651487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CheckCreateProposalInput() in Referendum_Helper.cs] [DOS Attack] Title, Description, and ProposalDescriptionUrl have max length checks. Can an attacker spam CreateProposal with maximum-length strings to exhaust state storage or gas limits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_406ff8e5-e40a-419d-aa02-1ff90826d220?mode=deep",
+    "timestamp": "2026-02-19 14:58:48.146717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CheckCreateProposalInput() in Referendum_Helper.cs] [Injection Attack] ProposalDescriptionUrl is validated as HTTP/HTTPS at line 119-120, but can an attacker inject malicious URLs with encoded characters that bypass validation but execute attacks when accessed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4bcb410-0ec8-442b-a185-e60d959e6777?mode=deep",
+    "timestamp": "2026-02-19 14:59:18.874537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()] [Double Voting] GetAllowance at line 74 checks current allowance, but can a user call Approve() multiple times with different allowance values between calls, effectively voting multiple times on the same proposal? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1be25577-2daf-4a9d-9e11-3b8e63c4e0cb?mode=deep",
+    "timestamp": "2026-02-19 14:59:50.174070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()] [Integer Overflow] At line 76, proposal.ApprovalCount is incremented with Add(allowance). Could repeated Approve() calls cause integer overflow in ApprovalCount, wrapping to low values and invalidating the vote count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88171f86-1ea9-48ee-abc7-7104e0f320f6?mode=deep",
+    "timestamp": "2026-02-19 15:00:22.212709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()] [Token Lock Failure] LockToken is called at line 78-79 but returns a ReferendumReceiptCreated event. If token transfer fails inside LockToken, does the transaction revert, or could ApprovalCount be incremented without actual token locking? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9acf51e-4fed-40f5-bb71-e2f4418b4d3f?mode=deep",
+    "timestamp": "2026-02-19 15:00:50.055664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [Reentrancy] At line 42, the assertion checks State.LockedTokenAmount[lockedAddress][proposalId] == null, but TransferFrom at lines 47-55 is a cross-contract call. Can an attacker re-enter Approve/Reject/Abstain during TransferFrom to lock tokens multiple times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfe8bd87-8604-402f-b3a9-e6d032a6c12d?mode=deep",
+    "timestamp": "2026-02-19 15:01:23.493308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [Allowance Manipulation] TransferFrom at line 48-55 transfers from Context.Sender to proposal virtual address. Can an attacker set high allowance, call Approve, then reduce allowance before TransferFrom executes, causing the vote to succeed without locking tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffe3b2d4-f01b-4b98-bfbe-c951fe4bd49a?mode=deep",
+    "timestamp": "2026-02-19 15:01:55.421564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [State Inconsistency] Receipt is stored at line 56 using Context.Sender as key, but function parameter is lockedAddress. If these differ, could this create orphaned receipts or allow unauthorized token reclaim? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5285257-bd9c-42ba-bf7d-b83fa727aa84?mode=deep",
+    "timestamp": "2026-02-19 15:02:27.911316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [Virtual Address Collision] Lock ID is generated using proposalId and lockedAddress at line 44-45. Can an attacker create hash collisions to unlock other users' tokens by crafting specific proposalId/address combinations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58359251-219b-43e3-9dd2-23579815f466?mode=deep",
+    "timestamp": "2026-02-19 15:02:59.393790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()] [Race Condition] Between GetAllowance at line 74 and LockToken at line 78, can the user reduce their allowance, causing LockToken to fail but leaving ApprovalCount incremented from line 76? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9970c617-ce14-44b5-baa6-4c6642ccf302?mode=deep",
+    "timestamp": "2026-02-19 15:03:30.599541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Reject()] [Vote Manipulation] Identical logic to Approve() at lines 85-98. Can an attacker vote Approve and Reject simultaneously by calling both methods in separate transactions, locking tokens twice and manipulating vote counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa86977b-fcf1-4e0c-ab22-5967ca600484?mode=deep",
+    "timestamp": "2026-02-19 15:03:57.300696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Reject()] [Threshold Bypass] At line 91, RejectionCount is incremented. If MaximalRejectionThreshold in organization settings is very high, can an attacker spam Reject calls to inflate RejectionCount beyond realistic values, blocking proposal release? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f7db9e6-a51d-4eed-999d-59dcaff9fbec?mode=deep",
+    "timestamp": "2026-02-19 15:04:28.454206",
+    "report_generated": false
+  }
+]
