@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetOrganization()] [Null Return] Can returning empty Organization at line 15 be exploited by callers expecting null checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79e8c1bd-bea5-4784-bc9b-af5e3d36205b?mode=deep",
+    "timestamp": "2026-02-19 11:01:15.791720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetOrganization()] [Information Leak] Can GetOrganization expose sensitive organization data to unauthorized callers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_525f1d74-a364-4737-b9b4-197b1de779e1?mode=deep",
+    "timestamp": "2026-02-19 11:01:38.110754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [Null Proposal] Can returning empty ProposalOutput at line 21 instead of null cause caller confusion? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a462a95-b220-4db7-9fda-582d94eb0b7d?mode=deep",
+    "timestamp": "2026-02-19 11:02:00.840729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [ToBeReleased Flag] Can the ToBeReleased calculation at line 24 be manipulated through concurrent threshold changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f0b8773-5320-41f2-bb7f-3fb40ddd45e1?mode=deep",
+    "timestamp": "2026-02-19 11:02:24.289322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [Count Accuracy] Do the approval/rejection/abstention counts at lines 36-38 properly reflect only valid member votes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9981632-501c-4640-b234-063349f0d50b?mode=deep",
+    "timestamp": "2026-02-19 11:02:48.820777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetProposal()] [Information Leak] Can proposal details at lines 28-40 leak sensitive contract call information? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bac263e-cbaf-498c-ab47-6e251a0b3d0d?mode=deep",
+    "timestamp": "2026-02-19 11:03:14.641218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateOrganizationAddress()] [Determinism] Is address calculation at lines 46-47 deterministic and collision-resistant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c193b520-a386-4c71-b0d2-a57308c46aa2?mode=deep",
+    "timestamp": "2026-02-19 11:03:39.573163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ValidateOrganizationExist()] [Timing Attack] Can existence check at line 53 be used for timing attacks to enumerate organizations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2f92831-f539-45e1-90e9-752f5bc8fc6c?mode=deep",
+    "timestamp": "2026-02-19 11:04:08.150160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: ValidateProposerInWhiteList()] [Whitelist Check] Can the Contains check at line 61 be bypassed through address manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_550749ff-37bd-4e3c-b408-7fd013cd6eeb?mode=deep",
+    "timestamp": "2026-02-19 11:04:38.831013",
+    "report_generated": false
+  }
+]
