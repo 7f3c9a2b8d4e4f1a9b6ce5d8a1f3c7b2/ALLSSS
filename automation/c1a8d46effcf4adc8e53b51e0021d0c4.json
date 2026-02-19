@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastTinyBlockMiningLimit] [Zero Result] Can TinyBlockSlotInterval.Div(2) (line 54) result in 0ms if TinyBlockSlotInterval is 1ms, giving insufficient time for last tiny block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_059c7673-ef71-4d1d-a593-07e6f53f02a8?mode=deep",
+    "timestamp": "2026-02-19 11:38:19.467772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastTinyBlockMiningLimit] [Comparison] Is LastTinyBlockMiningLimit (1/2 of slot) always less than DefaultBlockMiningLimit (3/5 of slot), and can this ordering be violated causing incorrect limit selection in TinyBlockCommandStrategy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f0b063f-81bb-45e4-9714-7401f561a5c4?mode=deep",
+    "timestamp": "2026-02-19 11:38:41.528778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastTinyBlockMiningLimit] [Minimum Violation] Can LastTinyBlockMiningLimit be less than TinyBlockMinimumInterval (50ms), violating the minimum 50ms interval constraint for tiny blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d029a2b-5d93-486e-8fa8-6bcf23cf5659?mode=deep",
+    "timestamp": "2026-02-19 11:39:03.841648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastBlockOfCurrentTermMiningLimit] [Zero Result] Can MiningInterval.Mul(3).Div(5) (line 60) result in 0ms for very small MiningInterval values, preventing term termination blocks from being produced? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6b69c45-b2c9-4199-bb44-7cdfefd4d1ce?mode=deep",
+    "timestamp": "2026-02-19 11:39:26.738202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastBlockOfCurrentTermMiningLimit] [Arithmetic Overflow] Can MiningInterval.Mul(3) overflow if MiningInterval exceeds int.MaxValue/3, throwing OverflowException and preventing term changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e22febc-1a82-4590-b667-c1c6c269df81?mode=deep",
+    "timestamp": "2026-02-19 11:39:51.118218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastBlockOfCurrentTermMiningLimit] [Ratio Error] Comment (line 58-59) claims this is '8 times DefaultBlockMiningLimit' but formula is MiningInterval*3/5 vs TinyBlockSlotInterval*3/5 - is the 8x ratio always maintained or can it vary, breaking assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1811cc98-1d0e-4ca3-bc43-84b091fd555e?mode=deep",
+    "timestamp": "2026-02-19 11:40:17.752791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastBlockOfCurrentTermMiningLimit] [Inconsistency] Does LastBlockOfCurrentTermMiningLimit calculation match TerminateRoundCommandStrategy usage, or can mismatch cause term-ending blocks to fail timing validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f94d7665-95d7-4fef-9176-93512ab7b3f4?mode=deep",
+    "timestamp": "2026-02-19 11:40:42.877383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetConsensusCommand()] [Delegation] Can the delegation to GetAEDPoSConsensusCommand() (line 64) be intercepted or bypassed to return invalid consensus commands? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ee70c6f-1b9b-4263-810f-9349dcc3f943?mode=deep",
+    "timestamp": "2026-02-19 11:41:08.909366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetConsensusCommand()] [Interface Contract] Does GetConsensusCommand properly implement ICommandStrategy interface contract, or can null/invalid returns break calling code? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a75e8cb-6f24-459a-a4dc-20dedea28119?mode=deep",
+    "timestamp": "2026-02-19 11:41:36.053094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetAEDPoSConsensusCommand()] [Invalid Default] Base implementation returns ConsensusCommandProvider.InvalidConsensusCommand (line 70) - can abstract class be instantiated directly, causing all consensus commands to be invalid? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69af9dac-f3b1-4d2b-82ca-815c5c097692?mode=deep",
+    "timestamp": "2026-02-19 11:42:04.007416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetAEDPoSConsensusCommand()] [Subclass Override] If a subclass forgets to override GetAEDPoSConsensusCommand(), will it inherit invalid command behavior, breaking consensus for that strategy type? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_860b76b6-d92d-46b1-94fe-c10f8c8a66bf?mode=deep",
+    "timestamp": "2026-02-19 11:42:35.524470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetAEDPoSConsensusCommand()] [Null Reference] Can ConsensusCommandProvider.InvalidConsensusCommand be null, causing NullReferenceException when returned to callers expecting valid ConsensusCommand? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52a8d66f-8d1e-4e94-8bf8-a76bbb5979cf?mode=deep",
+    "timestamp": "2026-02-19 11:43:04.378548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constant: TinyBlocksCount] [Hardcoded Value] Is TinyBlocksCount = 8 (line 17) consistent with actual tiny block production limits enforced elsewhere, or can miners produce more/fewer tiny blocks than 8, breaking calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aeb982fb-bfe1-4090-aeac-cef9f323d522?mode=deep",
+    "timestamp": "2026-02-19 11:43:38.622328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constant: TinyBlocksCount] [Configuration Mismatch] Can TinyBlocksCount be changed via consensus without updating this constant, causing mismatch between expected and actual tiny block counts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bc4517f-7ab0-44de-ad45-66204b1b90cc?mode=deep",
+    "timestamp": "2026-02-19 11:44:10.290995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constant: TinyBlocksCount] [Private Visibility] Since TinyBlocksCount is private (line 17), can subclasses access wrong tiny block count value if they need it, causing calculation errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b846688a-ecb1-4243-bfa7-790cfd26c387?mode=deep",
+    "timestamp": "2026-02-19 11:44:48.152503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constant: TinyBlockMinimumInterval] [Enforcement] Is the 50ms minimum interval (line 22) enforced in block production validation, or can miners produce tiny blocks faster than 50ms, violating this constraint? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21a3ccb1-5c65-42ca-8bf1-0b7c31d0f59e?mode=deep",
+    "timestamp": "2026-02-19 11:45:24.642500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constant: TinyBlockMinimumInterval] [Conflict] Can calculated DefaultBlockMiningLimit or LastTinyBlockMiningLimit be less than 50ms TinyBlockMinimumInterval, creating contradictory timing constraints? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b53bafab-41e5-45ca-8110-a4b811679ce2?mode=deep",
+    "timestamp": "2026-02-19 11:45:53.605628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constant: TinyBlockMinimumInterval] [Protected Visibility] Since TinyBlockMinimumInterval is protected (line 22), can subclasses override or shadow this value, causing inconsistent minimum interval enforcement? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_621c5a1a-d9d8-4917-85fc-e0994e8649cb?mode=deep",
+    "timestamp": "2026-02-19 11:46:21.748012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Properties: Multiple] [Calculation Chain] If MiningInterval → TinyBlockSlotInterval → DefaultBlockMiningLimit chain has any zero/negative value, can entire consensus command generation fail for all strategies? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09126c31-0ea8-459d-8d46-1f6e9b0da22f?mode=deep",
+    "timestamp": "2026-02-19 11:46:53.474703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Properties: Multiple] [Lazy Evaluation] Are properties calculated lazily each time accessed, and can this cause performance issues or inconsistent values if CurrentRound changes between accesses? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bb502d0-b2e3-42c8-b984-28adb006a1f9?mode=deep",
+    "timestamp": "2026-02-19 11:47:25.426454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Properties: Multiple] [Caching] Should mining limits be cached to avoid repeated calculations, or can repeated property access with changed Round state cause calculation inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4ad75df-1064-4428-bc49-e9a43778779e?mode=deep",
+    "timestamp": "2026-02-19 11:47:58.690581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Integration: NormalBlockCommandStrategy] Can NormalBlockCommandStrategy incorrectly use DefaultBlockMiningLimit (3/5 ratio from line 49) when it should use full MiningInterval, causing premature mining cancellation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f505427-6dba-4660-a60e-ecb0eb781da3?mode=deep",
+    "timestamp": "2026-02-19 11:48:27.527918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Integration: TinyBlockCommandStrategy] Can TinyBlockCommandStrategy logic conflict with TinyBlockMinimumInterval (50ms from line 22) if DefaultBlockMiningLimit calculates to less than 50ms? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed054f9b-f8b7-4684-a3e0-84595e25418b?mode=deep",
+    "timestamp": "2026-02-19 11:49:00.391112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Integration: TerminateRoundCommandStrategy] Can TerminateRoundCommandStrategy use wrong mining limit (LastBlockOfCurrentTermMiningLimit vs DefaultBlockMiningLimit) depending on isNewTerm flag, causing timing violations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3adb7bc1-0b98-4054-9a74-6ebf88ca067b?mode=deep",
+    "timestamp": "2026-02-19 11:49:32.906340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Integration: FirstRoundCommandStrategy] Can FirstRoundCommandStrategy incorrectly inherit base class properties when Round 1 has different timing rules, causing invalid first round commands? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b9e3f26-b963-4318-a12c-685f903c9191?mode=deep",
+    "timestamp": "2026-02-19 11:50:04.009520",
+    "report_generated": false
+  }
+]
