@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [Negative Signature Handling] If sigNum at line 119 is negative (since ToInt64() returns signed), could GetAbsModulus at line 121 behave differently than expected, biasing extra block producer selection toward certain miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_615e475b-e783-4a91-ac7c-b3f3a7865764?mode=deep",
+    "timestamp": "2026-02-19 00:57:55.802989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [Signature Reuse Attack] If same signature value appears in multiple rounds, line 118 would produce same sigNum, potentially selecting same extra block producer repeatedly - could this be exploited by grinding signatures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31201c2f-e4a1-4e28-b5c2-c8e7109bbed0?mode=deep",
+    "timestamp": "2026-02-19 00:58:17.907997",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [IsMinerListJustChanged Flag Accuracy] Line 14 sets IsMinerListJustChanged based on parameter but doesn't validate actual list changes - could incorrect flag cause dependent contracts to process unchanged list as changed, triggering unnecessary state updates? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd1695f6-d5af-407e-a166-fd688ac39890?mode=deep",
+    "timestamp": "2026-02-19 00:58:40.321279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Partial Update Rollback] If exception occurs after lines 26-56 populate nextRound but before BreakContinuousMining at line 67, could partially constructed nextRound be persisted, creating inconsistent consensus state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1dc9cf7-59e4-4397-bd6f-f83a2405db93?mode=deep",
+    "timestamp": "2026-02-19 00:59:03.162334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [RealTimeMinersInformation Mutation] Lines 29 and 46 add to nextRound.RealTimeMinersInformation dictionary - if concurrent access occurs, could race conditions create duplicate or missing entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d968db5-af8a-4272-900c-3772eb79b9ac?mode=deep",
+    "timestamp": "2026-02-19 00:59:27.104311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: BreakContinuousMining()] [Ref Parameter Side Effects] Passing nextRound by ref at line 67 means all modifications affect caller's object - if caller expects immutable nextRound, could unexpected mutations break assumptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7bc6140b-d18c-48d1-9ce1-b7df1a3107a2?mode=deep",
+    "timestamp": "2026-02-19 00:59:52.586206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [BlockchainAge Monotonicity] Line 23 calculates BlockchainAge as seconds since start - if currentBlockTimestamp is manipulated to decrease, could BlockchainAge go backwards, breaking monotonicity assumptions in dependent logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0350959b-9082-4580-9886-cae80c668cf4?mode=deep",
+    "timestamp": "2026-02-19 01:00:19.391378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [MissedTimeSlots Penalty Avoidance] Line 54 increments MissedTimeSlots for non-mining miners - if a miner can manipulate their SupposedOrderOfNextRound to appear in minersMinedCurrentRound, could they avoid penalty accumulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_145fe86d-5059-4698-b395-d3a8b596bfb3?mode=deep",
+    "timestamp": "2026-02-19 01:00:46.366854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Order Advantage Exploitation] Lines 26-36 assign orders based on FinalOrderOfNextRound for miners who mined - if early orders have advantages (less competition, better rewards), could miners manipulate FinalOrderOfNextRound to consistently get favorable positions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f89fc6f-1b97-47ff-84d2-98bef357b3eb?mode=deep",
+    "timestamp": "2026-02-19 01:01:16.336275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [Extra Block Producer Centralization] If first miner at line 113 is consistently same entity controlling multiple nodes, their signature always determines extra producer, could this centralize extra block rewards to colluding parties? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a12af22a-3f31-4471-a42c-89ea8263fc9a?mode=deep",
+    "timestamp": "2026-02-19 01:01:47.659135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: BreakContinuousMining()] [Swap Avoidance Strategy] Miners could analyze when they'd be swapped at lines 81 or 98 and intentionally skip blocks to avoid being in swap-triggering positions, could this game continuous mining prevention? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f56f2bb-92e5-4a78-9fa7-d3bde19ee885?mode=deep",
+    "timestamp": "2026-02-19 01:02:18.330427",
+    "report_generated": false
+  }
+]
