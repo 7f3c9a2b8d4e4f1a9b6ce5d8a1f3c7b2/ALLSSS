@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Multi-Round Attack] An attacker who controls the minimum threshold of miners could: (1) provide invalid DecryptedPieces in round N-1, (2) call RevealSharedInValues in round N with their publicKey, (3) cause all reveals to fail at line 36, (4) freeze consensus as no PreviousInValues are set. Is this prevented? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bf8799f-0457-474b-8fa5-08618be16146?mode=deep",
+    "timestamp": "2026-02-19 13:49:37.654259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Sybil + Secret Sharing] If an attacker creates Sybil identities that all become miners, they could control > 2/3 of miners, satisfy the minimumCount threshold with colluding shares, and reveal fake InValues for honest miners. Can this corrupt the entire consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_296348c8-de29-4ba8-a6c3-8b89a0b2ad06?mode=deep",
+    "timestamp": "2026-02-19 13:49:59.692833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Time-Travel Attack] If an attacker can call RevealSharedInValues with future round data (currentRound is round N+1, previousRound is round N+2), can they pre-reveal secrets that shouldn't be known yet? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d2d3d47-f924-40d0-9b23-7928e102afd3?mode=deep",
+    "timestamp": "2026-02-19 13:50:22.310585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Griefing via Gas] A malicious miner could craft DecryptedPieces with maximum size to cause line 46-47's ToList() to consume excessive gas, preventing other miners from successfully calling RevealSharedInValues due to block gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb1346c7-4e7d-41b7-b62a-31d2c43d13de?mode=deep",
+    "timestamp": "2026-02-19 13:50:45.784622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled() + RevealSharedInValues()] [Configuration Disable Attack] If an attacker gains control of the Configuration contract and sets SecretSharingEnabled to false after secrets are shared, can subsequent reveals fail, leaving PreviousInValues unset and breaking consensus validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c66f782-e1cf-46e1-81e7-e4cc6b2e93c9?mode=deep",
+    "timestamp": "2026-02-19 13:51:09.391338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [OrderBy Gas Cost] Line 25's OrderBy creates a sorted copy of RealTimeMinersInformation. For 1000+ miners, does this consume excessive gas making the function uncallable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce0ea7f6-ade7-453d-b8c4-19a9d75b5c90?mode=deep",
+    "timestamp": "2026-02-19 13:51:35.133856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [First() Enumeration] Lines 42-43 call First() which enumerates until a match is found. In worst case, this is O(n) per decrypted piece. With m pieces and n miners, is O(m*n) acceptable? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7876b876-a0aa-40fb-8a53-e51040aee805?mode=deep",
+    "timestamp": "2026-02-19 13:52:00.781946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Select Materialization] Line 40 uses Select which is lazy evaluated, but ToList() at line 44 forces materialization. Can an attacker provide data that causes Select to throw exceptions during materialization? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7519ed50-fb01-450a-b5c0-db07c5d49b05?mode=deep",
+    "timestamp": "2026-02-19 13:52:28.468181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [DecodeSecret Complexity] SecretSharingHelper.DecodeSecret performs polynomial interpolation which is computationally expensive. If minimumCount is very large, can this exceed block gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9135ed49-c6f6-4877-bb15-98b98f007aa7?mode=deep",
+    "timestamp": "2026-02-19 13:52:55.153391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [MinersCount vs Current Miners] Line 21 uses currentRound.RealTimeMinersInformation.Count but line 36 checks against minersCount. If miners are added/removed between these lines, can the counts diverge causing incorrect validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3d7a0d5-1e81-4812-a645-f432ad891fcf?mode=deep",
+    "timestamp": "2026-02-19 13:53:24.848466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [EncryptedPieces Threshold Gap] Line 35 requires EncryptedPieces.Count >= minimumCount. But there's no upper bound check. Can a miner provide 1000s of encrypted pieces to waste storage or processing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90dfe9a5-55f8-4c5c-82db-a18a3d200539?mode=deep",
+    "timestamp": "2026-02-19 13:53:56.536574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [DecryptedPieces Exact Count] Line 36 uses < instead of !=. If DecryptedPi\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs (L13-54)\n```csharp\n    private void RevealSharedInValues(Round currentRound, string publicKey)\n    {\n        Context.LogDebug(() =>",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d003b35b-377a-4f3d-a036-e5a717e3054f?mode=deep",
+    "timestamp": "2026-02-19 13:54:28.578536",
+    "report_generated": false
+  }
+]
