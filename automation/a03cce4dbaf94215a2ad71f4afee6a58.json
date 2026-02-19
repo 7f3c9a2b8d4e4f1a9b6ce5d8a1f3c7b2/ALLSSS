@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Authorization Bypass] Can an attacker bypass the PreCheck() authorization by exploiting the fact that the transaction executes successfully even when PreCheck returns false (lines 28), allowing unauthorized miners to update consensus state without proper permission checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_838073ef-3079-4439-ba01-1c616c5c5dbb?mode=deep",
+    "timestamp": "2026-02-19 09:27:00.494333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Authorization Bypass] If PreCheck() returns false at line 28 but the Assert evaluates false in a way that doesn't revert, could an unauthorized miner still trigger ProcessNextRound, ProcessNextTerm, or ProcessUpdateValue to corrupt consensus state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d39473eb-aab9-40ce-a1b7-b8ca6e519c51?mode=deep",
+    "timestamp": "2026-02-19 09:27:22.663741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Race Condition] Can two miners submit transactions in the same block to trigger ProcessConsensusInformation concurrently, bypassing the EnsureTransactionOnlyExecutedOnceInOneBlock check at line 23 and causing double state updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ae65599-3eb3-4c06-a8c4-449a83229176?mode=deep",
+    "timestamp": "2026-02-19 09:27:44.952884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [State Manipulation] Could _processingBlockMinerPubkey be set to null at line 86 before critical state updates complete, causing subsequent operations to use wrong miner identity in a re-entrant call scenario? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98124d22-95be-4354-8e51-2f3e5fe329ef?mode=deep",
+    "timestamp": "2026-02-19 09:28:08.264846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Cryptographic Failure] Can an attacker manipulate the ECVrfVerify check at lines 76-78 by providing a crafted randomNumber that passes verification but produces a predictable randomHash, compromising consensus randomness? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad87cb4d-2e5a-4ea7-aa77-384bbe0b5fa5?mode=deep",
+    "timestamp": "2026-02-19 09:28:32.466213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Random Number Manipulation] If State.RandomHashes[Context.CurrentHeight.Sub(1)] is Hash.Empty (line 75), can the first miner in a new chain provide any randomNumber value that will always pass ECVrfVerify, allowing them to bias random hash generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44fe96e3-a3e3-4bae-a7dd-f80841dba3fb?mode=deep",
+    "timestamp": "2026-02-19 09:28:58.767872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Integer Underflow] Could Context.CurrentHeight.Sub(1) at line 75 underflow when CurrentHeight is 0 or 1, causing previousRandomHash to reference an uninitialized state slot and allowing invalid random number verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8dac834-3ea3-4b9f-8462-a2a6c6177054?mode=deep",
+    "timestamp": "2026-02-19 09:29:24.348194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Denial of Service] Can a malicious miner repeatedly provide invalid randomNumber values to fail the ECVrfVerify check at line 76-78, causing Assert failures and blocking all consensus progress for the entire network? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd425098-148e-4a9d-ac44-4a866a59176b?mode=deep",
+    "timestamp": "2026-02-19 09:29:50.272697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [State Consistency] Is there a TOCTOU vulnerability between reading State.RandomHashes[Context.CurrentHeight.Sub(1)] at line 75 and writing State.RandomHashes[Context.CurrentHeight] at line 80 if another transaction modifies the state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa54b8b9-8c59-4534-adfa-28a62db90b92?mode=deep",
+    "timestamp": "2026-02-19 09:30:17.424025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Type Confusion] Can an attacker provide an input object that doesn't match any of the switch cases (lines 35-53), causing randomNumber to remain null and bypassing the ECVrfVerify check at line 76 with a null reference? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5378daa9-63b6-4b87-9bbf-9257a8fc9d9d?mode=deep",
+    "timestamp": "2026-02-19 09:30:43.704657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Input Validation] If input is of an unexpected type not handled in the switch statement (lines 35-53), does the function continue execution with randomNumber=null, potentially causing undefined behavior in ECVrfVerify at line 77? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd6718d3-bd9a-418f-bdcb-7508a8ba0d69?mode=deep",
+    "timestamp": "2026-02-19 09:31:11.057843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Logic Error] Can NextRoundInput, NextTermInput, UpdateValueInput, or TinyBlockInput be provided with a null or empty RandomNumber field, allowing the switch statement to set randomNumber to null and breaking the verification at line 76? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f80e2df7-6bd3-4508-8800-e37be28d2073?mode=deep",
+    "timestamp": "2026-02-19 09:31:39.328338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [State Manipulation] Can an attacker exploit the fact that State.RoundBeforeLatestExecution is set before PreCheck (line 30), allowing unauthorized state snapshots to be recorded even when PreCheck fails? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c09e07b5-3f92-4f54-970a-1cdec7fad09b?mode=deep",
+    "timestamp": "2026-02-19 09:32:11.613481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [State Consistency] If GetCurrentRoundInformation fails or returns stale data at line 30, could State.RoundBeforeLatestExecution contain incorrect round data that breaks subsequent round transition logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0193c10c-5d95-4765-9bf9-5d621e0582c2?mode=deep",
+    "timestamp": "2026-02-19 09:32:43.997486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Access Control] Can the Release() call at line 83 be triggered on side chains with manipulated currentRound.RoundNumber values to drain Treasury funds prematurely or repeatedly? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_286b6102-c721-4da3-97f1-2d4496a065f2?mode=deep",
+    "timestamp": "2026-02-19 09:33:17.325068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Logic Error] Is the condition !State.IsMainChain.Value && currentRound.RoundNumber > 1 at line 83 sufficient, or could an attacker on a side chain call Release() in every UpdateValue or TinyBlock transaction to drain Treasury? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_144fc872-a843-4614-9f1b-f779c638991e?mode=deep",
+    "timestamp": "2026-02-19 09:33:47.695205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Re-entrancy] Can Release() at line 83 make external calls that re-enter ProcessConsensusInformation before _processingBlockMinerPubkey is cleared at line 86, causing state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c82b5db-60f1-4f27-b2bb-abdcec6515a1?mode=deep",
+    "timestamp": "2026-02-19 09:34:20.770998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: GetLatestSignature()] [Logic Error] Can GetLatestSignature return null if all miners in currentRound and previousRound have null Signature fields (lines 97-105), and would this null signature break downstream random number generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_991dfecf-bdc6-4d22-b148-1cfec41cbb05?mode=deep",
+    "timestamp": "2026-02-19 09:34:53.288884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: GetLatestSignature()] [State Consistency] Could TryToGetPreviousRoundInformation fail at line 100, leaving latestSignature uninitialized and returning null when it should return a valid signature? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3200ee4a-6a40-4e77-8fea-56b7097b893e?mode=deep",
+    "timestamp": "2026-02-19 09:35:24.089084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: GetLatestSignature()] [Logic Error] Can miners collude to all set Signature=null in their MinerInRound data, causing GetLatestSignature to return null and breaking signature chain integrity? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_193fd9cd-cc35-4762-aed6-b53489347667?mode=deep",
+    "timestamp": "2026-02-19 09:35:57.580812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [Authorization Bypass] Can miners bypass evil miner detection by calling ProcessNextRound before TryToDetectEvilMiners is invoked (line 140), allowing them to transition to a new round without punishment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f614de8e-d132-4787-8b63-c23e581e4def?mode=deep",
+    "timestamp": "2026-02-19 09:36:28.057894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [Logic Error] If State.IsMainChain.Value is false, evil miner detection is skipped (line 139) - can this be exploited on side chains to allow miners to miss time slots without consequences? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d61bed45-3f81-4d76-9ccf-ec948e4f605d?mode=deep",
+    "timestamp": "2026-02-19 09:37:01.999871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [External Call Manipulation] Can State.ElectionContract.UpdateCandidateInformation at lines 148-152 fail silently or be frontrun, preventing evil miners from being marked as IsEvilNode=true? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1af10cf-574d-475c-9232-81ce27e0fc3e?mode=deep",
+    "timestamp": "2026-02-19 09:37:35.959507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [DoS] Could an attacker create a scenario where currentRound.TryToDetectEvilMiners returns a very large evilMiners list, causing the foreach loop (lines 143-153) to consume excessive gas and revert? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7923884d-3b7d-441d-8d4f-c60b33e926ea?mode=deep",
+    "timestamp": "2026-02-19 09:38:10.274896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [Logic Error] Can TryToUpdateRoundNumber fail at line 158 after AddRoundInformation succeeds at line 156, leaving the system in an inconsistent state with a new round added but old round number? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4a41475-9ac2-4976-88a6-5ce92fc17d32?mode=deep",
+    "timestamp": "2026-02-19 09:38:41.463014",
+    "report_generated": false
+  }
+]
