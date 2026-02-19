@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: FirstActualMiner()] [Race Condition] If multiple miners set OutValue simultaneously, is FirstOrDefault deterministic, or can different nodes see different FirstActualMiner? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_713ce6e3-2a4d-4537-a114-bba98e93306c?mode=deep",
+    "timestamp": "2026-02-19 01:22:28.420955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExpectedMiningTime()] [MaxValue Default] Returns long.MaxValue for unknown publicKey - can this cause overflow in timestamp comparisons or duration calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1224d8d6-50ab-44d3-885e-5ca279159fad?mode=deep",
+    "timestamp": "2026-02-19 01:22:50.586055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExpectedMiningTime()] [Silent Failure] Function silently returns max timestamp instead of throwing error for invalid keys - can this mask authorization failures and allow unauthorized mining attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebd3c21f-199d-435a-a622-9d50ea6011bb?mode=deep",
+    "timestamp": "2026-02-19 01:23:13.008295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMiningOrder()] [MaxValue Default] Returns int.MaxValue for unknown pubkey - can this cause integer overflow in order comparison or arithmetic operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bb76a6c-c82c-402e-a013-ad81d87b72b8?mode=deep",
+    "timestamp": "2026-02-19 01:23:36.149960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMiningOrder()] [Authorization Bypass] Returning int.MaxValue for unknown miners might pass some checks (e.g., order > threshold) - can this bypass order-based access controls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_705c8f10-aebf-46ff-88e8-455a2ded2cb0?mode=deep",
+    "timestamp": "2026-02-19 01:24:00.594926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: TryToDetectEvilMiners()] [Threshold Bypass] The function checks MissedTimeSlots >= TolerableMissedTimeSlotsCount - can miners deliberately stay just below threshold (count-1) indefinitely to avoid punishment while still degrading network? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_814ede78-62ba-4947-8437-9a74ff7901f7?mode=deep",
+    "timestamp": "2026-02-19 01:24:27.561097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: TryToDetectEvilMiners()] [MissedTimeSlots Manipulation] If MissedTimeSlots counter can be reset or decremented, can malicious miners evade evil miner detection despite repeated missed slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d115b931-1a28-4110-b9e8-d9093fb7c8e6?mode=deep",
+    "timestamp": "2026-02-19 01:24:54.258859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: TryToDetectEvilMiners()] [Constant Dependency] The function relies on external AEDPoSContractConstants.TolerableMissedTimeSlotsCount - if this constant can be manipulated, can it disable evil miner detection entirely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08995c62-fe8a-4dce-b24c-c8df52ec3743?mode=deep",
+    "timestamp": "2026-02-19 01:25:21.122009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: TryToDetectEvilMiners()] [Integer Overflow] If MissedTimeSlots can overflow to negative values, can miners wrap around to appear as having zero missed slots? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5430e235-c863-4fed-9a7e-c17e9226c8e0?mode=deep",
+    "timestamp": "2026-02-19 01:25:48.320443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: TryToDetectEvilMiners()] [List Return Manipulation] The function returns list of pubkeys but doesn't prevent duplicates - can duplicate entries in RealTimeMinersInformation cause duplicate punishments? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_416db983-d8c7-4233-9324-beeef50fa4af?mode=deep",
+    "timestamp": "2026-02-19 01:26:18.659680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetCheckableRound()] [Clone Safety] The function uses Clone() on dictionaries and objects - if Clone is shallow, can modifications to original affect checkable round integrity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d12fe0b-4416-4350-92cf-9aad3c572bff?mode=deep",
+    "timestamp": "2026-02-19 01:26:48.886881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetCheckableRound()] [Selective Clearing] Function clears EncryptedPieces, DecryptedPieces, ActualMiningTimes - can an attacker exploit the fact these aren't included in hash calculation to manipulate them without detection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a300d7cb-d193-4c04-9e67-b6615a488b79?mode=deep",
+    "timestamp": "2026-02-19 01:27:17.418844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetCheckableRound()] [PreviousInValue Manipulation] When isContainPreviousInValue is false, PreviousInValue is set to Hash.Empty - can this allow miners to hide tampering with previous round values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7aad546-773f-42fb-98d0-8f76c851d799?mode=deep",
+    "timestamp": "2026-02-19 01:27:51.589323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetCheckableRound()] [Dictionary Ordering] If dictionary enumeration order changes between calls, will GetCheckableRound produce different byte arrays for same logical round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4514185-1002-4fc1-9a65-5d7798b3e173?mode=deep",
+    "timestamp": "2026-02-19 01:28:24.362310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetCheckableRound()] [Missing Field Validation] The function doesn't validate that cleared fields (EncryptedPieces etc.) were actually populated - can empty fields be considered same as cleared fields, causing hash collisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_740910bc-fa84-4fbb-8f6b-df8f5fb295dd?mode=deep",
+    "timestamp": "2026-02-19 01:28:57.520067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: NeedToChangeTerm()] [Threshold Manipulation] The function checks >= MinersCountOfConsent - if this threshold can be manipulated or isn't properly validated, can term changes be forced or prevented? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb25539f-788d-4a37-89b9-5614e2153dee?mode=deep",
+    "timestamp": "2026-02-19 01:29:25.713174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: NeedToChangeTerm()] [ActualMiningTimes Attack] The function uses Last() of ActualMiningTimes - can miners add fake timestamps to their list to manipulate term change decisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbde685b-94d0-4499-a774-4b67b5d16637?mode=deep",
+    "timestamp": "2026-02-19 01:29:57.805334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: NeedToChangeTerm()] [Empty ActualMiningTimes] Miners without ActualMiningTimes are filtered out - can miners deliberately avoid mining to prevent reaching consent threshold and block term changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3838ab7c-82b3-49f1-b747-5ce1a7008f54?mode=deep",
+    "timestamp": "2026-02-19 01:30:26.788280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: NeedToChangeTerm()] [Time Threshold Calculation] The IsTimeToChangeTerm check depends on periodSeconds - if this can be manipulated or set to 0, can term changes be forced at arbitrary times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed6b19b5-7664-4ad6-b129-d933edf340f0?mode=deep",
+    "timestamp": "2026-02-19 01:30:55.283116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: NeedToChangeTerm()] [Timestamp Manipulation] If miners can set their last ActualMiningTime to future values, can they trigger premature term changes before legitimate time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59b963ff-40bb-4700-b32a-07c53f88dc92?mode=deep",
+    "timestamp": "2026-02-19 01:31:29.972017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: NeedToChangeTerm()] [Integer Division] The Count(t => ...) comparison uses integer count - can off-by-one errors in MinersCountOfConsent cause premature or delayed term changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df1f402f-83bb-42b7-8f1e-c010f9afe503?mode=deep",
+    "timestamp": "2026-02-19 01:32:05.426930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeToChangeTerm()] [Division by Zero] If periodSeconds is 0, the Div operation causes division by zero - can this crash term change checks or produce undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09395d20-3bee-4648-9f7f-861e8c2cc565?mode=deep",
+    "timestamp": "2026-02-19 01:32:37.804014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeToChangeTerm()] [Negative Period] If periodSeconds is negative, can the division produce incorrect term numbers that break term change logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe5e3d36-399e-48f4-8b13-d600c2909fb5?mode=deep",
+    "timestamp": "2026-02-19 01:33:10.046336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeToChangeTerm()] [Timestamp Overflow] If blockProducedTimestamp - blockchainStartTimestamp overflows, can this produce incorrect period calculation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac8d3782-b0dd-4543-881c-af5a65d07310?mode=deep",
+    "timestamp": "2026-02-19 01:33:43.315210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeToChangeTerm()] [Term Number Manipulation] The check compares against termNumber - 1 - if termNumber can be manipulated to 0 or negative, can this break term change detection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83c8cde5-9f93-40fb-abf6-24c93100928b?mode=deep",
+    "timestamp": "2026-02-19 01:34:15.848625",
+    "report_generated": false
+  }
+]
