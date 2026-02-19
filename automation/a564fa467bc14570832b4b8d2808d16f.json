@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains] [Missing Address] Does Contains() differentiate between address not found vs null address in list, potentially causing authorization errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9c1edf3-573c-4fc3-a535-b01e63320fb2?mode=deep",
+    "timestamp": "2026-02-19 09:47:18.251843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate] [Single Element] Do AnyDuplicate() methods handle single-element lists correctly, or can edge case cause false positives? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9f615ef-9406-4a74-a14e-922428329b35?mode=deep",
+    "timestamp": "2026-02-19 09:47:41.271053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Immutability] Are extension methods pure functions without side effects, or can they modify shared state causing inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b14cb910-0d27-4fc2-9703-e399a6774392?mode=deep",
+    "timestamp": "2026-02-19 09:48:03.862921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains] [Time-of-Check-Time-of-Use] Can whitelist be modified between Contains() check and proposal creation, enabling TOCTOU attack? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ac3595e-71ea-4cfe-a066-65d031b5d474?mode=deep",
+    "timestamp": "2026-02-19 09:48:27.392440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate] [Algorithm Complexity] Does GroupBy operation in AnyDuplicate() have bounded complexity, or can adversarial inputs cause denial of service? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31e14375-019b-4727-b941-f810db4c63bf?mode=deep",
+    "timestamp": "2026-02-19 09:48:51.704158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Count] [Consistency] Is Count() result cached or recalculated each call, and can this cause race conditions in validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d677782-4b44-41c3-9990-1d9f6b243dd4?mode=deep",
+    "timestamp": "2026-02-19 09:49:16.519053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains] [Proposal Creation] Can CreateProposal at line 107-111 succeed with unauthorized proposer if Contains() check timing is exploitable? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d27c59b1-a24e-4f48-b9df-5f074a3ec7f9?mode=deep",
+    "timestamp": "2026-02-19 09:49:42.157424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains] [System Contract] Can CreateProposalBySystemContract at line 114-121 bypass Contains() check for OriginProposer authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a473053-3326-4ba3-80f7-0545ec1f524d?mode=deep",
+    "timestamp": "2026-02-19 09:50:08.234340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Proposal Voting] Do voting threshold calculations depend on accurate Count() results, and can incorrect counts allow improper proposal passage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c81ad84-578c-45b9-be58-14dcc8a2f2db?mode=deep",
+    "timestamp": "2026-02-19 09:50:35.183042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Empty + AnyDuplicate] [Organization Validation] Can Validate() at line 61-81 be bypassed by crafting organization with edge case inputs that pass Empty() and AnyDuplicate() incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8f4b8e7-0129-4065-bf3e-8b53a57a7925?mode=deep",
+    "timestamp": "2026-02-19 09:51:02.813083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Count] [Member Count] Is Count() used at line 71 to validate ProposalReleaseThreshold against member count, and can arithmetic errors occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f57420b6-e681-42c0-a1bb-2e9800cbeb8d?mode=deep",
+    "timestamp": "2026-02-19 09:51:30.739998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [State Consistency] Can organization state become inconsistent if extension methods return different results before and after state updates in same transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_683e5b9c-36e8-4a3b-baa1-e46225bbd5c8?mode=deep",
+    "timestamp": "2026-02-19 09:51:59.777108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains] [ValidateProposerInWhiteList] Can ValidateProposerInWhiteList view method at line 56-63 return incorrect result if Contains() has bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bf793bc-848f-4e11-927b-377074024f11?mode=deep",
+    "timestamp": "2026-02-19 09:52:28.005486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [System Contract Integration] When called by system contracts, do extension methods enforce same validation rules as user calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3bc777d-1aae-4968-901c-7ab9cd68f1f9?mode=deep",
+    "timestamp": "2026-02-19 09:52:57.221126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Empty] [Zero vs Null] Does Empty() correctly distinguish between null Proposers list and empty list, or can this cause validation bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfc23cbc-b3ff-4b2b-a444-bb00e46227d5?mode=deep",
+    "timestamp": "2026-02-19 09:53:27.923278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains] [Address Encoding] Can different address encodings (with/without chain prefix) cause Contains() to fail matching valid proposers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0cc4ffe5-83ae-4a1e-bc82-da009631acc3?mode=deep",
+    "timestamp": "2026-02-19 09:54:00.863761",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate] [Hash Collision] Can Address hash collisions in GroupBy cause false duplicate detection, preventing valid organization creation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63e85e14-b2d3-4b2f-8aa7-5bb82b717666?mode=deep",
+    "timestamp": "2026-02-19 09:54:33.112160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Count] [Negative Count] Can Count() ever return negative value due to implementation bug, breaking threshold comparisons? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f0042d6-688b-4a10-8a85-5d78c224fd28?mode=deep",
+    "timestamp": "2026-02-19 09:55:02.963763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Protobuf Deserialization] Can malformed protobuf messages cause extension methods to receive corrupted ProposerWhiteList/OrganizationMemberList data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2725574e-ac3a-4fb2-962f-4f90a3cd911b?mode=deep",
+    "timestamp": "2026-02-19 09:55:36.472416",
+    "report_generated": false
+  }
+]
