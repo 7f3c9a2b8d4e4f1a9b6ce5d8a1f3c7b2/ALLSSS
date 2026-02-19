@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: IsReleaseThresholdReached() in Referendum_Helper.cs] [Threshold Logic] At line 15-16, total votes must be >= MinimalVoteThreshold. Can an attacker stuff votes with Abstain to meet this threshold without meaningful approval? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2d378a3-6425-4926-927c-f94b91c0c6b6?mode=deep",
+    "timestamp": "2026-02-19 01:26:40.211584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: IsReleaseThresholdReached() in Referendum_Helper.cs] [Rejection Threshold] At line 20-22, isRejected uses > instead of >=. Can a proposal with RejectionCount == MaximalRejectionThreshold be released when it should be blocked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7c92ff4-7336-469d-bb54-d8cc10702813?mode=deep",
+    "timestamp": "2026-02-19 01:27:02.500699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: IsReleaseThresholdReached() in Referendum_Helper.cs] [Abstention Threshold] At line 24-26, isAbstained uses > instead of >=. Can a proposal with AbstentionCount == MaximalAbstentionThreshold be released when it should be blocked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb6c76a8-ef94-44c4-b9b6-7466909ae2cd?mode=deep",
+    "timestamp": "2026-02-19 01:27:26.729303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: IsReleaseThresholdReached() in Referendum_Helper.cs] [Approval Threshold] At line 28, approval check uses >=. Is this consistent with rejection/abstention logic? Can this asymmetry be exploited to release proposals with marginal approval? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8305b22-9326-4c98-b79f-a182ae1c8ec5?mode=deep",
+    "timestamp": "2026-02-19 01:27:51.636420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: ClearProposal()] [Unauthorized Clearing] Comment at line 156 says 'anyone can clear proposal if it is expired'. Can an attacker clear expired but approved proposals before Release() is called, preventing legitimate execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82bf5507-d92f-43de-9754-d5f069bff2f8?mode=deep",
+    "timestamp": "2026-02-19 01:28:16.135009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: ClearProposal()] [Time Manipulation] ExpiredTime check at line 158 uses CurrentBlockTime. Can miners manipulate timestamps to prematurely expire and clear active proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33999e66-877c-42e9-b50a-4ed8751b515d?mode=deep",
+    "timestamp": "2026-02-19 01:28:42.630167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: ClearProposal()] [Locked Token Recovery] After ClearProposal at line 159, voters can ReclaimVoteToken, but does this affect vote counts for future IsReleaseThresholdReached checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a40e864c-76a2-46fd-b0dd-4a9fb4b3921f?mode=deep",
+    "timestamp": "2026-02-19 01:29:08.467388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: ClearProposal()] [Race Condition] Between checking proposal != null at line 158 and removing it at line 159, can another transaction Release() the proposal, causing double-execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d44cab3e-27a3-42f7-bd87-0dbf88f5d7fd?mode=deep",
+    "timestamp": "2026-02-19 01:29:36.946269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: GetProposal()] [Information Leakage] ProposalOutput at lines 193-208 exposes all proposal details including Params. Can this leak sensitive transaction data before execution? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ace515c7-2319-45ef-93c8-348130c6b9d7?mode=deep",
+    "timestamp": "2026-02-19 01:30:04.008353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: GetProposal()] [ToBeReleased Calculation] At line 192, IsReleaseThresholdReached is called for view. If vote counts are changing, could this provide incorrect release status to front-ends? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7eb22466-ad30-4576-aff3-a0cd5601648b?mode=deep",
+    "timestamp": "2026-02-19 01:30:35.121824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: ValidateProposerInWhiteList()] [Access Control Leakage] Anyone can call this at lines 223-230 to enumerate valid proposers. Can attackers use this to identify high-value governance participants for social engineering? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_988396b8-a370-446a-83f7-27571ef7852a?mode=deep",
+    "timestamp": "2026-02-19 01:31:03.089832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: GetProposalVirtualAddress()] [Address Prediction] At line 234, virtual address is derived from proposalId. Can attackers predict virtual addresses to pre-fund them or perform front-running attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aad9283f-d8ba-47ac-97ed-ba05e0259fff?mode=deep",
+    "timestamp": "2026-02-19 01:31:31.497016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: RequireTokenContractStateSet() in Referendum_Helper.cs] [Contract Substitution] At lines 33-36, TokenContract is set using GetContractAddressByName. Can a malicious contract register itself with SmartContractConstants.TokenContractSystemName to intercept token calls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2283fe6b-2dc3-41fc-8fa2-1cadae57f450?mode=deep",
+    "timestamp": "2026-02-19 01:32:02.318962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: GetTokenInfo() in Referendum_Helper.cs] [Oracle Manipulation] TokenContract.GetTokenInfo is called at line 135-138. Can an attacker manipulate token contract state to cause Validate() to fail for existing organizations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b548a23-b016-4c5f-be94-e70d1be446d6?mode=deep",
+    "timestamp": "2026-02-19 01:32:29.063215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: GetAllowance() in Referendum_Helper.cs] [Allowance Front-Running] GetAllowance is read from token contract at line 144-149. Can an attacker observe pending Approve/Reject transactions and reduce allowance to cause voting failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f90dc944-99c9-4f42-98d5-5d3bf12e59a3?mode=deep",
+    "timestamp": "2026-02-19 01:32:59.539263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [State: LockedTokenAmount] [Memory Leakage] LockedTokenAmount mapping is never cleaned up except in UnlockToken. Can expired proposals with unclaimed votes cause unbounded state growth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_441bb676-d643-456a-bb67-bf100182c305?mode=deep",
+    "timestamp": "2026-02-19 01:33:25.847266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [State: Proposals] [State Bloat] Proposals are only removed in Release() and ClearProposal(). Can an attacker create many proposals that never reach threshold, causing permanent state bloat? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0263f61-80cb-46ce-84f5-3c834de9dd69?mode=deep",
+    "timestamp": "2026-02-19 01:33:56.539030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [State: Organizations] [Immutable Organizations] Organizations can only modify thresholds and whitelists through self-calls. Can organizations become permanently locked if they set invalid configurations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2e32c62-82a8-470f-90d8-908cfc036a38?mode=deep",
+    "timestamp": "2026-02-19 01:34:25.706399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()] [Integer Overflow] ApprovalCount.Add(allowance) at line 76 uses Add() method. Is this safe from overflow? Can accumulated votes exceed Int64.MaxValue? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10f1ad73-b659-4906-b30b-a70bb491b523?mode=deep",
+    "timestamp": "2026-02-19 01:34:57.153134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: IsReleaseThresholdReached() in Referendum_Helper.cs] [Integer Overflow] At line 15-16, three counts are added together. Can this overflow, causing threshold comparisons to fail incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30ad4cd9-b11a-4b17-b605-c0933caedd0c?mode=deep",
+    "timestamp": "2026-02-19 01:35:29.798786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: LockToken() in Referendum_Helper.cs] [Amount Validation] No minimum or maximum amount validation exists. Can users vote with 1 wei to pass allowance > 0 check, making governance meaningless? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb145949-c8fd-40eb-a32d-7f1dd2b2d186?mode=deep",
+    "timestamp": "2026-02-19 01:36:01.513680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Approve()] [Reentrancy via Events] ReferendumReceiptCreated event is fired at line 81. If event handlers can trigger contract calls, could this enable reentrancy before state updates complete? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d403e41-6710-4d26-9346-b450536b7ac2?mode=deep",
+    "timestamp": "2026-02-19 01:36:33.723119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Release()] [Reentrancy via SendVirtualInlineBySystemContract] Execution at line 169-171 happens before proposal removal at line 174. Can the called contract re-enter Release() to execute the proposal multiple times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92779091-5704-4975-bbae-6d953c85cafb?mode=deep",
+    "timestamp": "2026-02-19 01:37:02.064444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: CreateOrganizationBySystemContract()] [Reentrancy via Callback] SendInline at line 48 executes before function returns. Can the callback contract re-enter to create duplicate organizations or manipulate state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46a2ac0d-8e71-464e-b6fd-83f4e1c978cb?mode=deep",
+    "timestamp": "2026-02-19 01:37:36.408567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum.cs] [Function: Validate() in Referendum_Helper.cs] [Timestamp Dependency] ExpiredTime validation at line 108 relies on Context.CurrentBlockTime. Can miners manipulate this to extend voting periods or prematurely expire proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6af7572-ccb5-4f1c-afd5-61abd9681b47?mode=deep",
+    "timestamp": "2026-02-19 01:38:05.100103",
+    "report_generated": false
+  }
+]
