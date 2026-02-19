@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Owner Validation] Does the function validate that input.Owner is a valid non-null address before querying balances? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d33aeb7-1e5d-466b-81ed-8469c91d6ea2?mode=deep",
+    "timestamp": "2026-02-19 09:42:48.294778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [TokenHash Recalculation] Line 34 recalculates tokenHash instead of using a cached value - can symbol/tokenId manipulation cause different hashes than the actual stored token? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a282b4c8-3561-4da9-967f-7b45749636ac?mode=deep",
+    "timestamp": "2026-02-19 09:43:10.638566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Balance Overflow] Can stored balance values exceed Int64 limits causing overflow when returned in GetBalanceOutput? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3235678e-9202-431d-b6c0-dbc32ece3f9c?mode=deep",
+    "timestamp": "2026-02-19 09:43:33.327770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Privacy] Can an attacker query arbitrary owner addresses to map token distribution and identify whale holders for targeted attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_918fa0c2-13ae-4d11-adcd-35823267da06?mode=deep",
+    "timestamp": "2026-02-19 09:43:56.473224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Negative Balance] Does State.BalanceMap enforce non-negative balances or can corrupted state lead to negative balance returns? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07660cb1-fcb0-4cce-ad20-5b49cf367ae0?mode=deep",
+    "timestamp": "2026-02-19 09:44:20.660512",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Non-existent Token] What happens when querying balance for a token that was never minted - does it return zero or indicate the token doesn't exist? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_186eb293-b07b-4b5a-be70-c986e285fab1?mode=deep",
+    "timestamp": "2026-02-19 09:44:46.825368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Burned Token Balance] Can an attacker query balances for burned tokens to detect burn operations and track token destruction? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0efe43c0-7d4f-4c77-942e-97f593079d71?mode=deep",
+    "timestamp": "2026-02-19 09:45:12.544097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Direct Hash Access] By accepting tokenHash directly, can an attacker bypass CalculateTokenHash validation and query arbitrary State.BalanceMap entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea9e13c6-2e76-4e0a-b0f7-02ac5876b489?mode=deep",
+    "timestamp": "2026-02-19 09:45:39.430258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Hash Collision Attack] Can an attacker precompute hashes to find collisions allowing balance queries for tokens belonging to different symbol/tokenId combinations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e70381e5-4c36-417e-ab0a-bef0a066b6e6?mode=deep",
+    "timestamp": "2026-02-19 09:46:06.258348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Zero Hash] What happens if input.TokenHash is Hash.Empty or null - does it return balance for an invalid token entry? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88c6a8fb-e66b-454a-b513-dcde7f4fb6cf?mode=deep",
+    "timestamp": "2026-02-19 09:46:32.943030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Owner Address Null] Does the function validate input.Owner before accessing State.BalanceMap[input.TokenHash][input.Owner]? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37ff4ab7-9511-4341-8284-8998b1d6a43c?mode=deep",
+    "timestamp": "2026-02-19 09:46:59.886409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [State Corruption] If BalanceMap is corrupted with invalid entries, can this function return incorrect balances leading to double-spend vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b7df1b6-b683-4815-8cdd-5be062770875?mode=deep",
+    "timestamp": "2026-02-19 09:47:27.926245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Enumeration Attack] Can an attacker systematically try different token hashes to map all balances in the system? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd15dd6c-da53-4888-84a5-b4325d432784?mode=deep",
+    "timestamp": "2026-02-19 09:47:56.677441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Return Value Consistency] Does this function return the same balance as GetBalance for equivalent inputs, or can discrepancies be exploited? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d660fc3-a4d1-4557-ab84-77083fbaf773?mode=deep",
+    "timestamp": "2026-02-19 09:48:31.971036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Allowance Overflow] Can allowance values stored in State.AllowanceMap exceed safe integer limits causing overflow in transfer operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfe34d2a-75ea-49e5-a3b9-46748a0ec7f0?mode=deep",
+    "timestamp": "2026-02-19 09:49:06.798192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Uninitialized Allowance] What value is returned if State.AllowanceMap[tokenHash][input.Owner][input.Spender] was never set - zero or undefined? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d249cb5f-b5bd-473e-8ccb-ee896fdb3f62?mode=deep",
+    "timestamp": "2026-02-19 09:49:40.737756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [TokenHash Recalculation Risk] Can symbol/tokenId manipulation at line 56 cause different tokenHash than the actual approved token, returning wrong allowance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc5229ef-858c-44fa-b702-e40eb8ff8e29?mode=deep",
+    "timestamp": "2026-02-19 09:50:13.465376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Owner/Spender Validation] Does the function validate that Owner and Spender are valid distinct addresses before querying allowances? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e265957-938a-4c76-9999-acdab243ce2b?mode=deep",
+    "timestamp": "2026-02-19 09:50:44.032250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Self-Approval] Can Owner == Spender scenario cause unexpected allowance values that bypass transfer restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1fd0c65-1e22-4462-b0e0-235effa831e6?mode=deep",
+    "timestamp": "2026-02-19 09:51:18.415607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Negative Allowance] Can corrupted state lead to negative allowance values being returned, causing underflow in transfer calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c069def-5dda-4f5d-a004-9ca3a8a8a4bb?mode=deep",
+    "timestamp": "2026-02-19 09:51:47.141074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Stale Allowance] If allowances aren't properly decremented during transfers, can this function return inflated values enabling multiple spends? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9449191-8614-483d-8cea-537b76deafd3?mode=deep",
+    "timestamp": "2026-02-19 09:52:20.867496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Information Disclosure] Can an attacker query allowances to identify approved spenders and intercept planned transfers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c71ca69c-9a0c-4411-a07e-87c6a93f5960?mode=deep",
+    "timestamp": "2026-02-19 09:52:55.776465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowanceByTokenHash()] [Direct Hash Bypass] By accepting tokenHash directly, can an attacker bypass symbol-based validation and query allowances for restricted tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92bc6e80-a442-4192-8f23-f97e948540c3?mode=deep",
+    "timestamp": "2026-02-19 09:53:27.327591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowanceByTokenHash()] [Hash Forgery] Can an attacker craft a tokenHash that doesn't correspond to any real token but still returns allowance values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0f91737-559a-4366-80d8-34d7f1ab99a5?mode=deep",
+    "timestamp": "2026-02-19 09:54:01.556166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowanceByTokenHash()] [Null Hash Input] What happens if input.TokenHash is null or Hash.Empty - does it access invalid state entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3be80c2-fa7c-4401-ab6f-1aeb3f6b95d1?mode=deep",
+    "timestamp": "2026-02-19 09:54:31.563153",
+    "report_generated": false
+  }
+]
