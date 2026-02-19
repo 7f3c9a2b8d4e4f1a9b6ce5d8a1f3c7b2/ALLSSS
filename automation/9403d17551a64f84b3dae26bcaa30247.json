@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept RealTimeMinersInformation where sum of ProducedBlocks across all miners exceeds total blocks in previous round, indicating double-counting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46c97f5a-1326-447e-a9e2-ce7ba81773ec?mode=deep",
+    "timestamp": "2026-02-19 08:45:12.737456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If RealTimeMinersInformation contains miners with ImpliedIrreversibleBlockHeight > current block height, can this manipulate LIB calculation via MinersCountOfConsent? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b52774d-1dc3-4488-917c-7f225b03d6df?mode=deep",
+    "timestamp": "2026-02-19 08:45:34.770385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept RealTimeMinersInformation with more miners than maximum allowed miner count, bypassing miner list size constraints? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eff0e21f-5997-40ad-ac1d-1cefca714557?mode=deep",
+    "timestamp": "2026-02-19 08:45:57.129854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept round.ExtraBlockProducerOfPreviousRound that doesn't exist in the previous round's RealTimeMinersInformation, enabling fake extra block attribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ed0a6aa-04d1-4648-8456-e2f8c25adcd2?mode=deep",
+    "timestamp": "2026-02-19 08:46:20.122443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If ExtraBlockProducerOfPreviousRound is set to empty string when an extra block was actually produced, can this deny rewards to the legitimate producer? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d13337a8-526a-4f27-bea3-6b117ba85059?mode=deep",
+    "timestamp": "2026-02-19 08:46:44.714113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept ExtraBlockProducerOfPreviousRound pointing to a miner who didn't actually produce the extra block, enabling reward theft? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3819144b-a084-4247-a084-6cfa3718c516?mode=deep",
+    "timestamp": "2026-02-19 08:47:10.516579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept round.RoundIdForValidation that doesn't match the sum of all miners' ExpectedMiningTime, bypassing round ID verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8341e010-1a99-41d9-9f5a-5b4baba448ce?mode=deep",
+    "timestamp": "2026-02-19 08:47:36.090905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If RoundIdForValidation is negative or zero when it should be positive, does Create() allow invalid round identification? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14be0468-0282-4f4a-959d-675b6fe64d3f?mode=deep",
+    "timestamp": "2026-02-19 08:48:02.818114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept RoundIdForValidation that collides with previous round IDs, enabling round replay attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d9b027d-88ed-402f-9e6a-5eb226ac5de2?mode=deep",
+    "timestamp": "2026-02-19 08:48:31.889877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept round.IsMinerListJustChanged = true when miner list hasn't actually changed, triggering unnecessary miner replacement rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d29dbff5-d420-4c6f-a24d-8938fbc6a55e?mode=deep",
+    "timestamp": "2026-02-19 08:49:02.942947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If IsMinerListJustChanged = false when miner list did change, can this prevent proper election transition processing and reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0eba3d5f-b25d-4925-b196-a48e45e3fed0?mode=deep",
+    "timestamp": "2026-02-19 08:49:31.358090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept round.MainChainMinersRoundNumber that is far ahead of side chain's round, desynchronizing cross-chain consensus coordination? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6cfb9d1-2d9d-427f-85a1-fd33b3fc58a5?mode=deep",
+    "timestamp": "2026-02-19 08:50:00.517785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If MainChainMinersRoundNumber is negative or zero when it should track main chain, does Create() allow invalid cross-chain round tracking? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6ab9c6a-ce22-40d7-a92c-94f1f862f854?mode=deep",
+    "timestamp": "2026-02-19 08:50:34.468690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept MainChainMinersRoundNumber that regresses from previous value, breaking main-chain round progression tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ae441e9-c380-4d69-ae37-8e470f49b58d?mode=deep",
+    "timestamp": "2026-02-19 08:51:04.767228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept randomNumber with incorrect byte length (not 32 bytes for EC-VRF output), bypassing random number format validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4429db0a-0c28-4e80-9578-3cd42e015814?mode=deep",
+    "timestamp": "2026-02-19 08:51:40.855555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If randomNumber is all zeros (0x0000...0000), does Create() allow predictable randomness that can be exploited in secret sharing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b86f309-4942-4520-b54f-41b800e99603?mode=deep",
+    "timestamp": "2026-02-19 08:52:17.420591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept randomNumber that was already used in a previous round, enabling random number reuse attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce846c79-e5b7-44c3-b042-97bd0925264e?mode=deep",
+    "timestamp": "2026-02-19 08:52:55.171698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If randomNumber doesn't correspond to the VRF proof for current round's secret, can Create() enable fake randomness injection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60ea07d1-b601-4bff-8566-6c722acc949c?mode=deep",
+    "timestamp": "2026-02-19 08:53:33.200194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Memory Safety] At line 12, does copying RealTimeMinersInformation create shallow copies of MinerInRound objects, allowing external mutation of the created NextRoundInput? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0155b6f6-d06d-4e5e-830e-e2e11d339a01?mode=deep",
+    "timestamp": "2026-02-19 08:54:09.122436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Memory Safety] If the input Round object is modified after Create() returns, can changes propagate to the returned NextRoundInput through shared references? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4a707f2-ff83-4192-9a96-e31435dc274c?mode=deep",
+    "timestamp": "2026-02-19 08:54:45.036654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Data Integrity] When converting NextRoundInput to Round, the RandomNumber field is discarded at line 27-39, but is this RandomNumber loss acceptable when the Round is persisted to state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83d97350-6e88-4c77-805a-1816363a1333?mode=deep",
+    "timestamp": "2026-02-19 08:55:21.035747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Data Integrity] If ToRound() is called multiple times on the same NextRoundInput and the results are used in different contexts, can data inconsistency occur? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68baf9c0-2b86-44d5-a082-99decdf39b9c?mode=deep",
+    "timestamp": "2026-02-19 08:55:55.182191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Data Integrity] Does ToRound() create a new Round instance at line 27, preventing mutation of the original NextRoundInput's Round data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_676b7473-f76f-4965-83d4-6486a9c069a8?mode=deep",
+    "timestamp": "2026-02-19 08:56:24.359732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Input Validation] If NextRoundInput.RoundNumber is negative when ToRound() is called, does the method propagate invalid data to the returned Round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5762e775-2d1c-4bc7-9ded-db364b3b60e4?mode=deep",
+    "timestamp": "2026-02-19 08:56:53.972026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Input Validation] Can ToRound() be called on a NextRoundInput with null RealTimeMinersInformation, causing NullReferenceException at line 30? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83bc1f01-6626-484d-908a-e13b76f8d065?mode=deep",
+    "timestamp": "2026-02-19 08:57:27.793740",
+    "report_generated": false
+  }
+]
