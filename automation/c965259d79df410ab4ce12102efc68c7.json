@@ -22,5 +22,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6881d4e-9819-4c8b-87b4-1c44d19ee2d7?mode=deep",
     "timestamp": "2026-02-19 12:00:25.827557",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Race Condition] If multiple transactions call this function concurrently when State.MethodFeeController.Value is null, can they create multiple initialization sequences causing state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8bbcc23-fa58-4f4b-bb8c-9ec815dfab24?mode=deep",
+    "timestamp": "2026-02-19 12:22:07.407510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [External Call Manipulation] Can GetDefaultOrganizationAddress() at line 59 return malicious address if ParliamentContract is compromised, setting attacker-controlled address as initial controller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2df6afb5-7853-4c0a-a236-87545d3d564e?mode=deep",
+    "timestamp": "2026-02-19 12:22:29.527729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Initialization] If State.ParliamentContract.Value is set but Context.GetContractAddressByName returns different address, does the contract use stale ParliamentContract reference? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1aa48a1-c6e5-465f-b89b-8004a75dbbe7?mode=deep",
+    "timestamp": "2026-02-19 12:22:52.421031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [DoS Attack] If GetDefaultOrganizationAddress() call reverts or fails, does RequiredMethodFeeControllerSet() prevent all future SetMethodFee and ChangeMethodFeeController operations permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c555a5c1-d64a-4baf-be22-380e38a631cb?mode=deep",
+    "timestamp": "2026-02-19 12:23:15.680971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Early Return Bypass] Does early return at line 52 when State.MethodFeeController.Value != null prevent detecting if controller has been set to invalid or zero address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5aaae63e-eef6-43cc-aecf-b4b86f0b2484?mode=deep",
+    "timestamp": "2026-02-19 12:23:39.446665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Contract Upgrade] If ParliamentContract is upgraded after initial controller setup, does State.ParliamentContract.Value become stale, and can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61438e99-79f7-482f-a7b4-e9caf60fe9f9?mode=deep",
+    "timestamp": "2026-02-19 12:24:04.115590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Null Reference] If GetDefaultOrganizationAddress returns null or GetContractAddressByName fails, can lines 57-61 create invalid AuthorityInfo with null addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_919a0732-28b1-436a-9437-abb8b7346d0c?mode=deep",
+    "timestamp": "2026-02-19 12:24:29.438973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Logic Error] Does setting both OwnerAddress and ContractAddress to Parliament addresses at lines 59-60 create ambiguity in who can authorize fee changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9883568-8617-4874-8b56-01968d665e1e?mode=deep",
+    "timestamp": "2026-02-19 12:24:55.959931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Timing] Can an attacker call SetMethodFee between lines 53-64 of another transaction's RequiredMethodFeeControllerSet execution, bypassing authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9970555-29c7-4597-aa5a-23d5f0dcf079?mode=deep",
+    "timestamp": "2026-02-19 12:25:26.218440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Consistency] If State.MethodFeeController.Value is set but State.ParliamentContract.Value remains null, can this cause inconsistent behavior in subsequent operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6499ee3-5c75-4193-8a65-604b3e2ee052?mode=deep",
+    "timestamp": "2026-02-19 12:25:53.626437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Malicious Contract] Can authorityInfo.ContractAddress point to attacker-controlled contract that returns true without actual validation, bypassing organization existence check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31dcc221-cdf4-4dee-9313-5e7583d7c9c7?mode=deep",
+    "timestamp": "2026-02-19 12:26:21.252676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Value Manipulation] Does the function verify BoolValue.Value is explicitly true, or can malicious contract return BoolValue with Value=false but still pass if default handling interprets it incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b691f3f-f2cd-418b-bf3d-feeef965ec49?mode=deep",
+    "timestamp": "2026-02-19 12:26:51.822138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Re-entrancy] Can the Context.Call at line 73 allow re-entrancy back into TokenHolderContract methods before CheckOrganizationExist returns? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a19e8ef-cd29-4083-86a9-62ee6e2cecf9?mode=deep",
+    "timestamp": "2026-02-19 12:27:20.402750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [DoS Attack] Can authorityInfo.ContractAddress point to contract that consumes all gas or reverts, causing all ChangeMethodFeeController operations to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf305efd-3cf2-460d-83af-d9c808229c30?mode=deep",
+    "timestamp": "2026-02-19 12:27:49.077002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Input Validation] Does the function validate authorityInfo.OwnerAddress is not null before passing to external call, preventing null pointer exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad34f2cb-a987-4c60-af6d-27ba5308e701?mode=deep",
+    "timestamp": "2026-02-19 12:28:18.956048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Type Confusion] If authorityInfo.ContractAddress implements ValidateOrganizationExist but returns unexpected type instead of BoolValue, can this cause runtime error or security bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b58126f-e743-4fc0-ae2d-c11c9af2d565?mode=deep",
+    "timestamp": "2026-02-19 12:28:48.435227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Contract Interface] Does the function verify that authorityInfo.ContractAddress implements proper AuthorizationContract interface before calling, or can any contract be called? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_738cd141-6923-4440-b7f3-5eebfefbf0fe?mode=deep",
+    "timestamp": "2026-02-19 12:29:19.482559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [State Desync] If organization exists during check but is dissolved immediately after, can ChangeMethodFeeController still proceed with now-invalid organization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1546422-a2c5-4725-b10c-552ca3484eba?mode=deep",
+    "timestamp": "2026-02-19 12:29:51.206046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Integer Underflow] Does 'amount >= 0' check at line 80 prevent negative amounts if amount parameter has been manipulated to negative value through integer underflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19b9cba5-b6c8-4cf9-b90b-1b4d51ed6c5a?mode=deep",
+    "timestamp": "2026-02-19 12:30:23.149776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Token Contract Manipulation] If State.TokenContract.Value is null and GetContractAddressByName is compromised, can it return attacker-controlled contract that approves invalid tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db2bc49a-cd91-4015-9a04-140cf9a7190c?mode=deep",
+    "timestamp": "2026-02-19 12:30:56.114365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Re-entrancy] Can IsTokenAvailableForMethodFee call at line 85 re-enter AssertValidToken or SetMethodFee before validation completes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48594273-4258-46f8-84a5-8324f9e80e87?mode=deep",
+    "timestamp": "2026-02-19 12:31:29.542985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Symbol Validation] Does the function validate symbol is not empty, null, or contains only whitespace before calling TokenContract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7da72792-11c4-4cb1-ae06-ca7e14057feb?mode=deep",
+    "timestamp": "2026-02-19 12:32:03.938282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Symbol Length] Can symbol be extremely long string causing issues in TokenContract call or state storage? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f89a8077-8ce5-4d69-a4d7-8a469912bea2?mode=deep",
+    "timestamp": "2026-02-19 12:32:37.030208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Error Message] Can attacker manipulate symbol to inject malicious content into error message at line 86, potentially causing log poisoning or frontend exploits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9c01257-0cd7-41b0-9431-c5d87ff97158?mode=deep",
+    "timestamp": "2026-02-19 12:33:07.393054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [State Initialization Race] If multiple transactions call AssertValidToken concurrently when State.TokenContract.Value is null, can they create race condition in initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e794191d-6407-4244-a31c-11592be1a612?mode=deep",
+    "timestamp": "2026-02-19 12:33:36.826686",
+    "report_generated": false
   }
 ]
