@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Null Handling] Can anotherMinerInPreviousRound at line 33 be null if pair.Value is null, causing NullReferenceException at lines 35-36? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_717db06e-61d2-48a9-8f2f-1a8018a6afea?mode=deep",
+    "timestamp": "2026-02-19 07:39:54.961534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Null Handling] Can EncryptedPieces or DecryptedPieces at lines 35-36 be null collections, causing NullReferenceException when accessing Count property? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd56d7b5-b773-4d0a-9d0e-8497d6580632?mode=deep",
+    "timestamp": "2026-02-19 07:40:17.135063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Null Handling] Can revealedInValue at line 49-50 be null if DecodeSecret or ComputeFrom returns null, and will assigning null PreviousInValue at line 52 corrupt consensus state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d2a8f96-039a-4c8f-b43e-76ccd995c4c9?mode=deep",
+    "timestamp": "2026-02-19 07:40:39.749419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Validation Error] Does the EncryptedPieces.Count < minimumCount check at line 35 use correct comparison, or should it be <= to enforce strict threshold requirements? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1af82a2-6bab-42ae-9106-dbde75aa56b5?mode=deep",
+    "timestamp": "2026-02-19 07:41:03.139076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Validation Error] Does the DecryptedPieces.Count < minersCount check at line 36 require all miners' pieces, and can this be exploited by withholding one piece to DoS secret revelation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85dd26d5-cfc1-47d7-863f-4d903920c5ed?mode=deep",
+    "timestamp": "2026-02-19 07:41:27.723421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Validation Error] Can the validation at lines 35-36 be bypassed by providing DecryptedPieces with duplicate keys, inflating the count while having insufficient unique pieces? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da326b3c-95a8-466f-8ed4-bb46dbe14cd9?mode=deep",
+    "timestamp": "2026-02-19 07:41:53.008834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Validation Error] Does minimumCount at line 50 match the threshold parameter used in previous EncodeSecret, or can mismatch cause secret reconstruction with wrong threshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8eb5799c-d92d-4d55-8ecd-6eb2212cff55?mode=deep",
+    "timestamp": "2026-02-19 07:42:18.430585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Validation Error] Can an attacker provide DecryptedPieces.Count == minersCount but with some pieces being empty byte arrays, passing count validation but failing secret reconstruction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5e64e5e-53e2-46a1-bf18-16f3192d5103?mode=deep",
+    "timestamp": "2026-02-19 07:42:47.129732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Can an attacker front-run Configuration Contract deployment to register a malicious contract at SmartContractConstants.ConfigurationContractSystemName, controlling secret sharing enable/disable? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f834175-404d-4d77-932f-397007d8c7ab?mode=deep",
+    "timestamp": "2026-02-19 07:43:14.278772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Does the null check at line 62 prevent exploitation, or can an attacker deploy empty/malicious contract returning null address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da42da85-36d8-404f-9dba-72043002f9ed?mode=deep",
+    "timestamp": "2026-02-19 07:43:41.284837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Can State.ConfigurationContract.Value at line 68 be poisoned once and persist malicious address for all future calls, bypassing GetContractAddressByName re-validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7883e9ed-48b5-4fc0-96fc-d78a8964451e?mode=deep",
+    "timestamp": "2026-02-19 07:44:09.347423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Can MergeFrom at line 72 be exploited with malformed protobuf data causing deserialization vulnerabilities or corrupting secretSharingEnabled? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50289b2c-5291-4ca0-8181-d9de335698cb?mode=deep",
+    "timestamp": "2026-02-19 07:44:38.027177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Does GetConfiguration.Call at line 72 validate that returned Value bytes are well-formed BoolValue, or can arbitrary bytes cause parsing errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1059ca9e-c4b5-43f6-9ec5-ca676adb08dd?mode=deep",
+    "timestamp": "2026-02-19 07:45:06.092253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Can the AEDPoSContractConstants.SecretSharingEnabledConfigurationKey at line 74 be manipulated to read wrong configuration keys and return incorrect enable/disable state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74812d76-abf0-4058-9c3f-ac0aa96854f2?mode=deep",
+    "timestamp": "2026-02-19 07:45:34.601841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] If Configuration Contract is not deployed (null at line 62), does returning false at line 65 safely disable secret sharing, or does it cause consensus inconsistency with deployed instances? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbde1f28-9860-4d74-9853-3e9993795ea6?mode=deep",
+    "timestamp": "2026-02-19 07:46:05.382821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Error] Can Configuration Contract be upgraded to malicious version after initial validation, toggling secret sharing on/off to disrupt consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57f201e8-15bf-4974-8332-75d93dcc51b7?mode=deep",
+    "timestamp": "2026-02-19 07:46:38.195586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [State Pollution] Can repeated calls to RevealSharedInValues accumulate PreviousInValue assignments without bounds checking, bloating currentRound state size? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72baa0eb-502a-41ab-8787-5b13e51a98ea?mode=deep",
+    "timestamp": "2026-02-19 07:47:11.650783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [State Pollution] Can malicious miners fill DecryptedPieces dictionaries with garbage data that passes count validation but pollutes state when stored? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_075867a5-b2c1-47bf-88ee-c10ecd7c55ea?mode=deep",
+    "timestamp": "2026-02-19 07:47:43.699096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [State Pollution] Can State.ConfigurationContract.Value at line 68 be set to invalid address permanently corrupting contract state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29162b6e-849f-4c1a-92d7-6fc803922dd4?mode=deep",
+    "timestamp": "2026-02-19 07:48:17.554954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Invariant Violation] Can PreviousInValue be set at line 52 for miners who haven't produced blocks yet, violating the invariant that only block-producing miners have revealed in-values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92766f14-0984-47d1-a79a-7b34c30d3cb4?mode=deep",
+    "timestamp": "2026-02-19 07:48:50.446011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Invariant Violation] Does setting PreviousInValue without validating it matches the miner's actual previous in-value break the verifiable random function (VRF) property? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_017c6989-2612-45dd-9824-de2d08edd895?mode=deep",
+    "timestamp": "2026-02-19 07:49:20.342472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Invariant Violation] Can revealed in-values at line 49-50 be different from what the miner originally committed, breaking the commit-reveal scheme's binding property? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35445369-6b22-4b3c-bca8-23a41bd5f6a8?mode=deep",
+    "timestamp": "2026-02-19 07:49:53.962001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Invariant Violation] Does the function ensure that PreviousInValue is only set once per miner per round, or can it be overwritten multiple times violating consensus finality? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3fa09b3-51d6-415f-9a32-95abc5e354bf?mode=deep",
+    "timestamp": "2026-02-19 07:50:27.697826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Data Manipulation] Can an attacker modify the Order values in previousRound.RealTimeMinersInformation to manipulate the OrderBy sorting at line 25 and change revelation order? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1aa14d84-2831-4aaf-8c8b-236842007efd?mode=deep",
+    "timestamp": "2026-02-19 07:51:03.225057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Data Manipulation] Can DecryptedPieces.Keys at line 43 contain duplicate entries causing ToList() indexing mismatches with actual DecryptedPieces.Values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f789e00b-2352-4659-b52f-d0526d9b0c93?mode=deep",
+    "timestamp": "2026-02-19 07:51:37.417541",
+    "report_generated": false
+  }
+]
