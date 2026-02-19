@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckProposalAlreadyVotedBy()] [Duplicate Detection] The Contains() check prevents duplicate voting - but if proposal lists contain duplicate entries before this check, can vote counts be inflated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b572152-f5fc-4c35-a01e-231a969d3476?mode=deep",
+    "timestamp": "2026-02-19 06:34:58.403214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckProposalAlreadyVotedBy()] [Race Condition] If vote lists are modified between Contains() checks in OR conditions, can a vote be added to multiple lists simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54ab656a-8f13-4337-85ac-15501901a595?mode=deep",
+    "timestamp": "2026-02-19 06:35:20.793711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: ValidateAddressInWhiteList()] [Null Check] Line 203 accesses State.ProposerWhiteList.Value.Proposers - if ProposerWhiteList.Value is null, does this throw null reference exception allowing whitelist bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14c00406-309c-4644-b349-0ac66830e264?mode=deep",
+    "timestamp": "2026-02-19 06:35:44.005170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: ValidateAddressInWhiteList()] [Empty List] If State.ProposerWhiteList.Value.Proposers is empty list, the function returns false - can whitelist be cleared to block all whitelisted proposers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f089f591-21d5-4c92-8ee2-fc7ef7da036f?mode=deep",
+    "timestamp": "2026-02-19 06:36:07.873030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: ValidateAddressInWhiteList()] [Duplicate Entries] If whitelist contains duplicate addresses, does Any() still work correctly or can duplicates cause performance issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7959c3b6-67f4-4e2d-8eff-a8e64992b0d0?mode=deep",
+    "timestamp": "2026-02-19 06:36:32.524842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: ValidateParliamentMemberAuthority()] [Stale Data] Line 208 calls GetCurrentMinerList() - if miner list is cached and not refreshed, can removed miners still pass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ada6835-4012-489b-a809-90713a4811ee?mode=deep",
+    "timestamp": "2026-02-19 06:36:59.129912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: ValidateParliamentMemberAuthority()] [Race Condition] If address is removed from miner list between GetCurrentMinerList() call and Any() check, can authorization state be inconsistent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df5aa60e-4bab-4c12-aefc-84099f667a98?mode=deep",
+    "timestamp": "2026-02-19 06:37:25.593764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertCurrentMiner()] [State Dependency] Line 215 calls State.ConsensusContract.IsCurrentMiner(Context.Sender) - if consensus contract is compromised, can it return true for any address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14e28532-678b-4699-a432-c55928e82070?mode=deep",
+    "timestamp": "2026-02-19 06:37:52.347989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertCurrentMiner()] [Logging Side Effect] Line 216 logs debug info after getting isCurrentMiner - can this logging be exploited for information disclosure about miner status? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1dd40e7e-6326-48eb-aa94-33518ad95f9d?mode=deep",
+    "timestamp": "2026-02-19 06:38:21.486387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertCurrentMiner()] [Error Message] Line 217 asserts with generic 'No permission' - can this be combined with other functions to bypass specific permission checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_476e44d7-d1c5-4af2-90cb-f382ebe0e177?mode=deep",
+    "timestamp": "2026-02-19 06:38:49.900257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GenerateProposalId()] [Collision Attack] Line 222 uses input.Token ?? HashHelper.ComputeFrom(input) - can attacker provide custom Token to create proposal ID collisions with existing proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ab274e8-e2d5-40f8-8e19-5efb8d88d027?mode=deep",
+    "timestamp": "2026-02-19 06:39:18.589749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GenerateProposalId()] [Predictability] If input.Token is null, HashHelper.ComputeFrom(input) generates deterministic hash - can attacker predict proposal IDs and frontrun proposal creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3cf42c0-5e8b-4ee1-82fb-8a263fad1d4f?mode=deep",
+    "timestamp": "2026-02-19 06:39:48.524374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GenerateProposalId()] [Null Token] The function allows null Token (uses ?? operator) - can this create security risks if Context.GenerateId() handles null differently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb36a060-2d25-4fa9-b5db-03c5dbdedc78?mode=deep",
+    "timestamp": "2026-02-19 06:40:18.268096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewProposal()] [Input Validation Order] Line 227 calls CheckCreateProposalInput() before GenerateProposalId() - if validation fails after ID generation, can partially created proposals leak state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aae88363-5cc2-4e6b-b177-36031faea7c0?mode=deep",
+    "timestamp": "2026-02-19 06:40:48.178807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewProposal()] [Duplicate Proposal] Line 243 asserts State.Proposals[proposalId] == null - but if proposalId collision occurs (due to GenerateProposalId vulnerability), can existing proposals be blocked from creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_092bf10d-c1ec-4a62-96b8-c7c0579388ed?mode=deep",
+    "timestamp": "2026-02-19 06:41:18.763745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewProposal()] [State Initialization] Lines 229-241 create ProposalInfo with empty Approvals/Rejections/Abstentions lists - are these initialized properly or can null reference exceptions occur in voting functions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fac8444-a980-4336-bdea-a8c14643e7ef?mode=deep",
+    "timestamp": "2026-02-19 06:41:48.212528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewProposal()] [Proposer Assignment] Line 237 sets Proposer = Context.Sender - can this be different from the address checked in AssertIsAuthorizedProposer(), allowing unauthorized proposal creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0d6396d-a809-40c0-ba75-85dfd6f61111?mode=deep",
+    "timestamp": "2026-02-19 06:42:17.236173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewProposal()] [Event Timing] Lines 245-251 fire ProposalCreated event after state update - if event handler modifies state, can this cause reentrancy issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27afe5a6-d121-4fc3-a104-b3ab794d3e5a?mode=deep",
+    "timestamp": "2026-02-19 06:42:46.037500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewProposal()] [Validation Redundancy] Line 242 calls Validate(proposal) after manually creating proposal object - can fields set in lines 229-241 still fail validation due to logic errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c041fd72-86dd-45e2-bb73-5a1a9d4f49d2?mode=deep",
+    "timestamp": "2026-02-19 06:43:14.980857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckCreateProposalInput()] [Length Validation] Line 258 checks Title.Length <= MaxLengthForTitle - can empty titles (length 0) pass validation and create ambiguous proposals? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4c8d705-6746-4e2d-bfc6-91883db0a5d0?mode=deep",
+    "timestamp": "2026-02-19 06:43:44.255905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckCreateProposalInput()] [Length Validation] Line 260 checks Description.Length <= MaxLengthForDescription - can empty descriptions pass validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ccaeab3-aa25-4953-bd75-1881c4f95ba4?mode=deep",
+    "timestamp": "2026-02-19 06:44:13.628689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckCreateProposalInput()] [Length Validation] Lines 262-263 check ProposalDescriptionUrl.Length <= MaxLengthForProposalDescriptionUrl - can extremely long URLs cause storage bloat even if under limit? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2affc76-10a2-4c56-9f0b-b6669264b060?mode=deep",
+    "timestamp": "2026-02-19 06:44:41.855360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckCreateProposalInput()] [Null Check Missing] The function checks .Length property but doesn't verify strings are not null first - can null strings cause null reference exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2d545a0-9177-488c-a76a-4eed2fdbd84f?mode=deep",
+    "timestamp": "2026-02-19 06:45:10.363170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckCreateProposalInput()] [Unicode Handling] Length checks use .Length property which counts UTF-16 code units - can Unicode strings with multi-byte characters bypass intended size limits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c72c4e5c-1b7f-4bbe-83cc-0533365dbf2e?mode=deep",
+    "timestamp": "2026-02-19 06:45:38.474726",
+    "report_generated": false
+  }
+]
