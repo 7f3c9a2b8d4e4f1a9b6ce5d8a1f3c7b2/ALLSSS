@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOption()] [Last Option Removal] Can sponsor remove all options, leaving voting item with empty options array and making voting impossible? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bafa1e0-df95-40c0-a2a2-c676f953bc79?mode=deep",
+    "timestamp": "2026-02-19 08:17:44.872831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Batch Limit Bypass] At line 318, options are validated individually by AssertOption(), then added at line 319. Can total exceed MaximumOptionsCount by adding many options in single batch? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc77c96c-afe4-48dd-8a21-133b4783d033?mode=deep",
+    "timestamp": "2026-02-19 08:18:07.100541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Limit Check Timing] At lines 320-321, count check happens AFTER AddRange(). If adding options causes count to exceed 64, is revert guaranteed or can state be partially corrupted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f42ccaec-4b4c-4515-b84a-d5418eda14c8?mode=deep",
+    "timestamp": "2026-02-19 08:18:29.706266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Duplicate Within Batch] If input.Options contains duplicates within same batch, will AssertOption() at line 318 catch them, or only check against existing options? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b63f2572-0160-4adb-a525-70d84255d305?mode=deep",
+    "timestamp": "2026-02-19 08:18:53.346576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AddOptions()] [Empty Batch] If input.Options is empty array, does function succeed trivially without validation, wasting gas? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0eb8e2da-f676-4612-8053-7f9e9862dcf9?mode=deep",
+    "timestamp": "2026-02-19 08:19:17.233143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOptions()] [Partial Removal Failure] At lines 330-335, each option is validated and removed individually. If one option doesn't exist, does entire batch fail or only that option? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6024e81d-7998-47c0-8b8d-887ab9be890a?mode=deep",
+    "timestamp": "2026-02-19 08:19:42.050530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOptions()] [Vote Orphaning Batch] Can sponsor remove multiple options at once, orphaning all votes for those options simultaneously and corrupting voting results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b33e2e3f-dd39-4522-9ee0-ed20020eeb6f?mode=deep",
+    "timestamp": "2026-02-19 08:20:07.520054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: RemoveOptions()] [State Consistency] At line 337, votingItem is written back after all removals. Can partial state update occur if transaction reverts mid-removal? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c313a675-0607-4c5c-a051-712df35ef4e7?mode=deep",
+    "timestamp": "2026-02-19 08:20:36.271558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Register() + Vote()] [Race Condition] Can attacker register voting item and immediately vote before whitelist check propagates, locking tokens in invalid voting item? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab5e4636-e602-4d99-a771-fcf94648a324?mode=deep",
+    "timestamp": "2026-02-19 08:21:04.159641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Vote() + Withdraw()] [Double-Spend] Can attacker vote with tokens, immediately withdraw to unlock, then vote again with same tokens in different voting item? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef214af1-e728-4545-9db0-31053e0f71c4?mode=deep",
+    "timestamp": "2026-02-19 08:21:30.799665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Vote() + TakeSnapshot()] [Vote Timing Exploit] Can sponsor collude with voter to delay TakeSnapshot() until favorable votes are cast, then immediately take snapshot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95cc0d6b-eccc-42e4-9203-3555f529ab8b?mode=deep",
+    "timestamp": "2026-02-19 08:21:59.940394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: AddOption() + Vote()] [Option Injection Attack] Can sponsor add option with same name as existing option after votes are cast, causing vote misattribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe5fe33e-37a2-4dba-9cb4-8ab39127701a?mode=deep",
+    "timestamp": "2026-02-19 08:22:30.818598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: RemoveOption() + Vote()] [Option Removal DOS] Can sponsor repeatedly add and remove options while voting is active, causing voter confusion and DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74345c5a-500c-4453-a9ef-1ba843c65045?mode=deep",
+    "timestamp": "2026-02-19 08:22:58.182759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Multiple Vote()] [Quadratic Counter Manipulation] For quadratic voting, QuadraticVotesCountMap at line 100 increments per vote. If VoteId generation has collision (line 397), can counter be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12218eca-b16a-4284-8aed-d6086928782a?mode=deep",
+    "timestamp": "2026-02-19 08:23:29.115619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Vote() + UpdateVotingResult()] [Results Overflow] If UpdateVotingResult() at line 177 overflows due to large votes, and Vote() at line 119 succeeds, is state left inconsistent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18ec5ad1-bfc3-4ab4-b325-7375e5a95ae0?mode=deep",
+    "timestamp": "2026-02-19 08:23:56.287446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Withdraw() + UpdateVotingResult()] [Underflow in Results] If Withdraw() subtracts at line 216 but vote was never properly added due to bug, can Results[option] underflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d370951-4648-45d1-9cd1-b7b68e6715a1?mode=deep",
+    "timestamp": "2026-02-19 08:24:23.527729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Cross-Function: Register() + TakeSnapshot()] [Immediate Snapshot Attack] Can sponsor register voting item and immediately take all snapshots before anyone votes, making voting item unusable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66775085-5f6d-400f-91b1-562e9620caee?mode=deep",
+    "timestamp": "2026-02-19 08:24:52.899594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [State: VotingRecords Mapping] At line 117, VotingRecords[VoteId] can be overwritten. Can attacker control VoteId generation to overwrite legitimate votes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed638cc9-e849-45ae-acac-2f89f1b59b32?mode=deep",
+    "timestamp": "2026-02-19 08:25:22.472286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [State: VotedItemsMap Concurrency] At lines 148 and 212, VotedItemsMap is read-modified-written. Can concurrent transactions corrupt this state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_125a6723-1f93-45e7-9188-7d5a8449da52?mode=deep",
+    "timestamp": "2026-02-19 08:25:52.362507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [State: QuadraticVotesCountMap] At line 100-101, counter increments without checking for overflow. Can attacker vote unlimited times causing counter overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33b7580c-3090-4ade-9e0c-3ba5509b6fd8?mode=deep",
+    "timestamp": "2026-02-19 08:26:23.708620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [State: VotingResults Persistence] At lines 180 and 222, VotingResults are updated. Can race condition between Vote() and Withdraw() corrupt vote counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc9dda6c-78ad-4e30-a7f1-fc44fc778740?mode=deep",
+    "timestamp": "2026-02-19 08:26:56.866692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [State: VotingItems Immutability] VotingItems at line 54 can be modified by AddOption/RemoveOption after creation. Should voting items be immutable after voting starts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58a5c1b4-52e8-494e-a3e1-ad30ae0caddf?mode=deep",
+    "timestamp": "2026-02-19 08:27:29.176082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Token: Whitelist Check Timing] At lines 29-34, token whitelist is checked during registration. Can token be removed from whitelist after registration but before voting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f146106-a01f-42a6-845c-c0bb3df51a8b?mode=deep",
+    "timestamp": "2026-02-19 08:28:02.215253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Token: Lock Without Balance Check] At lines 124-130, tokens are locked without checking if voter has sufficient balance. Can this cause lock to fail silently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88b448a1-d41e-4501-b6e4-d62ef43eb2a0?mode=deep",
+    "timestamp": "2026-02-19 08:28:33.803721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Token: Unlock Failure Handling] At lines 225-231, token unlock is called but failure not handled. If unlock reverts, is vote still withdrawn? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a4bb438-df7b-4572-9e79-c26cb44723d5?mode=deep",
+    "timestamp": "2026-02-19 08:29:05.577599",
+    "report_generated": false
+  }
+]
