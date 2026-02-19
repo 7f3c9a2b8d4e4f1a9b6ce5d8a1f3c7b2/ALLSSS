@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveBeneficiary()] [Authorization Bypass] Lines 237-239 allow TokenHolder contract to remove beneficiaries. Can a malicious TokenHolder remove legitimate beneficiaries right before DistributeProfits, stealing their profit allocation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c14e54d8-00c3-4fe9-a0b5-972c17cc0ca1?mode=deep",
+    "timestamp": "2026-02-19 02:05:03.558252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveBeneficiary()] [Cache Corruption] Lines 243-258 modify CachedDelayTotalShares based on removedMinPeriod, but if removedDetails contains entries with Key=0 (line 243 filter), can the cache become desynchronized from actual TotalShares? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d66eb60c-a65a-477e-8d88-a7925427a789?mode=deep",
+    "timestamp": "2026-02-19 02:05:25.670296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveBeneficiary()] [DoS] If a beneficiary has thousands of ProfitDetails across many periods, does RemoveProfitDetails iterate all of them causing gas exhaustion, preventing beneficiary removal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed4e8899-7cc6-47d9-ab8f-6fe890ff9d4c?mode=deep",
+    "timestamp": "2026-02-19 02:05:48.009223",
+    "report_generated": false
+  }
+]
