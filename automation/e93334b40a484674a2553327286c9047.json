@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Permission] Is there a check ensuring the controller's organization has sufficient approvals before allowing SetMaximumMinersCount() to execute? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8a6af28-38ff-4d20-901a-6b433799f2be?mode=deep",
+    "timestamp": "2026-02-19 13:51:58.135351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Permission] Does SetMinerIncreaseInterval() verify that Context.Sender has executed a valid Parliament proposal, or just that sender matches controller address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d907e95-8005-4830-a474-d4cc82160470?mode=deep",
+    "timestamp": "2026-02-19 13:52:20.993804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Permission Escalation] Can the current controller change itself to a more permissive organization (e.g., single-sig) to bypass future governance restrictions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f11737be-29b7-4b68-90e6-2b24fb671ae5?mode=deep",
+    "timestamp": "2026-02-19 13:52:43.941835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Default Authority] Is the default Parliament organization secure, or can it be manipulated during initial chain setup? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68da3860-e59f-4135-a280-43d4c740cc29?mode=deep",
+    "timestamp": "2026-02-19 13:53:07.092941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Type Safety] Is Int32Value.Value properly validated to be a valid int32, or can protobuf deserialization allow out-of-range values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16305ab0-034c-4ba5-abc4-1fc1ea605b63?mode=deep",
+    "timestamp": "2026-02-19 13:53:31.291665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Type Safety] Is Int64Value.Value for the interval properly validated, or can it be negative/overflow when cast to int in calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1f5c1d6-fcda-48de-a51c-8228442943b2?mode=deep",
+    "timestamp": "2026-02-19 13:53:56.064055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Type Casting] When casting (int) on line 93, can overflow occur if the calculated value exceeds Int32.MaxValue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01a044df-a3fc-49e9-89de-07adcdecc332?mode=deep",
+    "timestamp": "2026-02-19 13:54:22.845464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Type Safety] Are the .Add(), .Div(), .Mul() extension methods properly handling overflow checks for integer operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4140b543-3946-4627-8f7d-c40c9b797c58?mode=deep",
+    "timestamp": "2026-02-19 13:54:49.811193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Timestamp Manipulation] Can miners manipulate Context.CurrentBlockTime to artificially accelerate or decelerate miner count growth? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e899691-775e-46a7-8ba4-c18eb7b59501?mode=deep",
+    "timestamp": "2026-02-19 13:55:17.437444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Time Drift] If State.BlockchainStartTimestamp.Value is set incorrectly during initialization, can this cause permanently incorrect miner count calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d72740e5-de76-47b5-974c-7b3fefefb3a5?mode=deep",
+    "timestamp": "2026-02-19 13:55:45.773049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Leap Seconds] Are .Seconds calculations affected by leap seconds or timezone issues that could cause miner count inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_641792b2-89a1-436d-9074-aedee1a6ec3a?mode=deep",
+    "timestamp": "2026-02-19 13:56:18.270991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Invariant: MinersCount >= SupposedMinersCount] [Business Logic] Can GetMaximumMinersCount() ever return a value less than SupposedMinersCount (17), violating the minimum viable consensus requirement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ddb03a1-0dd2-4e8d-9b6e-010e15bb806a?mode=deep",
+    "timestamp": "2026-02-19 13:56:48.461951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Invariant: Controller Uniqueness] [State Consistency] Is there any guarantee that State.MaximumMinersCountController and State.MethodFeeController don't point to the same organization, causing governance confusion? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e075651-ba1e-40de-a00f-773ec026686d?mode=deep",
+    "timestamp": "2026-02-19 13:57:22.238015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Invariant: Monotonic Growth] [Business Logic] Can MinerIncreaseInterval changes cause miners count to decrease suddenly, violating expectations of monotonic growth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c07eda85-da3f-4712-949a-54f700a96109?mode=deep",
+    "timestamp": "2026-02-19 13:57:51.523195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Invariant: AEDPoS-Election Sync] [Integration] Is there any mechanism ensuring State.MaximumMinersCount and Election contract's miners count remain synchronized after SetMaximumMinersCount()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34fbdb98-275e-4c9d-823c-0a83fe00b86b?mode=deep",
+    "timestamp": "2026-02-19 13:58:26.927274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: All] [Upgrade Safety] If the contract is upgraded, can State.MaximumMinersCount, State.MinerIncreaseInterval, or State.MaximumMinersCountController become corrupted or uninitialized? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a31789f7-5b83-4cea-ada8-f8270dc361cf?mode=deep",
+    "timestamp": "2026-02-19 13:59:01.362526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: RequiredMaximumMinersCountControllerSet()] [Migration] If the contract is deployed on a chain where Parliament doesn't exist yet, can this cause initialization failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_caaa5829-3f6e-4fca-96d3-a06bf3ea51cb?mode=deep",
+    "timestamp": "2026-02-19 13:59:35.945924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Rounding Error] Does integer division on line 94 consistently round down, and can this cause miners count to be off by multiple units over long periods? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60a4fa83-032e-44a9-8f6c-5104bc7385aa?mode=deep",
+    "timestamp": "2026-02-19 14:00:11.559644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Calculation Order] Can the order of Add().Div().Mul() operations cause different results than mathematically equivalent orderings due to integer arithmetic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a14799da-bb39-4bf2-a150-6006b43292ae?mode=deep",
+    "timestamp": "2026-02-19 14:00:47.963667",
+    "report_generated": false
+  }
+]
