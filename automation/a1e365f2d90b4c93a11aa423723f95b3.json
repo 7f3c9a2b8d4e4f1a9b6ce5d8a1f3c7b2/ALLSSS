@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Complex Attack] [Multi-Step Exploit] Can an attacker first compromise the Parliament default organization, then use ChangeMethodFeeController to take control, then use SetMethodFee to drain funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_409ef558-204c-464e-95f0-6e1012d185e9?mode=deep",
+    "timestamp": "2026-02-19 09:32:59.105695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Complex Attack] [Initialization Race] Can an attacker deploy a malicious contract with the same name as Parliament before RequiredMethodFeeControllerSet initializes at line 76? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba473f40-4ee1-4f79-bda3-8a9939ef2788?mode=deep",
+    "timestamp": "2026-02-19 09:33:21.179816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Complex Attack] [Token Whitelist Bypass] Can an attacker manipulate TokenContract.IsTokenAvailableForMethodFee to approve malicious tokens, then use those tokens to pay fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07d3d867-58f7-4da0-b99b-20c01d243234?mode=deep",
+    "timestamp": "2026-02-19 09:33:43.866552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Complex Attack] [Organization Takeover] Can an attacker create a fake organization that passes CheckOrganizationExist validation, then use it to control method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9884eedd-dd08-44d7-85f1-76fbf11dffeb?mode=deep",
+    "timestamp": "2026-02-19 09:34:07.077152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Boundary] [Maximum Fee Value] Can BasicFee be set to long.MaxValue, and if so, does this cause overflow in fee calculations downstream? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94fc3ca1-bc40-4b8b-a548-9e54f0c2614a?mode=deep",
+    "timestamp": "2026-02-19 09:34:31.439830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Boundary] [Zero Fee] Can BasicFee be set to exactly 0 at line 101, making methods free and enabling spam attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc9a12e7-ca37-4fa5-8081-1e622ee4a846?mode=deep",
+    "timestamp": "2026-02-19 09:34:57.476380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Boundary] [Long Method Names] Can input.MethodName be extremely long, causing gas exhaustion when used as a storage key at line 17? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b90fd0d-a7d7-414f-a7b8-c79011f9e0fb?mode=deep",
+    "timestamp": "2026-02-19 09:35:22.893298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Boundary] [Many Fees] Can input.Fees contain thousands of MethodFee entries, causing the loop at line 13 to exhaust gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_359e4068-022f-4be9-b744-360d82e9032e?mode=deep",
+    "timestamp": "2026-02-19 09:35:52.676079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Logic Flow] [Early Return Bypass] Can the early return at line 73 in RequiredMethodFeeControllerSet be bypassed by setting State.MethodFeeController.Value to a non-null invalid value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2e32e46-502c-405b-8829-542b672f68c8?mode=deep",
+    "timestamp": "2026-02-19 09:36:24.112848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Logic Flow] [Switch Default] Can methods other than Register but sharing partial name matches exploit the default case at line 50-57? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1161c0fc-14eb-4363-bc1f-d7415da063cb?mode=deep",
+    "timestamp": "2026-02-19 09:36:56.739514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Logic Flow] [Validation Order] Does the validation order at lines 13-16 in SetMethodFee allow partial state updates if intermediate assertions fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fa19ead-8c6f-4448-9e96-3db011ff695d?mode=deep",
+    "timestamp": "2026-02-19 09:37:30.027201",
+    "report_generated": false
+  }
+]
