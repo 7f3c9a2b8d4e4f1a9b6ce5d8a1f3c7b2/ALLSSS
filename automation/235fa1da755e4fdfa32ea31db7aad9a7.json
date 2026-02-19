@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireSenderAuthority()] [Initialization Race] Before State.Initialized.Value is true on line 148, only Context.Self can call operations. Can an attacker who gains control of Context.Self during initialization period deploy malicious system contracts without governance approval? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a15a4be4-eee6-4b70-af70-a606cd786435?mode=deep",
+    "timestamp": "2026-02-19 02:46:01.125193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireSenderAuthority()] [Authority Bypass] If State.ContractDeploymentAuthorityRequired.Value is false on line 155, any address can deploy contracts. Can this flag be maliciously toggled by an attacker who compromises the config contract to enable permissionless deployment? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09cc754c-052e-47ed-9438-c4de9195ea69?mode=deep",
+    "timestamp": "2026-02-19 02:46:23.216800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireSenderAuthority()] [Null Address Attack] When address parameter is null on line 159, the function returns without checks on line 157. Can an attacker always pass address=null from calling functions to bypass all sender validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_493bfeea-514c-4002-aa65-c2112ca272cd?mode=deep",
+    "timestamp": "2026-02-19 02:46:45.484742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireSenderAuthority()] [Double Authorization] The function checks both Context.Self on line 151 and custom address on line 160. Can an attacker exploit the OR logic to bypass checks by setting up scenarios where neither condition is properly validated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0ea87b7-dba4-4d6c-a322-51779c11014c?mode=deep",
+    "timestamp": "2026-02-19 02:47:08.441730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireSenderAuthority()] [State Manipulation] If an attacker can set State.Initialized.Value back to false after initialization, do all subsequent calls on lines 148-152 grant Context.Self authority, allowing unauthorized system operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1708ca08-95c9-46fc-8776-4087e7b0d4d2?mode=deep",
+    "timestamp": "2026-02-19 02:47:32.864955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CheckOrganizationExist()] [Malicious Contract] The function calls authorityInfo.ContractAddress on line 182 without validating it's a legitimate authorization contract. Can an attacker pass a malicious contract address that always returns true, bypassing organization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f53fff9f-327d-4c73-80c9-30ec4f30018d?mode=deep",
+    "timestamp": "2026-02-19 02:47:58.118079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CheckOrganizationExist()] [Return Value Manipulation] The function trusts BoolValue.Value from the called contract on line 184. Can an attacker deploy a contract that returns true for non-existent organizations, breaking the invariant that only existing organizations can execute proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb2ca15a-eb8e-4dcf-97b7-3ca3bd499228?mode=deep",
+    "timestamp": "2026-02-19 02:48:23.615731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CheckOrganizationExist()] [Reentrancy] Can the Context.Call on line 182 reenter this contract before returning, allowing an attacker to manipulate state that affects the boolean result interpretation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54e402a7-6162-4c9e-b3ab-aa8c70bc52d2?mode=deep",
+    "timestamp": "2026-02-19 02:48:50.881871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CheckOrganizationExist()] [Gas Griefing] Can an attacker provide an authorityInfo.ContractAddress that consumes excessive gas in ValidateOrganizationExist, causing this function to always fail due to out-of-gas, blocking all organization-dependent operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0bf33ce0-72a8-442b-8e85-6640591520fd?mode=deep",
+    "timestamp": "2026-02-19 02:49:20.288062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: TryClearContractProposingData()] [Status Bypass] The function checks contractProposingInput.Status == CodeChecked on line 198. Can an attacker who controls proposal state transition skip the CodeChecked status to clear proposal data prematurely, bypassing code verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cc6cef4-3e05-41af-8d91-abea04b2bd37?mode=deep",
+    "timestamp": "2026-02-19 02:49:47.266078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: TryClearContractProposingData()] [Authority Requirement Race] The isGenesisOwnerAuthorityRequired check on lines 190-193 occurs before status validation. Can an attacker toggle this flag to false mid-transaction to clear proposals that should require status verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c49222c2-f442-4a2f-a907-a8fcee9172af?mode=deep",
+    "timestamp": "2026-02-19 02:50:14.085917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: TryClearContractProposingData()] [Data Deletion Without Validation] State.ContractProposingInputMap.Remove on line 200 permanently deletes proposal data. Can an attacker call this function for active proposals to erase evidence of pending proposals, allowing re-proposal with modified parameters? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9228db6f-9b9b-4567-bff7-8a0ab1ade414?mode=deep",
+    "timestamp": "2026-02-19 02:50:41.814368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: TryClearContractProposingData()] [Return Value Confusion] The function returns false on line 196 if proposal is null, but calling code may not handle this correctly. Can this lead to execution continuing as if clearing succeeded, violating proposal lifecycle invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_511b3774-04fe-4341-9b31-a5784b573d0c?mode=deep",
+    "timestamp": "2026-02-19 02:51:11.540803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: TryClearContractProposingData()] [Null Pointer After Remove] After removing the proposal on line 200, is State.ContractProposingInputMap[inputHash] guaranteed null? Can residual data cause validation issues in subsequent operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c5820e9-5e8c-4419-a492-f0123dcf1647?mode=deep",
+    "timestamp": "2026-02-19 02:51:39.430643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RegisterContractProposingData()] [Expiration Bypass] The function allows re-registration if CurrentBlockTime >= registered.ExpiredTime on line 207. Can an attacker repeatedly register proposals just after expiration, squatting on proposal hashes to prevent legitimate proposals from being submitted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5819bbe1-195b-45dc-8179-f11a9647f3a8?mode=deep",
+    "timestamp": "2026-02-19 02:52:07.792254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RegisterContractProposingData()] [Time Manipulation] The ExpiredTime is set using Context.CurrentBlockTime on line 213. Can consensus miners manipulate block timestamps to extend or shorten proposal expiration, affecting proposal outcome fairness? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f00232c-10fa-46a0-b774-87a330238f73?mode=deep",
+    "timestamp": "2026-02-19 02:52:40.394358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RegisterContractProposingData()] [Proposer Impersonation] The Proposer is set to Context.Sender on line 211. If Context.Sender is spoofed or manipulated in cross-contract calls, can an attacker attribute proposals to victims, causing reputation damage or authorization confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64324560-15b2-45c1-bd53-36c4cb444703?mode=deep",
+    "timestamp": "2026-02-19 02:53:10.354712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RegisterContractProposingData()] [Status Enum Injection] The Status is hardcoded to Proposed on line 212. Can an attacker later manipulate this enum to skip intermediate statuses (CodeCheckProposed, CodeChecked) and execute unverified proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7239fda3-0471-402c-bd71-82dca9a17e05?mode=deep",
+    "timestamp": "2026-02-19 02:53:39.986755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RegisterContractProposingData()] [Expiration Period Manipulation] GetCurrentContractProposalExpirationTimePeriod is called on line 208. Can an attacker who controls configuration change this value to 0 or MAX_INT, either preventing new proposals or making them never expire? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47982de2-9d09-4129-ac7d-d33a9d99f962?mode=deep",
+    "timestamp": "2026-02-19 02:54:11.896819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RegisterContractProposingData()] [Hash Collision DoS] If two different proposals produce the same proposedContractInputHash, the second will fail on line 207. Can an attacker pre-register many proposal hashes to block legitimate proposals through hash space exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f792e798-4250-4e6d-997a-1dc0bcea6161?mode=deep",
+    "timestamp": "2026-02-19 02:54:41.590713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [Whitelist Bypass] The function checks if parliamentProposerWhitelist.Proposers.Count == 0 on line 222. Can an attacker manipulate the whitelist to have exactly 0 proposers, forcing ParliamentMemberProposingAllowed=true on line 235, allowing any parliament member to propose? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45ab78a9-115b-4521-afc5-9e8e03145407?mode=deep",
+    "timestamp": "2026-02-19 02:55:13.870708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [Threshold Manipulation] The thresholds MinimalApprovalThreshold, MinimalVoteThreshold, MaximalRejectionThreshold, MaximalAbstentionThreshold on lines 229-232 are from constants. Can an attacker who deployed this contract set these to 0, allowing proposals to pass without votes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_700cd5e2-9c56-4e88-ad9f-25b49042af42?mode=deep",
+    "timestamp": "2026-02-19 02:55:41.743754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [Callback Injection] The OrganizationAddressFeedbackMethod is set to SetInitialControllerAddress on line 237. Can an attacker create an organization with a malicious feedback method name to execute arbitrary functions during organization creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e61cf06-e2e9-4679-8cf3-35c3457fdedc?mode=deep",
+    "timestamp": "2026-02-19 02:56:10.896213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [ProposerAuthorityRequired Flag] The proposerAuthorityRequired parameter is passed without validation. Can an attacker set this to false to allow unauthorized addresses to create proposals in the initial controller organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2445a46-6efb-4db0-8fc0-35106e776a08?mode=deep",
+    "timestamp": "2026-02-19 02:56:37.676588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [Reentrancy via Send] Context.SendInline on line 223 makes a cross-contract call. Can this trigger a reentrancy attack before line 238 completes, allowing multiple initial controller addresses to be created? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d75f2856-5f77-46a4-8a10-61606ff00fe8?mode=deep",
+    "timestamp": "2026-02-19 02:57:04.102534",
+    "report_generated": false
+  }
+]
