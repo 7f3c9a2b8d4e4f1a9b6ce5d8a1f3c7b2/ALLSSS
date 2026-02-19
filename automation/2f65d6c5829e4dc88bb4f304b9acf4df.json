@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface Design] Does the IHeaderInformationValidationProvider interface lack version control or capability negotiation, potentially causing issues when validation requirements change across protocol upgrades? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_574bbd09-1576-48e0-996e-e13291cc642e?mode=deep",
+    "timestamp": "2026-02-19 03:26:38.719059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface Design] Does ValidateHeaderInformation() lack a mechanism to distinguish between different failure types (authentication vs validation vs data integrity), potentially masking the root cause of validation failures? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a61ae68e-a059-4573-83d3-9522c9f6420e?mode=deep",
+    "timestamp": "2026-02-19 03:27:00.865078",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface Design] Can the ConsensusValidationContext parameter be mutated by implementations, potentially causing side effects or inconsistent validation behavior across multiple providers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2737dd3-5a42-43d9-9fa9-b6eecdf5bef9?mode=deep",
+    "timestamp": "2026-02-19 03:27:23.669783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface Design] Does the interface lack ordering guarantees for when multiple providers are used, potentially allowing bypass if a critical validation runs after a less strict one has already passed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98b61987-1272-4ba9-ab2d-cf77e98a3ee8?mode=deep",
+    "timestamp": "2026-02-19 03:27:47.180336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface Design] Is there a missing interface method for pre-validation initialization or provider registration, potentially allowing malicious implementations to be injected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1c5b069-b0e1-4bdc-a1c7-1dfc49b128cd?mode=deep",
+    "timestamp": "2026-02-19 03:28:11.191918",
+    "report_generated": false
+  }
+]
