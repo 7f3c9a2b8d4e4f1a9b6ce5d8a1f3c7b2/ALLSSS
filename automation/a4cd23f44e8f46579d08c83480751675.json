@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Virtual Transfer Exploit] The Transfer uses virtual inline call with proposalId on line 79. Can an attacker manipulate the virtual address to transfer from unintended sources? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3616320-0ac2-4d76-b652-de3f1244107b?mode=deep",
+    "timestamp": "2026-02-19 09:44:54.088389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Amount Manipulation] The receipt.Amount on line 82 is retrieved from state without validation. Can this be manipulated to withdraw more tokens than originally locked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11d1319f-59d1-4510-a513-17f685e4dfa4?mode=deep",
+    "timestamp": "2026-02-19 09:45:16.713265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Symbol Validation] There is no validation that receipt.TokenSymbol on line 84 matches the expected organization token. Can attackers unlock different tokens than what they locked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_549d9410-245d-4260-a7fd-66b8289a0a46?mode=deep",
+    "timestamp": "2026-02-19 09:45:39.758701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Double Unlock] While line 78 checks receipt != null, after removal on line 87, can an attacker call UnlockToken twice in the same transaction to bypass the check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87b14685-1d40-4303-be7a-098492f15f13?mode=deep",
+    "timestamp": "2026-02-19 09:46:03.717283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Proposal Finality] There's no check that the proposal voting period has ended. Can voters unlock immediately after locking, negating the lock mechanism entirely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d3c2c7f-16dc-43e8-bd13-7bd13a042490?mode=deep",
+    "timestamp": "2026-02-19 09:46:28.280475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Empty String Bypass] Line 92 checks string.IsNullOrEmpty for TokenSymbol but doesn't validate the actual string content. Can an attacker pass whitespace-only strings to bypass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_664f24cd-adf4-42d2-afbe-c3eda6a98aa3?mode=deep",
+    "timestamp": "2026-02-19 09:46:53.713359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [DOS Attack] Line 95 calls GetTokenInfo which makes an external contract call. Can an attacker create organizations with symbols that cause the TokenContract to revert, permanently blocking organization validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6deaf7c7-c4d2-4cfd-acf8-d44eb04e9fe6?mode=deep",
+    "timestamp": "2026-02-19 09:47:21.722165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [ProposerWhiteList Check] Line 93 uses ProposerWhiteList.Empty() which only checks if the list exists, not if it contains valid addresses. Can an attacker create an organization with a whitelist containing null or invalid addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff5e1c3a-b908-41c9-8c38-d507daab883b?mode=deep",
+    "timestamp": "2026-02-19 09:47:52.188819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Threshold Logic Error] Lines 98-101 validate that MinimalApprovalThreshold <= MinimalVoteThreshold, but this allows MinimalApprovalThreshold to equal MinimalVoteThreshold. Can this create scenarios where 100% approval is required? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c3e85da-f15c-4366-a79b-5977e4f0b2de?mode=deep",
+    "timestamp": "2026-02-19 09:48:24.968491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Zero Threshold] Line 99 checks MinimalApprovalThreshold > 0, but what if MinimalVoteThreshold is 0? Can organizations be created where no votes are required for proposal release? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2f4db46-5f68-4cd5-bc3e-b4a87c46b4a7?mode=deep",
+    "timestamp": "2026-02-19 09:48:57.540922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Negative Threshold] Lines 100-101 check MaximalAbstentionThreshold and MaximalRejectionThreshold >= 0. Can setting these to 0 block all proposals with any abstention/rejection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccc53f8c-e26f-4e8b-9a7e-dac66c2f95af?mode=deep",
+    "timestamp": "2026-02-19 09:49:29.972991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Hash Collision] Line 93 checks organizationHash != null but doesn't validate uniqueness. Can multiple organizations share the same hash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5766c19-84eb-45d1-a8ba-74d62bd75e74?mode=deep",
+    "timestamp": "2026-02-19 09:50:01.809241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Address Collision] Line 92 checks organizationAddress != null but doesn't validate uniqueness or format. Can attacker-controlled addresses be used? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57c72468-ea8c-4f35-9383-a144c0b20b3c?mode=deep",
+    "timestamp": "2026-02-19 09:50:34.120338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Inconsistent Thresholds] There's no validation that MaximalRejectionThreshold + MaximalAbstentionThreshold + MinimalApprovalThreshold <= MinimalVoteThreshold. Can impossible-to-pass threshold combinations be created? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2be8452e-dde1-4446-b91d-9bab7d604ffb?mode=deep",
+    "timestamp": "2026-02-19 09:51:06.154243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(Organization)] [Token Existence Race] The GetTokenInfo call on line 95 validates token existence at creation time, but can the token be burned or disabled later, breaking the organization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87cd26dd-5cae-47db-9df6-75bf91967979?mode=deep",
+    "timestamp": "2026-02-19 09:51:38.182400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Time Manipulation] Line 108 checks Context.CurrentBlockTime < proposal.ExpiredTime. Can an attacker set ExpiredTime to maximum timestamp to create never-expiring proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4557ee30-784c-43be-9814-9da2fba45d32?mode=deep",
+    "timestamp": "2026-02-19 09:52:11.112715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Address Validation] Line 106 only checks ToAddress != null, not if it's a valid contract address. Can proposals target non-existent or EOA addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_092b905e-836f-484b-8153-f96b3b68a65b?mode=deep",
+    "timestamp": "2026-02-19 09:52:43.316693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Method Name Validation] Line 107 uses string.IsNullOrWhiteSpace but doesn't validate if the method actually exists on the target contract. Can proposals call non-existent methods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b3b74e0-5898-450c-9ded-78a1ecba7cd1?mode=deep",
+    "timestamp": "2026-02-19 09:53:16.875776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [URL Scheme Bypass] Line 110 calls ValidateDescriptionUrlScheme which only validates HTTP/HTTPS. Can attackers use this to host malicious content or phishing sites? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aace3287-1053-44cc-aa3d-24bea4a67de9?mode=deep",
+    "timestamp": "2026-02-19 09:53:46.423459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Organization Check] Line 109 only checks hasOrganizationAddress != null, not if the organization actually exists in state. Can proposals reference non-existent organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_731e7949-25c3-4279-b6a7-e3db833cfe5f?mode=deep",
+    "timestamp": "2026-02-19 09:54:21.862584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Expired Proposal] The check on line 108 validates expiration at proposal validation time, but can a proposal expire between validation and execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d25b3879-819c-4f69-b81e-4317c861b854?mode=deep",
+    "timestamp": "2026-02-19 09:54:56.816284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Params Validation] There is no validation of proposal.Params content. Can attackers craft malicious parameters to exploit the target contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_590d92b7-36dc-456e-990f-f5a938d9aa55?mode=deep",
+    "timestamp": "2026-02-19 09:55:27.038004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Missing Proposer Check] The Validate function doesn't check if proposal.Proposer is set or valid. Can proposals be created without a proposer? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_379ede3c-a567-47b1-b016-832055b7851d?mode=deep",
+    "timestamp": "2026-02-19 09:56:03.022727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Vote Count Validation] The function doesn't validate vote counts (ApprovalCount, RejectionCount, AbstentionCount). Can these be pre-set to arbitrary values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4aa6333a-f4d5-4bb8-98b2-244bdf286675?mode=deep",
+    "timestamp": "2026-02-19 09:56:39.302501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: Validate(ProposalInfo)] [Title/Description Missing] There's no validation that Title or Description are set. Can proposals be created with empty metadata? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1129033e-c3b8-4301-a152-c5b69a4b7dc6?mode=deep",
+    "timestamp": "2026-02-19 09:57:12.698441",
+    "report_generated": false
+  }
+]
