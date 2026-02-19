@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Authorization Bypass] If State.MaximumMinersCountController.Value.OwnerAddress is set to a compromised Parliament organization, can an attacker call SetMaximumMinersCount to reduce MaximumMinersCount to 1, causing immediate consensus halt when GetMaximumMinersCount returns min(autoIncreased, 1)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bc80e27-e426-4908-a521-0a4499a8bba0?mode=deep",
+    "timestamp": "2026-02-19 02:17:37.766414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Input Validation] If input.Value is set to Int32.MaxValue, does the subsequent GetMinersCount calculation in GetAutoIncreasedMinersCount at line 92-94 cause integer overflow when adding (Context.CurrentBlockTime - State.BlockchainStartTimestamp.Value).Seconds / State.MinerIncreaseInterval.Value * 2 to SupposedMinersCount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_812609c0-dfc9-4ec3-b431-a585ea353cbf?mode=deep",
+    "timestamp": "2026-02-19 02:17:59.728667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [State Consistency] Can an attacker exploit the gap between State.MaximumMinersCount.Value = input.Value at line 22 and State.ElectionContract.UpdateMinersCount.Send at lines 23-26 to cause inconsistent state if the UpdateMinersCount call fails or reverts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f014a494-d01f-4764-9bd2-a274d79ce66f?mode=deep",
+    "timestamp": "2026-02-19 02:18:22.038946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [DOS Attack] If TryToGetCurrentRoundInformation at line 20 returns false (out round is null/empty), does GetMinersCount receive a null/invalid round parameter causing UpdateMinersCount to send incorrect MinersCount to the Election contract, potentially breaking election state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e0ea807-5ac9-4165-a1e4-22e324687fed?mode=deep",
+    "timestamp": "2026-02-19 02:18:44.856781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Reentrancy] Can the State.ElectionContract.UpdateMinersCount.Send call at lines 23-26 trigger a callback that re-enters SetMaximumMinersCount before State.MaximumMinersCount.Value is finalized, allowing double-update of the election contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32eb4c0d-990e-45c4-9e1e-fa80e01ad2e2?mode=deep",
+    "timestamp": "2026-02-19 02:19:08.579886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Authorization Timing] If RequiredMaximumMinersCountControllerSet at line 16 initializes State.MaximumMinersCountController.Value for the first time, can the subsequent authorization check at line 17-18 be bypassed because Context.Sender might equal the newly initialized Parliament default organization in the same transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ef7d29b-3739-49dc-8f8b-7c09553e7acc?mode=deep",
+    "timestamp": "2026-02-19 02:19:34.935394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Consensus Safety] If input.Value is set to a value less than the current round's actual miner count (round.RealTimeMinersInformation.Count), does this cause GetMinersCount to return a lower value that breaks active consensus by making some current miners ineligible mid-round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bad92aa8-fa8f-427c-b90a-e070f3453c78?mode=deep",
+    "timestamp": "2026-02-19 02:20:00.631731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Input Validation] The Assert at line 14 checks input.Value > 0, but can input.Value = 1 cause consensus failure when only 1 miner is allowed, preventing proper AEDPoS consensus which requires multiple validators for Byzantine fault tolerance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5d1422f-e431-442e-b5f2-3ac07b278b00?mode=deep",
+    "timestamp": "2026-02-19 02:20:26.950214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Election Contract Failure] If State.ElectionContract.UpdateMinersCount.Send fails silently (e.g., election contract reverts), does State.MaximumMinersCount.Value remain updated while the election contract's State.MinersCount.Value becomes desynchronized, breaking miner selection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5bdef91-87a8-49af-b1e4-33ebe6059adb?mode=deep",
+    "timestamp": "2026-02-19 02:20:56.115760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Race Condition] Can two concurrent SetMaximumMinersCount calls from the authorized controller create a race where both read TryToGetCurrentRoundInformation at line 20, but the second call's UpdateMinersCount overwrites the first with stale round data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_936adf9b-4d76-49b5-af3a-9205be94c913?mode=deep",
+    "timestamp": "2026-02-19 02:21:25.308390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Authorization] If EnsureElectionContractAddressSet at line 12 fails or State.ElectionContract.Value is null, does the function continue to line 14 assertion check allowing partial execution before failing at line 23 when trying to send UpdateMinersCount? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5551d0f-a8a7-41a0-8554-45747e032040?mode=deep",
+    "timestamp": "2026-02-19 02:21:53.450878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [State Manipulation] Can an attacker who controls Parliament organization repeatedly call SetMaximumMinersCount with oscillating values (e.g., 100, 10, 100, 10) to cause continuous miner list churn in the election contract, destabilizing consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16d7677e-1596-4c08-9c2d-c5d842dd46bf?mode=deep",
+    "timestamp": "2026-02-19 02:22:23.913853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Integer Overflow] If input.Value is near Int32.MaxValue and GetMinersCount performs Math.Min with an auto-increased count that has overflowed to negative, does UpdateMinersCount receive a corrupted negative MinersCount value? (High)",
+    "url": "https://deepwiki.com/grass-dev-pa/AElf-026",
+    "timestamp": "2026-02-19 02:22:52.996923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Initialization Order] If SetMaximumMinersCount is called before InitialAElfConsensusContract or FirstRound has set State.BlockchainStartTimestamp.Value, does GetMinersCount in GetAutoIncreasedMinersCount return only SupposedMinersCount=17, ignoring the newly set MaximumMinersCount completely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3dde9b52-fc5a-411e-9e56-30901c358889?mode=deep",
+    "timestamp": "2026-02-19 02:23:26.579796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Cross-Contract Security] If the Election contract's UpdateMinersCount method has a bug that doesn't validate MinersCount > 0, can SetMaximumMinersCount be used to send MinersCount=0 when TryToGetCurrentRoundInformation fails and GetMinersCount returns 0, breaking the election contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b11982f5-6f4c-4ae7-be47-8078bc969cf9?mode=deep",
+    "timestamp": "2026-02-19 02:23:58.217704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Authority Validation] The assertion at line 17-18 checks Context.Sender == State.MaximumMinersCountController.Value.OwnerAddress, but does it verify that State.MaximumMinersCountController.Value.ContractAddress is a valid governance contract (Parliament/Association/Referendum), allowing a malicious controller with ContractAddress = null? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a08b5f9c-9e09-428e-a83c-7efc96df3180?mode=deep",
+    "timestamp": "2026-02-19 02:24:29.251821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Denial of Service] Can an attacker who compromises the Parliament organization spam SetMaximumMinersCount with the same value repeatedly, causing unnecessary UpdateMinersCount cross-contract calls that waste gas and could hit block gas limits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13b226b1-56d9-452e-8e53-b634c83cf60b?mode=deep",
+    "timestamp": "2026-02-19 02:24:57.259848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Time-Based Attack] If GetMinersCount uses Context.CurrentBlockTime and an attacker can manipulate block timestamps slightly, can they cause GetAutoIncreasedMinersCount to return artificially high values that bypass the intended MaximumMinersCount constraint? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1617d9b-dd85-4c45-84c3-473c3a92c9be?mode=deep",
+    "timestamp": "2026-02-19 02:25:28.868971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Consensus Degradation] If SetMaximumMinersCount is called to reduce MaximumMinersCount from 100 to 20 while 100 miners are actively producing blocks, does the immediate GetMinersCount calculation cause 80 miners to be instantly removed from eligibility, potentially halting consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0772abc4-636a-4f52-95a6-d274d7a2b39b?mode=deep",
+    "timestamp": "2026-02-19 02:26:01.100383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Missing Validation] The function doesn't check if input.Value >= SupposedMinersCount (17). Can setting input.Value < 17 cause GetMaximumMinersCount to return a value less than SupposedMinersCount, violating the initial consensus assumption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_236aae10-01fa-4ab8-a97e-53f539fe8560?mode=deep",
+    "timestamp": "2026-02-19 02:26:33.444884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [State Corruption] If TryToGetCurrentRoundInformation at line 20 sets 'out round' to a Round object but returns false, can GetMinersCount receive a partially initialized round object with RealTimeMinersInformation.Count = 0, sending incorrect MinersCount to UpdateMinersCount? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de35479e-970f-47df-9d70-62177e3138cf?mode=deep",
+    "timestamp": "2026-02-19 02:27:04.486576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Authorization Chain Break] If State.MaximumMinersCountController.Value.OwnerAddress points to a Parliament organization that has been dissolved or its proposal failed, does the assertion at line 17-18 still pass, allowing execution with invalid authority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9159e97-edd0-4714-9259-9cab196d5d07?mode=deep",
+    "timestamp": "2026-02-19 02:27:36.473570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Atomicity Violation] If UpdateMinersCount.Send at line 23 throws an exception after State.MaximumMinersCount.Value is updated at line 22, does the transaction revert both changes or leave MaximumMinersCount in an inconsistent state relative to the election contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eaf97d86-018a-4d42-a84b-e1b395663d11?mode=deep",
+    "timestamp": "2026-02-19 02:28:09.292597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Economic Attack] Can an attacker gain control of Parliament to set MaximumMinersCount to Int32.MaxValue, causing GetAutoIncreasedMinersCount calculations to always use the auto-increased value, effectively making the parameter immutable until overflow occurs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b97711a3-5d4f-445f-97a7-493b875ac770?mode=deep",
+    "timestamp": "2026-02-19 02:28:42.933708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Governance Capture] If the controller at initialization (Parliament default organization) can be captured through a 51% voting attack, can attackers permanently lock MaximumMinersCount to 1 by calling SetMaximumMinersCount(1) then calling ChangeMaximumMinersCountController to transfer control to an inaccessible address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d91e257-e5dc-435e-98f4-fe6d0f014dff?mode=deep",
+    "timestamp": "2026-02-19 02:29:16.907965",
+    "report_generated": false
+  }
+]
