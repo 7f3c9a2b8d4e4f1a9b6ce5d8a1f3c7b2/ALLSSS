@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividends()] [Future Block Check] Asserts CurrentHeight > input.Value - but can querying dividends for current block (CurrentHeight == input.Value) cause confusion about whether mining reward is included? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65be5b90-0a16-4f9d-840b-eae40a94078d?mode=deep",
+    "timestamp": "2026-02-19 10:10:38.176013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividends()] [State Read Inconsistency] Reads DonatedDividends for specific block and MiningReward global state - if MiningReward is updated after dividend snapshot, can reward be double-counted or missed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c3842d6-92d2-472a-acf1-5694a153769f?mode=deep",
+    "timestamp": "2026-02-19 10:11:00.264559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividends()] [Null Dictionary Handling] If dividends is null, creates new with only native symbol - but shouldn't it still check DonatedDividends for other symbols that might have been donated? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b990ad8d-906c-4ae2-a9a6-b92377fbabb4?mode=deep",
+    "timestamp": "2026-02-19 10:11:22.489896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetUndistributedDividends()] [Gas Exhaustion] Iterates all symbols in SymbolList and calls GetBalance for each - if symbol list is very large, can this exceed gas limits making function uncallable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5da6db9b-e9e1-4ef5-9229-1fbf70549f30?mode=deep",
+    "timestamp": "2026-02-19 10:11:45.661774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetUndistributedDividends()] [Missing Error Handling] If GetBalance fails for any symbol (token not exists), does the entire function revert, or does it skip that symbol, potentially hiding missing funds? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b568f65a-7741-4059-b74d-a2de97c21c7e?mode=deep",
+    "timestamp": "2026-02-19 10:12:10.069527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetTreasurySchemeId()] [Null Return] Returns Hash.Empty if State.TreasuryHash.Value is null - can callers distinguish between uninitialized and intentionally empty, causing confusion? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b70cb43-b609-4064-9e45-eb42351f007d?mode=deep",
+    "timestamp": "2026-02-19 10:12:35.911080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetSymbolList()] [No Null Check] Directly returns State.SymbolList.Value - if this is null (shouldn't be after init, but if state corrupted), will caller crash trying to iterate null list? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_255fb5ae-b598-485d-96fe-bfb10e912a39?mode=deep",
+    "timestamp": "2026-02-19 10:13:01.200184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetInitialMinerList()] [Round 1 Assumption] Queries round 1 information - if round 1 data is corrupted or missing, will this return empty list, breaking all new-miner detection logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_058e831c-1dc3-44c5-ba44-777279ecf359?mode=deep",
+    "timestamp": "2026-02-19 10:13:26.167588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetAddressesFromCandidatePubkeys()] [Duplicate Addresses] Adds both Address.FromPublicKey and GetProfitsReceiver for each pubkey - if receiver isn't set, doesn't this add same address twice, causing duplicate beneficiary registration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9693a98-1d40-4725-8908-6b569e544255?mode=deep",
+    "timestamp": "2026-02-19 10:13:53.138401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetAddressesFromCandidatePubkeys()] [Invalid Pubkey] No validation that pubkeys are valid hex strings - can invalid pubkey cause Address.FromPublicKey to throw, breaking entire reward update? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b72ae26f-1526-4f72-8fe6-ddfb55f55177?mode=deep",
+    "timestamp": "2026-02-19 10:14:21.919333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetProfitsReceiver()] [Fallback Risk] If ProfitsReceiverMap returns null, falls back to Address.FromPublicKey - if pubkey is invalid or this address is contract/burner, are rewards permanently lost? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eaf8bd05-5230-45d9-8252-9dfa03384358?mode=deep",
+    "timestamp": "2026-02-19 10:14:49.447241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetVotesWeight()] [Election Contract Dependency] Calls Election contract's GetCalculateVoteWeight - if Election contract is compromised or has bug, can it return manipulated weights affecting welfare distributions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddcbcbeb-953f-4dde-9143-2aef544d7959?mode=deep",
+    "timestamp": "2026-02-19 10:15:17.055931",
+    "report_generated": false
+  }
+]
