@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Integration] [Token Contract] If the TokenContract referenced at line 94 is upgraded and IsTokenAvailableForMethodFee interface changes, will AssertValidToken fail catastrophically? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3cf3b99-2aa7-4a47-9e9e-40322b4c986a?mode=deep",
+    "timestamp": "2026-02-19 00:52:11.721448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Integration] [Authorization Contracts] Are Parliament, Association, and Referendum contracts all compatible with the ValidateOrganizationExist method called at line 86, or can interface mismatches cause validation failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73e60360-4442-4f7d-a430-133b1f1f5e69?mode=deep",
+    "timestamp": "2026-02-19 00:52:33.965199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Consensus DoS] Can an attacker exploit the fee-free nature of NextRound and NextTerm at lines 42-43 to spam consensus state transitions and manipulate round progression? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed4c9b00-86c5-486a-82e0-074c2291a996?mode=deep",
+    "timestamp": "2026-02-19 00:52:56.725205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [UpdateValue Attack] Since UpdateValue is fee-free at line 42, can malicious miners spam miner list updates or consensus data without paying fees, corrupting consensus state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e2b4346-c2a2-457b-8d78-e6fcf4b944db?mode=deep",
+    "timestamp": "2026-02-19 00:53:20.247483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Consensus Bricking] Can an attacker who controls the MethodFeeController set high fees for non-free consensus methods, causing economic DoS where miners can't afford to update consensus state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1cd45fe-8a33-4450-9d9d-adb34d0306ce?mode=deep",
+    "timestamp": "2026-02-19 00:53:44.629399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Multi-Sig Bypass] If State.MethodFeeController.Value points to a multi-sig organization but one key is compromised, can an attacker unilaterally change method fees despite multi-sig requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8adad8c-e653-4fb9-afee-653a820e4445?mode=deep",
+    "timestamp": "2026-02-19 00:54:09.734249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Threshold Bypass] Does CheckOrganizationExist at line 29 validate that the organization has proper approval thresholds, or can an attacker create a 1-of-1 organization to bypass governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed109e41-bd6f-4161-80bc-8025aa5b31ff?mode=deep",
+    "timestamp": "2026-02-19 00:54:35.008068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Proposer Whitelist] If the Parliament organization has proposer whitelists, can an attacker not on the whitelist still change fees by compromising State.MethodFeeController.Value.OwnerAddress comparison at line 19? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afb68bb6-9d18-4daa-a5be-ecc64cbff2b5?mode=deep",
+    "timestamp": "2026-02-19 00:55:01.256290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Gas Griefing] Can an attacker submit input.Fees with many entries to force excessive iterations in the foreach loop at line 15, griefing the fee setter with high gas costs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83f4bd83-cc37-4cea-b73f-b1a11c3656ea?mode=deep",
+    "timestamp": "2026-02-19 00:55:28.542820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [List Inefficiency] Is using a List.Contains check at line 44 for the fee-free methods list efficient, or should it use a hash set for O(1) lookups to prevent gas DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e051900f-2d63-4949-a315-bc6ec4c83095?mode=deep",
+    "timestamp": "2026-02-19 00:55:57.623635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [String Encoding] Can Unicode normalization attacks on input.MethodName at line 20 create two different state entries that appear identical ('MethodName' vs 'MethodName' with zero-width chars)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27e46fd0-045c-4f31-9d27-37e31e8cf809?mode=deep",
+    "timestamp": "2026-02-19 00:56:28.408625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Symbol Length] Is there a maximum length check for the symbol parameter at line 90 before creating StringValue at line 94, or can attackers use extremely long symbols to DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_106c2376-5cf0-4898-8930-234905743e83?mode=deep",
+    "timestamp": "2026-02-19 00:56:56.881276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Handling] If the Context.Call at line 85 fails or reverts, will CheckOrganizationExist return false or throw an exception, and how does this affect ChangeMethodFeeController? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffc18aaa-bc7c-46c0-af2d-18833b4d0582?mode=deep",
+    "timestamp": "2026-02-19 00:57:26.956955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Call Failure] If State.TokenContract.IsTokenAvailableForMethodFee.Call at line 94 fails or returns null, will the .Value access throw or return a default false? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64b9b52c-a27e-44c7-8d87-741db9d514da?mode=deep",
+    "timestamp": "2026-02-19 00:57:55.975338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [State Migration] [Data Loss] If the contract is upgraded and State.TransactionFees or State.MethodFeeController mappings aren't properly migrated, can fee configurations be lost, requiring re-initialization? (High\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs (L1-99)\n```csharp\nusing System.Collections.Generic;\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS1;\nusing AElf.Standards.ACS3;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\n// ReSharper disable once InconsistentNaming\npublic partial class AEDPoSContract\n{\n    public override Empty SetMethodFee(MethodFees input)\n    {\n        foreach (var methodFee in input.Fees) AssertValidToken(methodFee.Symbol, methodFee.BasicFee);\n\n        RequiredMethodFeeControllerSet();\n\n        Assert(Context.Sender == State.MethodFeeController.Value.OwnerAddress,",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ecae7a10-1fda-4471-80f1-49a58cbbd95d?mode=deep",
+    "timestamp": "2026-02-19 00:58:27.001553",
+    "report_generated": false
+  }
+]
