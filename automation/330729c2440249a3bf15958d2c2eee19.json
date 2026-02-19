@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegateInfos()] [Duplicate Detection] If input.DelegateInfoList contains duplicate contract-method pairs, how is this handled? Can it cause unexpected overwrites or state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6940fed3-a72d-465a-9e9f-8f4306464f36?mode=deep",
+    "timestamp": "2026-02-19 03:41:40.827753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegateInfos()] [Delegatee Count Limit] The check at line 226 enforces DELEGATEE_MAX_COUNT per contract-method combination, but is there a global limit per delegator across all contract-method pairs? Can this be exploited for storage DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_720bd7a5-de2e-44c7-9780-838bb3ede4b9?mode=deep",
+    "timestamp": "2026-02-19 03:42:03.010286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: AddDelegateInfo()] [Logic Inconsistency] At lines 255-262, when IsUnlimitedDelegate is false, delegations are added, but when true, no delegations are added. At line 264, IsUnlimitedDelegate flag is set. Can a delegatee toggle between limited and unlimited to bypass delegation tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93633c8a-8991-47ac-8055-dd9a2a914b00?mode=deep",
+    "timestamp": "2026-02-19 03:42:25.374187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: AddDelegateInfo()] [Token Validation] AssertValidToken at line 259 is called for each delegation when !IsUnlimitedDelegate, but when IsUnlimitedDelegate is true, no token validation occurs. Can this be exploited to create unlimited delegations for non-existent tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4105ff6-ed24-4f16-a103-f29d51f5c555?mode=deep",
+    "timestamp": "2026-02-19 03:42:48.563904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: AddDelegateInfo()] [BlockHeight Setting] At line 263, BlockHeight is always set to Context.CurrentHeight when adding. Is there any time-based restriction or cooldown for delegation changes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9466570-05b3-4d67-812b-a6b02badd351?mode=deep",
+    "timestamp": "2026-02-19 03:43:12.368553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: AddDelegateInfo()] [Direct Dictionary Mutation] At line 260, existDelegateeList.Delegations[symbol] = amount directly modifies the dictionary. If this is called multiple times in a loop with the same symbol, can amounts be overwritten unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_225f3b69-786c-4be8-a5bb-2ce68d2eb9f3?mode=deep",
+    "timestamp": "2026-02-19 03:43:38.118088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: UpdateDelegateInfo()] [State Transition] At lines 275-278, when switching to IsUnlimitedDelegate=true, all existing delegations are cleared. Can a delegatee exploit this to reset delegation state and avoid tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52327fc5-f60a-4a22-acb1-963a431d5e7c?mode=deep",
+    "timestamp": "2026-02-19 03:44:03.675443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: UpdateDelegateInfo()] [Removal Logic] At lines 286-289, delegations are removed if amount <= 0, but at lines 291-294 they're updated if amount > 0. What if amount is exactly 0 but not negative? Is this handled correctly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_029864b4-9860-4ffb-ae35-c8dca473f1ce?mode=deep",
+    "timestamp": "2026-02-19 03:44:29.986895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: UpdateDelegateInfo()] [Validation Inconsistency] At lines 292 and 298, AssertValidToken is called for positive amounts, but only when the symbol already exists (line 284) or doesn't exist (line 296). Is there a case where validation is skipped? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc79dff5-d72b-44bd-b813-654b4be59285?mode=deep",
+    "timestamp": "2026-02-19 03:44:59.674651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: UpdateDelegateInfo()] [BlockHeight Update] At line 304, BlockHeight is always updated to Context.CurrentHeight. Can rapid updates be used to manipulate or game time-based logic that depends on delegation BlockHeight? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1aeab9d4-84b9-4118-9c0d-a8772ca1f3e3?mode=deep",
+    "timestamp": "2026-02-19 03:45:28.885060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: UpdateDelegateInfo()] [IsUnlimitedDelegate Toggle] At line 305, IsUnlimitedDelegate can be toggled in any update. Can a delegatee repeatedly flip this flag to bypass fee tracking or cause state confusion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e635d92-e6f4-4ba4-a4cf-36b315d9be0f?mode=deep",
+    "timestamp": "2026-02-19 03:45:59.077670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: UpdateDelegateInfo()] [Clear vs Remove] At line 277, existDelegation.Clear() removes all items but keeps the dictionary object. At line 288, individual items are removed. Is there a semantic difference that could cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa2a97d0-19b2-445b-b878-5023a63f3fca?mode=deep",
+    "timestamp": "2026-02-19 03:46:30.056732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: FireLogEvent()] [Event Spam] If toAddTransactionList, toUpdateTransactionList, and toCancelTransactionList all have entries, three separate events are fired (lines 317-348). Can this be exploited for event spam or gas attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_575d992a-aa35-4b73-b590-26968e1f834c?mode=deep",
+    "timestamp": "2026-02-19 03:46:58.693384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: FireLogEvent()] [Event Data Redundancy] In all three events (lines 319-347), both Caller and Delegatee are set to Context.Sender. Is this redundant, and does it waste event data space? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94df0504-ecc4-4897-89c7-2b7c98517e00?mode=deep",
+    "timestamp": "2026-02-19 03:47:30.155215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: FireLogEvent()] [Empty List Check] The checks at lines 317, 328, 339 ensure lists aren't empty before firing events. But what if a list contains invalid or duplicate transactions? Should additional validation be performed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad61670e-848a-4e55-901c-f8bbaa11da54?mode=deep",
+    "timestamp": "2026-02-19 03:47:59.121982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateeInfos()] [Authorization] The delegator (Context.Sender) removes delegatee info unilaterally at line 357. Should there be a mutual agreement mechanism or notification requirement? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65d021c2-edb5-4fb4-b906-7c738535819c?mode=deep",
+    "timestamp": "2026-02-19 03:48:25.133753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateeInfos()] [Input Validation] At line 353, DelegateeAddress null check is performed, but at line 356, it's converted with null-conditional operator. Is this defensive programming or a potential null reference? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_964e3b24-ecfe-4156-8435-a429709ccdcd?mode=deep",
+    "timestamp": "2026-02-19 03:48:50.878929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateeInfos()] [Batch Processing] The function accepts DelegateTransactionList and processes it in RemoveTransactionFeeDelegateInfo. If the list is very large, can this cause gas issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44322003-6524-450a-b934-4c3c4bf25449?mode=deep",
+    "timestamp": "2026-02-19 03:49:19.420860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegatorInfos()] [Authorization Bypass] Any delegatee (Context.Sender) can remove their delegation info for any delegator without the delegator's approval. Can this be exploited to prevent fee delegation when the delegator expects it? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_086d9be8-8881-48c3-9031-0568921797fb?mode=deep",
+    "timestamp": "2026-02-19 03:49:48.860640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegatorInfos()] [Symmetric Operations] This function (delegatee removes their info) is symmetric to RemoveTransactionFeeDelegateeInfos (delegator removes delegatee), but who should have ultimate control? Can conflicts arise? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bf4dc4f-c586-48ed-a16b-c6762b217e0d?mode=deep",
+    "timestamp": "2026-02-19 03:50:16.962630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateInfo()] [Duplicate Handling] At line 374, Distinct() is called on delegateTransactionList. If duplicates exist in input, does this silently de-duplicate, and could this hide bugs in calling code? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2225febf-51c3-497e-8a71-9f18bfa48280?mode=deep",
+    "timestamp": "2026-02-19 03:50:46.856355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateInfo()] [Null Check Optimization] At line 382, both null check and ContainsKey check are performed with continue. Could a malicious actor provide many invalid entries to waste gas on these checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d04f953-71cf-48c4-84f2-b7f5d842b039?mode=deep",
+    "timestamp": "2026-02-19 03:51:14.583564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateInfo()] [State Cleanup] At line 383, the delegatee is removed, but what if this leaves an empty Delegatees dictionary at the contract-method level? Should that map entry be cleaned up? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_045ed516-9f38-4471-bc2a-261afedba0d3?mode=deep",
+    "timestamp": "2026-02-19 03:51:42.951282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateInfo()] [Event Emission] At lines 389-398, TransactionFeeDelegateInfoCancelled is only fired if toCancelTransactionList has entries. If all inputs were invalid and skipped, is it correct to succeed silently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_627e26d3-8b5d-4b4e-b40c-e0261fd212f0?mode=deep",
+    "timestamp": "2026-02-19 03:52:11.253367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegateInfo()] [Address Conversion] At line 395, Address.FromBase58(delegateeAddress) is called. If delegateeAddress is corrupted in state, can this throw and revert the entire transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8d59869-4d6f-4d09-8587-88d9f4ad37f4?mode=deep",
+    "timestamp": "2026-02-19 03:52:40.953954",
+    "report_generated": false
+  }
+]
