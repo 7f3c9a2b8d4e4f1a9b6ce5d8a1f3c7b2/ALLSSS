@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [Authorization] Can an attacker create schemes with arbitrary manager addresses by manipulating input.Manager to gain control over schemes they don't own, allowing unauthorized profit distribution and beneficiary management? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19fda7cb-6213-4811-8ec6-ac8bd74fd352?mode=deep",
+    "timestamp": "2026-02-19 11:21:35.668135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [State Collision] Can an attacker cause scheme ID collisions by manipulating the GenerateSchemeId() input parameters, potentially overwriting existing schemes or gaining unauthorized access to scheme virtual addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a3ed47a-63e9-425d-8429-eadbcdab17ba?mode=deep",
+    "timestamp": "2026-02-19 11:21:57.850621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [Validation Bypass] If input.ProfitReceivingDuePeriodCount is set to exactly MaximumProfitReceivingDuePeriodCount (1024), can this cause integer overflow in subsequent period calculations when added to CurrentPeriod, leading to incorrect profit expiration logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1c997de-d33e-429b-81eb-12150765f29c?mode=deep",
+    "timestamp": "2026-02-19 11:22:20.651305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [State Inconsistency] The assertion at line 59 checks if scheme already exists, but between the check and line 60 assignment, could a race condition allow duplicate scheme creation if multiple transactions target the same schemeId? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6635320-a17b-402f-b33c-cb8c78517b9a?mode=deep",
+    "timestamp": "2026-02-19 11:22:44.556819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [Default Value Risk] When input.ProfitReceivingDuePeriodCount is 0, it defaults to DefaultProfitReceivingDuePeriodCount (10). Can this cause unexpected profit expiration for schemes expecting longer retention periods, resulting in profit loss for beneficiaries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1f64efa-1593-4798-b64c-c2845d75444c?mode=deep",
+    "timestamp": "2026-02-19 11:23:09.190107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [Manager Tracking] At lines 62-71, if scheme.Manager is set to a specific address but ManagingSchemeIds tracks a different address due to race conditions, can this cause orphaned schemes that cannot be managed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_822f4fb8-83d4-478e-8308-06baa2f02774?mode=deep",
+    "timestamp": "2026-02-19 11:23:37.225371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: CreateScheme()] [Virtual Address] Can an attacker create schemes with crafted tokens/parameters to generate predictable virtual addresses, allowing front-running attacks to drain profits before legitimate beneficiaries? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de0a403e-f1cc-4f9d-9469-6c0da95ebc8e?mode=deep",
+    "timestamp": "2026-02-19 11:24:03.266370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GenerateSchemeId()] [ID Collision] At lines 964-971, when createSchemeInput.Token is null, schemeId is generated from createdSchemeCount. Can an attacker manipulate their scheme creation count to generate colliding IDs with other managers' schemes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f92ff81c-8e4a-4ff4-8467-fd1a57759299?mode=deep",
+    "timestamp": "2026-02-19 11:24:29.820768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: GenerateSchemeId()] [Deterministic ID] Since GenerateSchemeId uses Context.GenerateId with predictable inputs (manager address and count), can attackers pre-compute scheme IDs to target specific virtual addresses for profit sniping? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b814ccbf-a71d-4d33-b861-b38a3a3ca2a3?mode=deep",
+    "timestamp": "2026-02-19 11:25:01.371166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [Circular Dependency] The function only checks if schemeId != subSchemeId at line 93, but doesn't validate transitive circular dependencies (A->B->C->A). Can this create infinite loops during profit distribution causing DoS? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c49233c0-ed63-49e7-87a5-cabd5f6d6f91?mode=deep",
+    "timestamp": "2026-02-19 11:25:33.257161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [Share Accounting] When adding a sub-scheme, AddBeneficiary is called at line 109 with EndPeriod = long.MaxValue. Can this cause TotalShares to grow unboundedly, leading to incorrect profit calculations or integer overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58efe3b8-3b67-4c93-9a0b-c850f34f6eee?mode=deep",
+    "timestamp": "2026-02-19 11:26:03.877264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [Authorization Bypass] At line 99, only scheme.Manager can add sub-schemes. However, can the TokenHolder contract (which has special privileges in AddBeneficiary) bypass this check to add unauthorized sub-schemes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9186d3de-86b9-4543-8b06-8bd14a6a4c04?mode=deep",
+    "timestamp": "2026-02-19 11:26:31.281392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [State Inconsistency] Lines 121-126 add the sub-scheme to scheme.SubSchemes AFTER calling AddBeneficiary. If AddBeneficiary fails or reverts, could this leave TotalShares updated without the corresponding sub-scheme entry? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_629e8aaa-ef84-43cf-855c-a13df18f3225?mode=deep",
+    "timestamp": "2026-02-19 11:26:58.964103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [Duplicate Detection] Line 100 checks if sub-scheme already exists using LINQ All(). If SubSchemes list is large, can this cause excessive gas consumption, enabling DoS attacks by adding many sub-schemes first? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1db8eef0-009d-4187-9679-fee5e71467c8?mode=deep",
+    "timestamp": "2026-02-19 11:27:30.269730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [Shares Validation] Input.SubSchemeShares is validated to be > 0 at line 94, but there's no upper bound check. Can an attacker add a sub-scheme with extremely high shares (e.g., long.MaxValue) to monopolize all profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10c9d7e5-c5b7-4992-aec4-06c1f958ff13?mode=deep",
+    "timestamp": "2026-02-19 11:28:04.123406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddSubScheme()] [Virtual Address Manipulation] The virtual address for sub-scheme is derived at line 107. Can an attacker create a regular beneficiary with the same address as a sub-scheme's virtual address to double-claim profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b263e396-096a-4059-a52c-a774dcc7c6ab?mode=deep",
+    "timestamp": "2026-02-19 11:28:37.387363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveSubScheme()] [Share Accounting] At line 152, TotalShares is reduced by shares.Shares using Sub(). If this causes underflow (TotalShares < shares.Shares), does the Sub() extension handle this safely or can it cause state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_518ef42d-2e96-476f-b469-a6a1c765ee22?mode=deep",
+    "timestamp": "2026-02-19 11:29:11.058192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveSubScheme()] [Profit Loss] At line 150, ProfitDetails is set to empty, but any unclaimed profits in the sub-scheme's virtual address are not transferred out. Can this cause permanent profit loss for beneficiaries who haven't claimed yet? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bddb9b3b-6dcb-4549-ba64-252955345888?mode=deep",
+    "timestamp": "2026-02-19 11:29:42.598759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveSubScheme()] [Silent Failure] If shares is null at line 142, the function returns Empty() without error. Can this silent failure be exploited to make managers believe sub-schemes are removed when they're not? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c7f8c47-82dc-43a4-b49c-923ff871c837?mode=deep",
+    "timestamp": "2026-02-19 11:30:13.507583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveSubScheme()] [CachedDelayTotalShares] Unlike RemoveBeneficiary which updates CachedDelayTotalShares, RemoveSubScheme doesn't update this cache. Can this cause incorrect TotalShares calculations during delayed distribution periods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_615fcc96-7cb6-4986-b8ba-fcd4a69a439d?mode=deep",
+    "timestamp": "2026-02-19 11:30:39.548943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: RemoveSubScheme()] [Orphaned Profits] After removing sub-scheme beneficiary details at line 150, the sub-scheme itself still exists and can receive profits. Can removed sub-schemes continue accumulating profits that become inaccessible? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94326059-bbd6-4da4-b7e3-1efee8e6b8f1?mode=deep",
+    "timestamp": "2026-02-19 11:31:05.541558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddBeneficiary()] [Period Validation] At line 179, EndPeriod must be >= CurrentPeriod. But if EndPeriod equals CurrentPeriod and distribution happens immediately, can the beneficiary miss all profits from that period? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0aed3801-21e8-4eeb-aaaf-bc891fa025d4?mode=deep",
+    "timestamp": "2026-02-19 11:31:36.219813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddBeneficiary()] [Share Overflow] Line 182 adds input shares to TotalShares without checking for overflow. Can an attacker add beneficiaries with large share values to overflow TotalShares to 0 or negative, breaking profit distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c826bef-4d69-404c-92a0-bc4997370e4c?mode=deep",
+    "timestamp": "2026-02-19 11:32:08.306372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddBeneficiary()] [Delayed Distribution] StartPeriod is set to CurrentPeriod + DelayDistributePeriodCount at line 188. If DelayDistributePeriodCount is large, can beneficiaries added just before distribution miss multiple periods of profits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8c51005-e4b2-4f8c-98cf-a418529f543a?mode=deep",
+    "timestamp": "2026-02-19 11:32:41.245541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Function: AddBeneficiary()] [Authorization Bypass] Lines 171-174 allow either scheme.Manager OR TokenHolder contract. Can TokenHolder contract add beneficiaries with malicious parameters (huge shares, incorrect periods) without manager consent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe1ac449-357e-40d8-bcfc-a96a2900522b?mode=deep",
+    "timestamp": "2026-02-19 11:33:15.498725",
+    "report_generated": false
+  }
+]
