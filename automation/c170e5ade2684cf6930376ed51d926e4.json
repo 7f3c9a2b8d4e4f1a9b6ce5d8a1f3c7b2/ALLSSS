@@ -1,0 +1,134 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Trust Boundary: ExtraData Source] [Untrusted Input] ExtraData comes from block header which is attacker-controlled - are there any direct uses of ExtraData fields without validation that could exploit trust assumptions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a34a87f0-2f11-4d3c-ac21-30f2cf212d41?mode=deep",
+    "timestamp": "2026-02-19 11:37:42.336330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Trust Boundary: StateDb Data] [State Poisoning] If an attacker can poison StateDb (via earlier block execution), can corrupted BaseRound/PreviousRound/LatestPubkeyToTinyBlocksCount break all future validations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_142aec15-074a-4c06-afbd-e210b05b7453?mode=deep",
+    "timestamp": "2026-02-19 11:38:04.698714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Validation Order: Context Creation Before Provider Chain] [Initialization Issue] Is ConsensusValidationContext fully initialized before being passed to validation providers, or can providers see partially initialized state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3420dfbd-3847-4c27-a57e-8ea9bcf025b9?mode=deep",
+    "timestamp": "2026-02-19 11:38:27.143175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Validation Order: RecoverFromUpdateValue/TinyBlock Timing] [State Consistency] BaseRound is modified by RecoverFromUpdateValue/RecoverFromTinyBlock before context creation - can this cause mismatch between BaseRound and CurrentRoundNumber/CurrentTermNumber? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_273dafbb-3bff-45fc-848a-e2a518cee410?mode=deep",
+    "timestamp": "2026-02-19 11:38:50.390928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Property Relationship: BaseRound vs ProvidedRound RoundId] [Round Identity] Can BaseRound.RoundId equal ProvidedRound.RoundId when they should differ (e.g., NextRound behaviour), causing validation logic confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a851845e-a771-47a9-bf57-a55338615f4b?mode=deep",
+    "timestamp": "2026-02-19 11:39:14.431208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Property Relationship: BaseRound vs ProvidedRound Miners] [Miner Set Mismatch] Can ProvidedRound contain miners not in BaseRound, or vice versa, breaking assumptions about miner continuity between rounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90c8704b-5f41-4234-b5b3-c8db95246f08?mode=deep",
+    "timestamp": "2026-02-19 11:39:39.320055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Property Relationship: PreviousRound vs BaseRound RoundNumber] [Round Sequence] Can PreviousRound.RoundNumber != BaseRound.RoundNumber - 1 when expected, indicating StateDb inconsistency or attack? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_738ec7ff-e2fc-4f0f-9a9f-d855ae28791b?mode=deep",
+    "timestamp": "2026-02-19 11:40:05.611536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Property Relationship: SenderPubkey vs LatestPubkeyToTinyBlocksCount.Pubkey] [Pubkey Format Consistency] Can SenderPubkey be hex format while LatestPubkeyToTinyBlocksCount.Pubkey is bytes, causing comparison to always fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24be8c7f-a9bd-46c5-b797-a012a5d061e6?mode=deep",
+    "timestamp": "2026-02-19 11:40:31.549603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: Genesis Block] [Initialization] During genesis block validation, can BaseRound/PreviousRound be uninitialized or have special values that break validation provider assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c570f7a3-96be-43d8-b5b9-da7ca31f3e70?mode=deep",
+    "timestamp": "2026-02-19 11:48:09.046572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: Single Miner Network] [Special Handling] When BaseRound.RealTimeMinersInformation.Count == 1, can validation providers that check mining order or time slots make incorrect decisions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fb89602-8847-4627-bc35-99fdbbdc7e5b?mode=deep",
+    "timestamp": "2026-02-19 11:48:32.127602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: Term Transition] [State Transition] During term transition blocks, can mismatched CurrentTermNumber/BaseRound.TermNumber/PreviousRound.TermNumber cause validation failures or bypasses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_045488bf-510a-4918-adb6-199a3f99d3ee?mode=deep",
+    "timestamp": "2026-02-19 11:48:54.686288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: Round Transition] [State Transition] During round transition blocks (NextRound behaviour), can ProvidedRound have RoundId != BaseRound.RoundId while validation logic expects them equal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f14cf75-c5d9-468a-a654-ce83bc6c7191?mode=deep",
+    "timestamp": "2026-02-19 11:49:18.400898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: First Round of Term] [Validation Skip] When CurrentRoundNumber == 1 and PreviousRound.TermNumber != CurrentTermNumber, can critical validations be inappropriately skipped? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ca4840a-d277-4aec-9d13-75e475cc6248?mode=deep",
+    "timestamp": "2026-02-19 11:49:43.359827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: Tiny Blocks] [Continuous Blocks] When a miner produces multiple tiny blocks rapidly, can LatestPubkeyToTinyBlocksCount updates lag, failing to prevent excessive continuous blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57d2e873-b267-4599-bb68-99f74ac6f3c2?mode=deep",
+    "timestamp": "2026-02-19 11:50:08.315383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Edge Case: UpdateValue Behaviour] [State Recovery] After RecoverFromUpdateValue modifies BaseRound, can inconsistencies between BaseRound and ProvidedRound cause validation failures or bypasses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da86c2ee-008f-4098-8723-75255f9b7e01?mode=deep",
+    "timestamp": "2026-02-19 11:50:34.494243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Data Type: Round Object Complexity] [Validation Completeness] Round objects contain complex nested data (RealTimeMinersInformation with many fields) - can partial validation miss manipulated fields? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dcfceda4-feda-4fd9-82ef-688c5dca3e58?mode=deep",
+    "timestamp": "2026-02-19 11:51:02.616695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Data Type: Timestamp Fields] [Time Manipulation] Round objects contain time-related fields (ExpectedMiningTime, ActualMiningTimes) - can clock skew or time manipulation bypass time slot validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1ca012a-62e0-4890-9b76-d7476f957262?mode=deep",
+    "timestamp": "2026-02-19 11:51:32.302711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Data Type: Cryptographic Fields] [Secret Sharing] Round objects may contain secret sharing data (InValue, OutValue) - can improper validation allow secret manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_061d2698-9767-42f6-a913-6124a0b6103a?mode=deep",
+    "timestamp": "2026-02-19 11:52:03.202823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Performance: Large Miner Sets] [DoS] Can an attacker force BaseRound.RealTimeMinersInformation to contain thousands of entries, causing validation to timeout or consume excessive resources? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_417cc854-a6bf-4d2f-a1ec-06984d1b9f37?mode=deep",
+    "timestamp": "2026-02-19 11:52:33.133758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Performance: Deep Copy Overhead] [DoS] If validation providers repeatedly access or clone large Round objects from context, can this cause performance degradation enabling DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb56a59f-71a5-4890-a581-cd35f5e6d4d1?mode=deep",
+    "timestamp": "2026-02-19 11:53:05.130779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Security: Information Leakage] [Privacy] Can ConsensusValidationContext expose sensitive information (miner keys, secret shares) through logs or error messages? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be0860ff-4cca-4294-a980-0e3b440eef02?mode=deep",
+    "timestamp": "2026-02-19 11:53:39.131143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ConsensusValidationContext.cs] [Security: Side Channel] [Timing Attack] Can validation time differ based on context property values, leaking information about BaseRound or PreviousRound contents? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2382eef1-a161-41c1-8ced-02bc76a6574a?mode=deep",
+    "timestamp": "2026-02-19 11:54:13.403654",
+    "report_generated": false
+  }
+]
