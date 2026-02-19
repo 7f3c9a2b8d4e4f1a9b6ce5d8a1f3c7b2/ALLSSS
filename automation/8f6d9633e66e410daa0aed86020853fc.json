@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AssembledNftsMap + BalanceMap] [Lock Inconsistency] Can BalanceMap show tokens as owned while AssembledNftsMap shows them as locked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2c5b8f7-e84d-4594-8097-db98bedf5769?mode=deep",
+    "timestamp": "2026-02-19 08:32:23.676633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap + NftInfoMap] [Supply Tracking] Can NftProtocolMap.Supply and sum of NftInfoMap quantities diverge? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c428356-3457-43fb-b89a-25bdd53517ff?mode=deep",
+    "timestamp": "2026-02-19 08:32:45.890298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap + AllowanceMap] [Dual Authorization] Can operators in OperatorMap and spenders in AllowanceMap conflict, causing double-spend? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea71e3ac-c676-4c30-96e2-41ffca363878?mode=deep",
+    "timestamp": "2026-02-19 08:33:08.093044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap + NftProtocolMap] [Creation Mismatch] Can IsCreatedMap indicate creation while NftProtocolMap is empty, or vice versa? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2a412f4-5b04-4b79-a6ac-34ee469b4e68?mode=deep",
+    "timestamp": "2026-02-19 08:33:31.139968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes + NFTTypeShortNameMap] [Type Sync] Can NFTTypes and NFTTypeShortNameMap become out of sync during add/remove operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24e2d389-59ee-421b-92b8-05e475b186ab?mode=deep",
+    "timestamp": "2026-02-19 08:33:55.322113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Reentrancy] Are all state variable modifications in NFTContractState atomic and protected against reentrancy attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb7fc53d-68f5-4f99-aaa2-a556a5637859?mode=deep",
+    "timestamp": "2026-02-19 08:34:21.225084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [State Rollback] Can partial state updates be rolled back inconsistently, leaving contract in corrupted state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4761098-bfa6-4056-bdb1-93c403f6374f?mode=deep",
+    "timestamp": "2026-02-19 08:34:47.099722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Storage Exhaustion] Can attackers fill unlimited entries in state maps to exhaust contract storage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a996979-05fe-4a3d-937b-ca341d2d29f6?mode=deep",
+    "timestamp": "2026-02-19 08:35:14.859308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Key Generation] Are all state map keys generated securely to prevent collision or prediction attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3f8f03f-4a70-47f2-bc58-fa8d2f3698b1?mode=deep",
+    "timestamp": "2026-02-19 08:35:42.244903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All SingletonState] [Initialization Order] Is there a guaranteed initialization order for singleton states to prevent dependency issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6e8e178-6ced-4d67-8150-a3e8d2809902?mode=deep",
+    "timestamp": "2026-02-19 08:36:10.170245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Null Value Handling] Are null or default values in state maps handled consistently across all operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06e01cb8-1a37-4eeb-9f8d-f18990635fa4?mode=deep",
+    "timestamp": "2026-02-19 08:36:42.923627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Concurrent Access] Can concurrent transactions cause race conditions in state variable updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87242beb-072f-4fa2-8674-d5a4a650254b?mode=deep",
+    "timestamp": "2026-02-19 08:37:13.791959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Gas Optimization] Can large state maps cause excessive gas consumption, leading to DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c883c6cf-501b-4350-92aa-3298b1e6967b?mode=deep",
+    "timestamp": "2026-02-19 08:37:48.544188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Maps] [Deletion Logic] Are state map entries properly cleaned up when no longer needed, or can they accumulate? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_417184ad-fc4a-4183-9415-4a170ec21871?mode=deep",
+    "timestamp": "2026-02-19 08:38:18.188563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: All Variables] [Type Safety] Are all state variable types properly validated to prevent type confusion attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf74a5b1-155a-42df-89cf-072b2668d5ef?mode=deep",
+    "timestamp": "2026-02-19 08:38:51.896270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Token ID Uniqueness] Can token ID reuse logic in NftInfoMap cause overwriting of existing token data when IsTokenIdReuse is true? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efef6fdb-d6c7-494f-a8b7-1645976c7eac?mode=deep",
+    "timestamp": "2026-02-19 08:39:26.813342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Transfer Atomicity] Are transfer operations on BalanceMap atomic to prevent partial transfers during failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e0e3f7e-5063-4e6a-83ee-36dce7a9e088?mode=deep",
+    "timestamp": "2026-02-19 08:40:01.533816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Creator Lock-In] If creator is not in MinterListMap initially, can they add themselves later? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c259b8cf-fd0e-4583-8f0d-c215e040e0c6?mode=deep",
+    "timestamp": "2026-02-19 08:40:35.143747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Approval Revocation] Can approvals in AllowanceMap be revoked instantly to prevent front-running attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_398d6545-9372-40ff-80ee-4a4f73f50d2d?mode=deep",
+    "timestamp": "2026-02-19 08:41:09.855252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [Protocol Deletion] Can protocols be deleted from NftProtocolMap while tokens still exist, orphaning NFTs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_198f4730-3c82-4fb6-8ed8-1edbaf6417bc?mode=deep",
+    "timestamp": "2026-02-19 08:41:45.509518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AssembledNftsMap + AssembledFtsMap] [Assembly Atomicity] Are assembly operations atomic across both AssembledNftsMap and AssembledFtsMap? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40736895-58ed-4bd3-871a-4385f62f552d?mode=deep",
+    "timestamp": "2026-02-19 08:42:15.019597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: ParliamentDefaultAddress] [Governance Migration] Can governance be migrated to new parliament address without security gaps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74ad03d8-447b-46e8-85d4-a5d73be48718?mode=deep",
+    "timestamp": "2026-02-19 08:42:49.480610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: OperatorMap] [Operator Inheritance] Do operators in OperatorMap inherit across protocol versions or forks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64490572-1afc-4996-b2a1-551e11138fec?mode=deep",
+    "timestamp": "2026-02-19 08:43:18.690741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NFTTypes] [Type Deprecation] Can NFT types be deprecated in NFTTypes registry, and what happens to existing protocols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75f429dd-7b39-40b1-926c-e1236a37e373?mode=deep",
+    "timestamp": "2026-02-19 08:43:51.153737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: CurrentSymbolNumberLength] [Length Transition] Are transitions to new symbol lengths in CurrentSymbolNumberLength handled atomically? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41e48be3-408e-47fd-b509-cf332ea710f3?mode=deep",
+    "timestamp": "2026-02-19 08:44:18.701234",
+    "report_generated": false
+  }
+]
