@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Authorization Bypass] Can an attacker bypass proposer authorization by exploiting the null organization check before whitelist validation, allowing proposal creation with a crafted organization address that returns null but doesn't trigger the assertion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7547fe9-29db-4722-a8be-ed59c5e437b4?mode=deep",
+    "timestamp": "2026-02-19 04:21:48.085483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Race Condition] If ProposerWhiteList is modified between the assertion check and actual proposal creation, can an attacker create proposals after being removed from the whitelist, violating the authorization invariant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af3afd0b-7653-4c77-b1a2-9028c8460197?mode=deep",
+    "timestamp": "2026-02-19 04:22:10.795741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [DOS Attack] Can an attacker cause DOS by creating an organization with an extremely large ProposerWhiteList (e.g., millions of addresses), making the Contains() check gas-exhaustive for legitimate proposers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c431963-d813-430e-8f54-360624caf578?mode=deep",
+    "timestamp": "2026-02-19 04:22:33.927044",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Logic Error] Does the Contains() method perform case-sensitive or case-insensitive address comparison, potentially allowing bypass through address case manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba11dcc4-1b4f-4cb3-8f7f-b888cc92e3ca?mode=deep",
+    "timestamp": "2026-02-19 04:22:57.654382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Data Integrity] If State.Organizations returns a corrupted or partially initialized organization object (non-null but with null ProposerWhiteList), can this cause a null reference exception or bypass the whitelist check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a0bf77d-a076-4d1e-b8a8-37115623c5c1?mode=deep",
+    "timestamp": "2026-02-19 04:23:22.026424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedOrganizationMember()] [Authorization Bypass] Can an attacker vote on proposals by exploiting organizations with empty OrganizationMemberList that still pass this check through Contains() returning false but not throwing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd675ba3-652d-412a-98bd-574a6f95feae?mode=deep",
+    "timestamp": "2026-02-19 04:23:47.187335",
+    "report_generated": false
+  }
+]
