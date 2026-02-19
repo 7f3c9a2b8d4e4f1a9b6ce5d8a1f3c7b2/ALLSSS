@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Initial Miner Ban Check] Does filtering !State.BannedPubkeyMap[k] at line 389 ensure selected initial miners are not currently banned? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56b448e2-8d75-41a8-85c3-b2d409130de4?mode=deep",
+    "timestamp": "2026-02-19 13:25:02.993025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Current Miner Exclusion] Does !input.CurrentMinerList.Contains(k) at line 390 properly exclude current miners even if they're in different hex format? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8a78167-5b55-4f60-955f-37cf6b96c517?mode=deep",
+    "timestamp": "2026-02-19 13:25:25.123563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Take Amount] Can takeAmount at line 386 be larger than available initial miners causing Take() to return fewer than needed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_113f912f-a700-4d4e-bd0f-79d0ed2e665b?mode=deep",
+    "timestamp": "2026-02-19 13:25:47.392120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Replacement Count Mismatch] Can EvilMinerPubkeys.Count != AlternativeCandidatePubkeys.Count in returned MinerReplacementInformation break consensus replacement logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe319391-f540-4b50-a905-ba8806088d35?mode=deep",
+    "timestamp": "2026-02-19 13:26:10.261056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetEvilMinersPubkeys()] [Banned Status] Does State.BannedPubkeyMap[p] check current ban status or historical, potentially including unbanned miners? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee902eb0-f8b6-4cde-b064-100ce3a58794?mode=deep",
+    "timestamp": "2026-02-19 13:26:34.451686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetEvilMinersPubkeys()] [String Format] Can currentMinerList contain pubkeys in different formats (hex vs base58) causing BannedPubkeyMap lookup misses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f033982-80d0-4231-8ec3-0b97ed53a168?mode=deep",
+    "timestamp": "2026-02-19 13:26:59.327679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidationDataCenterCount()] [Multiplication Overflow] Can GetMinersCount().Value.Mul(5) at line 408 overflow when MinersCount is very large causing incorrect data center count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4ac0b26-b681-4a84-b746-82da2bcf4042?mode=deep",
+    "timestamp": "2026-02-19 13:27:25.121034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidationDataCenterCount()] [Magic Number] Is the hardcoded multiplier 5 at line 408 documented and validated as appropriate ratio for data center requirements? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00e10398-b7b1-4589-9752-4a390cd7fee9?mode=deep",
+    "timestamp": "2026-02-19 13:27:51.659705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateAdmin()] [Initial Pubkey Map] Does State.InitialPubkeyMap[input.Value] ?? input.Value at line 413 correctly handle pubkey replacement chains preventing admin lookup failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d11ba772-5cfe-4576-84aa-b8440ee22aec?mode=deep",
+    "timestamp": "2026-02-19 13:28:21.690902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateAdmin()] [Admin Null] Can State.CandidateAdmins return null address causing authorization failures in admin-required operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1185cc1-05a8-41d0-8958-2753e7ffffac?mode=deep",
+    "timestamp": "2026-02-19 13:28:51.652120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateAdmin()] [Lookup Order] Does checking InitialPubkeyMap before direct lookup prevent finding admins for replaced pubkeys? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6aa1ca5-4c1d-4f36-b15a-da6b9331c015?mode=deep",
+    "timestamp": "2026-02-19 13:29:22.358930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetReplacedPubkey()] [Replacement Chain] Can State.CandidateReplacementMap[input.Value] at line 418 be recursive requiring multiple lookups to find final pubkey? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dca6607f-313c-4aa5-9e8a-f5e4e425442c?mode=deep",
+    "timestamp": "2026-02-19 13:29:53.690796",
+    "report_generated": false
+  }
+]
