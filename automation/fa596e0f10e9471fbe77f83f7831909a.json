@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [Gas Exhaustion via Collisions] As State.IsCreatedMap fills, the probability of needing multiple do-while iterations increases - can this be weaponized to make NFT creation prohibitively expensive for later users? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35992c03-3f3e-4a5c-be12-39b674a7d64c?mode=deep",
+    "timestamp": "2026-02-19 15:02:57.774011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Gas Cost of Multiplication Loop] The loop 'for (var i = 1; i < length; i++) protocolNumber = protocolNumber.Mul(10)' executes length times - can extremely large lengths cause excessive gas consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbc945a3-03e2-4ef7-a9f9-8c760818c22c?mode=deep",
+    "timestamp": "2026-02-19 15:03:19.785358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: InitialNFTTypeNameMap()] [Initialization Gas Cost] The function populates multiple state variables in a loop - if called frequently due to null checks, does this waste gas or provide a DOS vector? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25aa94b6-7523-427f-a25e-2f7f38d7473e?mode=deep",
+    "timestamp": "2026-02-19 15:03:42.202533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Validation Loop Gas] The foreach loop over metadataKeys checks each against reservedMetadataKey.Contains() - can large metadata key lists cause transactions to exceed gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ac5638a-d124-43d8-ad3a-d99136039bf3?mode=deep",
+    "timestamp": "2026-02-19 15:04:05.580271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [Multiplication Overflow] The calculation 'from.Mul(10)' is used as the upper bound - if 'from' is near Int64.MaxValue, does this overflow and produce incorrect ranges? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84ef2911-6c9c-4059-be15-9fa5ce795561?mode=deep",
+    "timestamp": "2026-02-19 15:04:29.825581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Add Overflow] The expression 'State.CurrentSymbolNumberLength.Value.Add(1)' could theoretically overflow if the length is at Int32.MaxValue - are there bounds checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e1f2f47-8dda-4eaa-a8b7-8489dfa684e9?mode=deep",
+    "timestamp": "2026-02-19 15:04:54.518052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Flag Doubling Overflow] Computing 'flag.Mul(2)' could overflow if flag is near Int32.MaxValue - does this break the length transition logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5452981-48e8-47f6-8b11-a8573ec524a4?mode=deep",
+    "timestamp": "2026-02-19 15:05:19.756053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [Height Subtraction Underflow] The call uses 'Context.CurrentHeight.Sub(1)' - if CurrentHeight is 0 or 1, does this underflow or provide predictable randomness at genesis? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a65f7911-5e1b-4e53-bd5e-d09f6b33c019?mode=deep",
+    "timestamp": "2026-02-19 15:05:45.897490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetSymbol()] [NFT Type Injection] The nftType parameter is used directly in state lookups and string concatenation - are there length limits or character restrictions to prevent injection attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d83a3e83-ae99-4f80-8bb3-aaa68f95d862?mode=deep",
+    "timestamp": "2026-02-19 15:06:13.402319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Enumerable Null Check] If metadataKeys is null, does the foreach loop throw an exception or is there explicit null handling? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9800edbf-0d44-4f90-9fa1-03b345fc7bf0?mode=deep",
+    "timestamp": "2026-02-19 15:06:41.009804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetSymbol()] [Empty NFT Type] If nftType is an empty string, does the lookup in State.NFTTypeShortNameMap fail gracefully or produce malformed symbols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58bda589-be43-446a-b478-5bffe3fe171b?mode=deep",
+    "timestamp": "2026-02-19 15:07:11.003622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [External Call Reentrancy] The call to State.RandomNumberProviderContract.GetRandomBytes.Call() is external - can a malicious random number provider reenter and manipulate State.IsCreatedMap before randomNumber is marked as created? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a64de73a-c289-4ea4-bfb0-376f3e97d84a?mode=deep",
+    "timestamp": "2026-02-19 15:07:40.807113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: MakeSureTokenContractAddressSet()] [Contract Lookup Reentrancy] Context.GetContractAddressByName() is a system call - can it be exploited to reenter and set State.TokenContract.Value to a malicious address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9f331df-de94-4a90-88ec-c8d182563bf6?mode=deep",
+    "timestamp": "2026-02-19 15:08:08.824187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: MakeSureRandomNumberProviderContractAddressSet()] [Initialization Reentrancy] Similar to token contract, can GetContractAddressByName() be exploited during random number provider initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5c0f2c8-f797-478a-b530-b6c6fd6920ed?mode=deep",
+    "timestamp": "2026-02-19 15:08:39.718788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetSymbol()] [Symbol Format Collision] The symbol format is 'shortName + randomNumber' - can different NFT types with different short names produce colliding symbols if randomNumbers overlap? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90a0bb16-f0e6-4cfb-ad45-8458a1a60b66?mode=deep",
+    "timestamp": "2026-02-19 15:09:10.565056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [Cross-Range Collisions] When symbol number length increases in GetCurrentNumberLength(), can new range symbols collide with symbols from the previous range? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3afa496e-e20f-49a6-9415-bdc08babbcdd?mode=deep",
+    "timestamp": "2026-02-19 15:09:41.258081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetSymbol()] [Global vs Type-Specific Uniqueness] State.IsCreatedMap tracks all generated numbers globally - should uniqueness be enforced per NFT type instead, or does global tracking create unnecessary constraints? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2c23dac-96a9-4707-a8df-66f037f4421a?mode=deep",
+    "timestamp": "2026-02-19 15:10:07.959935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: MakeSureTokenContractAddressSet()] [Invalid Address Check] If Context.GetContractAddressByName() returns an invalid or zero address, is there validation before storing in State.TokenContract.Value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad7600db-e42a-4064-95e4-2236cd79a6ff?mode=deep",
+    "timestamp": "2026-02-19 15:10:37.379944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: MakeSureRandomNumberProviderContractAddressSet()] [Consensus Contract Validation] Is there verification that the returned address actually implements the random number provider interface before storing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67be2fcb-7f91-4d1c-b975-793c8ad27985?mode=deep",
+    "timestamp": "2026-02-19 15:11:05.671648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: InitialNFTTypeNameMap()] [Duplicate Short Names] The hardcoded mappings add short names like 'XX', 'AR', etc. - are there checks preventing duplicate short names from being assigned to different NFT types? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_123ff176-df99-4786-87ac-5ff7bc0a94bf?mode=deep",
+    "timestamp": "2026-02-19 15:11:35.536025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: InitialNFTTypeNameMap()] [Mapping Synchronization] The function updates both State.NFTTypeShortNameMap and State.NFTTypeFullNameMap - if one update succeeds but the other fails, does this create inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3736603a-6fa6-47ec-be1c-f97b0e23d022?mode=deep",
+    "timestamp": "2026-02-19 15:12:05.068753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [First Symbol Generation] On the very first symbol generation when State.IsCreatedMap is empty, are there any edge cases in the random number generation or range calculation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9e72986-d889-4790-ac9a-20fc58b238ef?mode=deep",
+    "timestamp": "2026-02-19 15:12:35.576696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Maximum Length] Is there a maximum symbol number length to prevent State.CurrentSymbolNumberLength.Value from growing unbounded? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cecc2660-40b4-410f-9afa-c349b2f20b2d?mode=deep",
+    "timestamp": "2026-02-19 15:13:06.397072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetSymbol()] [All Types Exhausted] If all NFT types defined in InitialNFTTypeNameMap() have exhausted their symbol number ranges, does symbol generation fail gracefully or enter an invalid state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5050c38e-b967-49de-9c6b-dafb1899b887?mode=deep",
+    "timestamp": "2026-02-19 15:13:34.657774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Reserved Keys Undefined] The function calls GetNftMetadataReservedKeys() which is not defined in this file - if this function is not implemented or returns null, does validation fail open or closed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4290c807-a15e-444c-883f-ad00155c60a0?mode=deep",
+    "timestamp": "2026-02-19 15:14:03.021109",
+    "report_generated": false
+  }
+]
