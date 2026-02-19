@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Dependency: Round.GetMiningOrder] Order property at line 36 calls Round.GetMiningOrder() which may return int.MaxValue for invalid miner. Can int.MaxValue order value cause arithmetic overflow in derived classes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efb30165-97e2-4bc0-a57e-4f62b9ca87c1?mode=deep",
+    "timestamp": "2026-02-19 08:21:09.837740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Dependency: Round.GetMiningInterval] MiningInterval property at line 37 depends on Round.GetMiningInterval() which can return 0 or negative for invalid round data. Can this propagate to all mining limit calculations causing consensus halt? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b73e2833-cc9e-4d1a-b7cc-1a99f3706b8a?mode=deep",
+    "timestamp": "2026-02-19 08:21:32.077873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Edge Case: Small MiningInterval] If MiningInterval < 8, TinyBlockSlotInterval at line 42 becomes 0, making all mining limit calculations return 0. Can this completely prevent block production? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eaef5b01-d7c0-4052-aef5-fe1bbfd0a441?mode=deep",
+    "timestamp": "2026-02-19 08:21:54.421264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Edge Case: Large MiningInterval] If MiningInterval is very large (e.g., 1 hour), can this cause excessively long time slots allowing malicious miners to delay consensus progress significantly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_987eb266-9af3-47f7-9895-a77bacb91f41?mode=deep",
+    "timestamp": "2026-02-19 08:22:17.569482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Edge Case: MiningInterval=1] If MiningInterval=1ms, TinyBlockSlotInterval=0, DefaultBlockMiningLimit=0, LastTinyBlockMiningLimit=0. Can this edge case make consensus completely non-functional? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb314ae7-2c91-49f0-b20b-95901fa9811c?mode=deep",
+    "timestamp": "2026-02-19 08:22:42.156277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Edge Case: Single Miner] MinersCount=1 is valid case but consensus assumptions may require multiple miners for security. Can single miner scenario bypass Byzantine fault tolerance requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7e2fd95-b357-4022-a852-e7290d02f80c?mode=deep",
+    "timestamp": "2026-02-19 08:23:07.217016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Access: Protected Fields] CurrentRound, Pubkey, CurrentBlockTime are protected at lines 24-26. Can derived classes modify these in unsafe ways since C# readonly only prevents reassignment, not mutation of referenced objects? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8ae47df-35c0-44ac-8bab-1c9c47727233?mode=deep",
+    "timestamp": "2026-02-19 08:23:32.773387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Access: Protected Properties] All calculation properties are protected allowing derived class access but no external access. Can malicious derived class expose these for unauthorized access? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71b2ac55-b03d-4e0d-a4bb-bc872ddfa06b?mode=deep",
+    "timestamp": "2026-02-19 08:23:59.011125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Access: Public Methods] GetConsensusCommand() at line 62 is public allowing external calls. Can external caller trigger command generation at inappropriate times causing consensus disruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_825516c5-ed03-46c1-8fed-62a44c56f63a?mode=deep",
+    "timestamp": "2026-02-19 08:24:29.420403",
+    "report_generated": false
+  }
+]
