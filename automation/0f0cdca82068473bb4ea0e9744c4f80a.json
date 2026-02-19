@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can RealTimeMinersInformation have more miners than MaximumMinersCount allows, bypassing miner count limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3576430-ba22-4c00-8934-0b6199fe821d?mode=deep",
+    "timestamp": "2026-02-19 01:37:23.617993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can RealTimeMinersInformation contain miners not in the Election contract's victory list, bypassing election? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fb77b91-3b1e-4ef2-8837-e60e401029c7?mode=deep",
+    "timestamp": "2026-02-19 01:37:45.686881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Cryptographic Security] Can randomNumber parameter be a predictable or attacker-controlled value, compromising VRF security? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_578c456a-58f9-4c55-b858-f9ba57ed920e?mode=deep",
+    "timestamp": "2026-02-19 01:38:08.006700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Cryptographic Security] Can randomNumber be reused from a previous term, allowing random number replay attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66089c6c-73f7-4174-87f5-65ddd4959235?mode=deep",
+    "timestamp": "2026-02-19 01:38:31.638053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Cryptographic Security] Does Create() validate randomNumber length matches VRF output requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7cc8259-5224-4f75-a6b1-2d6a5d598ec9?mode=deep",
+    "timestamp": "2026-02-19 01:38:55.301451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Information Leakage] By excluding RandomNumber in ToRound(), is sensitive VRF data properly protected from observation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1701ca7c-3673-42b9-b721-8987984e6488?mode=deep",
+    "timestamp": "2026-02-19 01:39:20.738961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Timing] Can Create() be called with a Round from far in the future, scheduling premature term transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69e9b880-f358-4138-8ad4-adb82016c21c?mode=deep",
+    "timestamp": "2026-02-19 01:39:46.319233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Timing] Can Create() be called with a Round from far in the past, causing stale term transition? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5559900c-ee8d-4e42-878f-fd7dd608b90f?mode=deep",
+    "timestamp": "2026-02-19 01:40:12.077395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can BlockchainAge in NextTermInput be less than current blockchain age, causing time reversal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fab1b418-87a8-48e8-99eb-a3f66b7e07d9?mode=deep",
+    "timestamp": "2026-02-19 01:40:39.786813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can ConfirmedIrreversibleBlockHeight decrease compared to current LIB, violating irreversibility? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d25471b6-87d0-47fd-b703-abd7d6c237cb?mode=deep",
+    "timestamp": "2026-02-19 01:41:08.194102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can MainChainMinersRoundNumber on side chain be ahead of actual main chain round, causing sync issues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_624b6f65-2fda-46a2-b89e-8d21073206cf?mode=deep",
+    "timestamp": "2026-02-19 01:41:37.541812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Denial of Service] Can Create() with extremely large RealTimeMinersInformation (e.g., millions of miners) cause memory exhaustion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a42cdda1-2d69-43c2-86a1-20f6bad290e8?mode=deep",
+    "timestamp": "2026-02-19 01:42:06.688702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Denial of Service] Can repeated calls to Create() with different inputs for the same term cause state confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ffa7eb1-e936-471c-afa6-ca3903867517?mode=deep",
+    "timestamp": "2026-02-19 01:42:37.227490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Denial of Service] Can ToRound() on corrupted NextTermInput throw unhandled exceptions that halt consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d53b312-c7a1-4ae7-9b05-b18e37950c33?mode=deep",
+    "timestamp": "2026-02-19 01:43:08.023171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RoundIdForValidation be zero or negative, bypassing round ID validation in ProcessNextTerm? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98c43092-3a8f-48d6-a87e-beb3a2bcab28?mode=deep",
+    "timestamp": "2026-02-19 01:43:40.528943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RoundIdForValidation mismatch the calculated sum of expected mining times, indicating tampered input? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a9f3fc9-4be1-42b7-8ac4-0735101a772c?mode=deep",
+    "timestamp": "2026-02-19 01:44:12.412702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integration] Does Create() ensure RealTimeMinersInformation miners match the top N candidates from Election contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70325cdc-aedc-4f0a-bdc0-1284a3b532c1?mode=deep",
+    "timestamp": "2026-02-19 01:44:44.450772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integration] Can Create() accept miners that were marked as evil nodes by Election contract, bypassing punishment? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_875eb4cd-1c31-4acf-a913-0e5f543273fe?mode=deep",
+    "timestamp": "2026-02-19 01:45:15.113457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integration] Can Create() include miners whose votes were insufficient for election, violating vote thresholds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfa2de3f-450b-4430-a776-27f771313892?mode=deep",
+    "timestamp": "2026-02-19 01:45:45.756358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Economic Security] Does NextTermInput from Create() trigger mining reward calculations, and can incorrect values cause reward manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b30e5cd8-5e41-4181-81e6-3dd7dd97637a?mode=deep",
+    "timestamp": "2026-02-19 01:46:18.883788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Economic Security] Can BlockchainAge manipulation in NextTermInput affect mining reward halving calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66933927-d580-4034-8ada-a569f33f29ad?mode=deep",
+    "timestamp": "2026-02-19 01:46:49.309901",
+    "report_generated": false
+  }
+]
