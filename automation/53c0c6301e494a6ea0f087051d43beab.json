@@ -1,0 +1,134 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Logic] Does leaving EncryptedPieces and DecryptedPieces empty in MinerInRound (line 25) correctly reflect initial state, or should they be seeded from previous term? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82a0e004-5f33-4c60-8cc9-f5918bd55779?mode=deep",
+    "timestamp": "2026-02-19 05:33:48.213340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Logic] Does leaving ImpliedIrreversibleBlockHeight at 0 in MinerInRound (line 25) cause issues, or should it inherit from currentRound.ConfirmedIrreversibleBlockHeight? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da1b4e99-fe95-4e15-b45d-27c72c63a827?mode=deep",
+    "timestamp": "2026-02-19 05:34:10.162632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Resource Exhaustion] Can an attacker with a very large Pubkeys list cause the for loop at line 23 to execute millions of times and exceed gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4598e13-7724-42c2-b1f6-e365747cbb52?mode=deep",
+    "timestamp": "2026-02-19 05:34:32.245840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] If sortedMiners.Count is 0 due to empty Pubkeys, does the loop at line 23 simply not execute, returning a Round with no miners and breaking consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19f63d99-30b6-4593-9e50-ed99a656c7de?mode=deep",
+    "timestamp": "2026-02-19 05:34:54.892514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Integer Overflow] Can the loop variable i at line 23 ever overflow if sortedMiners.Count approaches Int32.MaxValue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_181fee7d-60a5-4c28-b3be-443e18d8cf2b?mode=deep",
+    "timestamp": "2026-02-19 05:35:18.688249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] Can the ToDictionary operation at line 17 throw ArgumentException if two pubkeys produce the same ToHex() string, crashing term generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2730f1ba-455e-4f9f-846c-a6b44b7fc4f6?mode=deep",
+    "timestamp": "2026-02-19 05:35:43.432069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Predictability] Does converting pubkeys to hex strings via ToHex() at line 17 create any information leakage that helps attackers predict miner ordering? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be7333db-efe2-4dbf-9126-5f279824c6e9?mode=deep",
+    "timestamp": "2026-02-19 05:36:09.956788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Performance] Can the ToDictionary operation at line 17 cause performance degradation with large Pubkeys collections, consuming excessive gas? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2f2397f-3d17-42e7-9425-9c2863342880?mode=deep",
+    "timestamp": "2026-02-19 05:36:37.254782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Resource Exhaustion] Can the LINQ query at lines 15-19 cause excessive memory allocation when Pubkeys contains millions of entries? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6352400-da75-490d-b0ef-831591145024?mode=deep",
+    "timestamp": "2026-02-19 05:37:05.012104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] Can the orderby operation at line 18 have worst-case O(n log n) complexity that becomes exploitable with very large miner lists? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f9b5ac3-7c76-49cf-b6f3-3e78f8ec1d83?mode=deep",
+    "timestamp": "2026-02-19 05:37:33.667035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] Can an attacker provide Pubkeys with carefully crafted values that cause the LINQ sorting at line 18 to degrade to O(n²) performance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa480e42-51a4-4fac-bedd-3ca9cdd8b52c?mode=deep",
+    "timestamp": "2026-02-19 05:38:03.151613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Access Control] Is the method marked as internal at line 12 sufficient to prevent external contracts from calling it directly and generating unauthorized rounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81beccdf-bc94-4a34-be23-5164f37785e9?mode=deep",
+    "timestamp": "2026-02-19 05:38:33.332315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Access Control] Can other methods within the same assembly abuse this internal method at line 12 to generate rounds without proper authorization checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31a491b7-0b45-40e2-8908-54d076d0a95e?mode=deep",
+    "timestamp": "2026-02-19 05:39:04.303983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Data Integrity] Does the method return a fully-formed Round object at line 44, or could missing field initializations cause issues in calling code? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a27b2469-f5f6-4114-aab3-0ab7524098f0?mode=deep",
+    "timestamp": "2026-02-19 05:39:34.596053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Data Integrity] Does the second overload at line 53 return a Round that properly preserves all necessary state from currentRound while updating miner list? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a68011d-0769-43b0-ae8c-2d32910a7577?mode=deep",
+    "timestamp": "2026-02-19 05:40:05.880913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Consensus Safety] Does copying only ConfirmedIrreversibleBlockHeight and ConfirmedIrreversibleBlockRoundNumber (lines 51-52) lose other important state from currentRound like BlockchainAge or MainChainMinersRoundNumber? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49cb1430-10e5-469a-a615-cab3064fd5a9?mode=deep",
+    "timestamp": "2026-02-19 05:40:37.865383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Consensus Safety] Should the method at line 47 also preserve ExtraBlockProducerOfPreviousRound from currentRound for reward calculation continuity? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d49d021-6074-4fe3-b0ce-2439468c5da4?mode=deep",
+    "timestamp": "2026-02-19 05:41:08.234817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Consensus Safety] Should the method at line 47 also preserve RoundIdForValidation from currentRound to maintain validation continuity across term boundaries? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d0dd052-09a4-4295-88f0-e699a4fc6fdc?mode=deep",
+    "timestamp": "2026-02-19 05:41:38.920198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() both overloads] [Consistency] Can the two overloads at lines 12 and 47 produce inconsistent results if called with equivalent parameters, causing consensus divergence? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdd289e3-c2d4-4e4b-bb46-311c819d1580?mode=deep",
+    "timestamp": "2026-02-19 05:42:09.582662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() both overloads] [Consistency] Does the first overload at line 12 default ConfirmedIrreversibleBlockHeight to 0 while the second preserves it (line 51), creating an inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_303b1371-e739-4489-ab90-9dcf54edc1a5?mode=deep",
+    "timestamp": "2026-02-19 05:42:40.538458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Data Integrity] Can the ToHex() conversion at line 17 produce non-unique strings if ByteString implementations vary, causing key collisions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14cf92cd-e104-4a1d-ab90-83906da07ee2?mode=deep",
+    "timestamp": "2026-02-19 05:43:11.824340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Data Integrity] Is sortedMiners[i] at line 30 guaranteed to be a valid hex string that matches the original pubkey, or could ToHex() conversion introduce data corruption? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96d9112d-a3ab-475b-a7ff-f8e47f9b362a?mode=deep",
+    "timestamp": "2026-02-19 05:43:40.355113",
+    "report_generated": false
+  }
+]
