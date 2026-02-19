@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Hash Collision] Line 50 uses HashHelper.ComputeFrom on the decoded secret. If SecretSharingHelper.DecodeSecret returns predictable values, can an attacker pre-compute hash collisions to force specific PreviousInValue hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b893007-a3a8-40e7-a66f-fec26cdb233f?mode=deep",
+    "timestamp": "2026-02-19 01:40:33.967785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Revealed InValue Overwrite] Line 52 unconditionally sets PreviousInValue without checking if it's already set. Can multiple calls overwrite a correct value with an incorrect one, or allow replay attacks by revealing the same value multiple times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0f5506a-fc95-4a97-9491-93959dc4ef19?mode=deep",
+    "timestamp": "2026-02-19 01:40:56.201626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Secret Leakage] The function reveals secrets from previousRound and stores them in currentRound. If currentRound data is publicly accessible, does this leak sensitive cryptographic material before it should be revealed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d4b0d19-3731-46be-8494-c22aa9c108d1?mode=deep",
+    "timestamp": "2026-02-19 01:41:18.585420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Deterministic Secret Generation] If SecretSharingHelper.DecodeSecret produces deterministic outputs for given inputs, can miners predict future secrets by analyzing past DecryptedPieces patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cc962dc-dcf6-4bb6-98d6-9ff267bcb371?mode=deep",
+    "timestamp": "2026-02-19 01:41:42.472482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Unbounded Loop] Line 25 loops through all previousRound.RealTimeMinersInformation without a limit. If an attacker fills previousRound with thousands of miners, can this cause gas exhaustion and DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76f5c881-be29-4d0e-b562-fe5bd08d3d44?mode=deep",
+    "timestamp": "2026-02-19 01:42:07.961021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Nested Iteration DoS] Lines 40-44 perform nested iterations (Select with First) for each miner. With n miners and m decrypted pieces, this is O(n*m*p) complexity. Can large values DoS the contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5742524-247e-4072-ac96-35e45256ac6b?mode=deep",
+    "timestamp": "2026-02-19 01:42:35.955281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Early Return Exploitation] Lines 17, 19, 35, 36 have early returns. Can an attacker craft inputs to always trigger early returns, preventing legitimate secret reveals and stalling consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_155f28fc-3df1-4e7f-b671-2eaec4a434a2?mode=deep",
+    "timestamp": "2026-02-19 01:43:01.663564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [OrderBy Performance] Line 25 sorts miners by Order. For large miner sets, does OrderBy create performance bottlenecks or allow manipulation by controlling Order values? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4125d042-a037-431b-857c-027c9e315e8b?mode=deep",
+    "timestamp": "2026-02-19 01:43:32.585526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Multiple Reveals] The function can be called multiple times for the same round. Does each call redo all computations, wasting gas? Can repeated calls cause state inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8979d29-c3f1-49b0-b1f6-13eeffbb221a?mode=deep",
+    "timestamp": "2026-02-19 01:44:00.855813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Null Contract Address] Lines 58-66 check if ConfigurationContract is null and attempt to set it. If GetContractAddressByName returns null at line 61, the function returns false at line 65. Can an attacker prevent deployment of ConfigurationContract to permanently disable secret sharing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9c2b244-4986-4b9b-a6e7-a5dd93772c2f?mode=deep",
+    "timestamp": "2026-02-19 01:44:34.658831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [State Initialization Race] Lines 58-68 lazily initialize State.ConfigurationContract.Value. If multiple transactions call this concurrently, can race conditions cause the wrong contract address to be stored? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7175982b-333c-491a-83a9-94641fadb77f?mode=deep",
+    "timestamp": "2026-02-19 01:45:07.953522",
+    "report_generated": false
+  }
+]
