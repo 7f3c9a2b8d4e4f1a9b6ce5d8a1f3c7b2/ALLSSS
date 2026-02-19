@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Symbol Case Sensitivity Race] Line 233 sets State.InsensitiveTokenExisting[symbol.ToUpper()] = true AFTER State.TokenInfos[symbol] is set. Can two threads register 'TOKEN' and 'token' simultaneously, both passing ToUpper check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_740c3d84-2937-45a7-8c14-998d9b123768?mode=deep",
+    "timestamp": "2026-02-19 03:50:32.884167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Total Supply Validation] Line 229 checks totalSupply > 0, but not checking against maximum safe value. Can attacker set totalSupply to Int64.MaxValue causing overflow in future operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_196c06a3-6430-405a-a5c0-83f935ab2824?mode=deep",
+    "timestamp": "2026-02-19 03:50:54.825938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Issuer/Owner Validation] Lines 230-231 check Issuer and Owner are not null, but do they verify these addresses exist or are valid contracts? Can attacker set burned/inaccessible address as owner/issuer? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b859a39-5429-40f5-9c6c-94f7e4279730?mode=deep",
+    "timestamp": "2026-02-19 03:51:17.204550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [TokenName Validation] Line 228 checks TokenName is not empty, but not checking length or content. Can attacker set extremely long name or inject special characters causing storage/display issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4038bc3d-b6fc-4014-a0fd-13edfd99ef75?mode=deep",
+    "timestamp": "2026-02-19 03:51:40.352996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Symbol Validation Order] IsValidSymbol is called line 226 but InsensitiveTokenExisting is set line 233. Can attacker exploit timing between validation and state update to register duplicate symbols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92c6b6bd-86a4-47fe-92da-574fe9c1b036?mode=deep",
+    "timestamp": "2026-02-19 03:52:04.504334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetCrossChainTokenContractRegistrationController()] [State Mismatch] Line 258 sets State.ParliamentContract.Value but line 260 calls Context.Call on parliamentContractAddress (not State value). Which takes precedence and can attacker exploit this discrepancy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d934e37-9e44-4a14-a445-43535b6bfc25?mode=deep",
+    "timestamp": "2026-02-19 03:52:29.265456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Default Organization Takeover] Line 260 gets DefaultOrganizationAddress. If Parliament contract is compromised or replaced, can attacker gain controller access by manipulating default organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e362932-b12d-4080-84d3-c2af22bad810?mode=deep",
+    "timestamp": "2026-02-19 03:52:54.666141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Authority Info Tampering] AuthorityInfo is constructed in-memory (lines 256-263). Can attacker call this function repeatedly to cause different results based on state changes, bypassing authority checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dcf8752f-b8df-42bf-9c92-237df9d18540?mode=deep",
+    "timestamp": "2026-02-19 03:53:20.907441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetIssueChainId()] [Chain ID Manipulation] GetTokenInfo returns tokenInfo with IssueChainId. Can attacker create token with IssueChainId = 0 or negative value to bypass chain validation checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffa1afc5-9290-4625-83f4-9453f6432945?mode=deep",
+    "timestamp": "2026-02-19 03:53:47.417552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Decimals Overflow] Line 276 checks decimals <= MaxDecimals, but not checking for negative decimals despite line 276 having decimals >= 0. Is negative decimals check redundant or missing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d5097f1-0fbc-4955-b798-067d86878bee?mode=deep",
+    "timestamp": "2026-02-19 03:54:14.503312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Symbol Length Race] CheckSymbolLength is called line 279 but symbol can be NFT with separator. Does CheckSymbolLength properly handle 'TOKEN-1234...' format or only check prefix? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0404a112-946e-4c13-9c92-569cf8162391?mode=deep",
+    "timestamp": "2026-02-19 03:54:44.693227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [TokenName Length] Line 274 checks TokenName.Length <= TokenNameLength, but what if TokenName contains multi-byte UTF-8 characters? Does Length count bytes or characters, allowing oversized names? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70ffe7e6-cddb-4d82-8746-df294231ecca?mode=deep",
+    "timestamp": "2026-02-19 03:55:14.888724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Whitelist Conditional] Line 282 only calls CheckSymbolSeed if IsAddressInCreateWhiteList returns true. Can non-whitelisted attacker bypass seed validation to create controlled symbol names? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7aae58a-ee4c-4b33-b65f-b268998d8029?mode=deep",
+    "timestamp": "2026-02-19 03:55:45.579437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [SymbolType Bypass] If symbolType is Nft, line 280 returns early skipping CheckTokenAndCollectionExists. Can attacker create malformed NFT that bypasses collection validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1d8410d-6568-4040-ba32-19d460be5e35?mode=deep",
+    "timestamp": "2026-02-19 03:56:13.440036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenAndCollectionExists()] [Split Vulnerability] Line 287 splits by NFTSymbolSeparator. Can attacker include separator in symbol prefix to manipulate split results and bypass token existence checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04c2038e-5971-46ad-8813-5d93c0dd4225?mode=deep",
+    "timestamp": "2026-02-19 03:56:40.971149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenAndCollectionExists()] [Collection Symbol Hardcoded] Lines 290-291 construct collectionSymbol with fixed '0' suffix. Can attacker register token ending in '-0' to collide with collection symbols? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50feaaa7-39ef-4228-b1ae-f67ac664fce3?mode=deep",
+    "timestamp": "2026-02-19 03:57:10.284174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenExists()] [Empty TokenInfo Equals] Line 300 checks 'existing.Equals(empty)'. Does Equals properly compare all fields or can attacker create token with partial initialization that passes as 'empty'? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_392c8b46-9cc0-4cbd-9c96-3ba28b682a7b?mode=deep",
+    "timestamp": "2026-02-19 03:57:40.159457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenExists()] [Double Check Race] Lines 299-302 check both old token (State.TokenInfos) and new token (State.InsensitiveTokenExisting). Can transaction pass first check but fail second in race condition, leaving inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d06f9474-a23a-4ffb-b37f-43c70bbb37c7?mode=deep",
+    "timestamp": "2026-02-19 03:58:09.455313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckSymbolLength()] [SymbolType Confusion] Lines 307-310 have different max lengths for Token vs NFT. Can attacker create symbol that's valid for one type but passes as another type, bypassing length restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f8c78cd-540a-481c-9618-8d8e6d6edb92?mode=deep",
+    "timestamp": "2026-02-19 03:58:37.158095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckCrossChainTokenContractRegistrationControllerAuthority()] [Lazy Initialization Race] Lines 315-317 initialize controller if null. Can two transactions both see null state and both call GetCrossChainTokenContractRegistrationController, creating race condition? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f7037ae-1580-469c-9991-0ca2ce6d34a3?mode=deep",
+    "timestamp": "2026-02-19 03:59:08.302880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckCrossChainTokenContractRegistrationControllerAuthority()] [Owner Address Validation] Line 318 checks OwnerAddress == Context.Sender, but does not validate if OwnerAddress is valid/non-zero. Can uninitialized owner cause everyone to fail check or attacker to pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1f70929-e5a6-4d91-bb40-228558dce567?mode=deep",
+    "timestamp": "2026-02-19 03:59:37.034088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckCrossChainTokenContractRegistrationControllerAuthority()] [State Persistence] After setting State.CrossChainTokenContractRegistrationController.Value (line 316), can attacker reset it by calling with crafted input, bypassing authority on subsequent calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abad0395-0e2e-49e2-b900-5879ba84047e?mode=deep",
+    "timestamp": "2026-02-19 04:00:09.964179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [Reentrancy via Callback] Line 331 calls Context.SendInline to external contract. Can malicious contract reenter TokenContract during lock operation, manipulating balances before lock completes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb341093-f9b0-4a7d-a493-b47de6e18d77?mode=deep",
+    "timestamp": "2026-02-19 04:00:40.877547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [JSON Parsing DoS] Line 329 parses JSON from ExternalInfo. Can attacker craft malformed JSON or deeply nested structure causing parser to hang or crash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2673831-b80e-4add-a14f-a0b7b583990e?mode=deep",
+    "timestamp": "2026-02-19 04:01:11.564775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [ExternalInfo Key Control] Line 326 checks for LockCallbackExternalInfoKey. Can attacker who controls token creation set arbitrary callback address to steal locked tokens via malicious callback? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50df673b-534f-4786-a63d-77bcedf14080?mode=deep",
+    "timestamp": "2026-02-19 04:01:39.236813",
+    "report_generated": false
+  }
+]
