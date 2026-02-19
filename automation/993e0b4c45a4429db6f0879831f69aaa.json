@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Vote Manipulation] Does replacing a candidate pubkey preserve their vote count exactly, or can vote amounts be manipulated during the replacement process? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fcd6a4c-78bd-4427-b2c9-c2b7fe46c231?mode=deep",
+    "timestamp": "2026-02-19 09:08:06.876677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Cross-Contract] If the Vote contract's RemoveOption or AddOption calls fail or revert, can this leave the old option active while the new option is also added, allowing double voting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b256815-9032-4048-95f3-e04e160d1e71?mode=deep",
+    "timestamp": "2026-02-19 09:08:28.924747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Business Logic] Does the code correctly handle the case where OldPubkey is in InitialMiners, where RemoveOption and AddOption are not called? Can this create a scenario where initial miners cannot be voted for after replacement? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49249ed9-5590-4e29-9f4b-0bdcbaae1ae1?mode=deep",
+    "timestamp": "2026-02-19 09:08:51.478352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [State Corruption] Can removing CandidateSponsorMap[oldPubkey] before checking if the sponsor relationship is valid cause loss of sponsorship funds or break sponsor tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_945a1304-d7f8-4597-8c9c-b7d789035811?mode=deep",
+    "timestamp": "2026-02-19 09:09:14.899062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Input Validation] Can OldPubkey and NewPubkey be the same value, causing the function to ban a pubkey that should remain active? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81d32748-37cc-4782-97fa-9f9f33f6b8fb?mode=deep",
+    "timestamp": "2026-02-19 09:09:39.267640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Business Logic] Does updating ManagedCandidatePubkeysMap only for Context.Sender mean that if admin changes, the old admin still has the pubkey in their managed list? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6142406-3636-4136-afa1-c189f5efdca7?mode=deep",
+    "timestamp": "2026-02-19 09:10:04.024577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [State Corruption] If GetProfitsReceiverOrDefault returns an incorrect address due to state corruption, can this cause ReplaceCandidateProfitsReceiver to route profits to the wrong beneficiary? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6a5bf38-755a-4040-b960-3bdb10f1a466?mode=deep",
+    "timestamp": "2026-02-19 09:10:29.421054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidateProfitsReceiver()] [Authorization] Does ReplaceCandidateProfitsReceiver lack authorization checks, allowing it to be called directly by an attacker to manipulate profit receiver mappings? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5ab481f1-1c88-4a87-be98-03dba307acf7?mode=deep",
+    "timestamp": "2026-02-19 09:10:57.432981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Mainteinence.cs] [Function: ReplaceCandidateProfitsReceiver()] [Business Logic] If beneficiary.Value.Any() is false, the function skips calling ReplaceCandidateProfitsReceiver on TreasuryContract. Can this leave the treasury contract with stale profit receiver data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d1e9266-3338-44a5-b16a-40b982899a72?mode=deep",
+    "timestamp": "2026-02-19 09:11:25.633665",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidateProfitsReceiver()] [Cross-Contract] If State.TreasuryContract.ReplaceCandidateProfitsReceiver.Send fails or reverts, does the calling function properly handle the failure, or does it silently continue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61796d84-c945-4848-a076-ef2b213abd6d?mode=deep",
+    "timestamp": "2026-02-19 09:28:22.471774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidateProfitsReceiver()] [State Inconsistency] Can GetProfitsReceiverOrDefault return an outdated or incorrect beneficiary address if it was previously set but not properly updated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0262a049-bea2-4552-90cd-c0e324b02969?mode=deep",
+    "timestamp": "2026-02-19 09:28:44.702230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [State Corruption] Can setting State.CandidateReplacementMap[newPubkey] = oldPubkey without checking if newPubkey is already in the map overwrite existing replacement history, breaking the replacement chain? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c24b04d-b1ce-410b-b703-1dd37a7f40ec?mode=deep",
+    "timestamp": "2026-02-19 09:29:07.118299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [Logic Error] If State.InitialPubkeyMap[oldPubkey] is null, initialPubkey defaults to oldPubkey. Can this create incorrect replacement chains if oldPubkey was itself a replacement? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d8d5895-8380-4d9f-8598-ae8578758844?mode=deep",
+    "timestamp": "2026-02-19 09:29:30.339275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [State Inconsistency] Does setting State.InitialToNewestPubkeyMap[initialPubkey] = newPubkey overwrite the previous newest pubkey without cleanup, creating orphaned pubkeys in the replacement chain? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9bc3577-6e6e-4510-8005-6283e9f816cb?mode=deep",
+    "timestamp": "2026-02-19 09:29:54.448881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [Cross-Contract] Can State.AEDPoSContract.RecordCandidateReplacement.Send fail, leaving the consensus contract with outdated pubkey mappings while the election contract has updated them? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e751a278-5914-43f1-9e09-885715cbc6a7?mode=deep",
+    "timestamp": "2026-02-19 09:30:22.097931",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [DOS] Can an attacker bypass the initial miner check and call RemoveOption/AddOption for initial miners, potentially removing critical voting options? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5520777e-012f-4be0-bdd5-656aa9caaf2d?mode=deep",
+    "timestamp": "2026-02-19 09:30:48.479548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [State Corruption] Can moving CandidateSponsorMap[oldPubkey] to CandidateSponsorMap[newPubkey] fail to transfer associated funds or lock records? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df7325b3-33b6-4b0d-8cd2-612f47a45f66?mode=deep",
+    "timestamp": "2026-02-19 09:31:16.421935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [Business Logic] Does updating ManagedCandidatePubkeysMap correctly handle the case where managedPubkeys is null or empty? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68601c08-f0ad-4feb-9929-eb96dd175933?mode=deep",
+    "timestamp": "2026-02-19 09:31:45.127137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: PerformReplacement()] [Input Validation] Can oldPubkeyByteString conversion fail if oldPubkey is not a valid hex string, causing the function to revert after partial state updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92df7080-7e0d-41fb-be35-c6cd60b28e7e?mode=deep",
+    "timestamp": "2026-02-19 09:32:13.397083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: GetNewestPubkey()] [Logic Error] If State.InitialPubkeyMap[pubkey] is null and State.InitialToNewestPubkeyMap[pubkey] is also null, does the function return the original pubkey even if it has been replaced? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54ca3c0f-0c70-4d02-893b-a566e45d3388?mode=deep",
+    "timestamp": "2026-02-19 09:32:44.354457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: GetNewestPubkey()] [DOS] Can circular replacements (A->B->A) cause GetNewestPubkey to return incorrect results or enter an infinite loop? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e742b44-4178-4c5e-bafe-e44430eca8cc?mode=deep",
+    "timestamp": "2026-02-19 09:33:17.569688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: GetNewestPubkey()] [State Corruption] If initialPubkey is derived incorrectly, can this cause GetNewestPubkey to return a pubkey that is not actually the newest in the replacement chain? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e672f90e-d5ea-4e33-9e8d-ef600d6af169?mode=deep",
+    "timestamp": "2026-02-19 09:33:49.457147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RemoveEvilNode()] [Authorization Bypass] Can an attacker exploit GetEmergencyResponseOrganizationAddress returning null during initialization to bypass the permission check and remove arbitrary nodes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7459892-57b1-4ab8-b77a-0d61561192d0?mode=deep",
+    "timestamp": "2026-02-19 09:34:20.532267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RemoveEvilNode()] [DOS] Can an attacker call RemoveEvilNode for all candidates in sequence, depleting the candidate pool and preventing consensus from functioning? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_170954a8-1052-4252-bd72-d20829ace306?mode=deep",
+    "timestamp": "2026-02-19 09:34:52.123554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RemoveEvilNode()] [Business Logic] Does the assertion checking if the pubkey is in Candidates or InitialMiners use the correct contains check, or can initial miners that are also candidates be missed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6557c6b-3b6c-4fba-bc4b-f4b8a85c4284?mode=deep",
+    "timestamp": "2026-02-19 09:35:24.082986",
+    "report_generated": false
+  }
+]
