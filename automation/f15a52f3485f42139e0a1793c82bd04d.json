@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Validate(ProposalInfo)] [Time Manipulation] Does CheckProposalNotExpired at line 161 use Context.CurrentBlockTime which can be manipulated by validators within consensus rules? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfdba401-2554-4fa4-bf98-f9ced378df53?mode=deep",
+    "timestamp": "2026-02-19 14:15:55.769460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Validate(ProposalInfo)] [Validation Bypass] Can a proposal pass validation with an expired time set far in the future (e.g., year 3000), effectively creating permanent proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0bbbc32a-dac9-4714-830e-7c0958956a85?mode=deep",
+    "timestamp": "2026-02-19 14:16:17.915630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Validate(ProposalInfo)] [DOS Attack] Can ValidateDescriptionUrlScheme at line 163 be exploited with extremely long URLs that pass validation but cause gas issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d913751-ec21-4676-b764-961c5f824185?mode=deep",
+    "timestamp": "2026-02-19 14:16:40.708032",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateDescriptionUrlScheme()] [Validation Bypass] Can malicious URLs like 'http://attack.com/<script>' pass validation but execute code when displayed in UIs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f85128b-aef0-4859-81ce-f658371b32cd?mode=deep",
+    "timestamp": "2026-02-19 14:17:03.866847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateDescriptionUrlScheme()] [Logic Error] Does the function return true for empty strings at line 171, allowing proposals with no description URL, which might be expected to be mandatory? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4677b953-301b-4930-b9e4-018a16ec0e31?mode=deep",
+    "timestamp": "2026-02-19 14:17:28.003952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateDescriptionUrlScheme()] [DOS Vector] Can Uri.TryCreate at line 172 consume excessive gas for malformed URIs that are intentionally crafted to be complex? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a986b97-3cef-4d1f-b227-795308bf757f?mode=deep",
+    "timestamp": "2026-02-19 14:17:53.077487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CheckProposalNotExpired()] [Time Manipulation] Can proposals with ExpiredTime exactly equal to Context.CurrentBlockTime be considered expired or valid, causing edge-case race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85faa058-7074-4cbf-ab5f-a6d27076603c?mode=deep",
+    "timestamp": "2026-02-19 14:18:18.613487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CheckProposalNotExpired()] [Logic Error] Does the strict inequality at line 179 (CurrentBlockTime < ExpiredTime) mean proposals expire exactly at ExpiredTime, or one block after? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67a1b0fa-1abc-449c-96c5-523b0fd3d470?mode=deep",
+    "timestamp": "2026-02-19 14:18:44.340389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: AssertProposalNotYetVotedByMember()] [Logic Error] Does the assertion message 'Already approved' at line 192 mislead when a member already rejected or abstained, not approved? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbf4534d-0378-44f7-872d-ddeab726c71f?mode=deep",
+    "timestamp": "2026-02-19 14:19:11.365918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CheckProposalAlreadyVotedBy()] [Vote Manipulation] Can duplicate addresses appear in multiple vote lists (Approvals, Rejections, Abstentions), and does Contains() return true for any match? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a96e64b6-97e5-4b4c-8482-1dcda96cdcde?mode=deep",
+    "timestamp": "2026-02-19 14:19:37.397984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CheckProposalAlreadyVotedBy()] [Performance Issue] For proposals with hundreds of votes, does the triple Contains() check cause O(n) lookups that slow down voting? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff9be005-6f35-4eca-a846-030e1855eca7?mode=deep",
+    "timestamp": "2026-02-19 14:20:04.102020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateAddressInWhiteList()] [State Staleness] Can the ProposerWhiteList state be modified after ValidateAddressInWhiteList returns true but before proposal creation completes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a85abfa8-9b1f-46a3-b2e5-76d1374b7058?mode=deep",
+    "timestamp": "2026-02-19 14:20:30.674327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateAddressInWhiteList()] [Performance Issue] If the whitelist contains thousands of addresses, does the Any() operation cause gas issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f990cbfc-3af3-4b2c-846a-df2b88ff9afb?mode=deep",
+    "timestamp": "2026-02-19 14:20:57.422779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateParliamentMemberAuthority()] [Race Condition] Can GetCurrentMinerList() be called multiple times in the same transaction with different results due to miner list updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a49ba96-d80a-43d2-9def-2b6ae1659148?mode=deep",
+    "timestamp": "2026-02-19 14:21:25.487643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ValidateParliamentMemberAuthority()] [Performance Issue] Does calling GetCurrentMinerList for every authorization check cause excessive Consensus contract calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_198ca761-7b67-43d8-90e8-5582c272faec?mode=deep",
+    "timestamp": "2026-02-19 14:21:56.651723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: AssertCurrentMiner()] [Consensus Manipulation] Can IsCurrentMiner check be gamed by attacking during miner rotation windows where miner status is ambiguous? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73391812-1af2-4420-b727-b27389c02c37?mode=deep",
+    "timestamp": "2026-02-19 14:22:28.224081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: AssertCurrentMiner()] [Time-Based Attack] Can miners use their current miner status to approve proposals, then immediately lose miner status but have their approvals still count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e255bf59-de51-47b5-abcb-20746f71cacc?mode=deep",
+    "timestamp": "2026-02-19 14:22:58.875272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: GenerateProposalId()] [Collision Attack] If input.Token is null, can HashHelper.ComputeFrom(input) produce identical hashes for different inputs, causing proposal ID collisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a8bff5c-f970-466c-9c2f-e1c46eacd8ab?mode=deep",
+    "timestamp": "2026-02-19 14:23:26.309710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: GenerateProposalId()] [Logic Error] Can the same proposal parameters be used to generate the same ID across different organizations, or is Context.Self sufficient for uniqueness? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d114e0b-7f25-4723-adf6-bc7e0c6117d9?mode=deep",
+    "timestamp": "2026-02-19 14:23:54.606315",
+    "report_generated": false
+  }
+]
