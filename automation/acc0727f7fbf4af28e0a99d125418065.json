@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ParliamentContract] [Authorization Bypass] If ParliamentContract.Value is never initialized or remains null during critical governance operations, can an attacker bypass authorization checks that depend on State.ParliamentContract being set, allowing unauthorized execution of privileged methods like ChangeUserFeeController or ChangeTransferBlackListController? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fd75b21-ff36-4b3b-9189-3dc1bb9bd719?mode=deep",
+    "timestamp": "2026-02-19 10:08:42.529681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ParliamentContract] [State Manipulation] If the ParliamentContract reference can be modified after initialization (e.g., through a vulnerability in initialization logic), can an attacker redirect governance calls to a malicious contract address, enabling unauthorized token mints, fee manipulations, or blacklist changes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_867db49c-c4e5-4457-a753-435a8f6c4c76?mode=deep",
+    "timestamp": "2026-02-19 10:09:04.830933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: AssociationContract] [Authorization Bypass] If AssociationContract.Value initialization fails silently or is skipped, can an attacker exploit null reference checks in methods that create association-based controllers for DeveloperFee, UserFee, or SideChainRental, potentially bypassing multi-sig authorization requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c65289d-6b16-4602-8450-c2367d13628e?mode=deep",
+    "timestamp": "2026-02-19 10:09:27.193138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: AssociationContract] [Cross-Contract Call Manipulation] Since AssociationContract is used to create and manage multi-member organizations for fee control, if the contract reference points to an incorrect or compromised contract address, can an attacker create fake organizations with manipulated approval thresholds to gain unauthorized control over fee parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_997be010-6d32-4789-9258-4fa2220d6ca2?mode=deep",
+    "timestamp": "2026-02-19 10:09:50.187060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ReferendumContract] [Authorization Bypass] If ReferendumContract.Value is not properly initialized before CreateReferendumControllerForUserFee is called, can the UserFeeController creation fail or point to an invalid organization, allowing an attacker to bypass token-based voting requirements for user fee changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2a6cccf-a357-476e-8fa7-5ea2467bdf15?mode=deep",
+    "timestamp": "2026-02-19 10:10:14.337059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ReferendumContract] [Governance Manipulation] If the ReferendumContract reference can be changed after UserFeeController initialization, can an attacker redirect referendum voting calls to a malicious contract that always returns approval, enabling unauthorized modification of transaction fee parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2a34dd9-5427-4e28-84f2-8745c5d5afec?mode=deep",
+    "timestamp": "2026-02-19 10:10:39.365930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ConsensusContract] [Consensus Manipulation] If ConsensusContract.Value initialization is missing or points to an invalid address when the TokenContract needs to interact with AEDPoS for miner rewards or secret sharing, can this cause consensus-related token operations (like dividend distributions) to fail or be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2db7dfb-7d0e-47c3-bf30-bb7e157ca26c?mode=deep",
+    "timestamp": "2026-02-19 10:11:04.699454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ConsensusContract] [Supply Integrity] If ConsensusContract reference is compromised and points to a malicious contract, can an attacker manipulate calls that should distribute mining rewards or transaction fees, causing token supply inflation through unauthorized mints or fee miscalculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a615288-d785-4aa3-8b72-a908ab6f53b1?mode=deep",
+    "timestamp": "2026-02-19 10:11:30.519101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: DividendPoolContract] [Economic Exploit] If DividendPoolContract.Value is never set or points to an incorrect address, can dividend distribution operations fail silently, causing users to lose entitled rewards while tokens remain locked in the MultiToken contract, creating an unfair economic advantage for certain participants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2818d37b-8c3e-498c-9a27-51d05f8b18c9?mode=deep",
+    "timestamp": "2026-02-19 10:11:57.331256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: DividendPoolContract] [Accounting Error] If the DividendPoolContract reference is maliciously updated after initialization, can an attacker redirect dividend pool calls to a contract that returns false accounting information, enabling double-claiming of dividends or denial of legitimate dividend distributions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7a13bde-aef3-485c-97e3-3c80672436a2?mode=deep",
+    "timestamp": "2026-02-19 10:12:27.141573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ConfigurationContract] [Fee Bypass] If ConfigurationContract.Value initialization fails when GetActualFee is called to retrieve user contract method fees, can transactions proceed with zero fees or default fees, allowing an attacker to spam the network with low-cost transactions and cause denial of service? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17da2ada-128a-4e29-b208-e7f200a5e80e?mode=deep",
+    "timestamp": "2026-02-19 10:12:54.067757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ConfigurationContract] [Configuration Manipulation] If the ConfigurationContract reference can be replaced after deployment, can an attacker redirect configuration queries to a malicious contract that returns manipulated fee structures, allowing certain contracts or methods to bypass fee requirements entirely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_329a8b26-7017-4063-bcae-48cde47925a9?mode=deep",
+    "timestamp": "2026-02-19 10:13:25.332275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [Reentrancy] Since all six contract references enable cross-contract calls from MultiToken to external contracts (Parliament, Association, Referendum, Consensus, DividendPool, Configuration), if any of these external contracts have reentrancy vulnerabilities, can they call back into MultiToken during state transitions and manipulate token balances, allowances, or authorization states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0abe77ba-9e45-4a59-ba6d-da7e0e584208?mode=deep",
+    "timestamp": "2026-02-19 10:13:57.869983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [Call Failure Handling] If cross-contract calls to any of the six referenced contracts fail (due to contract not deployed, incorrect address, or execution errors) and error handling is insufficient, can this cause critical MultiToken operations like fee charging, authorization checks, or dividend distributions to fail in an unsafe state, potentially locking funds or breaking invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46af835b-a1ea-45a8-9399-204e518b0c1c?mode=deep",
+    "timestamp": "2026-02-19 10:14:31.401423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ParliamentContract] [Address Validation] When ParliamentContract.Value is set via Context.GetContractAddressByName(SmartContractConstants.ParliamentContractSystemName), if the Genesis contract's name-to-address mapping has been corrupted or not properly initialized, can this result in ParliamentContract pointing to a zero address or arbitrary address, causing all parliament-based governance to fail or be hijacked? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55d939b8-ce82-458d-ba99-289cc8c456ad?mode=deep",
+    "timestamp": "2026-02-19 10:15:05.747366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: AssociationContract] [Address Validation] When AssociationContract.Value is initialized using GetContractAddressByName, if there's a race condition during system contract deployment where MultiToken is initialized before AssociationContract is deployed, can this lead to a permanent null or invalid reference that breaks all association-based authorization forever? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bb17a94-3a77-4d60-8c15-dfde5029b582?mode=deep",
+    "timestamp": "2026-02-19 10:15:37.425570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ReferendumContract] [Address Validation] If ReferendumContract.Value is set to an address that implements a different contract interface than expected, can method calls like CalculateOrganizationAddress or CreateOrganizationBySystemContract succeed with unexpected results, creating invalid referendum organizations that can never reach voting thresholds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c82793d7-d706-4b5d-8049-9a8fb8ea9f0c?mode=deep",
+    "timestamp": "2026-02-19 10:16:12.867159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [Initialization Race] If multiple transactions concurrently attempt to initialize contract references (e.g., GetDefaultParliamentController checks if State.ParliamentContract.Value == null before setting it), can race conditions cause the reference to be set multiple times to potentially different addresses, creating inconsistent authorization state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c779faf1-b52c-48fe-beb8-663fe13bd000?mode=deep",
+    "timestamp": "2026-02-19 10:16:48.335433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [Uninitialized Reference] If any of the six contract reference properties are accessed before being initialized (e.g., State.ParliamentContract.GetDefaultOrganizationAddress.Call() when State.ParliamentContract.Value is null), does this throw an exception that can be caught to DOS governance operations, or does it fail silently allowing unauthorized operations to proceed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c33d604e-1e68-43cd-95f3-a73caaa3289e?mode=deep",
+    "timestamp": "2026-02-19 10:17:24.716096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ParliamentContract] [Null Reference] In GetCrossChainTokenContractRegistrationController, if State.ParliamentContract.Value is used directly without null check while ParliamentContract is accessed via local variable parliamentContractAddress, can this discrepancy cause authorization checks to use different parliament addresses, creating an authorization bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6943f6d-fcff-4a61-8567-947240a21379?mode=deep",
+    "timestamp": "2026-02-19 10:18:00.361081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [State Corruption] If the underlying state storage for contract references can be corrupted (e.g., through state migration bugs or storage key collisions), can this cause contract references to suddenly point to incorrect addresses mid-execution, breaking all cross-contract authorization and causing funds to be sent to wrong contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26864cd8-9b8f-415b-b158-a9df8ac35942?mode=deep",
+    "timestamp": "2026-02-19 10:18:32.754126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [Access Control] All six contract reference properties are declared as 'internal', meaning they're accessible within the same assembly. If there are other contracts or partial classes within the AElf.Contracts.MultiToken assembly that maliciously or accidentally modify these references, can this bypass intended access controls and compromise the integrity of cross-contract calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d59d8875-7d09-48ed-9213-29f85e838ee6?mode=deep",
+    "timestamp": "2026-02-19 10:19:05.265211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [All Properties] [Visibility] Since the properties are 'internal' rather than 'private', if the MultiToken contract assembly is extended with additional types or if inheritance patterns allow, can derived or sibling types directly manipulate contract references to redirect governance or fee-related calls to attacker-controlled addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce856436-58e2-4584-a8ad-de94429de1e8?mode=deep",
+    "timestamp": "2026-02-19 10:19:42.885818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: ParliamentContract] [Miner List Manipulation] Since ParliamentContract is used to get the default organization address whose members are current miners, if the ParliamentContract reference can be manipulated to point to a fake contract returning an attacker-controlled organization address, can the attacker gain control over all parliament-based governance in MultiToken including fee controllers and blacklist management? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b537f5c5-cae9-4939-8c5e-f1bdf20a4053?mode=deep",
+    "timestamp": "2026-02-19 10:20:21.195177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractReferenceState.cs] [Property: AssociationContract] [Threshold Bypass] When AssociationContract is used to create organizations with specific approval thresholds (e.g., proposers.Count requiring unanimous approval), if the AssociationContract reference points to a compromised contract that ignores threshold requirements, can single-member associations approve proposals that should require multi-sig, enabling unauthorized fee changes or rental controller modifications? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e6f10ae-fd6b-4b99-b674-6777afb1e836?mode=deep",
+    "timestamp": "2026-02-19 10:21:01.213001",
+    "report_generated": false
+  }
+]
