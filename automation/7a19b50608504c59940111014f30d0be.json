@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Authorization Bypass] Can an attacker bypass SetMethodFee authorization by directly modifying State.TransactionFees through a malicious contract call before MethodFeeController is initialized, allowing unauthorized fee structure changes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ade2366-0bae-4176-a636-a9630fb53df4?mode=deep",
+    "timestamp": "2026-02-19 07:18:07.002069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Authorization Bypass] If State.TransactionFees[methodName] is set to null or empty MethodFees, can this be exploited to execute expensive methods with zero fees, bypassing all fee charging mechanisms? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e02428c-3972-49b3-9613-5b5f0708da89?mode=deep",
+    "timestamp": "2026-02-19 07:18:29.056644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [DOS Attack] Can an attacker set State.TransactionFees with an extremely large MethodFees.Fees collection causing ChargeTransactionFees to exceed gas limits and freeze all transactions for that method? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5169e49-1992-497d-a66b-5d2a56bbdc8c?mode=deep",
+    "timestamp": "2026-02-19 07:18:51.373331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Accounting Error] Can State.TransactionFees be configured with duplicate symbols in the Fees list, causing GetBaseFeeDictionary to sum fees incorrectly and overcharge users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7be727d5-df1b-4cf7-afc1-c22b7170a805?mode=deep",
+    "timestamp": "2026-02-19 07:19:14.235464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Fee Manipulation] Can State.TransactionFees[methodName].IsSizeFeeFree be set to true for critical methods like Transfer or Burn, allowing attackers to spam large transactions without size fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef4b1e86-cb3c-4e8a-9fae-9f47b2ed2501?mode=deep",
+    "timestamp": "2026-02-19 07:19:37.981506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Race Condition] If State.TransactionFees is modified mid-transaction execution, can this create inconsistent fee charging where GetMethodFee returns different values at different stages? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce8363a1-8aa4-4294-8555-998ad36ea899?mode=deep",
+    "timestamp": "2026-02-19 07:20:03.996954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Integer Overflow] Can State.TransactionFees store BasicFee values that when summed in GetBaseFeeDictionary cause long overflow, resulting in negative fee amounts or zero fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ec3931d-58fd-43ec-a389-f013c6656e3b?mode=deep",
+    "timestamp": "2026-02-19 07:20:29.437079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Fee Evasion] If State.TransactionFees is not set for a method, does ChargeTransactionFees skip base fee charging entirely, allowing free execution of potentially expensive operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc074bcf-8f79-42cf-83d2-e5d0c6e24752?mode=deep",
+    "timestamp": "2026-02-19 07:20:55.366907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Symbol Manipulation] Can State.TransactionFees be set with non-existent or malicious token symbols, causing GetMethodFee to return invalid fee configurations that break fee charging logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8278e52-27fb-45aa-a953-149e04118a45?mode=deep",
+    "timestamp": "2026-02-19 07:21:24.776568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: TransactionFees] [Privilege Escalation] After MethodFeeController is changed via ChangeMethodFeeController, can the old controller still modify State.TransactionFees due to missing state cleanup? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a6dab97-93a3-4dac-9564-f5e5651e492b?mode=deep",
+    "timestamp": "2026-02-19 07:21:51.447506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [Time Manipulation] Can State.LastPayRentTime.Value be manipulated to an earlier timestamp during PayRental, causing excessive rental charges by artificially inflating the duration calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_090fc79f-d81d-437f-93ea-1773a3e0ec1c?mode=deep",
+    "timestamp": "2026-02-19 07:22:21.746386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [Initialization Bug] If State.LastPayRentTime.Value is null on first DonateResourceToken call, does PayRental correctly initialize it, or can subsequent calls exploit uninitialized state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f14fbe4c-2d92-4949-9d59-e2cbedb9c234?mode=deep",
+    "timestamp": "2026-02-19 07:22:52.507064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [Accounting Error] When State.LastPayRentTime is updated with duration.Mul(60), can integer overflow occur for extremely long durations, causing LastPayRentTime to wrap around and break rental calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d28124e-0a8c-4fb3-9e1e-1684dbf5108e?mode=deep",
+    "timestamp": "2026-02-19 07:23:23.325352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [DOS Attack] Can an attacker repeatedly call DonateResourceToken to force State.LastPayRentTime updates at high frequency, causing timestamp inconsistencies or rental calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d66a604-139d-435e-90d1-d9b9e11a7b60?mode=deep",
+    "timestamp": "2026-02-19 07:23:55.434660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [Time Drift] If Context.CurrentBlockTime moves backward (chain reorganization), can State.LastPayRentTime.Value become greater than CurrentBlockTime, causing negative duration and rental calculation failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25370072-6453-4848-940e-794196fb1f85?mode=deep",
+    "timestamp": "2026-02-19 07:24:28.156729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [Rental Evasion] Can State.LastPayRentTime be set to CurrentBlockTime repeatedly to keep duration at zero, preventing any rental charges from being applied? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19a13020-71b8-4b08-9934-558f8ba50221?mode=deep",
+    "timestamp": "2026-02-19 07:24:59.995859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [Precision Loss] When calculating duration as (CurrentBlockTime - State.LastPayRentTime.Value).Seconds.Div(60), can precision loss from integer division allow rent evasion for durations under 60 seconds? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac44f9b9-c692-4ca5-9ced-4352b4d0f9bb?mode=deep",
+    "timestamp": "2026-02-19 07:25:32.218767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: LastPayRentTime] [State Corruption] If State.LastPayRentTime is modified directly without going through PayRental, can this corrupt rental accounting and allow side chains to avoid payment indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75dab46c-3693-43e2-b1f2-48a0d9907971?mode=deep",
+    "timestamp": "2026-02-19 07:26:04.345768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [Authorization Bypass] Can State.SideChainCreator.Value be set multiple times by exploiting the 'Creator already set' assertion check, allowing an attacker to hijack side chain ownership? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_358a8ced-a3a3-4b97-9231-ed0cac1e9173?mode=deep",
+    "timestamp": "2026-02-19 07:26:34.359023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [Null Reference] If State.SideChainCreator.Value is null when PayRental executes, does it return early safely, or can this be exploited to avoid rental charges entirely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a112b471-8270-4f48-8e8b-38664a0ecf76?mode=deep",
+    "timestamp": "2026-02-19 07:27:02.658426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [Fund Theft] Can State.SideChainCreator be set to an attacker's address, allowing them to receive all rental payments meant for the legitimate creator? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8863f6c6-4f3b-44dd-a8b2-6ee4d3bb21b5?mode=deep",
+    "timestamp": "2026-02-19 07:27:35.279996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [Privilege Escalation] Does State.SideChainCreator.Value grant special privileges like SetFeeReceiver, and can this be exploited if the creator address is compromised? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edc39480-bb71-4ed7-8728-bc0f93078bec?mode=deep",
+    "timestamp": "2026-02-19 07:28:07.322950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [Rental Balance Drain] When PayRental charges State.SideChainCreator, can the creator's balance be drained to zero repeatedly without debt forgiveness, causing permanent rental debt accumulation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a868cef9-de1c-4a79-9050-62302431e338?mode=deep",
+    "timestamp": "2026-02-19 07:28:38.585254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [Authorization Check] Is SetSideChainCreator properly checking Context.Sender against ZeroSmartContractAddress and Parliament, or can malicious contracts bypass this by impersonating these addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da640172-348e-4536-a062-f3c0521327a2?mode=deep",
+    "timestamp": "2026-02-19 07:29:09.543354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SideChainCreator] [State Immutability] Since State.SideChainCreator can only be set once, is there a recovery mechanism if set to a lost or compromised address, potentially bricking the side chain? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5633911-ea17-41fb-b3da-a4054051cb3e?mode=deep",
+    "timestamp": "2026-02-19 07:29:40.142761",
+    "report_generated": false
+  }
+]
