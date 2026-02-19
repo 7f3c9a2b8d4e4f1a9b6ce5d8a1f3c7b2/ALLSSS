@@ -142,5 +142,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09d04ce3-f467-46b8-8948-2f8941bdca97?mode=deep",
     "timestamp": "2026-02-19 04:58:43.055082",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount(Empty input)] [Authorization Bypass] Can any external actor call GetMaximumBlocksCount() without authentication since the public override method at line 12 has no access control modifiers, potentially allowing malicious actors to repeatedly query and analyze consensus state patterns to predict mining schedules? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e9d9c1d-929a-45a8-af51-cf8523f25cd0?mode=deep",
+    "timestamp": "2026-02-19 05:20:43.778580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Authorization] Does the lack of sender validation in the private GetMaximumBlocksCount() method at line 22 allow the function to be called through different execution contexts, potentially bypassing intended access restrictions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d222a8d3-a284-4dcf-85c3-92ef74da0901?mode=deep",
+    "timestamp": "2026-02-19 05:21:06.238223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [State Manipulation] Can an attacker force State.IsPreviousBlockInSevereStatus.Value to remain true at line 65 by manipulating round progression, causing the blockchain to permanently limit blocks count to 1 even after LIB height recovers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da8058cd-2635-4d50-9b80-09d4be254119?mode=deep",
+    "timestamp": "2026-02-19 05:21:29.595860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [State Consistency] If State.IsPreviousBlockInSevereStatus is set to true at line 65 but the next block evaluation skips Severe status, does the flag get stuck causing incorrect maximum blocks count calculations at line 69-70? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd9875fc-2ba3-4059-ab5d-667d7d8aa2b9?mode=deep",
+    "timestamp": "2026-02-19 05:21:53.372948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [State Race Condition] Can concurrent calls to GetMaximumBlocksCount() create race conditions when reading and writing State.IsPreviousBlockInSevereStatus.Value at lines 65, 69, and 76, leading to inconsistent block count limits across parallel execution paths? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d898fd72-5ff0-481e-8aae-476403c09e19?mode=deep",
+    "timestamp": "2026-02-19 05:22:18.129165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [State Inconsistency] If State.IsPreviousBlockInSevereStatus.Value is true at line 69 but blockchain status transitions directly from Normal to Severe bypassing Abnormal, does the state flag get reset incorrectly at line 76? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d7653f3-dd32-450b-9fb1-b0d30583771a?mode=deep",
+    "timestamp": "2026-02-19 05:22:42.980413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [State Persistence] Can State.IsPreviousBlockInSevereStatus persist incorrectly across blockchain reorganizations, causing the wrong maximum blocks count to be returned when the chain state reverts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_529b7791-b7bc-46b8-a672-c26c5a420780?mode=deep",
+    "timestamp": "2026-02-19 05:23:09.474790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Consensus Manipulation] If libRoundNumber equals 0 at line 33, the function returns MaximumTinyBlocksCount without further validation - can miners exploit genesis or chain initialization states to force maximum block production indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02e9e669-952f-41a8-b143-8bc63d447d35?mode=deep",
+    "timestamp": "2026-02-19 05:23:36.820596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [LIB Manipulation] Can an attacker prevent LIB advancement by controlling ConfirmedIrreversibleBlockRoundNumber at line 25, keeping libRoundNumber at 0 to maintain MaximumTinyBlocksCount and avoid Severe status restrictions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29c6ed50-a76b-464f-9362-71ff9a7f878b?mode=deep",
+    "timestamp": "2026-02-19 05:24:07.819564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Integer Overflow] Can libRoundNumber at line 25 overflow when added to SevereStatusRoundsThreshold in BlockchainMiningStatusEvaluator at line 127, causing incorrect Severe status detection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e74b4a0-c28b-4f90-a89b-57db3d677076?mode=deep",
+    "timestamp": "2026-02-19 05:24:38.198174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Arithmetic Edge Case] If currentRoundNumber is much larger than libRoundNumber at lines 25-28, can the subtraction operations at lines 44-45 and 50 cause unexpected behavior when accessing historical MinedMinerListMap entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_042c8b98-1328-4bd4-a14d-820d6a015769?mode=deep",
+    "timestamp": "2026-02-19 05:25:08.698284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Underflow] Can currentRoundNumber.Sub(1) or currentRoundNumber.Sub(2) at lines 44-45 underflow if currentRoundNumber is 0 or 1, causing access to invalid MinedMinerListMap keys? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3857091-194d-495c-bd05-aa4635da7c9f?mode=deep",
+    "timestamp": "2026-02-19 05:25:39.674457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: BlockchainMiningStatusEvaluator.Deconstruct()] [Status Transition] Can the status evaluation logic at lines 123-128 be manipulated by keeping currentRoundNumber exactly at libRoundNumber + SevereStatusRoundsThreshold to toggle between Abnormal and Severe states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00b28aa9-959a-421b-86f3-e7817f350a4f?mode=deep",
+    "timestamp": "2026-02-19 05:26:10.101852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [DOS] If blockchain enters Severe status at line 58, returning 1 block count at line 66, can this create a denial-of-service where transaction throughput drops to near-zero permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f83fe9fe-c179-4af0-9710-9f7bc5a6c22e?mode=deep",
+    "timestamp": "2026-02-19 05:26:42.463460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Abnormal Status Exploit] In Abnormal status at line 42, can miners collude to manipulate previousRoundMinedMinerList and previousPreviousRoundMinedMinerList at lines 44-45 to artificially inflate minersOfLastTwoRounds count and increase allowed block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f035299-d29e-4eeb-ae3f-0e0bc2742044?mode=deep",
+    "timestamp": "2026-02-19 05:27:14.562482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: BlockchainMiningStatusEvaluator.Deconstruct()] [Boundary Condition] At the exact boundary where currentRoundNumber equals libRoundNumber + AbnormalThresholdRoundsCount (line 123), does the strict less-than comparison cause status to remain Normal when it should transition to Abnormal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39d4b097-5315-4036-b13e-e2a48a327914?mode=deep",
+    "timestamp": "2026-02-19 05:27:48.335936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: BlockchainMiningStatusEvaluator.Deconstruct()] [Threshold Manipulation] Can the SevereStatusRoundsThreshold calculation Math.Max(8, _maximumTinyBlocksCount) at line 117 be gamed if _maximumTinyBlocksCount is set very high, delaying Severe status entry and allowing extended fork conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb187037-b930-4812-b90f-f22e46aff7f6?mode=deep",
+    "timestamp": "2026-02-19 05:28:21.850362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Division by Zero] Can currentRound.RealTimeMinersInformation.Count at line 52 ever be zero, causing the Ceiling() function to divide by zero and crash the consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_450a01e2-efca-462a-ac9b-4bae0470ee7a?mode=deep",
+    "timestamp": "2026-02-19 05:28:56.725886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: Ceiling()] [Math Error] In the Ceiling function at lines 81-85, can the modulo operation at line 83 return unexpected results for negative inputs, causing incorrect block count calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee546f32-4aa3-4479-ab50-09ade32cad28?mode=deep",
+    "timestamp": "2026-02-19 05:29:29.486685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Arithmetic Overflow] Can the multiplication minersOfLastTwoRounds.Mul(...) at line 48 overflow if minersOfLastTwoRounds is very large, resulting in a wrapped factor value that incorrectly reduces maximum blocks count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2053e194-f17e-4ad6-90b4-ccd0a1f6929a?mode=deep",
+    "timestamp": "2026-02-19 05:30:03.133664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Negative Result] Can the subtraction blockchainMiningStatusEvaluator.SevereStatusRoundsThreshold.Sub(currentRoundNumber.Sub(libRoundNumber)) at lines 49-50 produce a negative result if currentRoundNumber - libRoundNumber exceeds SevereStatusRoundsThreshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_adf8cba4-e6f5-4615-8098-e990a898251a?mode=deep",
+    "timestamp": "2026-02-19 05:30:36.831384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Multiplication Zero] If SevereStatusRoundsThreshold.Sub(currentRoundNumber.Sub(libRoundNumber)) at lines 49-50 equals zero, does the entire factor become zero, forcing count to zero through Ceiling() before Math.Min()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c6c6ed3-13e9-4486-b370-c63559398de0?mode=deep",
+    "timestamp": "2026-02-19 05:31:11.057854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: Ceiling()] [Integer Division] Can the Div operation at lines 84 lose precision for large numerators, causing the Ceiling function to return systematically lower values than mathematically correct ceiling? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fdbc3ad9-a42f-4b02-a94f-289d7559bae8?mode=deep",
+    "timestamp": "2026-02-19 05:31:45.949760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: Ceiling()] [Edge Case] If num1 equals num2 at line 81, the function returns 1 via num1.Div(num2) at line 84 - can this edge case be exploited when miner count exactly matches factor? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba0e570b-c24a-4ab5-a6a9-68b0980f978a?mode=deep",
+    "timestamp": "2026-02-19 05:32:18.305795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Math.Min Bypass] Can the Math.Min at line 51 be bypassed if AEDPoSContractConstants.MaximumTinyBlocksCount is set to Int32.MaxValue, allowing Ceiling() result to determine count without upper bound? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54f1159c-98ea-4516-8e51-ebe8dee9f772?mode=deep",
+    "timestamp": "2026-02-19 05:32:52.343409",
+    "report_generated": false
   }
 ]
