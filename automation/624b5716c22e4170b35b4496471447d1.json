@@ -1,0 +1,50 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Invariant: Miner Uniqueness] Are there checks that tuneOrderInformation at line 44 doesn't assign multiple miners the same FinalOrderOfNextRound, causing order conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bee9ddb-9068-45b4-9330-62da3dd7a546?mode=deep",
+    "timestamp": "2026-02-19 06:07:58.444262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Invariant: Timestamp Monotonicity] Should ActualMiningTimes at line 42 be validated for monotonically increasing timestamps to prevent time-travel attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34114e45-33bf-4270-a212-c2c67e52135e?mode=deep",
+    "timestamp": "2026-02-19 06:08:20.492842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Invariant: ProducedBlocks Non-Negative] Is there validation that ProducedBlocks at line 41 cannot be negative, which would indicate state corruption or integer underflow? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9ea06d1-c90a-4fdd-bbb5-aab0db78b434?mode=deep",
+    "timestamp": "2026-02-19 06:08:43.332860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Side-Channel Timing] Does the execution time of LINQ queries at lines 22-33 vary based on miner count or dictionary sizes, potentially leaking information through timing analysis? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_adbf6e49-8fbf-42e2-80d3-b57f911e6693?mode=deep",
+    "timestamp": "2026-02-19 06:09:06.377070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Memory Safety] Are there bounds on EncryptedPieces and DecryptedPieces dictionary sizes to prevent memory exhaustion attacks via excessively large byte arrays? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fc7c85b-bd2d-4de8-9c94-fc012820b600?mode=deep",
+    "timestamp": "2026-02-19 06:09:30.186332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Determinism] Does the ToDictionary operation at lines 24, 28, and 32 produce deterministic ordering, or could non-deterministic dictionary iteration cause consensus divergence across nodes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51427ffa-28e1-4a4d-a141-93740d79ea68?mode=deep",
+    "timestamp": "2026-02-19 06:09:55.892713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Gas Optimization] Could the three separate LINQ Where operations at lines 22, 26, and 30 be combined into a single iteration over RealTimeMinersInformation.Values for gas efficiency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94390e52-fd67-4136-ade3-7cc64ef090cd?mode=deep",
+    "timestamp": "2026-02-19 06:10:23.347645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Error Propagation] If ToDictionary encounters duplicate keys at lines 24, 28, or 32, will the ArgumentException propagate with sufficient context for debugging? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7320df70-7c5f-4f27-92a3-19c08bbe5484?mode=deep",
+    "timestamp": "2026-02-19 06:10:53.007243",
+    "report_generated": false
+  }
+]
