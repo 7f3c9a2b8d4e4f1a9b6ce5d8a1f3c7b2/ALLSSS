@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CurrentTermNumber] [Term Number Overflow] Could CurrentTermNumber overflow after many terms, wrapping to zero or negative, breaking all term-based calculations for profit periods, lock times, and snapshot storage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0fa347f-d199-4bbf-a39f-1bbf6c084011?mode=deep",
+    "timestamp": "2026-02-19 11:52:07.333607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CurrentTermNumber] [Term Increment Race] Is there a race condition where multiple TakeSnapshot calls could increment CurrentTermNumber simultaneously, skipping terms and breaking snapshot consistency in the Snapshots mapping? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cfd6c8b-f25e-4d24-ab55-a6814c2d96a6?mode=deep",
+    "timestamp": "2026-02-19 11:52:29.517852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Candidates] [Duplicate Candidate Entry] Can a candidate's pubkey be added to the Candidates list multiple times through announce/quit/announce cycles, causing vote counting errors or allowing them to receive multiple subsidy shares? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b40509f-0f80-43a3-8b41-3f6368184069?mode=deep",
+    "timestamp": "2026-02-19 11:52:52.177834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Candidates] [Candidates List Pollution] Could an attacker add unlimited entries to the Candidates list through repeated announcements with different pubkeys, causing DoS through excessive iteration costs in snapshot or ranking calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a421c6a-84d1-4d03-b182-38570a9db1f2?mode=deep",
+    "timestamp": "2026-02-19 11:53:16.080262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Candidates] [Candidate Removal Race] When a candidate is banned or removed from Candidates list, is there a race condition where they could still receive votes or be included in DataCentersRankingList temporarily? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_add27af5-36b5-4a5d-88e1-044e708848db?mode=deep",
+    "timestamp": "2026-02-19 11:53:39.912966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Candidates] [Candidates List Inconsistency] Can Candidates list become desynchronized with CandidateInformationMap, where a pubkey exists in one but not the other, breaking candidate validation logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5819c57d-f2ea-44eb-b990-a4a5e7e8893e?mode=deep",
+    "timestamp": "2026-02-19 11:54:04.841727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: DataCentersRankingList] [Ranking Manipulation] Can an attacker manipulate vote amounts in DataCentersRankingList to artificially inflate a candidate's ranking without corresponding entries in CandidateVotes, gaining subsidy benefits unfairly? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09de08d0-c320-447d-b7db-d9e15b7fba40?mode=deep",
+    "timestamp": "2026-02-19 11:54:30.144487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: DataCentersRankingList] [Data Center Slot Squatting] Could an attacker announce multiple candidates and strategically vote for them to occupy all validation data center slots in DataCentersRankingList, preventing legitimate candidates from receiving subsidies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb6e0e12-117f-4c94-a996-347719e88f06?mode=deep",
+    "timestamp": "2026-02-19 11:54:56.672286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: DataCentersRankingList] [Ranking List Overflow] If DataCentersRankingList is allowed to grow beyond GetValidationDataCenterCount(), does this cause accounting errors in subsidy distribution or allow more beneficiaries than intended? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b9aae36-60d4-4b17-b8e6-7b1ac6d7eb0d?mode=deep",
+    "timestamp": "2026-02-19 11:55:23.915449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: DataCentersRankingList] [Ranking Update Race] During vote changes, could race conditions cause DataCentersRankingList to have inconsistent vote amounts compared to CandidateVotes, leading to incorrect candidate replacements? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2459ae34-4b2f-4c13-9a88-9e9c3b4e7f72?mode=deep",
+    "timestamp": "2026-02-19 11:55:50.917158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: DataCentersRankingList] [Negative Vote Amount] Can DataCentersRankingList contain negative vote amounts through underflow during withdrawals, breaking ranking comparisons and causing unexpected candidate replacements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72cfe311-c5b2-462b-b362-054f93096aaf?mode=deep",
+    "timestamp": "2026-02-19 11:56:18.829124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialMiners] [Initial Miner Replacement] Can entries be added or removed from InitialMiners list after initialization, allowing an attacker to gain initial miner privileges or remove legitimate initial miners? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16a7ff60-ac35-4eee-a295-4a7db699a982?mode=deep",
+    "timestamp": "2026-02-19 11:56:47.170169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialMiners] [Initial Miner Announcement] Are initial miners in InitialMiners list properly prevented from announcing election, or can they bypass this check and gain unfair advantages like double subsidies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c95b6541-03d2-4b7b-a605-6694798643f7?mode=deep",
+    "timestamp": "2026-02-19 11:57:15.525886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialMiners] [Initial Miner Banning] When an initial miner from InitialMiners is banned, are all references properly updated, or can they still appear in miner lists and receive rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c4a2a62-38e6-4eb6-98de-9ae6eb296121?mode=deep",
+    "timestamp": "2026-02-19 11:57:44.853909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: BannedPubkeyMap] [Ban Evasion] Can a banned pubkey in BannedPubkeyMap be re-registered under a slightly different format (hex case, encoding) to bypass ban checks and participate in elections again? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8705b6ed-b5a9-404f-9876-7da2cb957ae1?mode=deep",
+    "timestamp": "2026-02-19 11:58:17.676933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: BannedPubkeyMap] [False Ban Attack] Could an attacker manipulate BannedPubkeyMap to falsely mark legitimate candidates as banned, preventing them from receiving votes or subsidies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f25f751-c90f-40c5-a9f1-44b4c94d5558?mode=deep",
+    "timestamp": "2026-02-19 11:58:50.582165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: BannedPubkeyMap] [Ban Status Inconsistency] When a pubkey is banned in BannedPubkeyMap, are they simultaneously removed from Candidates, DataCentersRankingList, and CandidateInformationMap, or can inconsistent states allow continued participation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d062710a-2218-4857-a00d-f8df3ad1d0f2?mode=deep",
+    "timestamp": "2026-02-19 11:59:20.582749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: BannedPubkeyMap] [Unban Vulnerability] Is there any way to remove a banned status from BannedPubkeyMap, and if so, is it properly controlled to prevent reinstating malicious candidates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_749dbb76-5e3c-4c52-8c38-60596685ba09?mode=deep",
+    "timestamp": "2026-02-19 11:59:51.066231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: LockTimeMap] [Lock Time Manipulation] Can lock times in LockTimeMap be modified after a vote is cast, allowing an attacker to decrease lock time and withdraw funds early or increase it to gain unfair vote weight? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ea12671-b2b5-4d23-9243-189084defa44?mode=deep",
+    "timestamp": "2026-02-19 12:00:25.597862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: LockTimeMap] [Lock Time Underflow] During ChangeVotingOption with IsResetVotingTime=false, could the lock time subtraction in LockTimeMap underflow, wrapping to a huge positive value and locking funds indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cb0acc2-a7ab-47a4-88c5-127be2601698?mode=deep",
+    "timestamp": "2026-02-19 12:00:59.893483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: LockTimeMap] [Zero Lock Time] Can a vote be created with zero lock time in LockTimeMap, bypassing minimum lock requirements and allowing instant withdrawals while still claiming vote weight benefits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7c55592-c403-4db7-89b1-3a164497ff62?mode=deep",
+    "timestamp": "2026-02-19 12:01:30.873944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: LockTimeMap] [Lock Time Collision] If two votes generate the same vote ID, could they share the same LockTimeMap entry, causing one voter's lock time to affect another voter's withdrawal eligibility? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f724601d-0168-4fe6-9507-9c791b2374ed?mode=deep",
+    "timestamp": "2026-02-19 12:02:05.272314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: LockTimeMap] [Lock Time Not Removed] When votes are withdrawn, is the LockTimeMap entry properly removed, or can stale entries accumulate causing storage bloat and incorrect lock time checks on vote ID reuse? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15891bbb-c66b-4c0e-8b96-ae90faf6b954?mode=deep",
+    "timestamp": "2026-02-19 12:02:38.881215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Snapshots] [Snapshot Overwrite] Can an attacker trigger multiple TakeSnapshot calls for the same term number, overwriting legitimate snapshots in Snapshots mapping and corrupting historical election data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5ca7908e-d3c3-4c44-9e01-dea2f55360a4?mode=deep",
+    "timestamp": "2026-02-19 12:03:09.983050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Snapshots] [Snapshot Injection] Could fake snapshots be injected into the Snapshots mapping for future terms, predefining election results before voting occurs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f66e7ee2-4719-492b-95b0-7d4ccd1e0abb?mode=deep",
+    "timestamp": "2026-02-19 12:03:41.819486",
+    "report_generated": false
+  }
+]
