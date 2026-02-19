@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Zero ProducedBlocks] If ProducedBlocks is 0 at line 25, does this indicate the miner hasn't produced any blocks yet? Can this be exploited to create rounds where no actual block production has occurred, diluting consensus security? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08ecc906-0eed-41b1-b7e6-5a91afb5234c?mode=deep",
+    "timestamp": "2026-02-19 11:32:59.225003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: Both Methods] [RoundNumber Zero] If RoundNumber is 0 (lines 16, 63), does this represent genesis or an invalid state? Can attackers reset to round 0 to replay the genesis configuration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90308377-4f43-4ff1-b8fc-e4c9fb95733a?mode=deep",
+    "timestamp": "2026-02-19 11:33:21.364817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Miner Registration Bypass] By manipulating the miners included in GetUpdateValueRound(), can an attacker add unauthorized miners to the consensus set without going through proper election procedures? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cce29a0-3ca2-4740-91ce-09462e2241b5?mode=deep",
+    "timestamp": "2026-02-19 11:33:44.554811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Selective Information Disclosure] Since only certain fields are copied for non-target miners (lines 44-52), can an attacker exploit the missing fields to hide malicious activity or avoid detection of consensus violations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ac0367e-459f-4381-85fd-3f9f5e1b0656?mode=deep",
+    "timestamp": "2026-02-19 11:34:07.774805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Ghost Miner Attack] With empty MinerInRound objects for non-target miners (line 79), can these be interpreted as active participants, inflating the perceived miner count and affecting consensus threshold calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdcac176-bc7b-441e-93bd-882f150c09ee?mode=deep",
+    "timestamp": "2026-02-19 11:34:32.875505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Quadratic Complexity] If RealTimeMinersInformation is large and GetUpdateValueRound() is called frequently, can the O(n) loop at line 35 combined with dictionary operations cause performance degradation or transaction timeouts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4090ca03-f453-4f30-86cd-27db41fa0af6?mode=deep",
+    "timestamp": "2026-02-19 11:34:58.525278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Except() Performance] Using Except() at line 78 on a large miner set creates a new collection. Can repeated calls cause memory churn or garbage collection pressure, degrading blockchain performance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03f1b845-b28a-4651-bcd5-559806f2c63d?mode=deep",
+    "timestamp": "2026-02-19 11:35:23.757918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: Both Methods] [Caller Context Missing] Without seeing the calling code, are these methods called only by consensus logic, or can they be invoked by arbitrary contracts? If the latter, can malicious contracts exploit them to extract information or corrupt state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9942cad8-e131-4c6e-bf7f-192329eb8bff?mode=deep",
+    "timestamp": "2026-02-19 11:35:51.317627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Round Update Sequence] Is there a required sequence for calling GetUpdateValueRound()? If miners can call it out of order, can this create inconsistent views of the round state across different nodes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8471f3cc-3545-4692-a125-0a21b398df01?mode=deep",
+    "timestamp": "2026-02-19 11:36:20.970197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Tiny Block Timing] When should GetTinyBlockRound() be called relative to regular block production? Can calling it at incorrect times create timing vulnerabilities or consensus desynchronization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db465223-640f-47d1-98af-09b9e459a5c3?mode=deep",
+    "timestamp": "2026-02-19 11:36:50.364663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: Both Methods] [Comprehensive Input Validation Missing] Neither method validates: pubkey format, dictionary key existence, null collections, field value ranges, or state consistency. Can this complete lack of input validation enable multiple exploit vectors simultaneously? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2b0769a-f1b1-4453-acbd-27e3e536185e?mode=deep",
+    "timestamp": "2026-02-19 11:37:20.764191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: Both Methods] [No Output Validation] The returned Round objects are not validated for correctness or completeness. Can malformed rounds be injected into consensus processing, causing downstream failures or exploits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ad63ebe-7dab-4189-bc9a-c96f8296ae48?mode=deep",
+    "timestamp": "2026-02-19 11:37:51.168084",
+    "report_generated": false
+  }
+]
