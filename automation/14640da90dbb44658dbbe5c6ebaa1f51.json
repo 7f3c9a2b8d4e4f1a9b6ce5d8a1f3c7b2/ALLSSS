@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Data Consistency] Lines 39-43 return hardcoded MethodFees for ReleaseApprovedUserSmartContract. Could mismatch between hardcoded and stored data cause inconsistent fee enforcement? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09b0e10b-18d8-4ed8-825d-16ccfd207820?mode=deep",
+    "timestamp": "2026-02-19 01:49:40.101105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Memory Safety] input.Fees array is iterated at line 11 but no bounds check. Could malformed input cause out-of-bounds access or memory corruption? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42d64a37-2dba-46e0-a91e-58bd9b85aca5?mode=deep",
+    "timestamp": "2026-02-19 01:50:02.280108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Data Validation] input.ContractAddress and input.OwnerAddress are addresses. Are they validated for format, zero-address, or contract-existence before line 28 assignment? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4be0b96f-c9b4-4e4b-b794-c984a11154f5?mode=deep",
+    "timestamp": "2026-02-19 01:50:24.877766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: All Functions] [Upgrade Risk] If this contract is upgraded, are State.TransactionFees and State.MethodFeeController.Value preserved? Could upgrade reset fee configuration or controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a88712fa-46f7-447b-9b68-8cc0a1a8866f?mode=deep",
+    "timestamp": "2026-02-19 01:50:47.709007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Dependency] If Parliament contract address changes post-deployment, does RequiredMethodFeeControllerSet() detect and update, or does it permanently reference old Parliament address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ed1df57-3f8c-4130-bf93-45035eb54819?mode=deep",
+    "timestamp": "2026-02-19 01:51:12.382027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Initialization Dependency] If TokenContract address changes, State.TokenContract.Value persists old address. Is there mechanism to update, or will validation fail after TokenContract migration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7296d02-2c59-4d7b-af87-39b472ec9e29?mode=deep",
+    "timestamp": "2026-02-19 01:51:37.513895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee() + ChangeMethodFeeController() + RequiredMethodFeeControllerSet()] [Multi-Step Attack] Can attacker exploit initialization race by: (1) front-running deployment to call SetMethodFee before controller init, (2) causing RequiredMethodFeeControllerSet to fail, (3) becoming de-facto controller since authorization check uses null/uninitialized value? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad550424-e10a-4110-83e5-534eed85f020?mode=deep",
+    "timestamp": "2026-02-19 01:52:04.150972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController() + SetMethodFee()] [Multi-Step Attack] Can compromised controller: (1) change controller to attacker address via ChangeMethodFeeController, (2) set astronomical fees via SetMethodFee to DOS chain, (3) change controller back to original to hide tracks, all in single block? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c342e55-b627-46a0-a46b-f83406d37c91?mode=deep",
+    "timestamp": "2026-02-19 01:52:32.015409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken() + SetMethodFee()] [Multi-Step Attack] Can attacker: (1) create malicious token that passes IsTokenAvailableForMethodFee check, (2) set fees in that token via SetMethodFee, (3) manipulate token to break fee collection, causing system-wide payment failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b1cec90-e99c-441a-b1ca-cc7123503857?mode=deep",
+    "timestamp": "2026-02-19 01:53:02.674330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController() + CheckOrganizationExist()] [Multi-Step Attack] Can attacker: (1) create organization that initially passes CheckOrganizationExist validation, (2) get set as controller via ChangeMethodFeeController, (3) corrupt organization to fail validation, (4) now controller check at SetMethodFee line 15 fails but no recovery mechanism? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08606742-d00c-4c4b-bfff-6ebb25ceac75?mode=deep",
+    "timestamp": "2026-02-19 01:53:32.449132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 11] [Loop Vulnerability] foreach iterates input.Fees without max count validation. Can attacker pass array with thousands of entries causing gas exhaustion in AssertValidToken calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3859e85a-06c8-4047-95be-630d2887e38d?mode=deep",
+    "timestamp": "2026-02-19 01:54:03.762808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 13] [Order Dependency] RequiredMethodFeeControllerSet() called before authorization check at line 15. Could this modify State.MethodFeeController.Value after Context.Sender is determined but before comparison? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cbe7d50-da46-47d7-a74c-bd9f74e77bda?mode=deep",
+    "timestamp": "2026-02-19 01:54:35.528173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 15] [Authorization Logic] Uses Assert(Context.Sender == State.MethodFeeController.Value.OwnerAddress). What if OwnerAddress is contract that delegates? Could delegatecall exploit bypass this check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b299977-5345-43ba-b4f4-b64aa2b29821?mode=deep",
+    "timestamp": "2026-02-19 01:55:07.650058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 16] [Atomic Update] State.TransactionFees[input.MethodName] = input directly assigns without validation that input structure is well-formed. Could malformed MethodFees object corrupt state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92434c2c-328c-4e34-829f-50cbbc9b86b9?mode=deep",
+    "timestamp": "2026-02-19 01:55:40.886088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 24] [Indirect Call] AssertSenderAddressWith checks sender but implementation is external. Could that function have logic bugs allowing wrong senders to pass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cccd2c5f-de9b-4b58-b8a8-85091e0e1076?mode=deep",
+    "timestamp": "2026-02-19 01:56:12.835107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 25] [External Validation] CheckOrganizationExist returns bool but doesn't specify which contract types are valid. Could attacker pass non-organization contract that returns true? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8659cd1a-5b33-48aa-bf8a-e713668f474d?mode=deep",
+    "timestamp": "2026-02-19 01:56:45.623341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 26] [Generic Error] Assert message 'Invalid authority input' doesn't specify what's invalid. Could this hide specific validation failures attackers could exploit? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb871f1e-fc91-4cd0-839b-0e5d7be40398?mode=deep",
+    "timestamp": "2026-02-19 01:57:17.980104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 28] [Direct Assignment] State.MethodFeeController.Value = input directly assigns without copying. If input is reference type, could caller mutate it after assignment? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be761a9a-ebbe-4e69-b339-cd9f7906923f?mode=deep",
+    "timestamp": "2026-02-19 01:57:49.250356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 36] [Null Return] State.TransactionFees[input.Value] can return null. Does calling code handle null correctly or could this cause null-reference exceptions in fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78a7bb21-289f-479f-b0a7-424ad88fe83d?mode=deep",
+    "timestamp": "2026-02-19 01:58:20.801828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroContract_ACS1_TransactionFeeProvider.cs] [Line 37] [String Comparison] if (fees == null && input.Value == nameof(ReleaseApprovedUserSmartContract)). Is nameof compile-time constant? Could method be renamed breaking this logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_572a9e71-af64-4dd6-8cc9-bf5ab0d19870?mode=deep",
+    "timestamp": "2026-02-19 01:58:51.841050",
+    "report_generated": false
+  }
+]
