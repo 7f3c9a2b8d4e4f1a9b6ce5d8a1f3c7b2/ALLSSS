@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SavePreviousTermInformation()] [CandidateVotes Null Handling] Lines 471-473 check if votes is null and default to 0 - can this misrepresent candidates who had votes but whose CandidateVotes entry was deleted? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d345441-2264-4568-8ff7-a98d4638909b?mode=deep",
+    "timestamp": "2026-02-19 03:34:26.193766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SavePreviousTermInformation()] [ObtainedActiveVotedVotesAmount Manipulation] Line 473 uses ObtainedActiveVotedVotesAmount - can voters manipulate this by timing vote withdrawals just before snapshot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89650bfb-c928-4f28-b4a3-6bf98621b56d?mode=deep",
+    "timestamp": "2026-02-19 03:34:48.160619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SavePreviousTermInformation()] [ElectionResult Dictionary] Lines 469-476 build ElectionResult - can duplicate pubkeys in Candidates.Value cause dictionary key collision exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84002c2d-eef7-4fe0-9d04-3b176f64020f?mode=deep",
+    "timestamp": "2026-02-19 03:35:10.266004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation(private overload)] [CandidateInformationMap Null Return] Line 485 returns early if candidateInformation is null - can this cause miners who produced blocks to not get credit in their Terms list? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5767f69-1780-4fab-894b-860619f0b71d?mode=deep",
+    "timestamp": "2026-02-19 03:35:32.957271",
+    "report_generated": false
+  }
+]
