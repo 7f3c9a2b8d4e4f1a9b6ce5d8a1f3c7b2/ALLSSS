@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTokenContractAddressSet()] [System Name Dependency] The function relies on SmartContractConstants.TokenContractSystemName - if this constant is wrong or if the naming registry is compromised, will all consensus token operations interact with the wrong contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_470a1688-c849-4936-adb0-8239ce999759?mode=deep",
+    "timestamp": "2026-02-19 01:14:52.983779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureElectionContractAddressSet()] [Contract Address Spoofing] Similar to EnsureTokenContractAddressSet, can an attacker register a fake election contract before this initialization, causing all election-related consensus operations to interact with a malicious contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11c31035-d40d-4c86-9ad4-7ca7236e375c?mode=deep",
+    "timestamp": "2026-02-19 01:15:15.157870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureElectionContractAddressSet()] [Lazy Initialization Race] The null check at line 149 and assignment at lines 150-151 have the same race condition as EnsureTokenContractAddressSet - can concurrent calls cause multiple lookups? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_622286bc-329d-4e11-94c3-0c9f9bc3cffd?mode=deep",
+    "timestamp": "2026-02-19 01:15:37.697073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureElectionContractAddressSet()] [No Validation] No validation that the retrieved address is actually an election contract - could a wrong contract address cause consensus to interact with arbitrary contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b902b3f-e223-4d02-8913-bd5bbf0a49e6?mode=deep",
+    "timestamp": "2026-02-19 01:16:00.860373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureElectionContractAddressSet()] [Consensus Manipulation] If the election contract address points to an attacker-controlled contract, could the attacker manipulate miner elections, vote weights, and consensus participant selection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ff70d2d-87f6-4734-a994-83f0c5c5afe8?mode=deep",
+    "timestamp": "2026-02-19 01:16:24.809578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureParliamentContractAddressSet()] [Contract Address Spoofing] Can an attacker register a malicious parliament contract before initialization, allowing them to control all governance decisions that affect consensus parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8fb6ccba-7565-416a-b6e1-59b906de7c23?mode=deep",
+    "timestamp": "2026-02-19 01:16:49.776263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureParliamentContractAddressSet()] [Lazy Initialization Race] Same race condition as the other Ensure functions - can multiple concurrent calls execute GetContractAddressByName multiple times? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08b80f18-bd1b-4609-a154-27aed9d12660?mode=deep",
+    "timestamp": "2026-02-19 01:17:15.778054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureParliamentContractAddressSet()] [Authorization Bypass] If ParliamentContract.Value points to a fake contract, could attackers bypass all parliament-based authorization checks for consensus parameter updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed756a97-d0e7-49bf-9659-5e7f0b3360c8?mode=deep",
+    "timestamp": "2026-02-19 01:17:41.968335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureParliamentContractAddressSet()] [No Validation] No verification that the retrieved contract is actually a parliament contract - could this lead to consensus calling arbitrary contract methods expecting parliament responses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8046b91b-11cf-4662-a3b6-a77b954e2ce5?mode=deep",
+    "timestamp": "2026-02-19 01:18:10.341238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [State Consistency] Can an attacker exploit the gap between TryToGetRoundNumber (line 44) and TryToGetCurrentRoundInformation (line 52) by updating CurrentRoundNumber in between, causing the wrong round to be retrieved? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7a2deab-a60a-48c9-9ed0-d42355a2d5ea?mode=deep",
+    "timestamp": "2026-02-19 01:18:38.933629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [Integer Arithmetic] The .Sub() extension method is used at lines 61, 113, 114, 118 without overflow checks - can attackers cause underflow in any of these locations to access incorrect round numbers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81bc2f6f-fa90-4451-b1b7-79719c23a4fa?mode=deep",
+    "timestamp": "2026-02-19 01:19:08.461657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [Caching Issues] The IsMainChain property uses instance-level caching via _isMainChain field - do other helper methods have similar caching that could become stale during contract execution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3b75f9d-64da-43a0-8489-dfbc9dcbf506?mode=deep",
+    "timestamp": "2026-02-19 01:19:38.666118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [Missing Authorization] None of the helper methods check caller authorization - can any external caller invoke methods that use these helpers to manipulate consensus state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7184f98-3966-4484-b75e-357611806b8f?mode=deep",
+    "timestamp": "2026-02-19 01:20:09.714987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [Round Data Integrity] Functions like AddRoundInformation (line 105) and TryToUpdateRoundInformation (line 130) modify State.Rounds without validating round data integrity - can attackers inject rounds with invalid miner lists, time slots, or consensus data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18cae13d-b4a8-45d8-b112-30730963588c?mode=deep",
+    "timestamp": "2026-02-19 01:20:39.434813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [Null Reference Handling] Several functions return objects that could be null (rounds from State.Rounds) - do all callers properly handle null returns to prevent NullReferenceExceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e34cfd06-0bf5-4915-8fd6-a7266bea28ab?mode=deep",
+    "timestamp": "2026-02-19 01:21:08.442107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Multiple Functions] [Error Handling] Most functions use Try pattern returning bool, but critical errors might need to revert - could silent failures in helper methods cause consensus state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55248dcf-7018-4020-aac8-cbff43e0a1f7?mode=deep",
+    "timestamp": "2026-02-19 01:21:39.066759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: IsFirstRoundOfCurrentTerm()] [Complex Logic] The OR condition combines three different checks - can the logic short-circuit in unexpected ways when TryToGetTermNumber fails but TryToGetPreviousRoundInformation succeeds, causing incorrect first round detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e3100fb-649b-4da7-bbef-f178f355da09?mode=deep",
+    "timestamp": "2026-02-19 01:22:10.531155",
+    "report_generated": false
+  }
+]
