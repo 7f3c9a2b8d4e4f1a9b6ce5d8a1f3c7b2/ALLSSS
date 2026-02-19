@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Attack Scenario] [Time Manipulation] Can block timestamp manipulation affect proposal expiry validation at line 89, allowing expired proposals to execute? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c5c4bd9-9ddb-4f6c-bad6-6b80ab58c37f?mode=deep",
+    "timestamp": "2026-02-19 00:42:58.755385",
+    "report_generated": false
+  }
+]
