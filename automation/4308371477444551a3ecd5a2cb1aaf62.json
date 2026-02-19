@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecords] [Parallel Query Attacks] Can submitting multiple GetVotingRecords queries in parallel with large ID lists cause node resource exhaustion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93af2635-6b14-48e7-846e-3bdfcff9d3fe?mode=deep",
+    "timestamp": "2026-02-19 04:50:01.582002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems] [State Trie Depth] For voters with extensive voting history, does retrieving VotedItemsMap require deep state trie traversal? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d57fc66e-a714-4b3e-a331-ed5952ef3ea0?mode=deep",
+    "timestamp": "2026-02-19 04:50:25.022214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingIds] [Dictionary Iteration] Does the Where clause iterate through all VotedItemVoteIds entries causing O(n) complexity? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18abdb57-7514-4869-86e6-5b6a75a37305?mode=deep",
+    "timestamp": "2026-02-19 04:50:47.616553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [Large Results Map] Can VotingResult.results map grow unbounded if many options exist, causing serialization issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73c32e95-1e65-4957-a796-fb525777b4d1?mode=deep",
+    "timestamp": "2026-02-19 04:51:11.309065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [All View Methods] [Concurrent Query Load] Can high-frequency queries from multiple clients cause state read contention and node performance degradation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0afb62cc-622a-4ac8-8afd-8548b22c3289?mode=deep",
+    "timestamp": "2026-02-19 04:51:35.637550",
+    "report_generated": false
+  }
+]
