@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolNumberFlag] [Integer Overflow] Can the NftProtocolNumberFlag (Int64State) overflow when incremented during protocol number generation, potentially causing symbol collision or protocol creation denial? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1828f810-103e-463a-98b7-4fcb94900b67?mode=deep",
+    "timestamp": "2026-02-19 09:58:04.536033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolNumberFlag] [Initialization] Is NftProtocolNumberFlag properly initialized on first use, or could uninitialized state (zero value) cause incorrect protocol number calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a87c63df-cdc6-4ff6-a142-1a4ce416327f?mode=deep",
+    "timestamp": "2026-02-19 09:58:26.549170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolNumberFlag] [Race Condition] Can concurrent protocol creations cause race conditions in NftProtocolNumberFlag updates, leading to duplicate protocol numbers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4238c94-5ab4-46b0-8a34-9220b590612b?mode=deep",
+    "timestamp": "2026-02-19 09:58:49.348803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolNumberFlag] [Manipulation] Can an attacker manipulate NftProtocolNumberFlag through unauthorized state access to control protocol number generation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ece41fd3-3672-4da6-af4a-9b04477df541?mode=deep",
+    "timestamp": "2026-02-19 09:59:12.486544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: CurrentSymbolNumberLength] [Integer Overflow] Can CurrentSymbolNumberLength (Int32State) overflow beyond Int32.MaxValue, causing symbol generation failure or unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e39bdd9-096c-470d-ad5d-8a10d99d81f1?mode=deep",
+    "timestamp": "2026-02-19 09:59:36.910066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: CurrentSymbolNumberLength] [Validation] Is there validation to prevent CurrentSymbolNumberLength from being set to negative or zero values, which could break symbol generation logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2232ca1-3366-48ea-933d-d91f405c6782?mode=deep",
+    "timestamp": "2026-02-19 10:00:01.226017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: CurrentSymbolNumberLength] [State Corruption] Can CurrentSymbolNumberLength be corrupted or reset unexpectedly, causing symbol length inconsistencies across protocols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18ed58f1-7ae8-4d7d-b2e9-a65cdbbb1fa9?mode=deep",
+    "timestamp": "2026-02-19 10:00:27.677146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: CurrentSymbolNumberLength] [DOS] Can an attacker cause CurrentSymbolNumberLength to reach maximum value, preventing new protocol creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_971ec23b-8cb2-42be-a433-a252b0811eef?mode=deep",
+    "timestamp": "2026-02-19 10:00:54.666029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [Collision Detection] Does IsCreatedMap (MappedState<long, bool>) properly prevent symbol number collisions, or can duplicate protocol numbers be generated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a68cf3fc-96c3-4332-89a5-4b9b79cae282?mode=deep",
+    "timestamp": "2026-02-19 10:01:24.203668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [State Growth] Can IsCreatedMap grow unboundedly, causing storage exhaustion or denial of service for protocol creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cbead9c-13d6-4701-83aa-6a438ba1a79f?mode=deep",
+    "timestamp": "2026-02-19 10:01:54.927896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [Key Collision] Can hash collisions in IsCreatedMap keys allow protocol number reuse, violating uniqueness constraints? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8d7a0d8-41bc-470c-81c6-726c4b074979?mode=deep",
+    "timestamp": "2026-02-19 10:02:22.497206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [State Inconsistency] If IsCreatedMap is set to true but protocol creation fails, can this orphaned entry prevent future use of that protocol number? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87ed89f0-5306-4de0-a047-26cea9ed9d50?mode=deep",
+    "timestamp": "2026-02-19 10:02:49.939422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: IsCreatedMap] [Cleanup] Is there a mechanism to clean up IsCreatedMap entries for failed protocol creations, or can they accumulate indefinitely? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb0c334a-3b30-43ff-9d0f-25901ce316d0?mode=deep",
+    "timestamp": "2026-02-19 10:03:17.807852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Authorization Bypass] Can an attacker manipulate MinterListMap (MappedState<string, MinterList>) to grant themselves minting permissions without proper authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68621602-9aed-4a88-866f-ad8f80018722?mode=deep",
+    "timestamp": "2026-02-19 10:03:48.732042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Empty List] Can MinterListMap become empty for a protocol, preventing all minting operations including by the creator? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2557fad4-b730-4409-b5cd-7eebc74d726d?mode=deep",
+    "timestamp": "2026-02-19 10:04:20.282096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Duplicate Entries] Does MinterListMap properly prevent duplicate addresses in the minter list, or can duplicates cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f100efeb-a6f0-4f7e-b0ce-8c61c564ec2b?mode=deep",
+    "timestamp": "2026-02-19 10:04:52.937250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Unbounded Growth] Can an attacker add unlimited addresses to MinterListMap, causing storage bloat or DOS during minter validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_740e4ca2-c99c-4782-9cc7-cb4e128095d6?mode=deep",
+    "timestamp": "2026-02-19 10:05:26.750020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Removal Logic] If a minter is removed from MinterListMap, can they still mint tokens that were approved before removal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68bb1695-6f87-4e66-b14b-47de887ec94d?mode=deep",
+    "timestamp": "2026-02-19 10:05:59.345471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Creator Removal] Can the protocol creator remove themselves from MinterListMap, locking themselves out of minting operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae6d4f4f-e692-419f-a182-307f35d3fc86?mode=deep",
+    "timestamp": "2026-02-19 10:06:28.839180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: MinterListMap] [Symbol Validation] Does MinterListMap validate protocol symbols to prevent access to non-existent or invalid protocols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0fb82eb8-d28d-4d67-a783-e99236657d7d?mode=deep",
+    "timestamp": "2026-02-19 10:07:02.338172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Hash Collision] Can hash collisions in NftInfoMap (MappedState<Hash, NFTInfo>) allow different NFTs to overwrite each other's data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ffec170-0e40-4dcc-9277-131364598475?mode=deep",
+    "timestamp": "2026-02-19 10:07:35.323651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Quantity Manipulation] Can an attacker manipulate NFTInfo.Quantity in NftInfoMap to inflate or deflate NFT supply? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_282cd08a-e9ca-4366-ae58-b33114f364f4?mode=deep",
+    "timestamp": "2026-02-19 10:08:04.684500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [State Inconsistency] Can NftInfoMap become inconsistent with BalanceMap, causing supply/balance mismatches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23fa5da1-b52a-4c0c-b838-e5ada5ee4c50?mode=deep",
+    "timestamp": "2026-02-19 10:08:37.658664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Metadata Tampering] Can NFT metadata in NftInfoMap be modified after minting, violating immutability guarantees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6329332-9d63-4952-86cf-a668e7a2361b?mode=deep",
+    "timestamp": "2026-02-19 10:09:08.636067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Minter List Manipulation] Can the Minters list in NFTInfo be manipulated to add unauthorized minters after initial mint? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99633f14-3000-41a4-baf2-ef08876dcc01?mode=deep",
+    "timestamp": "2026-02-19 10:09:39.078267",
+    "report_generated": false
+  }
+]
