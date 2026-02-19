@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Authorization Bypass] If TokenContract reference is not properly initialized during contract deployment, can external callers invoke profit distribution methods that fail silently or allow unauthorized token operations through null reference exploitation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae62e6f2-f9bc-4b38-b59c-b55e94ae3c5a?mode=deep",
+    "timestamp": "2026-02-19 10:03:04.723259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Authorization Bypass] If ParliamentContract reference can be modified after initialization without proper governance approval, can an attacker redirect governance checks to a malicious contract and bypass all authorization controls on profit scheme modifications? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7485aa62-191b-4f3f-b0d3-bc11a9effaa0?mode=deep",
+    "timestamp": "2026-02-19 10:03:26.799068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Reentrancy Attack] When Profit contract calls TokenContract.Transfer() for profit distribution, can a malicious token contract implementation cause reentrancy into profit distribution methods and drain funds through recursive callbacks before state updates complete? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e4f286a-e6c1-426f-bf35-46afd47e4416?mode=deep",
+    "timestamp": "2026-02-19 10:03:49.183789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Trust Assumption Violation] If the ParliamentContract address points to a compromised or malicious contract, can all governance checks for profit scheme creation, beneficiary additions, and distribution parameters be bypassed completely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8365f046-ad8b-474f-b593-c6fa22725bc2?mode=deep",
+    "timestamp": "2026-02-19 10:04:12.070975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Supply Integrity] If TokenContract reference is swapped to point to a different token contract mid-execution, can profit distributions allocate tokens from wrong supplies or cause accounting mismatches between intended and actual distributed tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d0b86fe-168c-469c-9541-6195e8f3199f?mode=deep",
+    "timestamp": "2026-02-19 10:04:37.008104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Class: ProfitContractState] [State Corruption] Since this is a partial class, are there other partial definitions that could modify these contract references, and can race conditions during parallel state updates cause TokenContract or ParliamentContract to point to invalid addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3d822b7-c4ec-4030-9e3e-0509f6649b41?mode=deep",
+    "timestamp": "2026-02-19 10:05:03.220157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Missing Validation] Are there validation checks elsewhere in the codebase to ensure TokenContract address is not zero/null before profit distribution calls, or can null reference exceptions freeze profit distributions permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_521c0e3f-0fbb-4c7b-92f4-8a0501f19087?mode=deep",
+    "timestamp": "2026-02-19 10:05:30.276284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Missing Validation] Is the ParliamentContract address validated to be a legitimate Parliament contract implementation before use, or can it be set to an EOA or incompatible contract causing governance check failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc580c70-0201-41b5-80ab-226540d042b4?mode=deep",
+    "timestamp": "2026-02-19 10:05:59.415494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Cross-Contract DOS] If TokenContract implementation has unbounded loops or can revert on valid inputs, can calls from Profit contract for balance checks or transfers cause permanent DOS of profit distribution functionality? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89b0610e-607f-4a5a-8241-66a63d03a673?mode=deep",
+    "timestamp": "2026-02-19 10:06:31.128378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Cross-Contract DOS] If ParliamentContract's proposal validation logic becomes corrupted or enters infinite loop, can all profit scheme modifications requiring governance approval become permanently stuck? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b30846e-46e1-4ff9-bd8c-9d67985c5d3b?mode=deep",
+    "timestamp": "2026-02-19 10:07:02.124396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Atomicity Violation] When profit distributions involve multiple TokenContract.Transfer() calls, if one transfer succeeds but subsequent ones fail, are there rollback mechanisms or can partial distributions leave profit accounting in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47a3a34c-8366-4854-bf10-59e686aae5fc?mode=deep",
+    "timestamp": "2026-02-19 10:07:33.552520",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Time-of-Check-Time-of-Use] If ParliamentContract approval is checked at scheme creation but the reference is updated before distribution, can distributions occur without proper governance oversight due to TOCTOU race? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a383b1e1-49b9-4792-8163-bb5a779a111a?mode=deep",
+    "timestamp": "2026-02-19 10:08:05.813173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Internal Modifier] [Access Control Weakening] Both properties are marked 'internal' - does this allow other contracts in the same assembly to directly modify these references and bypass intended initialization/update controls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41305475-c993-4ba4-8c56-f88b63fb95ed?mode=deep",
+    "timestamp": "2026-02-19 10:08:39.228442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Malicious Token Contract] If TokenContract reference points to a contract implementing malicious Transfer() logic that returns false/reverts unexpectedly, can this cause profit distribution loops to fail silently or allocate wrong amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_309671f2-0eb9-4ad7-9213-a62231f77494?mode=deep",
+    "timestamp": "2026-02-19 10:09:13.134961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Governance Takeover] If an attacker can somehow update the ParliamentContract reference to their own contract, can they approve their own proposals to modify all profit schemes, add themselves as beneficiaries, and drain treasuries? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0860b4ea-9780-45ec-8342-a6beb128795a?mode=deep",
+    "timestamp": "2026-02-19 10:09:47.147004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Token Standard Mismatch] Are there checks to ensure TokenContract implements expected AElf token standard, or can incompatible token contracts cause balance/transfer operations to return incorrect values breaking profit math? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f06f5ca-d1d9-4ec8-85f5-106026a26a9b?mode=deep",
+    "timestamp": "2026-02-19 10:10:20.537670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Class: ProfitContractState] [Upgrade Safety] During contract upgrades, are these contract references preserved correctly, or can upgrade logic accidentally reset them to null/wrong addresses causing catastrophic failure of all profit operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25b6fff3-f92a-4cb7-ba94-bec1f7ce6015?mode=deep",
+    "timestamp": "2026-02-19 10:10:55.162873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: ParliamentContract] [Proposal Manipulation] If ParliamentContract can be replaced with a version that always returns 'approved' for any proposal, can attackers bypass all governance checks for adding/removing beneficiaries and modifying distribution weights? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36f766ac-3e9e-43de-a7a4-ff9bb0799e84?mode=deep",
+    "timestamp": "2026-02-19 10:11:30.188155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Balance Manipulation] If TokenContract reference is changed mid-transaction to a contract with manipulated balances, can profit distribution calculations use wrong balance data and over-distribute or under-distribute funds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7711ec5c-24ff-4d3e-8cc1-69e16e5d9377?mode=deep",
+    "timestamp": "2026-02-19 10:12:02.024738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ContractsReferences.cs] [Property: TokenContract] [Fee Exploitation] If TokenContract has transaction fees that are deducted from transfers, are profit distribution amounts adjusted for these fees, or can beneficiaries receive less than calculated due to unaccounted fee deductions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8bf9216-6bfb-417a-9088-a6ed346f4741?mode=deep",
+    "timestamp": "2026-02-19 10:12:30.333927",
+    "report_generated": false
+  }
+]
