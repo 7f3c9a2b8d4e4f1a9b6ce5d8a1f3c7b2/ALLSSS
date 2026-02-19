@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ProfitContract] [Authorization Bypass] If ProfitContract reference is not properly initialized or validated before use, could an attacker set a malicious contract address during Treasury initialization to intercept or redirect profit distributions intended for legitimate stakeholders? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9eb863d5-b848-4d69-8cff-169334aaf781?mode=deep",
+    "timestamp": "2026-02-19 03:01:48.267099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: TokenContract] [Supply Manipulation] If TokenContract reference points to an incorrect or malicious contract, could Treasury operations inadvertently mint/burn tokens to wrong addresses or manipulate total supply without proper validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a890aad-6aef-44b9-83cc-aed2ad9243ee?mode=deep",
+    "timestamp": "2026-02-19 03:02:10.336183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: AEDPoSContract] [Consensus Corruption] If AEDPoSContract reference is compromised or incorrectly initialized, could Treasury miner reward distributions be redirected to unauthorized addresses or calculated with manipulated consensus data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a94d89d-44e6-4bb2-9fd3-d6f330c288d0?mode=deep",
+    "timestamp": "2026-02-19 03:02:33.211729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: TokenConverterContract] [Economic Exploit] If TokenConverterContract reference is not validated, could an attacker drain Treasury reserves through a malicious converter contract that accepts artificially inflated token prices? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ac8a0c4-c1b1-48c5-a43e-e9bf45c42ace?mode=deep",
+    "timestamp": "2026-02-19 03:02:56.574688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ElectionContract] [Governance Bypass] If ElectionContract reference is manipulated, could Treasury dividend distributions be sent to fake candidates or validators not elected through legitimate consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b38ff9f0-c965-4b74-af65-d9d22342e1e0?mode=deep",
+    "timestamp": "2026-02-19 03:03:20.260125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ParliamentContract] [Authorization Bypass] If ParliamentContract reference is not properly validated, could unauthorized proposals execute Treasury fund transfers or parameter changes without legitimate Parliament approval? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03160f33-c514-4547-bcc9-94127e7e840d?mode=deep",
+    "timestamp": "2026-02-19 03:03:46.244769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Initialization Race] During contract deployment, if these contract references are set in a predictable order without atomic initialization, could an attacker front-run the initialization to set malicious contract addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_320e1fe7-d46f-4756-beec-77945e8f7fda?mode=deep",
+    "timestamp": "2026-02-19 03:04:12.063636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Reentrancy Risk] If Treasury methods use these contract references without reentrancy guards, could malicious contracts referenced here perform reentrant calls to drain funds or corrupt state during cross-contract operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83427474-08e6-4040-b976-096b8816f58e?mode=deep",
+    "timestamp": "2026-02-19 03:04:37.832379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Upgrade Vulnerability] If any referenced contract is upgraded to a malicious implementation, does Treasury have validation logic to detect incompatible or malicious contract behavior before execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb28d84b-7f3d-491e-a4d6-63bd6c8b0d7a?mode=deep",
+    "timestamp": "2026-02-19 03:05:04.869485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Access Control] Are these internal properties truly protected, or could reflection or other C# mechanisms allow external modification of contract references after initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ac10b0d-5801-4dcf-85d5-511780491ffb?mode=deep",
+    "timestamp": "2026-02-19 03:05:37.012973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ProfitContract] [Accounting Error] If ProfitContract calculations return manipulated values (overflow/underflow), does Treasury validate profit amounts before distribution to prevent treasury depletion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b42382d-dd45-4aba-b5da-c06460d86227?mode=deep",
+    "timestamp": "2026-02-19 03:06:10.255482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: TokenContract] [Allowance Exploit] When Treasury calls TokenContract methods, could missing allowance checks allow unauthorized token transfers from Treasury balance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45bac039-e572-47d6-bc5d-37e40291bc5f?mode=deep",
+    "timestamp": "2026-02-19 03:06:42.546807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: AEDPoSContract] [Time Manipulation] Could malicious consensus data from AEDPoSContract manipulate Treasury's time-based release schedules or vesting periods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8645b06-d979-43cd-bfae-903c95733c8f?mode=deep",
+    "timestamp": "2026-02-19 03:07:14.294209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: TokenConverterContract] [Price Oracle Manipulation] If TokenConverterContract provides price data to Treasury, could manipulated prices cause Treasury to accept unfavorable swaps or miscalculate reserves? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3e48549-e4ca-4930-a266-0f590778496c?mode=deep",
+    "timestamp": "2026-02-19 03:07:42.870026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ElectionContract] [Reward Calculation] Could ElectionContract return manipulated candidate/voter lists causing Treasury to distribute rewards to non-existent or unauthorized addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa92f08a-e289-479e-8f17-88ca6e216bfa?mode=deep",
+    "timestamp": "2026-02-19 03:08:14.305768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ParliamentContract] [Proposal Replay] Could malicious ParliamentContract allow replaying of approved proposals to repeatedly withdraw Treasury funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5f65b0c-442e-4641-8789-6935aaa32e2d?mode=deep",
+    "timestamp": "2026-02-19 03:08:46.884225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [State Inconsistency] If referenced contracts maintain separate state that becomes inconsistent with Treasury state, could this lead to double-spending or loss of funds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f53956a6-587b-44ef-9851-e6da18cf96dc?mode=deep",
+    "timestamp": "2026-02-19 03:09:19.840773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Cross-Contract DOS] Could malicious implementations of referenced contracts consume excessive gas or revert intentionally to DOS Treasury operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d206c0b0-b513-4e84-a255-f63700c1bf37?mode=deep",
+    "timestamp": "2026-02-19 03:09:48.135061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: ProfitContract] [Distribution Logic Bypass] Could a malicious ProfitContract implementation bypass Treasury's intended profit distribution logic to favor specific addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61f398a3-c9db-4ec1-9983-2f4b8fb174ab?mode=deep",
+    "timestamp": "2026-02-19 03:10:17.441648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [Property: TokenContract] [Fee Collection Bypass] Could TokenContract reference point to a contract that doesn't properly collect or forward method fees to Treasury? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95b697d6-6df0-498a-b6f0-40a91a16e19f?mode=deep",
+    "timestamp": "2026-02-19 03:10:52.684975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Circular Dependency] Could circular references between Treasury and referenced contracts create infinite loops or stack overflows during critical operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c891afa2-76a8-4901-abda-62c3297ed257?mode=deep",
+    "timestamp": "2026-02-19 03:11:26.872881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [TreasuryContractState Class] [Partial Class Risk] Since this is a partial class, could malicious code in other partial class definitions modify or expose these internal contract references? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9fc5ab52-c442-46b4-a283-73134d331fd9?mode=deep",
+    "timestamp": "2026-02-19 03:12:01.421207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Null Reference] If any contract reference is null or uninitialized when accessed, could this cause Treasury operations to fail silently or behave unpredictably? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_428f9d56-89f3-4cc7-9190-a70a63c4adb7?mode=deep",
+    "timestamp": "2026-02-19 03:12:36.397585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/ContractsReferences.cs] [All Properties] [Interface Compliance] Are the referenced contract containers validated to ensure they implement expected interfaces, or could incompatible contracts be assigned causing runtime failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85ff2044-e309-4265-b673-6aeb494c205e?mode=deep",
+    "timestamp": "2026-02-19 03:13:10.007954",
+    "report_generated": false
+  }
+]
