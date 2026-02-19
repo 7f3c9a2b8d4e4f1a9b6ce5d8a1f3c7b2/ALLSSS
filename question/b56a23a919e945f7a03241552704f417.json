@@ -1,5 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Path Completeness] [Missing Event Emission Paths] If Transfer or TransferFrom emit events that modify event storage state, are these paths declared, or could parallel transactions corrupt event state? (Low)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Path Completeness] [Cross-Contract Call Paths] If token transfers trigger callbacks to recipient contracts (e.g., ERC777 hooks), are recipient contract state modifications declared in paths? (Critical)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Path Completeness] [Reentrancy Paths] If Transfer or TransferFrom can cause reentrant calls back to the token contract, are paths for reentrant state access properly declared? (Critical)"
-]
