@@ -1,7 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecords] [Parallel Query Attacks] Can submitting multiple GetVotingRecords queries in parallel with large ID lists cause node resource exhaustion? (High)",
-  "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems] [State Trie Depth] For voters with extensive voting history, does retrieving VotedItemsMap require deep state trie traversal? (Low)",
-  "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingIds] [Dictionary Iteration] Does the Where clause iterate through all VotedItemVoteIds entries causing O(n) complexity? (Medium)",
-  "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [Large Results Map] Can VotingResult.results map grow unbounded if many options exist, causing serialization issues? (Medium)",
-  "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [All View Methods] [Concurrent Query Load] Can high-frequency queries from multiple clients cause state read contention and node performance degradation? (High)"
-]
