@@ -1,0 +1,116 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetTrafficFeeInitialCoefficient()] [Traffic Tier Exploitation] Traffic fees are linear up to 1M. Could attackers split large data transfers into sub-1M chunks to avoid quadratic pricing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09c8c7bb-7d91-42dd-95d7-5a81321daff9?mode=deep",
+    "timestamp": "2026-02-19 02:42:22.728958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetTxFeeInitialCoefficient()] [Transaction Batching Attack] Tx fees are cheapest under 1M transactions. Could an attacker create multiple contracts to distribute transaction load and stay within the cheaper tier indefinitely? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_720009fd-1847-4d17-b2b0-63c83f78628e?mode=deep",
+    "timestamp": "2026-02-19 02:42:45.025067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Zero PieceNumbers] If input.PieceNumbers[i] is 0, line 59 computes pieceIndex = 0.Sub(1) which could underflow. Does Sub() handle this safely, or could it produce int.MaxValue causing out-of-bounds access? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f6140fa-0575-4564-a7ea-14b26a1f9580?mode=deep",
+    "timestamp": "2026-02-19 02:43:07.438106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Maximum PieceNumbers] If input.PieceNumbers[i] equals int.MaxValue, the check at line 57 would require currentPieceCoefficientList.Count >= int.MaxValue, which is impossible. Could this cause an assertion failure used for DOS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63432aec-0ef6-4915-9984-b961c71a1bf1?mode=deep",
+    "timestamp": "2026-02-19 02:43:30.815225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Minimum Coefficient Count] Line 78 checks count > 0 && (count-1)%3==0, so minimum valid count is 4. Could an attacker provide count=1 to DOS the validation by failing this check repeatedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b9057c9-72e2-4a17-8be8-75bd6acedda0?mode=deep",
+    "timestamp": "2026-02-19 02:43:54.169095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Maximum Coefficient Count] There's no upper limit on count. Could an attacker provide count=int.MaxValue to make the loop at line 81 run billions of iterations, exhausting gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ab38a7b-a10b-4d8e-9f49-8231747578ad?mode=deep",
+    "timestamp": "2026-02-19 02:44:18.303671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Zero Power] Line 86 allows power >= 0, meaning power can be 0. When power=0, x^0=1 regardless of x. Could this create fee schemes that don't depend on input size, violating economic assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ff7dbb0-3731-4341-8f5e-7cbeed8acc14?mode=deep",
+    "timestamp": "2026-02-19 02:44:43.350839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Zero Divisor] Line 86 allows divisor >= 0, meaning divisor can be 0. In the formula (B/C)*x^A, if C=0, division by zero occurs during fee calculation. Could this halt all transactions using that coefficient? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf43203b-246c-4e6d-a478-2de804bdbd0f?mode=deep",
+    "timestamp": "2026-02-19 02:45:08.859455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Maximum Dividend] dividend must be > 0 but has no upper bound. Could dividend=int.MaxValue cause overflow when multiplied by x^power during fee calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1e832f1-669e-4939-a2ac-0f2515ff929a?mode=deep",
+    "timestamp": "2026-02-19 02:45:35.889914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertPieceUpperBoundsIsInOrder()] [Single Piece Edge Case] If calculateFeePieceCoefficientsList contains only one piece, the checks at lines 94-100 trivially pass. Could a single-piece configuration with upperBound=int.MaxValue be valid but cause calculation issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06506e39-39dc-489a-9157-30ee53b601e6?mode=deep",
+    "timestamp": "2026-02-19 02:46:03.679874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertPieceUpperBoundsIsInOrder()] [int.MaxValue Boundary] Multiple coefficient initializers use int.MaxValue as the upper bound for the last piece. Could fee calculations for inputs approaching int.MaxValue cause overflow or wraparound? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2a3d202-523e-48c2-b81e-856b73ad76e4?mode=deep",
+    "timestamp": "2026-02-19 02:46:32.680005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Protobuf Message Mutation] input is likely a protobuf message. Protobuf messages are mutable. Could modifications to input during execution (e.g., in event handlers) cause the validation checks at lines 49, 52-53 to pass but later operations to use modified data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e51d1d50-97b3-4f38-9151-19adadf49d88?mode=deep",
+    "timestamp": "2026-02-19 02:47:01.391206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Shared Reference] Line 44 and 46 access PieceCoefficientsList from input and currentCoefficients. If these are shared references (not deep copies), could modifications to one affect the other unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c917d615-b1d1-4fec-841f-850ea55a7e4d?mode=deep",
+    "timestamp": "2026-02-19 02:47:32.339043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Protobuf Default Values] Protobuf uses default values for unset fields. If input.PieceNumbers is unset, does it default to an empty list or null? Could this cause unexpected behavior at line 48? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_203dab04-392a-47d9-a044-68707f0e794f?mode=deep",
+    "timestamp": "2026-02-19 02:48:03.875172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: InitialCoefficients()] [Protobuf Initialization] allCalculateFeeCoefficients is created at line 111 via 'new AllCalculateFeeCoefficients()'. Does this properly initialize the Value list, or could it be null causing NullReferenceException at lines 112-121? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cec3b6f9-5706-4694-b283-663f9b94af26?mode=deep",
+    "timestamp": "2026-02-19 02:48:34.080902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Missing Deep Copy] Line 61 assigns currentPieceCoefficientList[pieceIndex] = pieceCoefficients directly. If pieceCoefficients is a reference type and the input object is reused, could later modifications affect stored coefficients? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9842dcee-829f-44c8-a0ae-6a8cafd74bc5?mode=deep",
+    "timestamp": "2026-02-19 02:49:05.758282",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [No Rollback on Validation Failure] If AssertPieceUpperBoundsIsInOrder at line 64 fails after the loop at lines 55-62 modifies currentPieceCoefficientList, are those modifications rolled back, or does the state remain partially updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de49e41e-4f49-4cda-b67c-c6fc2af832db?mode=deep",
+    "timestamp": "2026-02-19 02:49:38.190001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Silent Overwrite] Line 61 overwrites currentPieceCoefficientList[pieceIndex] without checking if it already contains valid data. Could important coefficient configurations be silently overwritten without warning? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1745c24-11d0-49b3-a58b-3bf66284353c?mode=deep",
+    "timestamp": "2026-02-19 02:50:10.417293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Validation Order] AssertCoefficientsValid is called at line 53 before checking piece numbers validity in\n\n### Citations\n\n**File:** contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs (L1-313)\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing AElf.CSharp.Core;\nusing AElf.Sdk.CSharp;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.MultiToken;\n\npublic partial class TokenContract\n{\n    /// <summary>\n    ///     Can only update one token at one time.\n    /// </summary>\n    /// <param name=",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e914356-4a28-4a00-b495-53c6a1eae55b?mode=deep",
+    "timestamp": "2026-02-19 02:50:42.268079",
+    "report_generated": false
+  }
+]
