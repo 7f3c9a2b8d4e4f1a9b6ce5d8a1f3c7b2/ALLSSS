@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Edge Case] If previousInValue is very long byte array, HashHelper.ComputeFrom might overflow or wrap - are there length limits enforced? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98d51793-cf7f-45e7-8124-4d44f06bb1ea?mode=deep",
+    "timestamp": "2026-02-19 03:40:18.625958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Edge Case] What if NewConsensusInformationFilled returns true but ValidatePreviousInValue fails? The error message only says 'Incorrect previous in value' - is this sufficient for debugging? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2aa2ff5-6b5f-45c5-abe5-6df1bf6bad54?mode=deep",
+    "timestamp": "2026-02-19 03:40:40.901402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Edge Case] If publicKey string is malformed or extremely long, dictionary lookups at lines 40, 42, 44, 45 could fail - is key format validated? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50fb59c3-4c89-45ea-a045-db71d8f8c8e6?mode=deep",
+    "timestamp": "2026-02-19 03:41:03.454145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Edge Case] If SenderPubkey exists in RealTimeMinersInformation but with null or default-initialized MinerInRound object, accessing properties could fail - is this checked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_643650f3-bf3c-438a-be8a-0b1bb7ad2929?mode=deep",
+    "timestamp": "2026-02-19 03:41:26.424124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Business Logic] The comment at line 12 says 'Only one Out Value should be filled' but NewConsensusInformationFilled checks both OutValue AND Signature - is the comment outdated or logic incorrect? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a0996c2-7b96-47d9-890c-2d10e1d7084e?mode=deep",
+    "timestamp": "2026-02-19 03:41:50.577255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Business Logic] The validation returns 'Incorrect new Out Value' when NewConsensusInformationFilled fails, but this could be due to missing Signature - is error message misleading? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_925144b0-eaa0-4968-a9d8-ef69e84b7234?mode=deep",
+    "timestamp": "2026-02-19 03:42:16.202361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Business Logic] Function checks OutValue != null AND Value.Any(), but should it also verify OutValue wasn't used in previous blocks to prevent reuse? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28bf1d43-b184-43b0-b1cf-3b352a738a87?mode=deep",
+    "timestamp": "2026-02-19 03:45:11.078558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Business Logic] The commit-reveal scheme requires revealing previous InValue, but validation allows null PreviousInValue (line 42) - does this break the security model? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3d45d19-8a2c-432d-aae0-3896f67dbcf2?mode=deep",
+    "timestamp": "2026-02-19 03:45:36.781133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Business Logic] Hash.Empty bypass at line 46 might be intended for genesis case, but can regular miners exploit this to avoid revealing InValues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_967f4ab9-6b65-4668-aef6-663c7e325523?mode=deep",
+    "timestamp": "2026-02-19 03:46:03.727233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Business Logic] Validation checks happen sequentially with early returns - if NewConsensusInformationFilled is expensive, can attacker provide invalid PreviousInValue to skip this check? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b884c102-c9d8-4b7d-bc61-1d1b20056d8b?mode=deep",
+    "timestamp": "2026-02-19 03:46:30.902714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Business Logic] Function only validates PreviousInValue matches previous OutValue but doesn't check if current OutValue is correctly computed from current InValue - is this validated elsewhere? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb9204b4-1c74-4b7e-bb5f-f48f1db380c4?mode=deep",
+    "timestamp": "2026-02-19 03:46:57.572340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Integration] If other validation providers in the pipeline have already modified validationContext state, can this provider operate on stale or inconsistent data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0070f4a-a305-4efe-aa3e-f4043c3e0399?mode=deep",
+    "timestamp": "2026-02-19 03:47:23.740017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Integration] The function returns ValidationResult with Success=true or error Message, but are there other providers that could override or ignore these results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93942af1-bebe-4dce-b835-d97f632deda1?mode=deep",
+    "timestamp": "2026-02-19 03:47:50.632954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Integration] If ProvidedRound is modified by concurrent consensus updates before this validation completes, can race condition allow invalid data to pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccdabae1-0453-4a5c-b9c8-f7dda2592451?mode=deep",
+    "timestamp": "2026-02-19 03:48:21.123930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Integration] If PreviousRound in StateDb is updated between lines 40 and 44, can TOCTOU race cause inconsistent previousOutValue retrieval? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19a7df83-4151-412a-a5ef-b0c6275566c6?mode=deep",
+    "timestamp": "2026-02-19 03:48:49.817255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Integration] Does this provider run before or after signature cryptographic verification? If after, why check Signature.Value.Any()? If before, why not verify? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_049b07e9-087d-4741-99d9-10f3f0def949?mode=deep",
+    "timestamp": "2026-02-19 03:49:21.472359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Protocol Violation] VRF security requires OutValue = Hash(InValue), but if attacker can generate InValue with desired OutValue (preimage attack), can they manipulate randomness? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e0e1d8e-19da-49bc-82ef-69872dc99c72?mode=deep",
+    "timestamp": "2026-02-19 03:49:50.403478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Protocol Violation] The commit-reveal scheme assumes miners cannot predict future hashes, but if HashHelper uses deterministic algorithm, can miner grind InValues to get favorable OutValues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ced04f68-7785-4ded-824d-f51f4c0d0654?mode=deep",
+    "timestamp": "2026-02-19 03:50:24.016309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Protocol Violation] If Signature is supposed to be VRF proof binding InValue to previous round, but only checked for existence, can attacker provide invalid proof? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71f3a04e-0fdf-4aee-9f30-53f4ccc7c8c1?mode=deep",
+    "timestamp": "2026-02-19 03:50:59.240804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Protocol Violation] Can attacker exploit the fact that PreviousInValue from current round is compared against OutValue from previous round to create circular dependencies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_805703a9-5933-4c53-a932-15928827bd86?mode=deep",
+    "timestamp": "2026-02-19 03:51:32.868400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Dictionary Attack] At line 30, dictionary key access with SenderPubkey could throw if pubkey is not in RealTimeMinersInformation - can attacker cause exceptions by manipulating pubkey? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_648b479c-df89-4122-8cfe-c902791894cb?mode=deep",
+    "timestamp": "2026-02-19 03:52:06.635551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Dictionary Attack] Lines 42, 44, 45 all access dictionary with publicKey - if key format inconsistency exists between rounds, can attacker exploit key mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9232a02a-e91b-425f-9bb1-76b88d3d735f?mode=deep",
+    "timestamp": "2026-02-19 03:52:34.942230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Hash Comparison] Line 48 uses == for Hash comparison - if Hash doesn't override equality properly, can attacker exploit reference equality instead of value equality? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e611ab1f-f394-4b9d-9691-40d39fabb557?mode=deep",
+    "timestamp": "2026-02-19 03:53:04.092872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Conjunction Logic] The return at line 31-32 requires OutValue != null AND Signature != null AND OutValue.Value.Any() AND Signature.Value.Any() - can attacker find edge case where one passes but should fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40a77ec2-a6bb-4063-80a7-e66acd0138af?mode=deep",
+    "timestamp": "2026-02-19 03:53:35.780806",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Early Return Chain] Multiple early returns (lines 40, 42, 46) could mask validation errors - can attacker exploit return order to bypass critical checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_baa04d39-1b3b-492c-abcd-fcb70b607e5a?mode=deep",
+    "timestamp": "2026-02-19 03:54:08.086340",
+    "report_generated": false
+  }
+]
