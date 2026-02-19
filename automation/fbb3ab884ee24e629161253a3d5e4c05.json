@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [No Event Emission] Are events emitted when the controller changes at line 29 to allow monitoring and incident response? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3036de4-1bd5-4305-9838-db42e14c8485?mode=deep",
+    "timestamp": "2026-02-19 15:08:42.667020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [No Event Emission] Are events emitted when fees are updated at line 17 for transparency and auditability? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db0a8a19-f324-4dd4-a8d8-51ebbb9b27d0?mode=deep",
+    "timestamp": "2026-02-19 15:09:04.824343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Storage Collision] Can method names collide in the State.TransactionFees mapping if there are encoding or normalization issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62d228c2-f575-44cb-820f-fb25c8e9c4c7?mode=deep",
+    "timestamp": "2026-02-19 15:09:27.684917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Uninitialized Read] Reading State.TransactionFees[input.Value] at line 37 for an unset method returns null - is this handled correctly by all callers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_251268fd-b5dd-40c8-9952-45f8471f239c?mode=deep",
+    "timestamp": "2026-02-19 15:09:50.815315",
+    "report_generated": false
+  }
+]
