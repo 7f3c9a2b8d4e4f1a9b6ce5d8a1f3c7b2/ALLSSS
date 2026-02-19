@@ -130,5 +130,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01663936-acae-45b6-835b-ab80dcdc9b90?mode=deep",
     "timestamp": "2026-02-19 03:22:43.185864",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenInfo()] [Input Validation] Can an attacker pass a null or empty Symbol in GetTokenInfoInput causing the internal GetTokenInfo(string) to return incorrect data or throw exceptions, potentially causing DOS in dependent contracts that rely on token metadata? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4840a69c-3e3c-4704-98e7-8f4e3cbb726b?mode=deep",
+    "timestamp": "2026-02-19 03:45:30.350582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenInfo()] [Logic Flaw] Does GetTokenInfo() validate that the requested symbol exists before returning TokenInfo, or can it return null/default values that downstream contracts misinterpret as valid token data, leading to incorrect balance calculations or transfer logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb39b9e6-8d2e-4908-be90-a39e2c7b9979?mode=deep",
+    "timestamp": "2026-02-19 03:45:52.427633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenInfo()] [Information Disclosure] Can an attacker repeatedly query GetTokenInfo() for non-existent or sensitive token symbols to enumerate valid token symbols through timing attacks or error message differences, potentially revealing private token information? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2f0edf4-a82c-4f1c-8db6-de358c2de137?mode=deep",
+    "timestamp": "2026-02-19 03:46:15.019965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenInfo()] [State Consistency] If GetTokenInfo() retrieves cached token data from State.TokenInfos, can outdated information be returned after token properties are updated elsewhere, leading to stale metadata being used for critical operations like burn checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdf09577-8b22-4838-9389-8eff04e1ce8a?mode=deep",
+    "timestamp": "2026-02-19 03:46:38.258941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetNativeTokenInfo()] [State Dependency] If State.NativeTokenSymbol.Value is null or uninitialized, does GetNativeTokenInfo() handle this gracefully, or can it return null TokenInfo causing critical failures in contracts depending on native token data for fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c466906d-bbba-4939-b94a-dfc1fb36fcb4?mode=deep",
+    "timestamp": "2026-02-19 03:47:02.886219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetNativeTokenInfo()] [Logic Flaw] Can an attacker exploit a scenario where State.NativeTokenSymbol changes between initialization and runtime, causing GetNativeTokenInfo() to return inconsistent native token data used in consensus or fee calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3d9a404-a048-4fac-a96d-aad4853b42e3?mode=deep",
+    "timestamp": "2026-02-19 03:47:27.840052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetResourceTokenInfo()] [DOS Vector] Can an attacker cause Context.Variables.GetStringArray() to return an extremely large list of PayTxFeeSymbolListName or PayRentalSymbolListName entries, causing GetResourceTokenInfo() to exhaust gas in the nested foreach loops and Where clauses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5228d81-7c16-4132-9b62-ebc639dbfa8c?mode=deep",
+    "timestamp": "2026-02-19 03:47:52.912574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetResourceTokenInfo()] [Duplicate Entries] If a symbol exists in both PayTxFeeSymbolListName and PayRentalSymbolListName arrays, GetResourceTokenInfo() adds it twice to tokenInfoList.Value, potentially causing downstream contracts to double-count resource tokens in fee calculations or rental deductions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c8db8aa-425e-4af0-ae13-be4da5676f0d?mode=deep",
+    "timestamp": "2026-02-19 03:48:21.923302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetResourceTokenInfo()] [Null Handling] The Where clause filters symbols where GetTokenInfo(symbol) != null, but can malformed symbol strings pass this check and still cause issues when the TokenInfo is actually used for resource calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afb08b0e-7de2-4cb3-9ffd-53707263af17?mode=deep",
+    "timestamp": "2026-02-19 03:48:53.791990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetResourceTokenInfo()] [State Manipulation] Can an attacker with governance access manipulate TokenContractConstants.PayTxFeeSymbolListName or PayRentalSymbolListName to inject non-resource tokens, causing GetResourceTokenInfo() to return invalid tokens that break resource accounting logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_703125b0-224d-4ebf-bcc1-e666e0b27066?mode=deep",
+    "timestamp": "2026-02-19 03:49:24.268370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetBalance()] [Symbol Aliasing] GetBalance() calls GetActualTokenSymbol() to resolve aliases, but if alias mappings are manipulated, can an attacker query balances of unintended tokens by passing crafted alias strings, potentially revealing balances they shouldn't access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a29d0dba-7cf6-4bf9-9276-9fbb97a7bd35?mode=deep",
+    "timestamp": "2026-02-19 03:49:56.287289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetBalance()] [Address Validation] Does GetBalance() validate that input.Owner is a valid non-zero address before querying State.Balances, or can querying zero address or contract addresses reveal unexpected balance data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e524918-9ddf-4541-b135-782fb8836d64?mode=deep",
+    "timestamp": "2026-02-19 03:50:28.236463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetBalance()] [Return Value Manipulation] The function returns input.Symbol unchanged while using the actual symbol for balance lookup - can this discrepancy between displayed symbol and actual balance cause confusion in off-chain systems tracking token holdings? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5e59b08-0d82-46d1-a98e-b720cd6db794?mode=deep",
+    "timestamp": "2026-02-19 03:51:01.497217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetBalance()] [NFT Balance Query] When querying NFT balances where symbol contains NFTSymbolSeparator, does GetBalance() correctly resolve to collection or specific NFT balance, or can symbol ambiguity cause incorrect balance reporting for NFT holders? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49645e28-8f79-4255-92a8-f8ab036ce36e?mode=deep",
+    "timestamp": "2026-02-19 03:51:34.768482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAllowance()] [State Access] GetAllowance() directly reads State.Allowances[input.Owner][input.Spender][symbol] without validation - can uninitialized mappings return default values that off-chain systems interpret as zero allowance when actual allowance state is undefined? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bbe626f-a2db-4848-9bc3-c7a308cc27bf?mode=deep",
+    "timestamp": "2026-02-19 03:52:08.522319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAllowance()] [Symbol Resolution] GetAllowance() uses GetActualTokenSymbol() to resolve aliases, but returns the resolved symbol in the output - can this cause off-chain clients to lose track of which alias was used when multiple aliases point to the same token? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfbcc1f4-a33f-450a-919d-e8a975912671?mode=deep",
+    "timestamp": "2026-02-19 03:52:43.425235",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAllowance()] [Null Input] If input.Owner, input.Spender, or input.Symbol are null, does GetAllowance() throw exceptions or return misleading zero allowance values that could be misinterpreted by dependent contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6dfcf452-8b8a-40a7-a281-c14b7d74db16?mode=deep",
+    "timestamp": "2026-02-19 03:53:18.920542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAllowance()] [Allowance Overflow] Does the allowance value from State.Allowances properly handle edge cases like maximum uint64 values, or can querying allowances near type limits cause overflow issues in calculations using this data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25d45787-88ca-4ed3-9ae3-353d5f174b2b?mode=deep",
+    "timestamp": "2026-02-19 03:53:54.396764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [Logic Flaw] GetAvailableAllowance() uses Math.Max() to combine regular allowance with all-symbol allowance, but can this logic be exploited where a zero regular allowance combined with non-zero all-symbol allowance incorrectly grants spending rights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83101558-6d30-42b4-bd52-ef615faf40d2?mode=deep",
+    "timestamp": "2026-02-19 03:54:31.124757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [Symbol Type Detection] The function calls GetSymbolType() to check for NFT or NftCollection, but if GetSymbolType() returns incorrect types due to malformed symbols, can GetAvailableAllowance() return inflated allowance values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69db6c6e-f198-4438-b9c6-8c62818105b0?mode=deep",
+    "timestamp": "2026-02-19 03:55:09.631930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [NFT Collection Allowance] When symbolType is Nft or NftCollection, GetAvailableAllowance() calls GetNftCollectionAllSymbolAllowance() and uses Math.Max() again - can nested Math.Max() operations with unvalidated out parameters cause allowance to be incorrectly elevated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ecc4a5e3-8b7b-437d-aca4-e3699098d369?mode=deep",
+    "timestamp": "2026-02-19 03:55:48.811550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [CheckSymbolIdentifier Short-circuit] If CheckSymbolIdentifier() returns true, the function immediately returns without checking all-symbol or NFT collection allowances - can an attacker craft symbols matching the identifier pattern to bypass higher allowance checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7dc935f-cb72-4f0f-9982-0b20813f7c5a?mode=deep",
+    "timestamp": "2026-02-19 03:56:28.619490",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [Out Parameter Handling] GetAllSymbolAllowance() and GetNftCollectionAllSymbolAllowance() use 'out _' discarding output parameters - are these discarded values security-relevant flags that should be checked before using Math.Max()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ff19eb8-d5a7-4e4b-8350-6e3264e5dbae?mode=deep",
+    "timestamp": "2026-02-19 03:57:10.747965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [Multiple Allowance Sources] The function combines up to three different allowance sources (regular, all-symbol, NFT collection all-symbol) - can inconsistent state across these sources be exploited to gain spending rights exceeding intended limits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ca71d31-0870-4da6-a96d-18bf1add0624?mode=deep",
+    "timestamp": "2026-02-19 03:57:53.081449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetAvailableAllowance()] [Symbol Validation] Does GetAvailableAllowance() validate input.Symbol format before passing to GetSymbolType() and GetNftCollectionAllSymbolAllowance(), or can malformed symbols cause type confusion in allowance calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9acc3952-9813-4edb-ad3c-1e255d31a1da?mode=deep",
+    "timestamp": "2026-02-19 03:58:37.071415",
+    "report_generated": false
   }
 ]
