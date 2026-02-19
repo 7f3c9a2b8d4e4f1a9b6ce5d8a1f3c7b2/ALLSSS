@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [Cross-Contract] Can RemoveBeneficiary fail silently or revert, leaving the evil node's profit distribution active even after they are removed from the candidate list? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b02624b8-ad24-4d03-a709-c24536f6b458?mode=deep",
+    "timestamp": "2026-02-19 04:09:58.632962",
+    "report_generated": false
+  }
+]
