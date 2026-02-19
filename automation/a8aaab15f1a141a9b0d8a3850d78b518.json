@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [Candidates List Corruption] Lines 108-110 remove from Candidates.Value without checking if pubkey exists - can removing non-existent entries corrupt the list structure? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe6bdf3e-73be-4996-a50b-b49f68b7a9c1?mode=deep",
+    "timestamp": "2026-02-19 09:55:09.344938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [RemoveBeneficiary Failure] Line 111 calls RemoveBeneficiary(input.Pubkey) - if this external call fails, are the previous state updates (banned, removed from lists) still committed, creating inconsistent profit distribution state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ddac836-6dfc-45d1-b537-7dd27b293675?mode=deep",
+    "timestamp": "2026-02-19 09:55:31.310603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [IsEvilNode Without Proof] No validation of why input.IsEvilNode is true - can the consensus contract maliciously mark any node as evil without providing evidence of misbehavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03f056d3-6c5d-4307-9781-bacd210414d6?mode=deep",
+    "timestamp": "2026-02-19 09:55:54.791567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: GetEmergencyResponseOrganizationAddress()] [Caching Attack] Lines 124-125 cache EmergencyResponseOrganizationAddress - if Parliament contract's emergency org changes, can the cached stale address be exploited to maintain unauthorized access? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3891332f-7bbd-4872-b7f1-e0e490cd30f5?mode=deep",
+    "timestamp": "2026-02-19 09:56:17.667391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: GetEmergencyResponseOrganizationAddress()] [Parliament Contract Null] Line 131 calls GetEmergencyResponseOrganizationAddress without validating Parliament contract is initialized - can this fail silently if called before Parliament deployment? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_acf65345-cc42-40c4-ab57-df19e1038db2?mode=deep",
+    "timestamp": "2026-02-19 09:56:41.665599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: GetEmergencyResponseOrganizationAddress()] [No Cache Invalidation] Once cached, EmergencyResponseOrganizationAddress never updates - can a compromised emergency org maintain permanent control even after governance revokes it? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1b1da81-195b-47c1-a1fb-eb9c2d404fbc?mode=deep",
+    "timestamp": "2026-02-19 09:57:07.858715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMultipleCandidateInformation()] [Batch Processing DOS] Lines 143-144 iterate input.Value without limit - can an attacker pass millions of entries to exceed gas limits and prevent legitimate consensus updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65d147db-92fe-47b5-b24b-40752a6ae55b?mode=deep",
+    "timestamp": "2026-02-19 09:57:33.685738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMultipleCandidateInformation()] [Partial Update Failure] If UpdateCandidateInformation fails for entry N but succeeds for entries 1 to N-1, are the successful updates committed while later ones fail, creating inconsistent candidate states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_faf80145-b298-4c7f-a1a2-13b1a27c7544?mode=deep",
+    "timestamp": "2026-02-19 09:58:02.897242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMultipleCandidateInformation()] [Authorization Only Consensus] Line 140 restricts to consensus contract only - but UpdateCandidateInformation allows EmergencyResponseOrganization too - can this create an authorization bypass path? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c15faffc-2163-466c-9f1b-d0c47c8b5f11?mode=deep",
+    "timestamp": "2026-02-19 09:58:29.386194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMultipleCandidateInformation()] [Duplicate Entries] No deduplication of input.Value - can passing the same UpdateCandidateInformationInput multiple times cause double-counting of ProducedBlocks/MissedTimeSlots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2c811fa-03f0-441b-9c9d-b8439bec6e4e?mode=deep",
+    "timestamp": "2026-02-19 09:59:01.058187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMinersCount()] [Miners Count Decrease Attack] Line 158 calls SyncSubsidyInfoAfterReduceMiner which can remove DataCenters - can the consensus contract repeatedly decrease MinersCount to eliminate all backup subsidy receivers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e2d0562-d2cf-40a5-a5bc-647421bd64f5?mode=deep",
+    "timestamp": "2026-02-19 09:59:30.973622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMinersCount()] [Zero Miners Count] No validation preventing input.MinersCount = 0 - can setting MinersCount to 0 halt the consensus system entirely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_496c18f7-77ed-4178-844e-4add2c1471b1?mode=deep",
+    "timestamp": "2026-02-19 10:00:03.392667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMinersCount()] [MinersCount Overflow] No check on upper bound of input.MinersCount - can setting it to int.MaxValue cause resource exhaustion when iterating miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0fa6ac1-1d0b-4815-a648-9fa7d30c825b?mode=deep",
+    "timestamp": "2026-02-19 10:00:37.370504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMinersCount()] [Authorization Only Consensus] Line 154-156 only allows consensus contract - but what if consensus contract is compromised and sets MinersCount to 1 to centralize the network? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e95d7a9e-c7d2-4988-a521-cf5fb7d0fbd5?mode=deep",
+    "timestamp": "2026-02-19 10:01:09.138571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateMinersCount()] [SyncSubsidyInfoAfterReduceMiner Failure] If SyncSubsidyInfoAfterReduceMiner fails after MinersCount is updated, does the count remain changed while subsidy state is inconsistent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_190cad92-e748-4b65-98b5-3b053df9d3ad?mode=deep",
+    "timestamp": "2026-02-19 10:01:43.460577",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SetTreasurySchemeIds()] [No Authorization Check] Function has no sender validation - can any address call this to set malicious Treasury/Welfare/Subsidy hashes after deployment? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fd88584-d2cf-4473-aca2-5021eb96eaf9?mode=deep",
+    "timestamp": "2026-02-19 10:02:14.939469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SetTreasurySchemeIds()] [One-Time Only] Line 164 checks TreasuryHash == null but once set, these cannot be changed - if wrong values are set, can treasury distributions be permanently broken? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb9bb472-51fa-4d7b-a6a5-18e9c423d479?mode=deep",
+    "timestamp": "2026-02-19 10:02:50.186763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SetTreasurySchemeIds()] [Hash Collision] No validation that input hashes are unique - can attacker set all five hashes to the same value, causing multiple profit schemes to point to the same pool? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87e51dc4-e477-4a41-8d39-b3cee9e36b87?mode=deep",
+    "timestamp": "2026-02-19 10:03:23.691053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SetTreasurySchemeIds()] [Invalid Hash] No validation that hashes correspond to actual profit schemes - can setting non-existent scheme IDs cause DistributeProfits calls to fail silently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bc19bbe-c96a-40e5-b516-aa0046f6a820?mode=deep",
+    "timestamp": "2026-02-19 10:03:56.479705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: SetTreasurySchemeIds()] [Front-Running] Since there's no auth check, can an attacker front-run the legitimate SetTreasurySchemeIds call to permanently set wrong scheme IDs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1f26e3e-95c6-45ff-82c1-558b69af5816?mode=deep",
+    "timestamp": "2026-02-19 10:04:28.883951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Admin Bypass] Line 181 checks Context.Sender == GetCandidateAdmin - if CandidateAdmin mapping can be manipulated or is uninitialized, can an attacker replace any candidate's pubkey? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_345523d7-fa58-4952-9196-aabeda33389d?mode=deep",
+    "timestamp": "2026-02-19 10:04:59.347646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Banned Pubkey Replacement] Lines 177-178 check both old and new pubkeys aren't banned, but line 246 bans old pubkey AFTER replacement - can the old pubkey be used again if it's already in BannedPubkeyMap? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34806d08-4b1f-400b-bc78-ed2e2bf01028?mode=deep",
+    "timestamp": "2026-02-19 10:05:28.433057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [Candidates List Manipulation] Lines 192-197 remove old and add new pubkey to Candidates - if new pubkey already exists, the Assert fails, but can partially updated state from previous operations be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e376add6-bf6f-4e59-af2f-53ff4bcb0b22?mode=deep",
+    "timestamp": "2026-02-19 10:06:01.069893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [DataCentersRankingList State Inconsistency] Lines 199-218 update ranking list and beneficiaries only if old pubkey exists in DataCenters - if pubkey exists in Candidates but not DataCenters, are benefits leaked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e0d2a97-f1ef-4494-b839-4e76374ae1ee?mode=deep",
+    "timestamp": "2026-02-19 10:06:32.995672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: ReplaceCandidatePubkey()] [RemoveBeneficiary Then AddBeneficiary Race] Lines 216-217 remove then add beneficiary - can a reentrant call during RemoveBeneficiary interfere with AddBeneficiary, causing lost profit shares? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64d3d26b-7dee-4091-97e1-6ae7beda5e8f?mode=deep",
+    "timestamp": "2026-02-19 10:07:05.649021",
+    "report_generated": false
+  }
+]
