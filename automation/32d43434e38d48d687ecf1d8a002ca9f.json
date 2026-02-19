@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: TryClearContractProposingData()] [State Leak] Can an attacker cause memory/storage leaks by creating proposals that never reach CodeChecked status, leaving entries in ContractProposingInputMap forever? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4369dd8-498f-45f2-843a-1a06760cd1ae?mode=deep",
+    "timestamp": "2026-02-19 03:41:00.335752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: GetContractCodeHashListByDeployingBlockHeight()] [Storage DOS] Can an attacker deploy multiple contracts in the same block to bloat ContractCodeHashListMap[Context.CurrentHeight], causing gas exhaustion for transactions querying this data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27146874-afe3-42c0-8542-9926359e4e58?mode=deep",
+    "timestamp": "2026-02-19 03:41:22.387982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ProposeNewContract()] [Reentrancy] Can an attacker exploit Context.SendInline to the authorization contract to reenter ProposeNewContract before the first call completes, creating duplicate proposals with the same proposedContractInputHash? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b1a76b5-d8db-48bd-a242-caa6c18e5052?mode=deep",
+    "timestamp": "2026-02-19 03:41:44.647087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ReleaseApprovedContract()] [Reentrancy] Can an attacker reenter through Context.SendInline to the authorization contract's Release method, manipulating contractProposingInput.Status multiple times before the transaction completes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d95e0523-dcb6-45e8-a75b-8a3ca0964281?mode=deep",
+    "timestamp": "2026-02-19 03:42:07.954687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: CheckOrganizationExist()] [Malicious Contract] Can an attacker deploy a fake authorization contract that always returns true for ValidateOrganizationExist, allowing them to set invalid authority controllers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e6843ff-e8db-4f5e-aea3-1617012fa1ab?mode=deep",
+    "timestamp": "2026-02-19 03:42:32.071489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ValidateProposerAuthority()] [False Positive] Can an attacker deploy a malicious authorization contract that returns true for ValidateProposerInWhiteList for any address, bypassing proposer authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_736e4cf9-62bf-4f8b-91d7-f25526293332?mode=deep",
+    "timestamp": "2026-02-19 03:42:57.764233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: DeploySystemSmartContract()] [Inline Call Exploitation] Can an attacker include malicious transactions in the TransactionMethodCallList that get executed via Context.SendInline after deployment, exploiting the newly deployed contract's uninitialized state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c546bdb-bc37-4e84-9de2-e592e3c54045?mode=deep",
+    "timestamp": "2026-02-19 03:43:23.515248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetMethodFee()] [Fee Manipulation] Can an attacker who controls MethodFeeController.OwnerAddress set method fees to 0 for all critical functions, enabling free spam attacks on the contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97f775fa-db45-4145-8d0f-cb4f144ae5d9?mode=deep",
+    "timestamp": "2026-02-19 03:43:51.070365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetMethodFee()] [Fee Manipulation] Can an attacker set method fees to maximum int64 value, effectively preventing anyone from calling those methods due to prohibitive costs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5a6f078-0460-4ffe-84e8-0fac1c9c5713?mode=deep",
+    "timestamp": "2026-02-19 03:44:19.699677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ChangeMethodFeeController()] [Privilege Escalation] Can an attacker change MethodFeeController to an organization they control, then set fees to manipulate contract economics or block legitimate usage? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be985169-bd94-4f2d-9276-7225556d9dc8?mode=deep",
+    "timestamp": "2026-02-19 03:44:47.402685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: GetMethodFee()] [Special Case Bypass] Can an attacker exploit the special case for ReleaseApprovedUserSmartContract where IsSizeFeeFree is true to perform unbounded operations without paying size fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddbf9bcb-9165-498d-993e-b294dd921ac5?mode=deep",
+    "timestamp": "2026-02-19 03:45:18.901080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Race] Can an attacker front-run the first call requiring MethodFeeController to set it to a malicious Parliament organization address before the legitimate initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae47038c-0968-4c35-a16b-a83009830de7?mode=deep",
+    "timestamp": "2026-02-19 03:45:46.713842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: GetContractInfo()] [Information Disclosure] Can an attacker enumerate all deployed contracts and their authors by iterating through addresses, potentially identifying high-value targets or contract relationships? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_553b7f72-7b0d-4234-9265-15d16fd51e97?mode=deep",
+    "timestamp": "2026-02-19 03:46:15.719368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: GetContractAddressByName()] [Name Squatting] Can an attacker deploy a malicious contract with a name hash that collides with or resembles a system contract name, tricking users into interacting with the wrong contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e2ad890-175a-472d-9d13-3d5ecff4ee28?mode=deep",
+    "timestamp": "2026-02-19 03:46:47.079269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ValidateSystemContractAddress()] [Fake System Contract] Can an attacker bypass system contract validation by registering a malicious contract with a name hash that matches a legitimate system contract's hash? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0ab0e8c-3e3d-4b96-851e-f84a103fab8a?mode=deep",
+    "timestamp": "2026-02-19 03:47:17.606830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: GetSigner()] [Privacy Leak] Can an attacker discover signer relationships between addresses by querying GetSigner for all known addresses, revealing off-chain identity connections? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_521aaa61-7bc2-4ae2-b3fb-cb3e0330314d?mode=deep",
+    "timestamp": "2026-02-19 03:47:45.414325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ProposeUpdateContract()] [Version Rollback] Can an attacker update a contract to an older version by manipulating the version check in AssertContractVersion, potentially reintroducing previously patched vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f18c9d8-69c0-4f1b-9000-8604fcf2c524?mode=deep",
+    "timestamp": "2026-02-19 03:48:15.669866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: AssertContractVersion()] [Version Bypass] Can an attacker bypass the IsSubsequentVersion check by manipulating the SmartContractRegistration fields passed to Context.CheckContractVersion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0efe60d4-06e8-44cd-8b11-e685b818dda6?mode=deep",
+    "timestamp": "2026-02-19 03:48:44.113496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: UpdateSmartContract() in Helper] [Version Inconsistency] If Context.UpdateSmartContract returns contractInfo.IsSubsequentVersion as false but the assertion is somehow bypassed, can the contract be updated to an incompatible version causing runtime failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7002a0f4-b5e6-481c-b69c-b9b108381f9e?mode=deep",
+    "timestamp": "2026-02-19 03:49:14.816544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ProposeUpdateContract()] [Update Authorization Bypass] Can an attacker update Genesis contract (Context.Self) without going through proper authorization by exploiting the condition 'input.Address == Context.Self || info.SerialNumber > 0' that allows self-updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7241f6d-63a9-407c-b6c9-8c648ed9b066?mode=deep",
+    "timestamp": "2026-02-19 03:49:44.926590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ProposeUpdateContract()] [Compatibility Check Bypass] Can an attacker update a contract from one requiring ContractOperation (SerialNumber == 0) to one that doesn't, or vice versa, by manipulating the compatibility check at line 189-190? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5391665f-090c-476b-a86d-d1fbad929ac9?mode=deep",
+    "timestamp": "2026-02-19 03:50:13.127174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: Initialize()] [Reinitialization] Can an attacker somehow reset State.Initialized.Value to false and call Initialize again, changing ContractDeploymentAuthorityRequired and bypassing all security controls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ad373f6-6483-4ad7-b8c5-da5c5b5999d0?mode=deep",
+    "timestamp": "2026-02-19 03:50:40.491821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetInitialControllerAddress()] [Controller Hijacking] Can an attacker call SetInitialControllerAddress multiple times if State.ContractDeploymentController.Value and State.CodeCheckController.Value are somehow cleared, replacing legitimate controllers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6614b005-fbe0-47fe-a159-c4dc9a8534bf?mode=deep",
+    "timestamp": "2026-02-19 03:51:08.486045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [Organization Creation Race] Can an attacker front-run the organization creation in CreateParliamentOrganizationForInitialControllerAddress to create a malicious organization that becomes the default controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06879faa-f200-48f6-ac13-d4464a8c8f70?mode=deep",
+    "timestamp": "2026-02-19 03:51:36.748346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetContractProposerRequiredState()] [Initialization Bypass] Can an attacker call SetContractProposerRequiredState after Initialize completes if State.Initialized.Value check is bypassed, manipulating the controller setup? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9aa865c8-ccb3-478c-84d7-faad1a4796b4?mode=deep",
+    "timestamp": "2026-02-19 03:52:05.026361",
+    "report_generated": false
+  }
+]
