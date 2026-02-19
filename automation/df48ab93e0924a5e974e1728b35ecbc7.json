@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Authorization Bypass] Can an attacker call InitialEconomicSystem multiple times before State.Initialized.Value is set to true at line 38, exploiting potential race conditions in concurrent transactions to create duplicate tokens or re-initialize critical contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e77ce94e-3359-4c7a-ba13-9fcb241db7f9?mode=deep",
+    "timestamp": "2026-02-19 13:18:13.038499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [State Corruption] If CreateNativeToken fails at line 24 but doesn't revert, could subsequent token creation calls at lines 25-26 proceed with an invalid native token, breaking the economic model's token dependencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_396a7841-8b67-485c-8de4-f992e5184e91?mode=deep",
+    "timestamp": "2026-02-19 13:18:35.947983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [DOS Attack] Can an attacker front-run the legitimate InitialEconomicSystem call with a malicious one that sets invalid parameters, causing the assertion at line 18 to permanently block initialization and freeze the entire economic system? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28cb71d3-40eb-4ea5-9457-fde351a47867?mode=deep",
+    "timestamp": "2026-02-19 13:18:59.233694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Missing Validation] Does the function validate that input.MiningRewardTotalAmount at line 30 is within reasonable bounds, or could passing MAX_LONG cause integer overflow when issuing mining rewards to consensus contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99af857b-029b-4de8-8d5e-b0e2f270634a?mode=deep",
+    "timestamp": "2026-02-19 13:19:23.265442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Missing Validation] Is input.NativeTokenTotalSupply validated before token creation at line 24, or could an attacker pass 0 or negative values to break token economics? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_929f6bc9-2fc2-4542-9cda-6cefc72afb09?mode=deep",
+    "timestamp": "2026-02-19 13:19:47.960632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Missing Validation] Are input.NativeTokenDecimals checked to be within valid range (e.g., 0-18), or could extreme values cause precision loss or overflow in subsequent token operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e1ca767-6d49-46b4-ac97-611cee1fe1e6?mode=deep",
+    "timestamp": "2026-02-19 13:20:13.362406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Partial Initialization] If InitialMiningReward at line 30 fails after tokens are created, does the contract remain in a partially initialized state where tokens exist but mining rewards are not distributed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_deac058c-b4a4-4c0e-bc2f-11d0940cb656?mode=deep",
+    "timestamp": "2026-02-19 13:20:41.244719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Cross-Contract Dependency] If State.TokenContract.InitialCoefficients at line 36 or InitializeAuthorizedController at line 37 fail, does State.Initialized get set to true anyway at line 38, leaving the system in an inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b8de9a4-a508-49ca-bbac-5cdfce437be7?mode=deep",
+    "timestamp": "2026-02-19 13:21:11.697370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Authorization Bypass] Is there any validation that the caller has authority to initialize the economic system, or can any user call this function if they win the race condition? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86504c44-eb5c-4b0f-9fa8-7b70897b8c7b?mode=deep",
+    "timestamp": "2026-02-19 13:21:45.379182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: InitialEconomicSystem()] [Supply Manipulation] If input.MiningRewardTotalAmount exceeds input.NativeTokenTotalSupply, does InitialMiningReward at line 30 cause token issuance to exceed total supply cap? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_373334bf-4e0e-4d13-ade2-a5fc4697fc1b?mode=deep",
+    "timestamp": "2026-02-19 13:22:15.129884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Authorization Bypass] The native token is created with Issuer = Context.Self at line 61 and Owner = Context.Self at line 63, but could an attacker manipulate Context.Self through delegatecall or similar mechanisms to gain control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d25d6f9-c99d-430c-bacb-b39b48e08014?mode=deep",
+    "timestamp": "2026-02-19 13:22:48.474157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Supply Manipulation] Is input.NativeTokenTotalSupply at line 58 validated against maximum safe values to prevent overflow in downstream operations like transfers or balance calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91f3c209-c7d5-4e67-803e-87c2f8ec4172?mode=deep",
+    "timestamp": "2026-02-19 13:23:21.869084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Missing Validation] If input.NativeTokenSymbol is empty, null, or contains special characters, could token creation succeed but break subsequent operations relying on valid symbol formatting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac7e89d1-3a2b-4c8f-9dc8-06a50970bbea?mode=deep",
+    "timestamp": "2026-02-19 13:23:56.240995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Lock Whitelist Bypass] The LockWhiteList at lines 44-52 filters null addresses at line 53, but could an attacker exploit contract address predictability to pre-compute and front-run whitelist additions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a3e33e0-cc43-4b43-8493-db61ddc3ae29?mode=deep",
+    "timestamp": "2026-02-19 13:24:27.732244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Token Property Manipulation] The IsBurnable property at line 60 is set from input.IsNativeTokenBurnable, but is this validated to ensure consistency with economic model requirements? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c1be7a7-3dfe-44f2-a92b-1c9e3a301533?mode=deep",
+    "timestamp": "2026-02-19 13:24:59.251760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Primary Token Hijacking] SetPrimaryTokenSymbol is called at line 66 without validation - could calling this multiple times or with malicious symbols break fee payment logic across the chain? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b1c3615-2dfe-4c00-986d-86be43d07fd5?mode=deep",
+    "timestamp": "2026-02-19 13:25:30.140133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [State Manipulation] If Context.GetContractAddressByName returns null for any contract at lines 46-51, those contracts are excluded from LockWhiteList at line 53, potentially breaking critical lock/unlock functionality for essential contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5593b311-7aac-436d-9c01-7a2e24989362?mode=deep",
+    "timestamp": "2026-02-19 13:26:02.003817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Token Name Injection] The TokenName is hardcoded as 'Native Token' at line 57, but should it be validated from input to prevent UI/display confusion attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0a69ac2-ba52-4d85-bb4f-28975c7b1c8f?mode=deep",
+    "timestamp": "2026-02-19 13:26:30.436439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Decimals Precision] Could setting NativeTokenDecimals at line 59 to extreme values (0 or 18) cause precision loss or overflow in price calculations with TokenConverter? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_177a3099-ee48-4742-b789-0dee284e08d4?mode=deep",
+    "timestamp": "2026-02-19 13:27:02.877822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateNativeToken()] [Lock Whitelist DOS] Could the Where clause at line 53 filtering null addresses be exploited by an attacker manipulating contract deployments to create an empty whitelist, breaking lock functionality? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb6035a1-950e-43cd-bfce-23fd96f6702e?mode=deep",
+    "timestamp": "2026-02-19 13:27:36.670094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateResourceTokens()] [Duplicate Token Creation] The loop at lines 80-103 creates tokens based on Context.Variables arrays - could duplicate symbols in PayTxFeeSymbolListName or PayRentalSymbolListName cause duplicate token creation attempts and revert? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f10271d-9e13-4995-82d6-63876b99efdc?mode=deep",
+    "timestamp": "2026-02-19 13:28:10.156458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateResourceTokens()] [Supply Inflation] Each resource token gets issued the full ResourceTokenTotalSupply (500M tokens) to tokenConverter at lines 96-102 - is there validation that this doesn't exceed any global supply limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6765d31-96ef-4dd2-bb63-5a7e63297845?mode=deep",
+    "timestamp": "2026-02-19 13:28:42.648356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateResourceTokens()] [Authorization Bypass] Resource tokens are issued to tokenConverter at line 100 with Issuer = Context.Self at line 90 - could manipulating the tokenConverter address at line 72 redirect these tokens to an attacker-controlled address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_108a8268-5053-4497-a060-065815ae25a7?mode=deep",
+    "timestamp": "2026-02-19 13:29:15.277612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateResourceTokens()] [Symbol Injection] The Union operation at line 82 merging PayTxFeeSymbolListName and PayRentalSymbolListName - could injecting malicious symbols into Context.Variables break downstream token operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d0c1e7e-35cf-455e-baca-6dc8fc41e786?mode=deep",
+    "timestamp": "2026-02-19 13:29:47.634993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Function: CreateResourceTokens()] [Lock Whitelist Vulnerability] The LockWhiteList at lines 74-79 only includes Treasury and TokenConverter - could excluding other critical contracts break resource token locking for vote/profit contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6731ded4-63b9-40b0-af0b-400c0127f312?mode=deep",
+    "timestamp": "2026-02-19 13:30:15.959430",
+    "report_generated": false
+  }
+]
