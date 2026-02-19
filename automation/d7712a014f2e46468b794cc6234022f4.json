@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [State Synchronization] Can asynchronous updates to different state variables create windows where the contract is in an inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_faf59a2f-8b88-4849-846b-92a84e9f7621?mode=deep",
+    "timestamp": "2026-02-19 12:55:07.269406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Migration Vulnerability] Can contract upgrades fail to properly migrate all four state variables, causing data loss or corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1daba971-80c5-4352-af23-c7c30c923734?mode=deep",
+    "timestamp": "2026-02-19 12:55:29.893028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Access Pattern Mismatch] Can different state variables have inconsistent access control, allowing unauthorized reads or writes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff748608-ca1a-4068-bc2f-88b0138a0c41?mode=deep",
+    "timestamp": "2026-02-19 12:55:53.063423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Storage Exhaustion] Can unlimited growth of Configurations and TransactionFees mappings exhaust contract storage limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edf42702-46d1-4289-acd5-5cf0015cb5be?mode=deep",
+    "timestamp": "2026-02-19 12:56:17.282591",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Concurrent Modification] Can concurrent transactions modify ConfigurationController while Configurations are being set, causing race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e54808a6-dc55-4638-b375-78487d1915c0?mode=deep",
+    "timestamp": "2026-02-19 12:56:42.019366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Orphaned References] Can changing ConfigurationController or MethodFeeController orphan existing TransactionFees or Configurations entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f171a4ec-cfc9-46c3-aebe-0d877618ddf8?mode=deep",
+    "timestamp": "2026-02-19 12:57:08.401113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Backup/Recovery] Can state corruption in any of the four variables prevent recovery or backup operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b24fb78-ab91-4d0d-9dd4-75a4bc889a29?mode=deep",
+    "timestamp": "2026-02-19 12:57:34.642255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Gas Limit Exploitation] Can reading all state variables in a single transaction exceed gas limits, causing DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f78c663-8cc3-4af9-9d79-6176c42e71d0?mode=deep",
+    "timestamp": "2026-02-19 12:58:04.721258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Type Safety] Can the lack of compile-time type checking on state mappings allow runtime type errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3858ce8-1727-42f4-a379-dc6139e0833f?mode=deep",
+    "timestamp": "2026-02-19 12:58:36.064471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController + Configurations] [Authorization Bypass] Can Configurations be modified directly without checking ConfigurationController authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c6c7424-73e7-4f1e-b63b-7d7d41ae1aa9?mode=deep",
+    "timestamp": "2026-02-19 12:59:05.760757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController + TransactionFees] [Fee Manipulation] Can TransactionFees be updated without verifying MethodFeeController ownership? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5937a400-da66-48ac-a99a-1f249ebb5e0c?mode=deep",
+    "timestamp": "2026-02-19 12:59:38.731432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Controller Hijacking] Can the ConfigurationController be replaced by a malicious organization mid-flight during configuration updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_865c86bf-90ed-45f8-a860-9f280d17c09f?mode=deep",
+    "timestamp": "2026-02-19 13:00:14.146128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Authority Validation] Can the MethodFeeController point to a contract that doesn't implement proper authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72ba3e86-08de-450b-bd58-d3ccb9a3d6d4?mode=deep",
+    "timestamp": "2026-02-19 13:00:49.270184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All Controllers] [Default Value Attack] Can both controllers fall back to unsafe default values if not properly initialized? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d93cb5ce-3e3e-4bb7-b454-a58809b635a2?mode=deep",
+    "timestamp": "2026-02-19 13:01:21.203763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Data Tampering] Can BytesValue in Configurations be modified in-place without proper audit logging? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8391494-37dd-49c6-a717-07c4b2aef180?mode=deep",
+    "timestamp": "2026-02-19 13:01:52.568264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Fee Integrity] Can MethodFees in TransactionFees be corrupted to charge wrong amounts or wrong tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ef5e9d0-8b68-4e10-9337-9946abb91beb?mode=deep",
+    "timestamp": "2026-02-19 13:02:25.275999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Hash Collision] Can malicious configuration keys be crafted to collide with critical system configurations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e07f8437-b8e2-499d-8648-7ed2eff978b9?mode=deep",
+    "timestamp": "2026-02-19 13:02:58.448527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Checksum Missing] Can any of the state variables be modified without checksum validation, allowing undetected corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_395fcd5b-38e6-42dc-9a77-0ecca2b5b688?mode=deep",
+    "timestamp": "2026-02-19 13:03:31.411191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Economic Imbalance] Can TransactionFees be set to extract excessive rent from users, creating economic centralization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4702c83-2db0-48b3-be7c-e191674451ca?mode=deep",
+    "timestamp": "2026-02-19 13:04:05.856220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Zero Fee Exploit] Can critical methods have zero fees in TransactionFees, enabling spam and resource exhaustion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_031edbbe-8df2-4f17-897f-7aea906fa5ea?mode=deep",
+    "timestamp": "2026-02-19 13:04:39.823781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Fee Token Mismatch] Can TransactionFees reference non-existent or unbacked tokens, causing collection failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b48996da-bd5c-4568-98d4-06a9fdc8518a?mode=deep",
+    "timestamp": "2026-02-19 13:05:13.922536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Dynamic Fee Attack] Can an attacker manipulate TransactionFees dynamically based on transaction ordering to extract MEV? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfe60779-20aa-4d78-a881-d3f60af5a3ff?mode=deep",
+    "timestamp": "2026-02-19 13:05:49.258389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Storage DoS] Can an attacker flood Configurations with garbage entries to exhaust storage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70a52520-fec1-4012-985c-7636467cd424?mode=deep",
+    "timestamp": "2026-02-19 13:06:25.882686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Lookup DoS] Can excessive TransactionFees entries slow down fee lookups to unacceptable levels? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cd2ae60-5dfe-4498-bc76-9b917f412c66?mode=deep",
+    "timestamp": "2026-02-19 13:07:01.686810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Upgrade DoS] Can state size growth prevent contract upgrades due to migration costs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_776431e4-863f-4583-b964-19f22b0f097f?mode=deep",
+    "timestamp": "2026-02-19 13:07:36.141711",
+    "report_generated": false
+  }
+]
