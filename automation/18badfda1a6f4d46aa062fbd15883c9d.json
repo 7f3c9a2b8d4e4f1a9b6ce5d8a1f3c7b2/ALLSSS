@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [No Term Validation] There's no check that currentRound and previousRound belong to the same term. Can cross-term reveals corrupt consensus when terms change? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_860c7a14-26a3-4e46-9214-3bec4cf0f686?mode=deep",
+    "timestamp": "2026-02-19 02:03:01.284970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Missing Pubkey Format Validation] publicKey parameter is not validated for format or length. Can invalid pubkey strings cause unexpected behavior in string comparisons (lines 17, 28)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b903d6b4-accb-480e-8116-f417211d483c?mode=deep",
+    "timestamp": "2026-02-19 02:04:03.499608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [No Secret Sharing Enabled Check] The function doesn't call IsSecretSharingEnabled() before processing. Can it reveal secrets even when secret sharing is disabled, violating configuration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5839195b-3f38-4e82-9019-dbd5de0f63d0?mode=deep",
+    "timestamp": "2026-02-19 02:04:26.014193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Missing Null Checks] currentRound and previousRound objects are used without null checks. If TryToGetPreviousRoundInformation succeeds but returns a null object, can this cause NullReferenceException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c94dbec5-3f1a-49bd-9dce-80e7fb43d3ab?mode=deep",
+    "timestamp": "2026-02-19 02:04:49.439524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [UpdateValue Interaction] If UpdateValue is called between getting previousRound and setting PreviousInValue, can this create race conditions or allow double-counting of secrets? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb2047e0-c870-463c-bd10-a0b28c28ac01?mode=deep",
+    "timestamp": "2026-02-19 02:05:13.616534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [NextRound Timing] If NextRound is triggered while RevealSharedInValues is executing, can the round transition invalidate the reveals or cause them to be applied to the wrong round? (High)",
+    "url": "https://deepwiki.com/grass-dev-pa/AElf-005",
+    "timestamp": "2026-02-19 02:05:38.532298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Configuration Update Race] If configuration is updated between checking IsSecretSharingEnabled and executing RevealSharedInValues, can this cause reveals to execute when they shouldn't or vice versa? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5bbbd7db-7e39-4941-99eb-13cd0019df27?mode=deep",
+    "timestamp": "2026-02-19 02:06:04.596017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [DecryptedPieces Update Attack] If another transaction modifies anotherMinerInPreviousRound.DecryptedPieces between lines 36 and 46, can the extracted shared parts be inconsistent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8cb05da-921f-4a0d-b29e-84703016eee3?mode=deep",
+    "timestamp": "2026-02-19 02:06:30.928493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Concurrent Reveals] If multiple transactions call RevealSharedInValues for different publicKeys simultaneously, can they interfere with each other's state modifications at line 52? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1f3ec40-f6fd-422a-a2ec-4972e7cce662?mode=deep",
+    "timestamp": "2026-02-19 02:06:58.866478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [ByteString Conversion] Line 47 calls ToByteArray() on DecryptedPieces values. If the ByteString is corrupted or malformed, can this return unexpected byte arrays breaking secret reconstruction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fecbbf0f-926e-464c-85fa-c0d01209e1a1?mode=deep",
+    "timestamp": "2026-02-19 02:07:26.287596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Protobuf Parsing] Lines 71-75 parse a BoolValue from configuration. If the configuration returns non-BoolValue data, can MergeFrom fail silently or produce incorrect results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e15d0eec-7d6f-415c-952e-587bc9126285?mode=deep",
+    "timestamp": "2026-02-19 02:07:56.920436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Hash Serialization] Line 50 passes decoded secret to HashHelper.ComputeFrom. If the secret is null or empty bytes, can this produce a hash of empty data leading to predictable hashes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01d29dd7-c213-4e8b-890e-38ea2ec44160?mode=deep",
+    "timestamp": "2026-02-19 02:08:24.948558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [StringValue Usage] Line 73-74 creates a StringValue with the configuration key. If the key contains special characters or is too long, can this cause issues in the GetConfiguration call? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea1fa469-5546-4361-9cbd-f951e4ca261a?mode=deep",
+    "timestamp": "2026-02-19 02:08:57.630154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [PreviousInValue Already Set] If PreviousInValue is already non-null before line 52, overwriting it could indicate either a legitimate re-reveal or a double-spend attack. Which is it, and how is this prevented? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8baa7d9-c599-4dd2-b7b8-5900b6c23adc?mode=deep",
+    "timestamp": "2026-02-19 02:09:31.473303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Partial Update Failure] If the function throws an exception after partially updating some miners' PreviousInValue (line 52), are the updates rolled back or do they persist, creating inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_907dd411-17b2-41d7-acab-3991f9e0a775?mode=deep",
+    "timestamp": "2026-02-19 02:10:05.999609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Round State Mutation] The function mutates currentRound but doesn't appear to save it back to state. Is the currentRound parameter a reference to State.Rounds, or are changes lost? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_573efad4-f0a8-4019-a481-0894b1513180?mode=deep",
+    "timestamp": "2026-02-19 02:10:39.287035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [State.ConfigurationContract Persistence] Line 68 sets State.ConfigurationContract.Value. If this transaction fails later, is this assignment rolled back or does it persist? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_502fd2a5-33e9-4b50-b4ba-12edd3cb8cd9?mode=deep",
+    "timestamp": "2026-02-19 02:11:12.347400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Secret Sharing Threshold Mismatch] SecretSharingHelper.DecodeSecret is called with minimumCount (line 50). If the shares were originally encoded with a different threshold, can decoding succeed but produce garbage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9820f87f-a891-4227-a8c1-a08cd526b6bf?mode=deep",
+    "timestamp": "2026-02-19 02:11:46.830325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Order List Validation] The 'orders' list (lines 40-44) is passed to DecodeSecret. If orders contains values outside valid range (e.g., negative, zero, or > field prime), can this break Lagrange interpolation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdd9c860-dc5e-4634-a27a-df218f7c65a1?mode=deep",
+    "timestamp": "2026-02-19 02:12:17.399443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Share Count vs Threshold] DecodeSecret receives minersCount shares (from DecryptedPieces) but uses minimumCount as threshold. If minersCount >> minimumCount, does this weaken security by providing more shares than necessary? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d0906e0-2811-4b1a-b024-d96ba92862e7?mode=deep",
+    "timestamp": "2026-02-19 02:12:50.963535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Polynomial Degree] Shamir's scheme uses a polynomial of degree k-1. If orders and sharedParts lists have different lengths, can this cause DecodeSecret to fail or use wrong polynomial degree? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fae64f32-905d-4582-b7f9-d058a4fcb4cd?mode=deep",
+    "timestamp": "2026-02-19 02:13:21.292129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Skip Self Logic Bypass] Line 28 skips when pair.Key == publicKey. But if a miner changes their publicKey between rounds, they could reveal their own previous round secret, violating the intended skip? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e23320c4-2a15-42e7-b65a-19ad11fa24d9?mode=deep",
+    "timestamp": "2026-02-19 02:13:51.807526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Continue Without Error] Lines 35-36 use 'continue' to skip miners not meeting threshold. Should these log warnings or emit events for monitoring failed reveals? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ceac561-aa4e-4f3d-8f33-f5bf46ae4b83?mode=deep",
+    "timestamp": "2026-02-19 02:14:26.603369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [No Duplicate Detection] If previousRound.RealTimeMinersInformation contains duplicate entries (same miner multiple times), the loop processes each, potentially setting PreviousInValue multiple times. Can this be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8b486db-291a-443b-8834-3f8a3bbc53f0?mode=deep",
+    "timestamp": "2026-02-19 02:15:00.439173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: IsSecretSharingEnabled()] [Default Return Value] If all checks pass but secretSharingEnabled.Value is uninitialized, line 77 returns the default bool (false). Is false the safe default or should it be true? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fffa367-b04c-4e41-9d11-d40c2bef36d5?mode=deep",
+    "timestamp": "2026-02-19 02:15:36.892641",
+    "report_generated": false
+  }
+]
