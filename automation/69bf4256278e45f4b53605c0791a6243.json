@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Clone Implementation] Does VotingRegisterInput.Clone() properly handle all reference types, or could shallow copying of nested objects allow the original Options collection to be modified through the clone? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6bc392b-5b64-4222-99ea-ed45dc94444f?mode=deep",
+    "timestamp": "2026-02-19 06:31:51.154253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Clone Performance] Could the Clone() operation be exploited for DOS by submitting VotingRegisterInput objects with extremely large Options collections that are expensive to clone? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be34aa08-6589-42b9-a2fb-4f953f77c24a?mode=deep",
+    "timestamp": "2026-02-19 06:32:13.676076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Clone Mutability] After calling input.Options.Clear() on the cloned object, are there any other mutable collections or properties in VotingRegisterInput that should also be cleared to ensure hash consistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a991e979-caab-4f3f-a6ac-37b9d6caf22a?mode=deep",
+    "timestamp": "2026-02-19 06:32:35.998265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Collection Mutation] Does Options.Clear() modify the collection's capacity or internal state in ways that could affect subsequent serialization for hash computation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f029f3c-b4b7-4c7c-abae-7c33f82c2627?mode=deep",
+    "timestamp": "2026-02-19 06:32:58.726470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Memory Safety] After Options.Clear(), are the cleared option objects properly garbage collected, or could memory leaks accumulate during high-volume voting item registration? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10d366a5-f12a-478a-90f9-123b317e92bd?mode=deep",
+    "timestamp": "2026-02-19 06:33:22.889468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Serialization] Does HashHelper.ComputeFrom serialize VotingRegisterInput deterministically, or could field ordering differences across protobuf versions cause hash mismatches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8624e327-bffc-4bff-8d54-1cda6ce5df5a?mode=deep",
+    "timestamp": "2026-02-19 06:33:48.879294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Serialization] When creating a new VotingResult with only VotingItemId and SnapshotNumber, are default values for other fields (if any) deterministic across all nodes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec0ec839-7de2-4851-8374-5d376a74baa0?mode=deep",
+    "timestamp": "2026-02-19 06:34:14.562822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Encoding] Does HashHelper enforce UTF-8 encoding for string fields in VotingRegisterInput/VotingResult, or could encoding variations cause hash inconsistencies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_819cae5f-9ae2-4dc5-b904-76b77b37270b?mode=deep",
+    "timestamp": "2026-02-19 06:34:41.241427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Numeric Overflow] Can SnapshotNumber overflow or underflow (if it's a signed integer), causing hash collisions when wrapping around max/min values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3665bae7-ca08-44cb-8d21-01d2982c695f?mode=deep",
+    "timestamp": "2026-02-19 06:35:07.617070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Cryptographic Strength] If HashHelper uses a weak hash algorithm (MD5, SHA1), could attackers feasibly generate hash collisions to create fraudulent voting items or results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2355d499-3508-4d37-a79b-c14e5dd4381d?mode=deep",
+    "timestamp": "2026-02-19 06:35:35.780582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Rainbow Table Attack] For common voting item patterns and well-known sponsor addresses, could attackers precompute hash tables to quickly identify voting item contents? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_460d5fdf-3c18-431d-9594-3cfdbb6655e8?mode=deep",
+    "timestamp": "2026-02-19 06:36:05.760618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Business Logic] Is it intentional that Options are excluded from hash computation, allowing the same sponsor to create multiple voting items with identical hashes but different options sets? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a80ab941-bb88-43c9-8fd6-6b90d70172f0?mode=deep",
+    "timestamp": "2026-02-19 06:36:33.948917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Business Logic] Is it intentional that only VotingItemId and SnapshotNumber determine result hash, allowing vote counts and voter lists to differ between results with same hash? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_935d7933-3dc6-49e4-9423-04d44d558252?mode=deep",
+    "timestamp": "2026-02-19 06:37:00.292066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Sponsor Binding] Does the hash function properly bind the voting item to the sponsor address to prevent sponsor impersonation, or could address formatting differences cause different sponsors to claim the same voting item? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7ffffe1-90f8-42e0-83b1-e830cf4f6b2a?mode=deep",
+    "timestamp": "2026-02-19 06:37:30.115699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Replay Attack] Without including timestamps or block heights in the hash, can an attacker replay a valid voting result hash from snapshot N to claim it represents snapshot M? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8367d2f8-cc14-4889-9e8a-2b74d7d744a9?mode=deep",
+    "timestamp": "2026-02-19 06:37:59.493887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Replay Attack] Without including nonces or timestamps, can the same sponsor re-register an identical voting item across different blocks using the same hash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b026e740-5deb-4bd6-bfac-891ec3c77a69?mode=deep",
+    "timestamp": "2026-02-19 06:38:28.541494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Data Integrity] If VotingRegisterInput contains signature fields or other authentication data, does excluding Options from hash break the integrity binding between options and authentication? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17f048da-5c6b-4158-893c-f70cdb232462?mode=deep",
+    "timestamp": "2026-02-19 06:38:55.782625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Data Integrity] By creating a new VotingResult object rather than hashing the complete input, could fields like ResultHash, ResultInfo, or VoteData be tampered with after hash generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6057b35-9b79-4d1e-a7fc-86b2ac68b7cd?mode=deep",
+    "timestamp": "2026-02-19 06:39:25.366974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [State Consistency] If these hash functions are called during state transitions, could differences in execution context (e.g., different block heights) affect hash computation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b400f4e3-426b-4cd5-b652-05d98d8b0076?mode=deep",
+    "timestamp": "2026-02-19 06:39:51.757485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Edge Case] How does the function handle VotingRegisterInput with empty or null string fields, zero-value integers, or empty collections besides Options? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65980c2e-47bc-41a0-a4ed-cc485c874ce8?mode=deep",
+    "timestamp": "2026-02-19 06:40:18.495213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Edge Case] How does the function handle VotingResult with Hash.Empty as VotingItemId or zero as SnapshotNumber? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61a0e09c-13a3-4b5e-a42b-b44a720c5c2a?mode=deep",
+    "timestamp": "2026-02-19 06:40:46.757571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Edge Case] If VotingRegisterInput.Options is already empty before cloning, does the Clear() operation introduce any behavioral differences? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96f80474-11e3-40b0-b97b-cc3851e52225?mode=deep",
+    "timestamp": "2026-02-19 06:41:15.564849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Cross-Contract] If external contracts call these extension methods, could they supply maliciously crafted inputs to cause hash collisions with legitimate voting system hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e906988a-f539-42e7-9b0a-2eb6550c4a81?mode=deep",
+    "timestamp": "2026-02-19 06:41:44.087687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Cross-Contract] Can election contracts or other voting consumers inject malicious data into VotingRegisterInput fields that bypass Options but still affect voting behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fe33fa5-ed44-4560-95f2-e8f3c9afe9e6?mode=deep",
+    "timestamp": "2026-02-19 06:42:13.768775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: Both GetHash methods] [Concurrency] In a multi-threaded node environment, could concurrent hash computations on the same or similar inputs cause cache pollution or timing side-channels? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46b7aaf6-0806-4347-a063-b33e1e1edd0f?mode=deep",
+    "timestamp": "2026-02-19 06:42:41.213327",
+    "report_generated": false
+  }
+]
