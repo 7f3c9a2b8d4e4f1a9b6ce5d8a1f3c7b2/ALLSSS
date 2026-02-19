@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Sybil Attack] If an attacker registers multiple pubkeys as miners and crafts providedRound.RealTimeMinersInformation to exclude some of them, can they bypass per-miner validation for their sybil identities? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12cd7555-2daf-4767-9c02-e87e9cd32264?mode=deep",
+    "timestamp": "2026-02-19 10:03:49.969649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Finality Attack] If a malicious miner controls the majority and repeatedly provides providedRound with ConfirmedIrreversibleBlockHeight exactly equal to baseRound value (no progression), can they stall chain finality while passing validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d702a58-bea2-42a8-93e0-6ce4ea7f12c1?mode=deep",
+    "timestamp": "2026-02-19 10:04:12.187240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Long-Range Attack] The validation doesn't check how far back providedRound's LIB can reference. Can an attacker craft a valid providedRound referencing ancient LIB heights to create alternative history branches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9eb3fba6-7be2-4d36-90cf-89335cd9bc4f?mode=deep",
+    "timestamp": "2026-02-19 10:04:34.554767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Nothing-at-Stake] If validation passes for multiple conflicting providedRounds (different branches with same LIB values), could miners produce blocks on multiple forks without penalty? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81aef9f5-687f-4e95-b1ab-f91dd4e0ee2e?mode=deep",
+    "timestamp": "2026-02-19 10:04:57.666966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Grinding Attack] Can miners repeatedly try different providedRound.ImpliedIrreversibleBlockHeight values until they find one that passes validation at line 26, even if it doesn't reflect true chain state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_699d0b82-d5dc-4063-ba7e-97c8d05ce173?mode=deep",
+    "timestamp": "2026-02-19 10:05:21.665431",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Censorship] If a miner sets providedRound.RealTimeMinersInformation to exclude certain miners' pubkeys, does this allow them to bypass implied LIB validation for those miners and censor their blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba366a8d-bbe7-4eb3-9f46-7bf98b69460e?mode=deep",
+    "timestamp": "2026-02-19 10:05:46.449457",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Data Corruption] If providedRound or baseRound are corrupted during serialization/deserialization, could invalid LIB values pass validation due to corrupted comparison values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4edd9e4d-411c-4a17-9779-50bb7ccc543b?mode=deep",
+    "timestamp": "2026-02-19 10:06:11.403300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Mutation] At line 23, providedRound.RealTimeMinersInformation is accessed. If this dictionary is mutable and modified during validation, could TOCTOU issues cause inconsistent validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1380e2f0-2c98-405c-aeef-2ad8e8c5886f?mode=deep",
+    "timestamp": "2026-02-19 10:06:38.827603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Memory Safety] If RealTimeMinersInformation dictionary is very large and validation is called frequently, could memory pressure cause validation failures or crashes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e9dde85-b45e-426d-bcaa-5ae4dd7b9bfa?mode=deep",
+    "timestamp": "2026-02-19 10:07:07.259076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Term Transition] During term transitions, miner lists change. If baseRound is from term N and providedRound from term N+1, does validation at line 25 fail for new miners who don't exist in baseRound? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e48614c4-6806-445a-b585-3e7862c44fb7?mode=deep",
+    "timestamp": "2026-02-19 10:07:36.230478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Round Transition] When transitioning from round N to N+1, if providedRound.ConfirmedIrreversibleBlockRoundNumber = N+1 but baseRound value = N, is this a legitimate progression or potential attack? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b8f9bf1-0d8f-4962-a50d-69defd390a86?mode=deep",
+    "timestamp": "2026-02-19 10:08:06.796188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Genesis Block] For the genesis block (round 0 or 1), are ConfirmedIrreversibleBlockHeight and ConfirmedIrreversibleBlockRoundNumber expected to be 0? Does validation handle genesis correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1dc0764-c466-41ba-88d2-36f466a89de9?mode=deep",
+    "timestamp": "2026-02-19 10:08:38.026434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Miner Rotation] If a miner is removed between baseRound and providedRound, their pubkey exists in baseRound but may be absent in providedRound. Does line 23's ContainsKey check correctly handle this rotation scenario? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60e444ca-c232-456b-ae78-f3039fd42973?mode=deep",
+    "timestamp": "2026-02-19 10:09:10.212261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validator Ordering] This validator runs after TimeSlotValidationProvider. If time slot validation modifies validationContext, could modified data cause LibInformationValidationProvider to produce incorrect results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7d8f1e3-a962-4279-8b92-2ac6df74d1b5?mode=deep",
+    "timestamp": "2026-02-19 10:09:42.639615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Bypass] If UpdateValueValidationProvider (which runs after this) invalidates the block, are LIB changes from providedRound already applied, causing state inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ccb4f94-8d7b-48dd-9c3b-783877261219?mode=deep",
+    "timestamp": "2026-02-19 10:10:15.841650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Shared State] Multiple validators access validationContext.BaseRound. If one validator modifies baseRound (e.g., RecoverFromUpdateValue), does this affect LibInformationValidationProvider's validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f67ef4cb-0414-478d-a3a3-c08177e40e01?mode=deep",
+    "timestamp": "2026-02-19 10:10:50.570503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Invariant] The validation doesn't check if providedRound.ConfirmedIrreversibleBlockHeight is less than or equal to current block height. Can future LIB heights be provided? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b3fdfa3-cefb-4857-a3e1-44d93328f29a?mode=deep",
+    "timestamp": "2026-02-19 10:11:24.102645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Invariant] No validation ensures ImpliedIrreversibleBlockHeight <= ConfirmedIrreversibleBlockHeight. Can implied LIB exceed confirmed LIB, violating finality semantics? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eeebe433-7da0-4303-bc27-dba2654da5f2?mode=deep",
+    "timestamp": "2026-02-19 10:11:58.132612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Invariant] The validation doesn't verify that all miners in providedRound have consistent LIB values. Can miners provide conflicting ImpliedIrreversibleBlockHeight values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7905656-10da-4a99-89bd-23bd297046f4?mode=deep",
+    "timestamp": "2026-02-19 10:12:31.540895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Invariant] No check ensures providedRound.ConfirmedIrreversibleBlockRoundNumber corresponds to a block at providedRound.ConfirmedIrreversibleBlockHeight. Can mismatched height/round pairs be provided? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a158412a-17c0-4332-82f6-0f510b6f80f2?mode=deep",
+    "timestamp": "2026-02-19 10:13:05.726815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Invariant] The validation doesn't check that baseRound and providedRound represent consecutive or properly ordered rounds. Can arbitrarily distant rounds be compared? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d74c1aa-9f68-40da-be3c-32b9ed6a2967?mode=deep",
+    "timestamp": "2026-02-19 10:13:39.727361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Scalability] As the miner count increases, RealTimeMinersInformation dictionary grows. Does line 23's ContainsKey operation scale linearly, potentially causing validation slowdowns with thousands of miners? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9d27bde-8d68-488c-a4de-f96dc7c4a1a0?mode=deep",
+    "timestamp": "2026-02-19 10:14:13.795683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Gas Cost] The validation performs dictionary lookups and comparisons. Under adversarial conditions with frequent validation failures, could gas costs for honest miners become prohibitive? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9d5fcd9-0e99-40e0-9a34-757070aada85?mode=deep",
+    "timestamp": "2026-02-19 10:14:48.294399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Upgrade Safety] If the contract upgrades and LIB field definitions change (e.g., new fields added to Round), does this validation remain backward-compatible with old blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56048271-9ddb-4667-8ddb-70a7c0c22c05?mode=deep",
+    "timestamp": "2026-02-19 10:15:22.820442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/LibInformationValidationProvider.cs] [Function: ValidateHeaderInformation()] [Migration] During chain migration, if baseRound is migrated with default/zero LIB values, could all subsequent validations fail at line 16 until proper LIB state is established? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_035c4d73-b128-45e2-93a4-c58c95138768?mode=deep",
+    "timestamp": "2026-02-19 10:15:56.192765",
+    "report_generated": false
+  }
+]
