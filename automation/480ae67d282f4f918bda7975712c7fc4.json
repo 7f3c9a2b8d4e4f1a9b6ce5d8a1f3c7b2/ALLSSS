@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Count()] [Null Reference] Can Count() throw NullReferenceException if proposerWhiteList.Proposers is null, allowing DOS of organization validation during CreateOrganization or ChangeOrganizationProposerWhiteList? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fdd0916-a240-47d6-bdd7-46e319e5d2e4?mode=deep",
+    "timestamp": "2026-02-19 05:05:35.403135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Count()] [Integer Overflow] If Proposers list contains int.MaxValue elements, can Count() overflow when used in threshold validation comparisons in Validate(), causing incorrect approval threshold checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64d2dd9e-4535-4237-94ce-9f3570c284c2?mode=deep",
+    "timestamp": "2026-02-19 05:05:57.492698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Count()] [Performance DOS] Can an attacker create ProposerWhiteList with extremely large Proposers count to cause gas exhaustion in Count() during validation, blocking organization creation or whitelist changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7286f87-12b1-4392-abcf-5c4d554fd16a?mode=deep",
+    "timestamp": "2026-02-19 05:06:19.916535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Empty()] [Logic Error] Does Empty() correctly handle edge case where proposerWhiteList.Proposers exists but Count() returns 0, potentially allowing organizations with empty proposer whitelists to bypass Validate() check at line 63? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00553bf2-d16f-4bc1-b6a0-62711ce02ab6?mode=deep",
+    "timestamp": "2026-02-19 05:06:43.261460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Empty()] [Null Handling] If proposerWhiteList is null, does Empty() fail gracefully or throw exception during Validate() execution, enabling DOS of organization operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83bac906-018c-464c-8d84-19a2187c5605?mode=deep",
+    "timestamp": "2026-02-19 05:07:07.084893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Empty()] [Authorization Bypass] Can Empty() return false for a whitelist with only null addresses, allowing organizations with invalid proposers to pass validation and enable unauthorized proposal creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc8cba7f-1409-45c4-8cc9-06c453307b52?mode=deep",
+    "timestamp": "2026-02-19 05:07:31.767574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Empty()] [Race Condition] Can concurrent calls to ChangeOrganizationProposerWhiteList() cause Empty() to return inconsistent results during validation, allowing temporarily empty whitelists? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa575d08-0e63-40c1-a97b-4b7b415b691c?mode=deep",
+    "timestamp": "2026-02-19 05:07:57.036522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(ProposerWhiteList)] [Address Comparison] Does AnyDuplicate() use proper Address equality comparison, or can it fail to detect duplicates if addresses have different byte representations but same value, bypassing validation at line 64? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49b5ad6b-388b-4085-82f4-2c10c3bbab67?mode=deep",
+    "timestamp": "2026-02-19 05:08:24.356892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(ProposerWhiteList)] [Null Duplicate] Can AnyDuplicate() return false if multiple null addresses exist in Proposers list, allowing invalid organizations with duplicate null proposers to pass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bb6ed6e-1320-4208-8be9-e5bbe178e315?mode=deep",
+    "timestamp": "2026-02-19 05:08:51.059845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(ProposerWhiteList)] [Performance DOS] Can an attacker provide ProposerWhiteList with thousands of unique addresses to cause O(n²) GroupBy operation to exhaust gas during CreateOrganization validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ea99bf1-0368-4f65-98e4-d30dcfe36b5e?mode=deep",
+    "timestamp": "2026-02-19 05:09:20.557969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(ProposerWhiteList)] [Logic Bypass] If all addresses in Proposers are distinct but one address appears in both ProposerWhiteList and OrganizationMemberList, can this bypass duplicate detection enabling single entity to control both proposal creation and approval? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24fb7d37-cbeb-4082-afab-9fb29b927eb7?mode=deep",
+    "timestamp": "2026-02-19 05:09:48.909647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(ProposerWhiteList)] [Empty List Edge Case] Does AnyDuplicate() return false for empty list (correct) but fail to prevent subsequent Contains() checks from always returning false, enabling authorization bypass? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f7dd047-b82f-439e-a59b-97e73e01a978?mode=deep",
+    "timestamp": "2026-02-19 05:10:18.607846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(ProposerWhiteList)] [Case Sensitivity] Can addresses with different case representations pass duplicate check, allowing same proposer to be whitelisted multiple times and gain disproportionate proposal creation power? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9085a87-98fd-49d0-a2d3-b0422726406a?mode=deep",
+    "timestamp": "2026-02-19 05:10:49.045909",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Vote Counting] Can duplicate members in OrganizationMemberList.OrganizationMembers bypass detection, enabling single address to vote multiple times in Approve/Reject/Abstain and manipulate proposal outcomes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_baaad084-e8cc-4d30-b15e-e2bb9b1aca59?mode=deep",
+    "timestamp": "2026-02-19 05:11:20.377025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Threshold Manipulation] If AnyDuplicate() fails to detect duplicate organization members, can attacker create organization where MinimalApprovalThreshold is set higher than actual unique member count, freezing all proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e53adafb-fd23-4007-a9d0-e44665da1fbc?mode=deep",
+    "timestamp": "2026-02-19 05:11:52.012989",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Address Equality] Does AnyDuplicate() use correct Address.Equals() implementation, or can addresses with identical value but different object references pass duplicate check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fa813d4-f0d1-447f-b6cc-3f325876e835?mode=deep",
+    "timestamp": "2026-02-19 05:12:22.219672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Null Members] Can multiple null addresses in OrganizationMembers pass duplicate detection, allowing invalid organizations with null voters to be created? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2db9b025-5a3d-42f1-ab8f-6d92eadc45a0?mode=deep",
+    "timestamp": "2026-02-19 05:12:54.243915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Gas Exhaustion] Can extremely large OrganizationMemberList with O(n²) GroupBy complexity cause transaction failure during AddMember/ChangeMember operations, enabling DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee8205f6-0b00-4b57-a53c-6813d431da20?mode=deep",
+    "timestamp": "2026-02-19 05:13:26.332838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Race Condition] During concurrent AddMember() calls, can duplicate members be added between validation check and state update, bypassing AnyDuplicate() detection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edb4ea39-e0cf-47ad-b20c-1c83c674690b?mode=deep",
+    "timestamp": "2026-02-19 05:13:59.105264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: AnyDuplicate(OrganizationMemberList)] [Validation Timing] Is AnyDuplicate() called after AddMember/ChangeMember modifies the list, allowing temporary state with duplicates that could be exploited during voting window? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa94d889-2967-492b-9d17-4b012d64529c?mode=deep",
+    "timestamp": "2026-02-19 05:14:27.906468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Authorization Bypass] Can Contains() fail to properly check proposer authorization if address parameter is null but Proposers list contains null, allowing unauthorized CreateProposal execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de6c8d05-43e2-4d11-9fab-77e9260acfcf?mode=deep",
+    "timestamp": "2026-02-19 05:14:58.446289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Address Comparison] Does Contains() use reference equality or value equality for Address comparison, potentially allowing attacker to bypass AssertIsAuthorizedProposer check with different Address instance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a07fa1fa-3e16-402e-8b03-9ded557c7108?mode=deep",
+    "timestamp": "2026-02-19 05:15:28.632670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Case Sensitivity] Can addresses with different case/encoding pass Contains() check differently, enabling unauthorized proposers to create proposals by manipulating address format? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_004fa5af-b82d-45a2-90be-fcaa0ace0318?mode=deep",
+    "timestamp": "2026-02-19 05:15:57.916993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Null Proposer List] If ProposerWhiteList.Proposers is null, does Contains() throw exception or return false, and can this be exploited to DOS proposal creation for valid organizations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9bcb66e-f23b-451a-86cb-f3d607c61590?mode=deep",
+    "timestamp": "2026-02-19 05:16:27.651859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Performance DOS] Can extremely large Proposers list cause Contains() linear search to exceed gas limit during CreateProposal, blocking legitimate proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a812735-38dd-4e9a-9616-2d08c54b74e4?mode=deep",
+    "timestamp": "2026-02-19 05:16:57.845433",
+    "report_generated": false
+  }
+]
