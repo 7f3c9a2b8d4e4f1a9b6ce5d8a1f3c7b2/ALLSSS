@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Integer Overflow] Can an attacker cause integer overflow by repeatedly calling TryAdd with large positive values for the same key, causing this[key].Add(value) to overflow beyond long.MaxValue, resulting in negative accumulated values or wrapped-around balances that corrupt profit distribution calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3cc433a5-8bbd-465b-a98f-808c7f133198?mode=deep",
+    "timestamp": "2026-02-19 12:00:46.694860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Arithmetic Error] If value parameter is negative, can TryAdd be exploited to reduce accumulated amounts through this[key].Add(value), enabling an attacker to decrease removed profit amounts and claim more than entitled share from the profit scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f4c22fe-d897-4f55-847c-264e2e8d649d?mode=deep",
+    "timestamp": "2026-02-19 12:01:09.314299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Integer Underflow] Can sequential calls with alternating large positive and negative values cause underflow when accumulated value approaches long.MinValue, corrupting the RemovedDetails state and profit accounting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1408f06-8237-4319-a61e-fcfbead90122?mode=deep",
+    "timestamp": "2026-02-19 12:01:31.938876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Overflow Recovery] If this[key].Add(value) throws an overflow exception, does the method leave the dictionary in an inconsistent state where ContainsKey(key) is true but the value is corrupted or partially updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7c6d074-bfd3-43bd-aed5-9766b4ac8cc5?mode=deep",
+    "timestamp": "2026-02-19 12:01:55.143116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Boundary Condition] Can an attacker pass value = long.MaxValue when this[key] is already near long.MaxValue, causing the Add() operation to overflow and wrap to a large negative number, manipulating profit removal tracking? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1db00b79-3cf9-4c54-95a1-fb0a141c667d?mode=deep",
+    "timestamp": "2026-02-19 12:02:18.863532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Race Condition] If multiple transactions call TryAdd for the same key concurrently, can the read-modify-write operation (ContainsKey check + this[key].Add(value)) create a race condition where accumulated values are lost or double-counted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5832a115-e7a1-4d15-9566-0f37ff2c230d?mode=deep",
+    "timestamp": "2026-02-19 12:02:43.831507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [TOCTOU] Between the ContainsKey(key) check and the this[key] assignment, can another transaction modify the same key, causing a time-of-check-time-of-use vulnerability that leads to incorrect accumulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_500fbfec-5318-4387-8160-6fee1bd0c929?mode=deep",
+    "timestamp": "2026-02-19 12:03:10.140947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [State Inconsistency] If the dictionary is modified by external code between ContainsKey check and value update, can this cause the accumulated value to be incorrect, violating profit distribution invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26ec08b5-742d-42c2-81be-f708d32dcd78?mode=deep",
+    "timestamp": "2026-02-19 12:03:36.364462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Missing Validation] Can an attacker pass negative values to TryAdd without any validation, allowing them to reduce accumulated removal amounts and manipulate profit distributions in their favor? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf453561-88c4-4554-bdcb-6eb5fe552cfd?mode=deep",
+    "timestamp": "2026-02-19 12:04:04.316091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Zero Value] Can passing value = 0 to TryAdd be exploited to add keys without actual value accumulation, potentially causing DOS by filling the dictionary with meaningless entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c0355da-0506-43da-b335-e336387ae10f?mode=deep",
+    "timestamp": "2026-02-19 12:04:32.992719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Negative Key] Does TryAdd allow negative period keys, potentially causing confusion with future positive period keys or enabling attackers to inject invalid historical removal data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66f0d3bb-695a-4f74-a6f0-155ae36a45fe?mode=deep",
+    "timestamp": "2026-02-19 12:05:01.438870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Max Value] Can an attacker call TryAdd(key, long.MaxValue) multiple times to force overflow on the second call, corrupting the accumulated value for that period? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bd28c00-5f80-48b1-b165-73295bdc8d69?mode=deep",
+    "timestamp": "2026-02-19 12:05:29.239734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [DOS] Can an attacker spam TryAdd with unique keys to grow the dictionary unbounded, exhausting contract storage and causing DOS for legitimate profit removal operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5aaa802-2970-4446-8a32-7e282af8572f?mode=deep",
+    "timestamp": "2026-02-19 12:05:56.733287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Storage Bloat] If there is no limit on the number of keys that can be added, can an attacker deliberately add millions of period entries to bloat state storage and increase gas costs for all operations that iterate over RemovedDetails? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0f88550-0339-4710-9e88-09dc6760275b?mode=deep",
+    "timestamp": "2026-02-19 12:06:22.501291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Gas Griefing] Can an attacker add many keys with small values, then call operations that iterate over the entire dictionary, causing excessive gas consumption and preventing legitimate profit withdrawals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6d44320-5218-4380-8351-557219f842ce?mode=deep",
+    "timestamp": "2026-02-19 12:06:49.174876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Accumulation Logic] If a beneficiary is removed multiple times in the same period, does TryAdd correctly accumulate all removal amounts, or can the accumulation logic be exploited to under-report or over-report removed weights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0118d786-12b6-4e06-b45d-1c93ddb5d0ca?mode=deep",
+    "timestamp": "2026-02-19 12:07:16.581296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Period Manipulation] Can an attacker call TryAdd for future periods that haven't occurred yet, pre-filling removal data and corrupting profit calculations when those periods are processed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6858fba-c70e-4304-aaaf-22135ba231de?mode=deep",
+    "timestamp": "2026-02-19 12:07:44.769327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Historical Tampering] Can an attacker call TryAdd for past periods after profit distribution has occurred, retroactively modifying removal amounts and invalidating already-processed distributions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be0b3280-3d62-4936-8f64-0fdffc24f7c6?mode=deep",
+    "timestamp": "2026-02-19 12:08:12.623583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Double Removal] If a beneficiary's removal is recorded twice via TryAdd for the same period, does the accumulation (this[key].Add(value)) correctly reflect both removals, or does it enable the beneficiary to claim profits they shouldn't receive? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e015ee9a-0f4d-459f-9a8a-c064830f6ff2?mode=deep",
+    "timestamp": "2026-02-19 12:08:39.806171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Class: RemovedDetails] [Inheritance] Since RemovedDetails extends Dictionary<long, long>, can external code directly call base dictionary methods (Remove, Clear, etc.) to bypass TryAdd and corrupt the removal tracking state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49f6cd9b-7aba-4415-a005-89ebedb14b60?mode=deep",
+    "timestamp": "2026-02-19 12:09:06.727195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Class: RemovedDetails] [Direct Access] Can external code directly assign values using this[key] = value instead of TryAdd, bypassing the accumulation logic and allowing overwrite of existing removal amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d98afd1-988d-462b-ab02-781f36f89bad?mode=deep",
+    "timestamp": "2026-02-19 12:09:33.655891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Class: RemovedDetails] [Clear Operation] Can calling the inherited Clear() method delete all removal history, allowing attackers to erase evidence of beneficiary removals and enabling removed users to claim profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3acd582-e7a7-4934-9fb4-2da644d69a89?mode=deep",
+    "timestamp": "2026-02-19 12:10:01.561274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Class: RemovedDetails] [Remove Operation] Can calling the inherited Remove(key) method delete specific period removal data, allowing manipulation of profit calculations for that period? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6dc3aadb-1b07-480a-9a7f-747fdc2924b1?mode=deep",
+    "timestamp": "2026-02-19 12:10:29.609268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Class: RemovedDetails] [Type Casting] If RemovedDetails is cast back to Dictionary<long, long>, can the code bypass TryAdd's accumulation logic and directly manipulate values in ways that violate profit scheme invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8a1f9ba-41d2-4d84-8fa7-61633d8c243a?mode=deep",
+    "timestamp": "2026-02-19 12:10:58.435564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Function: TryAdd()] [Method Override] Since TryAdd is not an override of any Dictionary method, can external code still use the base Dictionary's indexer or Add method to insert values without accumulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f181cced-97db-4422-b3e2-f5b044f5df76?mode=deep",
+    "timestamp": "2026-02-19 12:11:27.455181",
+    "report_generated": false
+  }
+]
