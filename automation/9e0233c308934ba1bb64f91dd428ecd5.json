@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Public Key Injection] Can _processingBlockMinerPubkey be set to arbitrary value via input.Value.ToHex() allowing unauthorized command generation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e27eb8a8-8289-4c3c-82d9-83ef7bf3f129?mode=deep",
+    "timestamp": "2026-02-19 09:20:32.767114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Status Downgrade Attack] Can an attacker manipulate libRoundNumber vs currentRoundNumber difference to force Severe status and reduce max blocks to 1? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3987a5bd-7c13-4458-8195-8b89824542d8?mode=deep",
+    "timestamp": "2026-02-19 09:20:55.142561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Division by Zero] In Abnormal status, if currentRound.RealTimeMinersInformation.Count is 0, can Ceiling cause division by zero? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0927770-971f-4585-a674-f93f39e28fe8?mode=deep",
+    "timestamp": "2026-02-19 09:21:17.845070",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [State Persistence Attack] Can IsPreviousBlockInSevereStatus.Value be stuck at true, permanently limiting blocks to 1 even after recovery? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b73e8bc6-bd05-47fb-8001-84f50507df92?mode=deep",
+    "timestamp": "2026-02-19 09:21:41.447730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetMaximumBlocksCount.cs] [Function: GetMaximumBlocksCount()] [Mined Miner List Missing] If State.MinedMinerListMap[roundNumber] returns null during Abnormal status calculation, can this cause exception or incorrect factor calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69be68a7-a399-4523-b270-f423237521e4?mode=deep",
+    "timestamp": "2026-02-19 09:22:05.346845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ResetLatestProviderToTinyBlocksCount()] [Counter Underflow] Can BlocksCount.Sub(1) underflow below zero if called multiple times rapidly, causing negative block counts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf650e44-22b0-499f-bc81-15d5437530f2?mode=deep",
+    "timestamp": "2026-02-19 09:22:30.252036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: RecordMinedMinerListOfCurrentRound()] [Memory Cleanup Bypass] If removeTargetRoundNumber calculation overflows or goes negative, can old mined miner lists persist indefinitely causing state bloat? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62767f5c-b260-4910-9423-86232db5b82c?mode=deep",
+    "timestamp": "2026-02-19 09:22:55.524965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Authorization Bypass] Can MaximumMinersCountController.OwnerAddress be manipulated before RequiredMaximumMinersCountControllerSet completes, allowing unauthorized updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86d4d333-ef57-4898-8f91-3997eb19fb81?mode=deep",
+    "timestamp": "2026-02-19 09:23:21.859851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMaximumMinersCount()] [Invalid Count] Can input.Value be set to negative value passing the Assert(input.Value > 0) check due to type conversion issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cd06d13-62f7-4c96-b8b6-7e07bc93752b?mode=deep",
+    "timestamp": "2026-02-19 09:23:50.498784",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: ChangeMaximumMinersCountController()] [Controller Replacement Attack] Can ChangeMaximumMinersCountController be called by current controller to set new controller to malicious address without multi-sig approval? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36bdc50a-baee-4ffb-b21e-a406d4217c72?mode=deep",
+    "timestamp": "2026-02-19 09:24:20.448644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: SetMinerIncreaseInterval()] [Interval Decrease Only] Assert checks input.Value <= current interval, but can this be exploited to freeze interval at low value preventing miner growth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57126e9e-cb07-49c1-9367-6a00c58f3473?mode=deep",
+    "timestamp": "2026-02-19 09:24:51.191556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Time Manipulation] Can CurrentBlockTime - BlockchainStartTimestamp calculation overflow for very large time differences, causing incorrect miner count? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_606dae14-c6b4-412e-a7fc-2459ceb4c196?mode=deep",
+    "timestamp": "2026-02-19 09:25:21.957940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_MaximumMinersCount.cs] [Function: GetAutoIncreasedMinersCount()] [Multiplication Overflow] Can .Div(MinerIncreaseInterval).Mul(2) overflow when blockchain runs for extended period with small intervals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6df1b63b-3236-4e5a-9680-503fce8389a0?mode=deep",
+    "timestamp": "2026-02-19 09:25:50.710001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Time Slot Race] Can a miner exploit the time window check (timeSlotStartTime <= CurrentBlockTime <= timeSlotStartTime + miningInterval) by manipulating block timestamps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5535118-0e6e-4647-a8a9-b9d519d5c5f5?mode=deep",
+    "timestamp": "2026-02-19 09:26:22.017102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Extra Block Producer Bypass] Can the extra block producer check be bypassed by setting ExtraBlockProducerOfPreviousRound incorrectly during round transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_492770e0-15ae-48bb-8c96-c93a31978507?mode=deep",
+    "timestamp": "2026-02-19 09:26:53.548182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [First Round Exploit] In first round logic, can passedSlotsCount calculation allow miners to mine out of turn through timestamp manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90c3c882-d9dd-4ccb-8eb6-a562cf7769c2?mode=deep",
+    "timestamp": "2026-02-19 09:27:24.706257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Saving Time Slot Abuse] Can miners abuse ArrangeAbnormalMiningTime to create unlimited saving time slots and mine continuously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2f75fda-92bc-4325-ae92-adf0b39127c7?mode=deep",
+    "timestamp": "2026-02-19 09:27:53.285860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_NextTerm.cs] [Function: DonateMiningReward()] [Reward Calculation Overflow] Can minedBlocks.Mul(miningRewardPerBlock) overflow for extremely long terms, causing incorrect Treasury donations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9bf6d34-1f0f-43a8-be3c-f80adfed8804?mode=deep",
+    "timestamp": "2026-02-19 09:28:24.617676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_NextTerm.cs] [Function: DonateMiningReward()] [Zero Donation Bypass] If amount calculation results in 0 due to rounding, can miners avoid Treasury contribution while still triggering Release? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7832a05-9b15-43ef-abfe-98806ffe5d0a?mode=deep",
+    "timestamp": "2026-02-19 09:28:53.034689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_NextTerm.cs] [Function: GetMiningRewardPerBlock()] [Halving Miscalculation] Can denominator overflow in blockAge.Div(TimeToReduceMiningRewardByHalf) cause incorrect halving cycles? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_026e1f9c-44f5-4fe8-85a8-52677fe302e1?mode=deep",
+    "timestamp": "2026-02-19 09:29:25.411865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_NextTerm.cs] [Function: GetMiningRewardPerBlock()] [Reward Floor Violation] Can repeated Div(2) operations reduce reward below minimum viable amount, causing economic instability? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef345321-2cb7-4cef-a6cf-9a2389fc0cad?mode=deep",
+    "timestamp": "2026-02-19 09:29:58.742243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Snapshot Race] Can TakeSnapshot be called with incorrect MinedBlocks if previousRound data is modified between read and Send? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8cd1f95-7884-4067-96d0-803d8a66cbfd?mode=deep",
+    "timestamp": "2026-02-19 09:30:32.426086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [Count Calculation Error] Can Math.Min logic return incorrect miner count when auto-increased count exceeds MaximumMinersCount? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6663ee96-ad4f-4ef2-9716-8abbd80046b9?mode=deep",
+    "timestamp": "2026-02-19 09:31:03.906995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Token Approval Race] Between TransferFrom and Approve, can token balance change causing insufficient funds for ContributeProfits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5929a9ae-3481-4b18-beba-089aea7a0de2?mode=deep",
+    "timestamp": "2026-02-19 09:31:36.698193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Dividends Overwrite] If multiple Donate calls occur at same height, can SideChainReceivedDividends[height] overwrite previous donations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc9d13c1-dd11-46cb-bd77-284916c6b74f?mode=deep",
+    "timestamp": "2026-02-19 09:32:06.100004",
+    "report_generated": false
+  }
+]
