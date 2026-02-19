@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Dual Path Inconsistency] Does same configuration change have different validation/effects when called via ConfigurationController vs Zero contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99945709-a1a7-48f8-a1dd-a059baa45c45?mode=deep",
+    "timestamp": "2026-02-19 15:04:17.856805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [External Dependency Risk] Relies on Context.GetContractAddressByName and ParliamentContract - if either fails after initial success, can cached values become permanently invalid? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aaa72140-5564-44c3-bda5-a85a8755618c?mode=deep",
+    "timestamp": "2026-02-19 15:04:40.175727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Single Point of Failure] Only State.ConfigurationController.Value.OwnerAddress has control - if this address loses keys or is compromised, can configuration contract governance be recovered? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7bd71ca-6dd0-4b62-b9a3-04157870dde4?mode=deep",
+    "timestamp": "2026-02-19 15:05:03.403827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Emergency Access Pattern] Zero contract as emergency access - can this be abused if Zero contract has delegatecall or arbitrary code execution vulnerabilities? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22a35992-a4d6-4197-ba08-b10d93e88dba?mode=deep",
+    "timestamp": "2026-02-19 15:05:26.547555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Parliament Dependency] Returns Parliament's default organization as OwnerAddress - if Parliament's GetDefaultOrganizationAddress changes behavior (returns different org), does it break ConfigurationController assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d99ac726-e80a-4a60-8d3a-ee22b216e8f3?mode=deep",
+    "timestamp": "2026-02-19 15:05:50.516297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [ChangeConfigurationController Integration] Used by ChangeConfigurationController which can change itself - can attacker create circular controller change to lock all governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ae08b3f-be1f-4531-9a62-96d1cc214bbe?mode=deep",
+    "timestamp": "2026-02-19 15:06:16.382950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [SetConfiguration Integration] Used only by SetConfiguration - if configuration values control other contract behaviors, can Zero contract bypass create privilege escalation chains? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb3b86ec-a76e-4b7a-8d6c-cf791d5d2370?mode=deep",
+    "timestamp": "2026-02-19 15:06:42.249807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [GetConfigurationController Integration] Main contract's GetConfigurationController returns 'State.ConfigurationController.Value ?? GetDefaultConfigurationController()' - can null check be bypassed to always use default? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09872015-e192-412e-a4af-1e69f30b3bb1?mode=deep",
+    "timestamp": "2026-02-19 15:07:08.662829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [State Visibility] State.ConfigurationController is public SingletonState - can external contracts read and front-run changes based on current controller value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69723f50-a591-42c6-b166-438556095f4a?mode=deep",
+    "timestamp": "2026-02-19 15:07:35.982545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Configuration Key Control] SetConfiguration accepts arbitrary key-value pairs - can Zero contract set critical system configs that other contracts trust, creating cross-contract exploits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_566d3ed0-0735-4eb6-8b75-1fdf4e862115?mode=deep",
+    "timestamp": "2026-02-19 15:08:07.326663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Parliament Trust Assumption] Assumes Parliament contract is trustworthy and correctly deployed - what if Parliament itself has vulnerabilities allowing arbitrary proposal execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee36a825-861c-44e2-8aeb-0e7043c1d15c?mode=deep",
+    "timestamp": "2026-02-19 15:08:38.168667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Controller Lockout Attack] Attacker compromises current controller, calls ChangeConfigurationController to set OwnerAddress to burned address - can configuration contract be permanently frozen? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4967e70-d1ed-4278-b766-781c2ab3c32d?mode=deep",
+    "timestamp": "2026-02-19 15:09:11.484776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Zero Contract Proxy Attack] If Zero contract has updateable implementation, can implementation upgrade include malicious SetConfiguration calls to hijack all configurations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f463036-b95d-4dd9-8848-73b2c2403e36?mode=deep",
+    "timestamp": "2026-02-19 15:09:45.076085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Contract Name Collision] If SmartContractConstants.ParliamentContractSystemName can be duplicated or spoofed, can GetContractAddressByName return attacker's fake Parliament? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e19834cb-c22f-4661-a7f4-95179e70b1e6?mode=deep",
+    "timestamp": "2026-02-19 15:10:15.184517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Governance Takeover] If Parliament's proposal system is exploited to pass malicious ChangeConfigurationController proposal, can attacker permanently seize configuration control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a74ef52-635b-44d3-8f18-3601be577de6?mode=deep",
+    "timestamp": "2026-02-19 15:10:45.322801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Deployment Window Attack] During initial deployment before ConfigurationController is set, can attacker race to call SetConfiguration via Zero contract to poison initial state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f553aa5-ffe9-4b86-80c8-4a7e4a41909a?mode=deep",
+    "timestamp": "2026-02-19 15:11:19.640389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Cross-Chain Attack] If Parliament contract is cross-chain, can attacker manipulate cross-chain messages to return malicious GetDefaultOrganizationAddress result? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b47a94c-ebd0-4da5-8907-92dd2a6e8c78?mode=deep",
+    "timestamp": "2026-02-19 15:11:55.307938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Social Engineering] Can attacker convince legitimate controller to approve ChangeConfigurationController proposal that transfers control to attacker's multi-sig? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_182d8c4f-ef83-4a76-ab29-46c2ebf722cc?mode=deep",
+    "timestamp": "2026-02-19 15:12:29.528959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Configuration Poisoning] Can Zero contract be tricked via callback into calling SetConfiguration with attacker-crafted config that breaks dependent contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3816c6fe-e644-4d96-9b44-664168ca5b38?mode=deep",
+    "timestamp": "2026-02-19 15:13:03.688991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [State Bloat Attack] Each call potentially creates new AuthorityInfo objects - can repeated calls cause state storage DoS or increased gas costs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3f2b371-efc2-4453-aa67-8d99add19735?mode=deep",
+    "timestamp": "2026-02-19 15:13:37.301079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Flash Loan Attack] Can attacker use flash loan to temporarily control Parliament voting, pass ChangeConfigurationController, execute malicious configs, then revert? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3159e79b-5ccd-478f-95f6-f0132d12576b?mode=deep",
+    "timestamp": "2026-02-19 15:14:11.573913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Gas Griefing] External call to State.ParliamentContract.GetDefaultOrganizationAddress.Call() - can malicious Parliament implementation consume excessive gas causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c19f1c1-ff92-4796-a568-f82820eaf8b7?mode=deep",
+    "timestamp": "2026-02-19 15:14:46.066218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [State Read Cost] Every call reads State.ConfigurationController.Value - can attacker force frequent reads by spamming failed authorization attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_665d6f1c-01bf-4852-b508-a713515622ae?mode=deep",
+    "timestamp": "2026-02-19 15:15:20.264132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Double State Read] Reads State.ConfigurationController.Value.OwnerAddress and calls GetZeroSmartContractAddress - can this be optimized or exploited for gas manipulation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2ffb908-1dd6-4e32-aaee-a49f2d1eeded?mode=deep",
+    "timestamp": "2026-02-19 15:15:49.748879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Redundant Calls] Function can be called multiple times returning same result - should result be cached more aggressively to prevent redundant cross-contract calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3dbcc38c-86f1-4d82-9c54-7cbbcb5ae5db?mode=deep",
+    "timestamp": "2026-02-19 15:16:23.770162",
+    "report_generated": false
+  }
+]
