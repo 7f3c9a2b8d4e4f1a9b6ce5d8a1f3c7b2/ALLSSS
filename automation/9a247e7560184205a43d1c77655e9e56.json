@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [CheckRoundTimeSlots] [Two Miners Edge] With exactly 2 miners, loop only checks first pair - can the second miner's interval be arbitrarily large without validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a6de9ab-e91e-4869-b0c2-95d0e2ecba1c?mode=deep",
+    "timestamp": "2026-02-19 09:10:52.543715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [GetMiningInterval] [Order Gap] If no miners have Order 1 or 2 (e.g., orders start at 3), Where clause returns empty list causing index exception on firstTwoMiners[1]? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b36b3ae3-4c4e-446b-baa2-b6ab83e8aef0?mode=deep",
+    "timestamp": "2026-02-19 09:11:14.604561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [IsTimeSlotPassed] [Boundary Timestamp] At exact boundary where ExpectedMiningTime + Duration equals currentBlockTime, is comparison < or <=? Can miner exploit boundary to double-mine? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b59b02cc-c8c5-40be-abbc-091828cd6386?mode=deep",
+    "timestamp": "2026-02-19 09:11:37.129714",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [GetExtraBlockMiningTime] [All Same Order] If all miners have Order = 1, which is considered 'last'? Can this cause unpredictable extra block timing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28641b6f-4f33-422c-9c8e-c0f75cca645f?mode=deep",
+    "timestamp": "2026-02-19 09:12:00.076198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [GetMinedBlocks] [Long.MaxValue Sum] If total ProducedBlocks across all miners exceeds long.MaxValue, does Sum overflow to negative, breaking block count accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_409bb67a-f8c7-45f7-9859-d34f02f2a837?mode=deep",
+    "timestamp": "2026-02-19 09:12:25.322049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [NeedToChangeTerm] [Zero MinersCountOfConsent] If MinersCountOfConsent is 0, any count >= 0 triggers term change - can this cause term changes on every block? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5d84226-fcf9-45f5-ad6d-7ac24198187b?mode=deep",
+    "timestamp": "2026-02-19 09:12:52.003533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [IsTimeToChangeTerm] [Timestamp Before Start] If blockProducedTimestamp < blockchainStartTimestamp, subtraction is negative - can negative Seconds break Div operation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_339bb717-503f-4947-a030-a2ee24302272?mode=deep",
+    "timestamp": "2026-02-19 09:13:17.409262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [GetExpectedMiningTime] [MaxValue Arithmetic] If code adds durations to returned long.MaxValue timestamp, does it overflow to negative values? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e249e1fa-b046-4c5c-87a4-44370a6850bd?mode=deep",
+    "timestamp": "2026-02-19 09:13:46.921368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [FirstActualMiner] [All Null OutValue] If no miner has set OutValue, function returns null - can this cause null reference when code assumes FirstActualMiner always exists? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3c78545-3deb-4fc6-927c-c9896b273cd2?mode=deep",
+    "timestamp": "2026-02-19 09:14:17.610373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [RealTimeMinersInformation] [Concurrent Modification] If RealTimeMinersInformation is modified during enumeration in any function, can InvalidOperationException halt consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcb7252a-3097-48b7-a2fa-08c4a790ff40?mode=deep",
+    "timestamp": "2026-02-19 09:14:50.516595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/A\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs (L1-249)\n```csharp\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing AElf.CSharp.Core;\nusing AElf.CSharp.Core.Extension;\nusing AElf.Standards.ACS4;\nusing AElf.Types;\nusing Google.Protobuf;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\npublic partial class Round\n{\n    public long RoundId\n    {\n        get\n        {\n            if (RealTimeMinersInformation.Values.All(bpInfo => bpInfo.ExpectedMiningTime != null))\n                return RealTimeMinersInformation.Values.Select(bpInfo => bpInfo.ExpectedMiningTime.Seconds).Sum();\n\n            return RoundIdForValidation;\n        }\n    }\n\n    public bool IsEmpty => RoundId == 0;\n\n    /// <summary>\n    ///     Check the equality of time slots of miners.\n    ///     Also, the mining interval shouldn't be 0.\n    /// </summary>\n    /// <returns></returns>\n    public ValidationResult CheckRoundTimeSlots()\n    {\n        var miners = RealTimeMinersInformation.Values.OrderBy(m => m.Order).ToList();\n        if (miners.Count == 1)\n            // No need to check single node.\n            return new ValidationResult { Success = true };\n\n        if (miners.Any(m => m.ExpectedMiningTime == null))\n            return new ValidationResult { Message = $",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10f3ef90-7ff4-418f-9e22-216d30fe1c76?mode=deep",
+    "timestamp": "2026-02-19 09:15:23.718467",
+    "report_generated": false
+  }
+]
