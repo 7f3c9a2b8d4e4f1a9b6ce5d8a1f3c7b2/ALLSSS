@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Authorization Bypass] Can an attacker exploit uninitialized VoteContract reference during cross-contract Vote.Send() calls to bypass vote validation, allowing unauthorized vote manipulation before proper initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1f390c9-96e7-4c93-9772-5298af1c2cb2?mode=deep",
+    "timestamp": "2026-02-19 07:48:21.100364",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [Authorization Bypass] If ProfitContract reference is null or points to malicious contract, can attacker manipulate AddBeneficiary/RemoveBeneficiary calls to steal voter welfare profits or subsidy distributions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c22fe49d-6965-4757-a143-b5cd613a90cc?mode=deep",
+    "timestamp": "2026-02-19 07:48:43.155298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [Token Supply Manipulation] Can unvalidated TokenContract reference enable attacker to call malicious Lock/Unlock/Transfer functions, bypassing native token locking mechanisms and draining election contract balance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c19eb0a-21e3-4dcf-a707-dc5a9069481f?mode=deep",
+    "timestamp": "2026-02-19 07:49:05.861265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: AEDPoSContract] [Consensus Corruption] If AEDPoSContract reference is hijacked before initialization, can attacker manipulate GetCurrentMinerList or RecordCandidateReplacement to corrupt miner selection or bypass current miner restrictions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_102fdca2-e590-4995-9f88-664f9040c607?mode=deep",
+    "timestamp": "2026-02-19 07:49:29.722802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ParliamentContract] [Governance Bypass] Can uninitialized ParliamentContract reference allow attacker to bypass GetDefaultOrganizationAddress checks, enabling unauthorized SetCandidateAdmin or vote weight controller changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6509aa44-0a2e-4c50-86aa-e4a4b5dc2e45?mode=deep",
+    "timestamp": "2026-02-19 07:49:53.851442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: DividendPoolContract] [Accounting Error] If DividendPoolContract reference points to incorrect contract, can GetSymbolList return manipulated symbol lists causing DistributeProfits to allocate wrong token amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64d4aec6-514e-418e-a2ff-a4e144f07755?mode=deep",
+    "timestamp": "2026-02-19 07:50:20.886353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TreasuryContract] [Authorization Bypass] Can unvalidated TreasuryContract reference enable attacker to manipulate GetProfitsReceiverOrDefault calls, redirecting candidate subsidy payments to attacker-controlled addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efba52dd-6589-4b63-89ce-b6c9925dd044?mode=deep",
+    "timestamp": "2026-02-19 07:50:47.305884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Re-entrancy] During VoteContract.Vote.Send() or Withdraw.Send() calls, can malicious vote contract re-enter ElectionContract to manipulate CandidateVotes or ElectorVotes state before original call completes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8cbdd89-d2b2-4e4f-9adf-be03802afece?mode=deep",
+    "timestamp": "2026-02-19 07:51:15.595177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [Re-entrancy] When calling ProfitContract.AddBeneficiary with voter welfare shares, can malicious profit contract re-enter to duplicate beneficiary entries or inflate vote weights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f8f5bdd-abc5-44ba-845f-f4de80caed92?mode=deep",
+    "timestamp": "2026-02-19 07:51:44.730122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [Re-entrancy] During TokenContract.Lock.Send() for vote tokens, can malicious token contract re-enter ElectionContract.Vote() to lock same voteId twice with different amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0674afca-8048-434e-8c1f-6c61f2cc0a38?mode=deep",
+    "timestamp": "2026-02-19 07:52:12.206035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [DOS Attack] If VoteContract is null when GetVotingRecord.Call() is invoked during Withdraw, does transaction revert causing permanent lock of voter tokens with no recovery mechanism? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34c46e31-fead-4a6e-b3e0-105dc1abe951?mode=deep",
+    "timestamp": "2026-02-19 07:52:43.359004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [DOS Attack] If ProfitContract.Value is null during DistributeProfits in TakeSnapshot, can attacker DOS snapshot functionality preventing term transitions and freezing consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0dea08b6-7b13-480b-981b-f4f5966f018c?mode=deep",
+    "timestamp": "2026-02-19 07:53:15.033340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [DOS Attack] Can null TokenContract reference during LockTokensOfVoter cause Vote() to fail, permanently preventing new votes while existing votes continue earning rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60a5a819-b371-49ed-8497-c66c95f588f7?mode=deep",
+    "timestamp": "2026-02-19 07:53:48.128103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: AEDPoSContract] [DOS Attack] If AEDPoSContract.Value is null during UpdateCandidateInformation sender check, can consensus contract never update evil node status allowing banned miners to continue producing blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b061963e-9459-4e52-9a71-2fe74247e2fd?mode=deep",
+    "timestamp": "2026-02-19 07:54:22.076983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ParliamentContract] [Authorization Bypass] Are ParliamentContract references validated to match expected system contract address, or can attacker deploy fake parliament returning attacker as default organization address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c362a9a-10bd-4eb4-a851-e9c980887816?mode=deep",
+    "timestamp": "2026-02-19 07:54:55.188464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TreasuryContract] [Fund Theft] Is TreasuryContract address validated before ReplaceCandidateProfitsReceiver calls, preventing attacker from setting malicious treasury contract that redirects all candidate profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9dd19c6f-9d5a-4612-8e92-e94a4949ab58?mode=deep",
+    "timestamp": "2026-02-19 07:55:28.621727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Data Integrity] Can attacker replace VoteContract reference mid-execution to point at contract returning fake voting records with manipulated amounts or timestamps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98248f21-12dc-48fa-b959-d7eaa9813ed7?mode=deep",
+    "timestamp": "2026-02-19 07:56:02.239969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [Accounting Error] If ProfitContract reference changes between AddBeneficiary and RemoveBeneficiary calls, can beneficiaries get stuck unable to withdraw welfare profits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_106b06b9-b135-481e-8f78-e91f7881d8ef?mode=deep",
+    "timestamp": "2026-02-19 07:56:36.180475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [Lock/Unlock Mismatch] If TokenContract reference differs between Lock and Unlock operations, can voter tokens remain permanently locked even after withdrawal period expires? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_797ee4c0-0e60-41ee-b2d4-92be99ffea9b?mode=deep",
+    "timestamp": "2026-02-19 07:57:10.697876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: AEDPoSContract] [Consensus Inconsistency] If AEDPoSContract reference changes mid-term, can GetPreviousTermMinerPubkeyList return inconsistent miner lists breaking snapshot and reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41303857-62ca-4c3e-99ab-1e268ac16159?mode=deep",
+    "timestamp": "2026-02-19 07:57:43.759791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Data Validation] Are voting records returned from VoteContract.GetVotingRecord validated for amount/timestamp manipulation before updating candidate vote counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11f75193-8a9b-4669-b287-2c03e980be85?mode=deep",
+    "timestamp": "2026-02-19 07:58:16.186019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [Authorization] Does ProfitContract validate that only ElectionContract can AddBeneficiary for welfare/subsidy schemes, preventing external direct manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4368f5e-4f47-4308-9b7b-90e020844002?mode=deep",
+    "timestamp": "2026-02-19 07:58:48.198511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [Supply Integrity] Does TokenContract enforce that Lock/Unlock operations for VoteIds can only originate from ElectionContract address, preventing external unlock of vote locks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a754c4cd-717f-43df-ba98-aa12e70eb34e?mode=deep",
+    "timestamp": "2026-02-19 07:59:19.880090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: DividendPoolContract] [Data Validation] Is GetSymbolList output from DividendPoolContract validated against expected native token, preventing distribution of fake/malicious token symbols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72f97a88-9ab3-4ba3-91c3-f6ea40b66e02?mode=deep",
+    "timestamp": "2026-02-19 07:59:51.813024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Authorization Bypass] Can contract references be modified post-initialization by unauthorized parties, allowing attacker to redirect all vote operations to malicious contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84c45647-9d99-47c2-b643-f170ae785f01?mode=deep",
+    "timestamp": "2026-02-19 08:00:23.519432",
+    "report_generated": false
+  }
+]
