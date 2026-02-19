@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Ln()] [Negative Result] When a > 1, x = 1 - a is negative - can the series Pow(x, iteration) with even iterations produce unexpected positive terms that cause incorrect logarithm calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_137525f5-cc04-48ce-9b73-d1a71bffeb5b?mode=deep",
+    "timestamp": "2026-02-19 00:50:38.101635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Ln()] [Division by Zero] At line 138, can iteration ever be 0, causing division by zero in Pow(x, iteration) / iteration? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0dd29edc-2a2f-4f61-99fc-bdc3f060d749?mode=deep",
+    "timestamp": "2026-02-19 00:51:00.331419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Ln()] [Overflow in Series] Can Pow(x, iteration) overflow when x is close to -1 (a close to 2) and iteration is large, causing calculation failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce486ab6-0972-4417-9bcf-05546c6a28fd?mode=deep",
+    "timestamp": "2026-02-19 00:51:22.893058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Ln()] [Loop Termination] Does the while loop at line 136 correctly decrement and terminate, or can iteration wrapping cause infinite loop? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5d1a3d5-d671-416e-a2a9-bd7d923e624c?mode=deep",
+    "timestamp": "2026-02-19 00:51:45.903877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Factorial Overflow] At line 159, can Fact[iteration - 1] cause index out of bounds when iteration = 0, crashing the calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82792f89-6ad2-4ebb-a771-2663c87b1710?mode=deep",
+    "timestamp": "2026-02-19 00:52:08.836572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Series Convergence] With only 20 iterations (line 154), can large positive or negative y values cause insufficient convergence, returning highly inaccurate exponentials? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2d641cf-026e-4feb-9f34-d856104476ac?mode=deep",
+    "timestamp": "2026-02-19 00:52:32.581624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Overflow] Can Pow(y, iteration) at line 160 overflow when y is large and iteration approaches 20, causing calculation crash? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6d0c5a4-5208-42bc-baae-6be25aca520b?mode=deep",
+    "timestamp": "2026-02-19 00:52:57.064455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Division Precision] Can division by very large factorials at line 160 cause precision loss that accumulates over iterations, producing inaccurate results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6441cc0-9a6e-495f-9f71-8da2aaaec91d?mode=deep",
+    "timestamp": "2026-02-19 00:53:20.829473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Negative Input] When y is large and negative, can Exp return values very close to zero due to truncation, causing pricing formulas to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb35090c-cc5a-4c56-a5ac-dffa7de5ba1f?mode=deep",
+    "timestamp": "2026-02-19 00:53:46.288607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Large Positive Input] When y is large and positive, can Exp overflow decimal max value, causing transaction revert and DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f92c4c89-e54a-4f4e-bef0-1c86041d9d52?mode=deep",
+    "timestamp": "2026-02-19 00:54:11.536692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: Exp()] [Loop Safety] Does the while loop at line 156 correctly decrement iteration from 20 to 1, or can it access iteration = 0 and cause Fact[-1] access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_490cb255-6d39-47b5-9c31-3bfd7ed30557?mode=deep",
+    "timestamp": "2026-02-19 00:54:39.553700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: DynFact()] [Integer Overflow] Can factorial calculation at lines 18-19 overflow when number approaches 20, causing incorrect Fact array initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63100066-74a2-47eb-b2d0-cff73343f747?mode=deep",
+    "timestamp": "2026-02-19 00:55:06.092508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: DynFact()] [Negative Input] If number is negative, does the loop at line 19 behave correctly, or can it cause unexpected results? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28615c2d-5dd2-4363-8c11-154e19c350de?mode=deep",
+    "timestamp": "2026-02-19 00:55:34.820780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: DynFact()] [Zero Input] Line 18 handles number = 0 to return 1, but does the loop handle number = 1 correctly (should return 1)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc88a492-541f-4e8c-ae56-eac5f5091bde?mode=deep",
+    "timestamp": "2026-02-19 00:56:04.522831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Static Constructor] [Initialization] At line 13, can the Fact array initialization fail due to DynFact overflow, causing all subsequent Exp() calls to use corrupted factorial values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db411e3b-c18a-4ea6-8389-475686dfdf81?mode=deep",
+    "timestamp": "2026-02-19 00:56:34.415342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Static Constructor] [Array Bounds] Is the Fact array correctly sized for 20 elements (0-19), or can off-by-one errors cause index out of bounds in Exp()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26577d81-0df9-474c-aa64-3d48f23179e0?mode=deep",
+    "timestamp": "2026-02-19 00:57:02.662504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid() + GetAmountToPayFromReturn()] [Asymmetry] Can calling GetReturnFromPaid then GetAmountToPayFromReturn with the result produce different values due to rounding, enabling profit extraction through round-trip trades? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46195f99-23e2-46bc-9fd3-e5e66300b73f?mode=deep",
+    "timestamp": "2026-02-19 00:57:34.147006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid() + GetAmountToPayFromReturn()] [Invariant Violation] Should GetAmountToPayFromReturn(GetReturnFromPaid(x)) ≈ x hold, and if not, can attackers exploit the discrepancy for arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_062cc21b-2833-421c-9dc3-b38e21cf1061?mode=deep",
+    "timestamp": "2026-02-19 00:58:03.972061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid() + GetAmountToPayFromReturn()] [Reserve Consistency] Can alternating calls to both functions with edge-case weights cause reserve balances to drift from expected values, eventually draining pools? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cabdc0d6-ff05-4c93-a172-0a3430b8fb2d?mode=deep",
+    "timestamp": "2026-02-19 00:58:33.342774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Type Casting] At line 49, does (long) cast truncate or round the decimal, and can attackers exploit truncation to accumulate fractional token value over many transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8e231b8-9a60-43e2-bd7d-d50fb67ad405?mode=deep",
+    "timestamp": "2026-02-19 00:59:00.456972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Type Casting] At line 53, if the decimal result is negative due to calculation error, does the long cast wrap to large positive, allowing massive token extraction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_451a636e-76fc-4d2b-a084-df282eb75540?mode=deep",
+    "timestamp": "2026-02-19 00:59:27.041618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetAmountToPayFromReturn()] [Type Casting] At line 84, can decimal-to-long casting lose significant precision when payment amounts are large, causing users to pay less than required? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_017154f7-3d70-43e6-a9f2-bd5344846e87?mode=deep",
+    "timestamp": "2026-02-19 00:59:53.897387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetAmountToPayFromReturn()] [Type Casting] At line 93, can negative decimal results cast to large positive longs, allowing tokens to be sold for zero or negative payment? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa0abd85-7196-4f25-8d36-07977c56f8bd?mode=deep",
+    "timestamp": "2026-02-19 01:00:22.440900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Rounding Error] Can the simplified formula at line 49 produce different rounding than the full formula at line 53 when weights are nearly equal, enabling exploitation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b4ee4a9-2d76-4e8e-8613-cfb9fcdde694?mode=deep",
+    "timestamp": "2026-02-19 01:00:51.804689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Precision Loss] In the calculation chain decimal conversions -> Ln -> Exp -> decimal multiplication -> long cast, can accumulated precision loss exceed 1%, enabling significant value extraction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1a0305d-51d7-49f0-923a-e63fd9f545a2?mode=deep",
+    "timestamp": "2026-02-19 01:01:22.289367",
+    "report_generated": false
+  }
+]
