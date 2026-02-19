@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Null Merkle Root] If GetMerkleTreeRoot returns null for an indexed but corrupted parent chain height, does the Assert message correctly indicate the issue, or can it mask state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9dfcbce-07e4-4044-9f46-c4c263c474f5?mode=deep",
+    "timestamp": "2026-02-19 00:59:22.380968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [TransactionId Collision] If input.TransactionId collides with another transaction's ID (due to weak ID generation), can both transactions verify against the same merkle proof? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22062db9-139a-4cb3-bbf0-002f3989989a?mode=deep",
+    "timestamp": "2026-02-19 00:59:44.535968",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Parent Chain Reorganization] Does verification account for parent chain reorgs where a previously valid merkle root at height H becomes invalid after a reorg? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a7c4fa3-6b78-457f-835a-e761f00de94c?mode=deep",
+    "timestamp": "2026-02-19 01:00:06.829898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Boolean Return Tampering] Can the BoolValue return be intercepted or modified in transit by malicious contracts calling this view function, changing false to true? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0716474a-180a-41db-9c3d-8770e0c2b02b?mode=deep",
+    "timestamp": "2026-02-19 01:00:30.064872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetChainStatus()] [Missing Input Validation] Can an attacker query with input.Value = 0 or negative chain IDs to bypass the null check and retrieve unintended chain status information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_718c4ef7-9e89-4996-bdf7-8f66c49d4517?mode=deep",
+    "timestamp": "2026-02-19 01:00:54.113803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetChainStatus()] [State Consistency] If State.SideChainInfo[input.Value] is null but the chain was previously created, does the Assert on line 51 hide chain existence, or can null checks fail during chain lifecycle transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c60e212-6db5-4a32-aadc-9cb004684273?mode=deep",
+    "timestamp": "2026-02-19 01:01:18.840903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetChainStatus()] [Status Transition Race] Can querying status during a chain status transition (e.g., Active -> Terminated) return inconsistent or intermediate status values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05a2fe4a-2a35-4552-a184-031eb1ed235f?mode=deep",
+    "timestamp": "2026-02-19 01:01:44.459966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetChainStatus()] [Information Disclosure] Does revealing SideChainStatus to anyone allow attackers to discover terminated chains and attempt to exploit them before proper cleanup? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e63c76a1-c864-41cb-958f-f31ce4cdc72f?mode=deep",
+    "timestamp": "2026-02-19 01:02:11.011800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetChainStatus()] [Invalid Chain ID] Can querying a parent chain ID instead of side chain ID cause incorrect status retrieval or bypass side-chain-specific validations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26b79008-4636-43fb-8990-d1b0a90fdddb?mode=deep",
+    "timestamp": "2026-02-19 01:02:37.221166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetChainStatus()] [DOS via Invalid IDs] Can spamming queries with non-existent chain IDs cause repeated Assert failures and waste gas for monitoring systems? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1087dfa-2eb8-4b6e-91a3-cfbd76506d23?mode=deep",
+    "timestamp": "2026-02-19 01:03:04.279981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainHeight()] [Height Manipulation] If State.CurrentSideChainHeight returns stale or unupdated height values, can this cause cross-chain indexing to accept outdated or unverified side chain blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12c94d43-23fd-481a-a0c0-0fb7fc7f0214?mode=deep",
+    "timestamp": "2026-02-19 01:03:34.458786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainHeight()] [Integer Overflow] Can the height value overflow Int64 for extremely long-running side chains, causing height to wrap to negative or zero, breaking indexing logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61136a8f-ca34-4ff4-ab0f-9f0b5f9df806?mode=deep",
+    "timestamp": "2026-02-19 01:04:01.302444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainHeight()] [Zero Height Ambiguity] If a side chain is newly created and CurrentSideChainHeight is 0, does returning 0 distinguish between 'not indexed yet' versus 'genesis block indexed'? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fab90d61-09ac-4db3-852d-11925b21249a?mode=deep",
+    "timestamp": "2026-02-19 01:04:33.009105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainHeight()] [State Desync] Can State.SideChainInfo exist for a chain but State.CurrentSideChainHeight be uninitialized (default 0), causing incorrect height reporting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0bd4a3f4-623e-4c06-8908-06b2f8de10a7?mode=deep",
+    "timestamp": "2026-02-19 01:05:00.288777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainHeight()] [Terminated Chain Query] Does this function allow querying heights for terminated side chains, potentially allowing operations on chains that should be inactive? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ee8ca92-22a4-4fd8-adc1-b4bfe70ebb25?mode=deep",
+    "timestamp": "2026-02-19 01:05:32.113576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainHeight()] [Height Rollback] If parent chain reorgs cause side chain height to be rolled back, does this function reflect the rollback, or can it return future heights that are no longer valid? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53ff4883-7103-4918-8a00-40c04f2f61bb?mode=deep",
+    "timestamp": "2026-02-19 01:06:04.307113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainHeight()] [Parent Chain Existence] If State.ParentChainId is 0 (main chain), does the Assert on line 66 properly prevent queries, or can default values bypass the check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ec90505-6e0d-4e78-a7d7-d8535c1bb0c8?mode=deep",
+    "timestamp": "2026-02-19 01:06:31.461626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainHeight()] [Height Staleness] If State.CurrentParentChainHeight is not updated frequently, can stale parent heights cause child chain to miss critical parent chain events or merkle root updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f2b3950-518f-4510-bb42-b332162953df?mode=deep",
+    "timestamp": "2026-02-19 01:06:58.048867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainHeight()] [Zero Height Default] If parent chain exists but CurrentParentChainHeight is uninitialized (0), does returning 0 violate the parent chain height invariant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba1e5242-8675-497a-af74-035d55585e3b?mode=deep",
+    "timestamp": "2026-02-19 01:07:24.381412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainHeight()] [Parent Chain ID Spoofing] Can State.ParentChainId be manipulated to point to a malicious chain, causing this function to return heights from an unauthorized parent? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7efa2fb-d9b4-4878-8d63-1c91728935fc?mode=deep",
+    "timestamp": "2026-02-19 01:07:52.572927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainHeight()] [Indexing Lag] Does the returned height guarantee that all blocks up to that height have been fully indexed and verified, or can it return heights with pending indexing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cfac617-865c-47d2-abd9-2c6d24e1ab5e?mode=deep",
+    "timestamp": "2026-02-19 01:08:24.872626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainId()] [Chain ID Immutability] If State.ParentChainId can be changed after initialization, can an attacker redirect cross-chain verification to a compromised parent chain? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b5e3cc9-4292-48ae-bcb5-770c007f35e2?mode=deep",
+    "timestamp": "2026-02-19 01:08:56.003961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainId()] [Main Chain Detection] Does parentChainId == 0 correctly identify the main chain, or can other special chain IDs (negative values, MaxValue) also indicate main chain? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10b70ecd-5a11-4bc4-998b-c35473a1fe14?mode=deep",
+    "timestamp": "2026-02-19 01:09:23.575704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetParentChainId()] [Information Disclosure] Does revealing the parent chain ID to all callers enable attackers to map the cross-chain topology and target specific parent-child relationships? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ff05356-e8e7-4d0b-9435-21dd4f5a6749?mode=deep",
+    "timestamp": "2026-02-19 01:09:51.964767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainBalance()] [Balance Underflow] If GetSideChainIndexingFeeDeposit returns negative values due to accounting errors, can this cause balance checks to fail or allow fee-free indexing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f4abafd-dba8-47e7-a42d-9d18cdc8510e?mode=deep",
+    "timestamp": "2026-02-19 01:10:20.859862",
+    "report_generated": false
+  }
+]
