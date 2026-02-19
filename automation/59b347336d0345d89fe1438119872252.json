@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetFeeRate()] [State Integrity] Can an uninitialized State.FeeRate.Value return null/empty string, causing downstream fee calculation failures when Buy/Sell operations parse the rate as decimal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27eb6751-b66c-4db8-9ea6-aa3c025a02b1?mode=deep",
+    "timestamp": "2026-02-19 05:49:05.477573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetFeeRate()] [Data Validation] If State.FeeRate.Value contains malformed decimal strings (e.g., '0.5.5', 'abc', negative values), can this cause parsing exceptions in Buy/Sell operations that use this rate? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3eb2c4d7-2054-4a23-bfaa-4e1b34ddb16a?mode=deep",
+    "timestamp": "2026-02-19 05:49:27.562808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetFeeRate()] [Business Logic] Can State.FeeRate.Value be set to values >1.0 (100%+), allowing fee amounts to exceed the transaction principal and drain user funds during swaps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38f3e287-59fc-4b64-aa2c-269d1ed3aaed?mode=deep",
+    "timestamp": "2026-02-19 05:49:49.979211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetFeeRate()] [Precision Loss] If State.FeeRate.Value uses string representation with high decimal precision, can conversion to decimal in Buy/Sell lose precision and under-collect fees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4a3e17f-7568-4017-822f-a480c298a165?mode=deep",
+    "timestamp": "2026-02-19 05:50:12.897322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetFeeRate()] [Race Condition] If SetFeeRate() is called between GetFeeRate() view call and actual Buy/Sell execution, can users exploit timing to use old favorable rates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0923df1-0387-4f69-8c62-91704a223cb3?mode=deep",
+    "timestamp": "2026-02-19 05:50:36.524136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetControllerForManageConnector()] [Authorization Bypass] Can a null State.ConnectorController.Value cause GetDefaultConnectorController() to return an unexpected authority, allowing unauthorized connector modifications? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4dc83d4f-0a6d-4b91-b23b-e52adbfe6773?mode=deep",
+    "timestamp": "2026-02-19 05:51:01.179045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetControllerForManageConnector()] [State Inconsistency] If State.ConnectorController.Value is set but contains invalid OwnerAddress or ContractAddress fields, can this block all connector management operations permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34fe036f-bdec-4632-9f93-d089eefbf70f?mode=deep",
+    "timestamp": "2026-02-19 05:51:27.163759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetControllerForManageConnector()] [Governance Bypass] Can the fallback to GetDefaultConnectorController() when State.ConnectorController.Value is null be exploited by resetting the controller to gain control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69c4a1c8-0e84-4e27-82ff-811062df38e8?mode=deep",
+    "timestamp": "2026-02-19 05:51:54.601114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetControllerForManageConnector()] [Logic Flaw] Does the null check on line 19 properly validate all fields of AuthorityInfo, or can partial initialization create phantom controller authority? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00a15be5-1b10-433c-b3f3-5e80ed950247?mode=deep",
+    "timestamp": "2026-02-19 05:52:22.468634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetBaseTokenSymbol()] [State Integrity] Can State.BaseTokenSymbol.Value be empty/null if Initialize() was called with invalid input, causing all Buy/Sell operations to fail or use wrong token? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98077b66-45a2-40a6-880c-7d903cde374f?mode=deep",
+    "timestamp": "2026-02-19 05:52:49.324067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetBaseTokenSymbol()] [Symbol Validation] If State.BaseTokenSymbol.Value contains special characters or exceeds token symbol length limits, can this cause MultiToken contract calls to revert? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1145c255-4806-4828-9c89-f390f8a48b1a?mode=deep",
+    "timestamp": "2026-02-19 05:53:15.312132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetBaseTokenSymbol()] [Business Logic] Can State.BaseTokenSymbol.Value be changed post-initialization, breaking existing connector pairs that reference the old base token? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_616b8654-863d-4d82-b7e7-85225128f3f7?mode=deep",
+    "timestamp": "2026-02-19 05:53:42.340210",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Null Pointer] If State.Connectors[input.Symbol] returns null on line 39, targetConnector is null, then line 42 accesses targetConnector.RelatedSymbol causing NullReferenceException - is this handled? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf7b4bda-1c21-4894-8b10-faf5c0afb224?mode=deep",
+    "timestamp": "2026-02-19 05:54:09.360553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Logic Error] On line 42, if targetConnector is null, the condition skips and relatedConnector stays null, but lines 43-48 still check targetConnector.IsDepositAccount - can this cause NullReferenceException? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7442ca1-f532-433a-ace1-0b9b0bce3200?mode=deep",
+    "timestamp": "2026-02-19 05:54:38.508570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Connector Pairing] If targetConnector.RelatedSymbol points to a non-existent connector (State.Connectors[targetConnector.RelatedSymbol] is null), relatedConnector is null - can this return incomplete PairConnector breaking Buy/Sell? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad7fbb2f-3473-4581-8929-665686b32885?mode=deep",
+    "timestamp": "2026-02-19 05:55:08.846719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Circular Reference] If two connectors reference each other as RelatedSymbol but both have IsDepositAccount=true or both false, which one gets selected as ResourceConnector vs DepositConnector? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7b66921-eebe-48e3-9ba5-e6a1ebe929a7?mode=deep",
+    "timestamp": "2026-02-19 05:55:39.245010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [State Inconsistency] Lines 44-48: if targetConnector.IsDepositAccount is true, ResourceConnector=relatedConnector (which could be null), can null ResourceConnector be used in Buy/Sell causing failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72b80f87-7b1e-464d-ba99-4a8461dacd08?mode=deep",
+    "timestamp": "2026-02-19 05:56:08.828352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Logic Flaw] Lines 49-53: if targetConnector is NOT a deposit account, ResourceConnector=targetConnector, DepositConnector=relatedConnector - but if relatedConnector is null, can this create asymmetric pairs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a23008d4-d92b-48e1-bfa2-a0fa3e3b9722?mode=deep",
+    "timestamp": "2026-02-19 05:56:39.241651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Validation] The function never validates if the returned PairConnector has both ResourceConnector and DepositConnector non-null - can callers receive incomplete data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df45737b-b81b-4cce-8a3d-11bf80e71b0e?mode=deep",
+    "timestamp": "2026-02-19 05:57:10.069974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Symbol Mismatch] If input.Symbol is provided but targetConnector exists with a different Symbol field value, can this cause confusion in connector identification? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5ba7b0b2-56da-4a82-b820-cb0a63aba7b8?mode=deep",
+    "timestamp": "2026-02-19 05:57:40.710017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Missing RelatedSymbol] If targetConnector.RelatedSymbol is empty string or whitespace, State.Connectors[''] lookup may return unexpected results - is this validated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea1f539d-5f5c-4597-ba24-2ad0c79c46e0?mode=deep",
+    "timestamp": "2026-02-19 05:58:10.544613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Null Pointer] Line 58: if State.Connectors[input.TokenSymbol] returns null, toConnector is null, then line 59 assertion fails - but is the error message clear about which token is missing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2962d59c-f8b5-422c-88dd-7c260f225cd8?mode=deep",
+    "timestamp": "2026-02-19 05:58:39.998471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Logic Error] Line 59: Assert checks 'toConnector != null && !toConnector.IsDepositAccount', but if toConnector is null the first condition fails before second check - can this create confusing error messages? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7785a2d6-15df-4f3a-a997-12f81c7f3ef3?mode=deep",
+    "timestamp": "2026-02-19 05:59:10.379176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Invalid Input] Line 59: if toConnector.IsDepositAccount is true (deposit connector passed instead of resource connector), assertion fails - can users accidentally pass wrong symbol and get unclear error? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83a1df44-d5b1-451d-a64a-e44431f68812?mode=deep",
+    "timestamp": "2026-02-19 05:59:40.020745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Null Pointer] Line 60: State.Connectors[toConnector.RelatedSymbol] can be null if RelatedSymbol is invalid, then fromConnector is null and line 61 assertion fails - is this path reachable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69e53222-0164-4b96-87f5-85825e14735a?mode=deep",
+    "timestamp": "2026-02-19 06:00:07.863840",
+    "report_generated": false
+  }
+]
