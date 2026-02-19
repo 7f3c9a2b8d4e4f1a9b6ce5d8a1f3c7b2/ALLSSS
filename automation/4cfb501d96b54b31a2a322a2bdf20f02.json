@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count()] [State Sync] If organizationMembers_ is modified in one transaction but Count() is cached in another context, could stale counts cause validation failures or incorrect threshold checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2c8c94d-3866-4ccf-9cc4-57bda5b3a9d9?mode=deep",
+    "timestamp": "2026-02-19 05:19:17.994452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains(Address address)] [State Sync] If Contains() is called before state changes are committed, does it reflect pending changes, and could this cause membership checks to use outdated data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_642f1888-8d95-48ca-a7d4-015a0e56de07?mode=deep",
+    "timestamp": "2026-02-19 05:19:40.066970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Empty()] [State Sync] If Empty() is evaluated on a cached organization object while the actual stored organization has been modified, could this lead to inconsistent validation results? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9322bbc1-4170-4e0a-b025-fcbaed2f5366?mode=deep",
+    "timestamp": "2026-02-19 05:20:02.485423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count()] [Boundary Condition] What happens if Count() is called on an OrganizationMemberList with int.MaxValue members - does it correctly return the count or overflow? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e12f32fc-6a81-4ae0-b03b-68a0836c2135?mode=deep",
+    "timestamp": "2026-02-19 05:20:25.561151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains(Address address)] [Boundary Condition] If organizationMembers_ contains the maximum allowed number of addresses and Contains() is called, could the search operation timeout or run out of gas? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca2c2b77-d09e-487c-9930-06d11246127a?mode=deep",
+    "timestamp": "2026-02-19 05:20:49.470061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Empty()] [Edge Case] If an organization starts with members, has them all removed (violating invariants), could Empty() correctly identify this state to prevent further operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b33d70b-1fb7-439c-a349-70e81528b315?mode=deep",
+    "timestamp": "2026-02-19 05:21:15.359765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count(), Empty()] [Invariant] Empty() returns Count() == 0, but could there be states where Count() returns a non-zero value but all members are invalid, making the organization functionally empty? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cedc527c-8065-4d53-b731-da04a1ec6d03?mode=deep",
+    "timestamp": "2026-02-19 05:21:41.158578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains(Address address), Count()] [Invariant] If Contains() returns true for every member, the sum should equal Count(), but if duplicates exist, could this invariant be violated affecting vote calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1201b7b3-ec06-4dc2-be14-6bdc95cb8a5c?mode=deep",
+    "timestamp": "2026-02-19 05:22:09.883193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count(), Empty()] [Invariant] After RemoveMember succeeds, Count() should decrement by exactly 1 and Empty() should update accordingly - could any conditions cause this invariant to break? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96efd92a-b327-43fb-8a84-653d100ef3a1?mode=deep",
+    "timestamp": "2026-02-19 05:22:41.204994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count()] [Protobuf Serialization] When organizationMembers_ is deserialized from protobuf, could malformed data cause Count() to return incorrect values or throw exceptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58854885-173c-4daf-88fb-58836c599c17?mode=deep",
+    "timestamp": "2026-02-19 05:23:12.153819",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains(Address address)] [Protobuf Serialization] If organizationMembers_ contains addresses that were corrupted during serialization/deserialization, could Contains() fail to find valid members or match invalid ones? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_caa26dcb-8d83-4d4c-acfc-b9d57e4b74de?mode=deep",
+    "timestamp": "2026-02-19 05:23:44.018538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Empty()] [Protobuf Defaults] For a newly instantiated OrganizationMemberList via protobuf default initialization, does Empty() correctly return true, or could default field values cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc93693c-d6dc-4a9a-9f60-74f86311d220?mode=deep",
+    "timestamp": "2026-02-19 05:24:12.401700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Contains(Address address)] [Missing Validation] Contains() doesn't validate that the address parameter is a valid blockchain address - could invalid address formats cause comparison errors or exceptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df082f17-cc43-45ea-aece-6ca8991f7151?mode=deep",
+    "timestamp": "2026-02-19 05:24:46.429423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Count()] [Missing Validation] Count() doesn't verify the integrity of organizationMembers_ - could corrupted state cause negative counts or overflow values to be returned? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9a0e0cb-ed4f-4482-849c-9c27bcc90d6d?mode=deep",
+    "timestamp": "2026-02-19 05:25:19.456706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/OrganizationMemberList.cs] [Function: Empty()] [Missing Validation] Empty() only checks if count is zero but doesn't validate if the organization is in a valid state - could invalid organizations with zero members pass Empty() checks incorrectly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c0f3232-8ff0-4406-9edf-1b91e6705409?mode=deep",
+    "timestamp": "2026-02-19 05:25:47.284403",
+    "report_generated": false
+  }
+]
