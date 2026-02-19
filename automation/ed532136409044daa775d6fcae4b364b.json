@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create() + ToRound()] [Data Integrity] Is Create(round, randomNumber).ToRound() guaranteed to produce a Round equal to the original input round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70a8c0c1-7bc7-45e5-905a-b82442e297c4?mode=deep",
+    "timestamp": "2026-02-19 14:03:46.795609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create() + ToRound()] [State Consistency] Can round-trip conversion (Round -> NextTermInput -> Round) lose or corrupt miner information due to reference semantics? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3311440c-4d80-4520-8314-b55430dc2949?mode=deep",
+    "timestamp": "2026-02-19 14:04:09.777851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create() + ToRound()] [Consensus Safety] Can an attacker exploit the randomNumber field being excluded in ToRound() to replay old term transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f11e9249-a06e-415f-ac0b-2b40ab9897cf?mode=deep",
+    "timestamp": "2026-02-19 14:04:33.262027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Memory Safety] Does the collection initializer { round.RealTimeMinersInformation } perform shallow or deep copy of miner data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b52a99c7-333a-4949-860b-fad42a982b9d?mode=deep",
+    "timestamp": "2026-02-19 14:04:57.532368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Concurrency] Can concurrent modifications to input Round.RealTimeMinersInformation during Create() execution cause race conditions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81602760-f01e-4d21-9271-cee160a40619?mode=deep",
+    "timestamp": "2026-02-19 14:05:21.864373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Memory Safety] Does the collection initializer { RealTimeMinersInformation } in ToRound() create independent miner data copies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68d02364-5b0f-4cb6-ba76-ca439e92c6ff?mode=deep",
+    "timestamp": "2026-02-19 14:05:47.293400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Authorization] Can Create() be called by non-consensus participants, allowing injection of malicious NextTermInput into term transition? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5adec55-fd31-4a0b-8c60-988a23288d5a?mode=deep",
+    "timestamp": "2026-02-19 14:06:13.797961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept a Round from a previous term, allowing term transition replay attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3adb2ca5-0da9-4bd6-9469-5aa432c79c2b?mode=deep",
+    "timestamp": "2026-02-19 14:06:41.216060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept a Round with miners not elected by Election contract, bypassing democratic miner selection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fcf3160-0c3a-438c-a702-bdd748c75ac1?mode=deep",
+    "timestamp": "2026-02-19 14:07:13.548037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Consensus Safety] Does ProcessNextTerm validate that ToRound() output matches expected new term state before committing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_932a0c54-7392-4cf4-8f22-3440fb782834?mode=deep",
+    "timestamp": "2026-02-19 14:07:47.806203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [State Consistency] Can ToRound() produce a Round where TermNumber hasn't been incremented, keeping the same term number? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abd879c3-0832-4f72-bbc0-82cc1ad0f6c1?mode=deep",
+    "timestamp": "2026-02-19 14:08:18.057335",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RoundNumber field in NextTermInput be less than current round number, allowing round number regression? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4b71518-2d28-4b5e-bcb3-e2b6cd146122?mode=deep",
+    "timestamp": "2026-02-19 14:08:52.518099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can ExtraBlockProducerOfPreviousRound be empty string, causing failures in extra block reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ec78e90-8e4d-48f3-9112-bbec023b59ae?mode=deep",
+    "timestamp": "2026-02-19 14:09:27.391712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RealTimeMinersInformation contain miners with zero or negative Order values, corrupting block production sequence? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55699301-81e8-4db4-a0ae-f54572d5c60a?mode=deep",
+    "timestamp": "2026-02-19 14:10:02.190542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can RealTimeMinersInformation contain duplicate Order values, causing two miners to claim the same time slot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_865e7e0c-1086-4f62-95c0-204b0b806d35?mode=deep",
+    "timestamp": "2026-02-19 14:10:34.710292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can IsMinerListJustChanged flag mismatch actual miner changes, bypassing miner replacement handling? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a246f11-da7f-47c5-b3a3-903293c46782?mode=deep",
+    "timestamp": "2026-02-19 14:11:07.760475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Serialization] Can malformed protobuf data bypass field validation when NextTermInput is deserialized from transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5677c9ee-fefd-466e-a72e-75750c7412a5?mode=deep",
+    "timestamp": "2026-02-19 14:11:42.353300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Serialization] Can oversized RealTimeMinersInformation map cause memory exhaustion when Create() processes it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29bcc095-a67d-4c44-9e6c-27bc5e70681e?mode=deep",
+    "timestamp": "2026-02-19 14:12:13.990219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Serialization] Can ToRound() output be serialized back to NextTermInput without data loss for audit purposes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27e3fe82-aa5e-481b-ac1f-ac5450a4fdfe?mode=deep",
+    "timestamp": "2026-02-19 14:12:50.430204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Access Control] Is Create() a public static method accessible outside consensus contract, allowing external term transition injection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91ebed29-c28f-4808-937d-e54364bbd236?mode=deep",
+    "timestamp": "2026-02-19 14:13:26.281761",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Access Control] Can external callers invoke ToRound() on NextTermInput to extract sensitive round data before term transition? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0210176e-5bf3-460c-a6ea-8866f43a19d3?mode=deep",
+    "timestamp": "2026-02-19 14:14:03.971513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Immutability] After Create() returns NextTermInput, can its fields be modified before being passed to NextTerm()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5406f5b-bd64-40ad-896d-5a8ddf3d998c?mode=deep",
+    "timestamp": "2026-02-19 14:14:42.106133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Immutability] After ToRound() returns Round, can ProcessNextTerm modify it without affecting the original NextTermInput? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_069c596e-40e5-48b0-b289-bfa59559dcaa?mode=deep",
+    "timestamp": "2026-02-19 14:15:20.375244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Data Integrity] Can RealTimeMinersInformation contain miners with null or empty public keys, causing lookup failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ae8fb47-6ef8-4ad0-8ce8-db225bfb4381?mode=deep",
+    "timestamp": "2026-02-19 14:15:58.333211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Data Integrity] Can RealTimeMinersInformation contain invalid MinerInRound objects (all fields null/default), corrupting consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09911719-8ef4-436c-99d0-1272d7d98da8?mode=deep",
+    "timestamp": "2026-02-19 14:16:37.099228",
+    "report_generated": false
+  }
+]
