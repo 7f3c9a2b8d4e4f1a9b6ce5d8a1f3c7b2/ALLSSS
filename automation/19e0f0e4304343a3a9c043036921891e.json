@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultUserFeeController()] [Three-Tier Complexity] The UserFeeController has three levels (Parliament -> Referendum -> Association) - does this complexity increase attack surface by requiring three separate organization validations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b61110b-760b-4afa-8aa2-8ecf8d71d344?mode=deep",
+    "timestamp": "2026-02-19 02:11:57.742711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultUserFeeController()] [Empty Object Anti-Pattern] Lines 334-339 create empty AuthorityInfo objects immediately overwritten - is this pattern used consistently across the codebase or just in this function? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5fb1280-9311-42a9-b675-e860c74b19af?mode=deep",
+    "timestamp": "2026-02-19 02:12:19.938040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultSymbolToPayTxFeeController()] [Single Line Function] Line 356 simply returns GetDefaultParliamentController() - does this indirection serve any purpose or could it lead to confusion about which controller actually manages symbol fee settings? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a044dc7-e9f8-40b7-8381-5cc84fed4bc4?mode=deep",
+    "timestamp": "2026-02-19 02:12:42.228967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultSymbolToPayTxFeeController()] [No Caching] Unlike other controller getters, this function doesn't cache the result in state - will repeated calls cause unnecessary external contract calls to Parliament? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4be80e12-6e0d-4f28-ad2d-6a6529e90df0?mode=deep",
+    "timestamp": "2026-02-19 02:13:05.459451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultSideChainRentalController()] [State.SideChainCreator Dependency] Line 366 uses State.SideChainCreator.Value without null check - if this value is not set before calling GetDefaultSideChainRentalController(), will CalculateOrganizationAddress() return an incorrect address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fbd19cd-8d9e-4d12-9504-0db40ffb149c?mode=deep",
+    "timestamp": "2026-02-19 02:13:29.740472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultSideChainRentalController()] [Association Contract Reuse] Lines 361-363 initialize State.AssociationContract.Value again even though it may already be set - is this defensive programming or inefficient? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2b583e0-7ead-4852-abec-835b3d22fbeb?mode=deep",
+    "timestamp": "2026-02-19 02:13:54.670827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultSideChainRentalController()] [Creator Manipulation] If an attacker can set State.SideChainCreator.Value before this function is called, can they control the calculated rental controller address and subsequently control rental pricing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d053342-d647-4b21-998f-e4b0aceaa19e?mode=deep",
+    "timestamp": "2026-02-19 02:14:19.842303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetTransferBlackListController()] [Null Default] Lines 378-379 return GetDefaultParliamentController() if State.TransferBlackListController.Value is null - does this mean parliament has blacklist power by default before explicit controller initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e210a202-bf95-4e77-8201-d0d4a7eef248?mode=deep",
+    "timestamp": "2026-02-19 02:14:45.524241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetTransferBlackListController()] [No Initialization Check] Unlike other controllers, TransferBlackListController doesn't have explicit initialization in InitializeAuthorizedController() - can it be in an undefined state until ChangeTransferBlackListController() is called? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e22e90a-5830-4ec9-8763-7717c0967020?mode=deep",
+    "timestamp": "2026-02-19 02:15:12.693478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: AssertDeveloperFeeController()] [Null Check Only] Lines 385-386 only check if State.DeveloperFeeController.Value is null but don't verify the controller structure is valid (RootController, ParliamentController, DeveloperController are non-null) - can partially initialized controllers pass this check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcc7e6c4-1b3c-41ef-aa6a-1eccef6ce0bb?mode=deep",
+    "timestamp": "2026-02-19 02:15:39.006584",
+    "report_generated": false
+  }
+]
