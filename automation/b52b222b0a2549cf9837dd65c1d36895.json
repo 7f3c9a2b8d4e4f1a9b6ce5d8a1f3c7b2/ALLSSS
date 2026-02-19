@@ -1,0 +1,128 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Invalid Address] Can setting TokenContract to an EOA (externally owned account) instead of contract cause fee deduction failures that are incorrectly handled as successful? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02ec950f-94a2-4c19-8b05-d0b778845b84?mode=deep",
+    "timestamp": "2026-02-19 10:44:44.062416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Address Validation] Can ParliamentContract address be set to Association's own address, creating circular reference that breaks governance logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12d417e9-8cd8-4524-b43f-64f0299b9515?mode=deep",
+    "timestamp": "2026-02-19 10:45:06.527974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Address Validation] Can TokenContract reference point to a non-token contract that returns malformed data, causing parsing errors exploitable for bypassing checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20d1e582-e1ea-4115-8981-ae26482a2a16?mode=deep",
+    "timestamp": "2026-02-19 10:45:29.954929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Interface Mismatch] If ParliamentContract is upgraded to incompatible interface, can method calls fail silently or return unexpected data structures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c5bcefc-242d-474b-a0b5-eaaf225b65dd?mode=deep",
+    "timestamp": "2026-02-19 10:45:53.894513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Interface Mismatch] Can TokenContract interface changes cause Association to misinterpret token transfer results, believing failed transfers succeeded? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e50a4dfd-2057-4543-b187-8e16f243a309?mode=deep",
+    "timestamp": "2026-02-19 10:46:18.578805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Version Incompatibility] Can Parliament contract protocol version changes break Association's governance assumptions about proposal lifecycle? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42914185-073a-49d0-ae92-71261acfeec4?mode=deep",
+    "timestamp": "2026-02-19 10:46:43.895047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Version Incompatibility] If MultiToken contract adds new token standards, can Association fail to handle them correctly, causing fund lockup? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_451038cb-2476-41b1-aff0-3acc58843adf?mode=deep",
+    "timestamp": "2026-02-19 10:47:11.443298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Reference Immutability] If ParliamentContract reference cannot be updated after deployment, can bugs in Parliament contract permanently break Association functionality? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fef02211-13d1-492f-ad68-834346bf8bec?mode=deep",
+    "timestamp": "2026-02-19 10:47:41.673095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Reference Immutability] Can immutable TokenContract reference prevent Association from adapting to token contract upgrades, causing permanent incompatibility? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cad3c40-46a4-4b0b-8ac6-855ab54634b9?mode=deep",
+    "timestamp": "2026-02-19 10:48:11.800749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Uncontrolled Update] If ParliamentContract reference can be updated without multi-sig approval, can single member hijack governance by pointing to malicious Parliament? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa5841ab-5afa-408b-93e8-793d2e1cd23c?mode=deep",
+    "timestamp": "2026-02-19 10:48:40.754253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Uncontrolled Update] Can unauthorized TokenContract reference updates redirect all association funds to attacker-controlled token contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_845d1914-3924-446d-bc43-86953774627e?mode=deep",
+    "timestamp": "2026-02-19 10:49:13.596708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Circular Dependency] Can Parliament contract also hold Association reference, creating circular dependency that causes stack overflow in cross-contract calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13a5a158-4ad6-40e3-8daf-7fef1437d6ff?mode=deep",
+    "timestamp": "2026-02-19 10:49:46.419737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Circular Dependency] If TokenContract callbacks invoke Association methods that call TokenContract again, can infinite recursion occur? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22764d47-71c9-4046-aa13-498b15ade7e7?mode=deep",
+    "timestamp": "2026-02-19 10:50:22.277639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Data Tampering] Can Parliament contract return manipulated authorization results that Association accepts without verification, enabling unauthorized proposal execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f8ce967-9cc4-4c53-8aa5-0ba2d97811d1?mode=deep",
+    "timestamp": "2026-02-19 10:50:57.791268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Data Tampering] Can TokenContract return false balance information that Association uses for voting power calculation, enabling vote manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_266c52e5-0813-4a5a-8ec5-195f13742326?mode=deep",
+    "timestamp": "2026-02-19 10:51:34.772076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Return Value Validation] If Association doesn't validate Parliament method return values, can malformed responses cause undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b66e5a02-9493-4791-ba99-3292f9c00c48?mode=deep",
+    "timestamp": "2026-02-19 10:52:08.242216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Return Value Validation] Can missing validation of TokenContract transfer results allow Association to proceed with operations despite failed token transfers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2561ca1-a103-4d91-bd66-228b6eb20db1?mode=deep",
+    "timestamp": "2026-02-19 10:52:41.053114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Internal Access] Does 'internal' access modifier properly restrict ParliamentContract reference access within assembly, or can reflection/unsafe code bypass this? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00de5f28-e892-4894-98d3-3187d1614640?mode=deep",
+    "timestamp": "2026-02-19 10:53:11.369402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Internal Access] Can internal access modifier be circumvented to allow unauthorized modification of TokenContract reference through reflection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5f608f0-b5f2-4144-9c07-8157b81dd7b4?mode=deep",
+    "timestamp": "2026-02-19 10:53:45.924059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Class: AssociationState] [Partial Class] Can other partial class definitions of AssociationState in different files introduce conflicting or malicious implementations affecting these references? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c368bb00-82d4-4b86-9806-b64ee3696a2e?mode=deep",
+    "timestamp": "2026-02-19 10:54:21.171387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Class: AssociationState] [Partial Class] If multiple assemblies define AssociationState partial classes, can reference properties be shadowed or overridden unexpectedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17e2d33b-0c0e-4f04-b8fa-2dff8bfcbad7?mode=deep",
+    "timestamp": "2026-02-19 10:54:51.399114",
+    "report_generated": false
+  }
+]
