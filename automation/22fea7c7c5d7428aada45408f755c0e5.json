@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolsToPayTXSizeFeeController()] [Controller Replacement] Can an attacker exploit the fallback to default controller to bypass proper initialization and use a controller with elevated privileges? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23c9ef83-0b2a-46f5-bb78-7854f81be43e?mode=deep",
+    "timestamp": "2026-02-19 02:44:44.137623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolsToPayTXSizeFeeController()] [Authority Confusion] Can the default controller have different authority requirements than the initialized controller, causing authorization bypasses when state is uninitialized? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a9d3d8b-26c4-45fe-a8cb-a6205841d38b?mode=deep",
+    "timestamp": "2026-02-19 02:45:06.496574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Recursive Call] The function calls GetCrossChainTokenContractRegistrationController() recursively when state is null - is this the same function or a different internal function? Can this cause infinite recursion or unexpected behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82e24eac-3e46-40db-a714-d578b2717a15?mode=deep",
+    "timestamp": "2026-02-19 02:45:28.890959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Cross-Chain Security] Can an attacker exploit uninitialized State.CrossChainTokenContractRegistrationController.Value to register malicious token contracts on cross-chain transfers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e41e3ae-23f5-40ed-9840-15e4db932441?mode=deep",
+    "timestamp": "2026-02-19 02:45:52.190426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Controller Authority] Is there proper validation that the returned controller can only register legitimate cross-chain token contracts, or can any address use this controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81012d00-f4ce-4d5a-8ee0-eb4c10b0c1eb?mode=deep",
+    "timestamp": "2026-02-19 02:46:16.590410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee()] [Fee Token Validation] Can an attacker create a non-burnable token and attempt to use it for method fees? Does this function correctly prevent non-burnable tokens from being accepted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cb9b893-cdb3-4a09-a49f-3034e11b047a?mode=deep",
+    "timestamp": "2026-02-19 02:46:41.869525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee()] [Input Validation] Is there validation that input.Value is not null or empty? Can providing invalid symbol strings cause unexpected behavior or expose uninitialized token info? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b9a399f-e3d0-4839-9e94-f7ceca617702?mode=deep",
+    "timestamp": "2026-02-19 02:47:08.948582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee() private] [Exception Handling] The function throws AssertionException if token is not found - can an attacker cause DOS by requesting fee payment in non-existent tokens, causing all fee calculations to fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bb70bd3-98da-410d-9238-7cf3b0a8f849?mode=deep",
+    "timestamp": "2026-02-19 02:47:34.416657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee() private] [Burnable Check] The function only checks tokenInfo.IsBurnable - are there other token properties that should be validated for method fee eligibility (e.g., not locked, sufficient supply, owner permissions)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af45d18f-9a6f-4f1f-a555-b3a78eb3ec56?mode=deep",
+    "timestamp": "2026-02-19 02:48:03.371160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee() private] [Token Info Null] If GetTokenInfo(symbol) returns null, the AssertionException is thrown - can this be exploited to cause transaction failures when querying fee availability? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9b1ff0a-4f46-4ea9-92aa-4d0956e2e357?mode=deep",
+    "timestamp": "2026-02-19 02:48:32.616347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetReservedExternalInfoKeyList()] [External Info Keys] Can an attacker use knowledge of these reserved keys (LockCallbackExternalInfoKey, LogEventExternalInfoKey, TransferCallbackExternalInfoKey, UnlockCallbackExternalInfoKey) to inject malicious external info that triggers callbacks or events? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c9d7bee-94e3-4e45-8bb6-9c0f08c35ab1?mode=deep",
+    "timestamp": "2026-02-19 02:49:00.478247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetReservedExternalInfoKeyList()] [Key Collision] Can an attacker create token external info with keys that collide with these reserved keys, potentially hijacking callback mechanisms or event logging? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd9de752-535b-42f4-b52d-47e59ca346b5?mode=deep",
+    "timestamp": "2026-02-19 02:49:31.450149",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetReservedExternalInfoKeyList()] [Hardcoded Keys] Are these hardcoded string keys validated consistently across all functions that use external info? Can inconsistent key handling lead to callback bypass or unauthorized operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91a12e8a-bc12-4e3e-b1e2-682b08ed9f98?mode=deep",
+    "timestamp": "2026-02-19 02:50:00.934472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [Whitelist Check] Can an attacker become whitelisted by registering as one of the system contracts (ZeroSmartContract, Parliament Controller, Economic Contract, or CrossChain Contract)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd20d804-ca42-4e42-919d-2c1fc5b3253d?mode=deep",
+    "timestamp": "2026-02-19 02:50:31.246974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [Contract Name Spoofing] Can an attacker deploy a contract with a spoofed name matching SmartContractConstants.EconomicContractSystemName or CrossChainContractSystemName to pass the whitelist check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_397dcbc5-2b6f-4c0e-84d3-57c7c96c2339?mode=deep",
+    "timestamp": "2026-02-19 02:51:00.316530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [Parliament Controller] GetDefaultParliamentController().OwnerAddress is checked - can an attacker manipulate this owner address through governance to gain whitelist access? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abb50f57-500a-4661-84c7-6665788071c7?mode=deep",
+    "timestamp": "2026-02-19 02:51:27.988982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsAddressInCreateWhiteList()] [System Contract Validation] Are the system contract addresses validated to prevent address reuse or spoofing? Can an attacker claim one of these addresses before the system contracts are deployed? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9e09fad-8ede-4692-8be3-0f3997ddc886?mode=deep",
+    "timestamp": "2026-02-19 02:51:56.041782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenAlias()] [NFT Collection] The function calls GetNftCollectionSymbol(input.Value, true) - can an attacker provide a non-NFT symbol that gets incorrectly processed as an NFT collection, returning wrong alias information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ecde922-2cc4-48d1-9b61-936c55c5c8a9?mode=deep",
+    "timestamp": "2026-02-19 02:52:24.049535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenAlias()] [Alias Extraction] The function calls ExtractAliasSetting(tokenInfo) - if tokenInfo is null or malformed, can this cause null reference exceptions or return attacker-controlled alias strings? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5821e5ae-6ae1-4834-bb76-7ac47e95741c?mode=deep",
+    "timestamp": "2026-02-19 02:52:55.531530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetTokenAlias()] [Symbol Manipulation] Can an attacker provide a symbol with special characters or separators that cause GetNftCollectionSymbol to return a different collection than intended, exposing wrong alias data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2e4263c-ceb0-42d2-800d-79dc96f93bc6?mode=deep",
+    "timestamp": "2026-02-19 02:53:28.298100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolByAlias()] [Alias Resolution] Can an attacker register an alias that collides with an existing symbol, causing GetActualTokenSymbol to return an unexpected symbol and enabling token confusion attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03ef1fb1-4bf3-468a-85b6-06f2c5ce31f0?mode=deep",
+    "timestamp": "2026-02-19 02:53:57.902416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolByAlias()] [Circular References] Can an alias be set to point to another alias, creating circular references that cause infinite loops or unexpected symbol resolution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f86c9d54-5bf3-4de9-a77f-0db69fc894a4?mode=deep",
+    "timestamp": "2026-02-19 02:54:31.807394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetActualTokenSymbol()] [Alias Priority] The function checks State.TokenInfos[aliasOrSymbol] first - can an attacker register both a token with symbol 'X' and an alias 'X' pointing to token 'Y', causing confusion about which token is actually referenced? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f7bd2b5-246d-4394-9b52-bb21a2e4e438?mode=deep",
+    "timestamp": "2026-02-19 02:55:01.582467",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetActualTokenSymbol()] [Null Handling] If State.SymbolAliasMap[aliasOrSymbol] returns null, the function falls back to aliasOrSymbol - can this allow invalid symbols to pass through without validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fa3a2ff-c61b-469b-b614-d6e9b4eab0aa?mode=deep",
+    "timestamp": "2026-02-19 02:55:32.933694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetActualTokenSymbol()] [Map Corruption] Can State.SymbolAliasMap be corrupted to map legitimate aliases to attacker-controlled symbols, enabling token substitution attacks across all operations using this function? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_811d049d-e686-40d3-bd2b-6dbcd630d00c?mode=deep",
+    "timestamp": "2026-02-19 02:56:04.691851",
+    "report_generated": false
+  }
+]
