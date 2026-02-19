@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Null Reference] If a null Round object is passed to Create(), does the method throw NullReferenceException when accessing round.RoundNumber, allowing DOS of consensus transition generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0955731f-e338-4201-b39b-81affdf715af?mode=deep",
+    "timestamp": "2026-02-19 05:21:22.526487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Null Reference] If randomNumber parameter is null/empty ByteString when calling Create(), can this bypass random number verification in subsequent ProcessNextRound validation, enabling predictable consensus behavior? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_188d0fce-cdd5-4486-8265-6cd59f0e949d?mode=deep",
+    "timestamp": "2026-02-19 05:21:44.662496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with negative RoundNumber value, causing integer underflow when the result is used in round number increment validation checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9e585ea-235a-4da1-9dd7-f21ec7237d75?mode=deep",
+    "timestamp": "2026-02-19 05:22:07.116057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Input Validation] If round.RealTimeMinersInformation is null, does line 12 throw NullReferenceException during collection initialization, causing consensus transaction generation failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1360814b-51fe-4a70-9c69-8ab1e6b09ab2?mode=deep",
+    "timestamp": "2026-02-19 05:22:30.369540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Input Validation] Can Create() accept an empty RealTimeMinersInformation map, creating a NextRoundInput with zero miners that bypasses minimum miner count requirements in round processing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d16cd8c-4afb-4c0c-b602-0ca76d9fa555?mode=deep",
+    "timestamp": "2026-02-19 05:22:53.973307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.RoundNumber is set to Int64.MaxValue, can the NextRoundInput cause overflow when RoundTerminateValidationProvider checks baseRound.RoundNumber + 1 equality? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0aabd1f8-9c5b-4fa3-b7de-0a4fadbe9baa?mode=deep",
+    "timestamp": "2026-02-19 05:23:19.913483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept a Round with RoundNumber that doesn't follow sequential progression (e.g., skipping from round 5 to round 10), bypassing round continuity validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a46af407-a627-41ff-a93a-6a387b7cc6e7?mode=deep",
+    "timestamp": "2026-02-19 05:23:45.534422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.TermNumber is negative or zero when round.RoundNumber > 1, does Create() allow invalid term-round relationships that violate consensus invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64775d97-169e-4472-b361-9bcd98681cda?mode=deep",
+    "timestamp": "2026-02-19 05:24:15.319270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept a Round where TermNumber decreases from previous round, enabling term number regression attacks that reset mining elections? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8248f029-dc35-40e7-87a1-1d2910106ca3?mode=deep",
+    "timestamp": "2026-02-19 05:24:45.958949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.TermNumber is Int64.MaxValue, can this cause overflow when ProcessNextTerm tries to increment it via TryToUpdateTermNumber? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2ec7e7a-d345-42b2-83d1-9ce2514fd7ec?mode=deep",
+    "timestamp": "2026-02-19 05:25:17.702037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept a Round with BlockchainAge that is less than previous round's BlockchainAge, enabling time regression attacks in consensus timestamp calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71605f5a-8e36-41f1-b07c-528fc597402c?mode=deep",
+    "timestamp": "2026-02-19 05:25:46.298415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.BlockchainAge is negative, does Create() allow invalid blockchain age that causes incorrect miner time slot calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e127fefc-12a4-4cf2-94b1-2b69062b51e8?mode=deep",
+    "timestamp": "2026-02-19 05:26:19.122427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept BlockchainAge = 0 when RoundNumber > 1, violating the invariant that blockchain age must increment with each round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb99c7bc-5b9f-4f7f-a2cd-06266cfefb56?mode=deep",
+    "timestamp": "2026-02-19 05:26:52.683018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.BlockchainAge is Int64.MaxValue, can this cause overflow when used in timestamp calculations during block production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7285e97-3e46-42fe-9c43-75d38fe7b10f?mode=deep",
+    "timestamp": "2026-02-19 05:27:25.836813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept BlockchainAge that doesn't match (currentBlockTimestamp - blockchainStartTimestamp).Seconds calculation, bypassing time consistency checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ef1e683-e232-4f17-8cc2-5fda1df62642?mode=deep",
+    "timestamp": "2026-02-19 05:27:56.045527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept round.ConfirmedIrreversibleBlockHeight that is greater than current block height, enabling fake LIB advancement attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39a685ef-c900-4491-b1b0-37c2b6c1595a?mode=deep",
+    "timestamp": "2026-02-19 05:28:30.856504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.ConfirmedIrreversibleBlockHeight is negative, does Create() allow invalid LIB height that corrupts irreversible block tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96598e99-f012-4541-9527-e17c33c05339?mode=deep",
+    "timestamp": "2026-02-19 05:29:04.152585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept ConfirmedIrreversibleBlockHeight that decreases from previous round's value, violating the monotonically increasing LIB invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_43085ef2-d2b0-4d26-8cb0-23ec569522a4?mode=deep",
+    "timestamp": "2026-02-19 05:29:37.303830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If round.ConfirmedIrreversibleBlockRoundNumber is greater than RoundNumber, does Create() allow invalid LIB-round relationships? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73b64a92-c6ba-42e2-8163-bb1e9699290a?mode=deep",
+    "timestamp": "2026-02-19 05:30:11.472423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept ConfirmedIrreversibleBlockRoundNumber = 0 when ConfirmedIrreversibleBlockHeight > 0, creating inconsistent LIB state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78dffc04-d785-4642-a66e-9cb07b01b6dc?mode=deep",
+    "timestamp": "2026-02-19 05:30:41.961455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] When copying RealTimeMinersInformation at line 12, if the map contains duplicate miner pubkeys with different Order values, can this corrupt mining sequence determination? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1797ff2b-117f-4e9f-94eb-c734f4eea67f?mode=deep",
+    "timestamp": "2026-02-19 05:31:16.996319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept RealTimeMinersInformation where miner Order values are not sequential (e.g., 1,2,5,7), bypassing order continuity validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75ea53dc-d11a-4c48-8586-87a8404462d4?mode=deep",
+    "timestamp": "2026-02-19 05:31:46.982475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If RealTimeMinersInformation contains miners with null or empty Pubkey strings, does Create() allow invalid miner identifiers that break signature verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b569205-1d9b-4e68-8fc7-c0ae8ecc9f04?mode=deep",
+    "timestamp": "2026-02-19 05:32:22.540483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept RealTimeMinersInformation with miner ExpectedMiningTime values that overlap, causing time slot collision in block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73765475-c0dd-4aae-8ba3-82878c14d61e?mode=deep",
+    "timestamp": "2026-02-19 05:32:56.948522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: Create()] [Consensus Safety] If RealTimeMinersInformation contains miners with negative ProducedBlocks or MissedTimeSlots values, does Create() allow statistics manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_926d3eae-0812-4034-b557-fc86cf6a86da?mode=deep",
+    "timestamp": "2026-02-19 05:33:31.629979",
+    "report_generated": false
+  }
+]
