@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Class: BasicContractZeroState] [Namespace Pollution] Since the class is in the AElf.Contracts.Genesis namespace, could an attacker deploy a malicious contract in the same namespace that interferes with these reference state properties through namespace-level access? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c41d7f66-dfce-45b3-8493-5c5b20587fad?mode=deep",
+    "timestamp": "2026-02-19 12:52:57.865075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Properties: All] [Upgrade Safety] If any of these referenced contracts (Parliament, Token, Consensus) are upgraded, could the reference states become stale and point to deprecated contract versions with known vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_703ee263-4961-43f1-8abd-feae6f8f60db?mode=deep",
+    "timestamp": "2026-02-19 12:53:20.161433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Proposal Lifecycle] When BasicContractZero interacts with Parliament through this reference during contract code check proposals, could timing issues allow proposals to be executed before proper code review? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6940ea9-1cd6-40f1-8fe5-88821d25cddc?mode=deep",
+    "timestamp": "2026-02-19 12:53:42.649424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Allowance Exploitation] If contract deployment requires token allowances checked through TokenContract reference, could an attacker front-run deployment transactions to manipulate allowances and cause legitimate deployments to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d34382eb-caaa-40fd-b664-a17b60948a7e?mode=deep",
+    "timestamp": "2026-02-19 12:54:06.275417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [Time Slot Manipulation] When BasicContractZero queries consensus time slots through ConsensusContract reference for deployment authorization, could miners manipulate timestamps to bypass time-based deployment restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a709bde1-eaff-4294-bd30-ba76c33d00c5?mode=deep",
+    "timestamp": "2026-02-19 12:54:30.292329",
+    "report_generated": false
+  }
+]
