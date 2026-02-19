@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [User Fund Loss] If RemoveBeneficiary is called on a user who registered via RegisterForProfits, their locked tokens remain locked but they lose beneficiary status. Can they still withdraw? Is this a fund-locking vulnerability? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_629dde94-2077-4067-bcc1-ebc5504aa8e9?mode=deep",
+    "timestamp": "2026-02-19 14:30:41.995485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Reentrancy] Between RemoveBeneficiary at line 80 and AddBeneficiary at line 87, can malicious ProfitContract re-enter and cause double removal or state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08e85832-0a1e-4a2e-83a1-659b44c9cc58?mode=deep",
+    "timestamp": "2026-02-19 14:31:04.766896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Input Validation] Does the function validate input.Beneficiary is not null or zero address? Can removing zero address cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf47b5d1-63d5-4269-9d3d-9fd6a6edb465?mode=deep",
+    "timestamp": "2026-02-19 14:31:27.397752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Atomicity] If RemoveBeneficiary at line 80 succeeds but AddBeneficiary at line 87 fails, shares are permanently lost. Is there transaction rollback to prevent partial execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21edf21b-ef37-4bd6-9a0e-b256942be4e4?mode=deep",
+    "timestamp": "2026-02-19 14:31:50.271394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Integer Arithmetic] Line 93 performs lockedAmount.Sub(input.Amount). Does Sub() method properly handle edge cases like equal values, or can it cause unexpected results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a05a01d4-e91b-4311-9beb-757b1a2a3c8f?mode=deep",
+    "timestamp": "2026-02-19 14:32:14.190189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Authorization Bypass] Line 102 calls GetValidScheme with input.SchemeManager but Context.Sender contributes the tokens. Can attacker contribute to any scheme without being the manager, potentially triggering unwanted auto-distributions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b88900dc-8a9f-46df-9331-45f47da8892f?mode=deep",
+    "timestamp": "2026-02-19 14:32:40.006147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Accounting Error] Lines 107-113 use TransferFrom to pull tokens from Context.Sender. If Sender hasn't approved TokenHolderContract, transaction fails but GetValidScheme already executed. Can repeated failures cause state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3ef6a40-02b9-4a28-8b31-508dedad0047?mode=deep",
+    "timestamp": "2026-02-19 14:33:05.949292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Double Approval] Lines 115-120 approve ProfitContract to spend input.Amount. If ContributeProfits is called multiple times, do approvals accumulate? Can this lead to ProfitContract having excessive approval beyond intended amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59266595-614e-454e-88fe-94292793b24c?mode=deep",
+    "timestamp": "2026-02-19 14:33:32.140232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Cross-Contract Risk] Line 122 calls ProfitContract.ContributeProfits. If ProfitContract is compromised, can it drain approved tokens without actually distributing profits to beneficiaries? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68f1ec04-aa85-4608-987d-a14d56459e5d?mode=deep",
+    "timestamp": "2026-02-19 14:34:01.483809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Input Validation] Does the function validate input.Amount is positive and not zero? Can contributing zero amounts cause logic errors or waste gas? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f05d55ab-768e-4892-b0d6-52e5c29396b9?mode=deep",
+    "timestamp": "2026-02-19 14:34:29.118926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Symbol Mismatch] No validation that input.Symbol matches scheme.Symbol. Can contributing wrong token symbol cause funds to be locked in ProfitContract but never distributed to beneficiaries? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d380c333-1ae1-46b1-a19e-242e0cbecd48?mode=deep",
+    "timestamp": "2026-02-19 14:34:56.562595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Reentrancy] Between TransferFrom at line 107, Approve at line 115, and ContributeProfits at line 122, can malicious token contract or ProfitContract re-enter and manipulate state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f981fe90-a05c-4b92-948f-21b57ecaf055?mode=deep",
+    "timestamp": "2026-02-19 14:35:23.921094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [DOS Attack] Can attacker repeatedly contribute tiny amounts to trigger excessive state updates and gas consumption, effectively DOSing the profit distribution mechanism? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd7a66aa-287c-4260-ae64-53682dfebb38?mode=deep",
+    "timestamp": "2026-02-19 14:35:53.843742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Approval Race] If multiple ContributeProfits calls happen concurrently, can the Approve at line 115 create race conditions where ProfitContract has inconsistent approval amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8261d801-ddfa-46f5-9bd9-022c226191c6?mode=deep",
+    "timestamp": "2026-02-19 14:36:21.027095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: ContributeProfits()] [Fund Loss] If ProfitContract.ContributeProfits fails after tokens are transferred and approved, are tokens permanently locked in TokenHolderContract with no recovery mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce7d7beb-33e7-4e4a-b6d7-b7d45904040f?mode=deep",
+    "timestamp": "2026-02-19 14:36:51.599903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Authorization Bypass] Line 134 only checks if sender is TokenContract OR scheme manager. Can TokenContract be manipulated to call DistributeProfits on behalf of attackers, bypassing manager authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6e243e8-7cc8-4c04-abca-1d34c3f17ed2?mode=deep",
+    "timestamp": "2026-02-19 14:37:19.288764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [State Race Condition] Line 144 increments scheme.Period after distribution. If DistributeProfits is called multiple times concurrently, can Period be incremented incorrectly causing profit calculation errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_599d8b91-df71-42b0-b44f-afd76e105ab7?mode=deep",
+    "timestamp": "2026-02-19 14:37:46.669839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Logic Bug] Line 133 calls GetValidScheme with updateSchemePeriod=true, which updates period in UpdateTokenHolderProfitScheme. But then line 144 also updates period. Is period being double-incremented? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_415a0bfd-8e9b-40ff-94e7-a79dd2849d9e?mode=deep",
+    "timestamp": "2026-02-19 14:38:15.201061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Accounting Error] Lines 138-139 create DistributeProfitsInput with scheme.Period. If period is incremented at line 144 but distribution uses old period, can profits be attributed to wrong period causing double-claims? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c063b7a4-07ba-4678-9d59-d99035cdc919?mode=deep",
+    "timestamp": "2026-02-19 14:38:43.564843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Input Validation] Line 141 checks if AmountsMap exists and is non-empty, but doesn't validate amounts are positive. Can distributing zero or negative amounts cause accounting errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1db5f896-fc08-4ca8-8f02-952df21e25ea?mode=deep",
+    "timestamp": "2026-02-19 14:39:11.855037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [DOS Attack] Can malicious scheme manager repeatedly call DistributeProfits with empty AmountsMap, infinitely incrementing period without distributing anything, breaking profit claiming logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc23bb05-7709-4429-bae9-b62af969ac42?mode=deep",
+    "timestamp": "2026-02-19 14:39:41.701902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Front-Running] Can scheme manager front-run user ClaimProfits by calling DistributeProfits to increment period, causing user's claim to target wrong period and fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1fd03c8-d137-43ad-a7c9-fc6f5fe7ab5c?mode=deep",
+    "timestamp": "2026-02-19 14:40:15.968341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Period Overflow] Line 144 uses scheme.Period.Add(1). If period reaches Int64.MaxValue, will Add cause overflow or throw exception, permanently freezing distributions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3845230f-83d2-4eb1-9825-b7e7d2c34976?mode=deep",
+    "timestamp": "2026-02-19 14:40:49.208855",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [State Corruption] Line 145 saves updated scheme back to state. If ProfitContract.DistributeProfits at line 143 fails, is scheme.Period still incremented, causing permanent desync with ProfitContract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf702add-3164-482f-847f-37fc60f80406?mode=deep",
+    "timestamp": "2026-02-19 14:41:20.031129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: DistributeProfits()] [Authorization Logic] Why is TokenContract allowed to call DistributeProfits at line 134? Can this be exploited if TokenContract has vulnerabilities or is upgradeable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91ee0c9c-4ee5-4e0c-b243-3c435266fa5d?mode=deep",
+    "timestamp": "2026-02-19 14:41:48.818723",
+    "report_generated": false
+  }
+]
