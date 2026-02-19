@@ -1,0 +1,98 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TreasuryContract] [Re-entrancy] During dividend distribution calls to TreasuryContract, could malicious Treasury re-enter to claim multiple reward distributions in single transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51ccc050-e6b5-4007-bb4e-815ff3ab952a?mode=deep",
+    "timestamp": "2026-02-19 13:23:38.787674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TokenContract] [Re-entrancy] When consensus contract calls TokenContract.Transfer for rewards, could TokenContract callback trigger additional consensus operations that corrupt round state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfbabc58-2e75-41db-bb4a-40e3b672a6dd?mode=deep",
+    "timestamp": "2026-02-19 13:24:01.404066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TokenHolderContract] [Re-entrancy] Could malicious TokenHolderContract re-enter during profit distribution calls to manipulate miner reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b51b29c-1fd0-43a9-80b7-f6e4050b249b?mode=deep",
+    "timestamp": "2026-02-19 13:24:24.659501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ParliamentContract] [Re-entrancy] When checking Parliament approval for consensus changes, could Parliament contract re-enter to approve its own proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39edaf02-34ac-4d9d-b839-6e50bbaee941?mode=deep",
+    "timestamp": "2026-02-19 13:24:48.957605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ConfigurationContract] [Re-entrancy] Could ConfigurationContract re-enter during consensus parameter reads to provide inconsistent values within single round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c32bd17e-6db1-459e-b42b-999e45ccdfc4?mode=deep",
+    "timestamp": "2026-02-19 13:25:13.557316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [All Properties] [Access Control] Are these internal properties accessible through reflection or serialization, allowing external contracts to read/modify contract references? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc996267-bc33-4b9b-9bb1-9eb963ba1411?mode=deep",
+    "timestamp": "2026-02-19 13:25:38.786973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ElectionContract] [Privilege Escalation] Could a non-admin account exploit the internal access modifier to directly set ElectionContract address via state manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff1a8423-509f-4b13-b06f-3ec39aa45836?mode=deep",
+    "timestamp": "2026-02-19 13:26:08.325237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TreasuryContract] [Privilege Escalation] Is there validation that only authorized genesis contract can set TreasuryContract during initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c91ec99-b6e3-4b6a-ac8a-362224c1e516?mode=deep",
+    "timestamp": "2026-02-19 13:26:39.019361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TokenContract] [Authorization Bypass] Could unprivileged caller invoke internal methods that modify TokenContract reference through cross-contract calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7401153e-2587-4d78-9e54-845b70fe69a5?mode=deep",
+    "timestamp": "2026-02-19 13:27:11.251583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [All Properties] [Upgrade Safety] If AEDPoS contract is upgraded, are these contract references preserved correctly, or could upgrade reset them to null/default causing consensus failure? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8730949-384c-4b15-a8f0-342860ada95b?mode=deep",
+    "timestamp": "2026-02-19 13:27:45.621011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ElectionContract] [Migration Risk] If Election contract is upgraded to new address, is there mechanism to update ElectionContract reference, or does AEDPoS remain pointed to old contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5c7154d-8566-427e-9b41-45308ebdbdab?mode=deep",
+    "timestamp": "2026-02-19 13:28:16.215258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TokenContract] [Backward Compatibility] Could TokenContract upgrade that changes method signatures cause consensus reward distribution to fail with method-not-found errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ed4ec38-3e14-46ca-8756-4c7434398c7b?mode=deep",
+    "timestamp": "2026-02-19 13:28:51.840102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ElectionContract] [DOS Attack] If ElectionContract enters infinite loop or gas-heavy computation when called, could this permanently halt consensus block generation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65e0b943-b350-4f50-9d91-7d3ac25b6952?mode=deep",
+    "timestamp": "2026-02-19 13:29:23.326083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: TreasuryContract] [DOS Attack] Could TreasuryContract deliberately fail or revert during reward distribution to prevent miners from producing blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e4ab983-2ebd-4566-aa1f-e79f2c0864e0?mode=deep",
+    "timestamp": "2026-02-19 13:29:59.017525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ParliamentContract] [DOS Attack] If ParliamentContract verification calls timeout or consume excessive gas, could this block all consensus parameter governance updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_051af050-a686-4354-b997-eba983b2aec4?mode=deep",
+    "timestamp": "2026-02-19 13:30:35.156273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ContractsReferences.cs] [Property: ConfigurationContract] [DOS Attack] Could malicious ConfigurationContract return extremely large data structures that cause out-of-memory when reading consensus parameters? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b2a1f80-4ed0-4f9c-8805-e79977c4971f?mode=deep",
+    "timestamp": "2026-02-19 13:31:11.812038",
+    "report_generated": false
+  }
+]
