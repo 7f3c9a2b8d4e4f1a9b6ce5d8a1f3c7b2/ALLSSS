@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Thread Safety] If multiple threads call ValidateInformation() concurrently on the same service instance, and providers have shared mutable state, could race conditions cause validation corruption or inconsistent results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6532005d-6c81-4b86-a8d9-3717f19f4965?mode=deep",
+    "timestamp": "2026-02-19 08:33:11.082181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Concurrent Modification] If the IEnumerable _headerInformationValidationProviders is backed by a collection that gets modified by another thread during foreach iteration, could this cause Collection Modified Exception and crash validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56b3e5fb-3437-4243-9c3b-5f67e365ab31?mode=deep",
+    "timestamp": "2026-02-19 08:33:33.154065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Incomplete Validation] If a new consensus behavior is added (beyond UpdateValue/NextRound/NextTerm/TinyBlock) but no new validator is added to handle it, could this behavior pass validation without proper checks, introducing consensus bugs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_450a6ca1-cf26-4078-8173-9d8a44955dc2?mode=deep",
+    "timestamp": "2026-02-19 08:33:55.474510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ValidationService.cs] [Function: ValidateInformation()] [Validator Coverage] Since the service blindly executes whatever providers are given, if a critical validator is accidentally removed from the provider list in calling code, could major consensus invariants go unchecked? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a26b726c-2da0-4f29-8e90-45d693b8160d?mode=deep",
+    "timestamp": "2026-02-19 08:34:18.217593",
+    "report_generated": false
+  }
+]
