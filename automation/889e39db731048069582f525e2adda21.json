@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Secret Sharing Bypass] Does the validation checking InValue is null at line 32 ensure secret sharing hasn't started, but does it verify that secret generation, commitments, or reveals are in correct state for round transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d14cda56-677a-41a1-a646-c4e513486e67?mode=deep",
+    "timestamp": "2026-02-19 08:11:04.426379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Signature Verification] While checking InValue is null, does the validation ignore whether OutValue, Signature, or PreviousInValue fields are properly set or cleared for the next round, allowing signature forgery vectors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3afc7d69-85bb-41a6-a6f9-23fc932aa372?mode=deep",
+    "timestamp": "2026-02-19 08:11:26.723429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Random Number Manipulation] Does allowing null InValue for next round mean the random number generation restarts, and could an attacker manipulate this transition to predict or influence random values used in leader selection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0000046-7ff3-4844-8342-2adbc01c54db?mode=deep",
+    "timestamp": "2026-02-19 08:11:49.400561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Time Slot Validation] Does the validation lack checks for whether all miners in the current round have used their time slots before allowing next round transition, enabling premature round advancement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_899a6ef5-da79-4e61-864c-3780149b9c57?mode=deep",
+    "timestamp": "2026-02-19 08:12:12.940060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Block Count] Does the validation lack checks for minimum block count in BaseRound before advancing to next round, allowing rounds to terminate prematurely with insufficient blocks produced? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_042ed147-cd56-462e-a422-7c000995bb44?mode=deep",
+    "timestamp": "2026-02-19 08:12:37.654263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Tiny Block Handling] Does the validation interact correctly with TinyBlock behavior, or could an attacker use TinyBlocks to manipulate round transitions while bypassing this validator's checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_585f1d5f-09d8-499f-a458-ca23df99c931?mode=deep",
+    "timestamp": "2026-02-19 08:13:03.004739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Election Results] Does ValidationForNextTerm verify that new term uses updated miner list from election results, or could an attacker propose NextTerm with stale/manipulated miner lists? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9ed8b76-5c1e-405f-96e3-f0aa54926952?mode=deep",
+    "timestamp": "2026-02-19 08:13:28.888586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Term Duration] Does the validation check that sufficient time or blocks have passed for term transition, or could an attacker trigger NextTerm immediately after term starts, bypassing term duration requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a76a2a5-628d-4b07-a693-eedbc9aa4e7d?mode=deep",
+    "timestamp": "2026-02-19 08:13:58.715000",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Deep Copy] Does the validation operate on copies or references of Round objects, and could modifying extraData.Round during validation affect concurrent operations or create TOCTOU vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac9ad138-0eb4-4173-ba05-b8e2ae4a2f13?mode=deep",
+    "timestamp": "2026-02-19 08:14:26.467866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Dictionary Mutation] If RealTimeMinersInformation is mutable and accessed concurrently, could miners be added/removed during the Any() iteration at line 32, causing inconsistent validation or exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fac9df1b-bd53-4b09-b599-c0e87142338c?mode=deep",
+    "timestamp": "2026-02-19 08:14:56.783543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Struct vs Class] Is ValidationResult a value type (struct) or reference type (class), and does returning new instances at lines 12, 18-19, 30, 33-34, 45-46 have different behavior that could be exploited? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e1e9f94-5d33-4883-a93a-a4a63bc2dcb0?mode=deep",
+    "timestamp": "2026-02-19 08:15:25.434267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Add Semantics] Is the Add(1) method at line 29 a safe arithmetic operation or standard operator+, and could it behave differently for different number types or throw exceptions for overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6527683d-9270-4e4d-a41c-e5d50f8ab77a?mode=deep",
+    "timestamp": "2026-02-19 08:16:00.942657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Add Semantics] Is the Add(1) method at line 44 consistent with line 29's Add(1), or could they use different implementations for RoundNumber vs TermNumber, creating inconsistent overflow behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d2ad2f5-9330-493b-8a90-e7390e85b136?mode=deep",
+    "timestamp": "2026-02-19 08:16:37.609130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Equality Comparison] Does the != comparison at line 29 use custom equality operators for RoundNumber type, and could an attacker exploit custom equality logic to make unequal values appear equal? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0388574-f1c0-417f-9045-419fe9b45fa8?mode=deep",
+    "timestamp": "2026-02-19 08:17:15.423706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Equality Comparison] Does the != comparison at line 44 use the same equality semantics as line 29, or could TermNumber comparison behave differently, creating validation inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36fe42c5-d98f-4d20-b90d-62c89e41fee5?mode=deep",
+    "timestamp": "2026-02-19 08:17:54.009540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Cross-Validator Coordination] Does this validator coordinate with other IHeaderInformationValidationProvider implementations, or could passing this validation but failing others create inconsistent consensus state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebadda64-a48b-47e2-9930-0b347f9b9862?mode=deep",
+    "timestamp": "2026-02-19 08:18:33.251536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Order] Is RoundTerminateValidationProvider called in a specific order relative to other validators, and could changing the order allow attacks that pass this validator but violate other consensus rules? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3cc083b-87c3-4df8-9c77-cb1db8c9dee2?mode=deep",
+    "timestamp": "2026-02-19 08:19:10.918946",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Partial Validation] If this validator passes but block execution fails, could there be state inconsistency where rounds/terms are considered valid but not applied? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a0acf0f-3f07-4fc9-8c0f-043373335714?mode=deep",
+    "timestamp": "2026-02-19 08:19:44.997329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Replay Attack] Does the validation check any nonce, height, or uniqueness constraint to prevent replaying a valid NextRound transition multiple times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92769d86-2ff7-4067-ad32-54ef07263d25?mode=deep",
+    "timestamp": "2026-02-19 08:20:14.403517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Replay Attack] Could an attacker replay a valid NextTerm validation to trigger term transitions multiple times, if the validation doesn't check block height or irreversibility? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b57ceb4-7318-4620-b4db-c36b4136aa65?mode=deep",
+    "timestamp": "2026-02-19 08:20:43.245790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Reorg Safety] During blockchain reorganizations, could this validation incorrectly validate round/term transitions that become invalid after reorg, lacking finality checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2415aba1-03ee-4f85-ba0e-fc97569e23fa?mode=deep",
+    "timestamp": "2026-02-19 08:21:12.482795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [OutValue Manipulation] While checking InValue is null at line 32, does the validation allow arbitrary OutValue values for next round miners, potentially enabling output manipulation attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73be3081-1cd6-4e51-8c13-1e216150cbe0?mode=deep",
+    "timestamp": "2026-02-19 08:21:43.958092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [ExpectedMiningTime Manipulation] Does the validation check that ExpectedMiningTime fields in next round's RealTimeMinersInformation are valid and sequential, or can attackers set arbitrary mining times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85250380-2153-4d93-8488-d3cfcc4f21f2?mode=deep",
+    "timestamp": "2026-02-19 08:22:14.535306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [ActualMiningTime Preset] Does the validation ensure ActualMiningTime is not preset in next round's miner information, or could attackers pre-fill mining times before blocks are produced? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_948397b3-2bc8-40c8-9781-6ae9564d4138?mode=deep",
+    "timestamp": "2026-02-19 08:22:43.452676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [ProducedBlocks Counter] Does the validation check that ProducedBlocks counter in next round starts at appropriate values, or could attackers manipulate block production statistics? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d10f9b2a-043f-4276-9d49-ef97954ce16a?mode=deep",
+    "timestamp": "2026-02-19 08:23:12.180155",
+    "report_generated": false
+  }
+]
