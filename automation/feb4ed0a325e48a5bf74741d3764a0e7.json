@@ -1,0 +1,80 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Cross-Function: Callback Coordination] Three callback functions (Locking, Transfer, Unlock) all use SendInline. Can attacker trigger callbacks in sequence to drain token balance through reentrancy? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5acdc52d-5587-4a84-95b0-b03cac09372d?mode=deep",
+    "timestamp": "2026-02-19 15:21:28.195340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Cross-Function: Authority Checks] Multiple functions check authority (AssertSystemContractOrLockWhiteListAddress, CheckCrossChainTokenContractRegistrationControllerAuthority). Are these consistently applied or can attacker find path that skips checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fef9785-7ba4-4286-9d57-cfe101e8f205?mode=deep",
+    "timestamp": "2026-02-19 15:21:50.474102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Cross-Function: State Caching] GetElectionContractAddress and GetVoteContractAddress cache addresses. If these contracts call back into TokenContract, can stale cache cause wrong contract to be authorized? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd969e67-ccdd-456f-80b4-dcb328bbeee9?mode=deep",
+    "timestamp": "2026-02-19 15:22:12.895118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: NFT-Collection Confusion] CheckTokenAndCollectionExists expects collection symbol to end with '-0', but can attacker create NFT with itemId='0' to make it indistinguishable from collection, then exploit this in approval/transfer logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa101abc-05e4-4ed9-90e7-cb3819ee03d7?mode=deep",
+    "timestamp": "2026-02-19 15:22:35.893814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Cross-Chain Replay] CrossChainVerify checks merkle proof but not transaction uniqueness. Can attacker take valid cross-chain mint transaction and replay it multiple times with same proof? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91875104-8193-409e-aba9-dad15e5ca830?mode=deep",
+    "timestamp": "2026-02-19 15:23:00.130157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Fee Allowance Gaming] ModifyFreeFeeAllowanceAmount processes allowances in order by expiration. Can attacker structure multiple allowances to always consume from others' allowances first, never depleting their own? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f8891fc-c5ca-4e6b-8948-5251b21cb7d0?mode=deep",
+    "timestamp": "2026-02-19 15:23:26.131264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Alias Chain Attack] GetTokenInfo resolves aliases once, but what if actualTokenSymbol is itself an alias? Can attacker create A->B->C chain where final resolution differs from expected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_186fe8b9-8919-4040-b093-f4af3901bf1d?mode=deep",
+    "timestamp": "2026-02-19 15:23:52.632146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Callback Reentrancy Chain] If token has callbacks for Lock, Transfer and Unlock, can attacker trigger Lock -> Transfer (via callback) -> Unlock (via callback) -> Lock again, creating reentrancy loop? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3d0b122-8fe9-4081-94bb-bb2402d970c9?mode=deep",
+    "timestamp": "2026-02-19 15:24:18.857262",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Symbol Case Collision] RegisterTokenInfo uses ToUpper() for case-insensitive check, but State.TokenInfos stores exact case. Can attacker register 'TOKEN', then query 'token' to get different result? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a388a5eb-4cc3-4a43-87a0-1b6df426ddc6?mode=deep",
+    "timestamp": "2026-02-19 15:24:45.564296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Blacklist Bypass via Lock] IsInTransferBlackListInternal only blocks DoTransfer. Can blacklisted address lock tokens to voting contract, then have voting contract transfer them out, bypassing blacklist? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a6a5f8c-a67e-43ff-8677-96600b9a18a4?mode=deep",
+    "timestamp": "2026-02-19 15:25:15.651367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Complex Attack: Balance Underflow via Multiple Paths] If ModifyBalance is called from Transfer, Burn, and Fee deduction simultaneously, can total deductions exceed balance causing underflow before any individual check catches it? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9355cee5-0190-441d-b6e7-9806fc93a82d?mode=deep",
+    "timestamp": "2026-02-19 15:25:47.554507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Math: Add() Overflow] Line 123 uses before.Add(addAmount). Does Add() throw on overflow or silently wrap? Can attacker trigger overflow to create infinite balance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66f34b25-1d20-4e1e-ad9a-9b600d702135?mode=deep",
+    "timestamp": "2026-02-19 15:26:20.367048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Math: Negative Amount Edge Case] ModifyBalance accepts negative addAmount. What happens if addAmount is exactly Int64.MinValue? Does negation on line 120 overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_217e4db2-8d78-44ba-8c47-7cf05c1a7a66?mode=deep",
+    "timestamp": "2026-02-19 15:26:52.101119",
+    "report_generated": false
+  }
+]
