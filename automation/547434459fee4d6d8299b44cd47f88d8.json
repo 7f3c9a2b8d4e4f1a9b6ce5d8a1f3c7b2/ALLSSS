@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Input Validation] If validation uses >= instead of >, can an attacker submit a 256-character title to bypass the 255 limit, causing storage overflow or unexpected behavior in downstream consumers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15177a2e-b6af-40a5-a64f-eb819ee1c881?mode=deep",
+    "timestamp": "2026-02-19 05:36:02.044799",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Input Validation] If validation checks string.Length (character count) but storage uses UTF-8 byte encoding, can an attacker submit 10200 multi-byte Unicode characters (e.g., emoji/CJK) totaling 40KB+ bytes to cause storage DOS or exceed block size limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44613ae6-d9ba-430e-8c0e-740ece548b68?mode=deep",
+    "timestamp": "2026-02-19 05:36:24.523328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Input Validation] If URL validation checks character length but HTTP clients use byte length, can an attacker submit a 255-character URL with multi-byte encoding totaling 1KB+ to bypass downstream URL size limits or cause parsing failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fa579d5-a28b-4a25-aa4f-bf21d4afff20?mode=deep",
+    "timestamp": "2026-02-19 05:36:47.178555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Off-by-One Error] If consuming code checks input.Title.Length < MaxLengthForTitle instead of <=, can an attacker submit exactly 255 characters when only 254 are intended, potentially breaking fixed-size storage assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5df1b6d3-a26a-42a4-9489-6a7c1b0e601a?mode=deep",
+    "timestamp": "2026-02-19 05:37:10.903206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Null Handling] If the 10200 character limit is enforced without null checks, can an attacker pass null descriptions to bypass validation and inject null references into proposal storage, causing contract crashes during proposal retrieval? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1fbf9c7-210b-4def-9b7e-153d0f6a934e?mode=deep",
+    "timestamp": "2026-02-19 05:37:34.831517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Storage DOS] Can an attacker create thousands of proposals with exactly 10200-character descriptions to maximize state storage costs, economically attacking the chain by exhausting affordable storage limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebc860d9-63d3-4ee2-81ac-960e65cb9114?mode=deep",
+    "timestamp": "2026-02-19 05:38:00.011327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Gas Exhaustion] If proposal descriptions are hashed or indexed on-chain, can an attacker submit maximum-length 10200-character strings with pathological patterns (repeated characters, null bytes) to cause quadratic gas consumption during string processing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c893137-e453-4259-8f79-522ce3099d46?mode=deep",
+    "timestamp": "2026-02-19 05:38:28.249758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Spam Attack] Can an attacker create proposals with maximum-length titles (255 chars) and descriptions (10200 chars) at minimal cost to spam governance, making legitimate proposals hard to find and degrading user experience? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24f10454-08a9-456b-b0e5-052eed8a6165?mode=deep",
+    "timestamp": "2026-02-19 05:38:58.224533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [External DOS] If the contract or indexer automatically fetches URLs up to 255 characters, can an attacker submit malicious URLs pointing to slow/infinite-response endpoints to DOS external systems monitoring proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5094e5dc-9fa1-45c8-9cbf-83d775ee8ea1?mode=deep",
+    "timestamp": "2026-02-19 05:39:29.526317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Unicode Normalization] If consuming code doesn't normalize Unicode before length checking, can an attacker submit descriptions using composed vs decomposed characters (NFC vs NFD) to bypass the 10200 limit by storing effectively duplicate data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fee1e73a-6bb5-4747-9930-076a44ddb976?mode=deep",
+    "timestamp": "2026-02-19 05:39:57.113195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Control Characters] Does the 255-character limit allow control characters (null bytes, newlines, escape sequences)? Can an attacker inject control characters in titles to break display systems, logs, or JSON serialization without violating the length constraint? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_783e7cfe-230e-4b8b-9675-400c3345ef77?mode=deep",
+    "timestamp": "2026-02-19 05:40:24.732593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [URL Encoding] If the 255-character limit is checked before URL encoding/decoding, can an attacker submit a 200-character raw URL that expands to 300+ characters after percent-encoding, bypassing downstream URL length limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8ffafd0-c10b-48d6-836c-3f071b85d795?mode=deep",
+    "timestamp": "2026-02-19 05:40:52.401363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Surrogate Pairs] In UTF-16 environments, if length is counted as code units rather than code points, can an attacker submit 10200 surrogate pairs (20400 code units) representing 10200 characters to double actual storage consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72f15dca-3880-4b9a-9cb9-6117ad125d95?mode=deep",
+    "timestamp": "2026-02-19 05:41:25.245597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Cross-Contract Inconsistency] Association and Referendum contracts have identical MaxLengthForTitle=255, but if Parliament increases this limit in an upgrade without coordinating, can proposals with 256+ char titles migrate from Parliament to Association/Referendum and be rejected, breaking cross-governance workflows? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be58e90a-1b12-4c91-ad15-b13c1165bb03?mode=deep",
+    "timestamp": "2026-02-19 05:41:58.771080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Storage Format Mismatch] If the 10200 limit assumes ASCII but storage uses UTF-8, and another contract reads descriptions as UTF-16, can encoding mismatches corrupt proposal text or truncate descriptions mid-character, violating governance transparency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf6a8c6c-9223-49c7-826f-648e140b273e?mode=deep",
+    "timestamp": "2026-02-19 05:42:32.518911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constants] [Version Compatibility] If these constants are changed in a contract upgrade but historical proposals were stored under old limits, can queries against old proposals fail validation checks, making historical governance data inaccessible? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1aa5316c-4b35-45d0-baa4-859955af0012?mode=deep",
+    "timestamp": "2026-02-19 05:43:06.018438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Empty String] If MaxLengthForTitle=255 but minimum length is unchecked, can an attacker create proposals with empty titles, making proposals indistinguishable in UIs and breaking governance discovery mechanisms? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a808c83c-7eba-4af2-a754-67df16fa33d0?mode=deep",
+    "timestamp": "2026-02-19 05:43:38.555470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Whitespace-Only] If the 10200-character limit doesn't validate content quality, can an attacker submit descriptions consisting entirely of spaces or newlines, wasting storage while providing zero information and degrading governance quality? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0cd286ea-e0f0-4a31-87c0-b1972b6bf55a?mode=deep",
+    "timestamp": "2026-02-19 05:44:10.977002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Invalid URLs] Does the 255-character limit validate URL format, or can an attacker submit non-URL strings (arbitrary text, SQL injection payloads) that pass length checks but break systems expecting valid URLs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79200375-9ec3-42e1-9541-5d743ea5d55b?mode=deep",
+    "timestamp": "2026-02-19 05:44:42.474324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Storage Cost Attack] At 10200 characters per proposal, if storage costs are underpriced relative to proposal creation fees, can an attacker profit by creating max-length proposals and forcing the chain to subsidize expensive state storage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6817720-49b3-429e-b688-e8a4abcaa8ec?mode=deep",
+    "timestamp": "2026-02-19 05:45:10.693823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Indexing Overhead] If off-chain indexers store titles up to 255 characters without compression, can max-length title spam cause indexer databases to bloat, degrading query performance and increasing infrastructure costs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d699601-ee60-4b37-bd93-85e2124fbdd6?mode=deep",
+    "timestamp": "2026-02-19 05:45:40.371843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Compression Bypass] If descriptions are compressed before storage, can an attacker craft 10200-character strings with low compressibility (random characters, high entropy) to maximize post-compression storage size and attack compression assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0db8ea6-00aa-4b0d-88e1-522847bda99b?mode=deep",
+    "timestamp": "2026-02-19 05:46:11.422519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForDescription] [Information Hiding] Can a malicious proposer embed misleading information deep within a 10200-character description, exploiting voter attention limits to hide malicious proposal details that violate governance intent but pass length validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4158a92-8b0c-46cf-9777-292040bb03fb?mode=deep",
+    "timestamp": "2026-02-19 05:46:43.589576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForTitle] [Impersonation] With 255 characters available, can an attacker craft titles nearly identical to legitimate proposals (using Unicode lookalikes, zero-width characters) to confuse voters and redirect approval to malicious proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01b6d748-92ee-4f8e-be48-e8ccfc95bfb6?mode=deep",
+    "timestamp": "2026-02-19 05:47:15.397379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Phishing] Can an attacker submit a 255-character URL to a phishing site mimicking legitimate proposal documentation, exploiting the lack of URL validation to steal voter credentials or manipulate voting decisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccdac7ec-d02f-4982-9225-754f1940f6db?mode=deep",
+    "timestamp": "2026-02-19 05:47:42.941876",
+    "report_generated": false
+  }
+]
