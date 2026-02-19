@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseSideChainCreation()] [Double Release Attack] If TryClearExpiredSideChainCreationRequestProposal() returns false but CreateSideChainToken() fails, can the attacker retry to double-spend the locked tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80627615-4a57-43f5-9dfd-79edae4048bf?mode=deep",
+    "timestamp": "2026-02-19 13:29:04.157505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseSideChainCreation()] [Serial Number Race] Can concurrent calls increment State.SideChainSerialNumber.Value multiple times, causing chainId collisions or gaps in GetChainId()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc9e7c68-e1a1-4aa8-9cba-38ace1889c3f?mode=deep",
+    "timestamp": "2026-02-19 13:29:26.453506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseSideChainCreation()] [Proposal Expiry Manipulation] Can an attacker extend proposal expiry by manipulating input.ProposalId to point to a different non-expired proposal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fde7bd92-dc8c-46fb-9547-e0d030e5e9a7?mode=deep",
+    "timestamp": "2026-02-19 13:29:48.898631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseSideChainCreation()] [Token Creation Front-running] Can an attacker front-run CreateSideChainToken() to create a token with the same symbol, causing the legitimate creation to fail while still consuming the proposal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94ada5ae-415d-4e37-8ecb-5f91dfa42c27?mode=deep",
+    "timestamp": "2026-02-19 13:30:12.085681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Authorization Bypass] Can AssertSideChainLifetimeControllerAuthority() be bypassed if the controller contract has a vulnerability allowing unauthorized Context.Sender impersonation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc04adb8-b8c9-4d2d-a6d1-2bde38725a2a?mode=deep",
+    "timestamp": "2026-02-19 13:30:36.003072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Proposal Reuse Attack] If State.ProposedSideChainCreationRequestState.Remove(input.Proposer) fails silently, can the same proposal be used to create multiple side chains? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_585ca87e-7bf2-4e79-bf34-bc9d9feeb5d7?mode=deep",
+    "timestamp": "2026-02-19 13:31:01.870756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Serial Number Overflow] If State.SideChainSerialNumber.Value.Add(1) overflows at maximum long value, will GetChainId() produce duplicate chainIds, allowing chainId collisions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cc56683-6f42-4369-a618-61ec48be914e?mode=deep",
+    "timestamp": "2026-02-19 13:31:27.635081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Indexing Fee Bypass] Can ChargeSideChainIndexingFee() be bypassed if LockedTokenAmount is set to exactly zero, allowing free side chain creation while still passing validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed9cf915-e1e2-4fdf-ac5a-6f2041f90192?mode=deep",
+    "timestamp": "2026-02-19 13:31:53.952037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [ChainId Prediction] Since GetChainId() is deterministic based on serialNumber, can an attacker pre-compute future chainIds and squat on resources/addresses before side chain creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97dcf541-9289-4fd9-88ca-07894b1c2c0c?mode=deep",
+    "timestamp": "2026-02-19 13:32:23.593695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [State Race Condition] Can concurrent CreateSideChain calls with the same serialNumber create two side chains with identical chainIds, breaking uniqueness invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebe03ea2-b4b8-456a-a58c-4f385559609a?mode=deep",
+    "timestamp": "2026-02-19 13:32:53.764190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Initialization Data Manipulation] Can GetChainInitializationData() return malicious consensus data that compromises the side chain's security from genesis? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2218819d-13d2-471b-b7d6-fd5ebf94b5b0?mode=deep",
+    "timestamp": "2026-02-19 13:33:22.544523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Indexing Price Manipulation] Can sideChainInfo.IndexingPrice be set to MaxLong value, causing integer overflow when multiplied by block count during indexing fee calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8e58181-40d8-45e2-91ac-8093d2f9d180?mode=deep",
+    "timestamp": "2026-02-19 13:33:55.867522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: CreateSideChain()] [Controller Organization DOS] If CreateDefaultOrganizationForIndexingFeePriceManagement() creates an organization with impossible approval thresholds, can this permanently freeze indexing fee adjustments? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf8ade9c-44cf-4144-925b-8fc50630dfea?mode=deep",
+    "timestamp": "2026-02-19 13:34:30.679027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [Arrears Payment Bypass] If sideChainInfo.ArrearsInfo contains addresses with negative arrears, can an attacker drain tokens through TransferDepositToken() to these manipulated addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef137367-de57-412b-b62a-249697a9abd0?mode=deep",
+    "timestamp": "2026-02-19 13:35:04.584009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [Insufficient Recharge Check] The assertion at line 207 checks input.Amount + originBalance >= arrearsAmount + IndexingPrice, but can an attacker recharge just enough to pass while immediately incurring more debt? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e09cc29-9675-4602-9740-97147f3ea4e9?mode=deep",
+    "timestamp": "2026-02-19 13:35:36.510752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [Status Manipulation] Can sideChainInfo.SideChainStatus be changed to Active even if arrears are only partially paid, by manipulating the arrearsAmount calculation in the loop? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc54ce69-8259-4f06-b23c-15a0f89036b8?mode=deep",
+    "timestamp": "2026-02-19 13:36:09.750012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [ArrearsInfo Parsing Attack] If arrears.Key is a malicious Base64 string that doesn't parse to valid Address, will Address.Parser.ParseFrom() throw, allowing DOS of recharge functionality? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d593731-303b-4244-9b58-eb128a87abdf?mode=deep",
+    "timestamp": "2026-02-19 13:36:44.086672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [Integer Overflow] Can arrearsAmount += arrears.Value overflow if ArrearsInfo contains MaxLong values, causing incorrect arrears calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4260a87b-c744-4027-ab18-71ddf70cb8d5?mode=deep",
+    "timestamp": "2026-02-19 13:37:17.170223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [TransferFrom Front-running] Can an attacker front-run the recharge to revoke token allowance, causing TransferFrom to fail but sideChainInfo.ArrearsInfo.Clear() to execute, erasing debt records? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e212a00-183d-45ae-a748-6408f4ac2b36?mode=deep",
+    "timestamp": "2026-02-19 13:37:51.158023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [Terminated Chain Recharge] Since the assertion only checks SideChainStatus != Terminated, can an attacker recharge a Terminated chain if state is corrupted, locking tokens permanently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b84437aa-7fb5-466f-a372-991b617ce0e0?mode=deep",
+    "timestamp": "2026-02-19 13:38:24.101168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Recharge()] [Virtual Address Exploitation] Can ConvertVirtualAddressToContractAddress() be manipulated to send recharge funds to attacker-controlled address instead of side chain virtual address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d97ff733-61bb-4610-98ea-0b255ee10456?mode=deep",
+    "timestamp": "2026-02-19 13:38:56.074157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: DisposeSideChain()] [Authorization Bypass] Can AssertSideChainLifetimeControllerAuthority() be bypassed through a malicious controller contract that temporarily returns Context.Sender as owner? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc594282-8e9d-45a6-9160-70f12d4bb0ee?mode=deep",
+    "timestamp": "2026-02-19 13:39:29.508357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: DisposeSideChain()] [Double Disposal Attack] If UnlockTokenAndResource() fails but info.SideChainStatus is set to Terminated, can an attacker call DisposeSideChain again to double-withdraw locked tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81dfa129-ce08-439d-a950-0d653c227071?mode=deep",
+    "timestamp": "2026-02-19 13:40:03.483103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: DisposeSideChain()] [Proposal Cleanup Race] If TryGetIndexingProposal() returns true but ResetChainIndexingProposal() is front-run, can this leave orphaned proposals that block future indexing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_644e943f-0794-420d-8366-3521cb910366?mode=deep",
+    "timestamp": "2026-02-19 13:40:37.685102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: DisposeSideChain()] [Indexing Fee Theft] Can UnlockTokenAndResource() transfer tokens to the wrong address if info.Proposer has been corrupted or changed since creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ade79ff5-71dd-4482-bc05-1b19d55b4297?mode=deep",
+    "timestamp": "2026-02-19 13:41:09.983330",
+    "report_generated": false
+  }
+]
