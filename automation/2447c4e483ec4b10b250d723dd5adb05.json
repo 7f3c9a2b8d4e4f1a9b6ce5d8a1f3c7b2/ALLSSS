@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Behavior Manipulation] At line 79, case AElfConsensusBehaviour.UpdateValue adds UpdateValueValidationProvider and LibInformationValidationProvider. Can an attacker manipulate extraData.Behaviour enum value during serialization/deserialization to switch between validation paths and bypass specific validators? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a96378a-9656-4ef1-bdf7-93c5e70496c9?mode=deep",
+    "timestamp": "2026-02-19 02:48:49.248414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Validator Duplication] At lines 87 and 90, RoundTerminateValidationProvider is added for both NextRound and NextTerm cases. Can this cause the same validation to run twice, and if the validator maintains state, could this lead to incorrect validation results or DOS from redundant expensive checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9fba40ae-41ac-4d12-8640-6a2eabbe0569?mode=deep",
+    "timestamp": "2026-02-19 02:49:11.483928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Default Behavior] If extraData.Behaviour doesn't match any case in the switch (lines 77-92), no additional providers are added beyond basic ones. Can an attacker use an undefined or future Behaviour value to bypass UpdateValue, NextRound, and NextTerm specific validations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94f8bd09-865a-4290-b89b-518485c492b3?mode=deep",
+    "timestamp": "2026-02-19 02:49:33.736833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Early Termination] HeaderInformationValidationService.ValidateInformation (line 98) returns on first validation failure. Can an attacker craft extraData that fails early checks (like MiningPermissionValidationProvider) to hide more serious violations in later validators, preventing detection of consensus bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6c4f7d6-20b2-4565-aa2d-c3a4ed94ab18?mode=deep",
+    "timestamp": "2026-02-19 02:49:56.735277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Service Instantiation] At line 94, HeaderInformationValidationService is created with validationProviders list. If the list is empty or contains null entries, can validation pass incorrectly, or will the service crash causing DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_676408b4-3c44-49d1-82d6-cd16ab42bc99?mode=deep",
+    "timestamp": "2026-02-19 03:10:10.625239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Exception Handling] Lines 94-103 have no try-catch blocks. If any validation provider throws an exception (e.g., NullReferenceException from accessing validationContext properties), does this cause the entire validation to fail uncleanly, potentially leaving state corrupted or causing block processing to halt? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9cbddc6-01de-4e44-9871-19d3aad2e30b?mode=deep",
+    "timestamp": "2026-02-19 03:10:32.707238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Return Value Trust] At line 103, validationResult is returned directly. If a validation provider maliciously or erroneously sets Success=true despite finding violations, can invalid blocks pass validation since there's no double-checking of the result? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0287261-61a3-4e27-8fbb-f3073a0fc816?mode=deep",
+    "timestamp": "2026-02-19 03:10:55.351094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Logging Side Effects] At line 96, Context.LogDebug is called with extraData.Behaviour.ToString(). If Behaviour is a malicious custom type or causes ToString() to throw, can this crash validation before any real checks occur? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6f1e7e4-bf14-40f9-9d57-4ca36e8fbba0?mode=deep",
+    "timestamp": "2026-02-19 03:11:18.712402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Debug Log Information Leak] At line 101, when validation fails, Context.LogDebug logs validationResult.Message. If Message contains sensitive consensus information (like secret shares or private keys), can an attacker trigger validation failures to leak this data through logs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_119b91c2-07c0-43b1-bd37-1ddb1c697295?mode=deep",
+    "timestamp": "2026-02-19 03:11:42.815217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Reentrancy] If any validation provider (lines 98) calls back into contract state or external contracts, can this create reentrancy vulnerabilities where state is modified during validation, causing time-of-check-time-of-use issues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1404dbfe-4f57-40d4-8475-ff388a74c949?mode=deep",
+    "timestamp": "2026-02-19 03:12:07.775773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Gas Exhaustion] The loop at lines 28-41 iterates from baseRound.RoundNumber down to 1. If RoundNumber is millions of rounds, and validation is called for every block, can an attacker DOS the network by causing this loop to consume excessive gas/computation time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6eeef15-030a-4461-8086-9d7d70f0bfe7?mode=deep",
+    "timestamp": "2026-02-19 03:12:35.162560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [State Read Atomicity] ValidateBeforeExecution reads multiple state values (lines 19, 55-58) without any locking mechanism. In a multi-threaded blockchain environment, can concurrent state updates cause validation to see inconsistent snapshots leading to acceptance of invalid blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_305e5d44-39b2-4780-9f9a-aa34966b9c28?mode=deep",
+    "timestamp": "2026-02-19 03:13:01.126672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Behavior Enum Exhaustiveness] The switch at lines 77-92 doesn't have a default case. If AElfConsensusBehaviour enum is extended with new values in future versions, will ValidateBeforeExecution silently skip necessary validation for those new behaviors, creating upgrade vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87becf63-7276-4932-be58-79e851dec6ed?mode=deep",
+    "timestamp": "2026-02-19 03:13:30.555641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Parameter Validation] The method receives AElfConsensusHeaderInformation extraData parameter (line 16) but never validates it's not null or that its required fields are populated. Can passing null or malformed extraData cause NullReferenceExceptions throughout validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_043fc8af-302e-45e3-ba3b-173c8c73e2cf?mode=deep",
+    "timestamp": "2026-02-19 03:13:57.701881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Round Recovery Idempotence] If RecoverFromUpdateValue (line 47) or RecoverFromTinyBlock (line 50) are not idempotent and validation is retried, can multiple recovery calls accumulate state changes in baseRound causing validation to incorrectly pass or fail on retry? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c65bf214-7573-461c-9f5d-d42bf4365803?mode=deep",
+    "timestamp": "2026-02-19 03:14:30.110935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Historical Data Integrity] At line 30, State.Rounds[i] accesses historical round data. If this data can be modified by other contract methods during validation, can an attacker manipulate historical rounds to affect the single-miner check result at line 43? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff130a2f-296c-4ddd-92a8-3e2021eb182d?mode=deep",
+    "timestamp": "2026-02-19 03:14:57.674887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Context Height Manipulation] At line 24, Context.CurrentHeight is compared against MaximumTinyBlocksCount*3. Can an attacker manipulate CurrentHeight (if it's writable) or exploit height overflow to bypass the early-validation-skip logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f00c1152-21a2-463c-bb71-4c37318079ae?mode=deep",
+    "timestamp": "2026-02-19 03:15:29.575389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Miner List Consistency] At line 23, baseRound.RealTimeMinersInformation.Count is checked. If RealTimeMinersInformation can be modified concurrently, can the count change between the check at line 23 and subsequent operations, causing TOCTOU vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b83ce514-6c9f-4a6e-b468-591aa088e0bb?mode=deep",
+    "timestamp": "2026-02-19 03:16:03.431214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Validation Provider Injection] The validationProviders list is built locally (lines 65-92), but if an attacker could inject malicious providers or remove critical ones through reflection or other means, can they compromise the entire validation process? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_165d97b1-db75-467d-99bf-841fc6089f6b?mode=deep",
+    "timestamp": "2026-02-19 03:16:36.151495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Round Number Wrap] At lines 28-29, baseRound.RoundNumber is used in a loop. If RoundNumber overflows or wraps (e.g., long.MaxValue + 1), can this cause the loop to iterate incorrectly or infinitely, causing DOS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d6387f7-82cc-4bb7-8bfc-6b135e7a7c13?mode=deep",
+    "timestamp": "2026-02-19 03:17:10.557474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Empty Miners List] At line 31, producedMiners is a list filtered from RealTimeMinersInformation. If RealTimeMinersInformation is empty for historical rounds, does producedMiners.Count == 1 check at line 32 behave correctly, or can it allow validation bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95e4a093-00a4-4bfa-92b8-12dfd49c501c?mode=deep",
+    "timestamp": "2026-02-19 03:17:40.857308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [ActualMiningTimes Manipulation] At line 31, m.ActualMiningTimes.Any() is checked. Can an attacker add fake entries to ActualMiningTimes in previous rounds to manipulate producedMiners.Count and affect the single-miner validation bypass logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0df45877-d772-4b42-a689-8fd3f89aef1d?mode=deep",
+    "timestamp": "2026-02-19 03:18:14.572414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Single Method Exposure] Since ValidateBeforeExecution is private (line 16), it's only callable from within AEDPoSContract. However, if other public methods call it with attacker-controlled extraData without pre-validation, can attackers trigger validation bypass or crashes through those entry points? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e72ae8a-c95a-46b8-9d28-61502581d30a?mode=deep",
+    "timestamp": "2026-02-19 03:18:48.484213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Provider Ordering Attack] Since providers are validated sequentially (line 98 calls ValidateInformation which iterates providers), can an attacker craft extraData that exploits the specific validation order to pass checks that should fail if validated in different order? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_731534b1-dfff-41a2-989d-cde374cf8708?mode=deep",
+    "timestamp": "2026-02-19 03:19:18.309289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Recovery Without Validation] Lines 47 and 50 call RecoverFromUpdateValue/RecoverFromTinyBlock before any validation. If these methods have vulnerabilities or side effects, can they be exploited since they're called with untrusted extraData before validation proves it's safe? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec1073ef-e641-4bdf-8152-b7c7aa19ef3d?mode=deep",
+    "timestamp": "2026-02-19 03:19:53.184922",
+    "report_generated": false
+  }
+]
