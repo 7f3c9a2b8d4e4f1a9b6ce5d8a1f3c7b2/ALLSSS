@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: RegisterCandidateToSubsidyProfitScheme()] [Profit Manipulation] Can AddBeneficiary at line 217 be exploited to register candidates to profit schemes they shouldn't access, draining subsidy funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4dbce35-1f74-4b2a-b0a6-b0c10b03aed6?mode=deep",
+    "timestamp": "2026-02-19 10:30:51.230805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: RegisterCandidateToSubsidyProfitScheme()] [Missing Validation] Does the function verify that candidatePubkey is actually registered before adding to profit scheme, or can arbitrary addresses receive subsidies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86e4e46f-bfe0-4e79-a542-773631c8b05e?mode=deep",
+    "timestamp": "2026-02-19 10:31:13.155588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: RegisterCandidateToSubsidyProfitScheme()] [Double Registration] Can the same candidate be registered to subsidy scheme multiple times if they announce, quit, and re-announce, receiving duplicate profit shares? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_902c849b-57b3-468f-b73c-9666601b1545?mode=deep",
+    "timestamp": "2026-02-19 10:31:35.463203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Authorization Bypass] Can an attacker quit election for any candidate if they manipulate InitialPubkeyMap to make themselves the admin, bypassing the check at line 236? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d66105f-36c1-4f36-946e-13cb08cca96c?mode=deep",
+    "timestamp": "2026-02-19 10:31:58.250865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Token Theft] Can the admin quit election and redirect locked tokens to CandidateSponsorMap address at line 245, stealing tokens if sponsor address is attacker-controlled? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fd24fae-0d7b-4e3d-88f7-e67871f202fc?mode=deep",
+    "timestamp": "2026-02-19 10:32:22.366153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Logic Error] If CandidateSponsorMap[input.Value] is null at line 245, tokens go to Address.FromPublicKey(pubkeyBytes), but what if the candidate's private key is compromised or lost? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3757e4a9-38f7-4cdf-b9ed-a017c35d7c9c?mode=deep",
+    "timestamp": "2026-02-19 10:32:48.140661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [State Inconsistency] Does setting AnnouncementTransactionId to Hash.Empty at line 253 allow the same lockId to be reused, potentially causing fund collision or loss? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f0898fe-aef1-4406-8600-9fe1404b70e6?mode=deep",
+    "timestamp": "2026-02-19 10:33:14.699699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Reentrancy] Can TransferFrom at lines 242-249 trigger callbacks that call QuitElection again before state updates at lines 252-254, causing double withdrawal? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d85a6db-377e-4a86-a9eb-74fc96522305?mode=deep",
+    "timestamp": "2026-02-19 10:33:42.300588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [DoS] If RemoveOption at lines 257-261 fails in Vote contract, does the entire quit transaction revert, potentially locking candidates permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5536f464-f55d-44de-a3b1-60a0c7799a1e?mode=deep",
+    "timestamp": "2026-02-19 10:34:11.407649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [State Corruption] Can UpdateDataCenterAfterMemberVoteAmountChanged at line 266 be exploited with crafted dataCenterList to manipulate ranking unfairly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_502330f8-ae97-4b28-a7b3-29cf0c6820da?mode=deep",
+    "timestamp": "2026-02-19 10:34:38.049033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Logic Error] Does setting DataCenters[pubkey] to 0 at line 265 properly clean up state, or does it leave ghost entries that waste storage? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76c26bce-af03-4abf-a925-00231b8de30f?mode=deep",
+    "timestamp": "2026-02-19 10:35:04.968795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Access Control] Can Context.Sender remove pubkeys from their ManagedCandidatePubkeysMap at lines 270-275 even if they aren't the actual admin, due to missing verification? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f1055d8-2465-4461-8dd2-2a0c522a84d2?mode=deep",
+    "timestamp": "2026-02-19 10:35:35.079605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [State Leak] If managedCandidatePubkey.Value becomes empty after removal at lines 272-275, is the mapping entry properly removed at line 275 or does it leave empty entries? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d37f6332-8745-4448-9d2b-e01ecc41a5cc?mode=deep",
+    "timestamp": "2026-02-19 10:36:03.224469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(StringValue)] [Missing Cleanup] Does removing from CandidateSponsorMap at line 277 handle all cleanup, or can orphaned state remain in other mappings causing issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7cd10345-fd75-40b7-927c-20c483d78872?mode=deep",
+    "timestamp": "2026-02-19 10:36:34.598297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(byte[])] [Authorization Bypass] Can current miners bypass the quit restriction at lines 293-296 if GetCurrentMinerList returns stale data or can be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28973b08-a4e6-447b-a80b-2393e8812219?mode=deep",
+    "timestamp": "2026-02-19 10:37:04.901572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(byte[])] [State Check Missing] Does the assert at line 286 properly check if the candidate is in State.Candidates.Value.Value, or can edge cases allow non-candidates to attempt quit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f84ae254-6570-482b-a57b-0455c886c727?mode=deep",
+    "timestamp": "2026-02-19 10:37:35.161466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(byte[])] [External Dependency] If State.AEDPoSContract.Value is null at line 292, does the function skip current miner check allowing active miners to quit and break consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5981758d-b6b6-4586-a325-92158464eb91?mode=deep",
+    "timestamp": "2026-02-19 10:38:05.226692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: QuitElection(byte[])] [State Corruption] Can removing publicKeyByteString from State.Candidates.Value.Value at line 298 fail if the list is modified concurrently, leaving inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f93a1576-091d-4818-ba79-8b93d6b9b6f0?mode=deep",
+    "timestamp": "2026-02-19 10:38:35.739492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Cross-Function] [Reentrancy] Can a malicious token contract in TransferFrom calls at lines 187 and 242 create reentrancy attacks by calling back into election functions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e47d4c30-3622-46ec-8af5-ed93785d250b?mode=deep",
+    "timestamp": "2026-02-19 10:39:06.301342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Cross-Function] [State Race] If AnnounceElection and QuitElection are called in rapid succession, can race conditions cause locked tokens to be lost or candidate state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9d9b34d-3aa8-4b58-8072-2204a7eb1ca1?mode=deep",
+    "timestamp": "2026-02-19 10:39:33.433320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Cross-Function] [Token Recovery] If a candidate announces via AnnounceElection but their admin quits via QuitElection, does the token recovery logic correctly handle sponsor vs candidate address mismatch? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4985455c-d4c8-41a3-b3cd-049f4659e4f5?mode=deep",
+    "timestamp": "2026-02-19 10:40:03.718494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Integration] [Vote Contract Manipulation] Can a compromised or malicious Vote contract exploit AddOption and RemoveOption calls to manipulate election results? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56d73424-0e5d-4ea9-91c2-9c04a65297f0?mode=deep",
+    "timestamp": "2026-02-19 10:40:30.943073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Integration] [Profit Scheme Attack] Can AddBeneficiary calls to Profit contract be exploited to drain subsidy funds if profit scheme validation is weak? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe93806e-c970-4dc1-a555-d9c80a035a46?mode=deep",
+    "timestamp": "2026-02-19 10:41:01.838741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Integration] [Consensus Dependency] If AEDPoSContract.GetCurrentMinerList returns incorrect data, can candidates inappropriately quit during active mining periods breaking consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df00cf89-9308-4626-96eb-a740ed50c252?mode=deep",
+    "timestamp": "2026-02-19 10:41:32.850399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [State Management] [DataCenters Capacity] Does the check at line 112 properly limit DataCentersRankingList capacity, or can overflow attacks add unlimited candidates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eeaaaccb-b53e-4bda-b78d-5ded0f8f3b47?mode=deep",
+    "timestamp": "2026-02-19 10:42:04.108116",
+    "report_generated": false
+  }
+]
