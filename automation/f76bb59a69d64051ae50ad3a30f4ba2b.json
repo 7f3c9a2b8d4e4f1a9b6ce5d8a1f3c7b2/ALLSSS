@@ -1,8 +1,0 @@
-[
-  {
-    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Implicit Assumptions] The code assumes miners with OutValue must have FinalOrderOfNextRound > 0 and vice versa. Are these assumptions documented and enforced elsewhere? What if they're violated? (Medium)",
-    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d7bb878-88e1-42b3-a010-5b5f723776e8?mode=deep",
-    "timestamp": "2026-02-19 14:47:01.685256",
-    "report_generated": false
-  }
-]
