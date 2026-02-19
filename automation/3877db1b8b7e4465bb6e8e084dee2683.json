@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainLifetimeController()] [Lifetime Controller Change] If GetSideChainLifetimeController() allows the controller to be changed, can an attacker take over side chain disposal/termination operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef071eda-d3f8-43de-9a6d-d8c5839909ff?mode=deep",
+    "timestamp": "2026-02-19 04:06:12.444170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainLifetimeController()] [Controller Authorization] Does the returned controller have proper authorization to terminate side chains, or can unauthorized termination occur if the controller is compromised? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_945d10c9-eab3-4812-b21e-38c473ca59a8?mode=deep",
+    "timestamp": "2026-02-19 04:06:34.556178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainLifetimeController()] [Null Controller] If the lifetime controller is null or uninitialized, does this prevent side chain termination, causing resource leaks or zombie chains? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6887dcb9-da20-494d-82b2-b74ab0bbf2bf?mode=deep",
+    "timestamp": "2026-02-19 04:06:57.627834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeeController()] [Per-Chain Controller] Does each side chain having its own IndexingFeeController create authorization complexity or allow per-chain controller compromise to affect only that chain? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8e1a36a-3059-4975-931f-41106874eb1c?mode=deep",
+    "timestamp": "2026-02-19 04:07:20.530360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeeController()] [Controller Tampering] If sideChainInfo.IndexingFeeController can be modified after chain creation, can an attacker change the controller to set fees to zero or extreme values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd992cc2-7b52-44af-9e7e-ce095ad8a1ba?mode=deep",
+    "timestamp": "2026-02-19 04:07:44.576350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeeController()] [Null Controller Default] If IndexingFeeController is null, does this allow anyone to adjust fees, or does it prevent fee adjustments entirely, freezing fee schedules?\n\n### Citations\n\n**File:** contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs (L1-215)\n```csharp\nusing System.Linq;\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS3;\nusing AElf.Standards.ACS7;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.CrossChain;\n\n// ReSharper disable once PossibleNullReferenceException\npublic partial class CrossChainContract\n{\n    public override IndexedSideChainBlockData GetIndexedSideChainBlockDataByHeight(Int64Value input)\n    {\n        var indexedSideChainBlockData = State.IndexedSideChainBlockData[input.Value];\n        return indexedSideChainBlockData ?? new IndexedSideChainBlockData();\n    }\n\n    public override CrossChainMerkleProofContext GetBoundParentChainHeightAndMerklePathByHeight(Int64Value input)\n    {\n        var boundParentChainHeight = State.ChildHeightToParentChainHeight[input.Value];\n        Assert(boundParentChainHeight != 0);\n        var merklePath = State.TxRootMerklePathInParentChain[input.Value];\n        Assert(merklePath != null);\n        return new CrossChainMerkleProofContext\n        {\n            MerklePathFromParentChain = merklePath,\n            BoundParentChainHeight = boundParentChainHeight\n        };\n    }\n\n    /// <summary>\n    ///     Cross chain txn verification.\n    /// </summary>\n    /// <param name=",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79552708-a794-430d-adcf-8760a59f925d?mode=deep",
+    "timestamp": "2026-02-19 04:08:09.706282",
+    "report_generated": false
+  }
+]
