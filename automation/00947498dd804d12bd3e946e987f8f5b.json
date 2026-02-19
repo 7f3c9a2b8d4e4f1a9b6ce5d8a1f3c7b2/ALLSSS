@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Clock Drift] If different miners have significant clock drift, can this cause them to generate conflicting consensus commands for round termination? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_acdd5a19-62fb-4e3b-9ae5-0e798a9942a4?mode=deep",
+    "timestamp": "2026-02-19 00:41:33.003442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Data Consistency] Can the ConsensusCommand object be modified after creation but before validation, allowing attackers to change the Behaviour hint from NextRound to NextTerm? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc840a4d-b4ae-4b4e-93f7-dd8af9b5a671?mode=deep",
+    "timestamp": "2026-02-19 00:41:55.083393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Data Consistency] Is the ArrangedMiningTime value validated against the MiningDueTime to ensure MiningDueTime > ArrangedMiningTime, or can they be equal/inverted? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71226546-2b31-480a-a8b0-63cdec418e01?mode=deep",
+    "timestamp": "2026-02-19 00:42:17.482376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Data Integrity] Can the LimitMillisecondsOfMiningBlock value be zero or negative in edge cases, preventing any block production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69d5d465-3b10-4775-8314-fad4ce77d13d?mode=deep",
+    "timestamp": "2026-02-19 00:42:40.692497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: TinyBlockCommandStrategy] Can the fallback from TinyBlockCommandStrategy to TerminateRoundCommandStrategy create a scenario where the same miner gets both tiny block and round termination commands? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83bc8483-b449-4d47-ba7f-3271a5757119?mode=deep",
+    "timestamp": "2026-02-19 00:43:04.963320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: MainChainConsensusBehaviourProvider] If MainChainConsensusBehaviourProvider determines NextTerm is needed but the strategy is instantiated with isNewTerm=false, does this create a mismatch in consensus state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1887f6ef-68ce-4b78-a35b-cf03225d1c28?mode=deep",
+    "timestamp": "2026-02-19 00:43:31.317549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: SideChain] For side chains that should never use NextTerm behavior, is there validation preventing this strategy from being constructed with isNewTerm=true? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d476861d-7a67-47bc-a3ef-b1a3feca0d91?mode=deep",
+    "timestamp": "2026-02-19 00:43:56.597905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessNextTerm] Can the DonateMiningReward logic be manipulated by timing the NextTerm transaction to avoid donating rewards that should be distributed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b25d2e2a-385e-416e-a689-ed45e334901d?mode=deep",
+    "timestamp": "2026-02-19 00:44:22.605869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessNextTerm] Does the Treasury.Release call validate that the period number matches the current term, or can it release rewards for incorrect periods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a9e1a20-d5ec-4feb-b3a3-6e98d6aa682e?mode=deep",
+    "timestamp": "2026-02-19 00:44:52.909748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessNextRound] Can miners exploit the NextRound transition to reset their ProducedTinyBlocks counter without actually completing a full term? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bde35391-62f6-4b78-8eaa-88d67a027291?mode=deep",
+    "timestamp": "2026-02-19 00:45:20.299066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Error Handling] If ArrangeExtraBlockMiningTime throws an exception, is it caught and handled gracefully, or does it crash the consensus command generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bb99f3f-f68e-4b25-88ff-9df365a4850e?mode=deep",
+    "timestamp": "2026-02-19 00:45:52.722893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Validation] Is there validation ensuring that _isNewTerm is only true when the round actually needs to change term based on period expiration? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38442c40-aa0e-4261-838c-9f73704efd04?mode=deep",
+    "timestamp": "2026-02-19 00:46:26.020697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Validation] Does the strategy validate that CurrentRound.RealTimeMinersInformation is not empty before attempting to access miner information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9ca39fa-db58-4848-9048-b0d07b9ad3b7?mode=deep",
+    "timestamp": "2026-02-19 00:46:55.562304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ValidateBeforeExecution] Can the ValidateBeforeExecution check be bypassed for TerminateRound commands, allowing invalid consensus transactions to be processed? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1501155-2166-4977-9262-b104816fcfbf?mode=deep",
+    "timestamp": "2026-02-19 00:47:31.344017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessConsensusInformation] Can the ECVrfVerify check for random number validation fail for NextRound/NextTerm transactions generated from this strategy? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b019df3-5df1-4e61-8151-1f7b2c032d58?mode=deep",
+    "timestamp": "2026-02-19 00:48:08.031396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessConsensusInformation] If the random number verification fails, does the consensus command still get processed, potentially leading to predictable round transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb986ec7-6247-4313-ab11-7340123ab451?mode=deep",
+    "timestamp": "2026-02-19 00:48:45.992569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessNextTerm] Can the UpdateMinersCountToElectionContract call fail silently, causing the election contract to use an outdated miner count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ed8b15a-16b8-4644-8d2c-24ed8d994f3b?mode=deep",
+    "timestamp": "2026-02-19 00:49:23.249953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessNextTerm] When SetMinerList is called during NextTerm, can an attacker manipulate the miners list to include unauthorized addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42d8b5d4-5019-4274-9ce3-bf204641cc44?mode=deep",
+    "timestamp": "2026-02-19 00:49:59.565441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: ProcessNextTerm] Does the UpdateCurrentMinerInformationToElectionContract correctly update all miner statistics, or can data be lost during term transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09f9f0eb-ca8b-42eb-af25-f6d1af2cc2f0?mode=deep",
+    "timestamp": "2026-02-19 00:50:33.426596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Mining Limit] Can a miner abuse the 8x larger mining limit for NextTerm blocks to produce excessively large blocks that should be rejected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28470db4-1070-4f71-a87a-0d27f7e57d8c?mode=deep",
+    "timestamp": "2026-02-19 00:51:08.540633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Mining Limit] Is there validation ensuring that blocks produced within LimitMillisecondsOfMiningBlock don't exceed other constraints like transaction count or block size? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdc8ee88-6598-43ea-bed4-5e7973f94814?mode=deep",
+    "timestamp": "2026-02-19 00:51:45.118823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Base Class: CommandStrategyBase] Can the TinyBlockSlotInterval calculation result in a value larger than MiningInterval due to integer division errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13ef6e92-d53d-4b03-8a8d-d05132c4fd40?mode=deep",
+    "timestamp": "2026-02-19 00:52:20.567328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: AddRoundInformation] Can the AddRoundInformation call fail during ProcessNextRound/ProcessNextTerm, leaving the system in an inconsistent state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_922a01e6-9f2c-4757-9de2-7299042795b6?mode=deep",
+    "timestamp": "2026-02-19 00:52:55.846487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: TryToUpdateRoundNumber] If TryToUpdateRoundNumber fails after AddRoundInformation succeeds, does this create a state where round information exists but the round number is not updated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60b16d6b-4864-43c4-a5bf-eaa1ab9081d2?mode=deep",
+    "timestamp": "2026-02-19 00:53:30.952823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: TryToUpdateTermNumber] Can TryToUpdateTermNumber fail while TryToUpdateRoundNumber succeeds, creating a mismatch between term and round numbers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e1cb461-f3fd-412e-849b-7253169f24bf?mode=deep",
+    "timestamp": "2026-02-19 00:54:07.021317",
+    "report_generated": false
+  }
+]
