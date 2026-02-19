@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Can an attacker pass a null ConsensusValidationContext to cause NullReferenceException when accessing validationContext.ExtraData at line 13, bypassing all validation logic and allowing invalid consensus headers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e3e9978-c384-40ff-a61a-f4f1a56b1607?mode=deep",
+    "timestamp": "2026-02-19 14:40:35.562166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Can an attacker pass extraData with null Behaviour enum to bypass both NextRound and NextTerm validation checks at lines 14-16, causing validation to succeed at line 18 even for invalid consensus transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_654d562d-16db-40c0-9230-ad519cd961ee?mode=deep",
+    "timestamp": "2026-02-19 14:40:57.712697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Bypass] Can an attacker set extraData.Behaviour to any value other than NextRound or NextTerm (e.g., TinyBlock, UpdateValue) to automatically pass validation at line 18-19 without any round/term checks, allowing arbitrary consensus state transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e5a0550-d676-4bc7-b9ef-14f6e5929ac8?mode=deep",
+    "timestamp": "2026-02-19 14:41:20.061569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Logic Error] If extraData.Behaviour is set to an undefined/custom AElfConsensusBehaviour value, will the validation at lines 14-16 fall through to line 18 returning Success=true, enabling consensus manipulation through unvalidated behavior types? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd68bf1f-4743-4cf8-bc17-148ac50cbb60?mode=deep",
+    "timestamp": "2026-02-19 14:41:43.175002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Can an attacker pass validationContext with null ExtraData to cause NullReferenceException at line 13, and if caught elsewhere, does this allow bypassing validation entirely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38f3242c-b3f6-445a-9a46-8c448a5f4520?mode=deep",
+    "timestamp": "2026-02-19 14:42:07.226686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Integer Overflow] Can an attacker craft validationContext.BaseRound.RoundNumber near long.MaxValue to cause integer overflow in the Add(1) operation at line 29, wrapping to negative or zero, and matching a manipulated extraData.Round.RoundNumber to pass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7032095a-e0f3-4005-b6eb-a086ecee72b6?mode=deep",
+    "timestamp": "2026-02-19 14:42:32.405556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Missing Validation] Does the round number validation at line 29 allow an attacker to set extraData.Round.RoundNumber exactly one higher than BaseRound.RoundNumber but with arbitrary RealTimeMinersInformation that should be rejected, as long as InValue is null? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fdb16fd-7b0f-482e-8e6a-59ea860fc343?mode=deep",
+    "timestamp": "2026-02-19 14:42:58.520482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Null Reference] Can an attacker pass validationContext with null BaseRound to cause NullReferenceException when accessing BaseRound.RoundNumber at line 29, bypassing round validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf24032d-652a-410a-99fc-c00b91fdaf00?mode=deep",
+    "timestamp": "2026-02-19 14:43:25.352576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Null Reference] Can an attacker pass extraData with null Round object to cause NullReferenceException when accessing extraData.Round.RoundNumber at line 29, bypassing validation checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c6617bf-52ad-4ddf-b677-de4845b0d37c?mode=deep",
+    "timestamp": "2026-02-19 14:43:52.750846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Logic Bypass] If BaseRound.RoundNumber is negative, can an attacker set extraData.Round.RoundNumber to (negative - 1) to pass the equality check at line 29, enabling round number manipulation through negative values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95c192ac-2811-473a-bea3-bb740e8acc26?mode=deep",
+    "timestamp": "2026-02-19 14:44:20.759913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Null Reference] Can an attacker pass extraData.Round with null RealTimeMinersInformation to cause NullReferenceException when accessing Values at line 32, bypassing InValue validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13c3e16d-78f8-49cc-ac56-03d6bb4b029c?mode=deep",
+    "timestamp": "2026-02-19 14:44:48.779162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Validation Bypass] Can an attacker pass extraData.Round.RealTimeMinersInformation as an empty collection so that Any() at line 32 returns false, causing validation to succeed even though the next round should contain miner information? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63672930-3b05-4c0b-a6cf-95ba45a4ed4b?mode=deep",
+    "timestamp": "2026-02-19 14:45:19.206774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Logic Error] Does the InValue check at line 32 only validate that InValue is null but ignore if OutValue, Signature, or other critical consensus fields are manipulated in the next round's miner information? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31763791-ebbf-489f-98ce-1463acbbce75?mode=deep",
+    "timestamp": "2026-02-19 14:45:50.050789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Incomplete Validation] Can an attacker craft next round with correct RoundNumber and null InValues but with manipulated miner list (added/removed miners, changed order) to pass validation at lines 29-34 while corrupting consensus miner schedule? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c82f049-0220-4808-89dd-4f127d37c5e0?mode=deep",
+    "timestamp": "2026-02-19 14:46:20.609509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Null Handling] If any miner object in RealTimeMinersInformation.Values is itself null, will the lambda at line 32 cause NullReferenceException when accessing m.InValue, or will it be treated as null InValue and pass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7deb7f70-4d2f-4398-b2ee-35d0308ae4d1?mode=deep",
+    "timestamp": "2026-02-19 14:46:51.236504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [Edge Case] Can an attacker set all miners' InValue to empty byte array (non-null but length 0) instead of null to bypass the null check at line 32, as the validation only checks != null, not whether InValue is empty? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd7f2351-491a-41e1-9287-011b7f70f6ec?mode=deep",
+    "timestamp": "2026-02-19 14:47:23.477706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Integer Overflow] Can an attacker craft validationContext.BaseRound.TermNumber near long.MaxValue to cause integer overflow in the Add(1) operation at line 44, wrapping to negative or zero, matching a manipulated extraData.Round.TermNumber to pass term validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04f3c949-e4c9-4895-911d-f25e5b73ce3c?mode=deep",
+    "timestamp": "2026-02-19 14:47:56.567706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Validation Order] Does ValidationForNextTerm call ValidationForNextRound first at line 40, meaning if NextRound validation fails, NextTerm never validates term number, potentially allowing term number to be set arbitrarily as long as round validation fails? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab7e30ba-bbc3-4e5c-9592-536a1d723564?mode=deep",
+    "timestamp": "2026-02-19 14:48:29.547747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Early Return] If ValidationForNextRound returns failure at line 41, can an attacker exploit the early return to bypass term number validation at line 44, allowing arbitrary term numbers as long as round validation fails? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3281cdf1-2353-482f-8cb0-5e2750044861?mode=deep",
+    "timestamp": "2026-02-19 14:49:01.620978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Null Reference] Can an attacker pass validationContext with null BaseRound to cause NullReferenceException when accessing BaseRound.TermNumber at line 44, bypassing term validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c1af4ef-aac3-4158-b9f7-96160b6bb7e1?mode=deep",
+    "timestamp": "2026-02-19 14:49:34.083259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Null Reference] Can an attacker pass extraData with null Round to cause NullReferenceException when accessing extraData.Round.TermNumber at line 44, bypassing term validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b2c2e74-bbc0-4e9d-98f3-e2fac9b88d78?mode=deep",
+    "timestamp": "2026-02-19 14:50:05.906322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Logic Bypass] If BaseRound.TermNumber is negative, can an attacker set extraData.Round.TermNumber to (negative - 1) to pass equality check at line 44, manipulating term transitions through negative values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_253a764e-5575-4a4b-afb4-d2aaae8fc8ab?mode=deep",
+    "timestamp": "2026-02-19 14:50:37.740687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextTerm()] [Missing Validation] Does ValidationForNextTerm only check term number increments by 1 at line 44 but not verify other term-specific requirements like miner list changes, term start timestamp, or configuration updates required for new terms? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eaf80b96-5227-4288-982b-9a78bf96c63e?mode=deep",
+    "timestamp": "2026-02-19 14:51:06.679281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidationForNextRound()] [State Inconsistency] Can an attacker pass NextRound behavior with TermNumber also incremented (as if NextTerm) but only NextRound validation runs at line 14, allowing term number changes without term-specific validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_313b0cd0-787b-4c43-84c0-1ced5afc0a26?mode=deep",
+    "timestamp": "2026-02-19 14:51:37.796479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/RoundTerminateValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Validation] Does the validation lack checks for whether BaseRound exists in consensus state, allowing attackers to reference non-existent rounds and transition to fabricated round numbers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7a36756-c1d7-4873-bf7b-826ba854848f?mode=deep",
+    "timestamp": "2026-02-19 14:52:11.109582",
+    "report_generated": false
+  }
+]
