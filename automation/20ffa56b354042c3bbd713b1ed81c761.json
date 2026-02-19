@@ -4,5 +4,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_536c2e02-487f-42ab-b73c-dc8732d0b1b4?mode=deep",
     "timestamp": "2026-02-19 02:36:54.039249",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Authorization Bypass] Can an attacker call this method with an arbitrary pubkey parameter to extract sensitive consensus information for any miner without permission checks, potentially leaking encrypted pieces, signatures, and round state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b32d2b5d-2a25-4f73-97b2-c1d977cba1c1?mode=deep",
+    "timestamp": "2026-02-19 02:59:00.983156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Authorization Bypass] Does the method perform any validation that the caller is authorized to extract information for the specified pubkey, or can any contract caller retrieve UpdateValueInput for miners they don't control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a7050fa-6367-4f64-8777-b62c07101ff0?mode=deep",
+    "timestamp": "2026-02-19 02:59:22.919158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Information Disclosure] Can a malicious miner call this method with other miners' pubkeys to extract their OutValue, Signature, PreviousInValue, and EncryptedPieces before those miners publish their values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38c406ec-384c-4f94-8f22-86071300dde9?mode=deep",
+    "timestamp": "2026-02-19 02:59:45.154092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Access Control] Does line 18's simple ContainsKey check provide sufficient authorization, or should there be additional validation that the caller owns the pubkey or has permission to extract this miner's information? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_954750bc-0da7-4b97-bf84-f9916a553ac9?mode=deep",
+    "timestamp": "2026-02-19 03:00:08.089839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Null Reference Exception] At line 42, ActualMiningTimes.Last() is called without checking if the list is empty - can this cause a runtime exception if a miner has no actual mining times recorded yet? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f74a8607-a180-46f4-8bf8-6ac52e60a7d0?mode=deep",
+    "timestamp": "2026-02-19 03:00:32.143844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Null Handling] If ActualMiningTimes is null or empty at line 42, will Last() throw InvalidOperationException, potentially DOS-ing consensus updates for that miner? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc535ac5-ea42-4212-b139-6a817cbd9df9?mode=deep",
+    "timestamp": "2026-02-19 03:00:59.150747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [State Inconsistency] Can minerInRound.ActualMiningTimes be empty during first block production, causing Last() to fail and preventing legitimate miners from updating consensus values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_953a83f1-b03a-4f51-9ca8-55de957930ae?mode=deep",
+    "timestamp": "2026-02-19 03:01:26.573222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Null Return] Line 18 returns null if pubkey not found - how do callers handle this null return, and could it cause null reference exceptions in upstream code? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32536344-6abb-4208-881c-ea7c63911264?mode=deep",
+    "timestamp": "2026-02-19 03:01:55.216154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Secret Sharing Leak] Lines 45-46 expose EncryptedPieces and DecryptedPieces in the returned UpdateValueInput - can an attacker intercept this data to reconstruct other miners' InValues and break secret sharing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60580c18-f06c-4b92-86c4-fd56aafc84ee?mode=deep",
+    "timestamp": "2026-02-19 03:02:22.267959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Cryptographic Data Exposure] Does exposing minerInRound.EncryptedPieces at line 45 allow adversaries to perform timing attacks or cryptanalysis to derive the original InValue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5af882e9-7d8f-48b1-82d3-e71f08a21cb8?mode=deep",
+    "timestamp": "2026-02-19 03:02:52.565136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Decryption Privacy] At lines 26-28, decryptedPreviousInValues collects all DecryptedPieces where other miners have decrypted pieces for the requesting pubkey - could this leak information about which miners have successfully decrypted values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_239f55df-c892-4f75-9732-9282585c4c45?mode=deep",
+    "timestamp": "2026-02-19 03:03:24.228358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Secret Sharing Integrity] If EncryptedPieces dictionary at line 45 is modified or corrupted before being returned, could this compromise the secret sharing protocol's security? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bbfcc4c-857a-4886-9b6f-5dc31ea2dd69?mode=deep",
+    "timestamp": "2026-02-19 03:03:56.022553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Random Number Security] Line 49 passes the randomNumber parameter directly into UpdateValueInput without validation - can a malicious miner submit a predictable or manipulated random number to bias consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df0cfcda-5634-4149-be8f-3ab8f9332643?mode=deep",
+    "timestamp": "2026-02-19 03:04:29.388677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Signature Exposure] Line 38 exposes minerInRound.Signature - if this signature is based on secret values, could early exposure allow prediction of future consensus states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7c97943-af39-4272-86ea-a9cfe9f293b6?mode=deep",
+    "timestamp": "2026-02-19 03:05:03.024225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Round Manipulation] Lines 22-24 extract tuneOrderInformation where FinalOrderOfNextRound != SupposedOrderOfNextRound - can an attacker manipulate these fields to gain unfair mining order advantages in subsequent rounds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ee478d9-4864-4c56-9ae1-9e98a8a179de?mode=deep",
+    "timestamp": "2026-02-19 03:05:31.602916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Mining Order Tampering] If a malicious miner modifies their FinalOrderOfNextRound before this extraction at line 23, can they influence the tuneOrderInformation to reorder miners maliciously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dec7a866-eb10-41a6-ae89-81315272c289?mode=deep",
+    "timestamp": "2026-02-19 03:06:05.425735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Consensus State Consistency] Does line 40's RoundIdForValidation ensure the UpdateValueInput applies to the correct round, or could stale/future round data be mixed causing state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12e302f0-0be5-438e-bef5-363ffc6d0c15?mode=deep",
+    "timestamp": "2026-02-19 03:06:38.639317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [ProducedBlocks Manipulation] Line 41 exposes ProducedBlocks count - can a miner falsify this value before extraction to claim unearned rewards or voting power? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fd8074f-7304-44af-b6cf-e5737b7f3e60?mode=deep",
+    "timestamp": "2026-02-19 03:07:11.750979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Time Manipulation] Line 42 uses ActualMiningTimes.Last() for actual_mining_time - can miners manipulate their ActualMiningTimes list to report false timestamps and gain time-slot advantages? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8196e3a3-f399-4dcf-82a5-021039c53f70?mode=deep",
+    "timestamp": "2026-02-19 03:07:44.346835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Order Manipulation] Line 43's SupposedOrderOfNextRound is included without validation - can setting this to an invalid value (negative, zero, or exceeding miner count) break next round generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_faf36311-5d44-4aaf-bcdf-761dba930cbb?mode=deep",
+    "timestamp": "2026-02-19 03:08:18.639590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [LIB Height Manipulation] Line 48's ImpliedIrreversibleBlockHeight could be manipulated by miners - if set too low, could it prevent legitimate blocks from becoming irreversible, or if too high, finalize invalid blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c5d69f9-2e0f-4173-9196-080c760d55fd?mode=deep",
+    "timestamp": "2026-02-19 03:08:51.712501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Data Integrity] Lines 26-28 collect DecryptedPieces without validating their correctness - can corrupted decrypted pieces cause consensus failures when UpdateValue processes them? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_969a4c76-4a3c-4e4f-96c4-37da83244a9c?mode=deep",
+    "timestamp": "2026-02-19 03:09:26.174403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Dictionary Injection] If RealTimeMinersInformation at line 22 contains malicious entries with crafted FinalOrderOfNextRound values, could the tuneOrderInformation dictionary cause integer overflow or invalid state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe454c8d-05c8-429b-aa4c-6250965c933c?mode=deep",
+    "timestamp": "2026-02-19 03:10:01.643218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Hash Validation] Line 37-39 extract OutValue, Signature, and PreviousInValue hashes without validating they are non-empty or properly formatted - can Hash.Empty values corrupt consensus logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a68f342a-b554-4dc8-9471-94aa5fcce507?mode=deep",
+    "timestamp": "2026-02-19 03:10:35.468632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [PreviousInValue Coalescing] Line 39 uses null coalescing to default PreviousInValue to Hash.Empty - is Hash.Empty a valid sentinel value, or could it be confused with legitimate empty hashes in validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04b4c678-2c90-43d1-818a-ae8cf7ace103?mode=deep",
+    "timestamp": "2026-02-19 03:11:10.510518",
+    "report_generated": false
   }
 ]
