@@ -1,5 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Replay Attack] Can a previously generated ConsensusCommand from this strategy be replayed in a different round to disrupt consensus? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Nonce/Sequence] Is there a nonce or sequence number in the ConsensusCommand to prevent replay attacks across different rounds? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Integration: EnsureTransactionOnlyExecutedOnceInOneBlock] Can miners bypass the EnsureTransactionOnlyExecutedOnceInOneBlock check by submitting multiple NextRound/NextTerm transactions in the same block? (High)"
-]
