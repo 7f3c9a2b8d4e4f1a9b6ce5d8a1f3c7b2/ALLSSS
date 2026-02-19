@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Edge Case] Can ChangeMethodFeeController be called to set input equal to the current State.MethodFeeController.Value, wasting gas and potentially obscuring legitimate controller changes in event logs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fcd45e32-612a-4841-9eb0-d17726deb1ec?mode=deep",
+    "timestamp": "2026-02-19 14:52:19.230112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Boundary Condition] If amount parameter in AssertValidToken is exactly 0, is this considered valid, and could an attacker set zero fees for all methods to bypass fee mechanisms? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8986ca26-a05f-4d3c-b336-ce7f16f097e8?mode=deep",
+    "timestamp": "2026-02-19 14:52:41.612723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Boundary Condition] If symbol parameter in AssertValidToken is an extremely long string, could this cause issues with the IsTokenAvailableForMethodFee external call at line 81 or storage at line 17? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eeba3ad3-d8fb-4ef5-afa1-b11997dc2e10?mode=deep",
+    "timestamp": "2026-02-19 14:53:05.945165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Error Handling] If Context.Call at line 69 in CheckOrganizationExist throws an exception because authorityInfo.ContractAddress doesn't exist, does this cause ChangeMethodFeeController to fail safely or leave state corrupted? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2714ec07-4e6e-4570-8902-132a7ab88c34?mode=deep",
+    "timestamp": "2026-02-19 14:53:30.023427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Error Handling] If State.TokenContract.IsTokenAvailableForMethodFee at line 81 throws an exception, does AssertValidToken fail safely or could partial validation occur leaving inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a53efae-47d3-4202-a322-dbe21a4c25fe?mode=deep",
+    "timestamp": "2026-02-19 14:53:54.474635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Error Handling] If GetParliamentDefaultAddress() at line 55 returns null or throws an exception, does RequiredMethodFeeControllerSet handle this gracefully or initialize with invalid controller data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b07d1ad-a017-4736-8269-b3078214391d?mode=deep",
+    "timestamp": "2026-02-19 14:54:21.142632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Error Handling] If Context.GetContractAddressByName at line 56 or 79 returns null for non-existent contract names, do subsequent operations fail with clear errors or cause null reference exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fad073e8-109e-46aa-a27c-7e5843b84028?mode=deep",
+    "timestamp": "2026-02-19 14:54:48.965027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Exception Safety] If Assert fails at line 16, 26, 64, 76, or 81, is all state rolled back atomically, or could partial state updates from lines 13 or 17 persist? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18e17b8b-3aad-4bd6-938b-d47fd49b3230?mode=deep",
+    "timestamp": "2026-02-19 14:55:15.877292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [DOS] Can an attacker call SetMethodFee with input.Fees containing hundreds of entries, each requiring external validation via AssertValidToken at line 13, causing gas exhaustion and preventing legitimate fee updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d427702-7e2d-431d-9b9a-ef625d1c22fd?mode=deep",
+    "timestamp": "2026-02-19 14:55:43.124611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [DOS] Can an attacker who controls the MethodFeeController repeatedly call SetMethodFee and ChangeMethodFeeController in rapid succession to cause state thrashing and increased costs for users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0b6ae8e-991a-4203-86f4-78dc6671f3b1?mode=deep",
+    "timestamp": "2026-02-19 14:56:15.271221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [DOS] If Parliament organization used as default controller at line 55 requires many signatures, could the approval process for SetMethodFee become so slow that fee updates lag market conditions, enabling exploitation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_121fd6f6-9b29-4e7d-98b0-8ccec022aa31?mode=deep",
+    "timestamp": "2026-02-19 14:56:44.833417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [DOS] Can an attacker set fees for critical Election contract methods so high that no one can afford to call them, effectively freezing candidate registration, voting, or election term transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea7e820e-c5f5-41e4-9e25-9277646df6a1?mode=deep",
+    "timestamp": "2026-02-19 14:57:14.554949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Upgrade Safety] If the ElectionContract is upgraded and State.MethodFeeController.Value persists from the old version, could this reference an incompatible or deprecated Parliament organization structure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cde673c2-8cf0-4c40-a662-b18bf158a2be?mode=deep",
+    "timestamp": "2026-02-19 14:57:47.802200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Upgrade Safety] If TokenContract is upgraded at line 78-79 during a contract migration, will existing fee configurations remain valid or could token symbol compatibility break, making all SetMethodFee calls fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec87bba8-811f-4fa0-a43d-9578fe1946b4?mode=deep",
+    "timestamp": "2026-02-19 14:58:16.887046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Migration] If State.TransactionFees mapping is migrated to a new format, could existing entries at line 17 become inaccessible, causing GetMethodFee at line 36 to return null for previously configured methods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d1f06bb-d89b-42f9-a3d6-d5726037665f?mode=deep",
+    "timestamp": "2026-02-19 14:58:50.087755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Protocol Attack] Can an attacker who compromises the Parliament organization used in RequiredMethodFeeControllerSet at lines 55-56 gain permanent control over all Election contract method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdc9429e-ee12-4331-9c6d-ad1542edb19b?mode=deep",
+    "timestamp": "2026-02-19 14:59:21.171804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Protocol Attack] If the TokenContract referenced at lines 78-79 is compromised to always return false for IsTokenAvailableForMethodFee, can this permanently prevent all SetMethodFee calls, freezing fee governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_330330c8-3bcc-4171-b44e-947364c5473a?mode=deep",
+    "timestamp": "2026-02-19 14:59:56.812087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Protocol Attack] Can an attacker exploit cross-contract reentrancy by having a malicious organization contract called at line 69 invoke ElectionContract methods, bypassing the authorization check at line 24? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60941cb3-8f45-42b5-bdad-4e0cde20c37c?mode=deep",
+    "timestamp": "2026-02-19 15:00:32.546082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Economic Attack] Can a malicious controller set asymmetric fees via SetMethodFee where some methods are expensive and others are free, creating economic imbalances that favor certain users or attack vectors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f96a9632-6b64-4fee-90cd-3380ed5966e4?mode=deep",
+    "timestamp": "2026-02-19 15:01:07.970957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Economic Attack] If SetMethodFee allows fees to be set in tokens with volatile prices, could an attacker time their fee updates to exploit price changes, making methods temporarily unaffordable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84db9fa0-7e65-49d5-bc27-14152cf3d557?mode=deep",
+    "timestamp": "2026-02-19 15:01:43.163105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Game Theory] Can a controlling organization use ChangeMethodFeeController at line 28 to point to a new organization they also control, creating a circular reference that makes controller changes irreversible? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42dc70dd-1cf4-41b9-b9aa-f25635d5ed53?mode=deep",
+    "timestamp": "2026-02-19 15:02:17.375161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Economic DOS] Can an attacker set fees via SetMethodFee that are economically rational for themselves but irrational for others, creating a barrier to entry for new election participants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3b79912-0ac9-4168-925e-b78f1c5f1cc8?mode=deep",
+    "timestamp": "2026-02-19 15:02:52.035625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Input Validation] Does SetMethodFee validate that input.MethodName at line 17 matches the naming conventions of actual contract methods, or can arbitrary strings be used to pollute state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f54428a-6ba5-43c3-a033-f9b0714b8229?mode=deep",
+    "timestamp": "2026-02-19 15:03:28.325186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Input Validation] Can input.Fees in SetMethodFee contain MethodFee entries with empty or null Symbol values that bypass AssertValidToken validation at line 13? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_140b79c3-603f-4d95-9147-d93be810d245?mode=deep",
+    "timestamp": "2026-02-19 15:04:03.843090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Input Validation] If input parameter to ChangeMethodFeeController is a completely empty AuthorityInfo object, does the validation at lines 23-26 catch this or could null OwnerAddress/ContractAddress be set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fef9e4f-b98b-42f7-8f9f-be3a9d9ed1ac?mode=deep",
+    "timestamp": "2026-02-19 15:04:40.880237",
+    "report_generated": false
+  }
+]
