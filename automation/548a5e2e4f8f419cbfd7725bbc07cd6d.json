@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Proposal Status Manipulation] Can an attacker manipulate proposalInfo.ToBeReleased status by tampering with crossChainIndexingController.OwnerAddress comparison logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96f82038-e023-4b72-9ebc-7624a9f6fc5d?mode=deep",
+    "timestamp": "2026-02-19 05:36:50.374021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Controller Address Validation] If GetCrossChainIndexingController() returns a compromised or zero address, can this cause incorrect ToBeReleased determination allowing premature proposal execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_369bdc75-03df-464b-bb88-46130ae64c3b?mode=deep",
+    "timestamp": "2026-02-19 05:37:12.455566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Null Pending Proposal] If State.IndexingPendingProposal.Value is null, does returning empty GetIndexingProposalStatusOutput hide the fact that proposals might be stuck or lost? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13a9c5da-4727-4dd0-9d3b-4ce284d412a0?mode=deep",
+    "timestamp": "2026-02-19 05:37:34.905762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [External Call Security] Does Context.Call to AuthorizationContract properly validate return value, or can malicious contract return fake ProposalOutput to manipulate status reporting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9310c368-ab4a-40fb-9f35-a7523f051c9d?mode=deep",
+    "timestamp": "2026-02-19 05:37:58.008292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Expired Proposal Handling] Are expired proposals (proposalInfo.ExpiredTime < current time) properly filtered or indicated, or can they remain in pending status indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2bec4c5-41d5-4c7e-8722-0cd8dd597cc1?mode=deep",
+    "timestamp": "2026-02-19 05:38:21.920584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [DOS via Excessive Proposals] If ChainIndexingProposalCollections.Values contains excessive proposals, can iteration cause gas exhaustion preventing status queries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87cf8e31-459a-4b3c-b677-38db417857d7?mode=deep",
+    "timestamp": "2026-02-19 05:38:47.558746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Proposer Validation] Is chainIndexingProposal.Proposer validated to match actual proposal creator, or can fake proposer addresses be injected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8479f72-ee54-4595-a6cc-ef0b6aac4c10?mode=deep",
+    "timestamp": "2026-02-19 05:39:12.852745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [ProposalId Collision] If chainIndexingProposal.ProposalId collides with unrelated proposals in the authorization contract, can this return incorrect status information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b3d6a0b-350c-412a-99af-5c5adb3cc7a1?mode=deep",
+    "timestamp": "2026-02-19 05:39:38.981224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Organization Address Comparison] Does comparing proposalInfo.OrganizationAddress == crossChainIndexingController.OwnerAddress properly handle address format differences or checksums? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d47a0fac-85e3-42bc-ace4-91a2ed1d518d?mode=deep",
+    "timestamp": "2026-02-19 05:40:11.389356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexingProposalStatus()] [Cross-Chain Data Integrity] Is ProposedCrossChainBlockData validated for integrity and consistency before being included in the status output? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf0ce255-dcca-4291-ae9a-33929eb2b8e8?mode=deep",
+    "timestamp": "2026-02-19 05:40:43.692603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeePrice()] [Price Manipulation] If sideChainInfo.IndexingPrice can be set to extremely high or zero values, can this enable fee manipulation attacks or denial-of-service on indexing operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b3374d8-8428-4a2e-8e34-56895c05a84a?mode=deep",
+    "timestamp": "2026-02-19 05:41:15.837650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeePrice()] [Price Overflow] Can IndexingPrice overflow Int64.MaxValue causing arithmetic errors in fee calculation logic that multiplies price by block counts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4c1be60-3ccd-4ebd-bf9a-3f4575b0406a?mode=deep",
+    "timestamp": "2026-02-19 05:41:49.392256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeePrice()] [Negative Price] If IndexingPrice is negative due to data corruption, can this cause underflow in fee calculations or enable free indexing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_738a84bb-541c-46c7-8947-2420fe361f79?mode=deep",
+    "timestamp": "2026-02-19 05:42:20.113437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeePrice()] [Price Staleness] If fee prices are not updated with chain status changes (e.g., during termination), can outdated prices be used for incorrect fee assessments? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81c8a1cf-f163-4bc2-b74a-47f83a1a9c68?mode=deep",
+    "timestamp": "2026-02-19 05:42:55.004501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetCrossChainIndexingController()] [Controller Immutability] If the internal GetCrossChainIndexingController() method allows controller changes without proper authorization, can this enable governance takeover attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f6bf061-7bbd-4ccd-a1ef-35dbd2a827ee?mode=deep",
+    "timestamp": "2026-02-19 05:43:30.462470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetCrossChainIndexingController()] [Return Value Validation] Does the function validate that returned AuthorityInfo contains valid ContractAddress and OwnerAddress, or can null/zero values be returned? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6dab0f42-3cac-46f8-9c6d-d2f15bcd791f?mode=deep",
+    "timestamp": "2026-02-19 05:44:04.284458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetCrossChainIndexingController()] [Uninitialized Controller] If controller is not initialized during contract deployment, does this return default/zero AuthorityInfo that could be exploited for unauthorized control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3e4c19e-e233-4b55-917c-66678a0ee990?mode=deep",
+    "timestamp": "2026-02-19 05:44:33.904007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainLifetimeController()] [Controller Consistency] Are CrossChainIndexingController and SideChainLifetimeController properly segregated, or can ambiguity in controller roles enable unauthorized operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a07d1e7c-497d-49fd-800c-d21287681594?mode=deep",
+    "timestamp": "2026-02-19 05:45:01.107645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainLifetimeController()] [Lifetime Operations] Does exposing lifetime controller enable attackers to predict or manipulate side chain termination timing through analysis of controller addresses? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4de519ca-7ba4-4c05-9aab-7551b268701f?mode=deep",
+    "timestamp": "2026-02-19 05:45:26.407459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeeController()] [Per-Chain Controller] If each side chain has its own fee controller (sideChainInfo.IndexingFeeController), can inconsistent controller configurations create fee manipulation opportunities? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01c97cd9-fc80-49ff-818c-3878ce021188?mode=deep",
+    "timestamp": "2026-02-19 05:45:55.039660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeeController()] [Controller Hijacking] If IndexingFeeController address can be modified without proper authorization checks, can attackers take control of fee settings for individual chains? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dea5ce0f-2b41-413a-bc83-32e9bc12e05b?mode=deep",
+    "timestamp": "2026-02-19 05:46:20.841484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetSideChainIndexingFeeController()] [Null Controller] If IndexingFeeController is null or zero address for terminated chains, does this cause assertion failures or return invalid controller info? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5b72c34-2744-4854-adec-bf99ffa5f754?mode=deep",
+    "timestamp": "2026-02-19 05:46:46.893024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Cross-Function] [State Consistency] If multiple view functions read from State.SideChainInfo concurrently during state updates, can race conditions cause inconsistent data to be returned across related queries (e.g., GetChainStatus returning Active while GetSideChainHeight returns 0)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_243d6280-1027-4ed6-8ea3-e5edc5a4bf0f?mode=deep",
+    "timestamp": "2026-02-19 05:47:13.739283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Cross-Function] [Atomic Operations] Are state reads atomic at the function level, or can partial state updates be observed when querying height, status, and balance information in sequence? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e236abc5-5842-4d72-9f1e-b8b6f22af038?mode=deep",
+    "timestamp": "2026-02-19 05:47:45.405063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Cross-Function] [Caching Issues] If view functions cache state data, can stale cached values be returned after state-modifying transactions complete, creating temporary inconsistency windows? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_776d6be6-90ef-48b9-aae5-be58549609fd?mode=deep",
+    "timestamp": "2026-02-19 05:48:17.160627",
+    "report_generated": false
+  }
+]
