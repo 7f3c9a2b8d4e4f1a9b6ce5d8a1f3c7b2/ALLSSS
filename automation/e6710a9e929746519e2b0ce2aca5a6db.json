@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsValidSymbol()] [Input Validation Bypass] Can an attacker craft a symbol with multiple dashes (e.g., 'TOKEN-1-2') that passes regex '^[a-zA-Z0-9]+(-[0-9]+)?$' but causes downstream parsing failures in NFT operations, leading to locked funds or token creation bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fe6c288-b4c9-4a4a-8e5c-745cc8a000b3?mode=deep",
+    "timestamp": "2026-02-19 13:43:41.659314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsValidSymbol()] [Symbol Collision] Can an attacker register both 'TOKEN' and 'TOKEN-0' since both pass the regex, creating two distinct tokens that collide when NFT itemId is '0', allowing double-spending or balance confusion? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe70aa44-e0e0-4a09-90f4-ea353401e735?mode=deep",
+    "timestamp": "2026-02-19 13:44:03.800359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsValidItemId()] [Integer Overflow] Does the regex '^[0-9]+$' allow extremely large item IDs (e.g., 10^100) that pass validation but cause integer overflow when parsed to long, enabling NFT ID collision or system crash? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9759920-7691-44a1-8bf6-3bc383be50e2?mode=deep",
+    "timestamp": "2026-02-19 13:44:26.158271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsValidItemId()] [Leading Zeros Attack] Can an attacker create NFTs with leading zeros in itemId (e.g., '0001' vs '1') that are treated as different strings but resolve to same numeric value, allowing duplicate NFT minting or approval bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99bdb6cf-1139-40c6-8baf-fa522a5ce786?mode=deep",
+    "timestamp": "2026-02-19 13:44:49.278602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: IsValidCreateSymbol()] [Case Sensitivity] Since IsValidCreateSymbol uses '^[a-zA-Z0-9]+$' while State.InsensitiveTokenExisting checks ToUpper(), can an attacker bypass collision checks by registering 'token' after 'TOKEN' is created? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_728afa9c-968c-4353-b929-8c313cdc735f?mode=deep",
+    "timestamp": "2026-02-19 13:45:13.133137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidToken()] [Race Condition] If token is deleted between AssertValidSymbolAndAmount() and GetTokenInfo() calls, can operations proceed with null tokenInfo, causing state corruption or unexpected transfers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67bb5f05-7200-4b1c-9905-191a279a4248?mode=deep",
+    "timestamp": "2026-02-19 13:45:37.847363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidToken()] [Symbol Alias Attack] Does AssertValidToken properly validate symbol aliases, or can an attacker create circular alias mappings that cause infinite loops or bypass token existence checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6d1a46e-98fe-4df3-b615-72c41b0b5a74?mode=deep",
+    "timestamp": "2026-02-19 13:46:03.044725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ValidTokenExists()] [TOCTOU Race] Between ValidTokenExists check and actual token operation, can token be deleted/modified by another transaction, causing assertion to pass but operation to fail with inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_944a48af-ba36-480e-a47f-c39982b6bc3c?mode=deep",
+    "timestamp": "2026-02-19 13:46:29.243725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertApproveToken()] [NFT Symbol Manipulation] When splitting symbol by NFTSymbolSeparator, can attacker inject multiple separators (e.g., 'TOKEN-1-2') to bypass validation where words.Length == 2 check fails but still creates valid-looking NFT symbol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7436ffb-5411-43b9-b1ec-2760be904504?mode=deep",
+    "timestamp": "2026-02-19 13:46:57.157470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertApproveToken()] [All Symbol Wildcard Bypass] If symbolPrefix equals allSymbolIdentifier, validation skips ValidTokenExists. Can attacker exploit this to approve transfers for non-existent tokens or bypass approval limits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2851b291-bd32-4868-a9f4-e52094a60747?mode=deep",
+    "timestamp": "2026-02-19 13:47:25.009466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertApproveToken()] [Collection Symbol Forgery] When itemId equals allSymbolIdentifier, GetCollectionSymbol is called. Can attacker craft input to make this return a symbol they control, bypassing collection ownership checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7fb3763-c456-4211-acac-0a6b4f8df3e8?mode=deep",
+    "timestamp": "2026-02-19 13:47:53.248758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertApproveToken()] [NFT Symbol Confusion] Lines 69-73 check words.Length == 2 but what if itemId is empty string after split? Does 'TOKEN-' pass length check and cause ValidTokenExists to check wrong symbol? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f447171-c33f-433e-8565-2b245d683d12?mode=deep",
+    "timestamp": "2026-02-19 13:48:21.954762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: GetCollectionSymbol()] [Fixed Suffix Collision] Since collection symbols always use '-0' suffix, can attacker create regular NFT with itemId '0' that collides with collection symbol, allowing unauthorized collection operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7092f5f9-3385-4fe2-8a94-ddc8f67fc62f?mode=deep",
+    "timestamp": "2026-02-19 13:48:53.159172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ModifyBalance()] [Integer Overflow] When computing target = before.Add(addAmount), if before is near Int64.MaxValue and addAmount is positive, does Add() properly handle overflow or wrap to negative, allowing balance inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_076506c0-8a2a-4dab-bfcd-d8dee435948e?mode=deep",
+    "timestamp": "2026-02-19 13:49:24.460711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ModifyBalance()] [Insufficient Balance Check Bypass] Lines 119-121 check 'before < -addAmount', but does this handle the case where addAmount is Int64.MinValue, causing -addAmount to overflow and bypass the check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2f32e4a-1cc5-4a21-ac59-7efda9358165?mode=deep",
+    "timestamp": "2026-02-19 13:49:52.785755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ModifyBalance()] [State Race Condition] Between GetBalance() and State.Balances update, can another transaction modify the balance, causing the assertion to pass but final balance to be incorrect (TOCTOU)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a5562e3-36fb-4cde-8597-925420553af5?mode=deep",
+    "timestamp": "2026-02-19 13:50:19.512980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ModifyBalance()] [Negative Balance Attack] If balance check fails (line 120 Assert(false)), is transaction fully reverted or can partial state changes persist, allowing negative balances in some scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a0b29b6-1254-48be-9919-352f134952f6?mode=deep",
+    "timestamp": "2026-02-19 13:50:45.850509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DoTransfer()] [Blacklist Bypass via Proxy] IsInTransferBlackListInternal only checks 'from' address. Can blacklisted user transfer to intermediate address first, then that address transfers to final destination, bypassing blacklist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d264b6a4-2384-4bc3-8afa-df17be2c9b4c?mode=deep",
+    "timestamp": "2026-02-19 13:51:12.043280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DoTransfer()] [Self-Transfer DoS] Line 102 prevents from == to, but what if attacker repeatedly calls transfer with from != to in a loop, can they drain gas/resources causing DoS on token operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3c29613-ab05-41a6-9faa-a4d85a100c91?mode=deep",
+    "timestamp": "2026-02-19 13:51:39.353742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DoTransfer()] [Memo Overflow DoS] AssertValidMemo checks byte count <= MemoMaxLength, but can attacker craft UTF-8 sequences that expand dramatically when encoded, causing memory exhaustion or validation bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a706041-f43b-4ba3-8468-a3609fe2dbdc?mode=deep",
+    "timestamp": "2026-02-19 13:52:06.983991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DoTransfer()] [Balance Update Ordering] ModifyBalance is called twice (lines 104-105). If first ModifyBalance succeeds but second fails due to overflow, is state fully reverted or can 'from' balance be decremented without 'to' receiving funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93423104-279a-45e0-b2de-12ff1b5ba4fc?mode=deep",
+    "timestamp": "2026-02-19 13:52:35.291476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DoTransfer()] [Event Frontrunning] Transferred event is fired after balance updates. Can attacker observe pending transfer, frontrun with their own transaction to manipulate balances before event is processed by external systems? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d064219-3246-413c-b823-8315bc25a1b5?mode=deep",
+    "timestamp": "2026-02-19 13:53:03.242005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DoTransfer()] [Memo Injection] Even though memo is validated for length, can attacker inject special characters or control sequences that break event parsing in external log processors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e72f49c0-5717-4a00-870d-9c47854aaa9e?mode=deep",
+    "timestamp": "2026-02-19 13:53:34.634056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ModifyFreeFeeAllowanceAmount()] [Insufficient Allowance Check] Line 132 checks 'freeAllowanceAmount < -addAmount', but GetFreeFeeAllowanceAmount aggregates from multiple sources. Can race condition allow total to become negative if multiple transactions consume simultaneously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1a7e379-ef97-4c93-8bfc-ae5a7a82f671?mode=deep",
+    "timestamp": "2026-02-19 13:54:03.566594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ModifyFreeFeeAllowanceAmount()] [Expiration Time Manipulation] GetSymbolListSortedByExpirationTime sorts by RefreshSeconds - (CurrentBlockTime - LastRefreshTime). Can attacker manipulate block time or refresh time to always prioritize their allowances, starving other users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccb35630-1752-460d-81eb-8b6ba9484c5a?mode=deep",
+    "timestamp": "2026-02-19 13:54:34.796806",
+    "report_generated": false
+  }
+]
