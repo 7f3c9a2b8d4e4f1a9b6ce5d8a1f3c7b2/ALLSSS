@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Gas Waste] Do all ACS1 methods waste execution gas by being called but performing no useful work, causing inefficiency in governance or fee management operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e6c7fba-9ccc-4b20-b343-6f8a62d4d620?mode=deep",
+    "timestamp": "2026-02-19 03:15:16.872734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Missing Fee Token Assertion] Unlike MultiToken's AssertValidFeeToken() that verifies token exists and is burnable, does NFT's SetMethodFee() accept any symbol without validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7611af0-b7f5-4f83-bbfd-658a76d0a3c0?mode=deep",
+    "timestamp": "2026-02-19 03:15:39.007942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Missing foreach Validation Loop] Does SetMethodFee() skip the 'foreach (var symbolToAmount in input.Fees)' validation loop that MultiToken uses to validate each fee entry? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7609c033-8439-41d1-8008-7486e356e5d4?mode=deep",
+    "timestamp": "2026-02-19 03:16:01.339573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Missing State Persistence] Does SetMethodFee() lack the 'State.TransactionFees[input.MethodName] = input' assignment that persists fee changes in MultiToken implementation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_214ca648-0bd9-4410-9c3d-c713f764d4e5?mode=deep",
+    "timestamp": "2026-02-19 03:16:25.355835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Missing State Read] Unlike MultiToken's 'fees = State.TransactionFees[input.Value]', does NFT's GetMethodFee() never read from state, only returning hardcoded values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69d419d4-1b56-405e-b08c-52f55adafb89?mode=deep",
+    "timestamp": "2026-02-19 03:16:49.233330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Missing Organization Check] Does ChangeMethodFeeController() skip the CheckOrganizationExist(input) validation that MultiToken uses to verify valid governance organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd6ccffd-52fc-4237-a207-35453177ec1d?mode=deep",
+    "timestamp": "2026-02-19 03:17:14.530935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Missing Default Initialization] Does GetMethodFeeController() skip the RequiredMethodFeeControllerSet() call that initializes controller to Parliament default organization in MultiToken? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1cf2eac2-4b59-4718-a387-72fd441cad6f?mode=deep",
+    "timestamp": "2026-02-19 03:17:39.326504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [No Assert Statements] Do all ACS1 methods lack any Assert() calls for validation, allowing invalid inputs to be accepted silently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11d662bd-b17b-4182-a6b0-a3750ad2c92e?mode=deep",
+    "timestamp": "2026-02-19 03:18:05.186718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [ACS1 Proto Violation] Does the proto definition state SetMethodFee should 'override all fees of the method', but the implementation does nothing, violating the specification contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_351fa415-0fbd-4323-b2fb-b97e8d2db017?mode=deep",
+    "timestamp": "2026-02-19 03:18:33.630619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [ACS1 Proto Violation] Does the proto definition say ChangeMethodFeeController should 'change the method fee controller' with default as Parliament, but implementation returns empty without changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba685107-6e26-4be6-861b-65cf3511b967?mode=deep",
+    "timestamp": "2026-02-19 03:19:03.167632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Incomplete Method Coverage] Does GetMethodFee() only handle 'Create' when the NFT contract likely has many other fee-eligible methods (Mint, Transfer, Burn, Approve), leaving them without fee configuration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d78cd437-2bd0-4eef-a722-17c1a533ee17?mode=deep",
+    "timestamp": "2026-02-19 03:19:32.923347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Default Controller Missing] Does the proto documentation suggest controller defaults to 'parliament and default organization', but GetMethodFeeController() returns empty instead of initializing this default? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4685debd-c671-4800-80cd-6ed67d23ec49?mode=deep",
+    "timestamp": "2026-02-19 03:20:03.569593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Treasury Integration Failure] Can the Treasury contract fail to collect proper fees from NFT operations since GetMethodFee() returns empty for most methods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73f13daf-42e7-45b2-a6d2-781d0c768515?mode=deep",
+    "timestamp": "2026-02-19 03:20:32.709140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Parliament Governance Break] Does returning empty AuthorityInfo prevent Parliament from exercising governance over NFT method fees as intended in the AElf governance model? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c04c6625-4d5a-4f19-a8a0-e4066d1fb52d?mode=deep",
+    "timestamp": "2026-02-19 03:20:59.969386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [MultiToken Dependency] Does SetMethodFee() lack any call to verify fee tokens via MultiToken.GetTokenInfo(), allowing references to non-existent tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_531104bf-c3ee-4256-81bb-c4f2426d52ce?mode=deep",
+    "timestamp": "2026-02-19 03:21:30.433174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fee Charging System Failure] Can the AElf transaction fee charging mechanism fail to deduct correct fees because GetMethodFee() returns incomplete data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0936bd9e-0d3e-47f7-a6ad-e8be0156e764?mode=deep",
+    "timestamp": "2026-02-19 03:22:01.753834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Cross-Contract Call Failures] If other system contracts call NFT's ACS1 methods expecting standard behavior, will they receive unexpected empty results causing integration failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7665b0d2-695d-4df4-8d17-b28cf0fee393?mode=deep",
+    "timestamp": "2026-02-19 03:22:32.290068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [StringValue Null Handling] Does GetMethodFee() handle the case where input is null or input.Value is null before the string comparison on line 22? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e5c6803-c308-4aa5-a87d-b44519518651?mode=deep",
+    "timestamp": "2026-02-19 03:23:03.060751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [MethodFees Null Input] Does SetMethodFee() validate that input is not null before returning Empty(), or does it just accept null inputs silently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6172c65-099a-4398-b88c-8eabd6a1c200?mode=deep",
+    "timestamp": "2026-02-19 03:23:33.547580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [AuthorityInfo Null Fields] Does ChangeMethodFeeController() validate that input.OwnerAddress and input.ContractAddress are not null before processing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0abdac89-88fb-4d61-949a-3fcc0729623c?mode=deep",
+    "timestamp": "2026-02-19 03:24:05.047515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Empty String Handling] Does GetMethodFee() handle empty string input (input.Value == '') properly, or would it fall through to return empty MethodFees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45a5c497-bd48-4e59-b8fc-aef3ee8950c9?mode=deep",
+    "timestamp": "2026-02-19 03:24:37.148617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Integer Overflow in BasicFee] Is 100_00000000 (line 31) correctly represented as a long without overflow risk, and does it match the token's decimal precision? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_303a78a8-7044-47fb-8063-437554461f1d?mode=deep",
+    "timestamp": "2026-02-19 03:25:09.541530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Negative BasicFee] Could SetMethodFee() accept negative BasicFee values in input.Fees without validation if it were implemented, causing fee calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48486948-c0d4-4911-9cf3-4619234f1668?mode=deep",
+    "timestamp": "2026-02-19 03:25:41.778702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Zero BasicFee] Could SetMethodFee() accept zero BasicFee making operations free, if implemented, without governance approval? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c46aa7df-398a-4bce-84c8-636995598ca2?mode=deep",
+    "timestamp": "2026-02-19 03:26:14.148563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Decimal Precision Mismatch] Does the 8-decimal BasicFee (100_00000000) match Context.Variables.NativeSymbol's actual decimals, or could there be precision mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_43d94ada-5fa2-41dc-92fd-bb7fc8dba06c?mode=deep",
+    "timestamp": "2026-02-19 03:26:44.785096",
+    "report_generated": false
+  }
+]
