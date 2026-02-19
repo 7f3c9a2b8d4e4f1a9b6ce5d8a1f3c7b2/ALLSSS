@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Edge Case] If Proposers list contains Address.FromPublicKey with same public key but different derivation, does Contains() correctly identify match or allow bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ce871ba-89a3-4c22-9aab-165f28ba9e2d?mode=deep",
+    "timestamp": "2026-02-19 05:00:02.245706",
+    "report_generated": false
+  }
+]
