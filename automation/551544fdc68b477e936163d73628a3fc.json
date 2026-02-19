@@ -1,0 +1,50 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Edge Case] Can the strategy be used when CurrentRound has expired multiple rounds ago, and if so, does ArrangeExtraBlockMiningTime handle the gap correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9039bf45-e481-418e-8130-a9fd12699dbe?mode=deep",
+    "timestamp": "2026-02-19 05:37:42.784881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Edge Case] If all miners in CurrentRound have missed their slots, can ArrangeExtraBlockMiningTime still produce valid arrangedMiningTime? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e7efeae-d1a7-4e6f-8a7b-a370f69ba553?mode=deep",
+    "timestamp": "2026-02-19 05:38:04.920818",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Edge Case] When multiple miners request consensus commands simultaneously for the same round, can race conditions cause multiple conflicting NextRound/NextTerm commands? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b200df5-cfcf-497e-bc6f-204c6e4f0550?mode=deep",
+    "timestamp": "2026-02-19 05:38:27.645424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Missing Validation] Does the method validate that Pubkey corresponds to a valid miner in CurrentRound.RealTimeMinersInformation before generating commands? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a0ec524-742a-4aa4-baea-b98ce137ee0c?mode=deep",
+    "timestamp": "2026-02-19 05:38:51.383400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Missing Validation] Can the method be called when the blockchain is in maintenance mode or emergency state, potentially causing invalid consensus transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbd3113e-f3ea-4aaa-a82e-6428e7ef9790?mode=deep",
+    "timestamp": "2026-02-19 05:39:18.799984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Missing Validation] Does the method check that CurrentRound has reached the minimum participation threshold before allowing round termination? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99c466f3-b9ea-4ac1-bb4b-293117226772?mode=deep",
+    "timestamp": "2026-02-19 05:39:44.258558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Missing Validation] Can _isNewTerm be set without checking if the blockchain has reached the configured term interval period? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efa3258f-5e48-456f-9836-de5377660052?mode=deep",
+    "timestamp": "2026-02-19 05:40:12.551950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Missing Validation] Does the method verify that the generated MiningDueTime doesn't exceed maximum allowed block production time to prevent infinite mining windows? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f3b45c4-7b83-4bae-b6f2-2400df3264ff?mode=deep",
+    "timestamp": "2026-02-19 05:40:44.146351",
+    "report_generated": false
+  }
+]
