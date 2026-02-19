@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ProposeCrossChainIndexing()] [Race Condition] Lines 287-289 have TOCTOU gap: ClearCrossChainIndexingProposalIfExpired followed by ValidateCrossChainDataBeforeIndexing followed by ProposeCrossChainBlockData - can attacker manipulate state between these calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_906f7b41-695b-4702-9ccf-81e7883ffac7?mode=deep",
+    "timestamp": "2026-02-19 09:08:42.938027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseCrossChainIndexingProposal()] [Replay Protection Bypass] Line 296 EnsureTransactionOnlyExecutedOnceInOneBlock prevents same-block execution but allows release of expired proposals - can attacker release stale data after proposal expired? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fafa7fad-7ce5-4ea2-a5f5-1dea363137a5?mode=deep",
+    "timestamp": "2026-02-19 09:09:04.921618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseCrossChainIndexingProposal()] [Authorization Bypass] Line 297 checks AssertAddressIsCurrentMiner but never validates miner releasing is same as miner who proposed - can malicious miner release another miner's proposal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_470a6ebe-6526-463b-ab08-065f42f1c67b?mode=deep",
+    "timestamp": "2026-02-19 09:09:27.117548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseCrossChainIndexingProposal()] [Validation Gap] Line 298 requires input.ChainIdList.Count > 0 but never checks if chain IDs actually have pending proposals - can attacker cause assertion failure in ReleaseIndexingProposal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f60ac0f1-ec04-404f-8b52-318ec3d0f686?mode=deep",
+    "timestamp": "2026-02-19 09:09:50.219475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseCrossChainIndexingProposal()] [Ordering Issue] Lines 299-300 ReleaseIndexingProposal before RecordCrossChainData - if release fails, is data recorded causing inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54891b27-b057-4d63-ac08-38d56162a239?mode=deep",
+    "timestamp": "2026-02-19 09:10:14.019014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseCrossChainIndexingProposal()] [DoS Vector] Line 299 loops through all chainIdList entries calling HandleIndexingProposal which makes external calls - can attacker provide thousands of chain IDs causing gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31c12d1d-0f32-438e-8e19-da573f852247?mode=deep",
+    "timestamp": "2026-02-19 09:10:38.386168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: AcceptCrossChainIndexingProposal()] [Authorization Bypass] Line 306 checks AssertCrossChainIndexingControllerAuthority but never validates proposal actually exists or is in correct state - can controller accept non-existent proposal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c898e97e-5674-4d3d-ac46-12a9f7fc8bd0?mode=deep",
+    "timestamp": "2026-02-19 09:11:03.705601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: AcceptCrossChainIndexingProposal()] [State Manipulation] Lines 307-308 AssertIsCrossChainBlockDataAccepted then ResetChainIndexingProposal but never verify data was actually recorded - can this leave chain in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c5f7126-b124-438a-bac1-edfaa8be6937?mode=deep",
+    "timestamp": "2026-02-19 09:11:29.472847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: BindParentChainHeight()] [Integer Overflow] Line 29 asserts ChildHeightToParentChainHeight[childHeight] == 0 but never validates parentHeight > 0 - can attacker bind to zero or negative height? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5dacad2f-c8f2-467d-8f9c-6cc650217035?mode=deep",
+    "timestamp": "2026-02-19 09:11:57.531721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: BindParentChainHeight()] [Replay Attack] Lines 29-31 only check if binding exists but never verify childHeight matches Context.CurrentHeight - can attacker create future bindings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a06d035b-8e53-420b-a358-0ff5d710413e?mode=deep",
+    "timestamp": "2026-02-19 09:12:26.413670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ComputeRootWithTransactionStatusMerklePath()] [Hash Collision] Lines 36-39 compute hash by concatenating txId and hardcoded 'Mined' status - can attacker craft txId to create hash collision with different transaction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_364ff539-5094-4c3d-81a8-c889f6cd68b8?mode=deep",
+    "timestamp": "2026-02-19 09:12:55.588579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AddIndexedTxRootMerklePathInParentChain()] [Race Condition] Lines 54-57 check existing path then set new path - can attacker exploit TOCTOU gap to overwrite path between check and set? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b6fd073-e465-4a87-9f19-141515f0e1e2?mode=deep",
+    "timestamp": "2026-02-19 09:13:25.775608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AddIndexedTxRootMerklePathInParentChain()] [Validation Gap] Line 55 asserts existing == null but never validates incoming 'path' is valid merkle path with correct length - can attacker store invalid path? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89975f18-5350-42be-9881-1312870c2d29?mode=deep",
+    "timestamp": "2026-02-19 09:13:56.827856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ChargeSideChainIndexingFee()] [Integer Underflow] Lines 62-63 return early if amount <= 0 but never validate amount doesn't exceed allowance - can this cause transfer to fail silently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1b46bc7-3333-466a-935b-d60caddd8c34?mode=deep",
+    "timestamp": "2026-02-19 09:14:27.838533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: ChargeSideChainIndexingFee()] [Address Manipulation] Line 67 converts chainId to hash then to virtual address without validation - can attacker cause transfer to go to unintended address by manipulating chainId? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f91d14f-c95f-42d1-a090-5f34e002bde3?mode=deep",
+    "timestamp": "2026-02-19 09:14:58.296974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: UnlockTokenAndResource()] [Token Loss] Lines 77-85 get balance and transfer to proposer but if balance query fails or proposer is invalid contract, are tokens lost permanently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad4de2bc-df2c-470e-b3e7-51ffd7fcfb14?mode=deep",
+    "timestamp": "2026-02-19 09:15:29.127540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: UnlockTokenAndResource()] [Integer Overflow] Line 77 GetSideChainIndexingFeeDeposit returns balance without overflow check - can this overflow when added to other amounts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85ed25b9-2ca8-4ea1-8967-8b90315a3d25?mode=deep",
+    "timestamp": "2026-02-19 09:15:59.958579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: UnlockTokenAndResource()] [Reentrancy] Lines 80-85 call TransferDepositToken without reentrancy guard - can malicious proposer reenter during token transfer to unlock multiple times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4bb12ec5-8ee8-4f07-8825-521b80455fa4?mode=deep",
+    "timestamp": "2026-02-19 09:16:30.258588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: GetSideChainIndexingFeeDeposit()] [External Call] Lines 91-95 call State.TokenContract.GetBalance without checking if TokenContract was initialized - can uninitialized state cause null reference? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d30b466c-59a7-4358-8753-dac70529043d?mode=deep",
+    "timestamp": "2026-02-19 09:17:01.206338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AssertValidSideChainCreationRequest()] [TOCTOU Vulnerability] Lines 103-104 check if proposedRequest is null OR expired, then lines 108-117 check allowance - can attacker modify allowance between these checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08fe13c6-2bd9-4538-ad1e-d9a6d8223a3d?mode=deep",
+    "timestamp": "2026-02-19 09:17:31.436378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AssertValidSideChainCreationRequest()] [Integer Overflow] Line 116 checks 'allowance >= LockedTokenAmount' but never validates LockedTokenAmount doesn't overflow - can attacker provide max int64 causing comparison to fail incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f823dbc1-ce67-48d8-a0ab-7e91f1c927c5?mode=deep",
+    "timestamp": "2026-02-19 09:18:02.272594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AssertValidSideChainCreationRequest()] [Validation Gap] Lines 120-122 validate IndexingPrice >= 0 AND LockedTokenAmount >= IndexingPrice but never check upper bound - can attacker lock entire supply? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3afb0d24-e92c-4cab-8f04-22c9bf1d6e59?mode=deep",
+    "timestamp": "2026-02-19 09:18:31.376611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AssertValidSideChainCreationRequest()] [Logic Error] Lines 124-130 return early if !IsPrivilegePreserved skipping resource token and primary token checks - can attacker create non-exclusive side chain without proper resource allocation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5d9bd17-0c45-4126-9076-ee23ac57d4ab?mode=deep",
+    "timestamp": "2026-02-19 09:19:02.615172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AssertValidResourceTokenAmount()] [DoS Vector] Lines 142-144 loop through GetStringArray(PayRentalSymbolListName) without length check - can malicious config cause function to run out of gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef69f100-520b-4e94-b2a1-ec7624d43cd0?mode=deep",
+    "timestamp": "2026-02-19 09:19:32.761986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_Helper.cs] [Function: AssertValidResourceTokenAmount()] [Validation Gap] Line 143 checks resourceTokenMap.ContainsKey and value > 0 but never validates sum of all resources doesn't overflow - can attacker cause integer overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af89a55c-58d0-4d61-ac59-216d8e13dcb8?mode=deep",
+    "timestamp": "2026-02-19 09:20:01.295574",
+    "report_generated": false
+  }
+]
