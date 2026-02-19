@@ -1,6 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [No Event Emission] Are events emitted when the controller changes at line 29 to allow monitoring and incident response? (Medium)",
-  "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [No Event Emission] Are events emitted when fees are updated at line 17 for transparency and auditability? (Medium)",
-  "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Storage Collision] Can method names collide in the State.TransactionFees mapping if there are encoding or normalization issues? (Low)",
-  "[File: contract/AElf.Contracts.Economic/EconomicContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Uninitialized Read] Reading State.TransactionFees[input.Value] at line 37 for an unset method returns null - is this handled correctly by all callers? (Medium)"
-]
