@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: ToString()] [Information Disclosure] If the ToString method is called from an untrusted context with a malicious format string, could an attacker extract sensitive miner information or public keys through the 'M' format specifier that aggregates all RealTimeMinersInformation.Keys? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4e96e10-d430-450c-98ff-963b5f91f7a0?mode=deep",
+    "timestamp": "2026-02-19 12:17:10.193984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: ToString()] [DoS] If RealTimeMinersInformation contains thousands of entries, could calling ToString with format 'M' cause excessive string concatenation via Aggregate operation, leading to memory exhaustion or gas consumption issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ed423f0-774e-4a2c-9fdb-afa518ea96ab?mode=deep",
+    "timestamp": "2026-02-19 12:17:32.403143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Information Disclosure] Does the GetLogs method expose sensitive consensus information (OutValue, InValue, PreviousInValue, Signature) through logging that could be used to predict or manipulate future consensus rounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad0456fe-f32e-4ab5-9d07-af94eaa8e973?mode=deep",
+    "timestamp": "2026-02-19 12:17:54.781690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [DoS] If RealTimeMinersInformation contains a large number of miners with extensive ActualMiningTimes lists, could the string concatenation operations in GetLogs cause excessive memory allocation or processing time? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a35751d7-16b2-43af-9fdf-f309aeab0973?mode=deep",
+    "timestamp": "2026-02-19 12:18:17.638579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Null Reference] If minerInRound.ExpectedMiningTime is null, the nullable formatting operator could still cause issues - is this properly handled when converting to DateTime and formatting? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78533a86-eafd-4eff-97ee-dec0010d7923?mode=deep",
+    "timestamp": "2026-02-19 12:18:41.485882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Null Reference] If minerInRound.OutValue, PreviousInValue, InValue, or Signature are null, could calling ToHex() on null values cause exceptions that disrupt logging or expose error details? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f9e04a5-d851-49fe-a549-a17829bcdca7?mode=deep",
+    "timestamp": "2026-02-19 12:19:06.770308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Information Disclosure] The Substring(0, 10) operation on Pubkey reveals the first 10 characters of miner public keys - could this partial information be combined with other data to identify or deanonymize miners? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_297336ee-fbf3-49cd-8941-c5205dc9323d?mode=deep",
+    "timestamp": "2026-02-19 12:19:32.620971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Index Out of Range] If minerInRound.Pubkey is less than 10 characters, the Substring(0, 10) operation will throw an exception - is this input validation gap exploitable to cause logging failures? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cda2e50d-b07e-4a1e-a9d2-718befeb4c32?mode=deep",
+    "timestamp": "2026-02-19 12:19:58.473057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Logic Error] The comparison 't < roundStartTime' determines if an ActualMiningTime belongs to previous round's extra block slot - if GetRoundStartTime() returns incorrect values, could this misclassify mining times and obscure consensus violations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b19577e5-1bd2-4c7c-bbdc-f829213f194e?mode=deep",
+    "timestamp": "2026-02-19 12:20:25.632302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Information Leakage] The log output explicitly marks the 'This Node' for the matching public key - could this information be used by attackers to target specific nodes or predict which node will produce the next block? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_531c600b-11fb-4da3-870d-7f2760bfd564?mode=deep",
+    "timestamp": "2026-02-19 12:20:54.054014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Information Leakage] The log identifies the 'Current EBP' (Extra Block Producer) - could exposing this information allow attackers to predict extra block timing or target the EBP node? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53c4946a-a985-4deb-8676-81193ff10042?mode=deep",
+    "timestamp": "2026-02-19 12:21:22.858642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [DoS] If a miner has an extremely large number of ActualMiningTimes entries, the OrderBy, Select, and string.Join operations could consume excessive resources - is there a limit on ActualMiningTimes count? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05f70385-a8f4-4b6e-ab47-c5819d094c9b?mode=deep",
+    "timestamp": "2026-02-19 12:21:51.140172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: ToString()] [Input Validation] The ToString method accepts any format string without validation - could passing extremely long format strings cause buffer issues or excessive processing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e51a704e-2f75-43d5-acab-f443ace604c5?mode=deep",
+    "timestamp": "2026-02-19 12:22:20.922229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Race Condition] If RealTimeMinersInformation is modified concurrently while GetLogs iterates through it, could this cause inconsistent log output or exceptions that reveal system state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a59e04c9-7f9b-414b-808a-7d3049f15e2b?mode=deep",
+    "timestamp": "2026-02-19 12:22:50.280054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLogs.cs] [Function: GetLogs()] [Information Disclosure] The ImpliedIrreversibleBlockHeight (Lib) is logged for each miner - could discrepancies in these values across miners reveal consensus disagreements or be used to identify byzantine nodes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b97aacd5-5b08-4330-a341-809ca4462243?mode=deep",
+    "timestamp": "2026-02-19 12:23:17.575362",
+    "report_generated": false
+  }
+]
