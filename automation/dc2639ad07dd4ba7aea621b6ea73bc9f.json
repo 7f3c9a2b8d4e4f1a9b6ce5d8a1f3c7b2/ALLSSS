@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Deserialization Bomb] Can malicious BytesValue in Configurations contain compressed data that explodes on deserialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1cbf943-f4a7-41cc-a4d5-abc01fabc49b?mode=deep",
+    "timestamp": "2026-02-19 13:04:02.451359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Protobuf Version] Can MethodFees in TransactionFees use incompatible protobuf versions causing runtime errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7bf44d9-4c17-41ed-b29a-746ffaa72ee2?mode=deep",
+    "timestamp": "2026-02-19 13:04:24.785318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: All] [Serialization Attack] Can any state variable accept malformed protobuf messages that crash the contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31b762f2-db1d-485d-8978-20ec8193c281?mode=deep",
+    "timestamp": "2026-02-19 13:04:47.057100",
+    "report_generated": false
+  }
+]
