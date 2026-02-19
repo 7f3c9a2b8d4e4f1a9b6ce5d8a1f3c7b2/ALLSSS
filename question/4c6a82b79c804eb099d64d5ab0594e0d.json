@@ -1,5 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface: IHeaderInformationValidationProvider] [Architecture] Could implementations of ValidateHeaderInformation() fail to properly validate all required consensus header fields, allowing malformed headers to pass validation? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Interface: IHeaderInformationValidationProvider] [Implementation Risk] Could different implementations of this interface have inconsistent validation rules leading to consensus disagreements? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/IHeaderInformationValidationProvider.cs] [Method: ValidateHeaderInformation()] [Return Value] Could implementations return success when validation should fail, bypassing critical consensus checks? (Critical)"
-]
