@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Dividend Distribution] ImpliedIrreversibleBlockHeight at line 29 affects when dividends are distributed - can setting this to a high value cause premature dividend payouts before blocks are truly irreversible? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aad75281-0334-4591-afaa-b080cc710606?mode=deep",
+    "timestamp": "2026-02-19 06:34:19.951485",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Field Omission Impact] The simplified round omits InValue, ExpectedMiningTime, MissedTimeSlots, and secret sharing data - does this make it impossible to recover the full Round state from the simplified version, breaking consensus recovery mechanisms? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa707a70-ee05-4587-9a9c-47b41675aa41?mode=deep",
+    "timestamp": "2026-02-19 06:34:42.067358",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Extreme Simplification] Tiny block rounds only include statistics and exclude all consensus logic fields - can this be exploited to produce tiny blocks that pass header validation but violate consensus rules? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94d93f62-53ad-4d12-ae1f-c59d7a219688?mode=deep",
+    "timestamp": "2026-02-19 06:35:04.740321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Asymmetric Information] The target miner's entry (lines 20-32) has more fields than other miners' entries (lines 44-52) - does this information asymmetry enable the target miner to have unfair advantages in consensus or next round selection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df62e23c-401a-415d-9785-61a9cccfa65c?mode=deep",
+    "timestamp": "2026-02-19 06:35:28.894447",
+    "report_generated": false
+  }
+]
