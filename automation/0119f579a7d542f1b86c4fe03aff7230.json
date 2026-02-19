@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTCollection()] [Authorization Bypass] Can an attacker create multiple NFT collections with the same symbol prefix by calling CreateNFTCollection repeatedly before state updates are committed, potentially bypassing uniqueness constraints in the underlying CreateToken method? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5287517-92ac-45ea-9196-5bb81dd7935f?mode=deep",
+    "timestamp": "2026-02-19 00:42:21.344105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTCollection()] [Symbol Collision] Does CreateNFTCollection validate that the collection symbol doesn't collide with existing NFT item symbols (e.g., creating 'NFT-0' when 'NFT-1' already exists), allowing confusion between collections and items? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_201464de-2bcc-49ad-8ce4-b1bedddf4cff?mode=deep",
+    "timestamp": "2026-02-19 00:42:43.967929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTCollection()] [Input Validation] Can CreateNFTCollection accept malformed symbol inputs that pass validation but create unusable collections (e.g., symbols with special characters, excessive length, or reserved keywords)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_449ce7c9-77a1-40ef-8975-08078a198fd7?mode=deep",
+    "timestamp": "2026-02-19 00:43:07.644706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [IssueChainId Override] At line 18, when input.IssueChainId is 0, it's set to nftCollectionInfo.IssueChainId. Can an attacker specify a non-zero but invalid IssueChainId that differs from the collection's IssueChainId before the assertion at line 20-21 executes, bypassing chain validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_964dd8f3-baaa-4446-bb6f-e236a254c3ca?mode=deep",
+    "timestamp": "2026-02-19 00:43:31.424789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [ExternalInfo Key Extraction] At lines 22-24, the code extracts NftCreateChainIdExternalInfoKey from ExternalInfo. If an attacker provides a collection with maliciously crafted ExternalInfo containing non-numeric values for nftCreateChainId, can the long.TryParse fail silently and skip the chainId validation at line 26-27? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22fbfdc2-1565-48c6-b39e-9a6459690080?mode=deep",
+    "timestamp": "2026-02-19 00:43:56.129706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [SideChainCreator Race Condition] At lines 31-32, if State.SideChainCreator.Value is null, creation proceeds. Can an attacker exploit a race condition where SideChainCreator is set between the check and NFT creation, allowing creation on wrong chains? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04d57891-2500-4f97-b39c-eb66820e61c7?mode=deep",
+    "timestamp": "2026-02-19 00:44:21.477188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [Owner Authorization Triple Check] At line 36, the assertion requires Context.Sender == owner && owner == input.Owner. If nftCollectionInfo.Owner is null but Issuer is set, can an attacker manipulate input.Owner to match the Issuer while sending from a different address, bypassing the triple equality check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c57e76b-1de9-4c81-83bf-b2c75a96d7eb?mode=deep",
+    "timestamp": "2026-02-19 00:44:49.424951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [SEED Collection Bypass] At line 37, special handling occurs for SeedCollectionSymbol. Can an attacker create a non-SEED collection with a symbol that partially matches SeedCollectionSymbol to bypass validation or gain SEED privileges? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7a64609-b3a4-42e1-9cfa-621ba1d2198a?mode=deep",
+    "timestamp": "2026-02-19 00:45:19.101355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [SEED Uniqueness Violation] At line 39, SEED must have decimals=0 and TotalSupply=1. Can an attacker race to create multiple SEED NFTs with the same ownedSymbol before the SymbolSeedMap is updated at line 51, violating uniqueness? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e1d033e-4ea8-46e7-8a81-331207e08969?mode=deep",
+    "timestamp": "2026-02-19 00:45:49.435217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [OwnedSymbol Extraction Bypass] At lines 40-41, the code checks for SeedOwnedSymbolExternalInfoKey in ExternalInfo. If an attacker provides empty or whitespace-only ownedSymbol value, does the TryGetValue succeed but skip downstream validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_986db779-20a5-4a94-94e9-c0fabaf3e540?mode=deep",
+    "timestamp": "2026-02-19 00:46:21.846628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [Expiration Time Manipulation] At lines 42-45, expirationTime is validated against Context.CurrentBlockTime. Can an attacker specify an expirationTime far in the future (e.g., year 9999) to indefinitely reserve an ownedSymbol, preventing others from claiming it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48654e04-5103-4955-a0f3-0be9d2c87833?mode=deep",
+    "timestamp": "2026-02-19 00:46:54.794880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [ExpirationTime Parsing Bypass] At line 44, if long.TryParse(expirationTime, out var expirationTimeLong) fails, the entire AND chain fails. Can an attacker provide non-numeric expirationTime to bypass time validation while still passing TryGetValue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6650a6bd-a418-4420-95ec-4f7f70a4dda1?mode=deep",
+    "timestamp": "2026-02-19 00:47:28.574765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [SymbolType Validation Bypass] At lines 46-47, ownedSymbolType must not be SymbolType.Nft. Can an attacker specify an ownedSymbol formatted as an NFT (e.g., 'TOKEN-1') that GetSymbolType interprets as Token, bypassing the Nft check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_644b1773-459a-4b65-b436-0f44af6c9156?mode=deep",
+    "timestamp": "2026-02-19 00:48:00.358016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [CheckSymbolLength DOS] At line 48, CheckSymbolLength is called. Can an attacker provide extremely long ownedSymbol strings that pass TryGetValue but cause DOS during length validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3aa833e-22ad-44e9-adfb-6dedd7875b49?mode=deep",
+    "timestamp": "2026-02-19 00:48:33.621349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [CheckTokenAndCollectionExists Race] At line 49, CheckTokenAndCollectionExists validates ownedSymbol. Can an attacker delete or modify the referenced token/collection between this check and SymbolSeedMap update at line 51, creating invalid mappings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45db9475-6097-4394-be95-dc33b55ccbbc?mode=deep",
+    "timestamp": "2026-02-19 00:49:07.142102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [CheckSymbolSeed Bypass] At line 50, CheckSymbolSeed is called. If this check fails but doesn't revert, can execution continue to line 51 where SymbolSeedMap is updated with invalid data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae45902d-54c5-4643-b36a-087a30c67eab?mode=deep",
+    "timestamp": "2026-02-19 00:49:37.719831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [SymbolSeedMap Case Sensitivity] At line 51, ownedSymbol.ToUpper() is used as the key. Can an attacker create multiple SEED NFTs with different case variations (e.g., 'token', 'TOKEN', 'Token') that map to the same uppercase key, causing state overwrites? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc28c2b0-a0c6-4c77-91d6-c68c39fa153e?mode=deep",
+    "timestamp": "2026-02-19 00:50:09.455804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CreateNFTInfo()] [CreateToken Return Bypass] At line 54, CreateToken returns Empty. If CreateToken internally reverts or returns error state without throwing, can CreateNFTInfo appear successful while leaving partial state updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fc470d9-f029-4e28-9d85-b8920c6b080c?mode=deep",
+    "timestamp": "2026-02-19 00:50:37.375090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CheckSymbolSeed()] [Case Sensitivity Bypass] At line 59, ownedSymbol.ToUpper() is used. If State.SymbolSeedMap was populated with mixed-case keys elsewhere, can an attacker bypass the oldSymbolSeed check by using different casing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1f2e9fe-5997-469c-8cff-c11e9d87d2d9?mode=deep",
+    "timestamp": "2026-02-19 00:51:06.427625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CheckSymbolSeed()] [GetTokenInfo Null Dereference] At lines 61-62, GetTokenInfo(oldSymbolSeed) is called. If oldSymbolSeed is not null but GetTokenInfo returns null, does the ExternalInfo.Value access cause null dereference instead of proper assertion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3d2fdd0-ec11-48b1-aef3-86bc9158585c?mode=deep",
+    "timestamp": "2026-02-19 00:51:36.526342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CheckSymbolSeed()] [TryGetValue Boolean Confusion] At lines 62-63, !GetTokenInfo(oldSymbolSeed).ExternalInfo.Value.TryGetValue(...) checks if the key doesn't exist. If TryGetValue returns false but the OR chain allows execution, can expired seeds be reused? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6eeb76b6-c4a7-46c6-9142-edaa5fdf9b8f?mode=deep",
+    "timestamp": "2026-02-19 00:52:08.381976",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CheckSymbolSeed()] [Time Comparison Precision] At line 65, Context.CurrentBlockTime.Seconds > symbolSeedExpireTime. Can an attacker exploit sub-second timing to reuse seeds at exactly symbolSeedExpireTime seconds? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a683df0-4223-4ec4-8485-17833d7e0a3e?mode=deep",
+    "timestamp": "2026-02-19 00:52:38.853369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CheckSymbolSeed()] [Complex OR Logic Exploit] Lines 61-66 form a complex OR condition. If all sub-conditions pass individually but the assertion at line 66 fails to trigger, can an attacker bypass the 'OwnedSymbol has been created' check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca4f89f2-1348-4885-b6ae-3803b7b858dc?mode=deep",
+    "timestamp": "2026-02-19 00:53:10.013650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: CheckSymbolSeed()] [Long.TryParse DOS] At line 64, if oldSymbolSeedExpireTime contains malformed data (e.g., overflow values), can long.TryParse cause exceptions or unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84bf9612-c7ae-483e-9433-cc20572f089b?mode=deep",
+    "timestamp": "2026-02-19 00:53:39.007955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFT_Actions.cs] [Function: DoTransferFrom()] [Allowance Check Bypass via Whitelist] At lines 78-84, if IsInWhiteList returns true, DoTransfer executes without checking allowance. Can an attacker add themselves to the whitelist to transfer any NFT without approval? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11294d05-5eff-4ae5-8d3a-2218801df72e?mode=deep",
+    "timestamp": "2026-02-19 00:54:11.348846",
+    "report_generated": false
+  }
+]
