@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: AllCalculateFeeCoefficients] [Missing Implementation] State.AllCalculateFeeCoefficients is declared but never used in fee calculations - can this indicate missing fee calculation logic that should validate coefficient bounds? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bf7f2cd-caa5-4504-8f76-b6a7b8553a16?mode=deep",
+    "timestamp": "2026-02-19 00:45:01.963993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: AllCalculateFeeCoefficients] [Dead Code] If State.AllCalculateFeeCoefficients is unused, can it be set to arbitrary values that might be mistakenly used in future upgrades, introducing vulnerabilities? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6a26357-4f6c-419c-9200-17ba8cbbc90d?mode=deep",
+    "timestamp": "2026-02-19 00:45:23.901106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: AllCalculateFeeCoefficients] [Authorization Gap] Is there any access control for setting State.AllCalculateFeeCoefficients, or is it permanently unprotected dead code? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_124e8c7a-8ee1-46b3-8e8f-d2b2d42af660?mode=deep",
+    "timestamp": "2026-02-19 00:45:46.236280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [DOS Attack] Can State.SymbolListToPayTxSizeFee.Value be set with thousands of symbols, causing GetAvailableSymbolToPayTxFee to iterate excessively and hit gas limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af8ec6f6-10a7-4f9d-b85c-bca9dd765016?mode=deep",
+    "timestamp": "2026-02-19 00:46:08.814662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Weight Manipulation] Can State.SymbolListToPayTxSizeFee contain symbols with AddedTokenWeight=0 or BaseTokenWeight=0, causing division by zero in size fee calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c52891a0-7252-4204-b15a-d9c96fd692b0?mode=deep",
+    "timestamp": "2026-02-19 00:46:32.768813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Price Manipulation] Can State.SymbolListToPayTxSizeFee weights be set to extreme ratios (e.g., 1:1000000), allowing attackers to pay trivial size fees in alternative tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c13a7f3-aec2-43b1-b879-f1b3333bfe3f?mode=deep",
+    "timestamp": "2026-02-19 00:46:57.259279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Symbol Duplication] Can State.SymbolListToPayTxSizeFee contain duplicate symbols with different weights, causing inconsistent fee charging depending on iteration order? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a43ca5f4-2c58-4482-82d3-9542bb4cb700?mode=deep",
+    "timestamp": "2026-02-19 00:47:23.318531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Missing Primary Token] If State.SymbolListToPayTxSizeFee is set without including the primary token, does ChargeSizeFee fail gracefully or break fee charging? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5dae2b9-5a3a-41d2-9af9-9e851d3e2356?mode=deep",
+    "timestamp": "2026-02-19 00:47:50.537630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Authorization Bypass] Can AssertControllerForSymbolToPayTxSizeFee be bypassed to set State.SymbolListToPayTxSizeFee maliciously, undermining fee structure integrity? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29c58051-d82c-4be1-a993-27c6dd568ea3?mode=deep",
+    "timestamp": "2026-02-19 00:48:17.450315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Integer Overflow] When calculating txSizeFeeAmount.Mul(AddedTokenWeight).Div(BaseTokenWeight) with State.SymbolListToPayTxSizeFee weights, can multiplication overflow before division? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27467677-a8d2-4ff5-bc18-f78e9f638d80?mode=deep",
+    "timestamp": "2026-02-19 00:48:44.055197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Token Existence] Does SetSymbolsToPayTxSizeFee verify that all symbols in State.SymbolListToPayTxSizeFee exist and are valid tokens before accepting the configuration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3fac04a-e358-4d00-be9f-8b6db1c9ec68?mode=deep",
+    "timestamp": "2026-02-19 00:49:10.885533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: SymbolListToPayTxSizeFee] [Null State] If State.SymbolListToPayTxSizeFee.Value is null during ChargeSizeFee, does the code handle this gracefully or proceed with undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d737559-32cc-45f8-955b-21c4a14d02ff?mode=deep",
+    "timestamp": "2026-02-19 00:49:38.589541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: ResourceAmount] [Rental Calculation Error] In PayRental, duration.Mul(State.ResourceAmount[symbol]).Mul(State.Rental[symbol]) can overflow for large ResourceAmount values, causing incorrect rental charges. Can this be exploited? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_576de26f-676e-49a3-a5c2-a8b77a7ea656?mode=deep",
+    "timestamp": "2026-02-19 00:50:06.934294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: ResourceAmount] [Negative Values] Can State.ResourceAmount[symbol] be set to negative integers, causing rental calculations to underflow or produce negative rental amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cc0967d-6401-4d49-be12-b1fcd556b48a?mode=deep",
+    "timestamp": "2026-02-19 00:50:38.228284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: ResourceAmount] [Authorization Bypass] Can UpdateRentedResources be called by unauthorized parties to manipulate State.ResourceAmount and reduce rental obligations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40820883-2294-4c50-aaa0-290ca23cdf43?mode=deep",
+    "timestamp": "2026-02-19 00:51:08.260005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: ResourceAmount] [Zero Resource] If State.ResourceAmount[symbol] is set to zero, does PayRental charge zero rental, allowing side chains to use resources for free? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22b356af-8830-409f-8489-9e5fd5fd5b64?mode=deep",
+    "timestamp": "2026-02-19 00:51:37.926057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: ResourceAmount] [Missing Validation] Does UpdateRentedResources validate that State.ResourceAmount values are reasonable, or can extreme values cause computational issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4f4c8bd-8c50-4eae-b61f-22ad0501aa76?mode=deep",
+    "timestamp": "2026-02-19 00:52:08.581160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: ResourceAmount] [Symbol Mismatch] Can State.ResourceAmount be set for symbols that don't correspond to actual resource tokens (CPU, RAM, DISK, NET), breaking rental logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea584dcb-5d17-46d7-94b6-550c347408d4?mode=deep",
+    "timestamp": "2026-02-19 00:52:38.132705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Rental Inflation] Can State.Rental[symbol] be set to extremely high values via UpdateRental, causing immediate insolvency for side chain creators when PayRental executes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a81b56e5-b58c-4957-8c45-da36fd2ac641?mode=deep",
+    "timestamp": "2026-02-19 00:53:08.231334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Negative Rental] Can State.Rental[symbol] be set to negative values, causing PayRental to add funds to the creator instead of charging them? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db1a40d2-2985-4fc4-ab10-399b1d9af655?mode=deep",
+    "timestamp": "2026-02-19 00:53:38.699716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Overflow in Multiplication] When calculating duration.Mul(ResourceAmount).Mul(State.Rental[symbol]), can the multiplication chain overflow for large Rental rates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3b9afd7-5772-4d2a-9567-5b247bc3bd30?mode=deep",
+    "timestamp": "2026-02-19 00:54:11.489163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Zero Rental Exploit] If State.Rental[symbol] is zero, does PayRental skip charging, allowing free resource usage regardless of ResourceAmount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8c519df-0d70-45ae-a5fa-fe4cf40b8584?mode=deep",
+    "timestamp": "2026-02-19 00:54:42.344798",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Authorization Bypass] Can UpdateRental's AssertControllerForSideChainRental be bypassed to set State.Rental maliciously? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d1f9fea-9478-4829-82b7-bc43e36a83f3?mode=deep",
+    "timestamp": "2026-02-19 00:55:13.541937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Rate Change Attack] Can State.Rental be changed mid-block to charge different rates for the same duration, causing unfair rental charges? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03cfb599-79cc-40b1-b288-16f1820f8474?mode=deep",
+    "timestamp": "2026-02-19 00:55:44.307316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContractState_ChargeFee.cs] [State: Rental] [Symbol List Validation] Does UpdateRental properly validate that symbols in State.Rental match PayRentalSymbolListName before allowing updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0948cb8-8a74-4df5-b01e-e95dd10ebbfc?mode=deep",
+    "timestamp": "2026-02-19 00:56:16.077516",
+    "report_generated": false
+  }
+]
