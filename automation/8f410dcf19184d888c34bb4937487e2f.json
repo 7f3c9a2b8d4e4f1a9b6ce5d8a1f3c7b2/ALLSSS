@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: GetReturnFromPaid] Can toConnectorBalance = 1 and large paidAmount cause the return calculation to attempt returning more than 1 token? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2c0158f-69e5-48b8-b2eb-56bfb6f20e5a?mode=deep",
+    "timestamp": "2026-02-19 08:31:49.749300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: GetAmountToPayFromReturn] What happens when amountToReceive = toConnectorBalance - 1 (draining almost all reserves) - does line 91 handle bt - a = 1 safely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd3f6ebf-3c02-41b6-8950-52fb1b511049?mode=deep",
+    "timestamp": "2026-02-19 08:32:12.020456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: GetAmountToPayFromReturn] Can fromConnectorBalance = 1 and large amountToReceive cause the payment calculation at line 93 to require more than Long.MaxValue payment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4181bd9-91b8-41e4-af00-98104ee834f9?mode=deep",
+    "timestamp": "2026-02-19 08:32:34.730368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Pow] What is the result of Pow(0, 0) - is this case handled, and does it return 1 as mathematically expected? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2dc6ed1c-b815-44f2-9709-1c159c54e233?mode=deep",
+    "timestamp": "2026-02-19 08:32:58.043650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Pow] Can Pow(Decimal.MaxValue, 2) cause overflow at line 115 when A *= A is executed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bf4d99a-ced2-47d8-89dc-4208461b565e?mode=deep",
+    "timestamp": "2026-02-19 08:33:22.241697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Ln] What is the exact behavior when a = 1.0 (x = 0) - does Ln return 0 or throw despite domain check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f12a2faf-f069-4245-a802-c82c22c4e274?mode=deep",
+    "timestamp": "2026-02-19 08:33:47.985943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Ln] Can a = 1.999999 (x = -0.999999) at the domain boundary cause divergence or incorrect results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4dd60c80-4058-409b-8f85-c3a0289b0d58?mode=deep",
+    "timestamp": "2026-02-19 08:34:13.212376",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Exp] What is Exp(0) - does it correctly return 1, or can the loop at lines 154-162 cause precision errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_870bbc29-2c59-4dfa-93f0-ed2794433b38?mode=deep",
+    "timestamp": "2026-02-19 08:34:39.520959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Exp] Can Exp(100) cause overflow given only 20 series terms - what is the actual convergence limit? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b035489-9af9-4477-8f2a-5cc8df092674?mode=deep",
+    "timestamp": "2026-02-19 08:35:08.374064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Edge Case: Exp] What happens with Exp(-100) - does it correctly approach 0, or underflow entirely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b009f6cd-b749-41ae-b274-0f1952f4f0b4?mode=deep",
+    "timestamp": "2026-02-19 08:35:35.956543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Line 49 casts decimal calculation to long - can this truncate important fractional parts that accumulate to significant value loss over many swaps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_163d523d-0692-4952-b1f8-5b4b7befdc39?mode=deep",
+    "timestamp": "2026-02-19 08:36:02.555349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Line 53 casts decimal to long - can negative intermediate results wrap to positive long values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65d9b216-3b7d-4886-b79c-99ee43c87069?mode=deep",
+    "timestamp": "2026-02-19 08:36:33.848939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Line 84 casts decimal to long - can division by (bt - a) produce values that overflow long when multiplied by a? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d8dac78-f3fe-4afc-830b-349545dcb938?mode=deep",
+    "timestamp": "2026-02-19 08:37:01.143992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Line 93 casts decimal to long - can extremely large Exp results overflow long after multiplication with bf? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cffdf45e-015e-48eb-b6b4-5691ffa4ed93?mode=deep",
+    "timestamp": "2026-02-19 08:37:28.361573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Lines 42-46 cast long to decimal - can precision loss occur for values near Long.MaxValue? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f2d1a45-2acf-4376-98e1-9c2c3aa6a973?mode=deep",
+    "timestamp": "2026-02-19 08:37:55.894137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Lines 75-79 cast long to decimal - can this introduce rounding errors that compound in complex calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_076eb858-4f2a-45ec-86e8-7eff42068688?mode=deep",
+    "timestamp": "2026-02-19 08:38:24.689028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Type Safety] Line 110 uses uint for exponent but iteration uses uint - can this cause issues if iteration exceeds uint range? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4f1cf1f-ac70-418a-807a-dfab9f8735be?mode=deep",
+    "timestamp": "2026-02-19 08:38:56.642547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [DOS] Can an attacker repeatedly call GetReturnFromPaid with inputs that cause Ln to throw InvalidValueException, blocking all converter operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c817eaae-12dc-4dbc-8780-c3ecf18d0918?mode=deep",
+    "timestamp": "2026-02-19 08:39:27.941543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [DOS] Can GetAmountToPayFromReturn be called with amountToReceive = toConnectorBalance to always trigger the catch block at line 86, preventing legitimate swaps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16386ff1-0dbd-4075-b344-ff4651085c2b?mode=deep",
+    "timestamp": "2026-02-19 08:40:01.813359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [DOS] Can large exponent values in Pow cause excessive computation time, leading to transaction timeout or gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a50bb5e-84ad-42e5-b2cd-a1218d073e1f?mode=deep",
+    "timestamp": "2026-02-19 08:40:32.523847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [DOS] Can the static constructor at line 11-14 fail during contract deployment if factorial calculations overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4cbed3f-90e8-4d9e-8ab5-ba3c66292a39?mode=deep",
+    "timestamp": "2026-02-19 08:41:06.475974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [DOS] Can calls with connector weights that produce extreme y values cause Exp to hang or timeout due to slow series convergence? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b496b8c-f352-4340-8054-f27ba5c6ba3c?mode=deep",
+    "timestamp": "2026-02-19 08:41:36.432433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Precision] Can an attacker craft paidAmount values that maximize rounding loss in GetReturnFromPaid's (long) cast at line 49, accumulating value over many transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14d0d88e-c58c-4fa0-9928-a656b510935c?mode=deep",
+    "timestamp": "2026-02-19 08:42:05.643940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Precision] In GetAmountToPayFromReturn, can rounding at line 84 be exploited to pay less per swap, draining reserves slowly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4f6a367-c2cf-48f4-9663-c67f00e60958?mode=deep",
+    "timestamp": "2026-02-19 08:42:33.244438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Precision] Does the 20-iteration limit in Ln at line 136 cause insufficient precision for certain input ranges, enabling exploitation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5f30943-c842-439d-ad2f-743c20ce39ce?mode=deep",
+    "timestamp": "2026-02-19 08:43:05.071974",
+    "report_generated": false
+  }
+]
