@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Extension Method] If Milliseconds() extension method at line 29 rounds or truncates instead of using exact milliseconds, can this introduce cumulative timing errors over many rounds? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e06c621-aa06-4b02-b039-2737e47aa185?mode=deep",
+    "timestamp": "2026-02-19 07:04:09.304097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Type Safety] If the Duration subtraction at lines 28-29 returns null or invalid Duration, can Milliseconds() fail or return unexpected values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2aff6fb-e217-4bc6-b6c3-76f399269757?mode=deep",
+    "timestamp": "2026-02-19 07:04:31.910164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Precision] At line 33, if (currentBlockTime - GetRoundStartTime()).Milliseconds() loses nanosecond precision, can this cause missedRoundsCount to be off by one in edge cases? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4dd79a31-8460-4566-9b04-1a97a2920253?mode=deep",
+    "timestamp": "2026-02-19 07:04:54.751632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Overflow in Subtraction] If currentBlockTime at line 33 is Timestamp.MaxValue and GetRoundStartTime() is Timestamp.MinValue, can the subtraction overflow Duration's representation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29fea163-859d-4315-bb65-0c63619a5865?mode=deep",
+    "timestamp": "2026-02-19 07:05:18.709587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Negative Duration] If GetRoundStartTime() > currentBlockTime at line 33, does Milliseconds() return a negative long causing division issues at line 34? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ecfa7d93-8312-4f04-a991-6fe7cdb07e93?mode=deep",
+    "timestamp": "2026-02-19 07:05:42.926405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Division Safety] Does the Div() operation at line 34 handle division by zero internally, or will TotalMilliseconds() = 0 cause an exception? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4834e2b8-d923-4a19-a254-c81967c5f038?mode=deep",
+    "timestamp": "2026-02-19 07:06:07.784065",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Integer Division] Does Div() at line 34 perform integer division (truncating remainder) or floating-point division - if integer, can this cause nodes to skip time slots systematically? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edc5484a-73e7-417a-822b-26abe9b8676f?mode=deep",
+    "timestamp": "2026-02-19 07:06:33.881810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Multiplication Overflow] If minerInRound.Order is large and miningInterval is large at line 36, can Order.Mul(miningInterval) overflow long bounds causing wrapped negative offset? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6df803bd-47db-46a5-9d91-69d264fe1922?mode=deep",
+    "timestamp": "2026-02-19 07:07:00.716963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Addition Overflow] If missedRoundsCount is near long.MaxValue at line 57, can missedRoundsCount.Add(1) overflow causing wrapped value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81c664fb-404f-410c-af04-e1d146fb4bd1?mode=deep",
+    "timestamp": "2026-02-19 07:07:33.472875",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Multiplication Chain] At line 57, missedRoundsCount.Add(1).Mul(totalMilliseconds) - if both operands are large, can the multiplication overflow before AddMilliseconds() is called? (\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs (L1-74)\n```csharp\nusing System.Linq;\nusing AElf.CSharp.Core;\nusing AElf.CSharp.Core.Extension;\nusing Google.Protobuf.WellKnownTypes;\n\n// ReSharper disable once CheckNamespace\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\npublic partial class Round\n{\n    /// <summary>\n    ///     If one node produced block this round or missed his time slot,\n    ///     whatever how long he missed, we can give him a consensus command with new time slot\n    ///     to produce a block (for terminating current round and start new round).\n    ///     The schedule generated by this command will be cancelled\n    ///     if this node executed blocks from other nodes.\n    /// </summary>\n    /// <returns></returns>\n    public Timestamp ArrangeAbnormalMiningTime(string pubkey, Timestamp currentBlockTime,\n        bool mustExceededCurrentRound = false)\n    {\n        var miningInterval = GetMiningInterval();\n\n        var minerInRound = RealTimeMinersInformation[pubkey];\n\n        if (GetExtraBlockProducerInformation().Pubkey == pubkey && !mustExceededCurrentRound)\n        {\n            var distance = (GetExtraBlockMiningTime().AddMilliseconds(miningInterval) - currentBlockTime)\n                .Milliseconds();\n            if (distance > 0) return GetExtraBlockMiningTime();\n        }\n\n        var distanceToRoundStartTime = (currentBlockTime - GetRoundStartTime()).Milliseconds();\n        var missedRoundsCount = distanceToRoundStartTime.Div(TotalMilliseconds(miningInterval));\n        var futureRoundStartTime = CalculateFutureRoundStartTime(missedRoundsCount, miningInterval);\n        return futureRoundStartTime.AddMilliseconds(minerInRound.Order.Mul(miningInterval));\n    }\n\n    private MinerInRound GetExtraBlockProducerInformation()\n    {\n        return RealTimeMinersInformation.First(bp => bp.Value.IsExtraBlockProducer).Value;\n    }\n\n    /// <summary>\n    ///     This method for now is able to handle the situation of a miner keeping offline so many rounds,\n    ///     by using missedRoundsCount.\n    /// </summary>\n    /// <param name=",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34d28e27-6e01-400f-8cbc-f5d2fc6b2cf4?mode=deep",
+    "timestamp": "2026-02-19 07:08:07.524810",
+    "report_generated": false
+  }
+]
