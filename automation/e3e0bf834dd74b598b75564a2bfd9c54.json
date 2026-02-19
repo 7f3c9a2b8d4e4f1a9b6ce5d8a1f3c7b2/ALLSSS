@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [Logic Error] Can an attacker manipulate the miner selection by ensuring validCandidates.Count equals State.MinersCount.Value exactly, bypassing the backup miner logic and preventing initial miners from being selected even when current miners are compromised? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24d26a45-1393-4398-a0be-eb02ad2cf147?mode=deep",
+    "timestamp": "2026-02-19 13:34:16.369802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [DOS Attack] If State.AEDPoSContract.GetCurrentMinerList returns an extremely large list, can this cause gas exhaustion in the Select().ToList() operations, making the GetVictories view function unusable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f2592bc-8beb-43ec-a3b2-64e774de262f?mode=deep",
+    "timestamp": "2026-02-19 13:34:38.345649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [Data Integrity] When diff > 0 and valid candidates are insufficient, the function uses OrderBy(p => p) for deterministic ordering, but can an attacker exploit the lexicographic ordering to ensure malicious pubkeys always appear first in backup selection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_130dfb29-a995-43ca-8690-c243d609199a?mode=deep",
+    "timestamp": "2026-02-19 13:35:00.698954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [Logic Error] The backup selection uses Math.Min(diff, currentMiners.Count) but currentMiners may contain invalid or banned miners - can this allow banned miners to be re-selected as victories through the backup mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76feb639-53e5-4756-b75d-5a7a124679f1?mode=deep",
+    "timestamp": "2026-02-19 13:35:23.685702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [Inconsistency] If State.InitialMiners.Value is null, the backups only come from currentMiners - can an attacker exploit the initialization race condition to prevent proper backup miner selection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_659e4890-9af6-4654-b488-b8c301c448f9?mode=deep",
+    "timestamp": "2026-02-19 13:35:47.354561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [Integer Overflow] The calculation State.MinersCount.Value - validCandidates.Count could underflow if validCandidates.Count > State.MinersCount.Value due to race conditions - is there protection against negative diff values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56f26a1f-402e-41a0-8d63-29d080c3f1fb?mode=deep",
+    "timestamp": "2026-02-19 13:36:12.106862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories() private] [Ordering Manipulation] The OrderByDescending(v => v.ObtainedActiveVotedVotesAmount) logic for selecting top miners - can an attacker manipulate vote amounts to change miner ordering at critical block heights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c4020f4-881d-4654-b232-5de1d125904c?mode=deep",
+    "timestamp": "2026-02-19 13:36:40.770943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories() private] [Logic Error] When taking State.MinersCount.Value victories from ordered candidates, if multiple candidates have identical ObtainedActiveVotedVotesAmount, is the selection deterministic or could it vary between nodes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d21d8769-d8d9-4630-8062-42f1c66a081b?mode=deep",
+    "timestamp": "2026-02-19 13:37:10.806077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories() private] [State Inconsistency] The function mixes currentMiners from AEDPoS contract with State.InitialMiners - if these sources are out of sync, can it lead to duplicate or missing miners in the final victory list? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7baf0e3-e459-49d8-b3fd-7cae51c1db52?mode=deep",
+    "timestamp": "2026-02-19 13:37:38.087323",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVictories()] [Null Reference] If ByteStringHelper.FromHexString(v) throws an exception for malformed hex strings in backups, can this DOS the entire miner selection process? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9844b0fe-bb32-4437-b206-8457f2df6ddf?mode=deep",
+    "timestamp": "2026-02-19 13:38:11.066021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidCandidates()] [Logic Error] The function only checks ObtainedActiveVotedVotesAmount > 0, not considering if votes are expired or if the candidate is banned - can banned candidates with votes still be considered valid? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32720473-af51-45f5-ae58-0b08f654c975?mode=deep",
+    "timestamp": "2026-02-19 13:38:44.632585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidCandidates()] [DOS Attack] If State.Candidates.Value.Value contains thousands of candidates, the Where().Select().ToList() chain could cause gas exhaustion - is there a maximum candidate limit enforced? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_249e2169-7fee-4719-8126-5c7e677ee147?mode=deep",
+    "timestamp": "2026-02-19 13:39:19.248965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidCandidates()] [Null Reference] The function checks State.Candidates.Value == null but not if State.CandidateVotes[c.ToHex()] returns a valid object with null properties - can this cause NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18934b2b-a0bf-4807-b1bc-c8a0f9db1041?mode=deep",
+    "timestamp": "2026-02-19 13:39:53.619852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidCandidates()] [Data Inconsistency] If a candidate exists in State.Candidates but State.CandidateVotes[c.ToHex()] is null, they're excluded - can an attacker exploit this to remove valid candidates by clearing their vote state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38620cbe-ad41-4037-817e-f1c353e03a28?mode=deep",
+    "timestamp": "2026-02-19 13:40:26.475156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetValidCandidates()] [Race Condition] Between checking State.CandidateVotes[c.ToHex()] != null and accessing ObtainedActiveVotedVotesAmount, can the state change causing inconsistent results? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ef196a5-886f-4e16-ba59-5283cb828a3d?mode=deep",
+    "timestamp": "2026-02-19 13:41:00.866248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotedCandidates()] [Logic Error] Similar to GetValidCandidates, this only checks ObtainedActiveVotedVotesAmount > 0 without verifying if candidates are still eligible or unbanned - can this expose banned candidates as voted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e33e102c-9f32-4761-a327-aa6793469b42?mode=deep",
+    "timestamp": "2026-02-19 13:41:36.526173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotedCandidates()] [DOS Attack] The foreach loop over all candidates without pagination could consume excessive gas if State.Candidates.Value.Value is large - is there protection against griefing via candidate spam? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86337a72-d1c0-4c79-9092-6a112c91119b?mode=deep",
+    "timestamp": "2026-02-19 13:42:12.013095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotedCandidates()] [Null Reference] The function returns early if State.Candidates.Value == null, but what if it's initialized with an empty Value collection - could this cause unexpected behavior in calling contracts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b611812e-c40f-478a-bf20-12a7cfb030b5?mode=deep",
+    "timestamp": "2026-02-19 13:42:42.018837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectionResult()] [Trust Assumption] The function directly calls State.VoteContract.GetVotingResult without validating the returned data - can a compromised Vote contract return manipulated results? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c632c6c-beb2-4db2-b078-28e87a85d67d?mode=deep",
+    "timestamp": "2026-02-19 13:43:16.727313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectionResult()] [Logic Error] IsActive is determined by input.TermNumber == State.CurrentTermNumber.Value - can an attacker query future term numbers to get incorrect IsActive=false results that affect dependent logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b98f922-f54f-4dbc-90ac-9b7707802fcc?mode=deep",
+    "timestamp": "2026-02-19 13:43:52.758175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectionResult()] [Data Consistency] If GetVotingResult returns results for a different TermNumber than requested, the ElectionResult could contain mismatched data - is there validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99e2d238-5eba-4c86-a81b-bc93da82b566?mode=deep",
+    "timestamp": "2026-02-19 13:44:25.708216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectionResult()] [Snapshot Manipulation] Using SnapshotNumber from input.TermNumber without bounds checking - can an attacker query non-existent or future snapshots to extract uninitialized data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e08d2b7-63a8-4e07-a107-eb8cef6c0c76?mode=deep",
+    "timestamp": "2026-02-19 13:44:57.766601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetTermSnapshot()] [Information Leak] The function returns State.Snapshots[input.TermNumber] without access control - can anyone query historical term snapshots to extract sensitive voting patterns? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a3eed95-b2ef-42ae-9249-b32cc89ddc1b?mode=deep",
+    "timestamp": "2026-02-19 13:45:23.939776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [Logic Error] When removing invalidCandidates with r.Value <= 0, the snapshot is mutated in-place - can this corrupt shared state if multiple callers access the same snapshot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0e30cdf-91f3-42bd-bf54-613fc4829ad5?mode=deep",
+    "timestamp": "2026-02-19 13:45:54.327586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [Integer Underflow] The calculation State.CurrentTermNumber.Value.Sub(1) - if CurrentTermNumber is 0 or 1, can this underflow and access invalid snapshot indices? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e54aed2-beee-45ac-89d0-be0a2d9aa2c0?mode=deep",
+    "timestamp": "2026-02-19 13:46:21.642382",
+    "report_generated": false
+  }
+]
