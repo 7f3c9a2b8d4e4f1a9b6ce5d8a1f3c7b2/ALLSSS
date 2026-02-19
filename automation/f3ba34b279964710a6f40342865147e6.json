@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Initial Miner Skip Logic] Lines 22-44 of AEDPoSContract_Validation.cs skip validation for initial miner during first rounds - if MiningPermissionValidationProvider still executes after this skip, can non-initial miners exploit the skip logic to bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5ee7a2b4-8c7c-4252-9bb6-7c8450efe7df?mode=deep",
+    "timestamp": "2026-02-19 14:25:42.022120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [PreviousInValue Propagation] RecoverFromUpdateValue sets PreviousInValue for all miners (lines 28-29 of Round_Recover.cs) from providedRound - if attacker controls PreviousInValue in providedRound, can they manipulate consensus secret sharing to influence future miner selection while passing current validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42b27de2-b450-4602-ba7a-bb270fb9ea91?mode=deep",
+    "timestamp": "2026-02-19 14:26:04.138509",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Key Existence After Recovery] If RecoverFromUpdateValue early-returns at line 12 of Round_Recover.cs when pubkey doesn't exist in BaseRound, but then providedRound contains that pubkey in the foreach loop (line 22), will those keys be skipped or added? Can attacker exploit this to add unauthorized keys? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87e95d50-29c6-4d23-90d7-a1b2d0b22ec5?mode=deep",
+    "timestamp": "2026-02-19 14:26:27.523897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Recovery Return Value] RecoverFromUpdateValue returns 'this' (line 32 of Round_Recover.cs) - if recovery fails and returns unmodified BaseRound, but attacker was already in the unmodified BaseRound from previous manipulation, will validation incorrectly pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71349086-5115-411e-b35f-c64a3e75700c?mode=deep",
+    "timestamp": "2026-02-19 14:26:50.911873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [ActualMiningTimes Update] RecoverFromUpdateValue adds to ActualMiningTimes at line 20 of Round_Recover.cs before MiningPermissionValidation - if attacker repeatedly calls UpdateValue with same pubkey, can they accumulate ActualMiningTimes and then pass permission check through accumulated state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7aa6a713-6aff-49fa-accf-aacfe24a33c6?mode=deep",
+    "timestamp": "2026-02-19 14:27:14.842971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [ImpliedIrreversibleBlockHeight Manipulation] RecoverFromUpdateValue/RecoverFromTinyBlock update ImpliedIrreversibleBlockHeight (lines 19, 43 of Round_Recover.cs) - if attacker sets malicious LIB height in providedRound, will it affect downstream consensus logic after passing MiningPermissionValidation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a7f013a-9c4e-4362-8991-ca817a648cf5?mode=deep",
+    "timestamp": "2026-02-19 14:27:40.945325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Context Integrity] validationContext is constructed at lines 52-60 of AEDPoSContract_Validation.cs - if BaseRound reference in context points to same object that RecoverFromUpdateValue modifies, does the modification affect validation, or is it a copy? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77c8a4cd-4113-4c9c-875f-18895cf1e062?mode=deep",
+    "timestamp": "2026-02-19 14:28:06.559131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Protobuf Dictionary Behavior] RealTimeMinersInformation is a protobuf map<string, MinerInRound> - do protobuf dictionaries guarantee key uniqueness and case-sensitive comparison, or can attacker exploit protobuf serialization quirks to bypass Contains() check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bbdc388-7ac0-4057-91cc-ce1338948626?mode=deep",
+    "timestamp": "2026-02-19 14:28:32.817864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [SenderPubkey Extraction] SenderPubkey comes from ExtraData.SenderPubkey.ToHex() (line 17 of ConsensusValidationContext.cs) - if ToHex() produces different format than keys in RealTimeMinersInformation, can legitimate miners fail validation or can attackers craft matching hex variants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8ac5cd7-4cf4-4591-acf6-4b6c0596e4a4?mode=deep",
+    "timestamp": "2026-02-19 14:29:03.224333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Trust Comment Violation] Comment at line 14-15 of ConsensusValidationContext.cs says 'We can trust this because we already validated the pubkey' - if upstream validation is bypassed or has bugs, can attacker inject malicious SenderPubkey that passes Contains() check at line 17? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1521cf1-020a-4eb9-8237-0fa3ea10af5f?mode=deep",
+    "timestamp": "2026-02-19 14:29:34.610341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Round Number Mismatch] If BaseRound.RoundNumber doesn't match CurrentRoundNumber in validationContext, but BaseRound still contains attacker's pubkey from old round, will validation pass even though attacker shouldn't be mining in current round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_716315ac-7b67-4a61-8961-0223c413b43b?mode=deep",
+    "timestamp": "2026-02-19 14:30:03.236118",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Term Number Mismatch] If BaseRound.TermNumber doesn't match CurrentTermNumber, but miner list hasn't been updated, can old-term miners continue producing blocks by passing this validation check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1807c7e-343c-4bf6-ac15-a18a4072b361?mode=deep",
+    "timestamp": "2026-02-19 14:30:36.249456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Service Aggregation] HeaderInformationValidationService aggregates results from multiple providers (line 94-98 of AEDPoSContract_Validation.cs) - if MiningPermissionValidation passes but later validators fail, is block rejected, or can attacker exploit partial validation success? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9904ac0-bacc-4a18-a73a-e0b069a2b1d3?mode=deep",
+    "timestamp": "2026-02-19 14:31:10.254055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Before vs After Execution] This validator runs in ValidateBeforeExecution - if attacker passes this check but block execution modifies miner list, will ValidateAfterExecution catch inconsistency or accept block? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ecae94d-5f87-4b57-94de-e92c0b245ac2?mode=deep",
+    "timestamp": "2026-02-19 14:31:44.643654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [State Rollback] If validation passes but block execution fails and state is rolled back, can attacker retry with modified providedRound that now passes validation due to rolled-back state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f265f578-a77d-4b5e-9d52-fc3e3c2cef4f?mode=deep",
+    "timestamp": "2026-02-19 14:32:19.368160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Continuous Blocks Interaction] ContinuousBlocksValidationProvider checks if miner produced too many blocks - if attacker passes MiningPermissionValidation, can they produce unlimited blocks before ContinuousBlocksValidation triggers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b558afa-db43-474b-a8e1-1b4737186ff9?mode=deep",
+    "timestamp": "2026-02-19 14:32:55.941427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [TimeSlot Interaction] TimeSlotValidationProvider checks proper timing - if attacker passes MiningPermissionValidation outside their time slot, will TimeSlotValidation reject, or can timing and permission validation be independently bypassed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6de482d8-d2f3-433a-b73c-be3bddd272ac?mode=deep",
+    "timestamp": "2026-02-19 14:33:31.632638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Simplification Comment] Comment at line 10 says 'Simply check keys of RealTimeMinersInformation should be enough' - is this oversimplification missing checks for miner status (active vs inactive), punishment status, or bond requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69e7280c-7da7-4484-baf7-d4f561839da2?mode=deep",
+    "timestamp": "2026-02-19 14:34:08.878815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Miner Status] RealTimeMinersInformation contains MinerInRound objects with various fields - if miner exists in dictionary but has IsForked=true, IsMined=false, or other disqualifying states, should validation reject them even if key exists? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b13b2b08-5b64-4906-be2a-94645cadb0cd?mode=deep",
+    "timestamp": "2026-02-19 14:34:44.998985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [OutValue/Signature Validation] RecoverFromUpdateValue updates OutValue and Signature (lines 16-17 of Round_Recover.cs) - does MiningPermissionValidation verify cryptographic correctness of these values, or only check pubkey membership? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab0661ec-65ac-4ba5-982a-a18d188d65c4?mode=deep",
+    "timestamp": "2026-02-19 14:35:21.157382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Order Validation] RecoverFromUpdateValue updates FinalOrderOfNextRound (lines 26-27 of Round_Recover.cs) - if attacker manipulates their order to mine multiple times or skip legitimate miners, will MiningPermissionValidation catch this? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b3c3f15-9dab-4ec0-a1d5-6f731abab20d?mode=deep",
+    "timestamp": "2026-02-19 14:35:58.012064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Time Validation] Validation doesn't check ExpectedMiningTime or ActualMiningTimes - can attacker who is in miner list mine outside their assigned time slot and pass MiningPermissionValidation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa965f49-1454-404e-b254-8f40de780161?mode=deep",
+    "timestamp": "2026-02-19 14:36:32.426795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Missed Slots Validation] Validation doesn't check MissedTimeSlots counter - can miner who missed too many slots continue mining if they remain in RealTimeMinersInformation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7168c555-4157-49d1-ae43-78e906db8147?mode=deep",
+    "timestamp": "2026-02-19 14:37:06.978252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Punishment Status] Validation doesn't check if miner is under punishment or slashing - can punished miners continue producing blocks if they're still in RealTimeMinersInformation keys? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6294d5be-a1dc-4cfa-a917-ed9836537b85?mode=deep",
+    "timestamp": "2026-02-19 14:37:42.309562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/MiningPermissionValidationProvider.cs] [Function: ValidateHeaderInformation()] [Bond/Stake Requirement] Validation doesn't verify miner has sufficient stake or bond - can undercollateralized miners produce blocks if they remain in RealTimeMinersInformation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b37b1523-5208-4f59-87c0-8924c1d420f4?mode=deep",
+    "timestamp": "2026-02-19 14:38:19.921992",
+    "report_generated": false
+  }
+]
