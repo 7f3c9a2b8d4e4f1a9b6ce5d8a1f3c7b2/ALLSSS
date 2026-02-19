@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [Information Disclosure] Does exposing State.MethodFeeController.Value at line 64 leak sensitive organization information that attackers can use to target the controller? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd526d8c-b69e-4e0a-a201-70681a92a511?mode=deep",
+    "timestamp": "2026-02-19 08:03:12.813012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [State Consistency] If RequiredMethodFeeControllerSet is called at line 63 during a state transition, can concurrent reads return inconsistent controller information? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3002404b-4bc4-4e41-bbbf-8e221bf93fd8?mode=deep",
+    "timestamp": "2026-02-19 08:03:34.864955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Race] Can an attacker call SetMethodFee or ChangeMethodFeeController in parallel during contract initialization before RequiredMethodFeeControllerSet completes at lines 71-85, gaining unauthorized control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cfb4745-a952-4e37-8099-fd70fc50994a?mode=deep",
+    "timestamp": "2026-02-19 08:03:57.429795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [External Dependency] If Context.GetContractAddressByName at line 76 returns an incorrect or malicious Parliament contract address, can this compromise all method fee governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d0e833c-4789-4d87-9204-823af7546359?mode=deep",
+    "timestamp": "2026-02-19 08:04:20.627303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Default Organization] If State.ParliamentContract.GetDefaultOrganizationAddress at line 80 returns an organization that doesn't exist or is controlled by an attacker, can this permanently compromise fee control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1dedf897-21fa-4e09-bcc0-f27c2e1bbf85?mode=deep",
+    "timestamp": "2026-02-19 08:04:44.966578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Reentrancy] Can the external call at line 80 to GetDefaultOrganizationAddress re-enter RequiredMethodFeeControllerSet or other functions before line 84 sets the value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d78941c-259f-45c2-a046-0ef18a67f971?mode=deep",
+    "timestamp": "2026-02-19 08:05:10.646500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Check] Does the null check at line 73 properly handle the case where Value is set to a default/empty AuthorityInfo rather than null? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8a6b4eb-e22f-437c-b205-682a1674cbb5?mode=deep",
+    "timestamp": "2026-02-19 08:05:35.882045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Duplicate Initialization] Can RequiredMethodFeeControllerSet be called multiple times with different ParliamentContract values, potentially overwriting the controller after it's been legitimately set? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94c623bb-c158-4531-9605-e1f0101c70c1?mode=deep",
+    "timestamp": "2026-02-19 08:06:02.329472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Contract Name Collision] If SmartContractConstants.ParliamentContractSystemName at line 76 matches a malicious contract name, can an attacker substitute their contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ced7aa4f-e70c-4c62-88bf-60e57b86a118?mode=deep",
+    "timestamp": "2026-02-19 08:06:28.781950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertSenderAddressWith()] [Null Address] Can the address parameter at line 87 be null, and if so, does the equality check at line 89 cause unexpected behavior or bypass authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c0fd1d0-78c3-4fc4-a920-3844fd1e7e4e?mode=deep",
+    "timestamp": "2026-02-19 08:06:56.747101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertSenderAddressWith()] [Context Manipulation] Can Context.Sender at line 89 be manipulated through delegate calls or internal calls to bypass the sender check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a4fdfeb-ab14-4ddb-8c8c-526c7d8ee6ba?mode=deep",
+    "timestamp": "2026-02-19 08:07:24.852599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertSenderAddressWith()] [Error Message] Does the generic error message 'Unauthorized behavior.' at line 89 leak information about what authorization is being checked? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fe876e6-d1a0-455f-93ca-1311174721e3?mode=deep",
+    "timestamp": "2026-02-19 08:07:54.232484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [External Call Validation] Can authorityInfo.ContractAddress at line 94 point to a contract that doesn't implement ValidateOrganizationExist, causing the call to fail or return unexpected values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bec66d9e-dc5b-4f40-810c-5eff8c3c606b?mode=deep",
+    "timestamp": "2026-02-19 08:08:23.440787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Malicious Contract] Can authorityInfo.ContractAddress be a malicious contract that implements ValidateOrganizationExist to always return true, bypassing organization validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fc46d7f-8c74-41b7-a612-55bb7c14deea?mode=deep",
+    "timestamp": "2026-02-19 08:08:52.518529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Reentrancy] Can the Context.Call at lines 94-96 re-enter the VoteContract before returning, potentially manipulating state during the validation check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bf19b31-d6a7-43ae-a7eb-541c3b245e32?mode=deep",
+    "timestamp": "2026-02-19 08:09:22.418482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Value Manipulation] Does the function properly handle the case where Context.Call returns null or an invalid BoolValue, potentially causing NullReferenceException at line 96? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe339302-86ed-498a-badd-c5524aec9d06?mode=deep",
+    "timestamp": "2026-02-19 08:09:52.610424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Input Validation] Can authorityInfo.OwnerAddress be null at line 96, and if so, does the authorization contract handle this case securely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4da1710b-2ec4-4223-b1e6-a578f4ad7cc2?mode=deep",
+    "timestamp": "2026-02-19 08:10:22.419449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Contract Type Validation] Does the function verify that authorityInfo.ContractAddress is actually an authorization contract (Parliament/Association/Referendum) before making the call? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7bfe834-8327-4686-8459-7b280d62a324?mode=deep",
+    "timestamp": "2026-02-19 08:10:51.040245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Negative Amount] The check at line 101 validates amount >= 0, but can this be exploited if the amount is exactly 0, potentially setting free method fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd937bf0-9c8c-45d1-a6bd-4f663108f6bc?mode=deep",
+    "timestamp": "2026-02-19 08:11:20.076608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Integer Overflow] Can the amount parameter overflow when used in fee calculations elsewhere, despite passing the >= 0 check at line 101? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f61cde1-5211-4491-959c-9ce38766c72a?mode=deep",
+    "timestamp": "2026-02-19 08:11:50.778557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Token Contract Initialization] If Context.GetContractAddressByName at line 104 returns an incorrect TokenContract address, can this allow invalid tokens to be set as method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58d124b3-7363-4a5b-8719-e7332bb4fd3f?mode=deep",
+    "timestamp": "2026-02-19 08:12:22.751193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Reentrancy] Can the external call to IsTokenAvailableForMethodFee at line 106 re-enter AssertValidToken or its caller SetMethodFee before validation completes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98bd582e-67de-4bb6-a5f0-e3a1902857b4?mode=deep",
+    "timestamp": "2026-02-19 08:12:55.011660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Symbol Validation] Does the function validate that the symbol parameter is not null or empty before passing it to the TokenContract at line 106? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f676bd57-bd26-4353-877c-59f08e7e9a6f?mode=deep",
+    "timestamp": "2026-02-19 08:13:27.411928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Return Value Handling] If IsTokenAvailableForMethodFee returns null instead of a valid BoolValue, does line 106 cause a NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b2ce47d-b438-48b5-bf5c-b60d398035a7?mode=deep",
+    "timestamp": "2026-02-19 08:14:00.210491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [External Dependency] Can the TokenContract's IsTokenAvailableForMethodFee be manipulated to return true for tokens that shouldn't be allowed as method fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cee9935-e602-4ee8-b20c-987be844a31b?mode=deep",
+    "timestamp": "2026-02-19 08:14:30.895661",
+    "report_generated": false
+  }
+]
