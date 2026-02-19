@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Authorization Bypass] Can an attacker register a voting item with a token symbol that's not in the whitelist by front-running the whitelist removal transaction, causing the whitelist check at line 29-34 to pass initially but fail later, potentially locking voter funds in an invalid voting item? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ad14182-6e68-42e2-a5d3-c401a9f60e46?mode=deep",
+    "timestamp": "2026-02-19 06:19:23.878622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Hash Collision] Can an attacker craft multiple VotingRegisterInput objects with different options but same hash (calculated at line 354) by manipulating sender address and input parameters, causing voting item ID collision and overwriting existing voting items? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8dbc2a51-d49e-45a2-ad66-a6d463685cd4?mode=deep",
+    "timestamp": "2026-02-19 06:19:46.232780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Timestamp Manipulation] Can an attacker register a voting item with StartTimestamp equal to EndTimestamp minus 1 (passing validation at line 361) but causing voting window to be effectively zero, enabling them to control voting outcomes by timing snapshot taking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74fad8cb-8337-42e0-93a8-5ee14da7d9c8?mode=deep",
+    "timestamp": "2026-02-19 06:20:08.615265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Integer Overflow] Can an attacker register a voting item with TotalSnapshotNumber set to long.MaxValue (after default assignment at line 359), causing arithmetic overflow in snapshot number calculations during TakeSnapshot() calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65b8a96d-640c-4515-b4b9-f8ce4c931c81?mode=deep",
+    "timestamp": "2026-02-19 06:20:32.084229",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [State Inconsistency] If token whitelist check at line 29-34 involves external call that can fail or revert, can an attacker register a voting item in an inconsistent state where VotingItem exists but token is not actually whitelisted? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3fa7ba4-c5fb-4899-abb5-027cac5ca83b?mode=deep",
+    "timestamp": "2026-02-19 06:20:56.337408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Quadratic Voting Exploit] Can an attacker register a quadratic voting item with TicketCost set to zero (no validation present), allowing unlimited free voting and breaking the quadratic voting economic model? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35aa5590-3e87-450e-94d3-a41690eae444?mode=deep",
+    "timestamp": "2026-02-19 06:21:21.551082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Quadratic Voting Overflow] Can an attacker register a quadratic voting item with TicketCost set to long.MaxValue, causing integer overflow in amount calculation at line 102 during Vote() execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a87c1c88-3f21-4ed7-a03a-c6c890c435ce?mode=deep",
+    "timestamp": "2026-02-19 06:21:47.495396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Options Injection] Can an attacker register a voting item with empty options array (no validation at registration), then add malicious options later, bypassing any intended option validation at registration time? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a2e1b9e-97cd-40fb-bdd8-1a1cdcfbae77?mode=deep",
+    "timestamp": "2026-02-19 06:22:13.837672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Options Limit Bypass] Can an attacker register a voting item with exactly MaximumOptionsCount (64) options at line 49, then immediately call AddOption() to exceed the limit since AddOption only checks at line 285-286 but not during registration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45335a25-69ab-469e-b423-a6de3f09d48a?mode=deep",
+    "timestamp": "2026-02-19 06:22:40.603851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Timestamp Bypass] Can an attacker register a voting item with StartTimestamp set to past time (no validation that it's >= current time), allowing immediate voting before intended start? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64f844d9-5b1c-4a91-adf8-5629b5d9bfa3?mode=deep",
+    "timestamp": "2026-02-19 06:23:12.190576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [Snapshot Initialization] Can the VotingResult initialization at lines 58-63 create inconsistent state if CurrentSnapshotStartTimestamp differs from StartTimestamp, causing snapshot timing issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d33994e-c6d2-4e18-a8c4-76b136ccf5c6?mode=deep",
+    "timestamp": "2026-02-19 06:23:43.892618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Register()] [DOS via Token Check] Can an attacker cause denial of service by registering voting items that trigger expensive token whitelist verification at line 29-34, exhausting gas for legitimate registrations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33f9c64a-fc2d-4c8e-8c81-bb3f3884c11a?mode=deep",
+    "timestamp": "2026-02-19 06:24:17.434924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AssertValidNewVotingItem()] [Hash Collision] At line 354, votingItemId is calculated using input.GetHash(Context.Sender). Can an attacker find hash collision by manipulating input fields while keeping sender same, causing voting item ID reuse? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3453cb28-8853-4d10-8ead-c46152c077be?mode=deep",
+    "timestamp": "2026-02-19 06:24:50.802336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AssertValidNewVotingItem()] [Duplicate Registration] The check at line 356 only validates that VotingItem doesn't exist, but if an attacker can predict voting item ID, can they grief by front-running legitimate registration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_051aadf7-80b7-4977-a4d2-9fbd51861c7e?mode=deep",
+    "timestamp": "2026-02-19 06:25:22.145264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: AssertValidNewVotingItem()] [Zero Snapshot Override] At line 359, if input.TotalSnapshotNumber is 0, it's set to 1. Can an attacker exploit this default behavior to create single-snapshot voting when multiple snapshots were intended? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd5ad653-b45f-485c-bf32-94d46ba8c5af?mode=deep",
+    "timestamp": "2026-02-19 06:25:53.613389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Quadratic Voting Double-Count] At lines 100-101, QuadraticVotesCountMap increments vote count, but if an attacker calls Vote() multiple times with same VoteId (before validation), can they manipulate the count calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78304d1e-536d-4810-97dc-203e1532910f?mode=deep",
+    "timestamp": "2026-02-19 06:26:23.439957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Integer Overflow in Quadratic Calculation] At line 102, amount = votingItem.TicketCost.Mul(currentVotesCount). Can an attacker trigger overflow by voting many times with high TicketCost, causing amount to wrap to negative or zero? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b27ba28-899d-4145-9023-241eebb2ec58?mode=deep",
+    "timestamp": "2026-02-19 06:26:50.413980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Vote Record Overwrite] At line 117, State.VotingRecords[input.VoteId] overwrites any existing record. Can an attacker vote twice with same VoteId, overwriting their first vote and double-counting in UpdateVotingResult()? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2918de32-a944-4c4a-87a8-924797fac68e?mode=deep",
+    "timestamp": "2026-02-19 06:27:17.654339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Token Lock Bypass] At lines 122-130, tokens are only locked if IsLockToken is true. For delegated voting (IsLockToken=false), can sponsor repeatedly vote on behalf of users without any token backing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2aa4ce65-1e0b-4e8d-bbe5-da290b303580?mode=deep",
+    "timestamp": "2026-02-19 06:27:44.717275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Delegated Voting Exploitation] For delegated voting at lines 386-388, sponsor must be sender and provide voter address. Can sponsor vote on behalf of arbitrary addresses without their consent, manipulating voter participation records? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45f867ab-7710-4e6e-b55b-1c1d50b99756?mode=deep",
+    "timestamp": "2026-02-19 06:28:12.635373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [VoteId Generation Collision] At line 397, VoteId is generated using Context.GenerateId(Context.Self, votingResult.VotesAmount.ToBytes(false)). Can two transactions with same VotesAmount generate same VoteId, causing vote overwrite? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e27540d3-0f1d-4bf9-9535-874d605b03f7?mode=deep",
+    "timestamp": "2026-02-19 06:28:40.785693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Snapshot Boundary Exploit] At line 109, vote is recorded with current snapshot number. Can an attacker vote just before TakeSnapshot(), then vote again after, to count votes in both snapshots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12bbae89-72b0-4d85-96be-082a0540c58c?mode=deep",
+    "timestamp": "2026-02-19 06:29:06.889890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Amount Manipulation] At line 96, for non-quadratic voting, amount = input.Amount with no validation. Can an attacker vote with negative amount to reduce vote totals or cause underflow? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81c38856-0060-4c40-ae6e-5ac72800f200?mode=deep",
+    "timestamp": "2026-02-19 06:29:33.699404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Zero Amount Vote] At lines 94-97, there's no check that amount > 0. Can an attacker vote with zero amount to inflate VotersCount without contributing votes, skewing statistics? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9fe182a-0609-434d-a450-7b47617a619f?mode=deep",
+    "timestamp": "2026-02-19 06:30:05.810296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [IsChangeTarget Bypass] At line 114, IsChangeTarget is stored but never validated. Can an attacker set this to manipulate vote change detection in downstream systems? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d55fa4e9-eef1-42d7-9065-e3c16cbb8492?mode=deep",
+    "timestamp": "2026-02-19 06:30:38.598953",
+    "report_generated": false
+  }
+]
