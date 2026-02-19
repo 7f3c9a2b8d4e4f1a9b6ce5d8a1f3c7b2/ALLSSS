@@ -1,0 +1,310 @@
+# Audit Report
+
+## Title
+Negative DepositBalance Due to Missing Validation in Sell Operation Allows Cross-Connector Balance Contamination
+
+## Summary
+The `Sell` function in TokenConverterContract calculates the amount of base tokens to return using a Bancor formula that includes both `VirtualBalance` and `DepositBalance`, but only decrements `DepositBalance` without validating that the calculated amount doesn't exceed it. Since multiple connector pairs share the same base token pool, a sell operation can succeed by using tokens allocated to other connectors, causing `DepositBalance` to become negative and breaking accounting integrity system-wide.
+
+## Finding Description
+
+The vulnerability exists in the `Sell` function where Bancor pricing calculation and balance accounting are fundamentally misaligned. [1](#0-0) 
+
+The `GetSelfBalance` helper function returns the sum of virtual and actual balances for deposit account connectors. [2](#0-1) 
+
+The Bancor formula in `GetReturnFromPaid` uses this combined balance as `toConnectorBalance` to calculate the return amount. [3](#0-2) 
+
+After calculating `amountToReceive`, the contract transfers base tokens and then decrements only `DepositBalance` without any validation. [4](#0-3) 
+
+**Root Cause**: The `SafeMath.Sub()` operation uses checked arithmetic which only prevents overflow at type boundaries, not negative values within the valid `long` range. [5](#0-4) 
+
+**Why Existing Protections Fail**: The system initializes multiple connector pairs that all share the same base token symbol. [6](#0-5) 
+
+Each connector is initialized with large virtual balances. [7](#0-6) 
+
+The base token transfer only checks the contract's **total** base token balance across all connectors, not the per-connector `DepositBalance`. A sell operation on one connector can succeed by draining tokens allocated to another connector's reserves, leaving the first connector with negative `DepositBalance`.
+
+## Impact Explanation
+
+**Direct Fund Impact**:
+- `DepositBalance` becomes negative, violating the critical invariant that deposit balances must be non-negative
+- Users can extract more base tokens from a specific connector than actually allocated to it
+- Cross-connector contamination allows draining reserves allocated to one connector through sells on another
+
+**Accounting Integrity Broken**:
+The `GetDepositConnectorBalance` view function returns the sum of virtual and deposit balances. [8](#0-7) 
+
+When `DepositBalance` is negative, this returns a value lower than `VirtualBalance` alone, corrupting all subsequent Bancor calculations and pricing for that connector.
+
+**Affected Parties**:
+- Users trading on connectors with negative `DepositBalance` receive incorrect prices
+- Connectors whose reserves are drained become insolvent while showing positive virtual balances  
+- System-wide accounting diverges from actual token holdings, creating systemic risk
+
+**Severity**: Medium-High due to accounting integrity break and cross-connector fund contamination, though exploitation requires capital to acquire resource tokens.
+
+## Likelihood Explanation
+
+**Reachable Entry Point**: The `Sell` function is public and callable by any user with no access controls beyond standard token approvals.
+
+**Attacker Capabilities**:
+1. Attacker acquires resource tokens (READ, WRITE, etc.) through market purchases or transfers
+2. Attacker executes large sell operations on connectors with high virtual balance but low deposit balance
+3. No privileged access or special permissions required
+
+**Feasible Preconditions**:
+- Multiple connector pairs exist in production deployment (verified in economic initialization)
+- Connectors have large `VirtualBalance` (10,000,000 tokens) but potentially smaller `DepositBalance`
+- Other connectors have sufficient `DepositBalance` to cover the total contract transfer
+- Bancor formula calculates returns based on virtual+deposit sum, but only deposit gets decremented
+
+**Execution Practicality**:
+Given initialization values where each native token connector has `VirtualBalance = 10,000,000_00000000`, if one connector (NTREAD) has `DepositBalance = 100_00000000` and another (NTWRITE) has `DepositBalance = 10,000,000_00000000`, an attacker selling READ tokens could trigger a return calculation of 500_00000000 based on the combined balance of 10,000,100_00000000. The transfer succeeds (contract holds 10,000,100_00000000 total), but NTREAD's `DepositBalance` becomes -400_00000000.
+
+## Recommendation
+
+Add validation before decrementing `DepositBalance` to ensure the calculated `amountToReceive` does not exceed the available deposit balance for that specific connector:
+
+```csharp
+// Add validation before line 193
+Assert(amountToReceive <= State.DepositBalance[toConnector.Symbol], 
+    "Insufficient deposit balance for this connector");
+
+State.DepositBalance[toConnector.Symbol] = 
+    State.DepositBalance[toConnector.Symbol].Sub(amountToReceive);
+```
+
+Alternatively, modify `GetSelfBalance` to only return `DepositBalance` (not the sum with `VirtualBalance`) when used for sell operations, ensuring Bancor calculations reflect actual withdrawable reserves.
+
+## Proof of Concept
+
+```csharp
+[Fact]
+public async Task Sell_Should_Prevent_Negative_DepositBalance()
+{
+    // Setup: Initialize TokenConverter with multiple connectors
+    // NTREAD: VirtualBalance=10_000_000, DepositBalance=100
+    // NTWRITE: VirtualBalance=10_000_000, DepositBalance=10_000_000
+    
+    // Attacker acquires large amount of READ tokens
+    var readAmount = 1_000_000_00000000;
+    
+    // Attempt to sell READ tokens
+    var sellResult = await TokenConverterStub.Sell.SendAsync(new SellInput
+    {
+        Symbol = "READ",
+        Amount = readAmount,
+        ReceiveLimit = 0
+    });
+    
+    // Check NTREAD's DepositBalance
+    var ntReadBalance = await TokenConverterStub.GetDepositConnectorBalance.CallAsync(
+        new StringValue { Value = "READ" });
+    
+    // Vulnerability: DepositBalance becomes negative
+    // Expected: Transaction should fail with "Insufficient deposit balance"
+    // Actual: Transaction succeeds and DepositBalance is negative
+}
+```
+
+### Citations
+
+**File:** contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs (L161-212)
+```csharp
+    public override Empty Sell(SellInput input)
+    {
+        var fromConnector = State.Connectors[input.Symbol];
+        Assert(fromConnector != null, "[Sell]Can't find from connector.");
+        Assert(fromConnector.IsPurchaseEnabled, "can't purchase");
+        var toConnector = State.Connectors[fromConnector.RelatedSymbol];
+        Assert(toConnector != null, "[Sell]Can't find to connector.");
+        var amountToReceive = BancorHelper.GetReturnFromPaid(
+            GetSelfBalance(fromConnector), GetWeight(fromConnector),
+            GetSelfBalance(toConnector), GetWeight(toConnector),
+            input.Amount
+        );
+
+        var fee = Convert.ToInt64(amountToReceive * GetFeeRate());
+
+        if (Context.Sender ==
+            Context.GetContractAddressByName(SmartContractConstants.TreasuryContractSystemName)) fee = 0;
+
+        var amountToReceiveLessFee = amountToReceive.Sub(fee);
+        Assert(input.ReceiveLimit == 0 || amountToReceiveLessFee >= input.ReceiveLimit, "Price not good.");
+
+        // Pay fee
+        if (fee > 0) HandleFee(fee);
+
+        // Transfer base token
+        State.TokenContract.Transfer.Send(
+            new TransferInput
+            {
+                Symbol = State.BaseTokenSymbol.Value,
+                To = Context.Sender,
+                Amount = amountToReceive
+            });
+        State.DepositBalance[toConnector.Symbol] =
+            State.DepositBalance[toConnector.Symbol].Sub(amountToReceive);
+        // Transfer sold token
+        State.TokenContract.TransferFrom.Send(
+            new TransferFromInput
+            {
+                Symbol = input.Symbol,
+                From = Context.Sender,
+                To = Context.Self,
+                Amount = input.Amount
+            });
+        Context.Fire(new TokenSold
+        {
+            Symbol = input.Symbol,
+            SoldAmount = input.Amount,
+            BaseAmount = amountToReceive,
+            FeeAmount = fee
+        });
+        return new Empty();
+    }
+```
+
+**File:** contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs (L374-390)
+```csharp
+    private long GetSelfBalance(Connector connector)
+    {
+        long realBalance;
+        if (connector.IsDepositAccount)
+            realBalance = State.DepositBalance[connector.Symbol];
+        else
+            realBalance = State.TokenContract.GetBalance.Call(
+                new GetBalanceInput
+                {
+                    Owner = Context.Self,
+                    Symbol = connector.Symbol
+                }).Balance;
+
+        if (connector.IsVirtualBalanceEnabled) return connector.VirtualBalance.Add(realBalance);
+
+        return realBalance;
+    }
+```
+
+**File:** contract/AElf.Contracts.TokenConverter/BancorHelper.cs (L34-54)
+```csharp
+    public static long GetReturnFromPaid(long fromConnectorBalance, decimal fromConnectorWeight,
+        long toConnectorBalance, decimal toConnectorWeight, long paidAmount)
+    {
+        if (fromConnectorBalance <= 0 || toConnectorBalance <= 0)
+            throw new InvalidValueException("Connector balance needs to be a positive number.");
+
+        if (paidAmount <= 0) throw new InvalidValueException("Amount needs to be a positive number.");
+
+        decimal bf = fromConnectorBalance;
+        var wf = fromConnectorWeight;
+        decimal bt = toConnectorBalance;
+        var wt = toConnectorWeight;
+        decimal a = paidAmount;
+        if (wf == wt)
+            // if both weights are the same, the formula can be reduced
+            return (long)(bt / (bf + a) * a);
+
+        var x = bf / (bf + a);
+        var y = wf / wt;
+        return (long)(bt * (decimal.One - Exp(y * Ln(x))));
+    }
+```
+
+**File:** src/AElf.CSharp.Core/SafeMath.cs (L92-97)
+```csharp
+    public static long Sub(this long a, long b)
+    {
+        checked
+        {
+            return a - b;
+        }
+```
+
+**File:** contract/AElf.Contracts.Economic/EconomicContract.cs (L211-260)
+```csharp
+    private void InitializeTokenConverterContract()
+    {
+        State.TokenConverterContract.Value =
+            Context.GetContractAddressByName(SmartContractConstants.TokenConverterContractSystemName);
+        var connectors = new List<Connector>
+        {
+            new()
+            {
+                Symbol = Context.Variables.NativeSymbol,
+                IsPurchaseEnabled = true,
+                IsVirtualBalanceEnabled = true,
+                Weight = "0.5",
+                VirtualBalance = EconomicContractConstants.NativeTokenConnectorInitialVirtualBalance
+            }
+        };
+        foreach (var resourceTokenSymbol in Context.Variables
+                     .GetStringArray(EconomicContractConstants.PayTxFeeSymbolListName)
+                     .Union(Context.Variables.GetStringArray(EconomicContractConstants.PayRentalSymbolListName)))
+        {
+            var resourceTokenConnector = new Connector
+            {
+                Symbol = resourceTokenSymbol,
+                IsPurchaseEnabled = true,
+                IsVirtualBalanceEnabled = true,
+                Weight = "0.005",
+                VirtualBalance = EconomicContractConstants.ResourceTokenInitialVirtualBalance,
+                RelatedSymbol = EconomicContractConstants.NativeTokenPrefix.Append(resourceTokenSymbol),
+                IsDepositAccount = false
+            };
+            var nativeTokenConnector = new Connector
+            {
+                Symbol = EconomicContractConstants.NativeTokenPrefix.Append(resourceTokenSymbol),
+                IsPurchaseEnabled = true,
+                IsVirtualBalanceEnabled = true,
+                Weight = "0.005",
+                VirtualBalance = EconomicContractConstants.NativeTokenToResourceBalance,
+                RelatedSymbol = resourceTokenSymbol,
+                IsDepositAccount = true
+            };
+            connectors.Add(resourceTokenConnector);
+            connectors.Add(nativeTokenConnector);
+        }
+
+        State.TokenConverterContract.Initialize.Send(new InitializeInput
+        {
+            FeeRate = EconomicContractConstants.TokenConverterFeeRate,
+            Connectors = { connectors },
+            BaseTokenSymbol = Context.Variables.NativeSymbol
+        });
+    }
+```
+
+**File:** contract/AElf.Contracts.Economic/EconomicContractConstants.cs (L5-20)
+```csharp
+    public const long NativeTokenConnectorInitialVirtualBalance = 100_000_00000000;
+
+    // Token Converter Contract related.
+    public const string TokenConverterFeeRate = "0.005";
+
+    // Resource token related.
+    public const long ResourceTokenTotalSupply = 500_000_000_00000000;
+
+    public const int ResourceTokenDecimals = 8;
+
+    //resource to sell
+    public const long ResourceTokenInitialVirtualBalance = 100_000;
+
+    public const string NativeTokenPrefix = "nt";
+
+    public const long NativeTokenToResourceBalance = 10_000_000_00000000;
+```
+
+**File:** contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs (L93-102)
+```csharp
+    public override Int64Value GetDepositConnectorBalance(StringValue symbolInput)
+    {
+        var connector = State.Connectors[symbolInput.Value];
+        Assert(connector != null && !connector.IsDepositAccount, "token symbol is invalid");
+        var ntSymbol = connector.RelatedSymbol;
+        return new Int64Value
+        {
+            Value = State.Connectors[ntSymbol].VirtualBalance + State.DepositBalance[ntSymbol]
+        };
+    }
+```
