@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetProfitDetailByElectionVotingRecord()] [Null Return] If no matching profit detail is found at lines 177 and 181, the function returns null, but callers like ExtendVoterWelfareProfits throw AssertionException, can legitimate votes fail to change targets due to missing profit details? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71560a47-9be5-40d7-89ad-0a813e3f9382?mode=deep",
+    "timestamp": "2026-02-19 02:58:25.632745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Authorization Bypass] At line 191, AssertPerformedByVoteWeightInterestController checks authorization, but if the controller address is not initialized or set to zero address, can anyone call this function and manipulate interest rates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ec72b6a-75b3-4edb-be20-c2de2b0eaeef?mode=deep",
+    "timestamp": "2026-02-19 02:58:48.136518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Input Validation] At lines 196-198, Capital, Day, and Interest must be greater than 0, but there's no upper bound check, can an attacker set Interest to Int64.MaxValue and cause overflow in GetVotesWeight calculations at line 583? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84b5cebb-58b4-439a-b56f-1147d8d1afbc?mode=deep",
+    "timestamp": "2026-02-19 02:59:10.777491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Duplicate Detection] At line 201, duplicate Day values are rejected, but can an attacker bypass this by setting Day values that differ by 1 second, creating nearly duplicate entries that break interest rate logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5285babf-5e1b-436e-b5aa-428b9b248324?mode=deep",
+    "timestamp": "2026-02-19 02:59:34.134451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Ordering Requirement] At line 203, interest infos are sorted by Day, but if an existing vote was calculated with old ordering and the ordering changes, can votes retain inflated weights while new votes use new weights, creating unfair advantages? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_622b938b-9d1e-4007-b2fd-43e8c0285d3f?mode=deep",
+    "timestamp": "2026-02-19 02:59:58.048506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Retroactive Changes] After SetVoteWeightInterest modifies interest rates at line 206, existing votes keep their old weights, but new votes use new rates, can early voters maintain inflated weights indefinitely while later voters get penalized? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb7bdd0c-8809-4775-a527-84ec206d3a9f?mode=deep",
+    "timestamp": "2026-02-19 03:00:23.340296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Empty List DOS] At line 192, the function asserts input.VoteWeightInterestInfos.Count > 0, but if the list is cleared and set to empty after line 204-205, can GetVotesWeight fail at line 579 when accessing empty list? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85e1f41d-922e-481a-b724-45f046020697?mode=deep",
+    "timestamp": "2026-02-19 03:00:48.650392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightProportion()] [Division by Zero] At line 213, TimeProportion and AmountProportion must be > 0, but in GetVotesWeight at lines 585 and 590, division by TimeProportion occurs, can setting TimeProportion to 1 and AmountProportion to Int64.MaxValue cause overflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b783cd13-5dab-4ec2-ada2-f7b60b4b6e8b?mode=deep",
+    "timestamp": "2026-02-19 03:01:15.211869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightProportion()] [Proportion Manipulation] If TimeProportion is set to a very large value at line 214, the weight calculation at line 585 (votesAmount.Mul(AmountProportion).Div(TimeProportion)) approaches 0, can this effectively nullify the amount component of vote weight? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9b327e9-b074-4b94-9722-6fe51fd45743?mode=deep",
+    "timestamp": "2026-02-19 03:01:42.228688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightProportion()] [Retroactive Impact] Similar to SetVoteWeightInterest, when proportions change, existing votes retain old weights but new votes use new proportions, can governance manipulate proportions to favor specific voters? (Medium)",
+    "url": "https://deepwiki.com/grass-dev-pa/AElf-023",
+    "timestamp": "2026-02-19 03:02:08.977115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVoteWeightInterestController()] [Authorization Takeover] At line 220, the current controller can change itself to any address that passes CheckOrganizationExist at line 221, can a compromised controller set the new controller to an attacker-controlled address and permanently seize control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32cc8c51-3afe-46d1-bf36-bc6119d3c260?mode=deep",
+    "timestamp": "2026-02-19 03:02:36.568759",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVoteWeightInterestController()] [Organization Validation] At line 221, CheckOrganizationExist validates the input authority, but if the organization contract is upgraded or replaced, can a previously valid organization become invalid, locking the controller forever? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc26ee1d-4b6c-46f1-9033-5f281f9893ac?mode=deep",
+    "timestamp": "2026-02-19 03:03:03.362827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVoteWeightInterestController()] [No Timelock] The controller change at line 222 takes effect immediately, can a compromised controller rapidly change interest rates and proportions before anyone can react? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_daad877d-bee4-4fd9-998d-a4639253dbf0?mode=deep",
+    "timestamp": "2026-02-19 03:03:30.618517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [VoteId Collision] At line 405, if voteMinerInput.Token is provided, voteId is generated from it, but if two voters use the same token value, can they collide on VoteId and cause one vote to overwrite another? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8700466-4e04-463c-b00b-b2d7de236b6e?mode=deep",
+    "timestamp": "2026-02-19 03:04:00.439277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [Predictable VoteId] At lines 409-411, if voteMinerInput.Token is null, voteId is generated from candidatePubkey and candidateVotesCount, can an attacker predict the voteId before voting and front-run to claim it first? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8866bcab-4b94-4067-8628-c631854057a5?mode=deep",
+    "timestamp": "2026-02-19 03:04:31.138551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [Race Condition] Between reading candidateVotesCount at line 408 and generating voteId at line 409, if another voter votes for the same candidate, can candidateVotesCount change and cause VoteId collision? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60619f8a-8d78-45e4-94b6-54e6d1bc1bf8?mode=deep",
+    "timestamp": "2026-02-19 03:05:00.362248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GenerateVoteId()] [Null CandidateVotes] At line 408, if State.CandidateVotes[voteMinerInput.CandidatePubkey] is null, candidateVotesCount defaults to 0, but multiple first-time voters for the same candidate will all get voteId based on 0, causing collision? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_646821ef-c3d6-4448-ac02-d231fdd236b2?mode=deep",
+    "timestamp": "2026-02-19 03:05:28.896727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [Candidate Validation] At line 424, targetInformation is fetched and validated at line 425, but if the candidate quits between validation and vote recording at line 442, can votes be recorded for inactive candidates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50667bbc-f704-41e0-9b7e-577b00db8b0c?mode=deep",
+    "timestamp": "2026-02-19 03:06:01.701992",
+    "report_generated": false
+  }
+]
