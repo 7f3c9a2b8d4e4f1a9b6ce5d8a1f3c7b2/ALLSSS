@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [Expiration Bypass] Can an attacker register a proposal at line 314-323 with ExpiredTime set far in the future using manipulated GetCodeCheckProposalExpirationTimePeriod? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98fa9f0a-0e38-42ca-89b3-1a6dd2acc509?mode=deep",
+    "timestamp": "2026-02-19 04:01:38.402884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [Status Manipulation] Is Status set to CodeCheckProposed at line 319 properly enforced in subsequent checks, or can it be changed to CodeChecked prematurely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5858960-ba37-4f0d-a9e8-e62d9890e8e4?mode=deep",
+    "timestamp": "2026-02-19 04:02:00.686879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [Author Override] Can the Author field set to Context.Sender at line 321 be manipulated to attribute the proposal to a different address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7074446c-1b2a-4c0e-ae73-17d0aa835782?mode=deep",
+    "timestamp": "2026-02-19 04:02:23.109212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [Code Check Controller Manipulation] Can State.CodeCheckController.Value at line 325 be pointed to a malicious contract that auto-approves proposals without proper code review? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c019f0d2-6fb9-46e2-a0df-59b58ee6e826?mode=deep",
+    "timestamp": "2026-02-19 04:02:46.774885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [OriginProposer Confusion] Is OriginProposer set to Context.Self at line 336 correct, or should it be Context.Sender, potentially causing authorization confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1d4813d-205f-420e-bfc0-56502a59c170?mode=deep",
+    "timestamp": "2026-02-19 04:03:10.911772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [Inline Call Failure] If Context.SendInline at line 339 fails silently, is State.ContractProposingInputMap left in an inconsistent state with a registered proposal but no actual proposal created? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_730c67b8-2f1f-4b73-809b-188740821b9f?mode=deep",
+    "timestamp": "2026-02-19 04:03:35.786994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: SendUserContractProposal()] [Params Manipulation] Can the @params ByteString parameter at line 312 be manipulated to inject malicious data into the CreateProposalInput at line 332? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a94379a-0848-400a-8e95-8b24bda9b0eb?mode=deep",
+    "timestamp": "2026-02-19 04:04:01.501256",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertUserDeployContract()] [Symbol Check Bypass] If Context.Variables.NativeSymbol == primaryTokenSymbol at line 349, does the function return early at line 351 without any permission check, allowing unrestricted deployment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cbb73a5-31fc-44a3-92dd-00bbd2cc313a?mode=deep",
+    "timestamp": "2026-02-19 04:04:27.608744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertUserDeployContract()] [Whitelist Centralization] Does the whitelist check at line 356 using State.ParliamentContract.GetProposerWhiteList create a centralization point where only whitelisted addresses can deploy on side chains? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71eacc8f-0fb3-437e-bc76-616b3db4397c?mode=deep",
+    "timestamp": "2026-02-19 04:04:54.467090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertUserDeployContract()] [Cross-Chain Inconsistency] Can the primaryTokenSymbol check at line 348-349 be exploited on different chains where symbol values might not match expected values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d24f4310-d856-4c88-b187-b53b8c1e71d0?mode=deep",
+    "timestamp": "2026-02-19 04:05:22.066421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertUserDeployContract()] [Empty Whitelist Attack] If whitelist.Proposers at line 356 is empty, does the Contains check fail for all addresses, causing a DOS on contract deployment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc9f8e87-bf88-4cd4-a895-2985ef9d93c6?mode=deep",
+    "timestamp": "2026-02-19 04:05:52.341871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireTokenContractContractAddressSet()] [Contract Address Manipulation] Can State.TokenContract.Value be set to a malicious token contract address at line 362-363, allowing fake token information to pass checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d534568-5cef-4ed9-b8e7-99b1213b3e2c?mode=deep",
+    "timestamp": "2026-02-19 04:06:23.320774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: RequireTokenContractContractAddressSet()] [Name Resolution Attack] Can Context.GetContractAddressByName at line 363 return an incorrect address if SmartContractConstants.TokenContractSystemName is manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_479f6a73-656b-4ff9-8d5f-cb288d173aa3?mode=deep",
+    "timestamp": "2026-02-19 04:06:51.458141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertContractVersion()] [Version Check Bypass] Can Context.CheckContractVersion at line 368-374 be bypassed by crafting a SmartContractRegistration with manipulated Version or CodeHash fields? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9890192a-9aed-43d4-aa68-dc0b4cd955e3?mode=deep",
+    "timestamp": "2026-02-19 04:07:23.727792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertContractVersion()] [Version Downgrade] If IsSubsequentVersion check at line 375 fails, can an attacker still deploy by manipulating the currentVersion parameter to be lower than actual? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f619a30-642f-4da8-be2b-e339aa718dc6?mode=deep",
+    "timestamp": "2026-02-19 04:07:56.360904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertContractVersion()] [CodeHash Mismatch] Can the CodeHash computed at line 373 differ from the actual code hash, allowing mismatched code to pass version checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42afcd57-b40a-47ff-ae37-db72295dfd60?mode=deep",
+    "timestamp": "2026-02-19 04:08:29.082510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertContractNotExists()] [Race Condition] Between checking State.SmartContractRegistrations[codeHash] at line 381 and deploying, can another transaction deploy with the same codeHash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c8f6f59-af2d-41bc-bac1-27fb592efab2?mode=deep",
+    "timestamp": "2026-02-19 04:09:02.415860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertContractNotExists()] [Hash Collision] Can two different code bytearray produce the same codeHash, causing AssertContractNotExists to incorrectly fail for unique code? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aeb4377b-2a25-4b1f-bc79-cd03fc7bcb4b?mode=deep",
+    "timestamp": "2026-02-19 04:09:33.621871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertInlineDeployOrUpdateUserContract()] [Origin Spoofing] Can Context.Origin at line 386 be manipulated to equal Context.Sender, bypassing the inline transaction restriction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ab1c549-c528-4b0f-a528-daa6f57ffdb7?mode=deep",
+    "timestamp": "2026-02-19 04:10:05.682488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertInlineDeployOrUpdateUserContract()] [Side Chain Bypass] Does the !IsMainChain() check at line 386 allow unrestricted inline deployments on side chains, potentially enabling cross-chain attack vectors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69b89573-2bba-4d75-a962-3bf8c54d41c5?mode=deep",
+    "timestamp": "2026-02-19 04:10:37.351640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: AssertInlineDeployOrUpdateUserContract()] [IsMainChain Manipulation] Can the IsMainChain function be manipulated to return false on the main chain, disabling inline transaction protection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83ea09cd-87d2-465d-94d4-4e9f6b432469?mode=deep",
+    "timestamp": "2026-02-19 04:11:08.189899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: IsMainChain()] [Contract Existence Check] Does checking for TreasuryContractSystemName at line 392 reliably distinguish main chain from side chains, or can side chains deploy treasury contracts to spoof this check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4417170-462b-471b-beae-44ce1b2d1cab?mode=deep",
+    "timestamp": "2026-02-19 04:11:35.879368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: IsMainChain()] [Name Resolution Failure] If Context.GetContractAddressByName fails at line 392, does it return null or throw, and can this be exploited to misclassify chain type? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1b73978-33dd-4285-88a3-848050770d44?mode=deep",
+    "timestamp": "2026-02-19 04:12:06.883252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: ValidateContractOperation()] [Null Check Bypass] Can contractOperation.Deployer.Value.IsNullOrEmpty() at line 397 be bypassed by providing a Deployer with non-null but empty Value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0523732b-271e-4097-a4e6-351d23995ba6?mode=deep",
+    "timestamp": "2026-02-19 04:12:37.484991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Helper.cs] [Function: ValidateContractOperation()] [Salt Manipulation] Can contractOperation.Salt at line 399 be set to a predictable value allowing attackers to precompute and squat contract addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f51cc27-6378-4342-954b-62190395c21f?mode=deep",
+    "timestamp": "2026-02-19 04:13:05.797478",
+    "report_generated": false
+  }
+]
