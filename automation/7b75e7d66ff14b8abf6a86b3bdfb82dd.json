@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextMinerPubkey()] [Consensus Manipulation] If all miners have ExpectedMiningTime <= Context.CurrentBlockTime, the function defaults to returning the extra block producer. Can an attacker manipulate block timestamps to force specific miners to be selected, potentially enabling censorship or block withholding attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_612e5e72-2b97-411c-9c42-2636ccf81461?mode=deep",
+    "timestamp": "2026-02-19 07:22:15.087377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextMinerPubkey()] [Null Reference] When TryToGetCurrentRoundInformation fails, the function returns empty StringValue. If subsequent code relies on this value without validation, could it cause consensus failures or allow unauthorized block production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c15762d3-b2eb-4e41-be11-12ce2c2b7b7f?mode=deep",
+    "timestamp": "2026-02-19 07:22:37.126928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextMinerPubkey()] [Time Manipulation] The FirstOrDefault check on line 97 compares ExpectedMiningTime with Context.CurrentBlockTime. Can a miner with control over block timestamp manipulation skip legitimate miners by advancing time slightly to make all ExpectedMiningTime values past? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e19768ba-d190-4aad-9168-d378d9fcbb85?mode=deep",
+    "timestamp": "2026-02-19 07:22:59.786409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextMinerPubkey()] [DOS Attack] If RealTimeMinersInformation.Values is empty or all miners have identical ExpectedMiningTime values, could the FirstOrDefault/First operations fail or return inconsistent results, causing consensus deadlock? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_911717a0-d4aa-466b-a265-3e0e581fc5fd?mode=deep",
+    "timestamp": "2026-02-19 07:23:23.305865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextMinerPubkey()] [Edge Case] When exactly at the boundary where ExpectedMiningTime == Context.CurrentBlockTime, does the comparison on line 97 correctly handle the equality case, or could it skip valid miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_381b5484-a630-4fa3-aab2-3a65881a668c?mode=deep",
+    "timestamp": "2026-02-19 07:23:47.361549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Authorization Bypass] The comment on lines 105-108 admits the implementation can be incorrect if all nodes recover from a strike longer than one round. Can an attacker exploit this by forcing all nodes offline temporarily to bypass miner validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48c25346-294e-4f21-a789-baa406dfd9a9?mode=deep",
+    "timestamp": "2026-02-19 07:24:13.132357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Time Slot Manipulation] Lines 162-167 validate normal time slot using miningInterval. If an attacker can manipulate Context.CurrentBlockTime within the AddMilliseconds window, can they extend their mining window indefinitely or steal other miners' slots? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35d84639-d99e-4486-8ca1-0e256529f14c?mode=deep",
+    "timestamp": "2026-02-19 07:24:38.401240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Extra Block Producer Bypass] Lines 150-155 check if ExtraBlockProducerOfPreviousRound matches pubkey when Context.CurrentBlockTime <= round start time. Can a miner from previous round continue producing blocks by manipulating this check, violating round transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23b48cd9-692f-4e3c-9db1-095fdfd699cb?mode=deep",
+    "timestamp": "2026-02-19 07:25:04.858225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Saving Time Slot Race] Lines 181-189 implement ArrangeAbnormalMiningTime for 'saving' miners. Can multiple miners claim the same saving slot simultaneously if timing calculations are identical, causing double-block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e0ead2c-c840-4dd8-8449-cb1d469893da?mode=deep",
+    "timestamp": "2026-02-19 07:25:31.684320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [First Round Exploit] Lines 192-216 have special logic for round number 1. Can an attacker manipulate Order values or ActualMiningTimes to pass the passedSlotsCount check fraudulently and mine out-of-turn in the genesis round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3db225e0-e0fa-430e-abb2-3a7157e556d8?mode=deep",
+    "timestamp": "2026-02-19 07:25:59.176572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [IsMinerListJustChanged Bypass] Line 142-144 skips RealTimeMinersInformation.ContainsKey check if IsMinerListJustChanged is true. Can an attacker who knows miner list will change inject themselves into mining rotation before official list update? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a76e7ce3-2cc9-4de6-ba9f-d702790c0e8c?mode=deep",
+    "timestamp": "2026-02-19 07:26:28.097340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Arithmetic Overflow] Lines 207-210 calculate passedSlotsCount using Sub, Add, and Div operations. Can integer overflow in these calculations cause incorrect slot assignment, allowing unauthorized mining? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb0debdd-9b9b-488e-ab4c-710fe685f7f7?mode=deep",
+    "timestamp": "2026-02-19 07:26:58.148439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Null Miner Information] Line 158 directly accesses RealTimeMinersInformation[pubkey] without checking existence. If pubkey was just removed (race condition), could KeyNotFoundException crash consensus or be caught and exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c99e9e50-9d87-496f-b723-f10045bda778?mode=deep",
+    "timestamp": "2026-02-19 07:27:29.219356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Extra Block Time Exploitation] Lines 173-178 check extra block time using GetExtraBlockMiningTime(). Can an attacker who controls the supposed extra block producer delay extra block production indefinitely while preventing round advancement? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8f6b14c-40f1-48bc-ba29-6c0819ec55ca?mode=deep",
+    "timestamp": "2026-02-19 07:28:00.527171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Single() Operation Risk] Line 170 uses Single() to get extra block producer. If multiple miners have IsExtraBlockProducer=true due to corruption, will this throw an exception and halt consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59d09f71-ed85-414c-be99-18988b737b02?mode=deep",
+    "timestamp": "2026-02-19 07:28:31.714298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [TotalMilliseconds Underflow] Line 183 uses nextArrangeMiningTime.AddMilliseconds(-currentRound.TotalMilliseconds()). Can negative TotalMilliseconds or overflow in subtraction produce incorrect actualArrangedMiningTime, allowing out-of-order mining? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c95a75ca-6772-43d0-9722-98b9760604f5?mode=deep",
+    "timestamp": "2026-02-19 07:29:03.701195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Order Manipulation in First Round] Lines 204-205 retrieve currentMinerOrder using Single(). If multiple miners have same Order value, will Single() throw exception, or can attacker inject duplicate Orders to DOS consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a222642d-3755-4967-a598-ae1a4219052c?mode=deep",
+    "timestamp": "2026-02-19 07:29:35.836388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [ActualMiningTimes.Last() Empty] Line 202 calls ActualMiningTimes.Last() without checking if collection is empty. Can this throw InvalidOperationException in edge cases, halting block validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06068349-9610-4d20-ad0e-9f964c45aa96?mode=deep",
+    "timestamp": "2026-02-19 07:30:06.882408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Milliseconds() Precision Loss] Line 207 converts time difference to Milliseconds(). Can precision loss in conversion cause off-by-one errors in passedSlotsCount, leading to incorrect miner authorization? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d61d1ed3-d68c-4b51-a329-dd8bc599147a?mode=deep",
+    "timestamp": "2026-02-19 07:30:38.832808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsCurrentMiner()] [Multiple True Paths] The function has multiple return true paths (lines 154, 166, 177, 188, 213). Can timing race conditions allow multiple miners to simultaneously validate as current miner for the same slot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0cb810f5-a864-493a-8e5c-cacd53a0a359?mode=deep",
+    "timestamp": "2026-02-19 07:31:10.948049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: ConvertAddressToPubkey()] [Address Collision] Lines 132-133 convert hex string to address for comparison. Can an attacker generate a colliding address that matches a legitimate miner's derived address to impersonate them? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_381c2e90-7f19-4098-9949-30717c23f912?mode=deep",
+    "timestamp": "2026-02-19 07:31:44.604352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: ConvertAddressToPubkey()] [Null Return Handling] Function returns null on line 127 if TryToGetCurrentRoundInformation fails. Is null properly handled by callers, or can it cause null reference exceptions in authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b529154-ed38-43b1-88ff-a2d2201a086b?mode=deep",
+    "timestamp": "2026-02-19 07:32:17.778291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: ConvertAddressToPubkey()] [HexStringToByteArray Parsing] Line 133 uses HexStringToByteArray which could fail on malformed hex. Are exceptions caught, or can malformed miner pubkeys in state crash this function? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7ac9eb7-69cd-462c-9b07-2d2fbf48ecf9?mode=deep",
+    "timestamp": "2026-02-19 07:32:50.541363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: ConvertAddressToPubkey()] [Ambiguous Miner Lookup] Lines 128-130 combine current and previous round miners. If a pubkey appears in both rounds with different derived addresses, which one takes precedence, and can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f760b2f7-c6a8-4261-92a8-0a66405cbede?mode=deep",
+    "timestamp": "2026-02-19 07:33:22.149348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: ConvertAddressToPubkey()] [FirstOrDefault Return] Line 132 uses FirstOrDefault which returns null if no match. Can an attacker register with an address that doesn't derive from any known pubkey to bypass IsCurrentMiner checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fb88e3f-7d34-48ef-9551-087581e7723e?mode=deep",
+    "timestamp": "2026-02-19 07:33:51.755427",
+    "report_generated": false
+  }
+]
