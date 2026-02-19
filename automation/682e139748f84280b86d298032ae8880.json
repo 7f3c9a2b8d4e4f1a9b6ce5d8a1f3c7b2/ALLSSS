@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [Time Manipulation] When currentRound.RoundNumber == 1 (line 117), can the first miner manipulate actualBlockchainStartTimestamp by controlling their ActualMiningTimes to bias all future time-based calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0b65cd4-addc-4b60-bc11-50f19844b896?mode=deep",
+    "timestamp": "2026-02-19 06:28:30.020848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [Logic Error] If currentRound.FirstActualMiner() returns null at line 121, actualBlockchainStartTimestamp defaults to Context.CurrentBlockTime - can this be exploited to set an arbitrary blockchain start time? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cf7f6f6-3166-4a84-81e8-ccc6678cefad?mode=deep",
+    "timestamp": "2026-02-19 06:28:52.172677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [State Manipulation] Can SetBlockchainStartTimestamp be called multiple times in round 1 with different values if ProcessNextRound is invoked repeatedly, allowing timestamp manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6fd5ebe-d4ea-4de2-b7c0-d153f5ffdf96?mode=deep",
+    "timestamp": "2026-02-19 06:29:14.529620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [External Call Failure] If GetMinersCount(nextRound) returns 0 at line 128, the UpdateMinersCount call is skipped - can this cause Election contract state to desync from consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3defc08f-0a53-4c66-8f2a-7377efd1f78d?mode=deep",
+    "timestamp": "2026-02-19 06:29:37.911878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [Logic Error] Is there a check that State.ElectionContract.Value is initialized before Send at line 131? Could a null ElectionContract cause a revert when State.IsMainChain.Value is true? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00c61e10-dc34-40e2-b9c7-a6d767dc3eb8?mode=deep",
+    "timestamp": "2026-02-19 06:30:01.913626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [State Consistency] If State.ElectionContract.UpdateMinersCount.Send fails at lines 131-134, does the transaction continue or revert? Can this create state inconsistency between consensus and election? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f65dd43-f811-468f-80d9-64be3ee79526?mode=deep",
+    "timestamp": "2026-02-19 06:30:26.981975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound()] [State Manipulation] Can RecordMinedMinerListOfCurrentRound at line 112 be frontrun or called multiple times to corrupt the MinedMinerListMap with fake miner data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9db8172-c127-4c93-9a65-da94408dd794?mode=deep",
+    "timestamp": "2026-02-19 06:30:52.672048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [State Consistency] If TryToGetTermNumber fails at line 170, the Assert revert prevents term update - but has RecordMinedMinerListOfCurrentRound (line 165) already modified state, creating inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9535c34d-bcc2-4b21-baed-a354eb45c91f?mode=deep",
+    "timestamp": "2026-02-19 06:31:18.814525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Integer Overflow] Can nextRound.TermNumber or nextRound.RoundNumber overflow when updated at lines 173-174, causing term/round number wraparound and breaking round ordering? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1890c443-cf19-4cad-a1e3-e8c5ffd88fad?mode=deep",
+    "timestamp": "2026-02-19 06:31:47.992927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Authorization] Does TryToUpdateTermNumber and TryToUpdateRoundNumber at lines 173-174 have proper authorization checks, or can any miner trigger arbitrary term/round number updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c5a9c7b-0284-48a4-bae2-05b048392c8b?mode=deep",
+    "timestamp": "2026-02-19 06:32:16.901428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [State Manipulation] Can UpdateMinersCountToElectionContract at line 176 fail after term/round numbers are updated (lines 173-174), causing Election contract to have stale miner counts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_283f1bba-6b53-48d7-b39f-bd521668d55a?mode=deep",
+    "timestamp": "2026-02-19 06:32:45.319603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Logic Error] At lines 179-183, MissedTimeSlots and ProducedBlocks are reset to 0 for all miners in nextRound - can this be exploited to erase punishment records before they're processed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7e9f685-5aae-441b-9e72-04d808b5e448?mode=deep",
+    "timestamp": "2026-02-19 06:33:16.116808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [State Consistency] Is resetting MissedTimeSlots=0 and ProducedBlocks=0 at lines 181-182 done before or after CountMissedTimeSlots() at line 168? Could missed slots be counted then immediately cleared? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f876dee-5d52-478c-8a17-cb87ce739b59?mode=deep",
+    "timestamp": "2026-02-19 06:33:47.695178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [DoS] Can an attacker create a nextRound with a very large RealTimeMinersInformation map (line 189) to cause the foreach loop (lines 179-183) or AddRange to consume excessive gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25fb9102-0204-4768-ba0e-63bf3e5a3862?mode=deep",
+    "timestamp": "2026-02-19 06:34:19.939712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Authorization] Does SetMinerList at line 190 validate that the miners MinerList matches nextRound.RealTimeMinersInformation, or can mismatched miner lists be set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50701c8a-f6b7-4b25-bdc6-2c51de828b47?mode=deep",
+    "timestamp": "2026-02-19 06:34:51.950523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Logic Error] If SetMinerList returns false at line 190, the Assert at line 190 reverts - but previous state changes (term/round numbers, miner stats reset) may already be committed, causing partial state updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a703e17-932a-401f-ba7f-2d0f1d15677f?mode=deep",
+    "timestamp": "2026-02-19 06:35:24.063766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [State Manipulation] Can State.FirstRoundNumberOfEachTerm be overwritten at line 193 with arbitrary round numbers for existing terms, breaking term-to-round mappings? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4bea6d6b-2e5c-439b-aa7a-1ab6db440fe0?mode=deep",
+    "timestamp": "2026-02-19 06:35:57.247677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Logic Error] Is there validation that nextRound.TermNumber is greater than all existing term numbers before setting State.FirstRoundNumberOfEachTerm[nextRound.TermNumber]? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56399b02-498f-4ed2-9317-7db8f4f83464?mode=deep",
+    "timestamp": "2026-02-19 06:36:29.288655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Logic Error] If TryToGetPreviousRoundInformation fails at line 198, the Assert at line 199 reverts - but AddRoundInformation (line 196) has already added nextRound. Can this create orphaned round data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b7247d1-9899-49c0-a3c0-e28b46654808?mode=deep",
+    "timestamp": "2026-02-19 06:37:01.000765",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Treasury Manipulation] Can DonateMiningReward at line 203 be manipulated to always return true or false, controlling whether Treasury.Release is called and draining or freezing Treasury funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b8683a3-fc68-4305-991c-cf0896bd7340?mode=deep",
+    "timestamp": "2026-02-19 06:37:33.234752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Re-entrancy] If State.TreasuryContract.Release.Send at lines 205-208 makes external calls, can it re-enter ProcessNextTerm before completion, causing double treasury release for the same termNumber? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c2f9d0c-b70e-4fa2-85d3-dd73017848d5?mode=deep",
+    "timestamp": "2026-02-19 06:38:03.968727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Integer Issue] Is termNumber used at line 207 the same as nextRound.TermNumber? Could there be an off-by-one error where Treasury is released for the wrong term period? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d92d90d-249d-44b9-ae65-8e106e19ce37?mode=deep",
+    "timestamp": "2026-02-19 06:38:34.641725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [State Consistency] Can State.ElectionContract.TakeSnapshot.Send at lines 213-218 fail after Treasury.Release, leaving Election contract with stale snapshot data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09b5abd9-cde7-4077-89f4-483d5f2104d2?mode=deep",
+    "timestamp": "2026-02-19 06:39:08.739952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Logic Error] Does previousRound.GetMinedBlocks() at line 215 accurately reflect mined blocks after MissedTimeSlots and ProducedBlocks were reset at lines 181-182? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a0378eb-617a-40e4-aac4-fb813e2e283c?mode=deep",
+    "timestamp": "2026-02-19 06:39:41.472917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm()] [Data Integrity] Can previousRound.RoundNumber at line 217 be manipulated to point to a different round than expected, causing TakeSnapshot to record incorrect voting data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea85b2ab-b100-4ffc-80e8-a264beefb9e9?mode=deep",
+    "timestamp": "2026-02-19 06:40:13.619372",
+    "report_generated": false
+  }
+]
