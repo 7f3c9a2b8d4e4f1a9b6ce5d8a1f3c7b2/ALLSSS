@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [Authorization Bypass] Can an attacker create multiple organizations with the same address by providing identical CreateOrganizationInput but different CreationToken values, potentially bypassing the duplicate organization check at line 84? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f6ce7f8-33e2-4a3d-b80c-b62d75c300e4?mode=deep",
+    "timestamp": "2026-02-19 11:39:08.562142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [State Manipulation] Does the check 'State.Organizations[organizationAddress] == null' at line 84 properly prevent organization re-creation if an attacker first creates then somehow removes an organization from state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_640d8bfe-fc8c-40d2-b6b2-604349ce22c6?mode=deep",
+    "timestamp": "2026-02-19 11:39:30.906669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [Validation Bypass] Can an attacker bypass the Validate(organization) check at line 83 by crafting ProposalReleaseThreshold values that pass validation but create exploitable voting scenarios? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_057f8d16-48b6-4dfd-a76f-34fd94bcf54b?mode=deep",
+    "timestamp": "2026-02-19 11:39:54.078874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [DoS Attack] Can an attacker spam organization creation to exhaust state storage, given that line 84-91 doesn't have any rate limiting or cost mechanism beyond transaction fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_155ca728-f1f6-482c-bfa2-f233acd6187c?mode=deep",
+    "timestamp": "2026-02-19 11:40:18.276213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [Integer Overflow] In the organization validation logic, can MinimalVoteThreshold, MinimalApprovalThreshold, MaximalAbstentionThreshold, or MaximalRejectionThreshold values cause integer overflow when compared against organizationMemberCount? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d099fdb1-fcc1-47ae-8f7b-345258be236d?mode=deep",
+    "timestamp": "2026-02-19 11:40:42.957392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [Logic Error] Can an organization be created with ProposerWhiteList containing addresses not in OrganizationMemberList, allowing non-members to propose but never reach approval threshold? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b44b6499-1a8b-4f5f-a516-04eacbeac583?mode=deep",
+    "timestamp": "2026-02-19 11:41:08.355393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [Address Collision] Can two different CreateOrganizationInput values with different CreationTokens produce the same organizationAddress via CalculateOrganizationHashAddressPair, causing state overwrites? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdf84d76-55ca-47c7-8fe4-d5f07be0171b?mode=deep",
+    "timestamp": "2026-02-19 11:41:34.127734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganization()] [Validation Bypass] Can an attacker create an organization with empty or minimal ProposerWhiteList/OrganizationMemberList that technically passes validation but creates unusable governance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d71f7a1-e7ff-4f03-b6a5-3cda59cd82e9?mode=deep",
+    "timestamp": "2026-02-19 11:42:00.158630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganizationBySystemContract()] [Authorization Bypass] Can a non-system contract impersonate a system contract address to bypass the authorization check at line 98-99 and create privileged organizations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9306981-e0e3-47b6-be49-5feaf829aae1?mode=deep",
+    "timestamp": "2026-02-19 11:42:28.292363",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganizationBySystemContract()] [Callback Manipulation] Can an attacker exploit the SendInline callback at line 102 to re-enter CreateOrganizationBySystemContract or manipulate the calling system contract's state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eaf136ec-9916-4d47-8f1c-5532ca2b0b52?mode=deep",
+    "timestamp": "2026-02-19 11:42:55.407872",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganizationBySystemContract()] [DoS Attack] Can a malicious system contract provide an invalid OrganizationAddressFeedbackMethod at line 101-102 causing SendInline to fail and blocking organization creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d8e51f9-063e-4b19-a550-07ba28fea1ad?mode=deep",
+    "timestamp": "2026-02-19 11:43:22.865161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateOrganizationBySystemContract()] [Authorization Bypass] Does Context.GetSystemContractNameToAddressMapping() at line 98 properly validate all system contracts, or can newly added/modified system contracts bypass intended restrictions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22a47897-2244-490f-8958-2eaa9cbace5d?mode=deep",
+    "timestamp": "2026-02-19 11:43:50.204001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposal()] [Authorization Bypass] Can an attacker bypass the AssertIsAuthorizedProposer check at line 109 by exploiting race conditions in ProposerWhiteList modifications? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_161aa746-f67a-467a-8d71-97a703f837e1?mode=deep",
+    "timestamp": "2026-02-19 11:44:20.853758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposal()] [Proposal Collision] Can an attacker predict or force proposal ID collisions via GenerateProposalId to overwrite existing proposals, bypassing the check at line 163? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3de24f0-5810-46cd-ad5c-e58e7d5970e7?mode=deep",
+    "timestamp": "2026-02-19 11:44:50.236297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposal()] [DoS Attack] Can an attacker create proposals with extremely long Title (255 chars), Description (10200 chars), or ProposalDescriptionUrl (255 chars) at maximum allowed length to cause state bloat? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74f56928-41e3-405c-a41a-ef6a89ead896?mode=deep",
+    "timestamp": "2026-02-19 11:45:19.663919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposal()] [Time Manipulation] Can an attacker create proposals with ExpiredTime far in the future to permanently lock proposal storage, since cleanup requires expiry at line 286? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f15a5dde-9ec3-4388-9897-28a9011d90c2?mode=deep",
+    "timestamp": "2026-02-19 11:45:47.964279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposal()] [Validation Bypass] Can an attacker create a proposal with null or invalid ToAddress/ContractMethodName that passes initial validation but fails during Release execution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2c2fda7-2370-4e99-b16e-10a7d992deee?mode=deep",
+    "timestamp": "2026-02-19 11:46:15.725871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposalBySystemContract()] [Authorization Bypass] Can a system contract create proposals on behalf of any OriginProposer without proper authorization checks beyond line 118? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e96ee7a8-c32b-4c19-abe7-a74c95f402e9?mode=deep",
+    "timestamp": "2026-02-19 11:46:46.155329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposalBySystemContract()] [Proposer Impersonation] At line 118, can a malicious system contract specify any arbitrary OriginProposer address to bypass whitelist restrictions and create unauthorized proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00b522c7-8fce-4b4f-9236-6702e106bfa9?mode=deep",
+    "timestamp": "2026-02-19 11:47:15.640183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateProposalBySystemContract()] [State Inconsistency] Does line 119 properly set the Proposer field in the created proposal, or does it use Context.Sender (system contract) instead of OriginProposer, breaking release authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d86a8c2-b626-431b-9c48-b44172c9d746?mode=deep",
+    "timestamp": "2026-02-19 11:47:45.744864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Approve()] [Double Voting] Can an attacker vote multiple times by exploiting race conditions between AssertProposalNotYetVotedBySender check at line 126 and vote recording at line 130? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab62c119-9a88-4d83-a2a6-5f463c423045?mode=deep",
+    "timestamp": "2026-02-19 11:48:15.411269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Approve()] [Authorization Bypass] Can a non-member temporarily gain membership, vote, then lose membership while their vote remains counted in threshold calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff410feb-3d1d-45fd-bf07-6e078187fd32?mode=deep",
+    "timestamp": "2026-02-19 11:48:45.754655",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Approve()] [State Manipulation] After voting at line 130, can an attacker remove themselves from OrganizationMemberList but keep their vote counted in IsReleaseThresholdReached calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b44c6ee2-f4f8-4d19-b0b4-298cf9286524?mode=deep",
+    "timestamp": "2026-02-19 11:49:16.379284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Approve()] [Proposal Expiry] Does GetValidProposal at line 125 properly check expiry before allowing votes, or can votes be cast on expired proposals that haven't been cleared? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_555ded47-a93f-4689-b30c-8112255dfe9f?mode=deep",
+    "timestamp": "2026-02-19 11:49:48.217326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Approve()] [DoS Attack] Can an attacker vote on proposals immediately before expiry to prevent the original proposer from releasing, since only the proposer can release at line 186? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4a57c1b-26a6-4857-9986-4e094ea1bcec?mode=deep",
+    "timestamp": "2026-02-19 11:50:18.472053",
+    "report_generated": false
+  }
+]
