@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Static Method Side Effects] This is a static method that modifies minerInRound and round objects passed by reference. Can concurrent calls with the same round object cause race conditions where multiple miners' secret sharing data gets interleaved, corrupting the shared secret reconstruction? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0befe4e-00b7-4b9e-b41e-9deb5b67bc09?mode=deep",
+    "timestamp": "2026-02-19 15:27:51.701519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Missing Decryption Verification] The function adds decrypted pieces without verifying that they were correctly decrypted or that they match expected encryption. Can a malicious miner submit arbitrary decrypted values that don't correspond to actual encrypted pieces, poisoning the secret sharing protocol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34ca1e56-df23-403d-9669-f5402cc07fd2?mode=deep",
+    "timestamp": "2026-02-19 15:28:13.997146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [Tiny Block Count Manipulation] ProducedTinyBlocks is incremented but ProducedBlocks is also incremented. Can this cause accounting inconsistencies where ProducedBlocks != ProducedTinyBlocks + ProducedNormalBlocks, breaking reward calculations or tiny block limiting logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_880d628d-21fb-41f7-b2dd-73d1ec08af16?mode=deep",
+    "timestamp": "2026-02-19 15:28:36.790605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [Actual Mining Time Unchecked] tinyBlockInput.ActualMiningTime is added to ActualMiningTimes without validation. Can a miner submit tiny blocks with manipulated timestamps to game timing calculations or create timestamp ordering violations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0aed5c2-c655-44d9-99d3-433b4e1c78b9?mode=deep",
+    "timestamp": "2026-02-19 15:29:00.033686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock()] [No Tiny Block Limit Enforcement] The function increments ProducedTinyBlocks but doesn't check against MaximumTinyBlocksCount within ProcessTinyBlock itself. Can a miner bypass tiny block limits by calling ProcessTinyBlock directly if the limit checking only happens in ResetLatestProviderToTinyBlocksCount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee51e9c2-308c-47b1-bd99-53f9fa896e56?mode=deep",
+    "timestamp": "2026-02-19 15:29:23.882314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Public Key Recovery Failure] Context.RecoverPublicKey() is called without error handling. If signature recovery fails or returns an invalid pubkey, can _processingBlockMinerPubkey be set to null or an incorrect value, bypassing authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_406e5ed9-c3a9-4a38-b4f9-7034011ac0cc?mode=deep",
+    "timestamp": "2026-02-19 15:29:48.703999",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Previous Round Miner Privilege Escalation] The function allows previousRound miners to execute consensus transactions (comment: 'Case a failed miner performing NextTerm'). Can a miner who was removed from the current round due to poor performance exploit this to maintain consensus control indefinitely by repeatedly triggering term transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c534fe8e-1ba8-41b6-ac44-0f762da0800d?mode=deep",
+    "timestamp": "2026-02-19 15:30:14.251402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Miner List Check Race Condition] TryToGetCurrentRoundInformation and TryToGetPreviousRoundInformation are called at the start. If round state changes between these calls and the actual IsInMinerList check, can an attacker exploit the timing window to bypass authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e7366e2-1911-40ed-8c9d-32be3dc1879d?mode=deep",
+    "timestamp": "2026-02-19 15:30:39.974967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Silent Failure Return] PreCheck returns false instead of throwing, and the caller Asserts. But the comment says 'The transaction can still executed successfully if the pre-check failed'. Can this create a scenario where failed authorization still modifies state through side effects before the Assert? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8491a37-6a74-454b-9143-7c70db5319f0?mode=deep",
+    "timestamp": "2026-02-19 15:31:07.848703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ResetLatestProviderToTinyBlocksCount()] [Tiny Block Count Underflow] When currentValue.Pubkey == _processingBlockMinerPubkey, BlocksCount is decremented by 1 using Sub(1). If BlocksCount is already 0, can this underflow cause BlocksCount to wrap to a very large value, allowing unlimited tiny block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a390b092-deb7-4eab-a5d8-1d3e8ff11054?mode=deep",
+    "timestamp": "2026-02-19 15:31:38.251112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ResetLatestProviderToTinyBlocksCount()] [Initial State Race Condition] If State.LatestPubkeyToTinyBlocksCount.Value is null, it's initialized with BlocksCount = MaximumTinyBlocksCount.Sub(1). Can concurrent transactions cause multiple initializations, or can the first miner exploit knowing they get maximum tiny blocks minus 1? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c82ffec9-e6b2-4ebd-b9b3-760d2421cbd0?mode=deep",
+    "timestamp": "2026-02-19 15:32:08.963042",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ResetLatestProviderToTinyBlocksCount()] [Miner Switching Exploit] When currentValue.Pubkey != _processingBlockMinerPubkey, the new miner gets minersCountInTheory.Sub(1) tiny blocks. Can a malicious miner coordinate with other miners to alternate block production, resetting their tiny block count to the maximum on every switch? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9832630c-5d66-4817-bfb0-8b384aba55f4?mode=deep",
+    "timestamp": "2026-02-19 15:32:36.524148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ResetLatestProviderToTinyBlocksCount()] [Miners Count Manipulation] The function uses minersCountInTheory from GetMaximumBlocksCount(). If this value can be manipulated externally (e.g., through configuration changes), can an attacker set it very high to gain excessive tiny block production allowance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfcccf02-99ee-46c2-bf26-886dde176635?mode=deep",
+    "timestamp": "2026-02-19 15:33:08.623438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ResetLatestProviderToTinyBlocksCount()] [Maximum Tiny Blocks Constant Override] The code uses AEDPoSContractConstants.MaximumTinyBlocksCount for initialization. Can an attacker modify this constant through contract upgrades or configuration to change tiny block limits globally, breaking consensus timing assumptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5ed14d5a-bb2f-42fc-a043-eebf4dd1c0a2?mode=deep",
+    "timestamp": "2026-02-19 15:33:41.944423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation() + ProcessNextRound()] [Round Transition Atomicity] ProcessNextRound adds new round information via AddRoundInformation(nextRound) before updating the round number. If the round number update fails, can the added round data become orphaned, causing GetCurrentRoundInformation to return incorrect data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18e2ebfb-686d-49d0-bf4a-1092fd6b9dac?mode=deep",
+    "timestamp": "2026-02-19 15:34:15.658108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation() + ProcessNextTerm()] [Treasury Release Timing Attack] ProcessNextTerm calls Treasury.Release with the OLD termNumber before the term transition completes. Can this create a timing window where treasury releases are double-claimed or missed if the term transition fails midway? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f6eceaa-8c82-4692-83e8-2a08c5af2955?mode=deep",
+    "timestamp": "2026-02-19 15:34:49.934780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue() + PerformSecretSharing()] [Secret Sharing State Mutation] PerformSecretSharing modifies the round object in-place, then ProcessUpdateValue calls TryToUpdateRoundInformation. If the update fails, can the in-memory mutations to encrypted/decrypted pieces be lost, breaking secret sharing continuity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8487fb1a-e25b-4233-a23e-31d0f0a089c9?mode=deep",
+    "timestamp": "2026-02-19 15:35:18.569501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck() + ProcessUpdateValue()] [Miner Authorization Desync] PreCheck sets _processingBlockMinerPubkey and validates them against current/previous rounds, but ProcessUpdateValue accesses currentRound.RealTimeMinersInformation[_processingBlockMinerPubkey] directly. Can a miner who is only in previousRound cause a KeyNotFoundException in ProcessUpdateValue? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e90cfbeb-404b-4209-b9e7-a8b73fa6a5bc?mode=deep",
+    "timestamp": "2026-02-19 15:35:46.764336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound() + RecordMinedMinerListOfCurrentRound()] [Round State Race Condition] RecordMinedMinerListOfCurrentRound is called before ProcessNextRound, using currentRound. If evil miner detection in ProcessNextRound modifies ElectionContract state that affects GetMinedMiners(), can the recorded list be inconsistent with final round state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_864611d9-4c56-49d1-846a-bb8b663d0c9a?mode=deep",
+    "timestamp": "2026-02-19 15:36:15.624159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm() + ProcessUpdateValue()] [LIB Calculation Cross-Term] ProcessUpdateValue calculates LIB using currentRound and previousRound. During a term transition processed by ProcessNextTerm, if LIB calculation happens immediately after, can it use rounds from different terms, causing invalid LIB heights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c71b339b-7161-4480-ae71-f740bd29fbb9?mode=deep",
+    "timestamp": "2026-02-19 15:36:44.468412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessTinyBlock() + ResetLatestProviderToTinyBlocksCount()] [Tiny Block Limit Bypass] ProcessTinyBlock increments ProducedTinyBlocks unconditionally, while ResetLatestProviderToTinyBlocksCount manages the limit. If ResetLatestProviderToTinyBlocksCount executes after ProcessTinyBlock in the same transaction, can the miner produce one extra tiny block beyond the limit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2dd78ed-fc55-456c-ac38-456b511f9111?mode=deep",
+    "timestamp": "2026-02-19 15:37:13.252012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation() VRF Verification] [Random Number Reuse] If multiple consensus transactions in consecutive blocks use the same previousRandomHash (due to failed VRF verification in prior blocks), can this allow miners to precompute valid randomNumber values and manipulate consensus outcomes? (Critical)",
+    "url": "https://deepwiki.com/grass-dev-pa/AElf-024",
+    "timestamp": "2026-02-19 15:46:55.607513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextRound() + GetLatestSignature()] [Signature Initialization Attack] GetLatestSignature() may return null during the first rounds. If ProcessNextRound or other functions rely on non-null signatures for cryptographic operations, can the null signature cause verification bypasses or exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1fb6a1c-6831-47c6-8bb3-e4e3c51d7cf0?mode=deep",
+    "timestamp": "2026-02-19 15:47:17.904198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessNextTerm() + RecordMinedMinerListOfCurrentRound()] [Miner List Cleanup During Term Transition] RecordMinedMinerListOfCurrentRound removes round data for roundNumber - 3. During a term transition where round numbers reset or jump, can this cleanup logic delete the wrong round data or fail to clean up properly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f626b16d-ba97-4272-b882-673f15651146?mode=deep",
+    "timestamp": "2026-02-19 15:47:41.385241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation() + ProcessUpdateValue()] [Collusion Attack on LIB] If 51% of miners collude and provide coordinated ImpliedIrreversibleBlockHeight values in ProcessUpdateValue, can they force LastIrreversibleBlockHeightCalculator to confirm invalid blocks by manipulating the LIB calculation threshold? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e5604f0-d73d-4918-9278-c98b36ae33b8?mode=deep",
+    "timestamp": "2026-02-19 15:48:05.568644",
+    "report_generated": false
+  }
+]
