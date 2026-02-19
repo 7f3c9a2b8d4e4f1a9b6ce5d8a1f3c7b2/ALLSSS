@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Usage in GetConsensusCommand] [Tiny Block Count] When GetConsensusCommand checks LatestPubkeyToTinyBlocksCount.BlocksCount < 0 at line 33 and forces NextRound, does this interact incorrectly with SideChainConsensusBehaviourProvider also returning NextRound? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0e3de90-92dc-4b7a-b991-95c77148c50c?mode=deep",
+    "timestamp": "2026-02-19 13:59:30.656967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Missing Term Logic] Unlike MainChainConsensusBehaviourProvider which calls CurrentRound.NeedToChangeTerm with blockchainStartTimestamp and periodSeconds, does SideChainConsensusBehaviourProvider's lack of term change logic allow stale miner lists to persist indefinitely on side chains? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_750b7be3-fdf3-47e8-9488-2fd186e085d1?mode=deep",
+    "timestamp": "2026-02-19 13:59:52.845755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Missing Parameters] Does the absence of blockchainStartTimestamp and periodSeconds parameters (present in MainChainConsensusBehaviourProvider constructor) prevent side chains from validating consensus timing correctly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f672a293-c247-4a5f-8230-1761168a81bf?mode=deep",
+    "timestamp": "2026-02-19 14:00:15.332729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Term Transition] If a side chain's parent chain forces a term change via cross-chain messages, can the SideChainConsensusBehaviourProvider's unconditional NextRound return prevent the side chain from synchronizing its miner list? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08b0420a-9937-4bce-9b0a-b7519ca87e07?mode=deep",
+    "timestamp": "2026-02-19 14:00:38.434969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Election Integration] Does the simplified NextRound logic prevent side chains from integrating with Election contract updates, causing divergence from intended miner rotation schedules? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e415b624-9c24-4b3f-b2fa-5a3c4a37c5a2?mode=deep",
+    "timestamp": "2026-02-19 14:01:02.349107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Parent Chain Sync] When parent chain miners change terms, does the side chain's unconditional NextRound return prevent proper synchronization of miner lists via cross-chain indexing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4efb295-421f-447b-b098-5b5562f3fdf1?mode=deep",
+    "timestamp": "2026-02-19 14:01:27.162164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Consensus Divergence] Can the simplified side chain consensus logic cause side chain block production to diverge from parent chain timing expectations, breaking cross-chain merkle proof validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6de45490-656f-4b21-92ef-5d0beca23450?mode=deep",
+    "timestamp": "2026-02-19 14:01:52.401728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Cross-Chain State] If currentRound is derived from cross-chain indexed data, can stale or manipulated Round information from the parent chain cause SideChainConsensusBehaviourProvider to return incorrect behaviours? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebc8f0f6-bd40-4aea-9508-3709957d1d5c?mode=deep",
+    "timestamp": "2026-02-19 14:02:21.783549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [DOS] Can an attacker spam consensus command requests, causing repeated instantiation of SideChainConsensusBehaviourProvider and NextRound behaviour returns, forcing premature round transitions and disrupting side chain stability? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_354a26f3-e031-4b82-b9be-1c0fc0729b9d?mode=deep",
+    "timestamp": "2026-02-19 14:02:53.390241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Memory] Can an attacker provide a Round object with maliciously large ActualMiningTimes lists for each miner, causing memory exhaustion when base constructor accesses _minerInRound at line 36? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6ba1791-a597-4cc3-b23d-d121105d6202?mode=deep",
+    "timestamp": "2026-02-19 14:03:26.145961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Round Number Manipulation] Can an attacker manipulate currentRound.RoundNumber to force NextRound returns at arbitrary times, bypassing normal consensus flow and enabling chain reorganization attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_377cb9e6-30d3-4658-a31a-07e0d1dddedb?mode=deep",
+    "timestamp": "2026-02-19 14:03:59.325008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Miner List Manipulation] If currentRound.RealTimeMinersInformation is manipulated to include unauthorized miners, will SideChainConsensusBehaviourProvider process their consensus commands without validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8419a8a5-c5b1-4827-bfca-6d5dadac5ee0?mode=deep",
+    "timestamp": "2026-02-19 14:04:28.895326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [IsTimeSlotPassed Manipulation] Can an attacker manipulate currentRound.GetMiningInterval() to cause _isTimeSlotPassed calculation at base line 35 to return incorrect values, forcing wrong consensus behaviours? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e81bf519-2d91-4d82-8887-b0d6c852b0d8?mode=deep",
+    "timestamp": "2026-02-19 14:05:04.542081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Transaction Safety] When GenerateTransactionListByExtraData receives NextRound behaviour from SideChainConsensusBehaviourProvider, can the generated NextRound transaction at lines 164-171 be front-run or replayed to cause duplicate round transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf9707f3-18b6-411b-98b1-0660a2961da4?mode=deep",
+    "timestamp": "2026-02-19 14:05:35.533937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [NextRound Input] Does the NextRoundInput.Create call in GenerateTransactionListByExtraData properly validate the Round and randomNumber when NextRound is returned, or can malformed inputs cause state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d1c6a63-b093-4c51-870a-0e5e169a9368?mode=deep",
+    "timestamp": "2026-02-19 14:06:11.507174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [State Transition] Can the unconditional NextRound return cause side chain state transitions to skip necessary UpdateValue or TinyBlock states, leading to incomplete round data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f60584e-1504-48a4-a7dc-30fc741eb0e3?mode=deep",
+    "timestamp": "2026-02-19 14:06:48.154838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Round Consistency] If currentRound passed to constructor is inconsistent with on-chain state, will SideChainConsensusBehaviourProvider's behaviour propagate the inconsistency throughout consensus command generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddd9543d-4b8b-4dc8-a126-57e8f9d597ac?mode=deep",
+    "timestamp": "2026-02-19 14:07:21.605617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Validation Logic] Does the simplified NextRound return bypass validation logic that MainChainConsensusBehaviourProvider performs via NeedToChangeTerm, allowing invalid consensus states on side chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c349f593-2f10-46a4-8bd4-fbebe725d991?mode=deep",
+    "timestamp": "2026-02-19 14:07:59.088108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Inherited GetConsensusBehaviour] [Early Return] Can the early return paths in base GetConsensusBehaviour (lines 55, 62, 79, 102, 112, 114) bypass the call to GetConsensusBehaviourToTerminateCurrentRound, making the NextRound override irrelevant in certain scenarios? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d0dffcd-c934-4864-bd97-0d5e651b4889?mode=deep",
+    "timestamp": "2026-02-19 14:08:36.493901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Timestamp Attack] Can an attacker exploit timestamp malleability in currentBlockTime parameter to manipulate _isTimeSlotPassed calculation, forcing specific consensus behaviours that benefit their mining schedule? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d532adc7-fe62-40ec-8684-810599ec7b68?mode=deep",
+    "timestamp": "2026-02-19 14:09:13.660947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Inherited GetConsensusBehaviour] [Time Slot Race] When multiple miners have overlapping time slots and all receive NextRound behaviour, can race conditions cause multiple NextRound transactions to be submitted simultaneously, creating fork risks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af2455d2-17b1-4898-b992-e339341cdb71?mode=deep",
+    "timestamp": "2026-02-19 14:09:51.351576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound] [Selfish Mining] Can malicious miners exploit the predictable NextRound return to perform selfish mining attacks by withholding blocks until round transition, gaining unfair advantages? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1086c94e-ca0c-4037-8005-f3041ff42ef4?mode=deep",
+    "timestamp": "2026-02-19 14:10:28.396903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Order Manipulation] If pubkey corresponds to a miner with manipulated Order field in RealTimeMinersInformation, can the base class logic at lines 98-102 return incorrect behaviours? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91f49b53-64d6-431f-97ce-22ce79821ee6?mode=deep",
+    "timestamp": "2026-02-19 14:11:07.288617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Blocks Count Validation] Does the lack of validation on maximumBlocksCount parameter allow it to be set inconsistently with GetMaximumBlocksCount() state, causing tiny block limit bypasses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1eec060-eb51-4f52-ac6f-c3a3a3a29ce3?mode=deep",
+    "timestamp": "2026-02-19 14:27:38.391678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/SideChainConsensusBehaviourProvider.cs] [Function: Constructor] [Dynamic Count Change] If maximumBlocksCount decreases between provider instantiation and base class checks at line 60, can miners produce more blocks than currently allowed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b72b44b8-c2f2-48cd-a577-a7cc98203276?mode=deep",
+    "timestamp": "2026-02-19 14:28:01.410951",
+    "report_generated": false
+  }
+]
