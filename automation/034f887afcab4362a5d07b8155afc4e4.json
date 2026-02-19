@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Authorization Bypass] Can an attacker provide a validationContext with a manipulated SenderPubkey that exists in ProvidedRound.RealTimeMinersInformation but is not the actual block producer, bypassing miner authentication and allowing unauthorized consensus updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da373bd1-d219-45a6-ad38-4c569c926806?mode=deep",
+    "timestamp": "2026-02-19 00:53:01.664391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Authorization Bypass] If the validationContext.SenderPubkey is validated elsewhere, can an attacker exploit race conditions between pubkey validation and this provider's execution to inject a different pubkey after initial validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9254479-91d9-457b-a8e2-716efeb1dc4b?mode=deep",
+    "timestamp": "2026-02-19 00:53:23.938516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Authorization Bypass] Can an attacker copy OutValue and Signature from a legitimate miner's previous round and submit them under their own pubkey if they can add themselves to ProvidedRound.RealTimeMinersInformation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a8454ec-c8cf-4c12-96aa-81cee89884f2?mode=deep",
+    "timestamp": "2026-02-19 00:53:46.616345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Authorization Bypass] If publicKey does not exist in PreviousRound.RealTimeMinersInformation (line 40), the validation returns true, allowing any new miner to join without proving they participated in previous rounds - can this enable Sybil attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ae267d1-3610-4dde-8bba-ec5c820696a5?mode=deep",
+    "timestamp": "2026-02-19 00:54:09.829899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Authorization Bypass] When PreviousInValue is null (line 42), validation returns true - can a miner intentionally omit PreviousInValue to avoid revealing their previous InValue, breaking the commit-reveal scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3dfc6520-59e7-49d0-8d3b-7dfa19066b03?mode=deep",
+    "timestamp": "2026-02-19 00:54:33.776958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Cryptographic Weakness] The hash validation (line 48) checks if HashHelper.ComputeFrom(previousInValue) equals previousOutValue - can an attacker exploit hash collision vulnerabilities or preimage attacks to forge valid InValue/OutValue pairs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebe494ec-9602-48fb-a797-31ad7095a123?mode=deep",
+    "timestamp": "2026-02-19 00:54:58.568676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Cryptographic Weakness] If HashHelper.ComputeFrom uses a weak hash algorithm susceptible to length-extension attacks, can an attacker append data to previousInValue while maintaining the same previousOutValue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8505b1e-f575-474b-b32a-9658ef6fae2c?mode=deep",
+    "timestamp": "2026-02-19 00:55:23.998611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Cryptographic Weakness] Can an attacker generate multiple previousInValue inputs that hash to the same previousOutValue (second-preimage attack) to manipulate VRF randomness while passing validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d307c13-b4bd-4f80-983e-3c0c0ae1bd8d?mode=deep",
+    "timestamp": "2026-02-19 00:55:50.130227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Cryptographic Weakness] OutValue and Signature are checked for non-null and non-empty (lines 31-32), but are their cryptographic properties validated? Can an attacker provide malformed hashes or signatures that pass .Any() check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37f45c4e-3b2b-46b4-8567-4cb181cb55da?mode=deep",
+    "timestamp": "2026-02-19 00:56:19.958253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Cryptographic Weakness] If previousInValue contains leading zeros or special byte patterns, could hash computation produce unexpected results that allow OutValue manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a803bccd-e1d0-4903-b7f5-857e2be72641?mode=deep",
+    "timestamp": "2026-02-19 00:56:47.879744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [Null Reference] If validationContext is null, the function will throw NullReferenceException at line 13 - can this be exploited to DOS the consensus validation pipeline? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79057348-0db6-47e1-ae58-5574d5a7e117?mode=deep",
+    "timestamp": "2026-02-19 00:57:16.853763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Null Reference] If validationContext.ProvidedRound is null at line 30, accessing RealTimeMinersInformation will throw - can attacker provide malformed consensus data to crash validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07031ae1-2e2b-4ac5-bd9b-25896418ae14?mode=deep",
+    "timestamp": "2026-02-19 00:57:50.419726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Null Reference] If validationContext.ProvidedRound.RealTimeMinersInformation is null or doesn't contain validationContext.SenderPubkey key, dictionary access at line 30 will throw KeyNotFoundException - is this DOS vector protected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0925891c-0e9f-4d01-9948-12b06a0a6b55?mode=deep",
+    "timestamp": "2026-02-19 00:58:23.922304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Null Reference] If minerInRound is null after retrieval (line 29-30), accessing minerInRound.OutValue at line 31 will throw - can attacker manipulate round data to inject null MinerInRound entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3590192-abff-4a29-b7d9-da587879f567?mode=deep",
+    "timestamp": "2026-02-19 00:58:58.276612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Empty Value Bypass] The check minerInRound.OutValue.Value.Any() (line 32) only verifies the byte array is non-empty - can an attacker provide a single zero byte to pass validation while providing invalid data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_451fec19-41dd-4240-870d-c855f1c74203?mode=deep",
+    "timestamp": "2026-02-19 00:59:28.548920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: NewConsensusInformationFilled()] [Empty Value Bypass] Similarly, minerInRound.Signature.Value.Any() (line 32) checks non-empty but not validity - can attacker provide garbage bytes that pass this check but fail signature verification later? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c8f7fbf-b447-40e9-95c6-9f379176e6d6?mode=deep",
+    "timestamp": "2026-02-19 01:00:01.178810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Null Reference] If validationContext.ExtraData is null at line 37, accessing it will throw - is this protected by upstream validation or exploitable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dde2fd34-36f4-488d-b1ee-c5b32177900a?mode=deep",
+    "timestamp": "2026-02-19 01:00:35.213727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Null Reference] If validationContext.PreviousRound is null at line 40, accessing RealTimeMinersInformation will throw - can this occur in edge cases like genesis block or first round? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7813e609-46f7-4cf4-bbda-87734ac6206d?mode=deep",
+    "timestamp": "2026-02-19 01:01:10.126645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Null Reference] If extraData.Round is null at line 42, accessing RealTimeMinersInformation will throw - is ExtraData.Round guaranteed non-null by protobuf serialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51393e4d-0f98-47a4-8860-ddc786c7c979?mode=deep",
+    "timestamp": "2026-02-19 01:01:46.057002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Hash.Empty Bypass] When previousInValue equals Hash.Empty (line 46), validation returns true - can a miner intentionally set PreviousInValue to Hash.Empty to avoid commit-reveal obligations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b1b0cad-0489-4127-bcbd-3d519666c682?mode=deep",
+    "timestamp": "2026-02-19 01:02:21.263111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [Null Bypass] When PreviousInValue is null (line 42), validation returns true - is this intended behavior for first-time miners or exploitable loophole? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9901a0d-aba2-4f54-9a15-da3a002d90fe?mode=deep",
+    "timestamp": "2026-02-19 01:02:55.438761",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidateHeaderInformation()] [State Inconsistency] The validation checks NewConsensusInformationFilled and ValidatePreviousInValue independently - can an attacker provide valid OutValue/Signature but inconsistent PreviousInValue to corrupt round state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1877ed90-5f55-40a9-a5d0-cd783a0fc3da?mode=deep",
+    "timestamp": "2026-02-19 01:03:26.658428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [State Inconsistency] The function compares previousInValue from ExtraData.Round against previousOutValue from PreviousRound - if these rounds are from different forks, can attacker exploit cross-fork data to pass validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b6fd6eb-8082-42b8-a391-e27e677981c5?mode=deep",
+    "timestamp": "2026-02-19 01:04:02.660730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [State Inconsistency] If validationContext.PreviousRound was updated concurrently between read and this validation, can race condition allow mismatched previousOutValue comparison? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db5c6caf-845d-4848-95a4-d3a3dc69a2a2?mode=deep",
+    "timestamp": "2026-02-19 01:04:40.695160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs] [Function: ValidatePreviousInValue()] [State Inconsistency] The validation assumes PreviousRound.RealTimeMinersInformation[publicKey].OutValue was correctly stored - if previous validation was bypassed, can corrupted state propagate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45c7ce2c-62fc-4d87-9bc0-90da217033b0?mode=deep",
+    "timestamp": "2026-02-19 01:05:19.491084",
+    "report_generated": false
+  }
+]
