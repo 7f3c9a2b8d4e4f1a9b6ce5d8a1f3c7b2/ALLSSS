@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Approve()] [Race Condition] Can two approve transactions from the same parliament member be included in the same block, bypassing the AssertProposalNotYetVotedByMember check at line 82? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3037b4e5-e280-4bde-a2da-048703c6f222?mode=deep",
+    "timestamp": "2026-02-19 09:30:30.782596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Approve()] [State Manipulation] After approving, can the parliament member be removed from the miner list, and does their vote still count in IsReleaseThresholdReached calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53a33e5e-c902-4319-bbd3-fade40de4209?mode=deep",
+    "timestamp": "2026-02-19 09:30:52.787082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Approve()] [DOS Attack] Can an attacker fill the proposal.Approvals list with a massive number of addresses (if they gain temporary parliament access) to cause gas exhaustion in threshold calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9eaadf6-0ada-4c14-9fa1-485e3b4d9b18?mode=deep",
+    "timestamp": "2026-02-19 09:31:15.034592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Approve()] [Reentrancy] Can the ReceiptCreated event firing at line 85-92 be exploited for reentrancy if event handlers can call back into the contract? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ae8b9a9-f677-4fea-b295-ee41701b55c3?mode=deep",
+    "timestamp": "2026-02-19 09:31:38.078004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Approve()] [Time Manipulation] Can a proposal be approved after ExpiredTime if the approval transaction is submitted just before expiration but processed after? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53a45903-18ec-4707-9119-4b1450c4c05a?mode=deep",
+    "timestamp": "2026-02-19 09:32:02.491124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Reject()] [Vote Manipulation] Can a parliament member vote to reject, then immediately change to approve in the same block by exploiting transaction ordering? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91e4b5b0-d6a1-4466-963f-79b3635f29e4?mode=deep",
+    "timestamp": "2026-02-19 09:32:27.810636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Reject()] [Logic Error] If proposal.Rejections list grows very large, can the rejection threshold calculation overflow when computing rejectionMemberCount * AbstractVoteTotal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_907a4616-4472-459e-8663-359cfa69174e?mode=deep",
+    "timestamp": "2026-02-19 09:32:54.368554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Reject()] [State Inconsistency] Can a member's rejection vote remain counted even after they are removed from the current parliament member list? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05af8727-5ef3-4055-a1f4-2acc6225699e?mode=deep",
+    "timestamp": "2026-02-19 09:33:20.601578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Reject()] [Front-Running] Can a malicious member front-run a Release transaction by submitting enough rejection votes to block the proposal just before release? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c426d21a-631f-42ce-91f7-2dddfd6ed8f4?mode=deep",
+    "timestamp": "2026-02-19 09:33:48.619020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Abstain()] [Vote Manipulation] Can abstention votes be strategically cast to prevent proposals from reaching the minimal vote threshold without triggering the maximal abstention threshold? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09f8401d-a6d6-487a-ac72-6e9a469ade48?mode=deep",
+    "timestamp": "2026-02-19 09:34:16.738152",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Abstain()] [Logic Error] Does abstaining count toward both MinimalVoteThreshold and MaximalAbstentionThreshold, creating contradictory conditions where a proposal can be simultaneously approved and rejected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49a6100d-2aaa-4cfb-b971-b02acc34340a?mode=deep",
+    "timestamp": "2026-02-19 09:34:44.954240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Abstain()] [DOS Attack] Can parliament members all abstain to freeze governance permanently by preventing any proposal from reaching approval threshold? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0cc85bb-fa68-4a9d-8a70-0aa790837cae?mode=deep",
+    "timestamp": "2026-02-19 09:35:11.702518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Abstain()] [State Manipulation] Can abstention votes be added after a proposal is already released but before it's removed from state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c48791ac-faf1-4295-aa28-7ee4cd8bcc91?mode=deep",
+    "timestamp": "2026-02-19 09:35:40.365857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [Authorization Bypass] Can the proposer check at line 135 be bypassed if the Proposer field in ProposalInfo is manipulated during proposal creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3d6bfb3-93ed-4677-81fd-9f4b188a5ada?mode=deep",
+    "timestamp": "2026-02-19 09:36:08.172777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [Reentrancy Attack] Can the SendVirtualInlineBySystemContract call at line 138-140 be exploited for reentrancy to release the same proposal multiple times before it's removed from state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40159caa-683c-481e-bebf-7825b13f9793?mode=deep",
+    "timestamp": "2026-02-19 09:36:37.095959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [Time-Based Attack] Can a proposal be released after its ExpiredTime if IsReleaseThresholdReached() doesn't check expiration, allowing execution of stale proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92baa170-d92d-4a6c-939b-fb336cd8f6e6?mode=deep",
+    "timestamp": "2026-02-19 09:37:06.658648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [Logic Error] If the proposal is removed from state at line 142 but SendVirtualInlineBySystemContract fails, is the proposal lost permanently without being executable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfa50143-49d0-48a5-8432-8e250c8ef1bf?mode=deep",
+    "timestamp": "2026-02-19 09:37:36.764565",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [State Manipulation] Can the parliament member list change between threshold check and execution, causing a proposal that no longer meets threshold to be released? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34043e92-fa23-4d79-bee2-95d1f36aa384?mode=deep",
+    "timestamp": "2026-02-19 09:38:06.335849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [DOS Attack] Can a proposer release a proposal that calls back into Parliament contract methods, causing infinite recursion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f0e1649-0844-446a-bf18-084b36dcdebc?mode=deep",
+    "timestamp": "2026-02-19 09:38:35.641425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Release()] [Virtual Address Attack] Can CalculateVirtualHash be manipulated to call arbitrary contracts by controlling organization.CreationToken during organization creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73609190-55c6-4fc0-9a0b-e1ae8b937686?mode=deep",
+    "timestamp": "2026-02-19 09:39:04.158135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ChangeOrganizationThreshold()] [Authorization Bypass] Can any address call ChangeOrganizationThreshold by creating an organization with that address, then modifying its thresholds to invalid values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_343987ff-69c4-4aaa-a072-2372c6fc2065?mode=deep",
+    "timestamp": "2026-02-19 09:39:30.579099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ChangeOrganizationThreshold()] [Logic Error] Can an organization change its thresholds to values that make it impossible to release any future proposals (e.g., MinimalApprovalThreshold > 10000)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_031a09c5-78a4-4814-b9aa-8afcd2609f9c?mode=deep",
+    "timestamp": "2026-02-19 09:39:57.903007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ChangeOrganizationThreshold()] [State Inconsistency] Can threshold changes apply retroactively to existing proposals, allowing already-approved proposals to become unapproved? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c77fbe9-53af-44ab-a3c7-42a98aca7df0?mode=deep",
+    "timestamp": "2026-02-19 09:40:24.931225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ChangeOrganizationThreshold()] [Race Condition] Can threshold changes be front-run by proposal releases to either block or force execution of pending proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc368cc3-e1da-4325-861a-95f0309ec9d0?mode=deep",
+    "timestamp": "2026-02-19 09:58:54.366752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: ChangeOrganizationThreshold()] [Validation Bypass] Does Validate(organization) at line 152 properly check for integer overflow in threshold calculations, or can adversarial thresholds bypass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5fc2b89-26d6-44f3-a443-a6ed9ee21db5?mode=deep",
+    "timestamp": "2026-02-19 09:59:16.937098",
+    "report_generated": false
+  }
+]
