@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [All Functions] [Rate Limiting] Can an attacker spam view function calls to cause DoS or exhaust node resources? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7496b26c-79d2-4a7a-bb3b-bde529abef66?mode=deep",
+    "timestamp": "2026-02-19 14:09:38.053621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTProtocolInfo()] [Symbol Length] Can extremely long symbol strings cause memory issues or exceed storage key limits in State.NftProtocolMap? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cf13fcb-f595-4216-a9d8-c847bbe02468?mode=deep",
+    "timestamp": "2026-02-19 14:10:00.239993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTInfo()] [Circular Reference] If NFTInfo and NFTProtocolInfo reference each other, can GetNFTInfo cause infinite loops? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5dba609-d502-4f2a-897f-181fa9e65ed0?mode=deep",
+    "timestamp": "2026-02-19 14:10:22.667510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTInfoByTokenHash()] [Protocol Override] Lines 25-28 overwrite NFTInfo fields - can this hide evidence of compromised tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cccca146-f0b9-45bd-8529-701547b6b8ed?mode=deep",
+    "timestamp": "2026-02-19 14:10:45.864539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [TokenHash Caching] Should tokenHash be cached instead of recalculated - can recalculation cause consistency issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38315e6c-a62e-4280-8a35-9f38ffd5a313?mode=deep",
+    "timestamp": "2026-02-19 14:11:09.661548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Hash Precomputation] Can an attacker precompute hashes offline to enumerate all possible tokens? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0796675-8475-4f0d-a135-7c96d47136a3?mode=deep",
+    "timestamp": "2026-02-19 14:11:34.042578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Three-Party Allowance] Does the allowance system properly handle owner->spender relationships in multi-party scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aff5b840-51e6-487e-98e1-21d180f50845?mode=deep",
+    "timestamp": "2026-02-19 14:11:59.264313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowanceByTokenHash()] [Allowance Reset] Can allowances be reset to zero, and does this function reflect those changes immediately? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da49c954-dadc-4c08-b205-7093943ae3ec?mode=deep",
+    "timestamp": "2026-02-19 14:12:25.312185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetMinterList()] [Minter Limit] Is there a maximum number of minters, and can GetMinterList handle very large lists? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f477bd6b-296e-40ed-8c1d-7701568c758d?mode=deep",
+    "timestamp": "2026-02-19 14:12:52.357713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: CalculateTokenHash()] [Symbol Normalization] Should symbols be normalized before hashing - can 'Symbol' vs 'SYMBOL' cause different hashes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f7f88e5-71c0-46f7-9f70-09ba5be37f50?mode=deep",
+    "timestamp": "2026-02-19 14:13:19.036521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTTypes()] [Type Extensibility] Can new NFT types be added dynamically, or is InitialNFTTypeNameMap fixed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e015d97f-1fd2-44e0-8fa0-fec2d5348ada?mode=deep",
+    "timestamp": "2026-02-19 14:13:46.285355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetOperatorList()] [Operator Revocation] How quickly are operator revocations reflected in OperatorMap queries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25b21e73-23bd-411b-b414-efd3c00d7eb4?mode=deep",
+    "timestamp": "2026-02-19 14:14:15.272633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNftMetadataReservedKeys()] [Key Collision] Can reserved keys collide with user-defined metadata keys causing validation bypasses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92a4bb5e-3872-44cc-923f-9ec79a62cce7?mode=deep",
+    "timestamp": "2026-02-19 14:14:42.848474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTProtocolInfo()] [Empty Protocol] Can State.NftProtocolMap contain entries with empty/default NFTProtocolInfo values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a046f679-2ea6-48d9-9034-52e7ebd2d0bf?mode=deep",
+    "timestamp": "2026-02-19 14:15:11.042826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTInfo()] [Zero Symbol Zero TokenId] What happens when both Symbol='' and TokenId=0 - does this produce a special hash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c24c213e-6335-4ec6-a9f4-8beeda5bb41b?mode=deep",
+    "timestamp": "2026-02-19 14:15:42.212790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTInfoByTokenHash()] [Multiple Protocols] Can the same tokenHash exist across different protocols causing data mixing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_781c8c35-51f2-4dbc-af4b-54fbb1392e89?mode=deep",
+    "timestamp": "2026-02-19 14:16:10.471220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Max Supply] Can balance queries reveal total supply information for privacy-focused NFT implementations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f5a625b-bde0-4042-a779-d26fbb353dd9?mode=deep",
+    "timestamp": "2026-02-19 14:16:42.582663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalanceByTokenHash()] [Balance Precision] Are balances stored as integers - can fractional NFTs cause rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_254d067d-a2a6-4e81-9403-077226d293ec?mode=deep",
+    "timestamp": "2026-02-19 14:17:14.489774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Infinite Allowance] Can allowances be set to Int64.MaxValue causing overflow in subtraction operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f3afbeb-1ff4-4eb1-bb2f-600747b576b7?mode=deep",
+    "timestamp": "2026-02-19 14:17:43.281411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowanceByTokenHash()] [Cross-Symbol Allowance] Can allowances for one symbol be confused with another through hash collisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b478852b-9bf9-4a72-8539-757c009bc0ba?mode=deep",
+    "timestamp": "2026-02-19 14:18:16.304458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetMinterList()] [Minter Removal] Does GetMinterList show removed minters, or are they properly filtered? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a10d730a-a931-48ad-b353-b8aaaf0a52f4?mode=deep",
+    "timestamp": "2026-02-19 14:18:48.943240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: CalculateTokenHash()] [Special Characters] Can special characters in symbol cause hash calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fd4bd1d-209f-4f46-aeb1-b9a9b6e646ed?mode=deep",
+    "timestamp": "2026-02-19 14:19:20.857840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTTypes()] [Type Limit] Is there a maximum number of NFT types, and what happens if exceeded? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1d539f3-3b34-4d84-aa56-c6c726e8b565?mode=deep",
+    "timestamp": "2026-02-19 14:19:53.226198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetOperatorList()] [Self-Operator] Can an owner be their own operator causing circular authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2c23b6c-f239-40dc-821d-914d85473fac?mode=deep",
+    "timestamp": "2026-02-19 14:20:23.091114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNFTProtocolInfo() + GetMinterList()] [Creator Mismatch] Can protocol creator differ from minter list, allowing unauthorized minting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08198aa8-14f8-472d-b1a2-2a2f0b35c014?mode=deep",
+    "timestamp": "2026-02-19 14:20:53.321605",
+    "report_generated": false
+  }
+]
