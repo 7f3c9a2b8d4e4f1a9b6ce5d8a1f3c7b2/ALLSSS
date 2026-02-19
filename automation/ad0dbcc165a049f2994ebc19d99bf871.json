@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [Hash Collision] Can an attacker find two different (VotingItemId, SnapshotNumber) pairs that produce the same hash via GetHash() on line 40, enabling retrieval of wrong voting results or collision-based attacks on result storage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a4dc74d-3345-46d9-b63e-a83838271b3d?mode=deep",
+    "timestamp": "2026-02-19 10:09:25.961531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [Input Validation] Is there validation that input.SnapshotNumber is within valid range (1 to TotalSnapshotNumber), or can attackers query negative or excessively large snapshot numbers to probe for invalid states or cause integer overflow in hash computation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae25134c-cdc4-4e35-9238-b2f0f7cff4f8?mode=deep",
+    "timestamp": "2026-02-19 10:09:48.047973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [Null Return] The method returns State.VotingResults[votingResultHash] on line 41 which may be null if the result doesn't exist - does calling code handle null properly, or could this cause null reference exceptions in downstream processing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a98cec9f-e7f5-4729-aa71-e9538d945b76?mode=deep",
+    "timestamp": "2026-02-19 10:10:10.452768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [Information Leakage] Can attackers enumerate all valid (VotingItemId, SnapshotNumber) combinations by observing which queries return null versus non-null results, mapping the complete history of all snapshots? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94d52a13-fa04-4528-b2cc-2011b02890c5?mode=deep",
+    "timestamp": "2026-02-19 10:10:33.707164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [State Consistency] If TakeSnapshot() is executing concurrently with GetVotingResult(), can there be a race where the snapshot number exists but the result isn't fully populated, returning incomplete vote tallies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a68267d7-2ac6-45c2-81ac-51e43b5ebbb3?mode=deep",
+    "timestamp": "2026-02-19 10:10:57.523771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [Data Integrity] Does the method validate that the returned VotingResult's VotingItemId and SnapshotNumber match the input parameters, or could state corruption cause mismatched results to be returned? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7dbdc2b-2369-4bdd-88c9-b4766f50dc87?mode=deep",
+    "timestamp": "2026-02-19 10:11:24.082027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult()] [Temporal Issues] Can attackers query future snapshot numbers (e.g., SnapshotNumber = 1000000) to determine if voting items are planned or to cause unexpected behavior in hash computation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7be2e9e-2af7-4af9-90c7-397c0d064338?mode=deep",
+    "timestamp": "2026-02-19 10:11:50.317220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [Assertion Failure] If AssertVotingItem() on line 46 throws an assertion exception for non-existent voting items, does this enable enumeration attacks where attackers probe different Hash values to discover valid voting item IDs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a0438a6-423b-4510-a6d3-af2b965ab3ba?mode=deep",
+    "timestamp": "2026-02-19 10:12:16.598263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [State Consistency] Can there be a race condition where AssertVotingItem returns a votingItem on line 46, but before accessing votingItem.CurrentSnapshotNumber on line 50, a concurrent TakeSnapshot() increments the snapshot number, causing the wrong result to be retrieved? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4454963-cfc9-41cd-b7e7-22d8c6d91840?mode=deep",
+    "timestamp": "2026-02-19 10:12:45.056184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [Null Return] Similar to GetVotingResult, line 52 may return null if State.VotingResults[votingResultHash] doesn't exist - could this happen if CurrentSnapshotNumber is set but the corresponding result hasn't been initialized? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14d15427-d271-4d6e-9ece-0a8eb5ca2770?mode=deep",
+    "timestamp": "2026-02-19 10:13:11.823838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [Data Integrity] If votingItem.CurrentSnapshotNumber has been corrupted to an invalid value (e.g., 0 or negative), does the GetHash() computation on lines 47-51 produce a valid hash that could collide with other results or return garbage data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b06a9e10-559b-4377-87da-555b5f24818a?mode=deep",
+    "timestamp": "2026-02-19 10:13:38.378843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [Initialization Bug] For newly registered voting items where CurrentSnapshotNumber is 1, does State.VotingResults always contain the initial snapshot result, or could there be timing where GetLatestVotingResult returns null for valid voting items? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_142e2b1c-62e6-46bb-8d08-69c0d7b48ffb?mode=deep",
+    "timestamp": "2026-02-19 10:14:07.112095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [Access Control] Should there be restrictions on who can query the latest voting result, especially during active voting where real-time tallies could influence voter behavior or enable vote manipulation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b465aa9-0a2e-4492-9ef0-49f000ac918d?mode=deep",
+    "timestamp": "2026-02-19 10:14:32.860803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetLatestVotingResult()] [Dependency Risk] The method calls AssertVotingItem which is defined in VoteContract.cs (line 341-346) - if that method's implementation changes or has bugs, could it cause GetLatestVotingResult to fail unexpectedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7200bdc0-7e48-4f8d-bfb4-2e52ec2edab1?mode=deep",
+    "timestamp": "2026-02-19 10:14:59.374744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Exception Handling] The .First() call on line 58 will throw InvalidOperationException if no matching voting item is found in VotedItemVoteIds - is this exception properly handled, or will it crash the view call and leak information about voter participation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_452f907a-1472-42fb-9ad7-8016b112d518?mode=deep",
+    "timestamp": "2026-02-19 10:15:27.678405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Null Reference] If State.VotedItemsMap[input.Voter] is null, the method will throw NullReferenceException when trying to access .VotedItemVoteIds on line 57 - is this a denial of service vector for queries on addresses that never voted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0755385b-f98d-452c-aa87-39836fe9915d?mode=deep",
+    "timestamp": "2026-02-19 10:15:54.848730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [LINQ Performance] The Where().First() pattern on lines 57-58 is less efficient than using FirstOrDefault() - does this inefficiency enable DOS attacks by querying many non-existent (Voter, VotingItemId) pairs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09cf3ebf-db65-44dd-a792-b81bfd750961?mode=deep",
+    "timestamp": "2026-02-19 10:16:25.346161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Key Conversion] The comparison 'p.Key == input.VotingItemId.ToHex()' on line 57 relies on ToHex() string conversion - could different hex formatting (uppercase vs lowercase, prefix) cause legitimate lookups to fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4bae21fa-411f-478d-af46-8110a3d43dd4?mode=deep",
+    "timestamp": "2026-02-19 10:16:53.303075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Information Leakage] Does the exception thrown when no match is found leak information about which (voter, voting item) combinations exist versus don't exist, enabling enumeration of all voter participations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4a21d11-2c36-4250-8bba-6f3cba5168ed?mode=deep",
+    "timestamp": "2026-02-19 10:17:22.974844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Input Validation] Is there validation that input.Voter and input.VotingItemId are non-null before proceeding with the query, or could null inputs cause unexpected exceptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bdc9971-94f5-4f60-85ec-d2492bbccf11?mode=deep",
+    "timestamp": "2026-02-19 10:17:48.181942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Data Structure] The VotedItemVoteIds is a map<string, VotedIds> keyed by hex strings - could this design choice lead to inconsistencies if the same Hash converts to different hex strings in different contexts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6baa993-543c-4f3f-94b2-cbec969768e9?mode=deep",
+    "timestamp": "2026-02-19 10:18:13.759297",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingIds()] [Multiple Matches] If VotedItemVoteIds somehow contains duplicate keys matching input.VotingItemId.ToHex(), would .First() deterministically return the same entry, or could this cause non-deterministic behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5653a7f0-292e-4d4f-8a8d-20f8ae0dffcf?mode=deep",
+    "timestamp": "2026-02-19 10:18:39.849648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingRecords(), GetVotingRecord()] [Inconsistency] Can GetVotingRecords() return different data than multiple calls to GetVotingRecord() for the same IDs due to concurrent state updates, causing inconsistent views of voting records? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44b28dbe-b988-423e-bcf3-0cfc02f04cb5?mode=deep",
+    "timestamp": "2026-02-19 10:19:06.436709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotingResult(), GetLatestVotingResult()] [Hash Computation] Do both methods use identical hash computation logic (lines 36-40 vs 47-51) ensuring consistency, or could subtle differences in VotingResult object construction cause hash mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1640b18-da13-44f3-8451-0b74a86299ff?mode=deep",
+    "timestamp": "2026-02-19 10:19:33.999592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [Function: GetVotedItems(), GetVotingIds()] [Data Consistency] If GetVotedItems() returns a VotedItems object, should GetVotingIds() always succeed for any voting item ID in that object, or can there be cases where the data is inconsistent? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e51484e3-6cfb-4a7c-b005-04a430e83639?mode=deep",
+    "timestamp": "2026-02-19 10:20:01.613314",
+    "report_generated": false
+  }
+]
