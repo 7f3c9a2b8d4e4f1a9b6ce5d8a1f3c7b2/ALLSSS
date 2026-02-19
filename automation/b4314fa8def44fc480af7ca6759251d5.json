@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: BatchApprove()] [Partial Failure] If one approve in batch fails, are previous approvals rolled back or do they persist causing inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5b93824-14d3-46a3-bd86-badae6698de0?mode=deep",
+    "timestamp": "2026-02-19 10:40:12.765667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: BatchApprove()] [Symbol+Spender Collision] GroupBy uses string concatenation - can symbols like 'AB' + 'CD' collide with 'ABC' + 'D' causing wrong grouping? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8341f74-bef7-4c69-b871-9e5773d5efa7?mode=deep",
+    "timestamp": "2026-02-19 10:40:35.267519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: UnApprove()] [Allowance Underflow] Math.Min at line 306 prevents underflow, but can attacker un-approve more than current allowance through race condition? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a06df60-047f-4300-8bde-116e199f58d4?mode=deep",
+    "timestamp": "2026-02-19 10:40:57.828541",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: UnApprove()] [Zero Amount Spam] No minimum amount check - can attacker spam zero un-approvals to generate event noise? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_795ccfda-7d3e-419b-a9e3-bd48c75cc6ff?mode=deep",
+    "timestamp": "2026-02-19 10:41:21.284353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: Burn()] [Supply Underflow] tokenInfo.Supply.Sub(amount) at line 328 - can burning more than supply cause underflow if balance checks fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47242762-3cae-48e1-bad1-f462b2705889?mode=deep",
+    "timestamp": "2026-02-19 10:41:45.484914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: Burn()] [IsBurnable Bypass] Check at line 326 validates IsBurnable, but can CrossChainTransfer bypass this by calling Burn internally? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_269b8cd4-d525-4c8a-a03d-d16d0afa03b6?mode=deep",
+    "timestamp": "2026-02-19 10:42:12.948810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: Burn()] [State Update Missing] After Supply subtraction, SetTokenInfo is not called - can this cause persistent supply inflation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2aad073-84fb-4fe3-a8d6-266ab61ca399?mode=deep",
+    "timestamp": "2026-02-19 10:42:41.780616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: Burn()] [Balance-Supply Mismatch] ModifyBalance reduces balance but if it fails, Supply is still decremented causing accounting mismatch? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92676bd2-9d5a-4f1d-a493-98d955ed1035?mode=deep",
+    "timestamp": "2026-02-19 10:43:11.222717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: CheckThreshold()] [Empty Threshold Bypass] If input.SymbolToThreshold.Count == 0, meetThreshold is set true at line 365 - can this bypass all authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebf97f9b-db07-4beb-b352-3daab996c438?mode=deep",
+    "timestamp": "2026-02-19 10:43:37.078179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: CheckThreshold()] [Allowance Check Bypass] IsCheckAllowance flag allows skipping allowance verification - can malicious contract abuse this to bypass spending limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_767f27fe-d662-4bdd-a71d-9a97d5933820?mode=deep",
+    "timestamp": "2026-02-19 10:44:02.481392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: CheckThreshold()] [Race Condition] Balance and allowance checks are separate from actual transfer - can values change between check and use? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_388b8c83-51ef-4ced-9fb4-a9e0e8eb8727?mode=deep",
+    "timestamp": "2026-02-19 10:44:30.681074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: CheckThreshold()] [Symbol Iteration DOS] If input.SymbolToThreshold contains many symbols, can excessive iteration cause DOS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6737d648-05de-4746-8901-05db693c26af?mode=deep",
+    "timestamp": "2026-02-19 10:45:00.309060",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TransferToContract()] [Origin Address Bypass] Always transfers from Context.Origin - can malicious intermediate contract steal funds from original caller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af6cbd12-45de-4b5a-8275-57076e16d2e6?mode=deep",
+    "timestamp": "2026-02-19 10:45:32.347007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TransferToContract()] [Whitelist Bypass Race] IsInWhiteList check at line 393 can change between check and transfer - can attacker exploit this timing window? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c82caa81-2482-4911-a88e-ab94f8d1876f?mode=deep",
+    "timestamp": "2026-02-19 10:46:04.664639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TransferToContract()] [Allowance Double-Spend] If allowance >= amount, transfer succeeds and allowance is decremented at line 407, but what if allowance was used in parallel transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c1d6cfb-2d77-4573-bb73-f0f123aac169?mode=deep",
+    "timestamp": "2026-02-19 10:46:32.584276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TransferToContract()] [Whitelist Authorization] Whitelist members bypass allowance completely - can compromised whitelist member drain user funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_407e3ff2-1c19-4dad-98ed-23121c1cf908?mode=deep",
+    "timestamp": "2026-02-19 10:47:05.766049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TransferToContract()] [DealWithExternalInfo Position] External info processing happens after transfer completes - can reentrancy exploit this ordering? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e291f643-ba16-46ed-8c75-e0e6d1c2d03e?mode=deep",
+    "timestamp": "2026-02-19 10:47:40.272777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: AdvanceResourceToken()] [Symbol Validation Bypass] PayTxFeeSymbolListName check at line 415 validates symbol, but can attacker manipulate Context.Variables to add malicious symbols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f157d119-d400-4be4-b005-ba7264bb0c1b?mode=deep",
+    "timestamp": "2026-02-19 10:48:10.562746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: AdvanceResourceToken()] [Integer Overflow] State.AdvancedResourceToken addition at line 418-420 - can overflow if repeatedly called with large amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_adde0cbe-8c8a-438f-b70f-500212a76137?mode=deep",
+    "timestamp": "2026-02-19 10:48:45.190682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: AdvanceResourceToken()] [DoTransfer Failure Handling] If DoTransfer at line 421 fails after state update, can this cause accounting inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c64138b-4536-4508-83ba-998b402442f5?mode=deep",
+    "timestamp": "2026-02-19 10:49:19.036892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: AdvanceResourceToken()] [Negative Amount] No validation that input.Amount is positive - can negative amount cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ef69d23-126e-4a08-a433-b0dd45e83e36?mode=deep",
+    "timestamp": "2026-02-19 10:49:51.251501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TakeResourceTokenBack()] [Order of Operations] DoTransfer at line 432 happens before state update at line 433-434 - can reentrancy exploit this to take back more than advanced? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10b92854-5e68-4d36-ab4f-b483cebecb13?mode=deep",
+    "timestamp": "2026-02-19 10:50:23.923434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TakeResourceTokenBack()] [Authorization Missing] Only checks amount against advancedAmount - can different user take back tokens advanced by another? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01f383e9-dad7-42fd-8df7-bc8134bee859?mode=deep",
+    "timestamp": "2026-02-19 10:50:56.006669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: TakeResourceTokenBack()] [Integer Underflow] advancedAmount.Sub(input.Amount) at line 434 - can this underflow if race condition occurs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1746aaa-08f8-43dc-aca3-5fb2ec7ecb77?mode=deep",
+    "timestamp": "2026-02-19 10:51:29.506984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Actions.cs] [Function: ValidateTokenInfoExists()] [ExternalInfo Bypass] If tokenInfo has no ExternalInfo but input has empty ExternalInfo, validation passes at line 449 - can this bypass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25083122-94bd-4435-a02f-1cc04b6aec85?mode=deep",
+    "timestamp": "2026-02-19 10:52:03.990786",
+    "report_generated": false
+  }
+]
