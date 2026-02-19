@@ -1,0 +1,86 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Liveness Guarantee] If all miners have OutValue null and HandleMinerInNewRound() returns Nothing for all, does consensus permanently halt with no miner able to produce blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4def8664-89b3-49e2-983d-40d954d5e08b?mode=deep",
+    "timestamp": "2026-02-19 06:08:34.168615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Byzantine Resistance] If Byzantine miner provides false CurrentRound state to constructor at line 26, can this cause honest miners using ConsensusBehaviourProviderBase to make incorrect consensus decisions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c31b791-9eaf-423a-be03-8dd4f09a79d1?mode=deep",
+    "timestamp": "2026-02-19 06:08:56.530488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Time Synchronization] If miners' currentBlockTime at line 33 is significantly skewed due to clock differences, can _isTimeSlotPassed yield different results for same global state, breaking consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec216b8b-7623-4ba2-8806-8e8db2f8b59c?mode=deep",
+    "timestamp": "2026-02-19 06:09:19.516394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Block Production Fairness] The extra block producer gets up to (maximumBlocksCount + blocksBeforeCurrentRound) blocks at lines 74-79 - is this fair, or can it centralize block production to a single miner? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_656b6d43-3c8b-494e-b849-91d5bfa42e6d?mode=deep",
+    "timestamp": "2026-02-19 06:09:42.821306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Round Transition Safety] If GetConsensusBehaviourToTerminateCurrentRound() at line 82 is called by multiple miners simultaneously, can this cause double round transition or round number skipping? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5af83e6-8a07-4199-9b1d-5ea9b902657e?mode=deep",
+    "timestamp": "2026-02-19 06:10:06.939342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Denial of Service] If attacker fills ActualMiningTimes with maximum allowed entries, can the LINQ Count() operation at line 65 consume excessive gas/resources and DoS consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a3f8b77-3220-462d-a1e1-2748430286d0?mode=deep",
+    "timestamp": "2026-02-19 06:10:33.728272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Protocol] [Miner Exclusion] If legitimate miner's OutValue is null and their time slot has passed (_isTimeSlotPassed true), line 114 returns Nothing - does this permanently exclude the miner from current round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ecf5d43-735a-499f-8cd8-1ac0f84440ea?mode=deep",
+    "timestamp": "2026-02-19 06:11:01.444237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Inheritance] [Abstract Method Override] GetConsensusBehaviourToTerminateCurrentRound() at line 122 is abstract - can malicious derived class implement this to always return TinyBlock and never terminate rounds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fed407e9-0042-44fb-b7d4-501cda340832?mode=deep",
+    "timestamp": "2026-02-19 06:11:30.079321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Inheritance] [Protected Field Access] CurrentRound is protected at line 24 - can derived classes modify CurrentRound between GetConsensusBehaviour() calls to manipulate behaviour selection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61b34feb-3abb-4fb2-9fe7-a89e6dee1bcc?mode=deep",
+    "timestamp": "2026-02-19 06:12:00.224198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Inheritance] [Constructor Chain] If derived class doesn't call base constructor properly at lines 26-37, can this leave fields uninitialized and cause null reference errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f57c139-0c9d-4784-a7b2-984e829be536?mode=deep",
+    "timestamp": "2026-02-19 06:12:31.799914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Inheritance] [Virtual Method Injection] If GetConsensusBehaviour() at line 39 is not sealed/final, can derived class override it to bypass all validation logic and return arbitrary behaviours? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eecb3065-36a4-4ee4-a319-ea1c693d835a?mode=deep",
+    "timestamp": "2026-02-19 06:13:03.045314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Inheritance] [Private Field Shadowing] If derived class shadows private fields like _isTimeSlotPassed, can this cause base class logic to use incorrect values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_534513b2-59c4-4abf-ab13-48c75d67115c?mode=deep",
+    "timestamp": "2026-02-19 06:13:36.364868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Input Validation] [Pubkey Format] The _pubkey parameter at line 31 has no format validation - can non-hex or wrong-length pubkey cause crashes in RealTimeMinersInformation lookup at line 36? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d482bb4-b84b-4ed3-a4f7-f18e562e7b2d?mode=deep",
+    "timestamp": "2026-02-19 06:14:07.906895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Input Validation] [Timestamp Range] The currentBlockTime parameter at line 33 has no range validation - can extremely large or small timestamps (e.g., year 1970 or 9999) break time slot calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95fe5768-6daf-4081-917d-222e89dbdbbd?mode=deep",
+    "timestamp": "2026-02-19 06:14:38.636303",
+    "report_generated": false
+  }
+]
