@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AssertIsAuthorizedProposer()] [Empty Whitelist] Can an empty ProposerWhiteList pass validation but fail authorization checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2119d52-9181-4a8f-9bac-5c51593e86ab?mode=deep",
+    "timestamp": "2026-02-19 08:26:19.952501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsReleaseThresholdReached()] [Threshold Calculation] Can the rejection check at line 26-28 (helper) be bypassed through member manipulation after voting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b40de6c-ec29-49ea-83ff-e92d5a0ef147?mode=deep",
+    "timestamp": "2026-02-19 08:26:41.831212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsReleaseThresholdReached()] [Abstention Bypass] Can the abstention check at line 30-31 (helper) be manipulated to bypass approval requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_150698b9-732a-403e-8303-fcfdccf6f593?mode=deep",
+    "timestamp": "2026-02-19 08:27:04.156578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsReleaseThresholdReached()] [Vote Counting Logic] Does CheckEnoughVoteAndApprovals at line 31 (helper) properly handle members who are in vote lists but no longer in OrganizationMemberList? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4619b4a-4504-469b-b1a5-fba300690a5b?mode=deep",
+    "timestamp": "2026-02-19 08:27:27.104686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalRejected()] [Count Manipulation] Can the rejectionMemberCount calculation at lines 36-37 (helper) be manipulated by adding/removing members after voting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b988eb1e-18af-40f5-8b87-c9fc2975d866?mode=deep",
+    "timestamp": "2026-02-19 08:27:51.006186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalRejected()] [Threshold Comparison] Is the '>' comparison at line 38 (helper) correct, or should it be '>=' to properly enforce MaximalRejectionThreshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8b053b4-d804-4d04-8c1f-d07bd66e7f44?mode=deep",
+    "timestamp": "2026-02-19 08:28:16.296178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalRejected()] [Non-Member Votes] Can votes from addresses that were members but are no longer be counted in rejection calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_966f42e7-f4a3-4e9b-9a78-3c3e151c2299?mode=deep",
+    "timestamp": "2026-02-19 08:28:42.744844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalAbstained()] [Abstention Count] Can abstentionMemberCount at line 43 (helper) be manipulated through member list changes after voting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66412f03-7fc7-40ac-b81f-6b0b1c7f3ac0?mode=deep",
+    "timestamp": "2026-02-19 08:29:08.282159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalAbstained()] [Threshold Enforcement] Is the '>' comparison at line 44 (helper) semantically correct for MaximalAbstentionThreshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc5234c6-9a7e-4c55-a2df-6415700a30e8?mode=deep",
+    "timestamp": "2026-02-19 08:29:37.222880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Approval Count] Can approvedMemberCount at line 49 (helper) be inflated by votes from former members who are no longer in OrganizationMemberList? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca529c2a-3e87-4eb0-8d2f-93cbd41cf4cf?mode=deep",
+    "timestamp": "2026-02-19 08:30:04.324662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Vote Threshold] At lines 55-58 (helper), can the total vote count include duplicate votes or votes from non-members? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eac7ca60-cb68-4ebf-af9b-d5792eff746a?mode=deep",
+    "timestamp": "2026-02-19 08:30:33.916181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Threshold Logic] Does the '>=' check at line 51 (helper) properly enforce MinimalApprovalThreshold semantics? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d43d125e-7c6a-47ee-bb16-670988ea168d?mode=deep",
+    "timestamp": "2026-02-19 08:31:03.563424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Vote Concatenation] Can the Concat operations at line 56 (helper) create duplicate counting if same address appears in multiple vote lists? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dd1ce0c-81e6-4806-be48-b79e5dc94fe2?mode=deep",
+    "timestamp": "2026-02-19 08:31:33.417804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Short-Circuit Bypass] Can the early return at line 53 (helper) be exploited to bypass vote threshold checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79343660-019c-49d8-8e0a-a403236e4d2e?mode=deep",
+    "timestamp": "2026-02-19 08:32:03.538601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Empty List Check] Can Empty() checks at lines 63-66 (helper) be bypassed with whitespace or null entries? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea26dbf0-be48-44b0-9e2f-4f08fe15b115?mode=deep",
+    "timestamp": "2026-02-19 08:32:32.796357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Duplicate Detection] Can AnyDuplicate() checks at lines 64-66 (helper) be bypassed through address normalization issues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bc0a150-0320-47c6-ad22-4a6dd1533b42?mode=deep",
+    "timestamp": "2026-02-19 08:33:01.926238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Null Address] Can null OrganizationAddress or OrganizationHash at lines 68-69 (helper) be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3651539-712c-4960-8173-10d5046546bc?mode=deep",
+    "timestamp": "2026-02-19 08:33:31.674735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Threshold Math] Can the threshold validations at lines 72-80 (helper) overflow or underflow with extreme member counts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7adb4e55-467f-45f3-bb4f-7d6614658c61?mode=deep",
+    "timestamp": "2026-02-19 08:34:00.566775",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Approval Threshold] Is the inequality at line 73 (helper) correct: MinimalApprovalThreshold <= MinimalVoteThreshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e23457e7-d06a-4ddc-a4d1-ff7d5f785f24?mode=deep",
+    "timestamp": "2026-02-19 08:34:28.937588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Zero Threshold] Does the '>0' check at line 74 (helper) prevent zero MinimalApprovalThreshold attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffd10b61-abd2-439e-953f-f35626438b17?mode=deep",
+    "timestamp": "2026-02-19 08:34:57.707067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Negative Thresholds] Do the '>=0' checks at lines 75-76 (helper) properly prevent negative threshold attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12bd6cfe-c71b-4510-9f1d-8e2608daa82e?mode=deep",
+    "timestamp": "2026-02-19 08:35:25.945261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Sum Overflow] Can the sum calculations at lines 77-80 (helper) overflow with large threshold values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3938a36-cbe4-429b-afb1-64b700b594d3?mode=deep",
+    "timestamp": "2026-02-19 08:35:54.831836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Abstention Math] Is the abstention+approval threshold check at lines 77-78 (helper) correct for preventing impossible voting scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d57360af-a8b6-4ae8-b53a-87b2d2d44154?mode=deep",
+    "timestamp": "2026-02-19 08:36:24.562695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(Organization)] [Rejection Math] Is the rejection+approval threshold check at lines 79-80 (helper) correct for preventing deadlock scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d215bfd6-0a05-4ea2-86c1-281ab688ed25?mode=deep",
+    "timestamp": "2026-02-19 08:36:54.731693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: Validate(ProposalInfo)] [Null ToAddress] Can null ToAddress at line 85 (helper) be exploited to create malformed proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_432ce928-3629-4e2a-a7f6-e294813782a9?mode=deep",
+    "timestamp": "2026-02-19 08:37:21.709618",
+    "report_generated": false
+  }
+]
