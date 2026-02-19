@@ -124,5 +124,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4be9c157-0ff4-4372-a4d4-52bd41dbf4c0?mode=deep",
     "timestamp": "2026-02-19 04:01:42.771190",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo()] [Race Condition] If a transaction method other than Transfer or TransferFrom modifies token balances but returns NonParallelizable=true, could this cause performance degradation by preventing all parallel execution, creating a DoS vector through intentional triggering of unhandled methods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cc32b29-6ca0-473a-8659-b3f9a5b2f9ee?mode=deep",
+    "timestamp": "2026-02-19 04:23:16.024355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo()] [Authorization Bypass] Can an attacker craft a transaction with a method name that doesn't match Transfer or TransferFrom but still modifies token state, bypassing the resource path declarations and causing race conditions with parallel transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4982e5c-a00c-4f56-b55d-da0bc154f7c4?mode=deep",
+    "timestamp": "2026-02-19 04:23:38.032313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo()] [Input Validation] If TransferInput.Parser.ParseFrom(txn.Params) fails or throws an exception, does this prevent the transaction from executing, or could it lead to undefined behavior in path calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ded19fcb-e1d6-4de7-af61-25694e924bed?mode=deep",
+    "timestamp": "2026-02-19 04:24:00.319331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo()] [State Inconsistency] If the default case returns NonParallelizable=true for all unhandled methods, could this mask bugs where new token operations were added but their resource paths were not properly declared? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a77c01f2-e25e-47d7-9fc6-938c95e39dc7?mode=deep",
+    "timestamp": "2026-02-19 04:24:24.230601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo()] [Path Completeness] For the Transfer case, are all possible state modifications covered in WritePaths, or could cross-contract calls or callbacks modify additional state not declared here, causing race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a6c59e2-ae55-4c23-978b-316c1b5bc112?mode=deep",
+    "timestamp": "2026-02-19 04:24:48.610894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - Transfer] [Race Condition] The Transfer case only declares WritePaths for sender and receiver balances but not for any lock states or vesting schedules - could parallel transfers race on lock state modifications leading to double-spending of locked tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60a8007c-8f9b-46ed-8cb3-3ecbfbde7fb5?mode=deep",
+    "timestamp": "2026-02-19 04:25:13.651459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - Transfer] [Missing Path] The Transfer WritePaths don't include TokenContractState.LockWhiteLists - if Transfer internally modifies lock whitelist state, could parallel transfers create inconsistent lock state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8a94219-3966-464d-a94c-fe29df665335?mode=deep",
+    "timestamp": "2026-02-19 04:25:38.985719",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - Transfer] [Path Collision] If args.To and txn.From are the same address, the WritePaths will contain duplicate entries for the same balance - could this cause issues with parallel execution conflict detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b12cf54-fb67-403f-b6d2-1030f18d0bdf?mode=deep",
+    "timestamp": "2026-02-19 04:26:07.219982",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - Transfer] [Missing ReadPath] TokenInfos is in ReadPaths but not WritePaths - if Transfer can modify token info (e.g., total supply tracking), could this cause race conditions with parallel transfers of the same token? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8ed37cf-8a12-446b-bd55-ce071b994c1f?mode=deep",
+    "timestamp": "2026-02-19 04:26:39.281573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - Transfer] [NFT Handling] For NFT transfers, the WritePaths only include generic balance paths - are NFT ownership records stored separately and not declared here, potentially causing race conditions on NFT ownership transfers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d9f436a-952d-40fa-93c2-a32516a7f2b5?mode=deep",
+    "timestamp": "2026-02-19 04:27:08.080576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - Transfer] [Cross-Token Race] Multiple parallel transfers of different tokens to/from the same addresses will have different WritePaths - but if transaction fee deduction shares state, could this create undeclared conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6983d6b5-b77a-4567-a4c0-3b4a1bd93fb5?mode=deep",
+    "timestamp": "2026-02-19 04:27:35.830389",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - TransferFrom] [Race Condition] TransferFrom includes LockWhiteLists write path using txn.From (the spender), but should it also include args.From (the token owner) if lock checks are performed against the owner? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5db71778-d4b0-4d9c-a89e-0c40041948d7?mode=deep",
+    "timestamp": "2026-02-19 04:28:07.152547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - TransferFrom] [Authorization Bypass] The LockWhiteLists path uses txn.From.ToString() as the second parameter - if this should be args.From (the token owner) instead, could parallel TransferFrom calls bypass lock checks through path misdeclaration? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c90c1205-3e2d-4121-86ab-ca4199cc3165?mode=deep",
+    "timestamp": "2026-02-19 04:28:36.018404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - TransferFrom] [Missing Path] If TransferFrom can modify token supply or other global state not declared in WritePaths, could parallel TransferFrom operations create accounting inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e3426b7-9a68-4f7e-9940-ed76b25b3c68?mode=deep",
+    "timestamp": "2026-02-19 04:29:11.342176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - TransferFrom] [Allowance Race] AddPathForAllowance adds allowance paths to WritePaths, but are these added after potential conflicts are checked, or could parallel TransferFrom calls with the same from/spender pair race on allowance decrements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff0848d6-3362-4a71-a17e-574526f8ffa9?mode=deep",
+    "timestamp": "2026-02-19 04:29:44.234372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - TransferFrom] [Path Ordering] WritePaths are added in a specific order - does the conflict detection mechanism depend on path ordering, and could reordering cause false conflict detection or missed conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8521f3a-9851-41d1-9a0d-7e600cb77745?mode=deep",
+    "timestamp": "2026-02-19 04:30:15.937568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetResourceInfo() - TransferFrom] [Self-Transfer] If args.From equals args.To in TransferFrom, duplicate balance paths are added - does this cause the transaction to be marked as conflicting with itself, or is this handled correctly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1dcaa3bf-ef8d-4b38-aa70-1b81a758d981?mode=deep",
+    "timestamp": "2026-02-19 04:30:48.669168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [Path Completeness] AddPathForAllowance adds three paths: specific symbol, all-symbol identifier, and NFT collection identifier - if an attacker approves for one symbol then transfers another, could missing path declarations allow parallel execution to bypass allowance checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1faf8058-1770-49d2-a10f-5861e65ce120?mode=deep",
+    "timestamp": "2026-02-19 04:31:20.401653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [NFT Logic Error] For NFT/NftCollection types, GetNftCollectionAllSymbolIdentifier() is called - if this function returns an incorrect identifier or can be manipulated, could allowance paths be misdeclared causing race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7b70471-7987-4165-8b71-bac103a30abd?mode=deep",
+    "timestamp": "2026-02-19 04:31:54.047050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [Type Confusion] GetSymbolType() is called to determine symbol type - if an attacker can register a token with mismatched type metadata, could this cause AddPathForAllowance to declare wrong paths, enabling double-spend attacks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b9eed81-a292-4a1f-9ae4-a6a5a557b1ae?mode=deep",
+    "timestamp": "2026-02-19 04:32:22.986106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [Missing ReadPath] AddPathForAllowance only adds WritePaths but not ReadPaths for allowances - if allowance checks require reading related state, could missing ReadPaths cause incomplete conflict detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_766c2af5-c505-40cc-93ad-6ef8da8095f6?mode=deep",
+    "timestamp": "2026-02-19 04:32:57.300971",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [All-Symbol Wildcard] GetAllSymbolIdentifier() creates a wildcard allowance path - if two parallel TransferFrom operations use different symbols but the same from/spender, will they conflict on the all-symbol path even though they could safely execute in parallel? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3368c4f-f387-4474-b6a6-7d4dd876f97b?mode=deep",
+    "timestamp": "2026-02-19 04:33:32.225321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [Collection-Level Race] For NFT collections, an additional collection-level allowance path is added - if one transaction approves the entire collection and another transfers a specific NFT, are both paths checked for conflicts or could they race? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0701098d-cd9c-41cd-85fe-788a5a7c6e7a?mode=deep",
+    "timestamp": "2026-02-19 04:34:04.366336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForAllowance()] [Duplicate Paths] If the same allowance path is added multiple times (e.g., for the same from/spender/symbol), does the ResourceInfo.WritePaths collection prevent duplicates, or could duplicates cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1230b29-5743-471c-8643-79f65965d2f4?mode=deep",
+    "timestamp": "2026-02-19 04:34:39.187252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [Fee Deduction Race] GetTransactionFeeSymbols() returns multiple symbols for fee payment - if parallel transactions deduct fees from the same balance, could insufficient path declarations allow double-spending of fee balances? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0490776-d0b2-4eea-831f-a2e07dfc390a?mode=deep",
+    "timestamp": "2026-02-19 04:35:13.721962",
+    "report_generated": false
   }
 ]
