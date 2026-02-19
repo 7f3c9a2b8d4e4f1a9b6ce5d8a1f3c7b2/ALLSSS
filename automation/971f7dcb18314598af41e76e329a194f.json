@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetSymbolList()] [State Inconsistency] Symbol list is replaced entirely - if symbols are removed that have existing balances in TreasuryVirtualAddress, will those funds become permanently locked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3baf88b4-5e69-406b-85f2-b80207a9bd60?mode=deep",
+    "timestamp": "2026-02-19 08:55:56.010545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Authorization] Only Consensus contract can call this, but if State.AEDPoSContract.Value is uninitialized or manipulated, can attacker record fake replacements to steal rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8fbb3b9f-d36f-4823-9597-d9bcd1eb2afe?mode=deep",
+    "timestamp": "2026-02-19 08:56:18.606634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [State Transfer Bug] When !IsOldPubkeyEvil, LatestMinedTerm is transferred from old to new pubkey - but if old pubkey is removed before new pubkey is set, can race condition cause LatestMinedTerm to be lost? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_701bd9e1-9856-48b0-ae97-7f321337dc78?mode=deep",
+    "timestamp": "2026-02-19 08:56:41.693808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Duplicate Entry] If IsOldPubkeyEvil, new pubkey is added to ReplaceCandidateMap - but is there validation to prevent same pubkey being added multiple times, potentially multiplying their welcome rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0b4f51e-1f8d-43e5-ba04-a86b0cd68a76?mode=deep",
+    "timestamp": "2026-02-19 08:57:05.662786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Logic Error] State.IsReplacedEvilMiner[newPubkey] is always set to true - but shouldn't this only be set when IsOldPubkeyEvil is true? Can non-evil replacements get incorrect reward shares? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6eb8baed-1e2d-4d07-86e3-e84172aab2de?mode=deep",
+    "timestamp": "2026-02-19 08:57:31.315634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Timing Issue] ReplaceCandidateMap is keyed by CurrentTermNumber and removed during Release - if replacement happens but Release is delayed, can the entry be lost, denying new miner their welcome reward? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e4f51f0-a624-4fa5-80bd-748562f0516e?mode=deep",
+    "timestamp": "2026-02-19 08:57:58.020868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Authorization Bypass] GetCandidateAdmin must equal Context.Sender - but if Election contract has bug allowing admin spoofing, can attacker set arbitrary profit receivers for any candidate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4248575-e8fa-4938-affb-bd28ee605fb8?mode=deep",
+    "timestamp": "2026-02-19 08:58:24.096906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Validation Gap] Checks that pubkey is in candidate list, but doesn't verify it's an active miner - can retired candidates still set receivers and potentially claim future rewards if they rejoin? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f29495e-5f80-4711-9bab-5cec0d6739fb?mode=deep",
+    "timestamp": "2026-02-19 08:58:54.580780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Reentrancy Risk] Calls Election contract's SetProfitsReceiver which might callback - can attacker exploit reentrancy to set receiver multiple times or interfere with State.ProfitsReceiverMap update? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c0739e4-6893-4f2e-b491-a307310de821?mode=deep",
+    "timestamp": "2026-02-19 08:59:22.596090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Logic Error] If input.ProfitsReceiverAddress == previousProfitsReceiver, function returns early WITHOUT calling Election contract - can this cause state desynchronization between Treasury and Election contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f14b71f4-a6bb-42b3-8915-1fe54c6d2fce?mode=deep",
+    "timestamp": "2026-02-19 08:59:51.746837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Null Handling] If previousProfitsReceiver is null, new Address() is passed - does Election contract handle empty address correctly, or could this break beneficiary tracking? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3961bf8-f5eb-4aa1-95c2-a36fa3a7f879?mode=deep",
+    "timestamp": "2026-02-19 09:00:24.259215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ReplaceCandidateProfitsReceiver()] [Authorization] Only Election contract can call, but no validation that old/new pubkeys are valid - can malicious Election contract call corrupt ProfitsReceiverMap with arbitrary entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd9933d6-301f-4740-8afa-22989f2b60ce?mode=deep",
+    "timestamp": "2026-02-19 09:00:59.807537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ReplaceCandidateProfitsReceiver()] [State Leak] Old pubkey is removed from map but new pubkey gets old receiver - if old receiver was malicious, does new candidate unknowingly inherit security risk? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7344679-b274-47b8-b10e-0f7dae122430?mode=deep",
+    "timestamp": "2026-02-19 09:01:34.279844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetProfitsReceiver()] [Default Behavior] Falls back to Address.FromPublicKey if no receiver set - if this address doesn't exist or is a contract, can rewards be permanently locked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00907cb5-57ed-4316-bd3a-48bb8ae1a0b5?mode=deep",
+    "timestamp": "2026-02-19 09:02:08.304822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetMinerRewardWeightProportion()] [Division By Zero] weightSum is calculated by adding three weights - if all weights are 0 (should be prevented, but if state corrupted), will Div(weightSum) cause contract crash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9eb26977-9a9d-47a8-9b44-cfa19f9ce6b8?mode=deep",
+    "timestamp": "2026-02-19 09:02:42.414905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetMinerRewardWeightProportion()] [Rounding Error] Proportion is calculated as weight * 10000 / weightSum - can repeated operations with small weights cause proportions that don't sum to exactly 10000, breaking distribution invariants? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41dee7ef-769c-4abc-b841-d0d5a272fdd6?mode=deep",
+    "timestamp": "2026-02-19 09:03:16.007947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetMinerRewardWeightProportion()] [Integer Overflow] Weight multiplied by TreasuryContractConstants.OneHundredPercent before division - if weight is MAX_INT, can this overflow before Div, returning wrong proportion? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a80c9c75-efd4-4141-b6a3-69ccf014aa91?mode=deep",
+    "timestamp": "2026-02-19 09:03:46.336697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetMinerRewardWeightProportion()] [Calculation Order] FlexibleReward proportion is calculated as remainder (10000 - basic - welcome) - if basic + welcome > 10000 due to rounding, will FlexibleReward be negative or underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2b3f6b8-60c8-4fba-a0e0-af02f0627dc3?mode=deep",
+    "timestamp": "2026-02-19 09:04:21.285079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividendPoolWeightProportion()] [Same Issues as GetMinerRewardWeightProportion] Division by zero, rounding errors, integer overflow, and remainder calculation risks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08d42687-789e-40a6-885e-9f1df7808f9c?mode=deep",
+    "timestamp": "2026-02-19 09:04:54.434839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetWelfareRewardAmountSample()] [Division By Zero] If totalShares is 0, function returns empty output - but is this correct behavior, or should it return some default values? Will callers handle empty output correctly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aeb4569c-c245-426b-b46f-b8f35b2079b2?mode=deep",
+    "timestamp": "2026-02-19 09:05:27.811724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetWelfareRewardAmountSample()] [Integer Overflow] Uses decimal type to avoid overflow, but then casts back to long - can the cast cause overflow if amount is extremely large, returning incorrect sample? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4735968e-f6b1-4c6b-b252-9fbadad6b861?mode=deep",
+    "timestamp": "2026-02-19 09:06:01.880687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetWelfareRewardAmountSample()] [Precision Loss] Decimal division then cast to long truncates decimals - can this cause sample amounts to be significantly lower than actual, misleading users? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9bacc07-0b7f-4768-a424-c117690728ce?mode=deep",
+    "timestamp": "2026-02-19 09:06:35.324717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetWelfareRewardAmountSample()] [Wrong Period] Uses CurrentPeriod.Sub(1) to get released info - if current period is 0 or 1, will Sub(1) underflow or return period with no data, breaking calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3601ef52-94a4-46d5-b030-5057ff0b5af4?mode=deep",
+    "timestamp": "2026-02-19 09:07:08.665718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetWelfareRewardAmountSample()] [Missing Validation] No check that input.Value contains valid lock times - can negative or zero lock times cause GetVotesWeight to return invalid weights? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99ef5642-cde7-48c8-b31c-a7a244b633a1?mode=deep",
+    "timestamp": "2026-02-19 09:07:37.692186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: UpdateBasicMinerRewardWeights()] [Array Index OOB] Uses previousTermInformation.First() and .Last() - if collection is empty or has single element, can this cause crashes or use wrong data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_534a384f-776f-411f-b47d-de2976db1e09?mode=deep",
+    "timestamp": "2026-02-19 09:08:08.367678",
+    "report_generated": false
+  }
+]
