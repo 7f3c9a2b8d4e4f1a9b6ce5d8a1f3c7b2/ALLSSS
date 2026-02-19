@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Failure] If State.ParliamentContract.GetDefaultOrganizationAddress.Call at line 58 fails or returns invalid address, does line 62 corrupt State.MethodFeeController.Value? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fac150f7-4d4e-467d-8a56-51731469e61d?mode=deep",
+    "timestamp": "2026-02-19 04:42:00.670243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Race Condition] Can concurrent calls to RequiredMethodFeeControllerSet create race where multiple threads initialize controller differently between lines 51-62? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7e97086-ea18-402a-8a2a-9b920456931f?mode=deep",
+    "timestamp": "2026-02-19 04:42:23.153428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Logic Flaw] Does RequiredMethodFeeControllerSet check if defaultAuthority from lines 56-60 is valid before assignment at line 62, or can invalid authority be set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ef6fd00-81ad-4362-97a6-30f960519957?mode=deep",
+    "timestamp": "2026-02-19 04:42:45.945021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Inconsistency] If State.ParliamentContract.Value is set at line 54 but GetDefaultOrganizationAddress call fails, does partial initialization at line 53 cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8392ce73-a6fb-4f02-a84e-f07f02989cc9?mode=deep",
+    "timestamp": "2026-02-19 04:43:09.327045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Bypass] Can RequiredMethodFeeControllerSet be called directly by attacker to reset controller to Parliament default, bypassing ChangeMethodFeeController authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5de79f8-1eca-48d9-a0a7-d5e313ff2399?mode=deep",
+    "timestamp": "2026-02-19 04:43:33.310696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [External Dependency] If Parliament contract's GetDefaultOrganizationAddress method is compromised or returns malicious address, does line 58 blindly trust the response? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eca158b3-eeca-44a3-97c6-dc583b69d5ed?mode=deep",
+    "timestamp": "2026-02-19 04:43:59.140436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Input Validation] Does AssertValidToken at line 78 properly validate negative amounts with >= check, or can -1 pass validation and cause issues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9cc182f-7212-4e20-97e8-ef5be5b530f3?mode=deep",
+    "timestamp": "2026-02-19 04:44:25.835139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Edge Case] Can AssertValidToken accept amount of exactly 0 at line 78, allowing zero-fee registrations that defeat fee collection mechanisms? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c86b6dc8-d12e-4307-87e7-e9fd80fba056?mode=deep",
+    "timestamp": "2026-02-19 04:44:51.953222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Input Validation] Does AssertValidToken validate symbol length and character set before external call at line 83, preventing injection attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7565478-8ca1-41dd-86e6-9213bce57fac?mode=deep",
+    "timestamp": "2026-02-19 04:45:19.733212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [External Call] If Context.GetContractAddressByName returns null for TokenContractSystemName at line 81, does line 80 assign null causing IsTokenAvailableForMethodFee call to fail? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd37ecc3-a085-48a5-aef2-557267a1728e?mode=deep",
+    "timestamp": "2026-02-19 04:45:47.989289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [DOS Attack] Can repeated calls to AssertValidToken with invalid symbols at line 83 cause expensive external calls that DOS the contract through gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22f5422e-7d81-4c57-8e50-47c8ee714012?mode=deep",
+    "timestamp": "2026-02-19 04:46:16.793647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Error Handling] If State.TokenContract.IsTokenAvailableForMethodFee.Call fails or throws exception at line 83, does AssertValidToken catch and handle gracefully? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9be73991-2e1a-4a7f-b5d7-c320190bcc78?mode=deep",
+    "timestamp": "2026-02-19 04:46:50.286597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Logic Flaw] Can AssertValidToken pass for symbols that TokenContract marks available but are actually malicious or non-existent tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a292e6d8-d2a1-4ae7-9fdc-6e4979a97364?mode=deep",
+    "timestamp": "2026-02-19 04:47:22.299416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Reentrancy] Can the external call to State.TokenContract at line 83 enable reentrancy back into ReferendumContract methods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_406c78ed-9da0-4fec-86eb-b7c2b0adfaf9?mode=deep",
+    "timestamp": "2026-02-19 04:47:53.031725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Input Validation] Does CheckOrganizationExist validate authorityInfo.ContractAddress is not null before Context.Call at line 72, preventing null pointer errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f68fdfc-fbfb-441b-a7f0-4c08bab13c70?mode=deep",
+    "timestamp": "2026-02-19 04:48:21.926387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Input Validation] Does CheckOrganizationExist validate authorityInfo.OwnerAddress is not null before passing to ValidateOrganizationExist at line 73, preventing invalid validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69dff8e0-0faf-4d80-aa22-7f0603f90a19?mode=deep",
+    "timestamp": "2026-02-19 04:48:55.237404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [External Call] Can Context.Call at line 72 to authorityInfo.ContractAddress call malicious contract that returns true for non-existent organizations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c08cd10-4509-4156-8462-7ad74dbe689c?mode=deep",
+    "timestamp": "2026-02-19 04:49:27.968446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Value] If Context.Call at line 72 returns null or invalid BoolValue, does .Value access cause exception or return unexpected result? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_858b4411-11fc-49c6-9c56-27f847ff2bb9?mode=deep",
+    "timestamp": "2026-02-19 04:49:59.231188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Reentrancy] Can the external Context.Call at line 72 enable reentrancy attack where malicious contract calls back into ReferendumContract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4137f98-2b9f-4ba5-acb8-fee25f792a4c?mode=deep",
+    "timestamp": "2026-02-19 04:50:30.778734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Method Existence] Does CheckOrganizationExist verify that authorityInfo.ContractAddress actually implements ValidateOrganizationExist before calling at line 72? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5d8e71f-a02b-497b-9e92-816181d49198?mode=deep",
+    "timestamp": "2026-02-19 04:51:02.390493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [DOS Attack] Can attacker provide authorityInfo with ContractAddress that has expensive ValidateOrganizationExist implementation, causing gas exhaustion at line 72? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_582ee1e9-4701-40e6-938e-69629bac667a?mode=deep",
+    "timestamp": "2026-02-19 04:51:34.262380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Data Exposure] Does GetMethodFee at line 36 return null or throw for non-existent method names, potentially exposing storage structure? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2b57d44-fae1-4c37-9642-e1a02d27a2a4?mode=deep",
+    "timestamp": "2026-02-19 04:52:02.912064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Input Validation] Does GetMethodFee validate input.Value is non-null before accessing State.TransactionFees at line 36, preventing null reference? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aaa22ee9-9958-4824-9593-913fcec80b87?mode=deep",
+    "timestamp": "2026-02-19 04:52:35.100769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [DOS Attack] Can GetMethodFee be called with extremely long method names causing excessive storage access costs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10a41360-0b47-42ea-be08-35edd6931f24?mode=deep",
+    "timestamp": "2026-02-19 04:53:07.199787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [Initialization] Does GetMethodFeeController always call RequiredMethodFeeControllerSet at line 41 before returning, ensuring consistent controller state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3123cfb-0527-4580-ac9a-039135258017?mode=deep",
+    "timestamp": "2026-02-19 04:53:36.561430",
+    "report_generated": false
+  }
+]
