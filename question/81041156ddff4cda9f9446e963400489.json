@@ -1,4 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Upgrade Safety] If this contract is upgraded and the Round structure changes, could existing on-chain Round data become incompatible with newly generated Rounds? (Medium)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Upgrade Safety] If the sorting algorithm changes in a future version, would nodes running different versions generate different Round objects causing permanent fork? (Critical)"
-]
