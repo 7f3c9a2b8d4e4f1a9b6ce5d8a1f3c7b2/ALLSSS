@@ -1,3 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Implicit Assumptions] The code assumes miners with OutValue must have FinalOrderOfNextRound > 0 and vice versa. Are these assumptions documented and enforced elsewhere? What if they're violated? (Medium)"
-]
