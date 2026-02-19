@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Input Validation Order] CheckCreateProposalInput is called on line 161 but proposalId generation on line 162 happens before validation - can invalid inputs still generate IDs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4fc3b2e-cc2b-4259-9b96-a64682793cee?mode=deep",
+    "timestamp": "2026-02-19 01:00:14.629966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Proposal ID Reuse] Line 163 asserts proposal doesn't exist, but what if a proposal was deleted? Can proposal IDs be reused with different content? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8e9061c-60fc-43a8-ac5a-fe20dfd97e8b?mode=deep",
+    "timestamp": "2026-02-19 01:00:36.777615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Context.Sender Trust] Line 171 uses Context.Sender as Proposer without validation - can the sender be spoofed or manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51966879-29a1-4a8b-ba7b-17589a4e3e90?mode=deep",
+    "timestamp": "2026-02-19 01:00:59.080199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Validation Bypass] Two separate Validate calls on lines 161 and 176 - can proposals pass the first but fail the second, causing inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e06799f-32cd-4606-b7b3-d7a42eb41f38?mode=deep",
+    "timestamp": "2026-02-19 01:01:21.985239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Event Emission Before Storage] ProposalCreated event is fired on line 178 after state update - can reentrancy between these lines cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d125785-df3b-4269-a7c5-9c8b1dc2ce75?mode=deep",
+    "timestamp": "2026-02-19 01:01:45.698173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Params Field Security] Line 169 copies input.Params without validation - can malicious serialized data cause execution exploits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df41937d-3082-4675-90fd-67d5d29b6f34?mode=deep",
+    "timestamp": "2026-02-19 01:02:11.407180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Proposal Field Initialization] Not all ProposalInfo fields are initialized - can uninitialized vote counts cause arithmetic errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82f9668a-9da8-4161-b354-9a873827b03c?mode=deep",
+    "timestamp": "2026-02-19 01:02:38.237766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [OrganizationAddress Validation] input.OrganizationAddress is used without checking if the organization exists - can proposals reference invalid organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89c2ab78-8b81-4e40-bb3d-6227f2ee917b?mode=deep",
+    "timestamp": "2026-02-19 01:03:04.252153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [Length Boundary] Line 192 checks Title.Length <= MaxLengthForTitle - what is MaxLengthForTitle and can it be manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2394260-33e0-46ee-93d0-e1390f99ea4f?mode=deep",
+    "timestamp": "2026-02-19 01:03:30.846996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [String Encoding] Length checks don't account for character encoding - can multi-byte characters bypass length limits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69e11344-c7d8-4a52-b8c2-049ea48b884e?mode=deep",
+    "timestamp": "2026-02-19 01:03:57.545039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [Null String Handling] No null checks before accessing .Length property - can null strings cause exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7933b959-a5c4-4742-bd71-69e561bc7cf2?mode=deep",
+    "timestamp": "2026-02-19 01:04:27.116169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [Description Length] Line 194 checks Description.Length but not content - can malicious scripts or exploits be embedded? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f950dce5-615e-4596-b65a-7a362412e131?mode=deep",
+    "timestamp": "2026-02-19 01:04:56.214206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [URL Length] Line 196 checks ProposalDescriptionUrl.Length but ValidateDescriptionUrlScheme also validates the URL - is double validation necessary? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af406cdb-6169-4340-8702-5d2644ffcffa?mode=deep",
+    "timestamp": "2026-02-19 01:05:25.073380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [Constant Values] ReferendumConstants values are not visible in this file - can they be set to extreme values causing DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89c616a8-d69f-4f91-bd06-b78cb028bb71?mode=deep",
+    "timestamp": "2026-02-19 01:05:53.291385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CheckCreateProposalInput()] [Empty String Check] Length checks allow empty strings (length 0) - should empty titles/descriptions be rejected? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fd72dfb-061e-44f0-aca6-77eb66549dd9?mode=deep",
+    "timestamp": "2026-02-19 01:06:21.587511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Organization Existence] Line 202 retrieves organization but only checks != null on line 203 - can deleted or invalid organizations pass the null check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff563d6c-bc3f-4d17-8c85-3a76425f53cc?mode=deep",
+    "timestamp": "2026-02-19 01:06:49.309252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Whitelist Manipulation] Line 204 checks ProposerWhiteList.Contains - can the whitelist be modified between authorization check and proposal creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b67328bc-72de-4dab-852f-1413057d544b?mode=deep",
+    "timestamp": "2026-02-19 01:07:19.632391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Address Comparison] Uses Address.Contains() for whitelist check - can address comparison be bypassed with equivalent but different address representations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_153b8ed8-31b1-40a1-8110-6a8cf77f94b1?mode=deep",
+    "timestamp": "2026-02-19 01:07:49.949168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Multiple Proposers] If ProposerWhiteList contains duplicates, can this create unexpected authorization behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9df8eb47-2c1f-4d3b-ac0d-1f90eccd10f2?mode=deep",
+    "timestamp": "2026-02-19 01:08:18.799291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Whitelist Size] No check for whitelist size - can extremely large whitelists cause DOS during Contains() check? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8730fb6-936f-48f0-83c1-66ad5ddaf9a9?mode=deep",
+    "timestamp": "2026-02-19 01:08:47.537795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Hash Determinism] Line 210 uses HashHelper.ComputeFrom(createOrganizationInput) - can different inputs produce the same hash, causing organization collisions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_149c91dc-ec86-4814-8884-5aecaf1b17df?mode=deep",
+    "timestamp": "2026-02-19 01:09:16.020266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Virtual Address Security] Line 211-212 converts virtual address using CalculateVirtualHash - can this be manipulated to create predictable organization addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba61c117-85ae-42e8-87f5-2f673d71291e?mode=deep",
+    "timestamp": "2026-02-19 01:09:47.272656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [CreationToken Influence] CreationToken affects virtual hash calculation - can attackers manipulate this to create specific organization addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_adac3208-55e3-495c-9d80-0061845939d8?mode=deep",
+    "timestamp": "2026-02-19 01:10:17.687461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Input Validation] No validation of createOrganizationInput before hash calculation - can malformed inputs cause unexpected hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d468942c-91e0-4b18-8d49-2cf8fc9c3c39?mode=deep",
+    "timestamp": "2026-02-19 01:10:47.801269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Return Pair Security] Returns both hash and address - can these become inconsistent if one is modified but not the other? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8778f91e-84ad-43c0-a382-2267dda05133?mode=deep",
+    "timestamp": "2026-02-19 01:11:18.823259",
+    "report_generated": false
+  }
+]
