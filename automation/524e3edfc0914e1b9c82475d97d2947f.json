@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Constructor: FirstRoundCommandStrategy()] [Input Validation] Can a malicious node provide a manipulated currentRound with invalid RoundNumber, causing FirstRoundCommandStrategy to be instantiated for non-first rounds, potentially breaking the assumption that ExpectedMiningTimes depend on StartTimestamp and corrupting the consensus schedule? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5750abe2-2d92-4293-881d-8aa460b90127?mode=deep",
+    "timestamp": "2026-02-19 05:29:56.516381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Constructor: FirstRoundCommandStrategy()] [Null Reference] If currentRound is null or currentRound.RealTimeMinersInformation doesn't contain the provided pubkey, will the inherited properties (Order, MinerInRound, MinersCount) from CommandStrategyBase cause null reference exceptions or return invalid values, leading to incorrect offset calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29188f28-611d-4729-9ee8-47460c8e63e8?mode=deep",
+    "timestamp": "2026-02-19 05:30:18.544984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Constructor: FirstRoundCommandStrategy()] [State Manipulation] Can consensusBehaviour parameter be set to an unexpected value (not UpdateValue) during first round initialization, causing the offset calculation logic to use the wrong formula and schedule mining at incorrect times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_648ee509-1b92-40c2-914a-a6055a6f53b4?mode=deep",
+    "timestamp": "2026-02-19 05:30:40.794040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Constructor: FirstRoundCommandStrategy()] [Timestamp Manipulation] If currentBlockTime is set to a far-future or far-past timestamp, will the arranged mining times calculated by GetAEDPoSConsensusCommand() be unrealistic, allowing miners to manipulate their mining slots or DOS the consensus by producing blocks at invalid times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3239d7c9-62c5-4ec9-b6bf-b804e34bed8d?mode=deep",
+    "timestamp": "2026-02-19 05:31:04.227378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Integer Overflow] In line 37, when calculating offset = Order.Add(MinersCount).Sub(1).Mul(miningInterval), can extremely large values of Order, MinersCount, or miningInterval cause integer overflow, wrapping to a small or negative offset and scheduling mining at the wrong time or even in the past? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4f43718-d209-4b13-8131-1de4fedf4762?mode=deep",
+    "timestamp": "2026-02-19 05:31:28.632825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Logic Branch] When _consensusBehaviour equals UpdateValue AND Order equals 1 (line 35-36), the offset is set to miningInterval instead of the formula (Order + MinersCount - 1) * miningInterval. Can a malicious first miner exploit this special case to mine earlier than expected, front-running other miners or violating the time-slot fairness assumption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d61351ec-1f6a-43bc-8ae0-ebcc97754873?mode=deep",
+    "timestamp": "2026-02-19 05:31:53.557728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Order Manipulation] If Order is 0, negative, or greater than MinersCount, will the offset calculation in line 37 produce an invalid result (e.g., negative offset or offset beyond the round duration), causing mining to be scheduled outside the valid time window? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50fa57c6-da00-41b5-b381-051171dabe75?mode=deep",
+    "timestamp": "2026-02-19 05:32:19.356340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Consensus Behavior Check] If _consensusBehaviour is NOT UpdateValue (e.g., NextRound, NextTerm, TinyBlock), but FirstRoundCommandStrategy is still instantiated (violating the precondition at line 28-30 of GetConsensusCommand), will the offset calculation use the wrong branch and produce incorrect mining times? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_350e1b32-6269-4374-8f88-9d1b8e9b83ff?mode=deep",
+    "timestamp": "2026-02-19 05:32:46.286248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [MiningInterval Zero/Negative] If MiningInterval (inherited from CommandStrategyBase) returns 0 or a negative value due to corrupted round data, will line 33 and the subsequent multiplication operations produce zero or negative offsets, causing all miners to be scheduled at the same time or in the past? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_085897fc-4363-48cf-ac97-0100b42f69e0?mode=deep",
+    "timestamp": "2026-02-19 05:33:16.371454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [MinersCount Manipulation] If MinersCount is 0 (empty round) or negative, will the calculation at line 37 (Order.Add(MinersCount).Sub(1)) produce unexpected results, potentially scheduling mining at time 0 or causing underflow when subtracting 1? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d288258-e4f8-499b-9185-ab908ee44a42?mode=deep",
+    "timestamp": "2026-02-19 05:33:44.468449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Time Manipulation] At line 38-39, ArrangeMiningTimeWithOffset adds the calculated offset to CurrentBlockTime. If offset is negative due to underflow or logic errors, can a miner schedule their block in the past relative to CurrentBlockTime, breaking the monotonic time progression invariant? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a93626c8-cddf-4542-9e54-01fdca3957c8?mode=deep",
+    "timestamp": "2026-02-19 05:34:15.975289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Timestamp Overflow] When adding offset (in milliseconds) to CurrentBlockTime at line 39, can extremely large offset values cause timestamp overflow, wrapping around to a distant past date and disrupting consensus scheduling? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d2c5ebd-2bb4-496a-bb4e-e1be7e57b880?mode=deep",
+    "timestamp": "2026-02-19 05:34:48.377696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [DOS via Far-Future Scheduling] If the calculated offset places arrangedMiningTime far into the future (years ahead), will the consensus system wait indefinitely for this miner's turn, effectively freezing block production and creating a DOS condition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_234942b2-dcf4-4e12-a1a0-de28dbb133e4?mode=deep",
+    "timestamp": "2026-02-19 05:35:22.001726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Due Time Overflow] At line 44, MiningDueTime is calculated as arrangedMiningTime.AddMilliseconds(miningInterval). Can this addition cause timestamp overflow if arrangedMiningTime is already near the maximum timestamp value, creating an invalid due time in the past? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aec20784-1dfa-4d85-86f6-619971cb7802?mode=deep",
+    "timestamp": "2026-02-19 05:35:54.180278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Insufficient Mining Window] If miningInterval is too small (e.g., < 1000ms due to manipulation), will the window between ArrangedMiningTime and MiningDueTime be insufficient for actual block production, causing all miners to miss their slots and stalling consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e96d663-a9b0-4861-88c6-91e2f53249c3?mode=deep",
+    "timestamp": "2026-02-19 05:36:23.924372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [MiningDueTime Before ArrangedMiningTime] If miningInterval is negative (due to corrupted state), will MiningDueTime be set before ArrangedMiningTime, creating an impossible time window and causing miners to never successfully mine their blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cf16e27-3459-415a-a2de-831a72cffbe0?mode=deep",
+    "timestamp": "2026-02-19 05:36:58.500018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Mining Limit Manipulation] At line 45, LimitMillisecondsOfMiningBlock is set to DefaultBlockMiningLimit (inherited property calculated as TinyBlockSlotInterval * 3 / 5). If TinyBlockSlotInterval is manipulated to be 0 or negative, will the mining limit be invalid, either preventing mining or allowing unlimited mining time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1197e8f-c1b4-4666-8f38-ad1e89bbbf28?mode=deep",
+    "timestamp": "2026-02-19 05:37:33.118370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Insufficient Mining Time] If DefaultBlockMiningLimit is extremely small (e.g., 1ms) due to small MiningInterval, will miners be unable to complete block production within the limit, causing persistent mining failures and consensus stalls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_943e7ce9-5424-4431-9968-d8df2b31d39c?mode=deep",
+    "timestamp": "2026-02-19 05:38:07.866629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Excessive Mining Time] If DefaultBlockMiningLimit is excessively large due to large MiningInterval, can a malicious miner in the first round hold the mining lock for an unreasonable duration, delaying other miners and reducing network throughput? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54b32623-a35d-40a0-8ded-4af1198ff3c1?mode=deep",
+    "timestamp": "2026-02-19 05:38:43.105751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Behaviour Mismatch] At line 42, the Hint is set with _consensusBehaviour. If this behaviour doesn't match the actual consensus state (e.g., set to UpdateValue but should be NextRound), will downstream validation fail to detect this mismatch, allowing incorrect consensus commands to execute? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b09122a-6f60-4f12-bdfa-67a30ca79cc7?mode=deep",
+    "timestamp": "2026-02-19 05:39:15.668423",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Hint Serialization] When AElfConsensusHint is serialized to ByteString at line 42, can malformed or corrupted hint data pass validation checks, allowing a miner to submit invalid consensus transactions that other nodes accept? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7842bc48-40df-48f7-be5a-4b8c693d0ba9?mode=deep",
+    "timestamp": "2026-02-19 05:39:52.996378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Class Documentation: Lines 13-20] [First Round Assumption Violation] The comments state that ExpectedMiningTimes depend on StartTimestamp during the first round. If StartTimestamp is manipulated or set incorrectly during chain initialization, will all miners in the first round have incorrect ActualMiningTimes based on their Orders, creating an unfair mining distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a218448-e47f-4dfd-b32d-809318e9ea62?mode=deep",
+    "timestamp": "2026-02-19 05:40:29.401678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Class Documentation: Lines 13-20] [Order-Based Mining] Since ActualMiningTimes are based on Orders during first round, can a malicious node manipulate the ordering during initialization (e.g., placing themselves first) to gain unfair advantage in mining rewards and transaction fee collection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_164963f4-9428-426d-970b-3364021ba2e7?mode=deep",
+    "timestamp": "2026-02-19 05:41:05.204145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Round Number Validation] FirstRoundCommandStrategy should only be used when RoundNumber == 1, but there's no internal validation within the class. If mistakenly used for later rounds, will the offset calculation (which doesn't account for previous round data) produce completely wrong mining schedules? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f223c30-5315-4da5-9714-24b36738f534?mode=deep",
+    "timestamp": "2026-02-19 05:41:36.943937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/FirstRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [CommandStrategyBase Dependency] The function relies on inherited properties (Order, MinersCount, MiningInterval, DefaultBlockMiningLimit). If CommandStrategyBase has bugs in calculating these values from CurrentRound, will FirstRoundCommandStrategy propagate these errors into consensus commands? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1f1c233-56a9-4259-8b5d-57df7c5be6a3?mode=deep",
+    "timestamp": "2026-02-19 05:42:12.882395",
+    "report_generated": false
+  }
+]
