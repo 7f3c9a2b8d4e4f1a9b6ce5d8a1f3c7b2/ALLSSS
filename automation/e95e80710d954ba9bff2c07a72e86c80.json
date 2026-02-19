@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusBlockExtraData()] [Reentrancy] Can TryToGetCurrentRoundInformation at line 20 be manipulated through reentrancy to return stale or inconsistent round data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8fc150f3-edd8-45f3-9c23-04feaa741d62?mode=deep",
+    "timestamp": "2026-02-19 13:53:39.781911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Race Condition] Can TryToGetPreviousRoundInformation at line 72 return different results if called concurrently from multiple transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70a151c0-e271-4c77-993d-00b1afbeaa54?mode=deep",
+    "timestamp": "2026-02-19 13:54:02.130471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Race Condition] Can the revealedInValues update at line 152 be corrupted if multiple miners reveal values for the same target simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b704e7f-59bf-484a-892c-312d4398661c?mode=deep",
+    "timestamp": "2026-02-19 13:54:24.712053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Reentrancy] Does the ImpliedIrreversibleBlockHeight update at line 118 use Context.CurrentHeight which could change during reentrant calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f8b8657-c627-41e7-b3b9-08c5dfb6b0e6?mode=deep",
+    "timestamp": "2026-02-19 13:54:48.395319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Race Condition] Can RevealSharedInValues at line 189 cause race conditions when accessing shared miner state during concurrent round transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fb16eb8-66b8-42b5-95ea-e5cd944cf65d?mode=deep",
+    "timestamp": "2026-02-19 13:55:12.297815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [DoS] Can an attacker cause DoS by providing massive EncryptedPieces dictionaries that exceed gas limits during UpdateLatestSecretPieces iteration (line 124)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d019144-1cb5-44e0-bbf7-21d7b2bebbb8?mode=deep",
+    "timestamp": "2026-02-19 13:55:36.847560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [DoS] Can unbounded growth of DecryptedPieces maps (lines 145-146) cause storage exhaustion and prevent future block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0da4eb84-537a-49a2-9a26-9c079a0116b1?mode=deep",
+    "timestamp": "2026-02-19 13:56:01.832163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [DoS] Can ActualMiningTimes list (line 62-63) grow unbounded if the function is called repeatedly, causing gas exhaustion in future reads? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cade2d37-8d2e-45f2-90c9-bf28d3a892c8?mode=deep",
+    "timestamp": "2026-02-19 13:56:29.694191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [DoS] Can an attacker add thousands of encrypted pieces (lines 139-141) to make secret reconstruction computationally infeasible? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d086389-b836-4441-b645-ad2616eac713?mode=deep",
+    "timestamp": "2026-02-19 13:56:58.543180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [DoS] Can GenerateNextRoundInformation at line 176 be forced to fail repeatedly, preventing round transitions and halting consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a348e27d-5380-4151-b526-507efe1df419?mode=deep",
+    "timestamp": "2026-02-19 13:57:27.706650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [DoS] Can the assertion at line 210 be triggered intentionally to halt consensus if GenerateFirstRoundOfNextTerm fails? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ba37a99-6f10-4fdd-a2ad-b2ca01a5d2c5?mode=deep",
+    "timestamp": "2026-02-19 13:57:58.248038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusBlockExtraData()] [DoS] Can the assertion at line 18 be triggered with edge case pubkey values to prevent consensus data generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32d819e4-e12f-45b9-8c37-baa25be6dedb?mode=deep",
+    "timestamp": "2026-02-19 13:58:28.213980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [DoS] Can the assertion at line 65 be bypassed to inject null InValue, causing downstream failures in outValue calculation (line 67)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5274a9e4-9d42-43f8-8087-635745d89d87?mode=deep",
+    "timestamp": "2026-02-19 13:58:55.532395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [DoS] Can malicious revealedInValues (lines 148-152) cause infinite loops or gas exhaustion during PreviousInValue updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec3624b1-1302-46e7-a658-fec89d4c1605?mode=deep",
+    "timestamp": "2026-02-19 13:59:26.425446",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [DoS] Can RevealSharedInValues at line 189 fail and block round progression if insufficient decrypted pieces are available? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_391712d5-933f-4472-993d-a36cfc68184a?mode=deep",
+    "timestamp": "2026-02-19 13:59:57.947493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Integer Overflow] Can ProducedTinyBlocks.Add(1) at line 59 overflow if called excessively, wrapping the counter and corrupting mining statistics? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19f3ef2b-57ce-40ff-872c-f63134642c99?mode=deep",
+    "timestamp": "2026-02-19 14:00:30.702741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Integer Overflow] Can ProducedBlocks.Add(1) at line 61 overflow with repeated calls, allowing attackers to reset their block production count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c578117c-7140-47c0-9a4d-1d3cbcc421e9?mode=deep",
+    "timestamp": "2026-02-19 14:01:03.784445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForTinyBlock()] [Integer Overflow] Can the ProducedTinyBlocks increment at line 159 overflow if a miner produces an excessive number of tiny blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_684284fa-56fa-42b5-b4c2-9bf816510476?mode=deep",
+    "timestamp": "2026-02-19 14:01:35.638644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForTinyBlock()] [Integer Overflow] Can ProducedBlocks counter at line 161 overflow independently of ProducedTinyBlocks, creating accounting inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b71886a-4b2f-4512-91d2-c582df26beb3?mode=deep",
+    "timestamp": "2026-02-19 14:02:06.579134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Integer Overflow] Can ProducedBlocks.Add(1) at line 192 overflow during round transition if the miner has already produced maximum blocks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ab16ff7-c962-415a-93b7-9ef67e6372ce?mode=deep",
+    "timestamp": "2026-02-19 14:02:35.002205",
+    "report_generated": false
+  }
+]
