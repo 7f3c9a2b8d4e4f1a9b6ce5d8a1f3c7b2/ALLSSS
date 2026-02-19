@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Approval Manipulation] Approve is called for the full donation amount before ContributeProfits - if ContributeProfits fails or uses less than approved, does the excess approval remain, creating security risk for future transactions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32732257-bff6-466f-b5f6-063f239c74fa?mode=deep",
+    "timestamp": "2026-02-19 12:10:00.865947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Integration Risk] If TokenConverter.IsSymbolAbleToSell changes state between the check and ConvertToNativeToken call, can an attacker donate a token that becomes unconvertible, locking funds in the Treasury? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_670563c6-6ca2-41e2-a3e9-dfb93868ad17?mode=deep",
+    "timestamp": "2026-02-19 12:10:23.029053",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Event Manipulation] DonationReceived event is only fired when NOT converting - does this mean converted donations aren't logged, breaking external monitoring and transparency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f089cdb-cff1-4908-a899-1b19a53b8495?mode=deep",
+    "timestamp": "2026-02-19 12:10:45.606687",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: Donate()] [Precision Loss] When converting non-native tokens to native tokens via TokenConverter, can slippage or rounding cause significant value loss that isn't tracked or compensated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4af3bb0c-954b-4c47-9e06-0990a05c2117?mode=deep",
+    "timestamp": "2026-02-19 12:11:09.309491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: DonateAll()] [Reentrancy] DonateAll queries balance then calls Donate with that amount - can an attacker exploit reentrancy during GetBalance or Donate to change the balance mid-execution, causing over-donation or under-donation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58051935-69b3-47de-a58a-44435e738d7e?mode=deep",
+    "timestamp": "2026-02-19 12:11:33.281048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: DonateAll()] [Race Condition] If multiple transactions modify the sender's balance between GetBalance call and actual transfer in Donate, can the transfer fail or transfer an incorrect amount? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21736237-1108-4951-9b46-0494d566a492?mode=deep",
+    "timestamp": "2026-02-19 12:11:59.342953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: DonateAll()] [Authorization] Since DonateAll is public and uses Context.Sender's balance, can an attacker call this to force-donate another user's full balance if they have approval? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64394961-73ec-4b9a-bc46-7943108d8f5c?mode=deep",
+    "timestamp": "2026-02-19 12:12:25.135395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [Reentrancy Critical] The function calls Approve, then Sell, then SendInline to DonateAll - can an attacker exploit reentrancy during Sell to call ConvertToNativeToken again, creating infinite recursion or double-spending? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a6ca36b-67a5-43ff-9647-2f8cdc658dd6?mode=deep",
+    "timestamp": "2026-02-19 12:12:54.305404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [Slippage Attack] Sell is called without any slippage protection - can an attacker front-run the donation with a large trade to get unfavorable conversion rate, extracting value from the treasury? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1d558c2-fcf3-40fe-8000-cf32144f27ae?mode=deep",
+    "timestamp": "2026-02-19 12:13:20.881031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [State Inconsistency] If Sell succeeds but SendInline to DonateAll fails, the tokens are converted but not donated - are they lost, or can an attacker claim them? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f3ae8dd-89da-47e4-9d27-79512d279b2b?mode=deep",
+    "timestamp": "2026-02-19 12:13:52.341391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [Approval Leak] Full amount is approved to TokenConverter - if Sell fails or uses partial amount, does excess approval persist, allowing TokenConverter to drain Treasury funds later? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d3971fc-8a22-419a-873d-1e3c79932fd0?mode=deep",
+    "timestamp": "2026-02-19 12:14:20.072403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetDividendPoolWeightSetting()] [Authorization] Only TreasuryController can call this, but if GetDefaultTreasuryController returns attacker-controlled address (during initialization race), can attacker set malicious weights permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49e20dc3-cac9-4750-994e-ec1f64bdaa48?mode=deep",
+    "timestamp": "2026-02-19 12:14:48.191192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetDividendPoolWeightSetting()] [Integer Overflow] Weights are int type - can extremely large weights cause overflow in proportion calculations in GetDividendPoolWeightProportion, breaking reward distribution math? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6a03b32-e436-4931-9752-9304bc0f9d3d?mode=deep",
+    "timestamp": "2026-02-19 12:15:18.469589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetDividendPoolWeightSetting()] [Accounting Error] ResetSubSchemeToTreasury removes old weights and adds new ones - if RemoveSubScheme succeeds but AddSubScheme fails, will the scheme be permanently disconnected from Treasury, losing all future rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_722babda-d129-4feb-99d3-74a9a717bd17?mode=deep",
+    "timestamp": "2026-02-19 12:15:50.620749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetDividendPoolWeightSetting()] [DOS Attack] Can an attacker repeatedly call this function (if they control TreasuryController) to constantly remove and re-add schemes, disrupting ongoing distributions and causing gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f4edd8b-c392-499d-b404-f5eee5db1a9f?mode=deep",
+    "timestamp": "2026-02-19 12:16:18.967606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetDividendPoolWeightSetting()] [Validation Bypass] The function only checks that weights > 0, but doesn't verify maximum bounds - can extremely high weights cause disproportionate distributions that drain the treasury to one scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf177d80-d2ab-4bb1-906d-aa511d4750fa?mode=deep",
+    "timestamp": "2026-02-19 12:16:47.431279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetMinerRewardWeightSetting()] [State Corruption] Similar to SetDividendPoolWeightSetting - if ResetSubSchemeToMinerReward partially fails, can MinerReward scheme end up with missing or duplicate sub-schemes, breaking miner reward distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_573047aa-c0a8-46c4-8a47-00db3a164b9c?mode=deep",
+    "timestamp": "2026-02-19 12:17:20.583107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetMinerRewardWeightSetting()] [Timing Attack] If weights are changed between Release calls, miners who already contributed to a period might receive rewards based on new weights, either benefiting or losing unfairly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aaf3be50-ce48-42a0-9c52-f393312f0110?mode=deep",
+    "timestamp": "2026-02-19 12:17:55.003097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ResetWeight()] [Logic Error] If oldWeight == newWeight, the function returns early - but what if the scheme was manually removed externally? Should the function still re-add it to ensure consistency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44eaa608-7b35-47f9-8693-ead68a2e69e1?mode=deep",
+    "timestamp": "2026-02-19 12:18:30.007345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ResetWeight()] [Edge Case] If oldWeight is 0 (not registered), RemoveSubScheme is skipped - but can AddSubScheme fail if the scheme is somehow already registered, causing silent failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34b905ef-d043-4b5d-876e-e59624114ad1?mode=deep",
+    "timestamp": "2026-02-19 12:19:02.560419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ResetSubSchemeToTreasury()] [Race Condition] If two SetDividendPoolWeightSetting calls race, can they both read the same old weights, causing both to remove the schemes twice (failing on second removal) or add twice (duplicate shares)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e36e52dc-1d3e-4aba-9be0-5d0803a5e790?mode=deep",
+    "timestamp": "2026-02-19 12:19:31.583269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetSymbolList()] [Authorization Bypass] AssertPerformedByTreasuryController is called, but if State.TreasuryController.Value is null, it falls back to GetDefaultTreasuryController - can this be exploited during initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a638c02-a3e9-411f-838c-bde32f944b07?mode=deep",
+    "timestamp": "2026-02-19 12:20:05.909280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetSymbolList()] [Validation Gap] The function checks IsTokenAvailableForMethodFee OR IsInWhiteList, but doesn't verify token actually exists or has supply - can attacker add non-existent tokens that break GetUndistributedDividends? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bc0676f-0a8d-41d2-bb06-4b60b142b33d?mode=deep",
+    "timestamp": "2026-02-19 12:20:40.788404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetSymbolList()] [Logic Flaw] The assertion prevents tokens that can be sold via TokenConverter, but what if a token becomes sellable AFTER being added to symbol list - will it cause issues in future operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae6610b0-c365-4aec-8f83-b4cc4bff159c?mode=deep",
+    "timestamp": "2026-02-19 12:21:13.960508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetSymbolList()] [DOS Risk] If symbol list grows very large, will GetUndistributedDividends (which iterates all symbols) hit gas limits, making treasury balance unqueryable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58c796db-ae4a-46ad-9bb3-fbcb2344e5b0?mode=deep",
+    "timestamp": "2026-02-19 12:21:47.408633",
+    "report_generated": false
+  }
+]
