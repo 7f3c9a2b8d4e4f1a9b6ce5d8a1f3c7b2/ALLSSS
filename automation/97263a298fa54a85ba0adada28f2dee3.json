@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetCurrentMinerList()] [State Validation] If State.ConsensusContract returns null or empty miner list after RequireConsensusContractStateSet(), can subsequent authorization checks be bypassed through empty parliament member validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc1a77b9-6855-4531-8f0b-81b000d34d9d?mode=deep",
+    "timestamp": "2026-02-19 08:57:45.957426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetCurrentMinerList()] [Data Integrity] Can an attacker manipulate the consensus contract to return malformed public keys that fail Address.FromPublicKey() conversion, causing DoS in all parliament operations dependent on miner list? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee336cfe-cdf3-4287-9934-0b4a28b6bff4?mode=deep",
+    "timestamp": "2026-02-19 08:58:07.980144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetCurrentMinerList()] [Race Condition] If miner list changes between GetCurrentMinerList() call and vote counting in IsReleaseThresholdReached(), can votes from removed miners still count toward approval thresholds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_258cdf4c-7f03-4190-94c9-cde024b0c5ab?mode=deep",
+    "timestamp": "2026-02-19 08:58:30.925495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetCurrentMinerList()] [DoS] If consensus contract returns an extremely large miner list (e.g., thousands of pubkeys), can the Address.FromPublicKey() conversion loop cause out-of-gas errors in all parliament operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2507aab2-bc38-4033-8604-591f7b39362c?mode=deep",
+    "timestamp": "2026-02-19 08:58:54.109028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetCurrentMinerList()] [Authorization Bypass] If consensus contract is replaced or compromised, can it return an arbitrary miner list allowing unauthorized addresses to vote on and approve critical proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b239e8ff-f119-455f-839d-8c027554a5ba?mode=deep",
+    "timestamp": "2026-02-19 08:59:18.562608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Authorization Bypass] If organization.ProposerAuthorityRequired is false, can any address create proposals without whitelist or parliament member checks, enabling spam attacks or malicious proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb9a533d-799d-4fb3-a4f7-2d039f981bb8?mode=deep",
+    "timestamp": "2026-02-19 08:59:44.066034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Logic Error] The OR condition allows proposal creation if ValidateAddressInWhiteList(proposer) OR ValidateParliamentMemberAuthority(proposer) succeeds - can a non-whitelisted, non-parliament address exploit edge cases where both return true incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0a9cf28-af5b-4b82-b228-24cccd85875d?mode=deep",
+    "timestamp": "2026-02-19 09:00:10.053808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertIsAuthorizedProposer()] [State Manipulation] If organization is null (line 24 check fails after assertion), can the function continue with null reference, bypassing all authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b354cecc-60f1-475c-9436-492fec233355?mode=deep",
+    "timestamp": "2026-02-19 09:00:37.740696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Race Condition] If organization.ParliamentMemberProposingAllowed is changed from true to false after a proposer passes ValidateParliamentMemberAuthority() but before proposal creation, can unauthorized proposals be created? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_904e9a51-cf75-4f2d-8376-dda1bfe10425?mode=deep",
+    "timestamp": "2026-02-19 09:01:05.734594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Whitelist Bypass] If State.ProposerWhiteList is cleared or modified between AssertIsAuthorizedProposer() check and actual proposal creation, can previously unauthorized addresses create proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0df7ada-ec20-424d-9ae7-40fab9d37d82?mode=deep",
+    "timestamp": "2026-02-19 09:01:34.710994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsReleaseThresholdReached()] [Logic Error] If both IsProposalRejected() and IsProposalAbstained() return false but CheckEnoughVoteAndApprovals() also returns false due to insufficient approvals, can proposals be released prematurely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9776dd97-b7ae-40cd-a16d-1f196250115b?mode=deep",
+    "timestamp": "2026-02-19 09:02:05.009424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsReleaseThresholdReached()] [Race Condition] If parliamentMembers list changes between GetCurrentMinerList() call and the three validation checks (rejected/abstained/approvals), can vote counts be miscalculated leading to incorrect release decisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d532b50-37e1-4641-ad15-a84dd79ca877?mode=deep",
+    "timestamp": "2026-02-19 09:02:36.655076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsReleaseThresholdReached()] [State Inconsistency] If GetCurrentMinerList() is called fresh for each check instead of reusing parliamentMembers parameter, can different miner lists cause inconsistent threshold calculations within same transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed1cd356-5283-466f-9c55-70e6bb602f9a?mode=deep",
+    "timestamp": "2026-02-19 09:03:11.555594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsReleaseThresholdReached()] [Threshold Bypass] Can an attacker time proposal releases to coincide with miner list changes, exploiting the gap between rejection/abstention checks and approval checks to bypass thresholds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61b80d74-2b2e-413b-8db0-6fb52439854c?mode=deep",
+    "timestamp": "2026-02-19 09:03:42.135677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalStillPending()] [Logic Inversion] The function returns !CheckEnoughVoteAndApprovals() - if CheckEnoughVoteAndApprovals() has a bug returning false positives, can finalized proposals incorrectly appear as pending? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_286be335-5357-4c9a-9a37-5a5c6a3c7ac2?mode=deep",
+    "timestamp": "2026-02-19 09:04:13.571407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalStillPending()] [State Inconsistency] If IsProposalRejected() or IsProposalAbstained() return true, the function returns false (not pending) - can this cause proposals to be incorrectly marked as finalized when they should remain pending? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97f72eb9-cfdd-4ec5-98ba-465e7c506851?mode=deep",
+    "timestamp": "2026-02-19 09:04:44.488216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalRejected()] [Integer Overflow] The calculation 'rejectionMemberCount * AbstractVoteTotal' could overflow if rejectionMemberCount is large - can this cause incorrect rejection threshold comparisons? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5dd4dee-1e91-48bf-8c1e-33a4af047b4a?mode=deep",
+    "timestamp": "2026-02-19 09:05:14.752832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalRejected()] [Integer Overflow] The calculation 'organization.ProposalReleaseThreshold.MaximalRejectionThreshold * parliamentMembers.Count' could overflow with large member counts - can this bypass rejection checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85b49e24-311d-47ad-acf3-7f436fb93ae7?mode=deep",
+    "timestamp": "2026-02-19 09:05:44.391085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalRejected()] [Rounding Error] The comparison uses strict '>' instead of '>=' - can proposals with rejection count exactly at threshold be incorrectly marked as not rejected? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_487cf142-bce2-4414-8fac-a8909bac847e?mode=deep",
+    "timestamp": "2026-02-19 09:06:12.506987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalRejected()] [Division by Zero] If parliamentMembers.Count is zero (empty parliament), does the multiplication cause undefined behavior or allow all proposals to pass? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_108c5003-f0a0-4898-8f6c-17d4527b5b4b?mode=deep",
+    "timestamp": "2026-02-19 09:06:40.979568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalRejected()] [Vote Counting] The function counts proposal.Rejections.Count(parliamentMembers.Contains) - can non-parliament members in Rejections list inflate the count if Contains() check fails silently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_767d38df-ef84-499f-87e6-19a8fc779a36?mode=deep",
+    "timestamp": "2026-02-19 09:07:10.202709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalRejected()] [Duplicate Votes] If proposal.Rejections contains duplicate addresses, does Count(parliamentMembers.Contains) count them multiple times, inflating rejection count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcc24334-5299-4d1b-80dc-271bb6b4277a?mode=deep",
+    "timestamp": "2026-02-19 09:07:36.595871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalAbstained()] [Integer Overflow] The calculation 'abstentionMemberCount * AbstractVoteTotal' could overflow - can this cause incorrect abstention threshold comparisons? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3460786e-c16c-4d64-9f74-742ba1b414c7?mode=deep",
+    "timestamp": "2026-02-19 09:08:05.785052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalAbstained()] [Integer Overflow] The calculation 'organization.ProposalReleaseThreshold.MaximalAbstentionThreshold * parliamentMembers.Count' could overflow - can this bypass abstention checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_459a23c9-2720-43f2-bc2b-200d750fc801?mode=deep",
+    "timestamp": "2026-02-19 09:08:36.979197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalAbstained()] [Rounding Error] The comparison uses strict '>' instead of '>=' - can proposals with abstention count exactly at threshold be incorrectly marked as not abstained? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3cee299d-2e1c-4dd0-a717-42e8a27d78f5?mode=deep",
+    "timestamp": "2026-02-19 09:09:07.360991",
+    "report_generated": false
+  }
+]
