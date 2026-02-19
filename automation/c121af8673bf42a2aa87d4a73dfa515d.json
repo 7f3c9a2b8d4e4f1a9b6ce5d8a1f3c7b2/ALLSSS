@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: RecoverAddressFromSignature()] [Signature Malleability] Can an attacker exploit ECDSA signature malleability to create multiple valid signatures for the same ContractOperation, bypassing the one-time signer removal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a461160a-770d-4d15-aa5c-66073663b41c?mode=deep",
+    "timestamp": "2026-02-19 11:37:01.373243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ComputeContractOperationHash()] [Hash Collision] Can an attacker craft different ContractOperation objects that produce the same hash, allowing signature reuse across different operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac927b4c-e4c0-4cb8-b247-c8a5d371ac69?mode=deep",
+    "timestamp": "2026-02-19 11:37:23.445875",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: AddressHelper.ComputeContractAddress()] [Address Collision] Can an attacker find hash collisions in the contract address computation to deploy malicious contracts at predictable or controlled addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7957d5f2-ad66-444e-84af-41a86a7a8ac1?mode=deep",
+    "timestamp": "2026-02-19 11:37:46.029576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: CreateParliamentOrganizationForInitialControllerAddress()] [Whitelist Race Condition] Can an attacker manipulate parliamentProposerWhitelist.Proposers.Count to be 0 right before CreateOrganizationBySystemContract is called, enabling ParliamentMemberProposingAllowed for unauthorized users? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6a41adf-8535-455f-994a-b1759150319c?mode=deep",
+    "timestamp": "2026-02-19 11:38:09.495150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: AssertUserDeployContract()] [Whitelist Bypass] Can an attacker add themselves to Parliament proposer whitelist through a governance attack, then deploy unlimited user contracts on non-main chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21898c50-52e1-45a8-bf25-b3013b564738?mode=deep",
+    "timestamp": "2026-02-19 11:38:33.549158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ValidateProposerAuthority()] [Whitelist Cache Poisoning] Can an attacker manipulate the whitelist validation response from the authorization contract to cache false positives for unauthorized proposers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0215ec3-846a-431e-a9b5-69fa17c4a40e?mode=deep",
+    "timestamp": "2026-02-19 11:38:58.438588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: AssertInlineDeployOrUpdateUserContract()] [Inline Call Bypass] Can an attacker on the main chain bypass the inline transaction restriction by manipulating Context.Origin to equal Context.Sender through a proxy contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2914ae49-62d6-4f3d-bd9e-49df023fdaf8?mode=deep",
+    "timestamp": "2026-02-19 11:39:24.405316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ReleaseApprovedContract()] [Inline Call Attack] Can Context.SendInline to the authorization contract's Release method be exploited to reenter BasicContractZero or manipulate the release process? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0e422c7-4f8b-4b58-900d-32209c9b8025?mode=deep",
+    "timestamp": "2026-02-19 11:39:50.860568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ReleaseCodeCheckedContract()] [Inline Call Manipulation] Can an attacker manipulate the inline call to codeCheckController.ContractAddress Release method to trigger unexpected state changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e0a9cb8-a9eb-46c3-a781-5592143d6d8a?mode=deep",
+    "timestamp": "2026-02-19 11:40:19.014088",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: DeploySmartContract() in Helper] [Salt Reuse Attack] Can an attacker reuse the same salt value after a contract at that address is somehow removed, deploying a malicious contract at a previously trusted address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19741c49-b906-4a65-8062-b447f824b1ef?mode=deep",
+    "timestamp": "2026-02-19 11:40:49.066292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ProposeNewContract()] [Salt Prediction] Can an attacker predict or brute-force salt values to deploy contracts at addresses that collide with or are adjacent to high-value contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fec51efb-4735-4fdf-9146-64d3e6705eb5?mode=deep",
+    "timestamp": "2026-02-19 11:41:20.610922",
+    "report_generated": false
+  }
+]
