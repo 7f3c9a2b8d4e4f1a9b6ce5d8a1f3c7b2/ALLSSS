@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Gas] Can the binary exponentiation loop in Pow (lines 113-117) consume excessive gas for y with many set bits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a29c6ca7-88eb-435f-b07e-81f67b3ed7b7?mode=deep",
+    "timestamp": "2026-02-19 06:42:45.252314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Gas] Does the static constructor at line 11-14 consume excessive gas during contract deployment, potentially causing deployment failure? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a59babba-ed32-4f29-99a7-8bb742e95d9d?mode=deep",
+    "timestamp": "2026-02-19 06:43:07.442663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Weight Attack] Can an attacker manipulate connector weights to always trigger the simplified formula path (wf == wt) to exploit its rounding behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26bf39eb-8c4c-4e56-be5c-3226d6835d15?mode=deep",
+    "timestamp": "2026-02-19 06:43:29.989710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Weight Attack] Can extreme weight ratios (e.g., 0.001 / 0.999) cause Ln or Exp to fail or return invalid values when calculating y = wf/wt at line 52? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce2810fb-4ef3-4ae6-9886-f806c5322096?mode=deep",
+    "timestamp": "2026-02-19 06:43:53.765727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/\n\n### Citations\n\n**File:** contract/AElf.Contracts.TokenConverter/BancorHelper.cs (L1-168)\n```csharp\nusing System;\nusing System.Collections;\nusing System.Collections.ObjectModel;\nusing System.Linq;\nusing AElf.Sdk.CSharp;\n\nnamespace AElf.Contracts.TokenConverter;\n\npublic static class BancorHelper\n{\n    static BancorHelper()\n    {\n        Fact = Array.AsReadOnly(Enumerable.Range(0, 20).Select(x => DynFact(x)).ToArray());\n    }\n\n    private static long DynFact(long number)\n    {\n        var fact = number == 0 ? 1 : number;\n        for (var i = number - 1; i >= 1; i--) fact *= i;\n        return fact;\n    }\n\n    /// <summary>\n    ///     Get token return:\n    ///     Return = (1 - (fromConnectorBalance / (fromConnectorBalance + paidAmount))\n    ///     ^(fromConnectorWeight/toConnectorWeight))*toConnectorBalance\n    /// </summary>\n    /// <param name=",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_276504a5-5291-4848-babc-2871438bd742?mode=deep",
+    "timestamp": "2026-02-19 06:44:17.977951",
+    "report_generated": false
+  }
+]
