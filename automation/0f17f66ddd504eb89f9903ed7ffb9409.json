@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [AmountToTokenConvert Manipulation] If input.AmountToTokenConvert is set to Int64.MaxValue at line 73, does the subtraction cause underflow in amountOutOfTokenConvert, or does it correctly handle the edge case? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efc097c4-f861-4993-887c-db475f132d92?mode=deep",
+    "timestamp": "2026-02-19 01:37:52.226869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [State Race Condition] Between lines 62-72 (GetTokenInfo, GetBalance calls) and line 73 calculation, if another transaction changes token supply or contract balance, does this create TOCTOU vulnerability where needDeposit becomes stale before EnableConnector uses it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_753eabbc-2c30-48c9-bf91-829c708ac3b6?mode=deep",
+    "timestamp": "2026-02-19 01:38:14.172661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Related Symbol Validation] At line 60, fromConnector is obtained via toConnector.RelatedSymbol—if RelatedSymbol is empty string or invalid, does State.Connectors return null, triggering assertion at line 61 without proper error context? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a8a7cfa-f8d6-4f03-8647-6f70904a070d?mode=deep",
+    "timestamp": "2026-02-19 01:38:36.469983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Null Connector] At line 95, if State.Connectors[symbolInput.Value] returns null (symbol doesn't exist), the assertion at line 96 fails—but does this provide clear error messages, or can it DOS legitimate balance queries for typo'd symbols? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dca914bd-aba4-4c58-ac4f-53f6b5f35e56?mode=deep",
+    "timestamp": "2026-02-19 01:38:59.220338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Assertion Logic Error] At line 96, the assertion requires connector != null AND !connector.IsDepositAccount—this means the function only works for resource connectors, not deposit connectors. Is this intentional, and does it break balance queries for deposit account symbols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03dc7b13-9db3-4161-b9df-7890520380c5?mode=deep",
+    "timestamp": "2026-02-19 01:39:23.123788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Symbol Swap] At line 97, ntSymbol is set to connector.RelatedSymbol (the deposit connector symbol)—if this relationship is reversed or corrupted in state, does the function return the wrong connector's balance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8906988a-df86-409d-926c-8fc5b4c08a1d?mode=deep",
+    "timestamp": "2026-02-19 01:39:48.770105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Null Related Symbol] At line 97, if connector.RelatedSymbol is null or empty, does State.Connectors[ntSymbol] at line 100 return null, causing NullReferenceException when accessing .VirtualBalance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88e8d1a7-b38c-4fe5-a119-d2f36362b44e?mode=deep",
+    "timestamp": "2026-02-19 01:40:15.574430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Integer Overflow] At line 100, the return value is VirtualBalance + DepositBalance—if both values are near Int64.MaxValue, does the addition overflow to negative or wrap around, reporting incorrect total balance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f531e53b-ffd1-4794-beae-14ae28aebd5c?mode=deep",
+    "timestamp": "2026-02-19 01:40:43.385862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Negative Balance] If State.DepositBalance[ntSymbol] is negative due to underflow in Sell operations (line 194 in main contract), does line 100 return negative total balance that breaks invariant checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c2bb72a-bcde-4b77-8292-9f810550adbe?mode=deep",
+    "timestamp": "2026-02-19 01:41:09.939843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Uninitialized State] If State.DepositBalance[ntSymbol] has never been set (returns default 0), but VirtualBalance is non-zero, does the function correctly return VirtualBalance, or does it indicate an inconsistent state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa06eede-47f8-47c4-857f-3c8e5145a1d5?mode=deep",
+    "timestamp": "2026-02-19 01:41:36.014844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [VirtualBalance Staleness] Does the function return State.Connectors[ntSymbol].VirtualBalance which may be stale if UpdateConnector modified VirtualBalance but didn't update related deposit balances, causing desynchronized reserve accounting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63417359-895b-42a0-a80b-e9a0a7e89c94?mode=deep",
+    "timestamp": "2026-02-19 01:42:06.210804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [Null Connector] At line 106, if GetPairConnector returns a PairConnector where DepositConnector is null (due to missing related symbol), does line 107 cause NullReferenceException when accessing depositConnector.IsPurchaseEnabled? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2828aa2-f773-4e0c-9776-44ee38d1e214?mode=deep",
+    "timestamp": "2026-02-19 01:42:37.091844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [Logic Inconsistency] At line 107, the function checks depositConnector.IsPurchaseEnabled—but shouldn't it check BOTH depositConnector and resourceConnector's IsPurchaseEnabled flags to ensure the full pair is enabled for selling? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f6960a6-7c7d-4480-8922-7b96a06c528c?mode=deep",
+    "timestamp": "2026-02-19 01:43:07.730144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [Purchase vs Sell Confusion] Does IsPurchaseEnabled at line 107 refer to 'purchasing the resource token' (buying) or 'enabling purchase of deposit token' (selling)? If semantics are unclear, can users misinterpret when selling is allowed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ea19b58-dc9d-416c-b411-9e69c1d4f590?mode=deep",
+    "timestamp": "2026-02-19 01:43:37.321408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [State Desynchronization] If depositConnector.IsPurchaseEnabled is set to true but the resourceConnector for the same pair has IsPurchaseEnabled=false, does IsSymbolAbleToSell return true while Sell operation would fail, creating UX confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9a2674c-be17-4c03-89c5-9583d1251805?mode=deep",
+    "timestamp": "2026-02-19 01:44:05.122804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Cross-Function: GetNeededDeposit + EnableConnector] If GetNeededDeposit is called with AmountToTokenConvert=X at T0, but EnableConnector is called at T1 after token supply changed, does the stale needDeposit allow connector enablement with insufficient reserves? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4317dc93-90c3-47cf-a525-2ea483693e01?mode=deep",
+    "timestamp": "2026-02-19 01:44:35.723007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Cross-Function: GetPairConnector + Buy/Sell] If GetPairConnector returns swapped ResourceConnector and DepositConnector due to IsDepositAccount misconfiguration, do Buy/Sell operations use reversed connectors in Bancor calculations, breaking price discovery? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e96296a3-035d-4da3-961d-d5ff68492891?mode=deep",
+    "timestamp": "2026-02-19 01:45:06.512388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Cross-Function: GetDepositConnectorBalance + Sell] If GetDepositConnectorBalance returns inflated balance due to overflow, does Sell operation check pass even when actual reserves are insufficient, causing transfer failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07774288-4a78-4552-bada-ed70136d4101?mode=deep",
+    "timestamp": "2026-02-19 01:45:38.694560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Cross-Function: IsSymbolAbleToSell + Sell Validation] If IsSymbolAbleToSell returns true but the connector is disabled mid-block before Sell executes, does the Sell assertion at line 165 in main contract catch this, or can race conditions occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14bf4fc4-ae79-4fc6-aa82-b91f4d40bc1d?mode=deep",
+    "timestamp": "2026-02-19 01:46:08.941815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] Can State.Connectors be modified by UpdateConnector/AddPairConnector between view function calls, causing GetPairConnector, GetNeededDeposit, and GetDepositConnectorBalance to return inconsistent data within the same block? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05859abf-f902-42cb-90f9-47743f8851d2?mode=deep",
+    "timestamp": "2026-02-19 01:46:36.607093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] If State.FeeRate is updated via SetFeeRate between GetFeeRate calls in the same block, can this cause Buy and Sell operations to use different fee rates, violating fairness invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63560f34-9dfc-4420-a5ea-f6c0a92a11c6?mode=deep",
+    "timestamp": "2026-02-19 01:47:06.658326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] If State.DepositBalance[symbol] is decremented to negative values in Sell operations (line 193-194 in main contract), do view functions like GetDepositConnectorBalance report invalid states without throwing errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84411cfa-9dec-4e34-987c-d1b400130834?mode=deep",
+    "timestamp": "2026-02-19 01:47:37.032581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Bancor Integration: GetNeededDeposit] At line 82, if BancorHelper.GetAmountToPayFromReturn receives (toConnector balance - amountOutOfTokenConvert) ≤ 0 as the 'to balance', does BancorHelper throw InvalidValueException or return incorrect deposit calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_161cc606-7f54-45d0-8249-e07e0740740d?mode=deep",
+    "timestamp": "2026-02-19 01:48:03.362215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Bancor Integration: Weight Parsing] Does GetWeight() parse connector.Weight string without validation in view functions—if Weight contains malformed decimals (e.g., '0.5.5'), does GetNeededDeposit crash when calling GetWeight at line 82-83? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2863801-046b-4da9-bd55-c3cd54e750f9?mode=deep",
+    "timestamp": "2026-02-19 01:48:32.131171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Bancor Integration: VirtualBalance Bounds] If fromConnector.VirtualBalance at line 77 is set to Int64.MaxValue via UpdateConnector, does the Bancor formula calculation at line 82 overflow during intermediate decimal operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49884738-d99b-4fd6-a8ca-9e1eafaea1f2?mode=deep",
+    "timestamp": "2026-02-19 01:48:59.394300",
+    "report_generated": false
+  }
+]
