@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Input Validation] Can an attacker pass null or empty string as symbol parameter to trigger unexpected behavior before the Split() operation, bypassing the words[0].Length > 0 check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a2dc204-6c23-4927-9969-3866cadb98f1?mode=deep",
+    "timestamp": "2026-02-19 08:24:56.531401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Input Validation] If symbol contains multiple consecutive NFTSymbolSeparator characters (e.g., 'ABC--123' or 'ABC---0'), does Split() create empty string elements that pass validation checks, allowing invalid symbols to be classified as valid NFT types? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89a8be7a-4cd4-4c08-b2c9-dfd985a295c1?mode=deep",
+    "timestamp": "2026-02-19 08:25:18.536458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Input Validation] Can an attacker craft a symbol with trailing NFTSymbolSeparator (e.g., 'ABC-') causing words.Length == 2 but words[1] to be empty string, bypassing the words[1].Length > 0 check after Split? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8136805-8588-4951-90da-6f903234d628?mode=deep",
+    "timestamp": "2026-02-19 08:25:41.195216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Input Validation] If symbol starts with NFTSymbolSeparator (e.g., '-123'), does Split() create words[0] as empty string that fails the words[0].Length > 0 check, and is the error message 'Invalid Symbol input' sufficient for debugging? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f8dd2d2-8051-4920-8eae-251d980ee31f?mode=deep",
+    "timestamp": "2026-02-19 08:26:05.114110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Input Validation] Can symbol parameter contain leading/trailing whitespace that passes IsValidCreateSymbol() validation but creates inconsistent symbol type classification compared to trimmed versions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa1a2101-6a9d-4c68-a061-583544ede9aa?mode=deep",
+    "timestamp": "2026-02-19 08:26:29.325609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Logic Error] If words.Length > 2 (e.g., 'ABC-123-456'), the function only checks words.Length == 2 in the Assert, but what happens if words.Length == 3+? Does it fall through to return statement without proper validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5152afff-4abd-4743-a540-5a9ca672b65d?mode=deep",
+    "timestamp": "2026-02-19 08:26:55.333399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Type Confusion] Can an attacker register a regular token with symbol 'ABC-0' that gets classified as NftCollection but lacks proper NFT collection properties, causing type confusion in downstream operations like CreateNFTCollection vs CreateToken? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c84e892b-466d-4bd3-b699-106207f56ea0?mode=deep",
+    "timestamp": "2026-02-19 08:27:20.481848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Type Confusion] If a token symbol accidentally contains the NFTSymbolSeparator (e.g., legacy token 'OLD-TOKEN'), will it be incorrectly classified as NFT/NftCollection when it should be Token type, breaking allowance and transfer logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27b148c5-6cba-44ef-9a00-3e6d8f06c474?mode=deep",
+    "timestamp": "2026-02-19 08:27:46.280770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Business Logic] The CollectionSymbolSuffix constant '0' is compared as string - can an attacker create NFT with itemId '00', '000', or '0x0' that are numerically equivalent but fail the exact string match, bypassing collection validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a56b5a9-e912-4de9-b73f-f890a9621e1b?mode=deep",
+    "timestamp": "2026-02-19 08:28:13.516633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Business Logic] Does IsValidItemId() accept leading zeros (e.g., '001', '0123')? If yes, can this cause itemId '01' and '1' to be treated as different NFTs despite being numerically identical, enabling duplicate NFT creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b486756b-88ab-490c-ab53-3feaa20d3f6b?mode=deep",
+    "timestamp": "2026-02-19 08:28:40.675712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Business Logic] Can itemId be '0' followed by additional digits (e.g., '01', '02') that pass IsValidItemId() regex '^[0-9]+$' but are not recognized as CollectionSymbolSuffix, creating ambiguous collection references? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b2f4337-be27-41e6-bad3-f0c74265857c?mode=deep",
+    "timestamp": "2026-02-19 08:29:07.921750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Integer Overflow] If itemId is an extremely large numeric string (e.g., 1000+ digits) that passes regex validation, can it cause integer overflow in downstream operations that parse itemId as long/int? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5814d87-c714-4294-b649-d4ce636a9fb6?mode=deep",
+    "timestamp": "2026-02-19 08:29:37.359336",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Denial of Service] Can an attacker provide a symbol with maximum allowed length where Split() operation creates very long words array, causing excessive gas consumption or memory allocation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5ebb9f2-dc54-47d5-a802-a0206e33cf69?mode=deep",
+    "timestamp": "2026-02-19 08:30:07.161266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Denial of Service] If symbol contains Unicode NFTSymbolSeparator characters that look identical but have different encodings, will Split() fail to properly separate, causing incorrect type classification? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf69c2d7-2951-4122-a4a3-65a7f561e38e?mode=deep",
+    "timestamp": "2026-02-19 08:30:38.505581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Cross-Function Consistency] When GetSymbolType returns SymbolType.Token for single-word symbol, is there validation elsewhere that this token actually exists in State.TokenInfos before operations proceed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b83c59bc-eb2a-4980-b285-688156bf5aa4?mode=deep",
+    "timestamp": "2026-02-19 08:31:06.652442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Cross-Function Consistency] Does GetSymbolType synchronization with AssertApproveToken() in TokenContract_Helper.cs - can a symbol pass GetSymbolType validation but fail AssertApproveToken, or vice versa, creating inconsistent validation states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc667fb7-58f9-44d3-95a0-521528994545?mode=deep",
+    "timestamp": "2026-02-19 08:31:36.771592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Cross-Function Integration] In GetAllowance() from TokenContract_NFT_Actions.cs, GetSymbolType is called on sourceSymbol - if type classification is wrong due to parsing bug, can it return incorrect allowance from wrong allowance bucket (Token vs NFT vs Collection)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c3545ae-5f3d-4554-96b0-e114cfb243b7?mode=deep",
+    "timestamp": "2026-02-19 08:32:06.513847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Race Condition] If symbol validation rules (IsValidCreateSymbol/IsValidItemId) are updated during transaction execution, can GetSymbolType return inconsistent results for same symbol, causing state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf99d1a1-817d-4985-9ddd-32a35b33e0f4?mode=deep",
+    "timestamp": "2026-02-19 08:32:37.073649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElF.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Case Sensitivity] Does the function handle case sensitivity correctly? Can 'ABC-0' vs 'abc-0' vs 'Abc-0' return different SymbolTypes due to IsValidCreateSymbol validation, enabling duplicate NFT collections with different casing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c41de63f-e7c3-4758-b1fa-ca4407827b20?mode=deep",
+    "timestamp": "2026-02-19 08:33:07.919046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Error Handling] When Assert fails with 'Invalid Symbol input' or 'Invalid NFT Symbol input', does the error message provide enough information for debugging, or can it mask the actual validation failure (words[0] vs words[1] vs regex)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9193641-e6c8-4934-a8b0-1e14873c40b1?mode=deep",
+    "timestamp": "2026-02-19 08:33:36.488892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Boundary Condition] If symbol equals exactly NFTSymbolSeparator '-', does Split() return array with 2 empty strings causing words[0].Length > 0 to fail, or does it return array with 1 element? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5779299-1a4c-4298-bfdc-b11836b45bb1?mode=deep",
+    "timestamp": "2026-02-19 08:34:04.892040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Boundary Condition] What is the maximum length that IsValidCreateSymbol and IsValidItemId accept? Can combined symbol length exceed NFTSymbolMaxLength (30 chars) but still pass individual part validation, causing downstream buffer issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9bea73e3-7c4b-4961-99d5-8be5af6a9df9?mode=deep",
+    "timestamp": "2026-02-19 08:34:32.961517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [State Consistency] If a symbol is classified as SymbolType.Nft but the corresponding collection (prefix-0) doesn't exist in State.TokenInfos, can this cause null reference exceptions in operations like AssertNftCollectionExist? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7097dc0-1bf6-4768-a0af-6e6e15d1825d?mode=deep",
+    "timestamp": "2026-02-19 08:35:03.002927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Symbol Reuse] Can an attacker first create a Token with symbol 'ABC', then later attempt to create NFT collection 'ABC-0' - does GetSymbolType correctly distinguish these, or can namespace collision occur? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_982894ac-bc9e-4190-8e88-05163de3cf5c?mode=deep",
+    "timestamp": "2026-02-19 08:35:32.674325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_NFTHelper.cs] [Function: GetSymbolType()] [Authority Bypass] Since GetSymbolType is private, it's called from public Create() method - can incorrect type classification allow unauthorized users to create NFT collections without proper collection ownership checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2512aa86-e932-4dd7-a8b8-737e9b67bbaa?mode=deep",
+    "timestamp": "2026-02-19 08:36:00.144556",
+    "report_generated": false
+  }
+]
