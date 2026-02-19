@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Integer Overflow] If missedRoundsCount parameter at line 51 is long.MaxValue, can missedRoundsCount.Add(1) at line 57 overflow causing incorrect round start time calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fedd7d2-de7e-49e1-9c3c-f5663cbc4c4f?mode=deep",
+    "timestamp": "2026-02-19 15:07:08.347782",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Math Error] At line 57, if missedRoundsCount.Add(1).Mul(totalMilliseconds) overflows long bounds, can this wrap around to a small or negative value causing past timestamps to be returned? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b103f4af-eeeb-449e-b07c-508439b3af5d?mode=deep",
+    "timestamp": "2026-02-19 15:07:30.306716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Input Validation] If missedRoundsCount at line 51 is negative (e.g., -1), can missedRoundsCount.Add(1) become 0, causing CalculateFutureRoundStartTime to return GetRoundStartTime() unchanged at line 57? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33493617-dded-4804-96b7-4d2ea29ceccf?mode=deep",
+    "timestamp": "2026-02-19 15:07:52.710926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Logic Error] If miningInterval parameter at line 51 is 0 and not overridden at lines 53-54, can TotalMilliseconds(0) still return 0, causing no time progression at line 57? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b74f0cd-7d81-4ccd-8148-1bc20db663ea?mode=deep",
+    "timestamp": "2026-02-19 15:08:15.973399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Timestamp Overflow] If GetRoundStartTime().AddMilliseconds() at line 57 receives an extremely large millisecond value from missedRoundsCount.Add(1).Mul(totalMilliseconds), can Timestamp overflow causing invalid future time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1a0f659-99b7-4819-899f-feb549002999?mode=deep",
+    "timestamp": "2026-02-19 15:08:40.024556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Default Parameter] If caller passes miningInterval = 0 at line 51 but GetMiningInterval() also returns 0 at line 54, can this cascade into division by zero in TotalMilliseconds()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e71d1f7-d667-4c0d-afb1-730450fc1415?mode=deep",
+    "timestamp": "2026-02-19 15:09:06.942790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Consensus Safety] If missedRoundsCount is very large (e.g., node offline for weeks), can the calculated future round start time at line 57 be so far ahead that it causes consensus participants to reject it as invalid? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce263bad-13e1-4d1d-8e8c-1648ab85dfdf?mode=deep",
+    "timestamp": "2026-02-19 15:09:35.027743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Logic Error] If TotalMilliseconds(miningInterval) at line 56 returns a negative value due to state corruption, can missedRoundsCount.Add(1).Mul(totalMilliseconds) produce negative offset pushing timestamp into the past? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_184686b5-4f52-485b-b84e-4043a30565aa?mode=deep",
+    "timestamp": "2026-02-19 15:10:00.900479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [State Dependency] If GetRoundStartTime() returns null or invalid timestamp at line 57, can AddMilliseconds() fail silently or throw exception halting consensus scheduling? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10c9129e-d140-41f9-ba2a-120901cca856?mode=deep",
+    "timestamp": "2026-02-19 15:10:31.798125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: CalculateFutureRoundStartTime()] [Precision] At line 56, does TotalMilliseconds() return exact milliseconds or rounded value - if rounded, can accumulated error over many missedRoundsCount cause significant time drift? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a752918-401f-4d13-a65d-ab5e5caad603?mode=deep",
+    "timestamp": "2026-02-19 15:11:02.390166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Division by Zero] If RealTimeMinersInformation.Count is 0 at line 72, the formula (0 * miningInterval + miningInterval) returns only miningInterval - can this cause incorrect round duration when there are no miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f739ca7f-cfe9-42df-9ffb-ddf52402df1b?mode=deep",
+    "timestamp": "2026-02-19 15:11:34.472211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Integer Overflow] If RealTimeMinersInformation.Count is extremely large and miningInterval is also large at line 72, can Count * miningInterval overflow int bounds causing negative or wrapped TotalMilliseconds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e6df6bd-a2a0-4541-80e7-d9bbae17cd10?mode=deep",
+    "timestamp": "2026-02-19 15:12:07.373097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Logic Error] At line 72, the formula adds an extra miningInterval for the extra block producer - but if there is no extra block producer or multiple extra block producers, is this calculation still accurate? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0fcdb4b-82cf-4e2c-b401-b8ca0685eab8?mode=deep",
+    "timestamp": "2026-02-19 15:12:41.812183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Input Validation] If miningInterval parameter at line 68 is 0 and GetMiningInterval() at line 70 also returns 0, can TotalMilliseconds return 0 causing division by zero in dependent calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e37ba89-fb68-4ec2-9a41-03604697f934?mode=deep",
+    "timestamp": "2026-02-19 15:13:17.235671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Negative Values] If miningInterval at line 68 is negative (due to state corruption), can RealTimeMinersInformation.Count * miningInterval + miningInterval at line 72 produce negative total causing time to flow backward? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_690bca57-5415-4d38-ae59-5efb6529e982?mode=deep",
+    "timestamp": "2026-02-19 15:13:51.971055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Race Condition] If RealTimeMinersInformation.Count changes between the call to TotalMilliseconds() at line 56 and its usage in line 57, can this cause inconsistent round duration calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ab3a68c-67db-41e7-add9-8a09daaa0070?mode=deep",
+    "timestamp": "2026-02-19 15:14:24.981574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Consensus Safety] If different nodes calculate TotalMilliseconds() with different RealTimeMinersInformation.Count values due to network delays, can this cause consensus disagreement on round end times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40133165-a8e1-407c-8a21-834858ad6643?mode=deep",
+    "timestamp": "2026-02-19 15:15:00.900636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Logic Error] The comment at lines 60-65 states total time should be 'MinersCount * MiningInterval + MiningInterval', but does this account for scenarios where miners have variable time slots or overlapping schedules? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e51d573-9776-4962-9a22-ee34b1087105?mode=deep",
+    "timestamp": "2026-02-19 15:15:37.711945",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Default Parameter] If miningInterval = 0 is passed at line 68, the check at line 70 calls GetMiningInterval() - but what if GetMiningInterval() also needs RealTimeMinersInformation to be properly initialized? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f003489-998a-442d-9111-2e1aeaa3c4c7?mode=deep",
+    "timestamp": "2026-02-19 15:16:13.401163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: TotalMilliseconds()] [Return Value] Does the int return type at line 68 have sufficient range to represent total milliseconds for large miner counts and long intervals, or can it overflow for realistic parameter values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca0c5a3c-0cb7-47f0-af2f-abe16ab3050b?mode=deep",
+    "timestamp": "2026-02-19 15:16:44.212218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [State Consistency] If GetMiningInterval() at line 22 returns different values when called by TotalMilliseconds() at line 34 due to concurrent Round updates, can this cause missedRoundsCount calculation mismatch? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5abf345-62f4-4d19-85ba-68b89ee41023?mode=deep",
+    "timestamp": "2026-02-19 15:17:21.739082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Reentrancy] Can any of the method calls (GetMiningInterval, GetExtraBlockProducerInformation, GetExtraBlockMiningTime, GetRoundStartTime, TotalMilliseconds, CalculateFutureRoundStartTime) at lines 22-36 be reentered causing state manipulation during abnormal mining time calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c6655ac-72eb-488a-bd73-58126cd072cd?mode=deep",
+    "timestamp": "2026-02-19 15:17:53.226112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Logic Error] If futureRoundStartTime at line 35 is calculated for round N+K, but minerInRound.Order at line 36 is from round N, can mixing round data cause the returned timestamp to be invalid? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56a6684b-f4e3-4ca4-a32b-b22afb0915fe?mode=deep",
+    "timestamp": "2026-02-19 15:18:32.563400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: Multiple] [DOS Attack] Can an attacker repeatedly call ArrangeAbnormalMiningTime() with different pubkeys at high frequency causing excessive GetExtraBlockProducerInformation() calls that enumerate RealTimeMinersInformation, creating computational DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5b0ad907-b381-4c6d-ba07-c2cb5293da7f?mode=deep",
+    "timestamp": "2026-02-19 15:19:09.309580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ArrangeAbnormalMiningTime.cs] [Function: ArrangeAbnormalMiningTime()] [Determinism] If GetExtraBlockProducerInformation() uses First() at line 41 on an unordered dictionary, can different nodes executing ArrangeAbnormalMiningTime() get different results causing consensus fork? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ec65fe7-7038-4037-99ff-80d7645dc0f8?mode=deep",
+    "timestamp": "2026-02-19 15:19:45.731511",
+    "report_generated": false
+  }
+]
