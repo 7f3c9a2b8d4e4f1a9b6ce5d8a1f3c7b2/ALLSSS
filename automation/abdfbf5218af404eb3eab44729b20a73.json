@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Validation Bypass] Can Contains() return true for address not in whitelist if Proposers list was modified after organization creation but before validation check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edc85a96-f9d4-4522-8be1-e844102af093?mode=deep",
+    "timestamp": "2026-02-19 10:07:22.418644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Function: Contains()] [Empty Whitelist] Does Contains() return false for empty ProposerWhiteList, and is this checked before Contains() is called to prevent always-false authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7c2b648-b863-4599-afb9-16339177c7ec?mode=deep",
+    "timestamp": "2026-02-19 10:07:44.434554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Multiple Functions] [Validation Race] Can attacker exploit timing between Empty() and AnyDuplicate() checks in Validate() to create organization with inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d874c67-962c-43d9-b7bf-e1c7d1b0a9fe?mode=deep",
+    "timestamp": "2026-02-19 10:08:06.837474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Multiple Functions] [State Consistency] If Count() and Empty() return inconsistent results (Count=0 but Empty=false), can this bypass validation logic and create invalid organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_164d2a73-ce0c-4d1d-9514-5f7144472ef2?mode=deep",
+    "timestamp": "2026-02-19 10:08:29.912231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Multiple Functions] [Null Handling] Do all extension methods handle null input gracefully, or can null proposerWhiteList/organizationMemberList cause unhandled exceptions in critical governance flows? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccac51ec-dcfa-4ec3-8dd7-3c2700e1af00?mode=deep",
+    "timestamp": "2026-02-19 10:08:53.795977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Multiple Functions] [Performance Attack] Can attacker provide inputs that maximize execution cost of all methods (large lists for Count/AnyDuplicate/Contains) to DOS organization operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc3e6b82-1d5c-403d-a68a-5163436c1639?mode=deep",
+    "timestamp": "2026-02-19 10:09:18.910016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Count + Empty] [Logic Inconsistency] Can Count() return non-zero while Empty() returns true due to race condition or state corruption, breaking Validate() invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d218499c-ccaa-463d-a7aa-d91007c86425?mode=deep",
+    "timestamp": "2026-02-19 10:09:44.524858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate + Contains] [Duplicate Authorization] If AnyDuplicate() passes but Contains() finds duplicate during authorization, can same proposer create multiple proposals under different address representations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_389120b0-9355-400d-a234-f626b7f573d0?mode=deep",
+    "timestamp": "2026-02-19 10:10:10.244493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Gas Limit] Do any extension methods lack gas cost bounds, enabling attacker to craft inputs causing transaction failure and blocking governance operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80767de3-4436-4627-a130-74b7c006a5d2?mode=deep",
+    "timestamp": "2026-02-19 10:10:38.129448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Reentrancy] Can external calls during organization modification operations cause reentrancy that makes extension method results stale or incorrect? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8e49806-e65a-44b2-9c05-782eabb3285c?mode=deep",
+    "timestamp": "2026-02-19 10:11:06.024059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Empty + Validate] [Bypass] Can organization be created with Empty()=true passing check at line 63 if validation logic has race condition between check and state persistence? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c6137d5-b3b5-41fa-9ac0-5cd1faeb776c?mode=deep",
+    "timestamp": "2026-02-19 10:11:33.307856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate + Validate] [State Corruption] If AnyDuplicate()=true but validation at line 64 doesn't prevent creation, can duplicate members vote multiple times corrupting approval thresholds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_231b874e-596a-4dbc-b259-c06b620ef12d?mode=deep",
+    "timestamp": "2026-02-19 10:12:02.570492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains + Authorization] [Whitelist Bypass] Can ChangeOrganizationProposerWhiteList be called without re-validating Contains() checks for existing proposals, allowing removed proposers to remain authorized? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a6e5da4-466b-4a09-bf14-24d1378578aa?mode=deep",
+    "timestamp": "2026-02-19 10:12:32.623899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Count + Threshold] [Arithmetic] If Count() returns incorrect value used in threshold calculation at line 71-80, can this allow proposals with insufficient votes to pass? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5cb3f5a-5530-4992-8ccf-407170e14cf6?mode=deep",
+    "timestamp": "2026-02-19 10:13:02.271306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate(OrganizationMemberList)] [Vote Manipulation] Can attacker add duplicate member via AddMember() if AnyDuplicate() check has timing vulnerability, enabling double-voting on critical proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d25a969d-2bd3-4e59-a6d6-68a6bf729867?mode=deep",
+    "timestamp": "2026-02-19 10:13:32.525478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate(OrganizationMemberList)] [Member Addition] Does AddMember at line 237 validate duplicates before adding, or can race between check and add introduce duplicates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51cff609-c76a-474a-9dff-783f7bd1eb40?mode=deep",
+    "timestamp": "2026-02-19 10:14:00.922212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate(OrganizationMemberList)] [Member Change] Can ChangeMember() at line 248-254 introduce duplicates if NewMember already exists but AnyDuplicate() check occurs before removal of OldMember? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce508026-9e5b-496f-9aa6-e62815a0b465?mode=deep",
+    "timestamp": "2026-02-19 10:14:30.613588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains + OrganizationMemberList] [Vote Authorization] Are voting methods (Approve/Reject/Abstain) using Contains() check on OrganizationMemberList, or only checking at lines 20, 128, 148, 168? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25ee8dec-2ff7-46d1-96f3-b442624b603d?mode=deep",
+    "timestamp": "2026-02-19 10:15:02.135475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Contains + ProposerWhiteList] [CreateProposal] Can AssertIsAuthorizedProposer at line 15 be bypassed if Contains() has case-sensitivity issues with address comparison? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7275f70-71c4-4e35-9873-4a2fccb99fc4?mode=deep",
+    "timestamp": "2026-02-19 10:15:31.219495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Empty + ProposerWhiteList] [Whitelist Change] Can ChangeOrganizationProposerWhiteList() set empty whitelist if Empty() check at line 63 is not enforced, locking out all proposers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77250dc2-8317-44db-b384-3c0a2746f2f3?mode=deep",
+    "timestamp": "2026-02-19 10:15:59.614072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [AnyDuplicate + ProposerWhiteList] [Whitelist Update] During ChangeOrganizationProposerWhiteList at line 218-230, can duplicate proposers be introduced if validation doesn't call AnyDuplicate()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1723dae-91ca-4972-a1f2-e3738c4d4ef0?mode=deep",
+    "timestamp": "2026-02-19 10:16:28.148721",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [Count + ProposerWhiteList] [Threshold Validation] Is Count() result used to validate any proposer-related thresholds, and can incorrect count break governance invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26adaaa4-3e04-474e-a731-cf3c10da5aab?mode=deep",
+    "timestamp": "2026-02-19 10:16:58.018602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Null Input] Do extension methods throw ArgumentNullException for null inputs, or fail silently returning incorrect results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b4dc664-1edf-4df3-aecd-d024acf63c29?mode=deep",
+    "timestamp": "2026-02-19 10:17:28.160495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [Empty List] Are empty Proposers/OrganizationMembers lists handled correctly by all methods without exceptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d914d4b-6f7e-4cc2-aee5-f19e6d8fdbbc?mode=deep",
+    "timestamp": "2026-02-19 10:17:56.986186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Extensions.cs] [All Functions] [List Modification] Can underlying Proposers/OrganizationMembers lists be modified during extension method execution causing undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf5d2b1f-e4f4-4ddc-91e6-3ee6227eff3d?mode=deep",
+    "timestamp": "2026-02-19 10:34:56.834897",
+    "report_generated": false
+  }
+]
