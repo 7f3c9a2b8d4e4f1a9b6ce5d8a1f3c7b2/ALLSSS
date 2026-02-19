@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [ExtraData Null Fields] If extraData.Round is null when RecoverFromUpdateValue is called at line 47, does the recovery method crash or can it corrupt baseRound with null references? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a1855ba-d165-4591-99d3-d6e5e750fde6?mode=deep",
+    "timestamp": "2026-02-19 05:24:46.180122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [SenderPubkey Empty String] If extraData.SenderPubkey.ToHex() at line 47 returns empty string, does RecoverFromUpdateValue silently fail, succeed with corrupted data, or throw exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59734c6b-7d4d-421d-b2fe-0737d55d25c6?mode=deep",
+    "timestamp": "2026-02-19 05:25:08.456285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [ValidationProvider List Mutation] If one of the validation providers at lines 65-92 modifies the validationProviders list during execution at line 98, can this cause validators to be skipped or executed out of order? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a409689-d77a-4f01-9a8b-9b8247645229?mode=deep",
+    "timestamp": "2026-02-19 05:25:30.972086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [MiningPermissionValidationProvider Bypass] At line 68, MiningPermissionValidationProvider only checks if sender is in baseRound.RealTimeMinersInformation.Keys - if RecoverFromUpdateValue at line 47 adds the malicious sender's key to RealTimeMinersInformation before this check, can unauthorized miners validate? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fae480c-6217-4509-80d0-7813695dba81?mode=deep",
+    "timestamp": "2026-02-19 05:25:53.744461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [TimeSlotValidationProvider Round Mismatch] At line 71, TimeSlotValidationProvider uses baseRound (mutated at lines 46-50) - if the mutation causes ExpectedMiningTime or RoundStartTime to be corrupted, can miners produce blocks outside their time slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a042794d-c582-4479-be2e-f81582700467?mode=deep",
+    "timestamp": "2026-02-19 05:26:17.744505",
+    "report_generated": false
+  }
+]
