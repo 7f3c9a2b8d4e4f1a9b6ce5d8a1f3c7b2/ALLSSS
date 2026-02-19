@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Authorization] Does the method verify that the calling context has permission to terminate rounds before generating the command? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b81d5fad-c221-470d-b7b0-43c1ec57d1ca?mode=deep",
+    "timestamp": "2026-02-19 06:00:48.085222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Authorization] Can a non-extra-block-producer miner obtain and execute a TerminateRoundCommandStrategy, generating unauthorized round termination commands? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71c1778e-1ae7-4a54-9c20-405eb17f07b2?mode=deep",
+    "timestamp": "2026-02-19 06:01:10.579840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Input Validation] Does the method validate that CurrentRound has a valid extra block producer assigned before calling ArrangeExtraBlockMiningTime? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e3daa50-b0fa-4b7f-b21e-19ff783f312c?mode=deep",
+    "timestamp": "2026-02-19 06:01:33.218281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Input Validation] Can CurrentRound.RoundNumber be 0 or negative when this strategy is instantiated, causing invalid round transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f2bed9c-7698-4ebf-9ac6-a5bce6836a96?mode=deep",
+    "timestamp": "2026-02-19 06:01:56.665105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Input Validation] Does the method check that CurrentRound.RealTimeMinersInformation contains valid miner entries before generating the command? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_944839f9-da83-4d20-9e18-0399872625ac?mode=deep",
+    "timestamp": "2026-02-19 06:02:20.727288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Can generating a NextRound command when some miners haven't produced their blocks cause premature round termination, violating consensus liveness? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ac9179e-a921-4081-8918-b25101d9b1c9?mode=deep",
+    "timestamp": "2026-02-19 06:02:45.847789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Can generating a NextTerm command before all round blocks are finalized cause loss of consensus data from the terminated round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bee7bf5e-030a-4fdf-8a78-c18d42ccc4c5?mode=deep",
+    "timestamp": "2026-02-19 06:03:12.782558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] If ArrangeExtraBlockMiningTime returns a time in a future round, can this cause the extra block to be produced after miners have already started the next round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac495f3e-d956-413b-884e-3cfd9b834c2f?mode=deep",
+    "timestamp": "2026-02-19 06:03:40.215607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Can the absence of validation that all miners in CurrentRound have reached consensus before terminating allow byzantine miners to force early round transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bfa5470-2ee7-45fe-9245-9eb889613867?mode=deep",
+    "timestamp": "2026-02-19 06:04:09.318983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] When _isNewTerm=true, does the method verify that new miner candidates have been elected and are ready to take over? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98cc8774-ce92-4e15-9720-ab9210af8768?mode=deep",
+    "timestamp": "2026-02-19 06:04:39.291253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Can LastBlockOfCurrentTermMiningLimit be insufficient for the extra block producer to complete term transition transactions, causing term transition failure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bfc3a74-f6a1-4d4a-89a2-f5a9daaabeea?mode=deep",
+    "timestamp": "2026-02-19 06:05:10.239505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] If _isNewTerm=true, can the extra block's mining time coincide with the first block of the new term, causing time slot conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc501ab0-ea83-4690-8df4-160cb17212eb?mode=deep",
+    "timestamp": "2026-02-19 06:05:40.968253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Economic Impact] When _isNewTerm=true, can the extended mining limit (LastBlockOfCurrentTermMiningLimit) be exploited by the EBP to delay term transition and extend their mining rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b89e1191-62cb-4780-a79c-99fa9b3b9f58?mode=deep",
+    "timestamp": "2026-02-19 06:06:13.398764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [DOS Attack] Can repeatedly instantiating TerminateRoundCommandStrategy with extreme CurrentBlockTime values cause excessive computation in ArrangeExtraBlockMiningTime's missed rounds calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e93b38cd-f230-4a91-a908-2753d824d6a4?mode=deep",
+    "timestamp": "2026-02-19 06:06:46.184296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [DOS Attack] If CurrentRound contains an abnormally large number of miners, can the ArrangeExtraBlockMiningTime calculation become computationally expensive enough to DOS consensus? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a7e402f-c8ac-4fa2-967a-be37476a63a2?mode=deep",
+    "timestamp": "2026-02-19 06:07:19.756216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [DOS Attack] Can an attacker force continuous NextTerm behavior by manipulating _isNewTerm, causing expensive term transitions that freeze the blockchain? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06687123-b088-4889-b006-6aea0dc0c003?mode=deep",
+    "timestamp": "2026-02-19 06:07:53.662595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Math Error] Can MiningInterval property return a value larger than Int32.MaxValue/2, causing AddMilliseconds on line 35 to overflow when added to arrangedMiningTime? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0da21995-668c-4b83-bc02-60e4a3515d6e?mode=deep",
+    "timestamp": "2026-02-19 06:08:27.319275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Math Error] Can LastBlockOfCurrentTermMiningLimit calculated as MiningInterval * 3 / 5 overflow if MiningInterval is close to Int32.MaxValue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7b409f8-7b80-4b83-9a48-4c3ea9ff67bb?mode=deep",
+    "timestamp": "2026-02-19 06:09:00.825319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Math Error] If DefaultBlockMiningLimit is calculated with rounding errors due to integer division, can accumulated timing errors cause blocks to exceed their time slots? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5f40575-7434-4479-a385-f19375983c8a?mode=deep",
+    "timestamp": "2026-02-19 06:09:35.668188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Can the generated ConsensusCommand be used by a miner other than the intended extra block producer, allowing unauthorized round termination? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac2519c7-bdb3-42d9-b960-69a082f6ff5e?mode=deep",
+    "timestamp": "2026-02-19 06:10:11.727270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Does downstream validation verify that the Hint's Behaviour matches the actual round/term state when the command is executed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd5a230d-ce86-424e-bcbf-8079984b3858?mode=deep",
+    "timestamp": "2026-02-19 06:10:46.985212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Consensus Safety] Can the ConsensusCommand be cached and reused across multiple rounds, causing stale ArrangedMiningTime and MiningDueTime to be used? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4768aa1e-d29a-4ea3-ab1b-62c2ea34f8da?mode=deep",
+    "timestamp": "2026-02-19 06:11:22.670200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Replay Attack] Can a consensus command generated for a previous round be replayed if it has the same Behaviour (NextRound or NextTerm)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f8d30df-855b-43f7-a654-4376925d48fe?mode=deep",
+    "timestamp": "2026-02-19 06:11:57.799469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Edge Case] In a single-node network, can _isNewTerm=true cause term transitions even though miner set cannot change, wasting resources? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f668fbab-425a-4496-a0d3-5456efe815da?mode=deep",
+    "timestamp": "2026-02-19 06:12:31.458392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TerminateRoundCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand] [Edge Case] If CurrentRound is the first round (RoundNumber=1), can generating NextTerm or NextRound commands cause incorrect initialization state transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a491785-d597-4350-9ed9-81120185f509?mode=deep",
+    "timestamp": "2026-02-19 06:13:05.987304",
+    "report_generated": false
+  }
+]
