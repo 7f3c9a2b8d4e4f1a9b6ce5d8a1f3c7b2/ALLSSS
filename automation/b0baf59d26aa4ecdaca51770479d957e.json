@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Empty FullName] What if input.FullName at line 135 is empty string or whitespace-only? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd280a7e-dfa3-40e1-be73-c47382118076?mode=deep",
+    "timestamp": "2026-02-19 10:25:51.818619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [ShortName Case Sensitivity] At line 136-137, are ShortName comparisons case-sensitive? Could 'AR' and 'ar' coexist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dbe1ba8-1ff7-4a56-8b07-ca471dc3ace6?mode=deep",
+    "timestamp": "2026-02-19 10:26:13.945903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [FullName Length Attack] Could an attacker add an NFT type with extremely long FullName causing storage or iteration issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_971217ec-fe26-4cf7-b4fd-e5860f3c5a20?mode=deep",
+    "timestamp": "2026-02-19 10:26:36.286548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Bidirectional Mapping Inconsistency] At lines 139-140, both NFTTypeFullNameMap and NFTTypeShortNameMap are updated - could partial failure cause inconsistent mappings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ec9dc8e-3c93-40f5-9f0c-766ddb7a1f4c?mode=deep",
+    "timestamp": "2026-02-19 10:26:59.741100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [NFTTypes Dictionary Update] At lines 141-143, State.NFTTypes.Value is read, modified, and written back - is this atomic or could concurrent modifications corrupt it? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7195e3d6-bc35-4879-8fc3-b10caed195d7?mode=deep",
+    "timestamp": "2026-02-19 10:27:23.907013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Dictionary Add Operation] At line 142, nftTypes.Value.Add() is called - what if this key already exists despite line 137 check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da5e2474-ad8c-41f9-a305-9df6de8e3cbe?mode=deep",
+    "timestamp": "2026-02-19 10:27:48.913179",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [State Write Failure] If State.NFTTypes.Value write at line 143 fails after mappings are updated at lines 139-140, could state become inconsistent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e967dda-5ccb-4310-854b-b448a6df38cf?mode=deep",
+    "timestamp": "2026-02-19 10:28:14.595334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Event Data Validation] At lines 144-148, NFTTypeAdded event is fired - should this include more context like timestamp or transaction sender? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c12df1ff-71fc-4e83-9ba4-bfbfa49baf77?mode=deep",
+    "timestamp": "2026-02-19 10:28:41.971157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Return Before Event] Should the event be fired after verifying all state changes succeeded, not before return? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0b9c4b4-7856-425e-bc45-34945bb0a33c?mode=deep",
+    "timestamp": "2026-02-19 10:29:09.111064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Authorization Bypass] At line 154, same authorization check as AddNFTType - could compromised Parliament remove critical types? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b629255e-fbab-44a6-a5cc-9a6096b036b8?mode=deep",
+    "timestamp": "2026-02-19 10:29:37.473426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Type Removal Attack] Could an attacker with Parliament control remove all NFT types, preventing any new protocol creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1fc51d9-a58f-4a13-8087-cc326104a29b?mode=deep",
+    "timestamp": "2026-02-19 10:30:09.919401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Initialization Dependency] At line 155, InitialNFTTypeNameMap() must succeed to remove types - is this necessary or could it cause DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5264585-e51a-44fb-91d5-ea69f7cf5f8a?mode=deep",
+    "timestamp": "2026-02-19 10:30:39.490434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [ShortName Length] At line 156, only length == 2 is checked - what if input.Value is null causing NullReferenceException? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_947df440-b2d5-4522-9099-9be384f80fc3?mode=deep",
+    "timestamp": "2026-02-19 10:31:13.863186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Non-Existent Type] At line 157, if type doesn't exist, it asserts - should this be an error return instead for graceful handling? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3f8f9ad-7dcc-4b42-80ed-dc204799e220?mode=deep",
+    "timestamp": "2026-02-19 10:31:46.035459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Existing Protocol Impact] At line 159, NFTTypeFullNameMap.Remove() is called - but what happens to existing protocols using this type? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a16c27b-53ab-44c7-b6d3-1ff2a2b9a420?mode=deep",
+    "timestamp": "2026-02-19 10:32:15.079680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Orphaned Protocols] After removing type at lines 159-160, could existing NFT protocols become orphaned or unable to resolve their type? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad25296b-a882-40ac-bfdf-ca5e0297da14?mode=deep",
+    "timestamp": "2026-02-19 10:32:45.592296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Symbol Generation Break] If a type is removed, could GetSymbol() fail for protocols trying to verify their type after removal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7685d2fd-5871-4863-8223-9049523f4d03?mode=deep",
+    "timestamp": "2026-02-19 10:33:12.098264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Bidirectional Cleanup] At lines 159-160, both direction maps are removed - but is the removal order important for consistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e7ada17-d8d4-4c6f-bef9-49c0eb834fbc?mode=deep",
+    "timestamp": "2026-02-19 10:33:37.876410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Dictionary Remove Failure] At line 162, nftTypes.Value.Remove() could fail silently - is this checked or logged? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70ad7ec8-1c6d-4603-ae2e-8b48f18a4900?mode=deep",
+    "timestamp": "2026-02-19 10:34:04.958185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [State Update Atomicity] Between lines 159-163, if any remove operation fails, could state be partially updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de18ac54-08e4-49d3-bbea-de17a94c42fa?mode=deep",
+    "timestamp": "2026-02-19 10:34:38.343887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Remove and Re-add] Could an attacker remove and re-add the same type with different mappings to confuse existing protocols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da269aae-b167-4614-bd55-d6364628965e?mode=deep",
+    "timestamp": "2026-02-19 10:35:07.432438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Event Missing FullName] At lines 164-167, NFTTypeRemoved event only includes ShortName - should it include FullName for complete audit trail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6952b1e9-b6bf-4c4a-bbc4-36271b38792a?mode=deep",
+    "timestamp": "2026-02-19 10:45:51.498176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Contract Address DOS] At lines 173-175, if ParliamentContract address resolution fails, does this permanently break authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0e093d3-d5ae-473b-ad69-278876bb06b1?mode=deep",
+    "timestamp": "2026-02-19 10:46:14.356172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Address Caching Attack] If State.ParliamentContract.Value is set once at line 174-175, could contract upgrade or migration break this cached value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ab97759-4825-45e9-9cc1-7e88985c2694?mode=deep",
+    "timestamp": "2026-02-19 10:46:39.194567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AssertSenderIsParliamentDefaultAddress()] [Default Org Change] At lines 177-179, ParliamentDefaultAddress is cached - but if Parliament contract changes default org, is this updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56f500bf-0764-43a8-81b9-bacdbdf5eb4f?mode=deep",
+    "timestamp": "2026-02-19 10:47:03.946617",
+    "report_generated": false
+  }
+]
