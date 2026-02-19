@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Emergency Response] If GetMaximumBlocksCount returns 1 during Severe status but ResetLatestProviderToTinyBlocksCount hasn't been called, does stale LatestPubkeyToTinyBlocksCount allow more than 1 block during emergency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7817ff5-bb61-4e06-ad9b-d20673e55852?mode=deep",
+    "timestamp": "2026-02-19 09:14:38.061052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Recovery Phase] After Severe status resolves and MaximumBlocksCount returns to 8, can a miner who had negative BlocksCount during Severe immediately produce 8 more blocks, or does the negative count persist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2b223ae-3f22-4023-aa04-7ec66b528f4d?mode=deep",
+    "timestamp": "2026-02-19 09:15:00.407115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Miner Replacement] When RecordCandidateReplacement swaps miners mid-round, does LatestPubkeyToTinyBlocksCount correctly track the new miner's blocks, or can the replacement exploit fresh counter state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46f15ded-d5dc-44ae-8382-9c427760a2df?mode=deep",
+    "timestamp": "2026-02-19 09:15:23.411273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Tiny Block Spam] Can a miner produce maximum tiny blocks (8) then immediately produce UpdateValue blocks which may not decrement the counter, effectively producing more than 8 continuous blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8470bf9-cac4-4acf-a2c0-109cfdaeed7d?mode=deep",
+    "timestamp": "2026-02-19 09:15:47.149115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [NextRound Transition] During NextRound consensus behavior when RoundNumber increments, does LatestPubkeyToTinyBlocksCount reset or carry over, and can this transition be exploited for extra blocks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4b65c30-2096-47b6-8b39-f7c6ef2f38a3?mode=deep",
+    "timestamp": "2026-02-19 09:16:11.248151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [NextTerm Transition] During NextTerm when term number changes, does continuous block tracking persist or reset, and can term boundaries be exploited to bypass limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6dd9266-c6a6-4d87-8e7c-428408bea69c?mode=deep",
+    "timestamp": "2026-02-19 09:16:36.342970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [IrreversibleBlockHeight] Does validation consider IrreversibleBlockHeight, and can a miner produce blocks after LIB updates that were invalid before LIB but pass validation after? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee0b8f15-e1d6-4a4c-91ae-cfbd243ba444?mode=deep",
+    "timestamp": "2026-02-19 09:17:02.209970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Pubkey Encoding] SenderPubkey is converted ToHex() from bytes - can encoding differences or byte-order attacks cause pubkey mismatch on line 18 even when the same miner is producing blocks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e61f7537-abda-430b-9696-2fc06511ef6e?mode=deep",
+    "timestamp": "2026-02-19 09:17:28.494007",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Sequence] Is Continu\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/ContinuousBlocksValidationProvider.cs (L1-29)\n```csharp\nusing AElf.Standards.ACS4;\n\n// ReSharper disable once CheckNamespace\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\npublic class ContinuousBlocksValidationProvider : IHeaderInformationValidationProvider\n{\n    public ValidationResult ValidateHeaderInformation(ConsensusValidationContext validationContext)\n    {\n        // Is sender produce too many continuous blocks?\n        var validationResult = new ValidationResult();\n\n        if (validationContext.ProvidedRound.RoundNumber > 2 && // Skip first two rounds.\n            validationContext.BaseRound.RealTimeMinersInformation.Count != 1)\n        {\n            var latestPubkeyToTinyBlocksCount = validationContext.LatestPubkeyToTinyBlocksCount;\n            if (latestPubkeyToTinyBlocksCount != null &&\n                latestPubkeyToTinyBlocksCount.Pubkey == validationContext.SenderPubkey &&\n                latestPubkeyToTinyBlocksCount.BlocksCount < 0)\n            {\n                validationResult.Message =",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ddc6617-8d5f-4d8e-a74f-179a5c60fcc3?mode=deep",
+    "timestamp": "2026-02-19 09:17:55.669560",
+    "report_generated": false
+  }
+]
