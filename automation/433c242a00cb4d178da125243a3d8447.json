@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Class: CommandStrategyBase] [Abstract] Can abstract class be instantiated via reflection or unsafe code, bypassing proper subclass initialization? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84fb7ef7-b9eb-4f35-a2d0-b15ec6819831?mode=deep",
+    "timestamp": "2026-02-19 04:52:04.565157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Fields: Protected] [Encapsulation] Can subclasses improperly modify protected CurrentRound, Pubkey, or CurrentBlockTime fields if they're not properly read-only? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d94bcb0-67f5-4b0b-a300-96ea5d635fb6?mode=deep",
+    "timestamp": "2026-02-19 04:52:26.693451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetAEDPoSConsensusCommand()] [Virtual] Can malicious subclass override GetAEDPoSConsensusCommand to return malicious ConsensusCommand without proper validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a902f3c-79f3-4908-bd28-74b4b57b6978?mode=deep",
+    "timestamp": "2026-02-19 04:52:48.993309",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: DefaultBlockMiningLimit] [Precision Loss] Can the 3/5 ratio calculation lose significant precision for small MiningInterval values, causing mining limits to be too restrictive? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c822bb86-520a-4b71-a3bb-5391043a1292?mode=deep",
+    "timestamp": "2026-02-19 04:53:12.044960",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: TinyBlockSlotInterval] [Precision Loss] Can division by 8 lose precision causing TinyBlockSlotInterval to be smaller than intended, making tiny blocks too frequent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ef0c600-0a29-42c2-8a49-65135544e6c7?mode=deep",
+    "timestamp": "2026-02-19 04:53:36.129975",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: LastTinyBlockMiningLimit] [Precision Loss] Can division by 2 in LastTinyBlockMiningLimit calculation accumulate with TinyBlockSlotInterval division errors causing incorrect final limit? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e18ef0b4-3cf7-4023-9399-756ce83be4ef?mode=deep",
+    "timestamp": "2026-02-19 04:54:02.043487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Comment Line 15-16] [Documentation] Does comment claim of '8 blocks during every time slot' match actual TinyBlocksCount = 8 enforcement in block production code? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_590e04cd-a2b8-40de-bbc9-334b611c627d?mode=deep",
+    "timestamp": "2026-02-19 04:54:27.235257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Comment Line 47-48] [Documentation] Does '3/5 of producing time for mining by default' match the actual 3/5 ratio implementation in DefaultBlockMiningLimit calculation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5857f7d6-a2a9-47eb-a453-abac6c6616c5?mode=deep",
+    "timestamp": "2026-02-19 04:54:54.546896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Comment Line 57-59] [Documentation] Comment claims LastBlockOfCurrentTermMiningLimit is '8 times DefaultBlockMiningLimit' - is this mathematically accurate or is the comment misleading? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8849cc43-2df1-4b07-9f0e-6039cc722d3e?mode=deep",
+    "timestamp": "2026-02-19 04:55:23.322315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MiningInterval] [External Dependency] Can Round.GetMiningInterval() return invalid values (negative, zero, int.MaxValue) that aren't validated by CommandStrategyBase? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31385480-dca4-4f12-a535-e78cbd6a7766?mode=deep",
+    "timestamp": "2026-02-19 04:55:49.691192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: Order] [External Dependency] Can Round.GetMiningOrder() return invalid orders (0, negative, int.MaxValue) causing calculation errors in strategies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b26c215e-42df-4618-8752-7e39ff900071?mode=deep",
+    "timestamp": "2026-02-19 04:56:16.851189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Method: GetAEDPoSConsensusCommand()] [External Dependency] Can ConsensusCommandProvider.InvalidConsensusCommand be modified to valid command, causing base class to return valid commands when it shouldn't? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fbc55b6a-ad8f-407a-bb96-90868c2bbd27?mode=deep",
+    "timestamp": "2026-02-19 04:56:44.551064",
+    "report_generated": false
+  }
+]
