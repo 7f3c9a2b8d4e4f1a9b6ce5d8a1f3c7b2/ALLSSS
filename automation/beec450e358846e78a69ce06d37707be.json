@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Re-initialization Attack] Can an attacker call InitializeAuthorizedController() multiple times after initial setup to prevent proper controller initialization, given that only null checks exist for State.UserFeeController.Value and State.DeveloperFeeController.Value but the function doesn't check if organizations were already created, potentially allowing re-creation of controllers with different addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c69d0210-928d-45c0-8106-5e6f32e7941e?mode=deep",
+    "timestamp": "2026-02-19 11:23:34.465387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [State Inconsistency] If InitializeAuthorizedController() is called when State.SideChainCreator.Value is null but State.SideChainRentalController.Value is non-null, the function returns early without initializing SideChainRentalController, leaving the system in an inconsistent state - can an attacker exploit this by manipulating State.SideChainCreator.Value before calling this function? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7969904-6fad-4d03-b9f9-8efcead4e659?mode=deep",
+    "timestamp": "2026-02-19 11:23:57.134790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Authorization Bypass] The function doesn't perform any sender authorization checks before initializing controllers - can any external caller invoke this during contract deployment or upgrade to set up malicious controller organizations with themselves as members? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f938fd4d-7695-4d84-a92d-82d2fb03b7b7?mode=deep",
+    "timestamp": "2026-02-19 11:24:19.509354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [DOS Attack] If GetDefaultParliamentController() returns null or invalid data due to Parliament contract not being deployed, will InitializeAuthorizedController() fail or create controllers with null/zero addresses, permanently breaking fee and rental controller functionality? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1f9dd99-9e02-4762-9bb3-1e42ac1ba636?mode=deep",
+    "timestamp": "2026-02-19 11:24:42.499278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [State Race Condition] Between lines 21-25, if CreateReferendumControllerForUserFee() and CreateAssociationControllerForUserFee() succeed but State.UserFeeController.Value assignment is interrupted, can a second call to InitializeAuthorizedController() create duplicate referendum and association organizations with different addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed7c17df-9b58-4d98-8c80-c9b068ecd59d?mode=deep",
+    "timestamp": "2026-02-19 11:25:06.949027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Logic Error] The SideChainRentalController initialization at line 37 checks 'State.SideChainCreator.Value == null || State.SideChainRentalController.Value != null' - the OR condition means if SideChainCreator is null, initialization is skipped regardless of SideChainRentalController state. Can this be exploited by never setting SideChainCreator to prevent rental controller initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea2f1105-72d5-48df-8cfa-56ff72fcad05?mode=deep",
+    "timestamp": "2026-02-19 11:25:32.409416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Organization Creation Failure] If CreateAssociationControllerForUserFee() at line 23 fails silently (external call), but State.UserFeeController.Value is still set at line 25, will the contract operate with an invalid UserFeeController.RootController.OwnerAddress that doesn't correspond to an actual organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc498b05-05ef-4ef8-934b-2264e944aac3?mode=deep",
+    "timestamp": "2026-02-19 11:25:58.070748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Dependency Injection Attack] GetDefaultUserFeeController() and GetDefaultDeveloperFeeController() rely on CalculateOrganizationAddress() from Association/Referendum contracts - if an attacker deploys malicious Association/Referendum contracts before system initialization, can they control the calculated controller addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14676885-9935-468d-a8f3-a378b752491e?mode=deep",
+    "timestamp": "2026-02-19 11:26:24.065962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Partial Initialization] If the transaction runs out of gas between creating DeveloperController at line 31 and setting State.DeveloperFeeController.Value at line 34, will a subsequent call create duplicate organizations while checking null at line 28? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6c9d057-c1e4-4205-8135-6596021dd063?mode=deep",
+    "timestamp": "2026-02-19 11:26:55.068802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: InitializeAuthorizedController()] [Cross-Contract Call Failure] If State.AssociationContract.CreateOrganizationBySystemContract.Send() at line 107 or 119 reverts, does the entire InitializeAuthorizedController() transaction revert, or can controllers be left in a partially initialized state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb8171de-2de2-443c-8871-134d215e57cd?mode=deep",
+    "timestamp": "2026-02-19 11:27:28.110455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSymbolsToPayTXSizeFeeController()] [Authorization Bypass] AssertControllerForSymbolToPayTxSizeFee() at line 47 initializes State.SymbolToPayTxFeeController.Value to default if null before checking permission - can an attacker front-run the legitimate controller initialization to pass the null check, then immediately call ChangeSymbolsToPayTXSizeFeeController() to replace it? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b825a8d-f6ac-409f-be9d-c4a1db18f051?mode=deep",
+    "timestamp": "2026-02-19 11:27:59.843132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSymbolsToPayTXSizeFeeController()] [Weak Validation] CheckOrganizationExist(input) at line 48 only validates that the organization exists, not that it's a valid governance organization (Parliament/Association/Referendum) - can an attacker set a malicious contract or EOA address as the new controller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83828710-3e9e-41fd-b428-bff453f8e900?mode=deep",
+    "timestamp": "2026-02-19 11:28:31.725883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSymbolsToPayTXSizeFeeController()] [DOS Attack] If an attacker gains control of State.SymbolToPayTxFeeController and changes it to an organization with impossible approval thresholds (e.g., MinimalApprovalThreshold > total members), can they permanently lock the ability to change symbol fee configuration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_261af33a-da98-4471-9c91-71777e8e226f?mode=deep",
+    "timestamp": "2026-02-19 11:29:04.316737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSymbolsToPayTXSizeFeeController()] [Input Validation] The function doesn't validate that input.ContractAddress matches a known governance contract (Parliament/Association/Referendum) - can an attacker set an arbitrary contract address that always returns true for authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce196aaf-1703-405e-b342-e4ed2b383fbe?mode=deep",
+    "timestamp": "2026-02-19 11:29:37.194157",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSymbolsToPayTXSizeFeeController()] [State Corruption] After changing State.SymbolToPayTxFeeController.Value at line 49, there's no event emission or logging - if the change is malicious, can it go undetected until critical symbol fee operations fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00158966-6bb0-4759-b337-d4c6276891ee?mode=deep",
+    "timestamp": "2026-02-19 11:30:09.991045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSideChainRentalController()] [Authorization Bypass] AssertControllerForSideChainRental() at line 55 requires State.SideChainRentalController.Value to be non-null and Context.Sender to match OwnerAddress, but what if an attacker calls InitializeAuthorizedController() first to set themselves as a member of the rental controller organization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_607552f2-7b24-4cd7-81c6-0c08ce05f347?mode=deep",
+    "timestamp": "2026-02-19 11:30:43.572380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSideChainRentalController()] [Weak Validation] Similar to symbol controller, CheckOrganizationExist(input) at line 56 doesn't verify the organization type or member composition - can an attacker set a single-member association they control as the new rental controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7cf5728b-2671-4e7f-b823-0f177e58880f?mode=deep",
+    "timestamp": "2026-02-19 11:31:16.932826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSideChainRentalController()] [Business Logic] The function allows changing the controller that manages side chain rental fees - if an attacker gains control and sets themselves as controller, can they drain rental fee revenue or set rental prices to zero? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_901864d8-7c78-4eb3-898e-0b69b3917992?mode=deep",
+    "timestamp": "2026-02-19 11:31:45.715209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSideChainRentalController()] [Dependency Validation] CheckOrganizationExist() likely calls an external contract method - if this external call can be manipulated to always return true (e.g., via contract upgrade or proxy), can any address be set as controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a48c0eb7-192f-4dae-8dca-0673d716de74?mode=deep",
+    "timestamp": "2026-02-19 11:32:13.704534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeSideChainRentalController()] [Initialization Race] If ChangeSideChainRentalController() is called before InitializeAuthorizedController() completes, will AssertControllerForSideChainRental() at line 55 fail with 'controller does not initialize', or can it be bypassed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ec57d38-8638-47b0-be0c-9b69c4d1bbff?mode=deep",
+    "timestamp": "2026-02-19 11:32:46.584858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeCrossChainTokenContractRegistrationController()] [Authorization Function Missing] The function calls CheckCrossChainTokenContractRegistrationControllerAuthority() at line 63, but this function is not defined in the provided file - if this function has weak authorization logic or can be bypassed, can any caller change the cross-chain controller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d36262f-6d4c-475f-b903-4851e521d314?mode=deep",
+    "timestamp": "2026-02-19 11:33:21.061066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeCrossChainTokenContractRegistrationController()] [Cross-Chain Security] Changing the CrossChainTokenContractRegistrationController affects cross-chain token bridge security - if an attacker gains control, can they register malicious token contracts that mint unlimited tokens on side chains? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6718dfd-f3b1-4337-a96e-296f62d5c8de?mode=deep",
+    "timestamp": "2026-02-19 11:33:55.146926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeCrossChainTokenContractRegistrationController()] [Weak Validation] CheckOrganizationExist(input) at line 64 uses the same validation as other controller changes - does this provide sufficient security for a controller that manages cross-chain token registration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a11caae-21f7-4724-86fe-d5d21bd11068?mode=deep",
+    "timestamp": "2026-02-19 11:34:27.499742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeCrossChainTokenContractRegistrationController()] [State Corruption] If State.CrossChainTokenContractRegistrationController.Value is set to an invalid organization address at line 66, can it prevent legitimate cross-chain token operations while allowing the attacker to bypass registration requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85e0eb4e-68e5-4d12-8741-a253d980f0fe?mode=deep",
+    "timestamp": "2026-02-19 11:34:59.796505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: ChangeCrossChainTokenContractRegistrationController()] [Error Message Inconsistency] The error message at line 65 says 'Invalid authority input' instead of 'new controller does not exist' like other functions - does this indicate a different validation path that could be weaker? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31458390-df30-4176-a2c1-ca00fcab6a3a?mode=deep",
+    "timestamp": "2026-02-19 11:35:31.122227",
+    "report_generated": false
+  }
+]
