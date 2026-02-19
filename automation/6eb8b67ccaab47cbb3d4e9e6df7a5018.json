@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Authorization Bypass] Can an attacker exploit the AssertDeveloperFeeController() check if the developer fee controller address is not properly initialized or can be changed to address(0), allowing unauthorized coefficient updates that manipulate fee calculations system-wide? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02556e7b-5799-4244-9c8f-d30ed3aec4db?mode=deep",
+    "timestamp": "2026-02-19 06:50:15.788506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Input Validation] What happens if input.Coefficients is set to an object with null/empty PieceCoefficientsList but passes the null check at line 18, potentially causing null reference exceptions in UpdateCoefficients() and corrupting fee calculation state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fba75bad-605b-411b-857d-18589f512cb2?mode=deep",
+    "timestamp": "2026-02-19 06:50:37.875948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Logic Error] Can an attacker bypass the FeeTokenType check at line 19 by setting FeeTokenType to negative values or values outside the FeeTypeEnum range but not equal to Tx, allowing manipulation of Tx fee coefficients through the contract update path? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50ac5393-3610-4996-98ec-29816976b429?mode=deep",
+    "timestamp": "2026-02-19 06:51:00.467836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Access Control] If AssertDeveloperFeeController() only checks msg.sender but not contract call origin, can an attacker use a delegatecall or proxy pattern to bypass the developer controller check and update coefficients maliciously? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38cc9e84-0e33-469b-8e00-55b4213b04d4?mode=deep",
+    "timestamp": "2026-02-19 06:51:23.808866",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [State Corruption] What prevents an attacker from calling this function repeatedly in the same block/transaction to cause state inconsistency if UpdateCoefficients() modifies shared state that other concurrent transactions depend on? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4c14067-6cb5-4ae0-9c82-c6b3839668e5?mode=deep",
+    "timestamp": "2026-02-19 06:51:48.288890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Authorization Bypass] Can any user bypass AssertUserFeeController() if the user fee controller is set to a permissive address or null, allowing arbitrary users to manipulate their transaction fee coefficients and pay minimal fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdc43785-446d-437e-bc70-885203f90c19?mode=deep",
+    "timestamp": "2026-02-19 06:52:12.968163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Input Mutation] At line 29, the function forcibly sets FeeTokenType to Tx, but what if input.Coefficients is shared/referenced by another transaction, causing unintended side effects or race conditions where the original caller's input is modified? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bed6c04-52af-462e-82f5-5001ce973c7e?mode=deep",
+    "timestamp": "2026-02-19 06:52:39.120683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Logic Error] Since line 29 overwrites FeeTokenType regardless of input, can an attacker pass coefficients intended for Read/Write/Storage/Traffic types and have them incorrectly applied to Tx fees, causing economic imbalance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a80ccafc-40a9-4dfe-9dd7-0aa4388b71dc?mode=deep",
+    "timestamp": "2026-02-19 06:53:07.028334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Missing Validation] If AssertUserFeeController() is not implemented or returns true for all users, does this function become an unrestricted backdoor allowing any address to modify fee calculation parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2e9ce31-f284-4ec6-90d2-b15d061020f9?mode=deep",
+    "timestamp": "2026-02-19 06:53:36.030242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [DoS Vector] Can a malicious user repeatedly call UpdateCoefficientsForSender() with minimal gas cost to spam the coefficient update event system and cause network congestion or state bloat? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_017d28cd-adf0-49cc-b570-2598525cf391?mode=deep",
+    "timestamp": "2026-02-19 06:54:05.374717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Null Reference] At line 40-41, SingleOrDefault() can return null, but line 42 only asserts it's not null. If an attacker provides a FeeTokenType that doesn't exist, does the assertion fail safely or can it cause state corruption before the check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83a4763d-dd43-4578-88d1-391cc6432906?mode=deep",
+    "timestamp": "2026-02-19 06:54:33.308649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Integer Overflow] At line 59, pieceIndex = input.PieceNumbers[i].Sub(1) - if PieceNumbers[i] is 0 or negative, does Sub(1) cause an underflow that wraps to int.MaxValue, leading to out-of-bounds array access? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fbc43c8-222f-44e8-9b1d-9564b574de6e?mode=deep",
+    "timestamp": "2026-02-19 06:55:04.435636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Array Bounds] At line 57-58, the check is 'currentPieceCoefficientList.Count >= input.PieceNumbers[i]' but line 59 uses Sub(1). If PieceNumbers[i] equals Count exactly, does pieceIndex = Count-1, which is valid, or can edge cases cause off-by-one errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a125143b-e34c-4424-9f92-984e1afdfd80?mode=deep",
+    "timestamp": "2026-02-19 06:55:34.437418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Race Condition] Between lines 37-38 (reading State.AllCalculateFeeCoefficients) and line 66 (writing it back), can another transaction modify the same state, causing the update at line 66 to overwrite unrelated concurrent changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_788129ce-1ac9-4c13-b20d-328d57f27dc9?mode=deep",
+    "timestamp": "2026-02-19 06:56:04.913613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Validation Order] Lines 52-53 validate coefficients AFTER checking piece numbers (line 48-50). If validation fails after piece numbers are checked, could an attacker use this to probe the coefficient structure without being caught early? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62d52c11-2d28-41ad-86d9-4a21da119465?mode=deep",
+    "timestamp": "2026-02-19 06:56:36.079272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Logic Error] At line 61, currentPieceCoefficientList[pieceIndex] is directly overwritten. If multiple PieceNumbers reference the same index (duplicates allowed?), does the last write win, potentially allowing an attacker to mask malicious coefficients? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcfd158d-bbd1-4dd2-867b-a6215ad71cd1?mode=deep",
+    "timestamp": "2026-02-19 06:57:07.745859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Incomplete Update] After updating specific pieces (line 55-62), line 64 validates the entire list. If validation fails, are the partial updates at line 61 rolled back, or does the state remain corrupted until assertion halts execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6f2652f-8580-4ea7-81cd-0c3d3952d30e?mode=deep",
+    "timestamp": "2026-02-19 06:57:36.744411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Event Replay] Line 68-71 fires a CalculateFeeAlgorithmUpdated event with the full coefficient state. Can an attacker monitor events and replay old coefficient states to external systems, causing desynchronization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_777edc31-d56d-4f09-b36d-e9dcbd979ead?mode=deep",
+    "timestamp": "2026-02-19 06:58:06.508936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [DoS via Gas] If currentPieceCoefficientList has thousands of elements, does the loop at line 55-62 and the validation at line 64 consume excessive gas, allowing an attacker to create coefficients that make updates prohibitively expensive? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_defcef3d-dd9a-4932-8840-c9f90e18fe00?mode=deep",
+    "timestamp": "2026-02-19 06:58:37.275004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Input Validation Gap] The function checks 'inputPieceCount == inputPieceCoefficientsList.Count' at line 49 but doesn't validate that inputPieceCount > 0. Can an attacker pass empty lists to trigger unexpected behavior or bypass validations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95e20d6c-b24f-48a3-a717-1cabc0ef8e2f?mode=deep",
+    "timestamp": "2026-02-19 06:59:09.495430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Math Error] Line 78 requires '(count - 1) % 3 == 0' meaning count must be 3n+1. If count is 1 (just the upper bound), does this pass validation but create incomplete coefficient units that break fee calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d787158-253a-4175-bdfe-9cdb2a2b2351?mode=deep",
+    "timestamp": "2026-02-19 06:59:40.907681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Division by Zero] Line 86 requires 'dividend > 0' but allows divisor to be 0. In the fee formula (B/C)*x^A, if divisor (C) is 0, does this cause division by zero in actual fee calculation code? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4c0bf29-b383-49c8-8a67-a28bc769c136?mode=deep",
+    "timestamp": "2026-02-19 07:00:10.925218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Integer Overflow] Line 86 only validates power >= 0 but doesn't cap the maximum. Can an attacker set power to int.MaxValue, causing x^power to overflow and result in incorrect fee calculations or contract crashes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5bc43bdc-acea-47df-b7f1-a90acf8c855f?mode=deep",
+    "timestamp": "2026-02-19 07:00:41.987716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Economic Exploit] Lines 84-86 allow divisor and dividend to be equal (both = 1), resulting in coefficient = 1. Can an attacker set extreme values like power=10, divisor=1, dividend=1 to create exponential fee growth that makes transactions unaffordable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3065073-fdef-43ff-9e91-4b11f8314de3?mode=deep",
+    "timestamp": "2026-02-19 07:01:13.064177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Validation Bypass] The loop at line 81 iterates 'i = 1; i < count; i += 3', but what if count is manipulated to be less than 1 after passing the check at line 78? Can this cause the loop to never execute, skipping validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1646c0a4-1eac-4658-8104-373b82f10780?mode=deep",
+    "timestamp": "2026-02-19 07:01:43.798449",
+    "report_generated": false
+  }
+]
