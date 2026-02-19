@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Symbol Injection] Can an attacker donate with a malicious symbol string containing special characters or extremely long length to corrupt the SideChainReceivedDividends dictionary structure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e68d7138-6a1c-4bf9-bb15-f489e8c3269b?mode=deep",
+    "timestamp": "2026-02-19 09:10:15.978643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Gas Griefing] If ContributeProfits execution costs significant gas and doesn't revert on failure, can an attacker repeatedly donate small amounts to burn gas without adding value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1591b48a-3742-4aa4-a539-24fc710d8984?mode=deep",
+    "timestamp": "2026-02-19 09:10:38.304715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Approval Race] Between Approve at line 52 and ContributeProfits at line 59, can TokenHolderContract's state change such that ContributeProfits fails, leaving an unused approval that gets exploited later? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf123be2-004a-4fa2-9f01-4f57eb05e8fd?mode=deep",
+    "timestamp": "2026-02-19 09:11:01.043949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release(ReleaseInput)] [Logic Error] The function always asserts false - is this intentional to prevent external calls? If so, does this mean dividends can never be released manually in emergency scenarios, causing fund lockup? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb1d4418-67b7-4c75-b057-e1710c5bf2cb?mode=deep",
+    "timestamp": "2026-02-19 09:11:24.177024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release(ReleaseInput)] [Interface Compliance] If this function overrides an interface that expects it to work, does always failing break contract compatibility with other components expecting manual release functionality? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54d9ea6d-6ca3-464c-ab58-e2474432c273?mode=deep",
+    "timestamp": "2026-02-19 09:11:48.396768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Authorization Bypass] This internal Release() function has no authorization check - can it be called by any function in the contract, potentially allowing unauthorized dividend distribution if called from an exploitable entry point? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57106690-51cf-4469-81d4-296d4591f16c?mode=deep",
+    "timestamp": "2026-02-19 09:12:13.344158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Time Manipulation] The release timing check at line 107 uses Context.CurrentBlockTime which can be manipulated by miners - can a malicious miner adjust block timestamp to trigger early release and claim dividends prematurely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b33f3851-73de-4e92-9b53-9baacbc77484?mode=deep",
+    "timestamp": "2026-02-19 09:12:38.683525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Integer Overflow] When calculating (Context.CurrentBlockTime - State.BlockchainStartTimestamp.Value).Seconds.Div(State.PeriodSeconds.Value), can integer overflow occur if CurrentBlockTime is very far in the future, bypassing the release time check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3c77e89-f91b-4706-9b31-a717cd09dbac?mode=deep",
+    "timestamp": "2026-02-19 09:13:06.486564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Division by Zero] If State.PeriodSeconds.Value is 0 or uninitialized, does the Div operation at line 108 cause division-by-zero, crashing the release mechanism? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_306c022a-a160-4dc6-9a9e-04ef2cbfc54a?mode=deep",
+    "timestamp": "2026-02-19 09:13:35.039159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [State Check Missing] At line 104, if State.TokenHolderContract.Value is null, the function returns early - but what if TokenHolderContract was maliciously set to a valid-looking address that isn't actually the TokenHolder contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0515fd7-fee4-4aee-84cb-e9b94ab2de3a?mode=deep",
+    "timestamp": "2026-02-19 09:14:04.434195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Scheme Period Manipulation] If scheme.Period can be modified externally after initialization, can an attacker increase it to prevent release from ever happening (scheme.Period - 1 always greater than elapsed periods)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7de2c504-c9bf-4a4a-a344-8e6698d45aa0?mode=deep",
+    "timestamp": "2026-02-19 09:14:35.241268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Off-by-One Error] The check uses '> scheme.Period - 1' instead of '>=' - does this mean release happens one period later than intended, delaying dividend distribution? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e4be9e6-7327-4f7e-9402-82dc5d47fd48?mode=deep",
+    "timestamp": "2026-02-19 09:15:06.340116",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Reentrancy] After calling State.TokenHolderContract.DistributeProfits.Send, can a malicious TokenHolderContract implementation re-enter this function to trigger multiple distributions in one transaction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c497004a-2fbe-4f9e-bd8b-25e72255b7d6?mode=deep",
+    "timestamp": "2026-02-19 09:15:37.852456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [DOS via Failed Distribution] If DistributeProfits.Send fails or reverts, does the release remain stuck, preventing future releases since isTimeToRelease condition will keep being true? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06ad6640-f31e-4125-9bb3-df6dac7dc2c2?mode=deep",
+    "timestamp": "2026-02-19 09:16:09.391557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [State.BlockchainStartTimestamp Manipulation] If State.BlockchainStartTimestamp.Value can be modified after initialization, can an attacker set it to a future time to prevent releases indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ca81531-7813-4d40-8a78-535cae668db8?mode=deep",
+    "timestamp": "2026-02-19 09:16:38.816788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Silent Failure] If GetScheme call at line 105 returns null or invalid scheme data, does the subsequent period check fail silently without reverting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d15c9bb-22bb-4336-9b9b-33daf1e03e45?mode=deep",
+    "timestamp": "2026-02-19 09:17:10.420110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Multiple Release Risk] If this function is called multiple times in the same block when isTimeToRelease is true, can dividends be distributed multiple times before scheme.Period advances? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_037b7c47-a0c7-46fd-b64c-eef0952e82c4?mode=deep",
+    "timestamp": "2026-02-19 09:17:43.348501",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Gas Limit DOS] If DistributeProfits operation requires significant gas and Release() is called near block gas limit, can it consistently fail, preventing dividend distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3e4e955-53db-40f3-9afc-a36e758054b8?mode=deep",
+    "timestamp": "2026-02-19 09:18:16.222796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Context.Self as SchemeManager] When passing Context.Self as SchemeManager to DistributeProfits, if the scheme manager permissions have changed in TokenHolderContract, does the distribution fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc7d90e5-77f9-453b-a3ee-a2a258b5a917?mode=deep",
+    "timestamp": "2026-02-19 09:18:50.008223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: SetSymbolList()] [Logic Error] This function always asserts false - does this mean the symbol list is immutable after initialization? If so, what happens if a new token needs to be added to the dividend pool? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3023cdf9-52ea-4593-8e9c-ac7732ac90a4?mode=deep",
+    "timestamp": "2026-02-19 09:19:24.384592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: SetSymbolList()] [Interface Violation] If this overrides an interface method that expects it to work, does failing always break compatibility with systems that need to update symbol lists? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c33c279-b20b-4bb9-a543-1d27bb75ffd0?mode=deep",
+    "timestamp": "2026-02-19 09:19:59.715272",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetDividends()] [Authorization Bypass] This view function has no authorization check - can anyone query historical dividend data including potentially sensitive economic information? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38e224c9-3c66-404e-935a-bb7c24370c74?mode=deep",
+    "timestamp": "2026-02-19 09:20:36.808573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetDividends()] [DOS via Large Input] If input.Value is set to a very large future block height close to Long.MaxValue, does the assertion check prevent the query or could it cause integer issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21cfac9f-d5e7-4867-be8d-3195b9c10bf2?mode=deep",
+    "timestamp": "2026-02-19 09:21:13.536681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetDividends()] [Null Return] If State.SideChainReceivedDividends[input.Value] has never been set, does this return null, and do callers handle null properly without crashing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f27c4a3-7ef9-4a7e-b939-2a08e1bb310b?mode=deep",
+    "timestamp": "2026-02-19 09:21:51.889205",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetDividends()] [Off-by-One] The check is 'Context.CurrentHeight > input.Value' - does this mean dividends for CurrentHeight can never be queried in the same block they're recorded? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7aeb89ae-a4d7-45b3-965d-0c8366adc62b?mode=deep",
+    "timestamp": "2026-02-19 09:22:30.571598",
+    "report_generated": false
+  }
+]
