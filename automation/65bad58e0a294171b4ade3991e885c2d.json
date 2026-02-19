@@ -1,0 +1,38 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Token Transfer] [ContributeProfits Line 107-113] TransferFrom + Approve + ContributeProfits sequence - if any fails, are previous steps rolled back? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_922c5b2e-088f-4ad5-b653-f0998f1c17a0?mode=deep",
+    "timestamp": "2026-02-19 06:24:14.349445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Token Transfer] [Approval Amount] Line 119 approves exact input.Amount - is this safe or should infinite approval be used? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_727c714e-fd82-439d-9e61-d7f880e468c9?mode=deep",
+    "timestamp": "2026-02-19 06:24:36.609544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Token Transfer] [Fee Tokens] If token has transfer fees, does input.Amount account for fees, or will less than expected reach the profit scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9fcd6368-1c55-4234-9a53-f74db08992a7?mode=deep",
+    "timestamp": "2026-02-19 06:24:58.983730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Token Transfer] [Malicious Token] Could a malicious token contract return false success but not actually transfer, causing accounting errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_793709de-f37e-4c53-911b-a69cc0938353?mode=deep",
+    "timestamp": "2026-02-19 06:25:23.099621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Token Transfer] [Balance Check] Should ContributeProfits verify Context.Sender has sufficient balance before attempting transfer? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a110e030-d61f-4481-87b4-868b8c1e6104?mode=deep",
+    "timestamp": "2026-02-19 06:25:47.320145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [ProfitContract Integration] [CreateScheme Line 20] ProfitContract scheme creation could fail - is error handling adequate? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0df8855f-4da3-4eab-bca6-0ed9a256bb3d?mode=deep",
+    "timestamp": "2026-02-19 06:26:13.032006",
+    "report_generated": false
+  }
+]
