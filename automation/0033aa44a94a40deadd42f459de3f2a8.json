@@ -1,0 +1,146 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Property: IsMainChain] [State Manipulation] Can an attacker manipulate State.IsMainChain.Value after the _isMainChain cache is initialized, causing inconsistent behavior where the cached value diverges from the actual state value across multiple calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8b6c153-ac94-4e55-9381-85127d6d1d7e?mode=deep",
+    "timestamp": "2026-02-19 00:39:24.332723",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Property: IsMainChain] [Race Condition] If State.IsMainChain.Value changes between the null check at line 16 and the assignment at line 17, could this cause _isMainChain to cache an incorrect value that persists for the lifetime of the contract instance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_267d96c0-a160-4cf1-879e-26b6fadb5295?mode=deep",
+    "timestamp": "2026-02-19 00:39:46.467561",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Property: IsMainChain] [Authorization Bypass] Can an unauthorized caller modify State.IsMainChain.Value before this property is first accessed, allowing them to permanently set the chain type (main/side) incorrectly and bypass chain-specific validations throughout the contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54297d93-3b2b-4227-9069-a49b591f2e13?mode=deep",
+    "timestamp": "2026-02-19 00:40:08.824664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Property: IsMainChain] [Logic Error] If State.IsMainChain.Value is never initialized and remains null, will the property always return false due to the nullable bool conversion, potentially causing main chain nodes to execute side chain logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6a449be-f280-43af-86bf-5db070affef1?mode=deep",
+    "timestamp": "2026-02-19 00:40:31.819306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Property: IsMainChain] [Caching Issue] Does the _isMainChain cache persist across multiple transactions in the same block, and if so, could this cause consensus logic to use stale chain type information when State.IsMainChain.Value is updated mid-block? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b427af36-c496-45e9-9528-70193b5a6ee6?mode=deep",
+    "timestamp": "2026-02-19 00:40:57.067198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: GetBlockchainStartTimestamp()] [Timestamp Manipulation] If State.BlockchainStartTimestamp.Value is null, the function returns an empty Timestamp object - can this cause arithmetic operations using the start timestamp to produce incorrect time calculations or overflow when computing block intervals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e421a180-b7bc-4cd2-b445-92604762819d?mode=deep",
+    "timestamp": "2026-02-19 00:41:22.248308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: GetBlockchainStartTimestamp()] [Uninitialized State] Can an attacker exploit the null coalescing at line 24 by preventing BlockchainStartTimestamp initialization, causing all time-based consensus validations to use epoch zero and accept blocks with invalid timestamps? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c61eb63-6890-4a19-b96e-a964fc7f5900?mode=deep",
+    "timestamp": "2026-02-19 00:41:48.193879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: GetBlockchainStartTimestamp()] [Logic Error] Does returning new Timestamp() when the value is null create a timestamp with default values (likely Unix epoch), and could this cause round time slot calculations to accept blocks from 1970 as valid? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c9de493-596f-4df7-8a35-e33f2c0095c2?mode=deep",
+    "timestamp": "2026-02-19 00:42:15.214163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: GetBlockchainStartTimestamp()] [State Consistency] If multiple functions call GetBlockchainStartTimestamp() before SetBlockchainStartTimestamp() is invoked, will they all receive empty timestamps, potentially causing inconsistent consensus state initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48c8307a-d21e-483d-a714-48f7e27cb52b?mode=deep",
+    "timestamp": "2026-02-19 00:42:45.206689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: IsFirstRoundOfCurrentTerm()] [Logic Error] Can the function incorrectly return true when roundNumber == 1 (line 33) even if it's not the first round of the current term, allowing attackers to trigger first-round-specific logic (like secret sharing resets) in subsequent rounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aecc3321-1ff7-4da3-b53f-4a19a94e95d2?mode=deep",
+    "timestamp": "2026-02-19 00:43:12.812110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: IsFirstRoundOfCurrentTerm()] [Short Circuit Exploitation] Does the OR condition at line 32 allow an attacker to bypass the term number comparison check by manipulating the round number to be 1, even when previousRound.TermNumber equals the current termNumber? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a6707cf-3615-4d13-9cdb-438ca5fed782?mode=deep",
+    "timestamp": "2026-02-19 00:43:43.904480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: IsFirstRoundOfCurrentTerm()] [Race Condition] If TryToGetPreviousRoundInformation fails but TryToGetRoundNumber returns 1, does this create a race window where round 1 of a non-first term is treated as the first round, triggering incorrect term initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33b73857-2082-468d-a987-67c96ca44527?mode=deep",
+    "timestamp": "2026-02-19 00:44:16.524916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: IsFirstRoundOfCurrentTerm()] [Out Parameter Issue] The termNumber out parameter is set to 1 at line 29 - if TryToGetTermNumber succeeds but returns a different value, could callers receive an incorrect termNumber=1 when the actual term is different? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c6b65ad-2f1e-4bb5-b808-de178aedd976?mode=deep",
+    "timestamp": "2026-02-19 00:44:48.211433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: IsFirstRoundOfCurrentTerm()] [Null Reference] If previousRound is successfully retrieved but previousRound.TermNumber is not initialized (default 0), will the comparison at line 32 incorrectly identify it as a term change when termNumber > 0? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48a9a87a-5b17-46c0-97f4-e7991a7e3908?mode=deep",
+    "timestamp": "2026-02-19 00:45:21.182236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetTermNumber()] [Zero Value Ambiguity] The function returns false when termNumber is 0 (line 39), but is 0 a valid term number or an uninitialized state? Can this cause callers to incorrectly assume term 0 doesn't exist when it might be legitimate? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3730f1a-d976-4033-a3e3-b5b0e27ce7a9?mode=deep",
+    "timestamp": "2026-02-19 00:45:55.104397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetTermNumber()] [State Initialization] If State.CurrentTermNumber.Value is never set, will all callers receive termNumber=0 and false return, potentially causing consensus operations to fail silently without proper error messages? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b77d49a4-eb2e-4ef8-b50a-9b599f8c935b?mode=deep",
+    "timestamp": "2026-02-19 00:46:28.296059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetTermNumber()] [Integer Overflow] Can State.CurrentTermNumber.Value overflow to negative values or wrap around to 0 after many terms, causing the function to return false and breaking all term-dependent consensus logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c9a55b7-87e1-4f92-9688-068df65bd7f2?mode=deep",
+    "timestamp": "2026-02-19 00:47:02.432950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetRoundNumber()] [Zero Value Ambiguity] Similar to TryToGetTermNumber, does returning false for roundNumber == 0 prevent legitimate round 0 operations, or could attackers reset the round number to 0 to cause consensus halts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6181a7b-2f3b-4f24-8053-95ca22007590?mode=deep",
+    "timestamp": "2026-02-19 00:47:37.651954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetRoundNumber()] [State Consistency] If CurrentRoundNumber is incremented in TryToUpdateRoundNumber but never initialized first, will this function always return false until the first update, causing early consensus operations to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abc47404-4b81-4eff-9ef3-fff9d8a6f29b?mode=deep",
+    "timestamp": "2026-02-19 00:48:11.714588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetRoundNumber()] [Overflow Attack] Can an attacker cause State.CurrentRoundNumber.Value to overflow past long.MaxValue through repeated round updates, wrapping to negative values or 0 and causing TryToGetRoundNumber to return false permanently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dec7c81e-3523-4941-a977-08db97b1ee1f?mode=deep",
+    "timestamp": "2026-02-19 00:48:40.168040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetCurrentRoundInformation()] [Null Reference] At line 52, State.Rounds[roundNumber] is accessed without null checking - can this return null causing round.IsEmpty check at line 53 to throw NullReferenceException if the round was never initialized? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b36c4f5-30c7-4310-bbb6-1b70101a8425?mode=deep",
+    "timestamp": "2026-02-19 00:49:10.040458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetCurrentRoundInformation()] [State Inconsistency] If TryToGetRoundNumber returns true but State.Rounds[roundNumber] is null or empty, does this indicate a critical consensus state corruption where the current round number points to non-existent round data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbd26bdb-1692-495b-95dc-673bf6a3a20c?mode=deep",
+    "timestamp": "2026-02-19 00:49:37.573800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetCurrentRoundInformation()] [Out Parameter Null] The out parameter round is initialized to null at line 50 - if the function returns false, do callers properly handle null rounds, or could they attempt to access null.property causing crashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1adff9a-b069-4087-8eac-1e44bd2060c9?mode=deep",
+    "timestamp": "2026-02-19 00:50:07.898959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToGetCurrentRoundInformation()] [Race Condition] Between line 51's TryToGetRoundNumber and line 52's State.Rounds access, could another transaction update CurrentRoundNumber causing a mismatch where an outdated roundNumber is used to fetch round information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ac34d3a-fd59-4c0f-8fe5-c8f2fc066ad5?mode=deep",
+    "timestamp": "2026-02-19 00:50:38.494226",
+    "report_generated": false
+  }
+]
