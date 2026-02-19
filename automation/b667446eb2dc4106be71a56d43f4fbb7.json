@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [Authorization] Can any external caller invoke this function without authentication to extract current miner list and round number, potentially enabling reconnaissance attacks for timing-based exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83f35f4c-c5c2-4408-aad1-2d1ea0372d87?mode=deep",
+    "timestamp": "2026-02-19 10:48:26.841106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [Information Disclosure] Does the function expose sensitive consensus state (miner list + round number) without access control, allowing adversaries to predict mining schedules and plan targeted attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_053d7858-18d9-4f23-9105-257d6a6af806?mode=deep",
+    "timestamp": "2026-02-19 10:48:49.652730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [State Consistency] If GetCurrentMinerList() returns stale or uninitialized miner list while CurrentRoundNumber is valid, can this create inconsistent initialization data causing side-chain synchronization failures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_714c6b1f-30cc-42c0-8dd8-09b073116e5c?mode=deep",
+    "timestamp": "2026-02-19 10:49:12.349861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [Race Condition] Can concurrent calls during round transitions return mismatched miner list and round number pairs, causing side chains to initialize with invalid state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f911e07-c60a-4467-8452-f710a12219b4?mode=deep",
+    "timestamp": "2026-02-19 10:49:35.866992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [Null Reference] If State.CurrentRoundNumber.Value is uninitialized (zero or null), does the function return zero round number, potentially causing side chains to reject initialization or start from invalid state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_220f0dbd-1891-4bc8-9672-9e3c1a760198?mode=deep",
+    "timestamp": "2026-02-19 10:49:59.849488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [DoS] Can an attacker repeatedly call this function to cause resource exhaustion through repeated serialization of large miner lists, blocking legitimate initialization requests? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f202c43-95e6-48fb-abe8-be1356b92d8f?mode=deep",
+    "timestamp": "2026-02-19 10:50:24.799185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [Data Integrity] If the MinerList contains malformed or invalid public keys, does the serialization succeed, allowing side chains to initialize with corrupted miner data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77b1efff-6d1d-4cce-9a19-5ca577938045?mode=deep",
+    "timestamp": "2026-02-19 10:50:50.579173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: GetChainInitializationInformation()] [Business Logic] Can an attacker call this immediately after a miner list update but before round number increment, obtaining a valid-looking but semantically incorrect initialization package? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_568fcabc-4dce-4f15-be6c-014d0f92789a?mode=deep",
+    "timestamp": "2026-02-19 10:51:17.449768",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Authorization Bypass] Can an attacker exploit the IsCurrentMiner() check by registering as a miner through consensus manipulation, then gain unauthorized cross-chain indexing permissions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5fa1f8f-a8d7-46ef-911d-f91f76a2e7fb?mode=deep",
+    "timestamp": "2026-02-19 10:51:45.169365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Race Condition] If the miner list updates between IsCurrentMiner() check and actual cross-chain operation, can a removed miner still perform indexing, violating the authorization invariant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ef915e7-0e24-46de-a0e5-3af983473063?mode=deep",
+    "timestamp": "2026-02-19 10:52:18.357992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Null Input] If input address is null or zero address, does IsCurrentMiner() return false or throw, and can this be exploited to bypass permission checks in calling contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cab6669c-4885-4131-bb59-110fbce1f941?mode=deep",
+    "timestamp": "2026-02-19 10:52:51.509452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Logic Error] Does this function check current miner status at call time without validating the miner was active during the specific block being indexed, allowing recently removed miners to index historical blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa1f2c91-cb6a-438a-ae89-e7ab8c662488?mode=deep",
+    "timestamp": "2026-02-19 10:53:20.198533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: CheckCrossChainIndexingPermission()] [Denial of Service] Can an attacker repeatedly query this function with invalid addresses to consume gas/resources, preventing legitimate miners from checking permissions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5569867-914b-4957-adaa-bf00ddd7c85d?mode=deep",
+    "timestamp": "2026-02-19 10:53:55.061320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Authorization Bypass] Can an attacker deploy a malicious contract at the expected CrossChain contract address before system initialization, bypassing the sender check at line 35 to inject arbitrary consensus data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5810a9f0-cd6f-41cd-b216-373ae8a980f7?mode=deep",
+    "timestamp": "2026-02-19 10:54:31.184881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Authorization Bypass] If Context.GetContractAddressByName() can be manipulated or returns stale addresses, can an attacker impersonate the CrossChain contract to update consensus information maliciously? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3ddbead-08ee-4f6f-9433-8d49acdc19e4?mode=deep",
+    "timestamp": "2026-02-19 10:55:03.725944",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Authorization] Does the check at line 35 verify the calling contract's code hash or just address, allowing an upgraded malicious CrossChain contract to inject fake consensus data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa2da292-fde1-47f8-a490-d17442d0342a?mode=deep",
+    "timestamp": "2026-02-19 10:55:41.716066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Access Control] Can a compromised CrossChain contract call this function multiple times per block with different data, causing consensus state thrashing and potential DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f31596b-c48a-4cfd-afbf-b3195e679a75?mode=deep",
+    "timestamp": "2026-02-19 10:56:19.303697",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Chain Type Validation] Can the State.IsMainChain value be manipulated during runtime to bypass the side-chain-only check at line 38, allowing main chain to incorrectly update from cross-chain data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab9b91f5-dac5-44f6-ad88-5dc5fcc972a5?mode=deep",
+    "timestamp": "2026-02-19 10:56:55.535705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [State Corruption] If IsMainChain flag changes during execution (race condition), can this cause main chain to partially update consensus state before aborting, corrupting critical consensus data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b40244c-9d60-4f7d-b4b7-2f8e9ac70410?mode=deep",
+    "timestamp": "2026-02-19 10:57:32.682318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Input Validation] At line 41, if input.Value is empty, function returns early without error, but does this allow CrossChain contract to silently fail updates, causing side chain to lag behind main chain indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e63df5e-3d45-4208-ac61-73bf0d6b5e3f?mode=deep",
+    "timestamp": "2026-02-19 10:58:07.263000",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Parsing Error] At line 43, if AElfConsensusHeaderInformation.Parser.ParseFrom() receives malformed data, can an exception corrupt transaction state or leave consensus in inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a90fbc74-a662-43c6-9c43-a0c569e4c387?mode=deep",
+    "timestamp": "2026-02-19 10:58:38.071854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Malicious Data] Can an attacker craft input.Value to cause ParseFrom() to consume excessive gas/memory, creating a DoS vector for cross-chain updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e711ab2-bdef-45a7-be86-966d1c22e76c?mode=deep",
+    "timestamp": "2026-02-19 10:59:14.079644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Data Integrity] Does ParseFrom() validate the structure and constraints of AElfConsensusHeaderInformation, or can it accept semantically invalid data (negative round numbers, empty miner lists, etc.)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9fd37d66-fb22-4737-9e0a-8a246e9d97b2?mode=deep",
+    "timestamp": "2026-02-19 10:59:43.038822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Replay Attack] At line 46, the check uses <= instead of <, so equal round numbers are rejected, but can an attacker replay old transactions with slightly higher round numbers to override legitimate updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e6d5e38-9c51-45ee-b783-771045249158?mode=deep",
+    "timestamp": "2026-02-19 11:00:20.164981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Integer Overflow] If consensusInformation.Round.RoundNumber is extremely large (near max long), can comparison at line 46 overflow or behave unexpectedly, allowing stale data to pass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec50e322-0d29-4eed-8887-7de9914a88fe?mode=deep",
+    "timestamp": "2026-02-19 11:00:55.979167",
+    "report_generated": false
+  }
+]
