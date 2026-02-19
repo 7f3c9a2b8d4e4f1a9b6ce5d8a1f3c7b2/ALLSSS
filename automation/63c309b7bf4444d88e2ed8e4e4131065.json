@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Invariant: Term Change Consensus] Term changes require 2/3 consensus via NeedToChangeTerm - can miners just below the threshold (e.g., 66%) manipulate timing to swing the vote? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8c3f418-916d-4cb7-be5c-c18e1520f682?mode=deep",
+    "timestamp": "2026-02-19 06:18:03.993772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [GetVictories Dependency] Returning NextTerm eventually calls ElectionContract.GetVictories - can manipulation of election state cause GetVictories to return malicious miner list? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5d787ee-1459-42f9-9777-44aa36f8d9bc?mode=deep",
+    "timestamp": "2026-02-19 06:18:16.960327",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Election Timing] If term change occurs before votes are properly tallied, can this result in wrong miners being selected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6011fd02-f593-422f-89cd-41d8da9e0044?mode=deep",
+    "timestamp": "2026-02-19 06:18:39.287338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Minimum Candidate Check] When NextTerm is returned, does the election contract ensure minimum candidate count before miner list update? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00d506a8-3d99-46d9-9885-bb3731a82a28?mode=deep",
+    "timestamp": "2026-02-19 06:19:02.219610",
+    "report_generated": false
+  }
+]
