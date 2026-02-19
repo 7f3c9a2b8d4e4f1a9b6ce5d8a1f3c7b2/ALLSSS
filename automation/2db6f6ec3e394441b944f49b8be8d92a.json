@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation() + GetMinedMiners()] [Missing Miner Gap] If GetMinedMiners and GetNotMinedMiners together don't cover all RealTimeMinersInformation entries (miner missing from both), could that miner be excluded from nextRound, reducing miner count and breaking quorum assumptions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8aa671c-4e79-48f4-8764-3a8c3746a04b?mode=deep",
+    "timestamp": "2026-02-19 03:18:10.533955",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation() + CalculateNextExtraBlockProducerOrder()] [Order Out of Bounds] If CalculateNextExtraBlockProducerOrder returns order > minersCount at line 59, line 61's FirstOrDefault returns null, causing line 63 to set .First() as extra block producer - could this skip intended random selection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7e68525-871d-4f71-b694-9cff8a359830?mode=deep",
+    "timestamp": "2026-02-19 03:18:32.730943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation() + BreakContinuousMining()] [State Inconsistency After Swap] If BreakContinuousMining swaps orders at line 67 but GenerateNextRoundInformation previously set ExpectedMiningTime based on original orders at lines 33/51, could timestamps become misaligned with final orders? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1aa8424-c032-4222-ad39-b9c81718c618?mode=deep",
+    "timestamp": "2026-02-19 03:18:55.300700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: BreakContinuousMining() + GetExtraBlockProducerInformation()] [Undefined Extra Producer] If GetExtraBlockProducerInformation at lines 80 and 97 returns null or default MinerInRound, could Pubkey comparison at lines 81 and 98 always fail, never triggering swaps and allowing continuous mining? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a587f19e-8c06-4620-b4a4-4a9672d4e802?mode=deep",
+    "timestamp": "2026-02-19 03:19:18.424899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: All Functions] [RealTimeMinersInformation Concurrent Modification] If RealTimeMinersInformation is modified externally while GenerateNextRoundInformation executes (lines 16-56), could GetMinedMiners/GetNotMinedMiners return stale data leading to inconsistent nextRound state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb51d12f-4596-4a8a-a7b0-bbb434781fbe?mode=deep",
+    "timestamp": "2026-02-19 03:19:42.408343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Maximum Miners Scenario] If minersCount at line 18 is at maximum allowed value and all miners mined, could occupiedOrders at line 40 fill entire range [1, minersCount], leaving ableOrders empty at line 41 and causing line 44 to access out-of-bounds when minersNotMinedCurrentRound is non-empty? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4164e69c-f9b6-4942-9c80-cdf28ded9842?mode=deep",
+    "timestamp": "2026-02-19 03:20:07.389553",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Two Miners Only] With minersCount=2, if first miner is extra block producer of current round at line 81, swap makes second become first - but if second is also extra producer of next round at line 98, another swap occurs - could this create deadlock or circular dependency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df74b437-9fea-40a1-b58e-a7e64bb89f99?mode=deep",
+    "timestamp": "2026-02-19 03:20:32.489838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [All Miners Missed] If all miners have SupposedOrderOfNextRound == 0, minersMinedCurrentRound is empty at line 16, occupiedOrders is empty at line 40, and all miners get sequential ableOrders starting from 1 - could this reset mining order unfairly without considering previous performance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2c9423b-3eff-471a-a0a0-b9ae5b742831?mode=deep",
+    "timestamp": "2026-02-19 03:20:57.908146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Single Block Mining Interval] If GetMiningInterval returns 1 millisecond at line 20, all ExpectedMiningTime values at lines 33/51 would be within 1ms * minersCount - could this cause timestamp collisions or make it impossible for miners to meet their slots? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cedc4a5-23ba-4a70-a75c-64146e0b46bf?mode=deep",
+    "timestamp": "2026-02-19 03:21:27.077075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [All Miners Same Signature] If all miners produce identical signatures due to cryptographic collision or bug, GetAbsModulus would always return same value at line 121, always selecting same extra block producer - could this centralize rewards? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db4a971d-404c-4d95-8290-94458a3e500c?mode=deep",
+    "timestamp": "2026-02-19 03:21:53.949009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: BreakContinuousMining()] [Three Miners Edge Case] With minersCount=3, if miner at order 1 is extra producer of current, swap makes order 2 become order 1 - but if order 3 is extra producer of next, swap makes order 2 (now at order 3) become order 2 again - could this create invalid state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_368cde24-01b0-43d5-8763-08bad713aea9?mode=deep",
+    "timestamp": "2026-02-19 03:22:26.027902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Negative MissedTimeSlots] If MissedTimeSlots at line 54 is negative before .Add(1), could it remain negative after increment, corrupting penalty calculations and allowing miners to bypass punishment? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c941a120-bc95-414d-bdf6-d25b85c4ac8c?mode=deep",
+    "timestamp": "2026-02-19 03:22:57.566158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Pubkey Null or Empty] If a miner's Pubkey at lines 29/46 is null or empty string, could dictionary assignment create invalid entries or overwrite legitimate miners, reducing effective miner count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3337d8c-ffa8-4efa-80af-315f2425829a?mode=deep",
+    "timestamp": "2026-02-19 03:23:30.727370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [FinalOrderOfNextRound Larger Than MinerCount] If FinalOrderOfNextRound at line 28 is 1000 but minersCount is 10, occupiedOrders would contain 1000, and ableOrders range [1,10] would exclude it - but this creates invalid order in nextRound at line 32, could this break order-based logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eedda35f-820f-4d53-b1d5-534b22902c28?mode=deep",
+    "timestamp": "2026-02-19 03:24:04.885159",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [RoundNumber Rollback] If RoundNumber at line 21 is less than previous rounds due to blockchain re-org, incrementing could create nextRound with RoundNumber that already exists, allowing replay attacks or state confusion? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8b13c24-f093-4e4b-8799-d8179e7815a2?mode=deep",
+    "timestamp": "2026-02-19 03:24:38.823986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [TermNumber Mismatch] Line 22 copies TermNumber without validating it matches current term - if TermNumber is from previous term, could nextRound have incorrect term assignment, breaking term-based rewards or governance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04311de7-bdd8-4bf9-b452-09f677f98442?mode=deep",
+    "timestamp": "2026-02-19 03:25:11.747826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [ExpectedMiningTime Past Value] If currentBlockTimestamp at line 11 is in past relative to system time, all ExpectedMiningTime values at lines 33/51 would be past timestamps - could this cause all miners to claim they missed their slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d76a07ac-541f-4d93-bdca-f6b2b4ed884c?mode=deep",
+    "timestamp": "2026-02-19 03:25:44.240361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [Signature Length Validation] Line 118 uses signature.ToInt64() without validating signature length - if signature is less than 8 bytes, could ToInt64() fail or produce unpredictable results, causing non-deterministic extra block producer? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cc6adbe-83fc-49a0-a76c-585607b01c48?mode=deep",
+    "timestamp": "2026-02-19 03:26:13.638074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Large Miner Count DOS] If minersCount at line 18 is extremely large (e.g., 10,000), loops at lines 26-36 and 42-56 could cause gas exhaustion or timeout, preventing round generation and halting consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2ed462e-d8f8-499c-ae9c-5d7417807a41?mode=deep",
+    "timestamp": "2026-02-19 03:26:47.412200",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [OrderBy Performance] Line 26 sorts minersMinedCurrentRound by FinalOrderOfNextRound - if an attacker adds many miners with carefully crafted orders, could sorting complexity cause DOS during round generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c4997b9-7fe5-4bf4-a777-81743ec8d8cc?mode=deep",
+    "timestamp": "2026-02-19 03:27:17.865086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: GenerateNextRoundInformation()] [Where Filter Overhead] Line 41 filters entire range [1, minersCount] - if minersCount is 100,000 and occupiedOrders contains 99,999 elements, could Where operation cause significant computational overhead and DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c977c62-8548-4af7-a6c5-a2583d606b79?mode=deep",
+    "timestamp": "2026-02-19 03:27:51.316117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: BreakContinuousMining()] [Multiple First() Calls] Lines 79, 84, 94, 101 each call First() which iterates through RealTimeMinersInformation.Values - with large miner count, could multiple iterations cause performance degradation and slow round generation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f221880-cca3-455f-bfc0-16cbcb6252a3?mode=deep",
+    "timestamp": "2026-02-19 03:28:22.286027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [OrderBy Without Limit] Line 112-113 sorts all miners by order then filters - if RealTimeMinersInformation contains thousands of miners, could sorting overhead delay extra block producer selection? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03598de7-b604-48d1-ac5f-7b6a0466a3c1?mode=deep",
+    "timestamp": "2026-02-19 03:28:58.040592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [Signature Predictability] Using first miner's signature at line 118 for randomness - if first miner can predict their signature (due to deterministic signing), could they choose when to mine based on desired extra block producer outcome? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca8b6d0d-0189-4558-805d-a95430b43f53?mode=deep",
+    "timestamp": "2026-02-19 03:29:28.700167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Generation.cs] [Function: CalculateNextExtraBlockProducerOrder()] [Modulo Bias] Line 121 uses GetAbsModulus(sigNum, blockProducerCount) - if blockProducerCount doesn't evenly divide signature space, could certain orders be selected more frequently, creating unfair extra block producer distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb41dd02-f3f5-4b5d-ab5e-8bac01ce4091?mode=deep",
+    "timestamp": "2026-02-19 03:29:58.839850",
+    "report_generated": false
+  }
+]
