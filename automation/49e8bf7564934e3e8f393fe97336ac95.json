@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Missing Input Validation] Can an attacker call GetUpdateValueRound() with a null or empty pubkey string, causing KeyNotFoundException when accessing RealTimeMinersInformation[pubkey] at line 13, leading to DoS of consensus round updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fad5d58-f15e-4e3c-87fb-b9aa8b7afe6f?mode=deep",
+    "timestamp": "2026-02-19 05:11:24.740895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Dictionary Access Vulnerability] Can an attacker provide a pubkey that doesn't exist in RealTimeMinersInformation, causing KeyNotFoundException at line 13 and crashing the consensus mechanism during round transitions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c22a9f4-d380-4ef1-9b74-ae979d10fc88?mode=deep",
+    "timestamp": "2026-02-19 05:11:46.937756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Missing Authorization Check] Is there any caller authorization check before GetUpdateValueRound() executes? If not, can any address call this method with arbitrary pubkey values to extract sensitive miner information or manipulate round data structures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_858c2f62-0638-451b-aa44-69fa2352be2c?mode=deep",
+    "timestamp": "2026-02-19 05:12:09.418790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Input Sanitization] Can an attacker inject special characters, extremely long strings, or Unicode exploits in the pubkey parameter to bypass validation or cause unexpected behavior in the RealTimeMinersInformation dictionary lookup? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41ebe970-d96c-4fef-a7cb-1ba042b18eb3?mode=deep",
+    "timestamp": "2026-02-19 05:12:32.734513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Access Control Bypass] If GetUpdateValueRound() is public without access modifiers, can a malicious contract or external attacker call it repeatedly with different pubkeys to enumerate all miners in the current round and leak consensus-critical information? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab096fc7-3114-437f-b569-c5615aea2188?mode=deep",
+    "timestamp": "2026-02-19 05:12:56.972285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [State Inconsistency] When creating the new Round object at lines 14-34, only selective fields (OutValue, Signature, ProducedBlocks, etc.) are copied for the target pubkey. Can this partial state copying lead to inconsistencies where critical validation fields are missing, allowing invalid rounds to pass verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42c664c6-97e4-4f88-abff-3a8a1160d9b3?mode=deep",
+    "timestamp": "2026-02-19 05:13:21.556437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Round ID Manipulation] At line 17, RoundIdForValidation is set to RoundId. Is there validation that RoundId hasn't been tampered with? Can an attacker exploit this to create rounds with forged validation IDs that bypass consensus checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_149be8bd-8be1-403c-9ee4-44f4c1c95de3?mode=deep",
+    "timestamp": "2026-02-19 05:13:46.963049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Miner Information Tampering] The ActualMiningTimes collection is copied at line 28. If minerInRound.ActualMiningTimes contains malicious or out-of-bounds timestamp values, can this corrupt the new round's mining schedule and allow miners to produce blocks outside their assigned time slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11c24e3b-6282-41b0-ab01-42e643c33f70?mode=deep",
+    "timestamp": "2026-02-19 05:14:13.160342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [ImpliedIrreversibleBlockHeight Manipulation] At line 29, ImpliedIrreversibleBlockHeight is copied without validation. Can a malicious miner set an artificially high or low value to manipulate LIB calculations, enabling double-spend attacks or preventing finality? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63645ba8-e34c-44e9-b36f-266bbabb56c9?mode=deep",
+    "timestamp": "2026-02-19 05:14:40.001902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [ProducedBlocks Counter Overflow] ProducedBlocks and ProducedTinyBlocks are copied at lines 25-26. Are these counters checked for integer overflow? Can a miner exploit unchecked arithmetic to wrap the counter and claim false production statistics, affecting reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02ecedfc-8635-4a68-8de8-77503573d6dd?mode=deep",
+    "timestamp": "2026-02-19 05:15:07.622823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Signature Reuse Attack] The Signature field is copied at line 24. Is there validation preventing signature reuse across different rounds? Can an attacker replay a valid signature from a previous round to forge consensus participation in the current round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_905455cd-479d-47b1-bf65-0e48d662408a?mode=deep",
+    "timestamp": "2026-02-19 05:15:38.212824",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [OutValue Integrity] OutValue is copied at line 23. If this represents a cryptographic commitment or secret sharing output, is there validation that OutValue hasn't been modified or corrupted? Can tampering with OutValue break the secret sharing scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4327895d-35d1-4a29-bd90-d5406a653495?mode=deep",
+    "timestamp": "2026-02-19 05:16:09.162102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [PreviousInValue Chain Break] PreviousInValue is copied at lines 27 and 51. If this creates a chain of values for random number generation, can an attacker break the chain by providing an incorrect PreviousInValue, compromising randomness in leader selection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb1ee733-93cd-4984-a16e-a3ed744b1a3f?mode=deep",
+    "timestamp": "2026-02-19 05:16:40.069085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Redundant Conditional Logic] Lines 35-41 check 'if (information.Key == pubkey)' inside the foreach loop that already processed pubkey separately at lines 20-32. This means the condition at line 36 will always be true once. Does this redundant logic indicate a bug where SupposedOrderOfNextRound and FinalOrderOfNextRound should have been set earlier but weren't? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89f3ab14-de44-48bf-80d0-efda7ce4872d?mode=deep",
+    "timestamp": "2026-02-19 05:17:11.082092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Double Processing Vulnerability] The target pubkey is processed twice: first at lines 20-32 (added to dictionary), then again at lines 36-40 (conditionally updated). Can this double processing be exploited to overwrite security-critical fields or create race conditions in concurrent round updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96275830-1b43-44d7-becd-4dd305cc9066?mode=deep",
+    "timestamp": "2026-02-19 05:17:41.546063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Order Field Manipulation] At lines 30 and 49, the Order field is copied for all miners. Is there validation that Order values are unique and sequential? Can duplicate or out-of-sequence Order values corrupt the mining schedule and allow miners to produce multiple blocks in a single round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59c5c091-354d-4a18-8217-403cd75b8202?mode=deep",
+    "timestamp": "2026-02-19 05:18:12.866442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [IsExtraBlockProducer Flag Abuse] IsExtraBlockProducer is copied at lines 31 and 50. If this flag grants special privileges, can a miner manipulate it to claim extra block production rights they shouldn't have, leading to unfair reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5af3a074-1e8a-4adb-8e69-4f51adc5220e?mode=deep",
+    "timestamp": "2026-02-19 05:18:44.697461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Next Round Order Consistency] SupposedOrderOfNextRound and FinalOrderOfNextRound are set at lines 38-40 and 47-48. If these values conflict or are manipulated, can it cause miners to be assigned incorrect time slots in the next round, breaking consensus ordering? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f46a167-77e5-459b-b36b-97bb44cf9090?mode=deep",
+    "timestamp": "2026-02-19 05:19:16.391094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Incomplete Miner Data] For non-target miners (lines 44-52), only a subset of fields are copied (Pubkey, SupposedOrderOfNextRound, FinalOrderOfNextRound, Order, IsExtraBlockProducer, PreviousInValue). Can this incomplete data cause validation failures or allow attackers to inject miners with missing critical fields? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39f48223-4e67-4391-9f66-0a941ed5b5e3?mode=deep",
+    "timestamp": "2026-02-19 05:19:49.430558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Dictionary Key Collision] When adding miners to round.RealTimeMinersInformation at line 44, is there validation preventing key collisions? Can an attacker cause multiple miners to map to the same pubkey, corrupting the round structure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_054a4d77-4016-47e5-8c23-3a5eb46199a8?mode=deep",
+    "timestamp": "2026-02-19 05:20:21.780171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Sensitive Data Leakage] The returned Round object contains OutValue, Signature, PreviousInValue, and ActualMiningTimes for the target miner. If this method is callable by anyone, does it leak secret sharing values, cryptographic signatures, or timing information that could be used to predict future mining schedules? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fab0a74-a0fb-4dc5-90b3-2d0bc6365f84?mode=deep",
+    "timestamp": "2026-02-19 05:20:56.012113",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Mining Schedule Disclosure] By calling GetUpdateValueRound() for different pubkeys, can an attacker enumerate all miners' Order, SupposedOrderOfNextRound, and FinalOrderOfNextRound values to gain complete knowledge of current and future mining schedules, enabling front-running or timing attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc240136-f992-41ef-ae93-bdf7babaa62e?mode=deep",
+    "timestamp": "2026-02-19 05:21:30.431067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Block Production Statistics Leak] ProducedBlocks and ProducedTinyBlocks counters at lines 25-26 and 71-72 reveal miner performance. Can this information be exploited to identify underperforming miners for targeted attacks or to manipulate election outcomes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e02a7c0-ea60-48d9-bb58-666c20ac9599?mode=deep",
+    "timestamp": "2026-02-19 05:22:04.842230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Missing Input Validation] Can an attacker call GetTinyBlockRound() with a null, empty, or invalid pubkey, causing KeyNotFoundException when accessing RealTimeMinersInformation[pubkey] at line 60, leading to DoS during tiny block processing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7064e3e-e68e-45f5-8539-5695c7b1ca0a?mode=deep",
+    "timestamp": "2026-02-19 05:22:38.335686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Dictionary Access Vulnerability] Similar to GetUpdateValueRound, can providing a non-existent pubkey to GetTinyBlockRound() cause a KeyNotFoundException at line 60, crashing tiny block production and halting consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a385eac8-6e51-4a7a-9eb9-e36e0a9b3854?mode=deep",
+    "timestamp": "2026-02-19 05:23:09.447049",
+    "report_generated": false
+  }
+]
