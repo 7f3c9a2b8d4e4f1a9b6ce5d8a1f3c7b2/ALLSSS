@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Order Manipulation] The check minerInRound.Order < expectedOrder can be bypassed if Order values are manipulated - can a miner set their Order to int.MaxValue to always appear as slot not passed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13dfd14e-298a-438d-b0fd-0580de501dad?mode=deep",
+    "timestamp": "2026-02-19 13:46:02.920647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [CurrentBlockTime Manipulation] If currentBlockTime can be set to far future or past values, can this allow miners to prematurely pass or indefinitely delay time slot validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99c4da83-d6d0-4338-b2ba-0729db6eb1b1?mode=deep",
+    "timestamp": "2026-02-19 13:46:25.030233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Null Signature Handling] If minerInRound.Signature is null, does HashHelper.XorAndCompute handle it safely, or can null signatures break the aggregate calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49dfe1c2-6b3b-4533-b385-5191a4b3b365?mode=deep",
+    "timestamp": "2026-02-19 13:46:47.636302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Signature Withholding] If a miner deliberately withholds their signature (keeps it as null or Hash.Empty), does the XOR aggregate become predictable, allowing signature forgery attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c49c08b-2bbd-4f6c-a2fb-592f96a6f8ef?mode=deep",
+    "timestamp": "2026-02-19 13:47:10.905597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [XOR Cancellation] Can colluding miners choose signatures that XOR to zero or a predictable value, allowing them to precompute and manipulate the final round signature? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2aaba8e2-a65b-4d4a-9a57-074c9fff3c4d?mode=deep",
+    "timestamp": "2026-02-19 13:47:35.384017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Aggregate Order Dependency] If RealTimeMinersInformation.Values enumeration order is non-deterministic, will different nodes compute different aggregate signatures and break consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ddfe449-1592-40f8-8483-d942d7ca556a?mode=deep",
+    "timestamp": "2026-02-19 13:48:01.331083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [InValue Manipulation] The inValue parameter is XORed with aggregate - can an attacker provide crafted inValue to produce desired output signatures for round manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32823492-1bfc-4b05-a3ad-fffae330ad2a?mode=deep",
+    "timestamp": "2026-02-19 13:48:27.857681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Order Manipulation] The function uses OrderBy to find last miner - if Order values are manipulated to be equal or out of sequence, can wrong miner's time be used for extra block calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f0249a2-3fa2-42c3-b890-ed3f1b07b8e6?mode=deep",
+    "timestamp": "2026-02-19 13:48:56.007595",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Null ExpectedMiningTime] If the last miner has null ExpectedMiningTime, will AddMilliseconds throw NullReferenceException and halt extra block production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82a6a583-b2eb-4d3b-ac9c-0300a30f840b?mode=deep",
+    "timestamp": "2026-02-19 13:49:26.220324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Mining Interval Zero] If GetMiningInterval() returns 0, extra block time equals last miner's time - can this cause extra block to be produced at same timestamp as normal block? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e9e8e36-0868-46b5-a7f7-8703aac92c6b?mode=deep",
+    "timestamp": "2026-02-19 13:49:56.536039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Timestamp Overflow] Adding mining interval to ExpectedMiningTime could overflow if time is near max timestamp - can this cause extra block time to wrap to past? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b632fe4-98c8-445a-8a29-498feff58fa2?mode=deep",
+    "timestamp": "2026-02-19 13:50:28.454186",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Empty Miner List] If RealTimeMinersInformation is empty, Last() throws exception - can this be exploited to DoS extra block production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb635dd0-b67a-4d7a-9b6f-e4c49e8693e7?mode=deep",
+    "timestamp": "2026-02-19 13:51:00.424175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMinedBlocks()] [Integer Overflow] If ProducedBlocks values are manipulated to be near long.MaxValue, can the Sum() operation overflow and return incorrect total mined blocks count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0aa7651-7b60-4304-aa31-9b772d1f4ff4?mode=deep",
+    "timestamp": "2026-02-19 13:51:34.247981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMinedBlocks()] [Negative Block Count] If minerInRound.ProducedBlocks can be negative, can this reduce total count and manipulate reward distributions or consensus metrics? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48a298dd-7326-454a-8370-dc10b9552008?mode=deep",
+    "timestamp": "2026-02-19 13:52:08.278305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMinedBlocks()] [Missing Validation] The function sums without validating ProducedBlocks values - can corrupted or malicious miner data poison the total count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d53db6d7-66a8-4c3d-9b5b-17ae16703837?mode=deep",
+    "timestamp": "2026-02-19 13:52:42.149671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMinerList()] [Duplicate Keys] If RealTimeMinersInformation contains duplicate keys, does the MinerList include duplicates, potentially inflating miner count for consensus threshold calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e21764e6-4544-4cae-87d3-b9494f09d82e?mode=deep",
+    "timestamp": "2026-02-19 13:53:16.474758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMinerList()] [Invalid Hex Conversion] If keys are not valid hex strings, can ByteStringHelper.FromHexString throw exceptions and DoS miner list retrieval? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44553245-6b1c-4877-ad93-fc418459c1bb?mode=deep",
+    "timestamp": "2026-02-19 13:53:49.318315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMinerList()] [Empty Key Handling] Can empty or whitespace keys be added to RealTimeMinersInformation, causing invalid MinerList that breaks downstream consensus operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_366ffcad-96fa-4f43-9548-8f52cacac055?mode=deep",
+    "timestamp": "2026-02-19 13:54:22.969732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsInMinerList()] [Case Sensitivity] If pubkey comparison is case-sensitive but miner registration is case-insensitive, can an attacker bypass miner list checks using different casing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d65e37e3-8680-4846-8316-7292e72ca1ab?mode=deep",
+    "timestamp": "2026-02-19 13:54:57.160640",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsInMinerList()] [Whitespace Handling] Does the function trim or normalize pubkey before checking, or can attackers add whitespace to valid keys to bypass validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_990c3165-b82e-41b2-a50a-53f3a8c72a76?mode=deep",
+    "timestamp": "2026-02-19 13:55:32.902136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: FirstMiner()] [Order Uniqueness] If multiple miners have Order == 1, which one is returned by FirstOrDefault? Can this non-determinism cause different nodes to have different FirstMiner and break consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85c86ea2-90cc-4c16-8989-3f79f63e3a52?mode=deep",
+    "timestamp": "2026-02-19 13:56:06.036184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: FirstMiner()] [Missing Miner] If no miner has Order == 1, function returns new MinerInRound() - can this empty miner object cause NullReferenceExceptions in code expecting valid first miner data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_804cb36e-2f89-4b16-ae9a-dc4207230f46?mode=deep",
+    "timestamp": "2026-02-19 13:56:39.990387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: FirstMiner()] [Empty Count Check] The RealTimeMinersInformation.Count > 0 check returns empty MinerInRound if false - can empty rounds bypass FirstMiner-dependent validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5b43e29-a8b6-4b45-a855-51027e9b3c8a?mode=deep",
+    "timestamp": "2026-02-19 13:57:10.708281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: FirstActualMiner()] [OutValue Manipulation] The function returns first miner with non-null OutValue - can a late miner set OutValue first to become FirstActualMiner and gain undue consensus authority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75d6b412-85dc-4e18-bef2-7ded140f61ba?mode=deep",
+    "timestamp": "2026-02-19 13:57:44.572156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: FirstActualMiner()] [Null Return] Function can return null if no miner has OutValue - can code calling this function crash with NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_661c13dc-788a-4773-827e-bf6cc2afad33?mode=deep",
+    "timestamp": "2026-02-19 13:58:19.421116",
+    "report_generated": false
+  }
+]
