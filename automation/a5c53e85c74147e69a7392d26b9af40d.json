@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Reentrancy: Strategy Delegation] [Recursive Call] When delegating to TerminateRoundCommandStrategy at line 41-42, can this trigger another call back to TinyBlockCommandStrategy causing infinite recursion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b008c90-4323-496f-bbf8-ab0434efd816?mode=deep",
+    "timestamp": "2026-02-19 09:49:30.698548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Concurrency: ActualMiningTimes Modification] [Collection Mutation] If ActualMiningTimes is being appended by another thread during Count() at line 61, can this cause inconsistent count results or collection modified exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cef860ac-f4ae-4764-9828-61c8a2526104?mode=deep",
+    "timestamp": "2026-02-19 09:49:52.845711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Validation: Return Value Check] [Error Handling] At line 41-42, if TerminateRoundCommandStrategy.GetAEDPoSConsensusCommand() returns invalid or null command, is this validated before returning to caller? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10968609-1593-4eb9-afc8-756f72f70413?mode=deep",
+    "timestamp": "2026-02-19 09:50:15.153048",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Validation: ArrangedMiningTime Range] [Bounds Check] Is arrangedMiningTime at line 29-30 validated to be within acceptable future range (e.g., not years ahead) before being used in ConsensusCommand? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94f1a528-72a0-456e-96b0-0ffa34d3a36e?mode=deep",
+    "timestamp": "2026-02-19 09:50:37.966961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Validation: Mining Limits] [Positive Check] Are DefaultBlockMiningLimit and LastTinyBlockMiningLimit at line 48-50 validated to be positive values before being returned in ConsensusCommand? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98fdd4f9-4574-4688-894d-dcf462ba3cba?mode=deep",
+    "timestamp": "2026-02-19 09:51:01.955403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Validation: Time Slot Sanity] [Invariant Check] Is currentTimeSlotEndTime at line 38 validated to be > currentTimeSlotStartTime before using it as MiningDueTime? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a1dae9b-91fc-4d9f-b670-6a4c1e3d05f3?mode=deep",
+    "timestamp": "2026-02-19 09:51:28.880888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Sanitization: Pubkey Format] [Input Validation] Is Pubkey validated to be proper format (e.g., valid public key hex string) before using it to access MinerInRound dictionary? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08ae4129-e95a-484f-85ab-58fbc06feca6?mode=deep",
+    "timestamp": "2026-02-19 09:51:53.952275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [State Machine: TinyBlock to TerminateRound] [Transition Validity] When transitioning from TinyBlock strategy to TerminateRound strategy at line 41-42, is the state transition logged or validated against consensus protocol rules? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebc5a643-74c3-4212-b69b-e23435e896bf?mode=deep",
+    "timestamp": "2026-02-19 09:52:19.484850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Logic Flow: Early Return] [Missing Path] If arrangedMiningTime > currentTimeSlotEndTime at line 40, control immediately returns via TerminateRoundCommandStrategy. Are there other conditions that should also trigger early return? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d56c485a-0dd2-4378-8ba4-17b96552d7a1?mode=deep",
+    "timestamp": "2026-02-19 09:52:45.748937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [Logic Flow: Conditional Branches] [Code Coverage] At line 33-37, the three-way branch (before round / first round / other) may not cover all possible states. What happens if ExpectedMiningTime is not set in later rounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5eaa7735-ecec-41bb-9d3e-3fd7e54dc674?mode=deep",
+    "timestamp": "2026-02-19 09:53:12.313796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [State Machine: Command Lifecycle] [Stale Command] After GetAEDPoSConsensusCommand() returns, if significant time passes before the command is used, can arrangedMiningTime and MiningDueTime become stale? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12b5e6fe-ccbe-49b6-b16b-b1a2ae9dd13d?mode=deep",
+    "timestamp": "2026-02-19 09:53:41.666973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [DOS: Expensive Operations] [Computational Attack] Can an attacker cause repeated calls to GetAEDPoSConsensusCommand() with crafted CurrentBlockTime values to trigger expensive Count() operation at line 61 repeatedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e958f8b-4cc3-4d76-93b0-8333a9d280ac?mode=deep",
+    "timestamp": "2026-02-19 09:54:12.180064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [DOS: Strategy Switching Storm] [Resource Exhaustion] Can an attacker manipulate conditions to repeatedly trigger the strategy switch at line 41-42, causing excessive object allocations and CPU usage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59f00bcd-0604-483f-9417-4d704ba48605?mode=deep",
+    "timestamp": "2026-02-19 09:54:42.605351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [DOS: ActualMiningTimes Growth] [Memory Attack] If ActualMiningTimes at line 61 is never pruned and grows unbounded, can this cause out-of-memory conditions when processing old miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb9d78f8-3a5a-4c56-98f3-6ac89ca175d3?mode=deep",
+    "timestamp": "2026-02-19 09:55:14.903348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/TinyBlockCommandStrategy.cs] [DOS: Exception Throwing] [Availability] If any operation at lines 29-50 throws uncaught exception (e.g., null reference, key not found), does this halt consensus command generation for all miners? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4545a0cc-d9fd-464a-9c87-67210218b26e?mode=deep",
+    "timestamp": "2026-02-19 09:55:46.902020",
+    "report_generated": false
+  }
+]
