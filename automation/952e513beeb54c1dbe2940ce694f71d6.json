@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Authorization Bypass] Is there any access control preventing unauthorized callers from invoking this method to clear secret sharing information prematurely, potentially disrupting consensus randomness before proper validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fffb48e-4e11-4b96-8fb4-655abb1bd269?mode=deep",
+    "timestamp": "2026-02-19 08:49:32.199643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Authorization Bypass] Can a malicious miner call this method on a Round object before secret sharing verification is complete, bypassing InValue recovery and compromising random number generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9a86b8b-21fc-4ff4-a710-e36ed8239e94?mode=deep",
+    "timestamp": "2026-02-19 08:49:54.261643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Privilege Escalation] If this method is callable from external contracts, can an attacker clear encrypted/decrypted pieces from active consensus rounds, preventing legitimate secret reconstruction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_778a3150-6a2c-4e53-bdba-a298c77be672?mode=deep",
+    "timestamp": "2026-02-19 08:50:16.531847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [State Manipulation] Does this method verify that the Round has already been persisted to state before clearing secret information, or can it be called on in-memory Round objects still being processed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc058efc-d5ee-4959-8dff-585f3cb0ea95?mode=deep",
+    "timestamp": "2026-02-19 08:50:39.691329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Race Condition] If multiple threads/transactions access RealTimeMinersInformation.Values concurrently, can the Clear() operations on lines 10 and 13 cause inconsistent state where some miners' data is cleared while others are not? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9f3b44a-cceb-4804-bebe-b28f7a1b494a?mode=deep",
+    "timestamp": "2026-02-19 08:51:04.340841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [State Inconsistency] If EncryptedPieces.Clear() succeeds but DecryptedPieces.Clear() fails, does this create an inconsistent state where encrypted data exists without corresponding decrypted data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a9b1754-8761-418a-808d-77c8cbdf53ce?mode=deep",
+    "timestamp": "2026-02-19 08:51:29.440484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Atomicity] Are the multiple Clear() operations in lines 10 and 13 atomic? Can a transaction abort between clearing encrypted and decrypted pieces, leaving partial secret information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcb5d3c9-dda5-4067-ab1f-2410f07e5db3?mode=deep",
+    "timestamp": "2026-02-19 08:51:56.399056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Reentrancy] If RealTimeMinersInformation is modified by another method during the foreach loops (lines 10, 13), can this cause collection modification exceptions or skip clearing some miners' data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fefdf6f6-31df-4ec0-9183-c2bb3fe015b8?mode=deep",
+    "timestamp": "2026-02-19 08:52:26.680747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [State Leak] Does clearing EncryptedPieces and DecryptedPieces actually remove them from persistent storage, or do they remain in blockchain history allowing retrospective secret recovery? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d39552b8-3000-4cab-a3c4-3157d373cbd7?mode=deep",
+    "timestamp": "2026-02-19 08:52:54.594115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Missing Validation] Does this method verify that secret sharing validation/InValue recovery has completed before clearing, or can it destroy data needed for Byzantine fault detection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9429dba6-8c83-490e-8814-ee09b06398f2?mode=deep",
+    "timestamp": "2026-02-19 08:53:25.976475",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Premature Deletion] If called before RevealSharedInValues completes threshold verification (2/3 miners), does clearing encrypted/decrypted pieces prevent legitimate InValue reconstruction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f935099-8cb2-4f5f-bff7-a21ba9b97b15?mode=deep",
+    "timestamp": "2026-02-19 08:53:57.004293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Data Loss] Is there any guard against calling this method multiple times, potentially causing errors if Clear() is invoked on already-empty collections? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e42a6d7-56c5-4c85-b048-8ba910aeb3ee?mode=deep",
+    "timestamp": "2026-02-19 08:54:28.015091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Incomplete Cleanup] Does this method clear ALL secret-related fields (InValue, PreviousInValue, Signature, RandomNumber) or only EncryptedPieces/DecryptedPieces, potentially leaving sensitive data exposed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c981a51f-90cd-4e07-8638-d3e044b1e76f?mode=deep",
+    "timestamp": "2026-02-19 08:55:00.410191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Null Reference] If RealTimeMinersInformation.Values contains null entries, will the Select operations on lines 9 and 12 throw NullReferenceException before any Clear() executes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1fe1fbb-4f66-44f8-aa04-10f71854a964?mode=deep",
+    "timestamp": "2026-02-19 08:55:27.735984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Protocol Violation] Can an attacker force premature execution of this method during UpdateValue behavior, clearing secret pieces before other miners decrypt them, breaking the secret sharing protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6901846-4c2a-4f40-a62b-18917c431eb6?mode=deep",
+    "timestamp": "2026-02-19 08:55:58.985428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Randomness Compromise] If this method is called before the minimum threshold (2/3) of DecryptedPieces is achieved, does it permanently prevent random number generation for the affected round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c30cd2d-f3ce-4a64-93bb-4576deeee39b?mode=deep",
+    "timestamp": "2026-02-19 08:56:30.417957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Verification Bypass] Does clearing EncryptedPieces prevent post-consensus auditing of whether miners correctly encrypted their secret shares according to the protocol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0a60bad-a862-435e-82a2-f3bb196fcfca?mode=deep",
+    "timestamp": "2026-02-19 08:57:03.091472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [InValue Recovery] If a miner disputes their revealed PreviousInValue later, can the cleared EncryptedPieces/DecryptedPieces prevent cryptographic proof of the correct InValue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7b5f0ea-6f7a-4ea6-b3fb-3c2a033b1024?mode=deep",
+    "timestamp": "2026-02-19 08:57:30.553707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Byzantine Detection] Does premature clearing prevent detection of Byzantine miners who provided invalid encrypted pieces or failed to decrypt received pieces? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3362549e-7fb6-45b0-9298-0540438546ab?mode=deep",
+    "timestamp": "2026-02-19 08:58:04.320523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Timing Attack] Can an adversarial miner delay their UpdateValue transaction until after this method clears other miners' secret pieces, gaining an advantage in random number prediction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b19df56e-30be-4a2b-a57d-f4d9bb52f4a5?mode=deep",
+    "timestamp": "2026-02-19 08:58:33.136943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Call Order] If GetConsensusBlockExtraData calls this method (line 50) before all miners in the round have submitted their UpdateValue transactions, does it break secret sharing for late miners? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98124867-f0c5-41cb-a289-a28efc102e1f?mode=deep",
+    "timestamp": "2026-02-19 08:59:09.760209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Round Transition] During NextRound behavior, if this method is called before RevealSharedInValues extracts InValues from the previous round, are critical values permanently lost? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_433b514b-b2a1-46b0-90d3-58a8a9db60e7?mode=deep",
+    "timestamp": "2026-02-19 08:59:46.367524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Block Finality] Is this method only safe to call after the round's block is irreversible? If called on a round that gets reorganized, can it cause consensus fork issues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d120b2fc-6a03-4491-b4e9-2fcaf171a204?mode=deep",
+    "timestamp": "2026-02-19 09:00:22.566496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Memory Leak] Does Clear() on protobuf map fields (EncryptedPieces, DecryptedPieces) actually deallocate memory, or does it leave orphaned byte arrays in the managed heap? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67d67454-99e3-4c94-a6ce-040fd5edb483?mode=deep",
+    "timestamp": "2026-02-19 09:00:58.965726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_GetLighterRound.cs] [Function: DeleteSecretSharingInformation()] [Gas Optimization] For rounds with many miners, do the Select().ToList() operations on lines 9 and 12 create unnecessary intermediate collections, wasting gas? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a370d39-1929-4942-8b54-16a7278f39de?mode=deep",
+    "timestamp": "2026-02-19 09:01:29.123739",
+    "report_generated": false
+  }
+]
