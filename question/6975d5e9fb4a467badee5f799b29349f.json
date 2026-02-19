@@ -1,3 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [DOS via Exception] If Proposers collection is in corrupted state, does Count() throw exception that propagates through Empty() to Validate(), DOS-ing organization operations? (High)"
-]
