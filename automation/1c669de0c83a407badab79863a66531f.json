@@ -1,0 +1,86 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Recovery After Detection] If isAlone returns true at line 95, does miner permanently lose mining rights or can they recover when other miners appear? If no recovery, can transient network issues cause permanent exclusion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_148a4e67-17d9-4d97-9a6f-225e081720ae?mode=deep",
+    "timestamp": "2026-02-19 02:22:40.408374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Pubkey Comparison] At lines 82 and 91, pubkey is compared via Contains() on Select(m => m.Pubkey); can different string representations (case, encoding) of same key cause false negatives in detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f46b049f-49ff-48e0-81f0-5c52c5077f1f?mode=deep",
+    "timestamp": "2026-02-19 02:23:02.732076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [List Ordering] GetMinedMiners() returns list; if ordering changes between rounds, can Contains(pubkey) at lines 82, 91 miss the target miner due to list inconsistency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fac72cd8-e142-42bb-b152-444dd796cb2d?mode=deep",
+    "timestamp": "2026-02-19 02:23:26.166465",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Filter Logic] GetMinedMiners() filters by SupposedOrderOfNextRound != 0; if this field is incorrectly set to 0 for all miners, will detection always trigger isAlone=true at line 75 halting all mining? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d971958-059e-4ff3-89e4-a02061be1496?mode=deep",
+    "timestamp": "2026-02-19 02:23:49.760598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Count Edge Case] If GetMinedMiners().Count == 0 at line 75, isAlone becomes true even without checking if current miner mined; can this false-positive halt mining when round just started? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_686ea457-65a8-45f5-abac-e39b295ef6f8?mode=deep",
+    "timestamp": "2026-02-19 02:24:13.739900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Data Race] Between currentRound.GetMinedMiners() at line 74 and previousRound.GetMinedMiners() at line 80, if concurrent UpdateValue operations modify RealTimeMinersInformation, can stale data cause incorrect detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18a6303e-5833-44d4-a436-cef49bca3bbe?mode=deep",
+    "timestamp": "2026-02-19 02:24:38.600947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Historical Data] At line 86, TryToGetRoundInformation(previousRound.RoundNumber.Sub(1)) retrieves round N-2; if this round was purged from storage, does method fail gracefully or crash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b16d679-3fa2-4d0b-af40-a3a6211af44f?mode=deep",
+    "timestamp": "2026-02-19 02:25:04.078979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Round Cleanup] If State.Rounds removes old rounds per cleanup logic, can TryToGetRoundInformation() at line 86 fail when checking round N-2 causing detection to incorrectly pass solitary miners? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d96463ba-815e-4696-b542-a3e893d1fe8b?mode=deep",
+    "timestamp": "2026-02-19 02:25:30.647544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Chain Reorganization] If blockchain reorgs and previousPreviousRound at line 86 now points to different fork's data, can inconsistent historical state cause detection to fail or misfire? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0592fba9-4064-44f1-8623-890872c80584?mode=deep",
+    "timestamp": "2026-02-19 02:26:00.200181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Short Circuit] At line 78, if TryToGetPreviousRoundInformation() returns false, AND short-circuits and isAlone state from line 75 is preserved; can this skip necessary previous-round checks allowing solo miners through? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2952e342-accb-42e4-9ad0-d79f3780b006?mode=deep",
+    "timestamp": "2026-02-19 02:26:29.056390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Conditional Check] At line 86, check only runs if isAlone is true from previous checks; if isAlone is false but should be checked against round N-2, can detection logic miss cases where miner was alone in round N-2 but not N-1? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c21f18b-3e59-439d-b599-804a7be34e74?mode=deep",
+    "timestamp": "2026-02-19 02:27:02.371453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Early Return] Method returns isAlone at line 95; if isAlone is true from line 75 but subsequent checks at lines 78-91 should have cleared it, can buggy logic cause false positives? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6395461c-735a-4ca6-9c0b-a1233a8f4fdf?mode=deep",
+    "timestamp": "2026-02-19 02:27:36.975077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Variable Init] isAlone initialized to false at line 68; if all conditional checks are skipped (RoundNumber <=3 or Count <=2), does returning false at line 95 correctly represent 'not alone' or should it be 'unknown'? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a34626a-416c-48e5-88ee-0df8402319b6?mode=deep",
+    "timestamp": "2026-02-19 02:28:06.298898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Default Behavior] When detection is bypassed at line 70, isAlone remains false and returned at line 95; can attacker exploit this guaranteed-false return in early rounds to perform attacks before detection activates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_840d82dc-f164-4723-b0d7-192403eec5fa?mode=deep",
+    "timestamp": "2026-02-19 02:28:39.380274",
+    "report_generated": false
+  }
+]
