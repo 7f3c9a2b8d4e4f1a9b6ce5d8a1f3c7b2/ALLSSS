@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Initialize()] [Authorization Bypass] Can an attacker reinitialize the contract if State.Initialized.Value check fails due to state corruption, allowing them to reset ParentChainId and controller addresses to attacker-controlled values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e58ec443-4abb-4262-a1dc-f86663e8c1c4?mode=deep",
+    "timestamp": "2026-02-19 09:21:18.080549",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Initialize()] [Integer Underflow] If input.CreationHeightOnParentChain is 0 or 1, will State.CurrentParentChainHeight.Value = input.CreationHeightOnParentChain - 1 underflow to a large positive value, breaking parent chain height tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16795c07-eb71-4aea-87fc-5d947426f38f?mode=deep",
+    "timestamp": "2026-02-19 09:21:40.309793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Initialize()] [Privilege Escalation] Can an attacker manipulate input.IsPrivilegePreserved to gain unauthorized proposer privileges via State.GenesisContract.SetContractProposerRequiredState when Context.CurrentHeight == AElfConstants.GenesisBlockHeight? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63de88af-8c25-4b73-83fd-9bcf180cf910?mode=deep",
+    "timestamp": "2026-02-19 09:22:02.907726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Initialize()] [State Inconsistency] If CreateInitialOrganizationForInitialControllerAddress() fails but State.Initialized.Value is set to true, can this leave controllers uninitialized while blocking re-initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8af73c75-1b93-47e9-9acd-626fe1138598?mode=deep",
+    "timestamp": "2026-02-19 09:22:26.186693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: Initialize()] [DOS Attack] Can an attacker front-run legitimate initialization with a malicious ParentChainId value, permanently bricking cross-chain functionality since re-initialization is blocked? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_757410f1-b260-4fc5-9b9a-2d7f81eb18bc?mode=deep",
+    "timestamp": "2026-02-19 09:22:50.209177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialSideChainLifetimeControllerAddress()] [Authorization Bypass] Can an attacker bypass the parliamentContractAddress == Context.Sender check if State.ParliamentContract.Value is not properly initialized or can be manipulated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20c23dce-8eb7-4d93-9d5f-1a2ce24c3fa2?mode=deep",
+    "timestamp": "2026-02-19 09:23:19.376658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialSideChainLifetimeControllerAddress()] [Reentrancy Attack] Can an attacker exploit the callback from CreateOrganizationBySystemContract to recursively call this function before State.SideChainLifetimeController.Value is set, allowing multiple controller assignments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1f1f248-6d86-4dd3-9819-daf351d6fdf8?mode=deep",
+    "timestamp": "2026-02-19 09:23:45.851636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialSideChainLifetimeControllerAddress()] [Input Validation] If input address is zero address or invalid, will setting State.SideChainLifetimeController.Value brick all side chain lifecycle operations requiring controller authority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b39ce483-2f0a-4f5b-9eae-cc4d84150627?mode=deep",
+    "timestamp": "2026-02-19 09:24:12.516725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialSideChainLifetimeControllerAddress()] [Race Condition] Can two concurrent calls to this function both pass the null check and set different controller addresses, creating state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca8a7a68-e045-45bb-91e8-c4fd222ec6d4?mode=deep",
+    "timestamp": "2026-02-19 09:24:45.892091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialIndexingControllerAddress()] [Authorization Bypass] Can an attacker call this function directly if State.ParliamentContract.Value is compromised or uninitialized, allowing unauthorized indexing controller setup? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1b5d8f6-0c18-4000-a1e4-13ddfac64b1c?mode=deep",
+    "timestamp": "2026-02-19 09:25:20.249241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialIndexingControllerAddress()] [Race Condition] Can multiple parliament contract calls race to set different indexing controller addresses before State.CrossChainIndexingController.Value != null, leading to undefined controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfc13195-a855-492d-ab5c-45365c27b8b1?mode=deep",
+    "timestamp": "2026-02-19 09:25:50.646609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: SetInitialIndexingControllerAddress()] [Input Validation] If input is a malicious contract address that always returns false for ValidateOrganizationExist, can this permanently disable cross-chain indexing functionality? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e38b11dd-0daa-4dc0-a64f-2621505c0e79?mode=deep",
+    "timestamp": "2026-02-19 09:26:21.021168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeCrossChainIndexingController()] [Authorization Bypass] Can an attacker bypass AssertCrossChainIndexingControllerAuthority() if State.CrossChainIndexingController.Value.OwnerAddress can be manipulated through a reentrancy attack? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5a56181-308f-428e-9f11-f1cc71ed0158?mode=deep",
+    "timestamp": "2026-02-19 09:26:50.258986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeCrossChainIndexingController()] [Governance Attack] If ValidateParliamentOrganization() only checks ParliamentMemberProposingAllowed but not actual membership, can an attacker create a malicious organization and transfer controller ownership? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1c9d4aa-3031-4c0e-ac5d-0af16897d570?mode=deep",
+    "timestamp": "2026-02-19 09:27:25.898678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeCrossChainIndexingController()] [Contract Validation Bypass] Can input.ContractAddress be set to a fake parliament contract that passes validation but allows attacker-controlled proposal approvals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c25654c6-d429-411a-880f-9faf8e59e290?mode=deep",
+    "timestamp": "2026-02-19 09:28:02.889258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeCrossChainIndexingController()] [Event Manipulation] Can an attacker manipulate the CrossChainIndexingControllerChanged event to mislead off-chain systems about controller changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46745c4e-d70e-41ed-9696-16eecd5f8bff?mode=deep",
+    "timestamp": "2026-02-19 09:28:39.407529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeSideChainLifetimeController()] [Authorization Bypass] Can AssertSideChainLifetimeControllerAuthority() be bypassed if the controller's OwnerAddress is a malicious contract that returns different addresses on different calls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34313492-44a1-4e34-b6af-93219bdbd6de?mode=deep",
+    "timestamp": "2026-02-19 09:29:15.602383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeSideChainLifetimeController()] [Invalid Authority] Can input.AuthorityInfo point to a non-existent organization that ValidateAuthorityInfoExists() incorrectly validates, allowing invalid controller assignment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec05cb7f-d91d-406a-964e-e23f554f9450?mode=deep",
+    "timestamp": "2026-02-19 09:29:53.425397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ChangeSideChainLifetimeController()] [Ownership Takeover] Can an attacker chain this function with a malicious authorization contract to permanently seize control of all side chain lifecycle operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d36cd716-e15d-459e-93fa-98015f4b488e?mode=deep",
+    "timestamp": "2026-02-19 09:30:32.347117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: RequestSideChainCreation()] [Allowance Bypass] If AssertValidSideChainCreationRequest() checks token allowance but doesn't lock it, can an attacker request multiple side chains with the same allowance before actual charging occurs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22809da2-5a75-4eff-8ecb-cf103959b907?mode=deep",
+    "timestamp": "2026-02-19 09:31:13.432556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: RequestSideChainCreation()] [Expired Request Override] If a proposedRequest exists with ExpiredTime > Context.CurrentBlockTime, can the attacker still override it by manipulating Context.CurrentBlockTime through consensus exploitation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d00a0df-face-4e8f-af88-ddc9aeaab2d4?mode=deep",
+    "timestamp": "2026-02-19 09:31:55.230929",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: RequestSideChainCreation()] [Resource Token Validation Bypass] Can input.InitialResourceAmount be set to zero or negative values that pass validation but brick the side chain upon creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b155b434-e72b-4b54-9390-69cb4b3d3675?mode=deep",
+    "timestamp": "2026-02-19 09:32:38.091903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: RequestSideChainCreation()] [Proposal Spam] Can an attacker spam RequestSideChainCreation with expired proposals to DOS legitimate creation requests by filling State.ProposedSideChainCreationRequestState? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bb48ae4-041d-4575-9feb-8965a33681a4?mode=deep",
+    "timestamp": "2026-02-19 09:33:15.161722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: RequestSideChainCreation()] [Token Symbol Validation] If SideChainTokenCreationRequest.SideChainTokenSymbol collides with existing tokens, can this cause double-spend or supply inflation when CreateSideChain is executed? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5c82353-2dda-403f-8158-f80a79168cf1?mode=deep",
+    "timestamp": "2026-02-19 09:34:00.613356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract.cs] [Function: ReleaseSideChainCreation()] [Authorization Bypass] Can a non-proposer call this function if State.ProposedSideChainCreationRequestState[Context.Sender] contains a proposal created by another address through state manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff4fb3e1-57a4-4169-9ba5-b4ce2f979e2f?mode=deep",
+    "timestamp": "2026-02-19 09:34:38.031162",
+    "report_generated": false
+  }
+]
