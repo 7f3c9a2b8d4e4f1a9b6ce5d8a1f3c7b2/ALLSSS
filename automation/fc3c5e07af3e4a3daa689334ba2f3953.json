@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Authorization Bypass] Can an attacker provide a SenderPubkey at line 40 that doesn't exist in RealTimeMinersInformation to trigger an exception that is caught and interpreted as validation success? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d94e2bcf-217c-45c3-b6a2-a710ae1f7df6?mode=deep",
+    "timestamp": "2026-02-19 15:12:34.667838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Dictionary Attack] If RealTimeMinersInformation dictionary lookup at line 40 has O(n) complexity for large miner lists, can this be exploited for DOS by repeatedly calling validation with invalid pubkeys? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28d1359f-c131-41e5-a705-d4c59fb6d2ae?mode=deep",
+    "timestamp": "2026-02-19 15:12:56.969967",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Data Integrity] Does line 40 validate that minerInRound retrieved from BaseRound matches the miner data in ProvidedRound, or can there be inconsistencies that lead to incorrect time slot validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89a3a34b-08dc-415a-bb6a-f564c7ccbb61?mode=deep",
+    "timestamp": "2026-02-19 15:13:19.340531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Time Manipulation] Can an attacker manipulate minerInRound.ActualMiningTimes collection before line 41 to contain future timestamps or duplicates, causing OrderBy(t => t).LastOrDefault() to return incorrect values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b26fcf2-916f-4578-839e-c725c7b6156d?mode=deep",
+    "timestamp": "2026-02-19 15:13:42.411987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Null Bypass] Does the check at line 42 for 'latestActualMiningTime == null' allow a miner who has never mined to mine at any time without restriction, potentially enabling new miners to produce blocks outside their assigned slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_843077a8-4d83-4073-a4c7-b54cd396f4ef?mode=deep",
+    "timestamp": "2026-02-19 15:14:06.260123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Sort Manipulation] If ActualMiningTimes contains timestamps with identical values at line 41, does OrderBy(t => t) produce deterministic results, or can sort instability cause different validation outcomes across nodes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b522803-37a0-4d0f-bd73-ca88faf96be3?mode=deep",
+    "timestamp": "2026-02-19 15:14:32.001130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Collection Manipulation] Can an attacker inject negative timestamps or timestamps before Unix epoch into ActualMiningTimes, causing OrderBy at line 41 to fail or return unexpected values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c02eff5b-7d32-45a4-83b8-ce16b6bcd921?mode=deep",
+    "timestamp": "2026-02-19 15:14:57.288108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [DOS Attack] If ActualMiningTimes collection is extremely large at line 41, can the OrderBy().LastOrDefault() operation cause excessive computation time, enabling DOS attacks through validation performance degradation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c790cb78-83a5-40fb-b160-0667b6300204?mode=deep",
+    "timestamp": "2026-02-19 15:15:23.879418",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Logic Error] Does line 42 returning true when latestActualMiningTime is null create a bypass where miners can reset their mining history to mine outside their time slots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_907cdd0b-cd52-4413-bc7d-e851c91d8b4e?mode=deep",
+    "timestamp": "2026-02-19 15:15:53.241935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Null Reference] What happens if minerInRound.ExpectedMiningTime is null at line 43, causing a NullReferenceException that bypasses time slot validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_846154b5-b325-4186-83fe-f0cc5557c55f?mode=deep",
+    "timestamp": "2026-02-19 15:16:20.472160",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Integer Overflow] Can validationContext.BaseRound.GetMiningInterval() at line 45 return an integer that causes overflow when added to expectedMiningTime via AddMilliseconds(), resulting in endOfExpectedTimeSlot wrapping to past times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0f11415-c052-46eb-89ea-6c598d1026f5?mode=deep",
+    "timestamp": "2026-02-19 15:16:51.528322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Time Manipulation] If GetMiningInterval() returns a manipulated value (e.g., zero or negative) at line 45, does AddMilliseconds() produce invalid endOfExpectedTimeSlot, allowing miners to extend their time slots indefinitely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62dfe9ab-c9de-4c4c-8ba8-dbb5ca5f40ad?mode=deep",
+    "timestamp": "2026-02-19 15:17:22.946937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Precision Loss] Does AddMilliseconds() at line 45 handle sub-millisecond precision correctly, or can precision loss cause endOfExpectedTimeSlot to be calculated incorrectly, creating timing vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01294390-bf23-4180-9da2-9de9e066e0fe?mode=deep",
+    "timestamp": "2026-02-19 15:17:51.369400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Logic Error] If expectedMiningTime and GetMiningInterval() are both read from attacker-controlled BaseRound at lines 43-45, can manipulated values pass validation but violate global consensus timing invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f257e6b-28bc-4c57-ad82-af32234c17a0?mode=deep",
+    "timestamp": "2026-02-19 15:18:21.335480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Race Condition] Can BaseRound.GetMiningInterval() value change between line 45 and line 50 due to concurrent round updates, causing inconsistent time slot calculations within the same validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11e43c29-d806-4aa0-a519-7f93d8e3846f?mode=deep",
+    "timestamp": "2026-02-19 15:18:56.047097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Logic Error] Does the condition 'latestActualMiningTime < expectedMiningTime' at line 46 correctly identify tiny block production, or can it be triggered by other scenarios where time validation should fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8350bce-ad01-4dbc-85f2-12270a27c336?mode=deep",
+    "timestamp": "2026-02-19 15:19:30.600696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Tiny Block Bypass] If a miner produces tiny blocks with latestActualMiningTime just before expectedMiningTime (line 46), does the check at line 48 comparing against GetRoundStartTime() allow extended mining beyond the extra block slot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_125bfa36-59a9-4614-806b-6b56b6e0381c?mode=deep",
+    "timestamp": "2026-02-19 15:20:05.673094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Time Manipulation] Can an attacker manipulate BaseRound.GetRoundStartTime() called at line 48 to return a future timestamp, allowing tiny blocks to be produced at arbitrary times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48a15a04-bbf9-4d16-8605-67232fe06d97?mode=deep",
+    "timestamp": "2026-02-19 15:20:40.639435",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [DOS Attack] Does the comment at line 47 about 'producing tiny blocks for previous extra block slot' indicate that this path is intended for legitimate behavior, but can be abused to produce unlimited tiny blocks if GetRoundStartTime() is far in the future? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48fcb62e-77f6-4c2f-9a3b-1bee4803bda1?mode=deep",
+    "timestamp": "2026-02-19 15:21:16.028969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Logic Error] If latestActualMiningTime equals expectedMiningTime at line 46, does the condition evaluate to false and fall through to line 50, potentially applying wrong validation logic for the boundary case? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28b1417c-4dc3-4867-b399-b309df3831a5?mode=deep",
+    "timestamp": "2026-02-19 15:21:51.601956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Missing Validation] Does line 48 validate that latestActualMiningTime is not too far before GetRoundStartTime(), or can tiny blocks be produced arbitrarily early, disrupting round transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31bbee29-1618-4d53-9d07-019012b1ddf3?mode=deep",
+    "timestamp": "2026-02-19 15:22:27.253405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Boundary Condition] Does the check 'latestActualMiningTime < endOfExpectedTimeSlot' at line 50 use strict inequality, allowing a miner to mine exactly at endOfExpectedTimeSlot boundary, potentially overlapping with the next miner's slot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d623dd99-c9d2-4453-bb8d-b64b0236e07f?mode=deep",
+    "timestamp": "2026-02-19 15:23:01.736624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Time Precision] If latestActualMiningTime and endOfExpectedTimeSlot have sub-millisecond differences at line 50, can timestamp comparison precision issues cause incorrect validation results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95943a78-f657-42d2-99b4-304112da0059?mode=deep",
+    "timestamp": "2026-02-19 15:23:36.366214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Logic Error] Does line 50 returning a boolean directly without additional checks allow miners who barely miss their time slot to bypass penalties or re-scheduling mechanisms? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4abe1213-50d9-4bfe-89d0-27b1476e1506?mode=deep",
+    "timestamp": "2026-02-19 15:24:11.842529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/TimeSlotValidationProvider.cs] [Function: CheckMinerTimeSlot()] [Missing Validation] Does the validation at line 50 check that latestActualMiningTime is also after expectedMiningTime (i.e., within the valid window), or can miners produce blocks before their slot starts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ebebb00-05e1-4618-8e33-50d8ae8b7382?mode=deep",
+    "timestamp": "2026-02-19 15:24:48.549953",
+    "report_generated": false
+  }
+]
