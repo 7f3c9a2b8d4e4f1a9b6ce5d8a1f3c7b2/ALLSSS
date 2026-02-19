@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Count Operation Atomicity] Both Count() operations enumerate the collection. If RealTimeMinersInformation is modified between these two operations (in a concurrent scenario), could the counts be inconsistent, causing false validation failures or passes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef56c163-201c-4d80-9f71-b51b4e4821ac?mode=deep",
+    "timestamp": "2026-02-19 12:31:38.410726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Overflow in FinalOrderOfNextRound] If FinalOrderOfNextRound contains Int32.MaxValue and arithmetic is performed on it elsewhere, could integer overflow occur? This validation doesn't check upper bounds. (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_543b4871-3e63-4459-a1d5-61ae242ecb4b?mode=deep",
+    "timestamp": "2026-02-19 12:32:00.693511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Semantic Gap] The validation ensures COUNT(distinct orders > 0) == COUNT(OutValue != null), but doesn't ensure that every miner who mined has a valid order or that every order corresponds to a miner who mined. Could there be a scenario where miner A has OutValue and no order, while miner B has order but no OutValue, causing counts to match incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61fc9fba-5457-412e-8c4b-822342122a87?mode=deep",
+    "timestamp": "2026-02-19 12:32:23.104231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Error Message Insufficient] The error message 'Invalid FinalOrderOfNextRound' doesn't specify which miner has the invalid order, what the expected count was, or what the actual count was, making debugging difficult. Could this obscure attack attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abdda2b5-b658-46e0-b20d-2a1366197727?mode=deep",
+    "timestamp": "2026-02-19 12:32:46.610897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [No Miner Identification] The validation operates on aggregate counts without checking individual miner's FinalOrderOfNextRound-OutValue pairing. Could a valid miner's order be swapped with a non-mining miner, keeping counts equal but corrupting the actual order assignments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ad2c476-7ce7-4e34-8183-f9c08a9b728e?mode=deep",
+    "timestamp": "2026-02-19 12:33:10.717483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Distinct vs DistinctBy] The code uses Distinct() on the entire MinerInRound object collection. Should it be using DistinctBy(m => m.FinalOrderOfNextRound) to specifically check for duplicate order values? Current implementation may not detect duplicates correctly. (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61398d4a-177e-491a-b6c2-356eb2b476b7?mode=deep",
+    "timestamp": "2026-02-19 12:33:35.510751",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [ValidationResult Default State] A new ValidationResult() is created with Success presumably defaulting to false. If the validation framework treats Success=false as 'not yet validated' rather than 'failed validation', could this cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05509757-c54a-4880-b232-c80da1161986?mode=deep",
+    "timestamp": "2026-02-19 12:34:01.210097",
+    "report_generated": false
+  }
+]
