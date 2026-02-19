@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: ...] [Function: functionName()] [Vulnerability Type] exploit scenario...",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_beec2de0-98fe-4ca5-af0f-75a752ff4b3f?mode=deep",
+    "timestamp": "2026-02-19 02:13:24.255652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForTitle] [Input Validation] If the consuming code doesn't properly enforce the MaxLengthForTitle=255 limit, could an attacker submit proposal titles exceeding this length to cause string truncation, storage bloat, or UI rendering issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbf3c024-afad-4123-a6ae-970e553de4da?mode=deep",
+    "timestamp": "2026-02-19 02:13:46.315642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForDescription] [Input Validation] If the MaxLengthForDescription=10200 limit is not enforced in proposal creation logic, could attackers submit extremely large descriptions to cause storage DOS or excessive gas consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c08f2d0c-55ad-4a19-afbe-2fd3194c3822?mode=deep",
+    "timestamp": "2026-02-19 02:14:08.513368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Input Validation] If the MaxLengthForProposalDescriptionUrl=255 limit is bypassed in consuming contracts, could malicious actors inject oversized URLs to exploit downstream URL parsers or storage mechanisms? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d6eb410-e47a-468d-b056-9228b097a590?mode=deep",
+    "timestamp": "2026-02-19 02:14:31.353377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForTitle] [Business Logic] Is 255 characters sufficient for international/multi-language proposal titles, or could legitimate governance proposals be rejected due to UTF-8 encoding length vs character count mismatches? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fdccb4b4-b95d-4c3b-8872-d0e626af814c?mode=deep",
+    "timestamp": "2026-02-19 02:14:54.856817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForDescription] [Resource Exhaustion] Does the 10200-byte description limit adequately prevent storage-based DOS attacks while allowing sufficient proposal detail for legitimate governance decisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90be255b-0636-4b12-b344-c09c3053c364?mode=deep",
+    "timestamp": "2026-02-19 02:15:18.897170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Configuration] If these constants are referenced by multiple contracts but validation is inconsistent, could discrepancies between Association, Parliament, and Referendum contracts create validation bypass opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e5f60b6-c4c5-43f5-b202-846504098df9?mode=deep",
+    "timestamp": "2026-02-19 02:15:43.628038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constants: All] [Immutability] Since these are compile-time constants, is there a governance mechanism to update these limits if they prove inadequate, or would it require contract redeployment creating upgrade risks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b23b5bc-bf83-4f58-98d7-672359bfa026?mode=deep",
+    "timestamp": "2026-02-19 02:16:09.304816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationConstants.cs] [Constant: MaxLengthForDescription] [Data Integrity] Could the 10200-byte limit be exploited by encoding malicious scripts or injection payloads within proposal descriptions if consuming systems don't sanitize the content? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b83f6ae0-449e-4007-8a7b-bcc840779ec6?mode=deep",
+    "timestamp": "2026-02-19 02:16:35.537344",
+    "report_generated": false
+  }
+]
