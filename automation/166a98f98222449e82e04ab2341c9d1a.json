@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Authorization Bypass] Can a malicious actor call CreateScheme multiple times with the same sender address to overwrite existing scheme configurations, potentially changing Symbol or MinimumLockMinutes after users have already locked tokens, breaking user expectations and lock agreements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47282df5-c40b-4095-9604-de235388b78c?mode=deep",
+    "timestamp": "2026-02-19 01:54:07.071899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Accounting Error] Does the scheme creation at line 27 allow a scheme manager to set MinimumLockMinutes to 0 or negative values, enabling immediate withdrawals and breaking the locking mechanism's core invariant that tokens should be locked for a minimum period? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f643661d-5bae-4cb4-b934-f85d2206f504?mode=deep",
+    "timestamp": "2026-02-19 01:54:29.127329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [DOS Attack] Can an attacker create unlimited schemes by repeatedly calling CreateScheme, consuming state storage and potentially causing gas exhaustion or state bloat that affects contract operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_899371f7-dae6-4ff9-915d-104b58da1d89?mode=deep",
+    "timestamp": "2026-02-19 01:54:51.465605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Input Validation] Does CreateScheme validate that input.Symbol is non-empty and corresponds to a valid token? Can setting an invalid or non-existent symbol cause failures in RegisterForProfits when it attempts to lock tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a875987-9504-4a00-8c97-bb09484a3dde?mode=deep",
+    "timestamp": "2026-02-19 01:55:14.605100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [State Consistency] At line 20-25, CreateScheme calls ProfitContract.CreateScheme with IsReleaseAllBalanceEveryTimeByDefault=true and CanRemoveBeneficiaryDirectly=true. Can these settings be exploited to remove beneficiaries and drain profits before legitimate users can claim? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a34bb55d-8375-43ab-80c4-f170639045a6?mode=deep",
+    "timestamp": "2026-02-19 01:55:38.665162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Integer Overflow] Can input.MinimumLockMinutes be set to Int64.MaxValue causing integer overflow when added to timestamps in Withdraw function at line 227, potentially allowing immediate withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98450b35-7703-48fe-9524-8f3baf99047a?mode=deep",
+    "timestamp": "2026-02-19 01:56:03.475845",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Logic Bug] Does line 31 properly validate AutoDistributeThreshold values? Can negative threshold amounts be set, causing auto-distribution logic to malfunction in RegisterForProfits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_173a3116-426b-4b0c-8f1e-cb326184fd46?mode=deep",
+    "timestamp": "2026-02-19 01:56:29.165464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Access Control] Is there any restriction preventing arbitrary addresses from becoming scheme managers? Can this lead to spam schemes or schemes created specifically for attack vectors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ea78635-69b4-49e9-a6fc-da931ff52b5c?mode=deep",
+    "timestamp": "2026-02-19 01:56:55.688795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [State Manipulation] After scheme creation, the SchemeId is not immediately set in TokenHolderProfitScheme (it's set later in UpdateTokenHolderProfitScheme). Can operations between CreateScheme and the first update exploit this null SchemeId state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae79805e-eba0-46dd-80d3-a72e2946fcc9?mode=deep",
+    "timestamp": "2026-02-19 01:57:25.681530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: CreateScheme()] [Cross-Contract Risk] Line 20 calls ProfitContract.CreateScheme without validating the return value. If ProfitContract is malicious or compromised, can it cause CreateScheme to succeed locally while failing to create the actual profit scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2424daf0-b744-4223-ab37-4026d2dc538a?mode=deep",
+    "timestamp": "2026-02-19 01:57:56.334237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Authorization Bypass] At line 39, GetValidScheme only checks that the scheme exists for Context.Sender, but doesn't verify Context.Sender is the actual scheme manager. Can any address with a scheme add beneficiaries to other schemes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e20c0ad9-869d-4f51-984c-d1714131b272?mode=deep",
+    "timestamp": "2026-02-19 01:58:24.829895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Accounting Error] Lines 46-56 remove existing beneficiary and add back shares. Can the shares.Add(detail.Details.Single().Shares) at line 55 overflow when adding large share amounts, causing incorrect total shares? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b7bed13-6b11-48e5-b950-3ef4010910d6?mode=deep",
+    "timestamp": "2026-02-19 01:58:56.627409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Logic Bug] Line 48 comments 'Only keep one detail' and removes then re-adds beneficiary. Why is this pattern used instead of updating shares? Can this cause race conditions if called multiple times concurrently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c2f3e7f-e272-40b9-829f-16fe3e9fb339?mode=deep",
+    "timestamp": "2026-02-19 01:59:28.783396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [DOS Attack] If detail.Details contains multiple entries despite comment saying 'Only keep one detail', line 55's Single() will throw. Can an attacker manipulate ProfitContract state to cause permanent DOS of AddBeneficiary? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59a96bc6-3b07-4af1-bfd5-3287fa453516?mode=deep",
+    "timestamp": "2026-02-19 02:00:00.752172",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Reentrancy] Between RemoveBeneficiary call at line 50 and AddBeneficiary call at line 58, can a malicious ProfitContract callback into TokenHolderContract and manipulate state before shares are re-added? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cffda60d-9375-4f34-a62b-1c62485a3b0e?mode=deep",
+    "timestamp": "2026-02-19 02:00:32.145563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Input Validation] Does line 45 validate that input.Shares is positive? Can adding zero or negative shares cause accounting errors in profit distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e669df43-4d4d-4012-a20c-1d061ba8ec28?mode=deep",
+    "timestamp": "2026-02-19 02:01:02.429970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [State Consistency] If RemoveBeneficiary succeeds at line 50 but AddBeneficiary fails at line 58, the beneficiary loses their original shares permanently. Is there proper error handling or state rollback? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4100857-d70f-474d-a2c7-38330bada678?mode=deep",
+    "timestamp": "2026-02-19 02:01:30.432001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Authorization] Can the scheme manager add themselves as a beneficiary with arbitrary shares, potentially diluting other beneficiaries' profit shares unfairly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75e7fe02-7a06-4bd1-bc2b-e6bd0243590d?mode=deep",
+    "timestamp": "2026-02-19 02:01:56.965437",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Front-Running] Can a scheme manager front-run user RegisterForProfits transactions by calling AddBeneficiary to add themselves with massive shares right before profit distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35dc14d2-65d3-4f0e-a801-05c418c90ef9?mode=deep",
+    "timestamp": "2026-02-19 02:02:25.453990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: AddBeneficiary()] [Logic Flaw] The function doesn't check if input.Beneficiary equals Context.Sender or the scheme manager. Can this create circular beneficiary relationships or unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79c49011-7456-46d8-b245-bdeeb64ba1a6?mode=deep",
+    "timestamp": "2026-02-19 02:02:55.929671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Authorization Bypass] Line 72 uses GetValidScheme(Context.Sender) but doesn't verify Context.Sender is the scheme manager. Can any address remove beneficiaries from schemes they don't manage? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c81e378-6473-4ee5-a324-1b7279a52199?mode=deep",
+    "timestamp": "2026-02-19 02:03:27.461873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Logic Bug] Line 78's Single() call will throw if beneficiary has multiple profit details. Can this cause permanent DOS where legitimate beneficiaries can never be removed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a4047de-157c-49a4-a7c6-b4d756e12091?mode=deep",
+    "timestamp": "2026-02-19 02:03:59.956253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [Accounting Error] Lines 85-95 use lockedAmount.Sub(input.Amount) without checking if input.Amount > lockedAmount. Can underflow occur if caller specifies amount larger than locked amount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d536e841-c9e4-41be-8fb8-1ecddd38f841?mode=deep",
+    "timestamp": "2026-02-19 02:04:28.902621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [State Inconsistency] If input.Amount is 0, beneficiary is removed (line 86), but if input.Amount equals lockedAmount exactly, beneficiary is also removed. Is this inconsistent behavior intentional? Can it be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0506c82-b66c-4e09-a717-c868edd7d4b6?mode=deep",
+    "timestamp": "2026-02-19 02:04:57.519484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract.cs] [Function: RemoveBeneficiary()] [DOS Attack] Can a scheme manager maliciously remove all beneficiaries right before DistributeProfits, causing profits to be unclaimable or redistributed incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f87dd2b-05b6-464b-830e-52b69347b010?mode=deep",
+    "timestamp": "2026-02-19 02:05:28.123513",
+    "report_generated": false
+  }
+]
