@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Default Fee Exploitation] The default fee at line 55 is 1_00000000 for all methods except CreateScheme - can an attacker exploit methods that should have higher fees but haven't been explicitly set, executing expensive operations cheaply? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bbdd1ba1-d580-43fa-8e05-c0d3b59f10ec?mode=deep",
+    "timestamp": "2026-02-19 06:22:44.425514",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [CreateScheme Fee Bypass] CreateScheme has a 10x higher default fee at line 47 (10_00000000) - if SetMethodFee() sets it to 0 or 1, can attackers create unlimited schemes cheaply, exhausting state storage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f2b4295-ef38-4081-abec-66bd12d67750?mode=deep",
+    "timestamp": "2026-02-19 06:23:06.201255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [String Comparison Attack] The switch at line 40 uses exact string matching on input.Value against nameof(CreateScheme) - can an attacker call methods with similar names or case variations to trigger wrong default fees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd1eb242-7824-4b44-9ce0-b5923cda7e68?mode=deep",
+    "timestamp": "2026-02-19 06:23:28.345164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [State Inconsistency] If State.TransactionFees[input.Value] returns null at line 37, the contract falls back to defaults - can this be exploited if SetMethodFee() was called but later state corrupted, reverting to lower default fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8022dc0-c3d7-4cf8-9792-f95152eede1a?mode=deep",
+    "timestamp": "2026-02-19 06:23:51.595430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Symbol Hardcoding] Default fees hardcode Context.Variables.NativeSymbol at lines 47 and 55 - if NativeSymbol changes or is incorrect, can this cause fee collection failures or wrong token deductions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74a6b0f8-c97f-442d-8fe0-3b7fc30208d4?mode=deep",
+    "timestamp": "2026-02-19 06:24:15.421610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Missing Method Validation] GetMethodFee() doesn't validate if input.Value is a valid method name - can querying non-existent methods return misleading default fees that don't actually apply? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b32edec-07e9-4084-ab11-04f035a00694?mode=deep",
+    "timestamp": "2026-02-19 06:24:40.162583",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Fee Override DOS] If custom fees are set via SetMethodFee() but later the controller wants to revert to defaults, there's no mechanism to delete State.TransactionFees entries - can this lead to permanently inflated or outdated fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a107460d-ae3c-4344-9ac4-d50b5b72b123?mode=deep",
+    "timestamp": "2026-02-19 06:25:07.603908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [Information Disclosure] GetMethodFeeController() exposes the current controller's OwnerAddress and ContractAddress at line 64 - can attackers use this to target social engineering or phishing attacks against the controller? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77214d9c-59d3-40d9-8855-61d8c17db8ba?mode=deep",
+    "timestamp": "2026-02-19 06:25:35.377477",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFeeController()] [State Initialization] GetMethodFeeController() calls RequiredMethodFeeControllerSet() at line 63, potentially initializing state during a view call - can this cause unexpected state changes or gas consumption in read operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_906cc789-dcce-471e-b96b-1957185d5734?mode=deep",
+    "timestamp": "2026-02-19 06:26:04.116127",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Initialization Race] If multiple transactions call RequiredMethodFeeControllerSet() simultaneously during contract deployment, can the check at line 73 allow both to proceed past the null check before either sets State.MethodFeeController.Value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f775468e-abd2-45a3-822b-4465e8f5853c?mode=deep",
+    "timestamp": "2026-02-19 06:26:31.162295",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Default Authority Override] The default authority initialization at lines 76-80 sets OwnerAddress from Parliament.GetDefaultOrganizationAddress() - can this be exploited if Parliament contract is compromised or returns malicious addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_213fc818-06c8-47ef-b4a1-c13c976a9db5?mode=deep",
+    "timestamp": "2026-02-19 06:27:01.201579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Contract Validation Bypass] ValidateContractState() at line 74 checks State.ParliamentContract against SmartContractConstants.ParliamentContractSystemName - can an attacker deploy a fake Parliament contract with the correct name to control default authority? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65fac19c-2e6a-4622-a784-2d0d7abab025?mode=deep",
+    "timestamp": "2026-02-19 06:27:27.616678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [External Call Failure] If State.ParliamentContract.GetDefaultOrganizationAddress.Call() at line 78 reverts or returns Address.Zero, can this cause State.MethodFeeController.Value to be set to an invalid state, locking method fee control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df21cf47-f323-4df5-97e8-c731d6fdf12d?mode=deep",
+    "timestamp": "2026-02-19 06:27:57.066315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Reentrancy During Init] Can the Parliament contract call at line 78 reenter ProfitContract methods before State.MethodFeeController.Value is set at line 82, allowing manipulation during initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac806af4-38c6-49e1-b9f3-33239009a12c?mode=deep",
+    "timestamp": "2026-02-19 06:28:27.931316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Immutability] Once State.MethodFeeController.Value is set at line 82, the early return at line 73 prevents re-initialization - but can a bug in ChangeMethodFeeController() that sets it to null enable re-initialization with potentially different Parliament contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc17b6c3-22af-417f-86da-47cdbea7b343?mode=deep",
+    "timestamp": "2026-02-19 06:28:59.622990",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: AssertSenderAddressWith()] [Null Address Check] The assertion at line 87 checks Context.Sender == address, but doesn't validate if address is null or zero - can passing Address.Zero allow any sender to pass if Context.Sender also evaluates to zero? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74543905-1e3f-431b-a0fd-2df9f5046b83?mode=deep",
+    "timestamp": "2026-02-19 06:29:26.924516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: AssertSenderAddressWith()] [Generic Error Message] The error at line 87 says 'Unauthorized behavior.' without specifying expected vs actual addresses - can this hinder debugging or security audits by hiding authorization context? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3454772f-697a-46cf-b830-d1f3e0e8e5c7?mode=deep",
+    "timestamp": "2026-02-19 06:29:57.595843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [External Call Security] Context.Call() at line 92 to authorityInfo.ContractAddress is unchecked - can a malicious ContractAddress cause reentrancy, gas exhaustion, or unexpected reverts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7e42bc0-91c0-48f3-bab9-c4886fe97ffe?mode=deep",
+    "timestamp": "2026-02-19 06:30:24.620498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Return Value Manipulation] The external call returns BoolValue at line 92 - can a malicious contract return a BoolValue with Value = true but tampered metadata that causes downstream issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d002ba3-8492-4a8c-bf30-c8a52c655f98?mode=deep",
+    "timestamp": "2026-02-19 06:30:54.468407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Method Name Hardcoding] The method name at line 93 uses nameof(AuthorizationContractContainer.AuthorizationContractReferenceState.ValidateOrganizationExist) - can method name changes in authorization contracts break this validation silently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61dc3cf4-98d6-4802-88ef-82b3d1d4761f?mode=deep",
+    "timestamp": "2026-02-19 06:31:24.049451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: CheckOrganizationExist()] [Gas Griefing] Can authorityInfo.ContractAddress point to a contract with expensive ValidateOrganizationExist() logic, causing CheckOrganizationExist() to consume excessive gas and DOS ChangeMethodFeeController()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4e7aaa8-1013-43e0-955e-77efd47fc423?mode=deep",
+    "timestamp": "2026-02-19 06:31:54.029747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Negative Amount] The check at line 99 only validates amount >= 0 - can passing amount = 0 create fee entries that are valid but useless, or enable free method calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86154362-c90a-4b73-ae7d-06dbd3441934?mode=deep",
+    "timestamp": "2026-02-19 06:32:25.433771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Token Contract Initialization] State.TokenContract.Value is lazily initialized at lines 100-102 - can concurrent calls to AssertValidToken() cause multiple initializations or race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3104ab1f-9160-484e-bcb1-8b8b2ba4cff6?mode=deep",
+    "timestamp": "2026-02-19 06:32:57.024653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Symbol Validation] The call to IsTokenAvailableForMethodFee() at line 104 validates the symbol, but can an attacker pass an empty string, special characters, or extremely long symbol that breaks fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_672fa1a9-01e7-4cf9-a1ca-e5acc5c03463?mode=deep",
+    "timestamp": "2026-02-19 06:33:28.280536",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [External Call Failure] If State.TokenContract.IsTokenAvailableForMethodFee() reverts at line 104, the entire SetMethodFee() transaction fails - can an attacker exploit this by front-running legitimate fee settings with invalid tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7feb259-b4b4-41da-ace9-9cb7ed14395c?mode=deep",
+    "timestamp": "2026-02-19 06:33:56.983060",
+    "report_generated": false
+  }
+]
