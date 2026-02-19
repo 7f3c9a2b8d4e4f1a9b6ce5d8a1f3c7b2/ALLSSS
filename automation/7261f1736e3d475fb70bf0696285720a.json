@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: SetMethodFee()] [Batch Operation] Is there any limit on how many different method fees can be set in a single block, potentially allowing rapid configuration changes that users can't react to? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2c1bfca-9a34-4cd1-a961-3a9fca53c23f?mode=deep",
+    "timestamp": "2026-02-19 06:56:57.988873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: SetMethodFee()] [Fee Accumulation] If a method has fees set multiple times with different token symbols, do the fees accumulate or replace, and can this be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2487222-7234-4957-839b-c2257d4dbeb6?mode=deep",
+    "timestamp": "2026-02-19 06:57:19.826557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: ChangeMethodFeeController()] [Validation Timing] Is CheckOrganizationExist() called before or after state changes, and can this ordering be exploited for race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a6b1868-04b8-469e-8460-4347005efba1?mode=deep",
+    "timestamp": "2026-02-19 06:57:41.919052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: ChangeMethodFeeController()] [Circular Authority] Can input.OwnerAddress point to an organization that itself delegates authority back to the current controller, creating circular governance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9936f0ea-37fd-4f6d-86be-987d77ae932e?mode=deep",
+    "timestamp": "2026-02-19 06:58:04.736984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: GetMethodFee()] [Return Value Mutation] Does returning State.TransactionFees[input.Value] directly expose the internal state to mutation by the caller? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a29bf60-b794-41b1-b195-b0c19ed77e97?mode=deep",
+    "timestamp": "2026-02-19 06:58:28.734135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: GetMethodFee()] [Caching Issue] If fees are cached off-chain based on GetMethodFee() results, can race conditions cause users to pay incorrect fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97831a42-ef46-4ec5-ab6a-f03a295ea4d3?mode=deep",
+    "timestamp": "2026-02-19 06:58:53.777663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: GetTransactionFeeSymbols()] [Symbol Order] Does the order of symbols in the returned list matter for fee calculation, and can this order be manipulated? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73b48e1d-9dc5-47a6-be42-04d84df2fe22?mode=deep",
+    "timestamp": "2026-02-19 06:59:19.371610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: GetTransactionFeeSymbols()] [Mixed Fee Sources] When combining method fees and size fees, if there's a conflict in fee amounts for the same symbol, which takes precedence? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b66da90d-46f3-4cb4-ab48-a55cbae20e85?mode=deep",
+    "timestamp": "2026-02-19 06:59:47.477283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Contract Name Trust] Is SmartContractConstants.ParliamentContractSystemName a compile-time constant, or can it be manipulated to point to a fake Parliament contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_964928ca-3ecc-43ed-a64b-828c4741c046?mode=deep",
+    "timestamp": "2026-02-19 07:00:18.284440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS1_MethodFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Double Initialization] Can RequiredMethodFeeControllerSet() be triggered multiple times through different call paths, potentially resetting the controller? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_884391d4-1a59-4acf-8eec-a397ca48a54c?mode=deep",
+    "timestamp": "2026-02-19 07:00:48.046051",
+    "report_generated": false
+  }
+]
