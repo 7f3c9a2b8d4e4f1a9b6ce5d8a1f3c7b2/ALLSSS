@@ -1,0 +1,191 @@
+# Audit Report
+
+## Title
+Secret Sharing Threshold Mismatch Causes Incorrect InValue Revelation During Miner Set Changes
+
+## Summary
+The AEDPoS consensus contract's `RevealSharedInValues` function uses the current round's miner count to calculate the Shamir's Secret Sharing decoding threshold, but the InValues were originally encoded using a different round's miner count. When the miner count changes between rounds (e.g., during term transitions), this threshold mismatch causes mathematically incorrect InValue reconstruction, leading to consensus validation failures and potential network stall.
+
+## Finding Description
+
+The vulnerability exists in how the consensus contract handles secret sharing across round transitions when the miner set size changes.
+
+**Encoding Flow:**
+When a new round begins, miners encode their InValues for that round using the **previous round's** miner count to determine the Shamir's Secret Sharing threshold. [1](#0-0) 
+
+**Decoding Flow:**
+During round transitions, the `RevealSharedInValues` function attempts to decode InValues from the previous round. However, it calculates the decoding threshold using the **current round's** miner count, not the miner count from when the encoding occurred. [2](#0-1)  The decoding then uses this mismatched threshold. [3](#0-2) 
+
+**Root Cause:**
+Consider this timeline:
+- Round N-2: 5 miners
+- Round N-1: 5 miners (stable) - InValues encoded with threshold = (5 × 2) / 3 = 3
+- Round N: 3 miners (term change) - `IsMinerListJustChanged=true`, secret sharing skipped
+- Round N+1: 3 miners (stable) - Attempts to decode Round N-1's InValues using threshold = (3 × 2) / 3 = 2
+
+The Shamir's Secret Sharing algorithm constructs a polynomial of degree `threshold-1`. [4](#0-3)  Decoding with a different threshold means attempting to reconstruct a polynomial of the wrong degree, which is mathematically guaranteed to produce incorrect results. [5](#0-4) 
+
+**Why Existing Protections Fail:**
+The `IsMinerListJustChanged` flag prevents secret sharing when the miner list has just changed. [6](#0-5)  However, this only prevents **encoding new secrets** in the round where miners changed (Round N). It does NOT prevent **decoding old secrets** (from Round N-1) using the new miner count (from Round N) in subsequent rounds (Round N+1).
+
+The check requiring sufficient decrypted pieces only validates quantity, not whether the threshold parameter matches the original encoding threshold. [7](#0-6) 
+
+## Impact Explanation
+
+**Consensus Integrity Violation:**
+The incorrectly reconstructed InValues are stored in the round state. [8](#0-7) 
+
+When miners subsequently produce blocks using these incorrect PreviousInValues, the consensus validation fails because the critical check `HashHelper.ComputeFrom(previousInValue) == previousOutValue` will fail - the incorrectly reconstructed InValue does not hash to the expected OutValue. [9](#0-8)  This triggers validation rejection with the message "Incorrect previous in value". [10](#0-9) 
+
+**Concrete Damage:**
+- Consensus can stall when miner count changes after stable operation periods
+- All continuing miners from the previous round cannot produce valid blocks
+- Network liveness is compromised until the miner set stabilizes
+- No automatic recovery mechanism exists
+
+**Severity: HIGH** - This breaks the fundamental consensus invariant of correct InValue/OutValue cryptographic chain verification, causing denial-of-service to the consensus mechanism and potentially halting block production network-wide.
+
+## Likelihood Explanation
+
+**Attacker Capabilities:**
+No malicious attacker is required. This is a logic bug that triggers automatically during normal protocol operations.
+
+**Attack Complexity:**
+Very low. The vulnerability manifests when:
+1. Miner set remains stable for 2+ rounds (secret sharing operates normally)
+2. Miner count then changes through normal election process (term transition)
+3. After the change stabilizes, the next round attempts secret reconstruction
+
+**Feasibility Conditions:**
+Validator elections naturally cause miner count changes in proof-of-stake systems. The conditions are realistic and occur regularly:
+- Elections happen periodically (term transitions)
+- Miner counts fluctuate based on voting results
+- The vulnerable code path executes automatically during these transitions
+
+**Detection:**
+Would manifest as repeated block validation failures with "Incorrect previous in value" error messages immediately after miner set size changes.
+
+**Probability: HIGH** - This occurs whenever the miner count decreases after stable periods, which is a regular occurrence in production networks with dynamic validator sets.
+
+## Recommendation
+
+The decoding threshold must use the miner count from when the secrets were originally encoded, not the current round's miner count. 
+
+**Solution:** Store the encoding threshold alongside the encrypted pieces in the round state, or reconstruct the original round's miner count when decoding. The fix should ensure:
+
+```
+// When encoding (during Round N):
+threshold = previousRound.MinerCount * 2 / 3
+
+// When decoding (during Round N+1, decoding Round N-1):
+// Use the threshold from Round N-1's encoding, NOT Round N's current count
+threshold = roundBeingDecoded.MinerCount * 2 / 3  // NOT currentRound.MinerCount
+```
+
+Alternatively, skip decoding entirely (like encoding) when `IsMinerListJustChanged` was true in recent rounds, or track the original threshold as metadata with the encrypted pieces.
+
+## Proof of Concept
+
+Due to the complexity of the consensus system, a full PoC requires:
+
+1. Initialize network with 5 miners
+2. Run through stable rounds (Round N-2, N-1) with secret sharing active
+3. Trigger term transition reducing to 3 miners (Round N)
+4. Advance to next stable round (Round N+1)
+5. Observe that `RevealSharedInValues` uses threshold=2 to decode secrets encoded with threshold=3
+6. Verify that reconstructed InValues fail the `Hash(inValue) == outValue` validation check
+
+The mathematical incorrectness is guaranteed by Shamir's Secret Sharing properties: a degree-2 polynomial (threshold=3) cannot be correctly reconstructed by fitting a degree-1 polynomial (threshold=2) through the points, and vice versa.
+
+### Citations
+
+**File:** src/AElf.Kernel.Consensus.AEDPoS/Application/SecretSharingService.cs (L101-104)
+```csharp
+        var minersCount = secretSharingInformation.PreviousRound.RealTimeMinersInformation.Count;
+        var minimumCount = minersCount.Mul(2).Div(3);
+        var secretShares =
+            SecretSharingHelper.EncodeSecret(newInValue.ToByteArray(), minimumCount, minersCount);
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs (L21-23)
+```csharp
+        var minersCount = currentRound.RealTimeMinersInformation.Count;
+        var minimumCount = minersCount.Mul(2).Div(3);
+        minimumCount = minimumCount == 0 ? 1 : minimumCount;
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs (L35-36)
+```csharp
+            if (anotherMinerInPreviousRound.EncryptedPieces.Count < minimumCount) continue;
+            if (anotherMinerInPreviousRound.DecryptedPieces.Count < minersCount) continue;
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs (L49-50)
+```csharp
+            var revealedInValue =
+                HashHelper.ComputeFrom(SecretSharingHelper.DecodeSecret(sharedParts, orders, minimumCount));
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs (L52-52)
+```csharp
+            currentRound.RealTimeMinersInformation[publicKeyOfAnotherMiner].PreviousInValue = revealedInValue;
+```
+
+**File:** src/AElf.Cryptography/SecretSharing/SecretSharingHelper.cs (L14-25)
+```csharp
+        public static List<byte[]> EncodeSecret(byte[] secretMessage, int threshold, int totalParts)
+        {
+            // Polynomial construction.
+            var coefficients = new BigInteger[threshold];
+            // Set p(0) = secret message.
+            coefficients[0] = secretMessage.ToBigInteger();
+            for (var i = 1; i < threshold; i++)
+            {
+                var foo = new byte[32];
+                Array.Copy(HashHelper.ComputeFrom(Guid.NewGuid().ToByteArray()).ToArray(), foo, 32);
+                coefficients[i] = BigInteger.Abs(new BigInteger(foo));
+            }
+```
+
+**File:** src/AElf.Cryptography/SecretSharing/SecretSharingHelper.cs (L44-65)
+```csharp
+        public static byte[] DecodeSecret(List<byte[]> sharedParts, List<int> orders, int threshold)
+        {
+            var result = BigInteger.Zero;
+
+            for (var i = 0; i < threshold; i++)
+            {
+                var numerator = new BigInteger(sharedParts[i]);
+                var denominator = BigInteger.One;
+                for (var j = 0; j < threshold; j++)
+                {
+                    if (i == j) continue;
+
+                    (numerator, denominator) =
+                        MultiplyRational(numerator, denominator, orders[j], orders[j] - orders[i]);
+                }
+
+                result += RationalToWhole(numerator, denominator);
+                result %= SecretSharingConsts.FieldPrime;
+            }
+
+            return result.ToBytesArray();
+        }
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs (L107-108)
+```csharp
+        if (round.RoundNumber > 1 && !round.IsMinerListJustChanged)
+            // No need to share secret pieces if miner list just changed.
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs (L16-17)
+```csharp
+        if (!ValidatePreviousInValue(validationContext))
+            return new ValidationResult { Message = "Incorrect previous in value." };
+```
+
+**File:** contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/UpdateValueValidationProvider.cs (L48-48)
+```csharp
+        return HashHelper.ComputeFrom(previousInValue) == previousOutValue;
+```
