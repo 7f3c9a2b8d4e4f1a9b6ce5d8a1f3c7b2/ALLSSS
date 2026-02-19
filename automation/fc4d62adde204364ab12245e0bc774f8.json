@@ -1,0 +1,134 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Election Integration] Does returning NextTerm guarantee that TakeElectionSnapshot() will execute successfully, and can snapshot failures cause term transitions to complete without recording election results, corrupting future governance decisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc59a8c5-4978-4f67-b6a3-acffebca520c?mode=deep",
+    "timestamp": "2026-02-19 15:14:17.340010",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Constructor: MainChainConsensusBehaviourProvider()] [Period Boundaries] Can periodSeconds be set to very small values (e.g., 1 second) causing term changes to occur too frequently, or very large values (e.g., 1 year) preventing term changes for extended periods, both breaking consensus assumptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e4d15be-4f62-43c4-b7ae-a1c241112d32?mode=deep",
+    "timestamp": "2026-02-19 15:14:39.498156",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Term Duration] If periodSeconds represents the term duration and NeedToChangeTerm() checks if elapsed time exceeds one period, can clock drift or timestamp manipulation cause miners to disagree on when terms should change, forking consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a07a4ff-fadf-45d9-a0bc-4826aecc6a9c?mode=deep",
+    "timestamp": "2026-02-19 15:15:02.084735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Command Strategy] Does the consensus command generation pipeline properly handle the NextTerm vs NextRound distinction returned by this method, and can mismatches between expected and actual behaviour cause TerminateRoundCommandStrategy to generate invalid consensus transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a6f65db-3969-44cb-a214-bf6e10034c72?mode=deep",
+    "timestamp": "2026-02-19 15:15:25.326554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Transaction Generation] When NextTerm is returned, does the system generate NextTerm() transaction instead of NextRound() transaction, and can transaction generation failures or replacements cause the wrong consensus method to be invoked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d01b280b-ce7e-4f38-9a4d-47438c7cb4db?mode=deep",
+    "timestamp": "2026-02-19 15:15:49.197471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Term Number Validation] Does NeedToChangeTerm() validate that CurrentRound.TermNumber matches expected term based on elapsed time, and can term number corruption cause incorrect boolean returns that break the decision logic at lines 31-32? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c753831a-0a80-44c6-b5c5-7520393959fb?mode=deep",
+    "timestamp": "2026-02-19 15:16:14.037484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Round-Term Relationship] Is there a validated relationship between RoundNumber and TermNumber in CurrentRound, and can desynchronization between these values cause GetConsensusBehaviourToTerminateCurrentRound() to make incorrect decisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62f22f72-9d2e-423a-bb4d-434da878d2cf?mode=deep",
+    "timestamp": "2026-02-19 15:16:39.802747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Base Class Override] Does overriding GetConsensusBehaviourToTerminateCurrentRound() properly satisfy the abstract base class contract, and can the base class GetConsensusBehaviour() method cache or misuse the returned value, causing stale behaviour to be applied? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0559b5c-de0f-42bf-8fb2-00dc953e3129?mode=deep",
+    "timestamp": "2026-02-19 15:17:08.146926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Method Visibility] Is the protected override access modifier appropriate, and can subclasses further override this method to bypass term change logic or inject malicious behaviour selections? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54067fc5-3f7c-4810-8c3e-b393c87541c5?mode=deep",
+    "timestamp": "2026-02-19 15:17:35.609495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Constructor: MainChainConsensusBehaviourProvider()] [Timestamp Precision] Do _blockchainStartTimestamp and currentBlockTime have consistent precision (seconds vs milliseconds), and can precision mismatches cause incorrect calculations in NeedToChangeTerm() leading to wrong behaviour returns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c0a82ca-6851-468b-9b92-d6390fc988d4?mode=deep",
+    "timestamp": "2026-02-19 15:18:03.374622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Time Zone Issues] Are all timestamps in UTC, and can time zone inconsistencies in blockchainStartTimestamp or ActualMiningTimes cause incorrect term change calculations, leading to premature or delayed term transitions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad6b13e3-20f6-42df-b4e3-99cf479fcd5e?mode=deep",
+    "timestamp": "2026-02-19 15:18:35.912285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Miner Removal] Can miners be removed from RealTimeMinersInformation during round execution (e.g., due to evil miner detection), causing Keys.Count to drop and triggering the single-node bypass at line 33 even in multi-miner scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fc25f00-3022-41a7-968f-8ebe73e965b2?mode=deep",
+    "timestamp": "2026-02-19 15:19:08.531453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Concurrent Modification] Is RealTimeMinersInformation.Keys accessed in a thread-safe manner at line 33, and can concurrent modifications during Count evaluation cause race conditions or inconsistent behaviour determinations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7c9cd88-6bd8-47d8-a1d2-042161050252?mode=deep",
+    "timestamp": "2026-02-19 15:19:38.275841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Computational Cost] Does calling NeedToChangeTerm() at line 31 iterate through all miners' ActualMiningTimes and perform expensive calculations, and can attackers exploit this by maximizing miner count or ActualMiningTimes entries to cause DoS through excessive gas consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_807dc410-ca2e-42d4-b27c-2166fa02d27a?mode=deep",
+    "timestamp": "2026-02-19 15:20:13.822300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Gas Optimization] Does the short-circuit evaluation order (RoundNumber check before NeedToChangeTerm) provide adequate gas optimization, and can reordering conditions save gas while maintaining security? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d69a85e8-8dd7-45da-a7c9-6dc32650a8ac?mode=deep",
+    "timestamp": "2026-02-19 15:20:51.163735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Two-Miner Scenario] In a two-miner network, MinersCountOfConsent is 2, requiring both miners to agree on term changes - can one malicious miner permanently block term transitions by refusing to mine during period boundaries? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73065796-9eeb-4ba9-85f5-542d70d740ca?mode=deep",
+    "timestamp": "2026-02-19 15:21:26.549266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Maximum Miners] Can very large miner counts (e.g., 100+ miners) cause NeedToChangeTerm() iteration to consume excessive gas or time, making consensus command generation fail or timeout? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9ddd65d-5cbc-4504-ac10-7d62868d7a99?mode=deep",
+    "timestamp": "2026-02-19 15:22:03.470268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Genesis Round] During blockchain genesis when round 1 is being initialized, does the early return at line 30 prevent unintended NextTerm calls that could fail due to missing election contract state or uninitialized treasury? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b22107d3-ff08-4fe5-b15d-f9098a240371?mode=deep",
+    "timestamp": "2026-02-19 15:22:41.308679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Null Reference] Can CurrentRound or its nested properties (RealTimeMinersInformation, Keys) be null, causing NullReferenceException at lines 31-33, and is proper null checking performed before property access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21ed282d-45dd-4f63-9a01-f1080a8e6fe3?mode=deep",
+    "timestamp": "2026-02-19 15:23:19.023659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Exception Propagation] If NeedToChangeTerm() throws an exception (e.g., due to invalid periodSeconds), does GetConsensusBehaviourToTerminateCurrentRound() handle it gracefully, or does the exception propagate and halt consensus command generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d436a456-f9df-4d2e-a54c-7ee14501b880?mode=deep",
+    "timestamp": "2026-02-19 15:23:58.059902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Constructor: MainChainConsensusBehaviourProvider()] [Initialization Order] Does the constructor initialization order guarantee that base class constructor completes before _blockchainStartTimestamp and _periodSeconds are assigned, preventing access to uninitialized fields during base class operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3adf55ce-7725-4d05-a41a-dbd687db04be?mode=deep",
+    "timestamp": "2026-02-19 15:24:34.841495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Constructor: MainChainConsensusBehaviourProvider()] [Parameter Validation] Does the constructor validate that blockchainStartTimestamp is not in the future and periodSeconds is within reasonable bounds before storing them, preventing invalid configuration from corrupting consensus logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edcbc111-873a-4794-a5d0-5a4d313388c4?mode=deep",
+    "timestamp": "2026-02-19 15:25:11.758586",
+    "report_generated": false
+  }
+]
