@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [Primary Token Injection] The primary token symbol is added to symbols list if not already present - if _primaryTokenSymbol is manipulated or stale, could wrong fee paths be declared causing failed transactions or fee bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a53b0304-2b3c-45d3-9672-0e86b941c5c4?mode=deep",
+    "timestamp": "2026-02-19 04:03:13.602398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [Missing Fee Recipient] Fee paths only include the 'from' address balance, not the recipient (fee collector) balance - if parallel transactions send fees to the same collector, could undeclared write conflicts cause accounting errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6d1a58b-c5d9-4739-895f-bc7d47fdc25b?mode=deep",
+    "timestamp": "2026-02-19 04:03:36.086034",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [Duplicate Path Skip] The code checks 'if (resourceInfo.WritePaths.Contains(path)) continue' - is this comparison sensitive to path object identity or value equality, and could false negatives allow duplicate conflicting paths? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0638bd92-c276-40d5-99cd-05c47715450c?mode=deep",
+    "timestamp": "2026-02-19 04:03:58.746786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [Empty Symbol List] If GetTransactionFeeSymbols() returns an empty list and _primaryTokenSymbol is also empty, no fee paths are added - could this allow transactions to execute without declaring fee deduction paths, causing race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d08580f-8cf5-482a-be73-ac3bf20520af?mode=deep",
+    "timestamp": "2026-02-19 04:04:21.934487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [Method-Specific Fees] GetTransactionFeeSymbols() takes methodName as parameter - if different methods have different fee symbols but parallel execution isn't aware, could this cause unexpected conflicts or missed conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54b6d076-6c86-4301-ba40-1686a4e074f8?mode=deep",
+    "timestamp": "2026-02-19 04:04:46.144642",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForTransactionFee()] [State Read During Path Calculation] GetPrimaryTokenSymbol() and GetTransactionFeeSymbols() read blockchain state during path calculation - if this state changes between path calculation and execution, could stale paths cause race conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a56451e-fce0-4995-983f-315c78c03d9b?mode=deep",
+    "timestamp": "2026-02-19 04:05:11.180864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Infinite Loop Risk] The function processes first-level and second-level delegatees, but if a circular delegation exists (A->B->A), could this cause infinite loops or exponential path explosion? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_617743ad-f476-46be-ae5a-596a57a4c840?mode=deep",
+    "timestamp": "2026-02-19 04:05:37.043498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Resource Exhaustion] If a delegator has hundreds of first-level delegatees and each has hundreds of second-level delegatees, could the path calculation exceed memory or time limits, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_128c8170-1ace-4a0f-bb14-5d046b9be468?mode=deep",
+    "timestamp": "2026-02-19 04:06:03.872280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Delegation Depth Limit] Only two levels of delegation are processed - if a third level exists and pays fees, are those paths missing from WritePaths, causing race conditions on deep delegation chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2f1a831-9d13-49de-b105-486302645eae?mode=deep",
+    "timestamp": "2026-02-19 04:06:32.224949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Duplicate Delegatee Handling] delegateeList.Distinct() is called at the end - but if a delegatee appears at both first and second level, are their fee paths added twice before deduplication, potentially causing issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_976e42b6-717f-4f9e-9c2d-58eafd65c3d8?mode=deep",
+    "timestamp": "2026-02-19 04:07:00.676680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Invalid Address Handling] Address.FromBase58() is called on delegatee strings - if any delegatee address is malformed, could this throw an exception that prevents path calculation, causing transaction failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1382dc97-844a-4216-a5c7-0e247525f26d?mode=deep",
+    "timestamp": "2026-02-19 04:07:32.312777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Missing Delegatee Balance Paths] For each delegatee, only transaction fee and fee-free allowance paths are added - are delegatee's own token balances (if modified) properly declared in WritePaths? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29521659-2389-47d9-801f-b5011c94c759?mode=deep",
+    "timestamp": "2026-02-19 04:08:02.478409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Delegation Map Race Condition] GetDelegateeList() reads from State.TransactionFeeDelegateInfoMap and State.TransactionFeeDelegateesMap - if these are modified by parallel transactions, could stale delegation data cause incorrect path declarations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55a76b2a-4472-42f0-bc4a-ba15b1f2dc76?mode=deep",
+    "timestamp": "2026-02-19 04:08:32.488326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: AddPathForDelegatees()] [Empty Delegatee List] If GetDelegateeList() returns an empty list for the first level, second-level delegation is never processed - but if a later state change adds first-level delegatees, could this cause cache inconsistency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04e77281-537a-474e-ba41-f15eac8eb227?mode=deep",
+    "timestamp": "2026-02-19 04:09:02.014790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetDelegateeList()] [Null Coalescing Logic] The function uses ?? operator to fall back from specific delegation to general delegation - if both maps contain data, is the specific delegation properly prioritized, or could the fallback logic be bypassed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62d1569a-0a34-4a6d-ba65-87b281f1159f?mode=deep",
+    "timestamp": "2026-02-19 04:09:34.998333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetDelegateeList()] [Missing Null Check] If State.TransactionFeeDelegateInfoMap[delegator][to][methodName] returns null, it falls back to State.TransactionFeeDelegateesMap[delegator] - but if the first map exists but returns null specifically, does this indicate deletion that should not fall back? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e910bc9d-f1af-4ba9-807f-e46dc3cac00b?mode=deep",
+    "timestamp": "2026-02-19 04:10:09.364096",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetDelegateeList()] [State Read Consistency] GetDelegateeList reads from multiple state maps - if these maps are updated in parallel by other transactions, could inconsistent reads cause some delegatees to be missed or double-counted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_823f7eb9-8693-40f7-9b8d-ba0c2d05b88e?mode=deep",
+    "timestamp": "2026-02-19 04:10:40.705871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_ACS2_StatePathsProvider.cs] [Function: GetDelegateeList()] [Delegatees.Keys Manipulation] The function accesses allDelegatees.Delegatees.Keys - if the Keys collection can be externally modified or contains invalid entries, could this cause incorrect delegatee lists? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5be18d5-0692-4a54-bac5-0c783e5259d4?mode=deep",
+    "timestamp": "2026-02-19 04:11:15.915822",
+    "report_generated": false
+  }
+]
