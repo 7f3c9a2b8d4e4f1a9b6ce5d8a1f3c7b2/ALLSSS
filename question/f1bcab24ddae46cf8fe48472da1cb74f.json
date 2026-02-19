@@ -1,7 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Duplicate Metadata Keys] Does the validation check for duplicate keys within metadataKeys itself, or only against reserved keys? (Low)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Special Characters in Keys] Can metadata keys contain special characters, unicode, or control characters that might break downstream parsing or storage? (Medium)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [NumberMinLength Undefined] The constant NumberMinLength is referenced but not defined in this file - if it's zero, negative, or excessively large, does initialization fail? (High)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: MakeSureTokenContractAddressSet()] [System Contract Name] SmartContractConstants.TokenContractSystemName is used - can this constant be manipulated to point to wrong contracts? (Low)",
-  "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: MakeSureRandomNumberProviderContractAddressSet()] [Consensus Contract Assumption] Using ConsensusContractSystemName for random numbers assumes consensus contract provides this - what if the consensus contract doesn't support GetRandomBytes? (High)"
-]
