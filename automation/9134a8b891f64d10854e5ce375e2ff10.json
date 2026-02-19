@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsMainChainMinerListChanged()] [Hash Collision] Lines 352-353 compare miner list hashes. Can attacker find hash collision to make different miner lists appear identical, bypassing change detection? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24b3ced7-0439-4b29-b6c4-3296c81f5eec?mode=deep",
+    "timestamp": "2026-02-19 08:38:42.366865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsMainChainMinerListChanged()] [Empty List Check] Line 351 checks if MainChainCurrentMinerList.Pubkeys.Any(). If empty list passes this check, does hash comparison work correctly, or cause false positives? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e961509-e1dc-4e4c-9268-125e83c184ce?mode=deep",
+    "timestamp": "2026-02-19 08:39:04.524614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: IsMainChainMinerListChanged()] [ToHex Conversion] Line 353 uses ToHex() on ByteString pubkeys. Can inconsistent encoding between current round and main chain list cause false change detection? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47294100-368c-4c15-a530-f11b32881b73?mode=deep",
+    "timestamp": "2026-02-19 08:39:27.005126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinerListHash()] [Order Dependency] Line 359 uses OrderBy to sort before hashing. Can attacker provide unsorted duplicate lists that hash differently, causing inconsistent change detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ac68801-21e6-4000-a926-90890d133f1d?mode=deep",
+    "timestamp": "2026-02-19 08:39:50.495663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinerListHash()] [String Concatenation] Line 359 uses Aggregate with string concatenation. Can very long miner lists cause performance issues or memory exhaustion during hashing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ca053ae-ea66-49dc-9fde-5e88d2d1ad4b?mode=deep",
+    "timestamp": "2026-02-19 08:40:14.491755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinerListHash()] [Empty String Seed] Line 359 starts with empty string seed. Does this correctly handle edge case of empty miner list, or produce collision with single-character pubkey? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_119d0f4d-f64a-4b21-906f-48e1298401ce?mode=deep",
+    "timestamp": "2026-02-19 08:40:40.302877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: UpdateCandidateInformation()] [IsMainChain Guard] Line 370 returns early if not main chain. Can side chain bypass this by setting IsMainChain flag, allowing it to manipulate Election contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efa2d6f5-2398-4873-8da2-6fe28691065a?mode=deep",
+    "timestamp": "2026-02-19 08:41:07.178012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: UpdateCandidateInformation()] [External Call Failure] Lines 372-378 call ElectionContract.UpdateCandidateInformation. If this fails, does it revert entire transaction or continue with corrupted candidate state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfc7a7cc-3ee7-4504-817f-74b75e2377fa?mode=deep",
+    "timestamp": "2026-02-19 08:41:32.835925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: UpdateCandidateInformation()] [IsEvilNode Flag] Line 377 sets IsEvilNode flag. Can attacker manipulating isEvilNode parameter mark legitimate miners as evil to force their removal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2636379-6899-406a-b7c3-3c199f16fba2?mode=deep",
+    "timestamp": "2026-02-19 08:42:01.412264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: UpdateCandidateInformation()] [Negative Stats] Lines 375-376 pass recentlyProducedBlocks and recentlyMissedTimeSlots. Can negative values corrupt Election contract's candidate ranking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62a1ad46-eb73-46ac-b8fe-0f4aa15008bd?mode=deep",
+    "timestamp": "2026-02-19 08:42:32.051922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [Null Timestamp Return] Line 383 returns SupposedMinersCount if BlockchainStartTimestamp is null. Can attacker exploit uninitialized state to lock miner count at initial value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_897fdc5d-a173-4fe9-a302-ef456692e82a?mode=deep",
+    "timestamp": "2026-02-19 08:43:02.938380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [Round 1 Check] Line 385 checks if round 1 exists and returns 0 if not. Can this cause consensus deadlock if genesis round is missing from state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c63afe22-f6dd-490b-9239-d2ef14a4145b?mode=deep",
+    "timestamp": "2026-02-19 08:43:33.610893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [Integer Overflow] Lines 386-390 perform multiple arithmetic operations (Add, Div, Mul). Can overflow in these calculations cause miner count to wrap around or exceed MaximumMinersCount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6441ef44-4979-44f0-a323-92fd0bad51f0?mode=deep",
+    "timestamp": "2026-02-19 08:44:06.108155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [Time-based Increase] Lines 389-390 calculate miner increase based on blockchain age. Can attacker manipulating timestamps accelerate miner count growth beyond intended rate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_259cce8c-8485-44f8-8e2c-7a68184a9ed3?mode=deep",
+    "timestamp": "2026-02-19 08:44:35.708927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [MinerIncreaseInterval Division] Line 390 divides by MinerIncreaseInterval. If this is 0 or very small, can it cause division by zero or excessive miner count? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_303d3125-6057-465e-abd9-9d67cdc3bfe8?mode=deep",
+    "timestamp": "2026-02-19 08:45:08.245669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [Mul(2) Justification] Line 390 multiplies by 2. Is this hardcoded multiplier safe, or can it cause miner count to grow faster than network can handle? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_997c8fed-dd2b-449c-9f7f-c7ecebf26f56?mode=deep",
+    "timestamp": "2026-02-19 08:45:39.927932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetMinersCount()] [MaximumMinersCount Cap] Line 390 uses Math.Min with MaximumMinersCount. Can attacker set MaximumMinersCount to very low value to prevent network growth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78893a9f-dfe4-44e7-9eb8-319c68ecabe8?mode=deep",
+    "timestamp": "2026-02-19 08:46:09.793538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetCurrentTermMiningReward()] [GetMinedBlocks Accuracy] Line 397 calls GetMinedBlocks on current round. If this count is manipulated (double-counting or undercounting), can it cause reward inflation or deflation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd7a86af-dcbf-42a9-a666-954e3d7ed1df?mode=deep",
+    "timestamp": "2026-02-19 08:46:40.513943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetCurrentTermMiningReward()] [Multiplication Overflow] Line 397 multiplies MinedBlocks by MiningRewardPerBlock. Can this overflow if MinedBlocks is extremely large, causing incorrect reward calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db63dde9-faac-426a-97ae-26052257972b?mode=deep",
+    "timestamp": "2026-02-19 08:47:11.157731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetCurrentTermMiningReward()] [Round Fetch Failure] Line 395 checks TryToGetCurrentRoundInformation. If it fails during reward distribution, does system return 0 reward or cause distribution failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb0dcdc8-3652-4a30-a62d-abdfcce9cc61?mode=deep",
+    "timestamp": "2026-02-19 08:47:41.604051",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextElectCountDown()] [IsMainChain Bypass] Line 415 returns 0 for non-main chains. Can side chain set IsMainChain=true to trigger election countdown logic inappropriately? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e483a708-c941-4c4f-b769-c201a9cdcf21?mode=deep",
+    "timestamp": "2026-02-19 08:48:11.917624",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextElectCountDown()] [Single Node Detection] Lines 423-424 and 431-432 check for single miner. Can attacker temporarily reduce miner count to 1 to disable elections and maintain control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84f4b511-65db-47e0-9e96-3dc71e1aff6e?mode=deep",
+    "timestamp": "2026-02-19 08:48:39.800864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextElectCountDown()] [Negative Countdown] Line 437 subtracts CurrentBlockTime from end time. If CurrentBlockTime > currentTermEndTime, can negative countdown cause unexpected behavior in election trigger logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cf865c3-4fa4-4663-8ef6-b4af795c03d6?mode=deep",
+    "timestamp": "2026-02-19 08:49:10.047233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextElectCountDown()] [PeriodSeconds Manipulation] Line 436 uses PeriodSeconds to calculate end time. Can attacker setting this to very large value delay elections indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a739c47c-cdac-4e9a-8f50-72d3e0945beb?mode=deep",
+    "timestamp": "2026-02-19 08:49:42.038101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextElectCountDown()] [FirstRoundNumberOfEachTerm Missing] Line 428 accesses FirstRoundNumberOfEachTerm[currentTermNumber]. Can missing term entry cause KeyNotFoundException and election failure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e57fb40-eac3-40bd-9907-0f6274ece2ab?mode=deep",
+    "timestamp": "2026-02-19 08:50:13.672844",
+    "report_generated": false
+  }
+]
