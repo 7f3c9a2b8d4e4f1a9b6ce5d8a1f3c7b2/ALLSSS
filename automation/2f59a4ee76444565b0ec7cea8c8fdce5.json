@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Authorization Bypass] Can an attacker provide an arbitrary pubkey via BytesValue input that is not in the current miner list but still passes initial validation checks before the IsInMinerList check at line 26, potentially causing state pollution or unexpected behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14325f3d-9f61-4b04-b7d8-2100fcb40ddf?mode=deep",
+    "timestamp": "2026-02-19 03:25:51.122620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Consensus Manipulation] If Context.CurrentHeight is exactly 2, can an attacker exploit the boundary condition at line 21 to bypass initialization checks and obtain consensus commands before the system is fully initialized? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8770e0de-b527-4228-9820-8a20e49e95ee?mode=deep",
+    "timestamp": "2026-02-19 03:26:13.538370",
+    "report_generated": false
+  }
+]
