@@ -1,0 +1,50 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Access Control] Are there any authorization checks elsewhere in the codebase before TokenContract reference is used for critical operations like minting or burning tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40e93041-8bf8-4159-a48b-d2ad85268a1f?mode=deep",
+    "timestamp": "2026-02-19 01:41:18.333539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: AssociationContract] [Access Control] Is the AssociationContract reference properly initialized before use to prevent null reference exceptions in cross-chain authorization flows? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4af34cb3-d13c-4143-97ca-cffc6558d339?mode=deep",
+    "timestamp": "2026-02-19 01:41:40.411443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: GenesisContract] [Access Control] Could unauthorized callers exploit the GenesisContract reference to bypass deployment or upgrade restrictions in cross-chain operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c74ade16-52ee-487f-885c-2ba84e37f1e6?mode=deep",
+    "timestamp": "2026-02-19 01:42:02.704649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: ParliamentContract] [Access Control] Are there safeguards to ensure the ParliamentContract reference cannot be manipulated to bypass governance approval requirements for cross-chain proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd5c8a16-cb97-4738-b91f-b9a4da3eef67?mode=deep",
+    "timestamp": "2026-02-19 01:42:25.713742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: CrossChainInteractionContract] [Access Control] Is the CrossChainInteractionContract reference validated to prevent attackers from redirecting cross-chain messages to malicious contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96a2572c-8652-4a2a-a82d-555a52bd81d6?mode=deep",
+    "timestamp": "2026-02-19 01:42:50.328466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Class: CrossChainContractState] [Initialization] Are all contract references (TokenContract, AssociationContract, GenesisContract, ParliamentContract, CrossChainInteractionContract) properly initialized before the CrossChain contract begins processing transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aad73950-c6ac-4a97-a174-63b3c712d755?mode=deep",
+    "timestamp": "2026-02-19 01:43:17.645627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Reentrancy] Could calls to TokenContract through this reference create reentrancy vulnerabilities when combined with cross-chain operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e13a192-ed87-4ca6-b2ce-6926a688922f?mode=deep",
+    "timestamp": "2026-02-19 01:43:42.669762",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: AssociationContract] [Authorization] Does the CrossChain contract properly validate multi-signature requirements when calling AssociationContract for cross-chain governance actions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e3e291f-1424-43b9-a2d7-535dc9921e18?mode=deep",
+    "timestamp": "2026-02-19 01:44:12.475975",
+    "report_generated": false
+  }
+]
