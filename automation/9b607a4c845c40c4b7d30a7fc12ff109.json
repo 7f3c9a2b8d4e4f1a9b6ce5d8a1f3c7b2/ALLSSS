@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Integer Overflow] Is the check amount >= 0 at line 92 sufficient to prevent integer overflow attacks if amount is passed as long.MaxValue and then used in arithmetic operations elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6035d7a-975a-4d29-bafd-02dad0916e1a?mode=deep",
+    "timestamp": "2026-02-19 09:16:01.983064",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [External Call] Can State.TokenContract.IsTokenAvailableForMethodFee.Call at line 94 be manipulated if TokenContract address is compromised, allowing invalid tokens to be set as method fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1679eee-49e5-4e25-aaff-6ed08ec4f6a2?mode=deep",
+    "timestamp": "2026-02-19 09:16:23.885429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Reentrancy] Can the external call at line 94 to TokenContract allow reentrancy where the token contract calls back into SetMethodFee before AssertValidToken completes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bee81e5-fe36-4a83-a5ee-9064c59de55a?mode=deep",
+    "timestamp": "2026-02-19 09:16:46.067375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Symbol Validation] Does the code validate the symbol parameter at line 90 for null, empty, or excessively long strings before using it in the StringValue at line 94? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b00f46b8-d8d1-4034-8206-0a65c9f5450f?mode=deep",
+    "timestamp": "2026-02-19 09:17:09.472237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Token Whitelist] Can State.TokenContract.IsTokenAvailableForMethodFee return true for attacker-created or worthless tokens, allowing fee collection in valueless assets? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccb6b063-5d97-4314-8cdc-41b443d43c40?mode=deep",
+    "timestamp": "2026-02-19 09:17:33.359777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Error Message] Does the error message at line 95 expose information about which tokens are valid for method fees that could help attackers plan attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26803dae-0e06-448a-8470-d9c8adf27d0d?mode=deep",
+    "timestamp": "2026-02-19 09:17:57.992450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [State Dependency] If EnsureTokenContractAddressSet at line 93 fails silently or sets an invalid address, will the Call at line 94 revert properly or return false data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3857298-6533-4a7e-9420-0f9458730dd3?mode=deep",
+    "timestamp": "2026-02-19 09:18:24.168513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Gas DoS] Can an attacker provide symbols that cause IsTokenAvailableForMethodFee to consume excessive gas, DoSing SetMethodFee calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9560912b-6b7f-4afc-b255-62ac2f158950?mode=deep",
+    "timestamp": "2026-02-19 09:18:51.922652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Multiple Functions] [State Consistency] Can race conditions between SetMethodFee at line 20 and GetMethodFee at line 51 cause inconsistent fee retrieval for the same method? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ebd5100-f868-46ed-9a4b-d59d689c986f?mode=deep",
+    "timestamp": "2026-02-19 09:19:22.464585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Multiple Functions] [Authorization Chain] If ChangeMethodFeeController at line 32 changes the controller while SetMethodFee at line 19 is checking authorization, can this create a TOCTOU (Time-of-Check-Time-of-Use) vulnerability? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c30b24e3-2604-4e1c-8e4e-e84013444f81?mode=deep",
+    "timestamp": "2026-02-19 09:19:49.178227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Multiple Functions] [External Dependencies] If both RequiredMethodFeeControllerSet at line 71 and CheckOrganizationExist at line 85 make external calls, can a malicious contract coordinate attacks across both call sites? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_373167d1-b996-4f80-9241-b6f2a9c50b8a?mode=deep",
+    "timestamp": "2026-02-19 09:20:19.220382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Multiple Functions] [Reentrancy Chain] Can an attacker chain reentrancy through AssertValidToken (line 94) -> malicious token -> CheckOrganizationExist (line 85) -> malicious org -> back to SetMethodFee? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da78105c-e8a3-43c1-a7a5-a39c53611f74?mode=deep",
+    "timestamp": "2026-02-19 09:20:47.547628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [State: TransactionFees] [Data Corruption] Can State.TransactionFees mapping at line 20 be corrupted if MethodName contains special characters, null bytes, or Unicode exploits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_050029f6-8b7d-48d9-b6d6-c24813ba6a0a?mode=deep",
+    "timestamp": "2026-02-19 09:21:18.255950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [State: MethodFeeController] [Single Point of Failure] If State.MethodFeeController.Value at line 32 is set to a compromised address, does the contract have any recovery mechanism or emergency pause? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99a243ff-e802-426f-b75d-3d6353ae6c2d?mode=deep",
+    "timestamp": "2026-02-19 09:21:49.227559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [State: MethodFeeController] [Persistence] Can State.MethodFeeController.Value be reset or deleted through contract upgrades or migrations, requiring re-initialization that could be exploited? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8816f44a-9838-40eb-8e7b-102e1f205d75?mode=deep",
+    "timestamp": "2026-02-19 09:22:19.694162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Input Validation] Can input.MethodName at line 20 be set to an empty string, creating unmappable state entries that break fee retrieval? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e172e17a-7bf7-4410-aa68-4a0ce53a28bc?mode=deep",
+    "timestamp": "2026-02-19 09:22:50.933580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Array Bounds] If input.Fees array is empty, will the foreach loop at line 15 pass without validation, allowing empty fee configurations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab30080d-142c-4ccc-8417-aa7a816a64bc?mode=deep",
+    "timestamp": "2026-02-19 09:23:22.084105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Duplicate Entries] If input.Fees contains duplicate symbols, will AssertValidToken at line 15 validate each duplicate, wasting gas and potentially causing DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c57e00a-9b8a-4510-8a51-0f916e92df21?mode=deep",
+    "timestamp": "2026-02-19 09:23:54.927142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Null Input] If input parameter is null in ChangeMethodFeeController, will the checks at lines 27-30 handle it gracefully or cause a null reference exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea8d62f1-30e4-43e4-ba10-bafa0c0c5a69?mode=deep",
+    "timestamp": "2026-02-19 09:24:22.596557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Null Input] If input.Value is null at line 44, will the Contains check or State.TransactionFees lookup at line 51 throw an exception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44764b6f-cb7d-43de-bdf9-6bd98495f827?mode=deep",
+    "timestamp": "2026-02-19 09:24:55.888672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Economic Attack] Can the controller set different fees for the same method in multiple tokens, and if so, which fee is actually charged to users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa3c0d26-b929-4a9a-a55b-bcda6bab763a?mode=deep",
+    "timestamp": "2026-02-19 09:25:28.727058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Fee Evasion] Can users exploit the fee-free methods at lines 40-44 by wrapping calls to paid methods inside calls to InitialAElfConsensusContract or other free methods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f567348-7950-4023-ab37-5ae0c6284b48?mode=deep",
+    "timestamp": "2026-02-19 09:26:01.375260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Size Fee] If IsSizeFeeFree is set to true at line 48 for consensus methods, can attackers submit consensus transactions with bloated data to fill blocks without paying proportional fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9848015-e3f7-4318-923c-abe6619483f3?mode=deep",
+    "timestamp": "2026-02-19 09:26:34.343127",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Ceiling] Is there any maximum limit on BasicFee values that can be set at line 20, or can the controller set fees so high they effectively brick the contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cd7d376-f8f4-425b-8e23-23c96fe09f57?mode=deep",
+    "timestamp": "2026-02-19 09:27:03.610067",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Integration] [Parliament Dependency] If the Parliament contract referenced at line 71 is upgraded or changed, will RequiredMethodFeeControllerSet continue to work or will it break fee controller initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58c58328-50ac-43f4-870d-24ae50b53376?mode=deep",
+    "timestamp": "2026-02-19 09:27:36.087224",
+    "report_generated": false
+  }
+]
