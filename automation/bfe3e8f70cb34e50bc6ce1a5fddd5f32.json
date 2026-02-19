@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Option Validation] Can an attacker vote for an option that was removed after the voting item was created, since AssertValidVoteInput() at line 381 only checks if the option exists in votingItem.Options at voting time, potentially voting for deleted options if removal isn't retroactive? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb7207a5-598a-4e5e-8042-93bfc1421f26?mode=deep",
+    "timestamp": "2026-02-19 11:32:14.754609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [VoteId Generation] Can an attacker predict or manipulate the VoteId generation at line 397 where Context.GenerateId(Context.Self, votingResult.VotesAmount.ToBytes(false)) is used, enabling VoteId collision if VotesAmount has predictable values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03e25bf4-ca15-4e66-8b22-4c5297019fc7?mode=deep",
+    "timestamp": "2026-02-19 11:32:36.860538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [VoteId Collision] Can multiple voters generate identical VoteIds at line 397 if they vote when VotesAmount has the same value, causing vote record overwrites and loss of earlier votes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_038634fe-0441-4094-8af2-88d9c067c6e5?mode=deep",
+    "timestamp": "2026-02-19 11:32:59.568835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [Delegated Voting Validation] In delegated voting mode at lines 386-388, can an attacker provide a null Voter address or VoteId that passes the null checks but causes issues in downstream operations like UpdateVotedItems() at line 120? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73e2f65d-77b0-4e34-9df2-9a81eda39249?mode=deep",
+    "timestamp": "2026-02-19 11:33:23.135888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Vote()] [IsChangeTarget Field] The IsChangeTarget field is set at line 114 but never validated or used in the contract - can an attacker set this to true/false arbitrarily to manipulate external systems that rely on this field? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc83f713-b71f-4e14-b416-1a28c07b638e?mode=deep",
+    "timestamp": "2026-02-19 11:33:47.452411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotingResult()] [Integer Overflow] Can an attacker cause integer overflow when adding votes at line 177 using currentVotes.Add(amount), especially in quadratic voting where amounts can grow quadratically, causing VotesAmount to wrap around to negative values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7b36b8d-2677-4dca-bc17-064dbeefeef3?mode=deep",
+    "timestamp": "2026-02-19 11:34:12.365441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotingResult()] [Integer Overflow] Can an attacker cause integer overflow in VotersCount at line 178 by voting with many small amounts, incrementing VotersCount past long.MaxValue and causing it to wrap to negative? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d8aa627e-c31d-4cce-b62e-0fe2c744a995?mode=deep",
+    "timestamp": "2026-02-19 11:34:37.777269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotingResult()] [Integer Overflow] Can an attacker cause integer overflow in VotesAmount at line 179 by accumulating votes across multiple transactions, causing total votes to exceed long.MaxValue and wrap around? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cd34c0c-5ad1-489c-8518-e6e618209427?mode=deep",
+    "timestamp": "2026-02-19 11:35:06.001709",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotingResult()] [Missing Option Initialization] If votingResult.Results doesn't contain the option at line 174, a new entry is added with value 0 - can an attacker exploit the race condition between check and set to cause duplicate additions if voting happens concurrently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e69fe1d2-028a-4086-b211-dd5dcef3649d?mode=deep",
+    "timestamp": "2026-02-19 11:35:34.468052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotingResult()] [State Consistency] The function updates Results, VotersCount, and VotesAmount at lines 177-179 but doesn't verify that VotesAmount equals the sum of all Results values - can this cause accounting inconsistencies if amounts are manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fdafd14-7a16-46cf-a967-3ae97d0689b9?mode=deep",
+    "timestamp": "2026-02-19 11:36:04.795226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotedItems()] [State Initialization] At line 148, if VotedItemsMap[voter] is null, a new VotedItems is created - can an attacker vote, withdraw, and vote again to manipulate the withdrawn list since line 159 removes from WithdrawnVotes but this list persists across multiple votes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e90523a4-d5b9-4077-81fb-b291944ebf7b?mode=deep",
+    "timestamp": "2026-02-19 11:36:34.591187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotedItems()] [Key Collision] Using votingItem.VotingItemId.ToHex() as map key at line 149 - can two different voting items produce the same hex string if hash collision occurs, causing votes to be tracked under wrong voting items? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1661957-c13f-4195-b0dd-3b78479d87ec?mode=deep",
+    "timestamp": "2026-02-19 11:37:00.754098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotedItems()] [List Manipulation] At line 151, voteId is added to ActiveVotes without checking if it already exists - can an attacker vote with the same VoteId multiple times to inflate the ActiveVotes list with duplicates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_172a6254-fb90-4862-96fb-7bae82c6fce0?mode=deep",
+    "timestamp": "2026-02-19 11:37:27.927817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: UpdateVotedItems()] [List Manipulation] At line 159, voteId is removed from WithdrawnVotes - can an attacker exploit this by voting with a VoteId that was previously withdrawn to remove it from the withdrawn list, manipulating historical voting records? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec813e50-4b0c-42da-94a1-ee36c7651942?mode=deep",
+    "timestamp": "2026-02-19 11:37:54.538345",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Authorization Bypass] At lines 197-200, authorization check differs based on IsLockToken - can an attacker withdraw votes from a locked token voting item if they can manipulate the votingItem.Sponsor address, or vice versa for delegated voting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48f9bef3-3556-436a-8edd-7195df913baf?mode=deep",
+    "timestamp": "2026-02-19 11:38:22.749659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Double Withdrawal] Can an attacker withdraw the same vote multiple times since IsWithdrawn is checked at line 194 in the code reading but not in this function, allowing multiple withdrawals before the state is updated at line 203? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8e23dbe-b7ac-4c8b-90e8-867cdd8164cc?mode=deep",
+    "timestamp": "2026-02-19 11:38:49.283978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [State Consistency] The function updates IsWithdrawn at line 203 BEFORE updating VotingResults at lines 215-220 - can an attacker exploit reentrancy to withdraw the same tokens multiple times by calling Withdraw again before results are updated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0767c0a-ce10-489c-a098-5f7b9b778b4e?mode=deep",
+    "timestamp": "2026-02-19 11:39:17.891745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Integer Underflow] At line 216, votingResult.Results[votingRecord.Option].Sub(votingRecord.Amount) can underflow if multiple withdrawals happen or if the amount was manipulated - can this cause the vote count to wrap around to a large positive number? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1beb7fad-45e4-4093-a146-f533156d78fb?mode=deep",
+    "timestamp": "2026-02-19 11:39:47.744054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Integer Underflow] At line 218, VotersCount.Sub(1) can underflow if VotersCount is already 0 or if the condition at line 217 (no active votes) is manipulated - can this cause VotersCount to become long.MaxValue? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2ef0449-de74-4d74-9148-1dd0816b6673?mode=deep",
+    "timestamp": "2026-02-19 11:40:18.270881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Integer Underflow] At line 220, VotesAmount.Sub(votingRecord.Amount) can underflow if the total votes recorded is less than the amount being withdrawn - can this cause VotesAmount to wrap to a huge positive number? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7790eb04-7dbd-4e18-806b-20312d977f3d?mode=deep",
+    "timestamp": "2026-02-19 11:40:46.549727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [VotersCount Logic Error] At lines 217-218, VotersCount is only decremented if there are no active votes remaining - can an attacker vote multiple times, withdraw one vote, and keep VotersCount inflated even though they should be counted as 0 voters? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f52af6de-bf77-4b9f-a1c6-cf0f51de9802?mode=deep",
+    "timestamp": "2026-02-19 11:41:15.143649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Snapshot Mismatch] The withdrawal updates VotingResult for the snapshot number stored in votingRecord at line 207, but if the current snapshot has advanced, can withdrawals incorrectly modify historical snapshot results instead of current results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cadf78b2-f2ad-40d1-9cda-cb628b92c803?mode=deep",
+    "timestamp": "2026-02-19 11:41:47.788355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Token Unlock Validation] At lines 224-231, tokens are unlocked AFTER all state changes - if the Unlock call fails, can the state remain inconsistent with IsWithdrawn=true but tokens still locked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b9cdffb-7db1-4e3c-b58e-9b761b42abe2?mode=deep",
+    "timestamp": "2026-02-19 11:42:20.612833",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Token Unlock Amount] The Unlock call at line 229 uses votingRecord.Amount - can an attacker exploit quadratic voting where the locked amount may differ from the recorded amount if QuadraticVotesCountMap was manipulated, unlocking wrong amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8eb9ab3-6fb4-4a83-9776-cfe6d8910a18?mode=deep",
+    "timestamp": "2026-02-19 11:42:50.302057",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContract.cs] [Function: Withdraw()] [Missing Null Check] At line 193, if votingRecord is null, an exception is thrown - but what if votingItem at line 195 is null because the voting item was deleted? Can this cause a null reference exception that leaves state inconsistent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_422acbca-9cc8-4e64-a6f0-7625aaafe7a0?mode=deep",
+    "timestamp": "2026-02-19 11:43:23.230090",
+    "report_generated": false
+  }
+]
