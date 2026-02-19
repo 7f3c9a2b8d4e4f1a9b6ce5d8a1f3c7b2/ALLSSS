@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Authorization Bypass] Can a malicious sender set delegations for an arbitrary DelegatorAddress without the delegator's consent, since there's no signature verification or authorization check from the delegator, potentially allowing unauthorized fee payment setup? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d7e328a-7a14-48b5-9f93-15508886f90a?mode=deep",
+    "timestamp": "2026-02-19 03:00:32.468543",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [State Inconsistency] When adding a new delegatee at line 42 but no positive delegation amounts exist after filtering, can an attacker repeatedly call this to reach DELEGATEE_MAX_COUNT with empty delegatee entries, causing DOS for legitimate delegatees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87939a40-ce5c-4ba0-81f9-8bc7332fe246?mode=deep",
+    "timestamp": "2026-02-19 03:00:55.042786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Logic Error] At lines 86-91, if Delegations.Count != 0, the function returns success without updating BlockHeight or firing an event, but if Count == 0, it removes the delegatee and fires TransactionFeeDelegationCancelled. Can this lead to stale BlockHeight values when delegations are updated but not removed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_845c15f3-3b12-449a-a0c8-869848a5636c?mode=deep",
+    "timestamp": "2026-02-19 03:01:18.442162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Event Emission Error] At lines 58-63, TransactionFeeDelegationAdded event is fired only when adding a new delegatee, but not when updating existing delegations for an existing delegatee (lines 66-98), potentially causing off-chain indexers to miss delegation updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffd6d6e4-9a5a-44d2-8a3a-17b2a556ab6b?mode=deep",
+    "timestamp": "2026-02-19 03:01:41.747315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Race Condition] If two delegatees call SetTransactionFeeDelegations concurrently for the same delegator when the count is at DELEGATEE_MAX_COUNT-1, can both transactions succeed if they read the count before either writes, bypassing the limit check at line 31? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d877e319-2880-46b5-afa3-33ba40732444?mode=deep",
+    "timestamp": "2026-02-19 03:02:05.975919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Input Validation] At line 16, only null checks are performed on input.Delegations, but can an attacker pass an empty dictionary to waste gas and storage operations without actual delegation setup? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e6ea87f-839c-4318-bb88-90da15f10817?mode=deep",
+    "timestamp": "2026-02-19 03:02:31.133367",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Integer Overflow] At line 40, the check `x.Value > 0` uses a signed comparison, but can negative values in the delegation amounts bypass validation or cause unexpected behavior in token amount checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fab5011b-9734-446b-acba-337afa18ea4f?mode=deep",
+    "timestamp": "2026-02-19 03:02:58.160728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [State Corruption] At lines 44-52, when pouring delegations into a new delegatee, if AssertValidToken at line 49 fails partway through the loop, are the previously added delegations rolled back, or does it leave partial state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65019c31-49a3-42e0-b98e-b89912c87132?mode=deep",
+    "timestamp": "2026-02-19 03:03:24.783789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Gas Griefing] Can an attacker create a delegator address with nearly DELEGATEE_MAX_COUNT delegatees, then repeatedly call SetTransactionFeeDelegations with new delegatee addresses to force expensive storage reads at line 31 without succeeding, griefing legitimate users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53327584-f049-49a5-9ac7-670f563f2130?mode=deep",
+    "timestamp": "2026-02-19 03:03:52.032177",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Reentrancy] Can the AssertValidToken call at lines 49 or 77 trigger a reentrancy callback that modifies State.TransactionFeeDelegateesMap before the final state update at lines 57 or 83, causing state inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba11212e-25da-4105-8abb-4f1ab6227d31?mode=deep",
+    "timestamp": "2026-02-19 03:04:19.111470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Logic Bug] At lines 71-74, when value <= 0 and the key exists, it removes the delegation, but what if value is exactly 0 vs negative? Should both be treated the same, or does negative indicate an error condition? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01184a24-3919-403b-99a5-63e990f6edf1?mode=deep",
+    "timestamp": "2026-02-19 03:04:47.086373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [State Consistency] At line 91, when removing an empty delegatee, the function updates State.TransactionFeeDelegateesMap at line 91 after already returning at line 87-90, creating dead code. Is this a logic error that could leave dangling delegatee entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bfb51526-5f52-40d4-ac89-ed7ff631127b?mode=deep",
+    "timestamp": "2026-02-19 03:05:16.949758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [DoS Vector] If DELEGATEE_MAX_COUNT is reached at line 31, can a malicious delegator lock their delegation configuration by filling all slots with colluding delegatees, preventing legitimate delegatees from being added? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d6b5aac-39d3-4fd3-86ef-161592000423?mode=deep",
+    "timestamp": "2026-02-19 03:05:43.907051",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [BlockHeight Manipulation] At line 54, BlockHeight is set to Context.CurrentHeight for new delegatees, but at lines 66-98 for existing delegatees, BlockHeight is never updated. Can this be exploited to maintain old block heights for replay or timing attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ea561a9-c672-4dae-b51a-5046c4212094?mode=deep",
+    "timestamp": "2026-02-19 03:06:11.307420",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Token Symbol Validation] At lines 49 and 77, AssertValidToken checks the symbol and amount, but can an attacker use a symbol with special characters, extremely long length, or control characters to bypass validation or cause off-chain parsing issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e94d844-e5b6-4e7b-b7ee-2a82acafb512?mode=deep",
+    "timestamp": "2026-02-19 03:06:41.562456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Return Value Manipulation] The function returns SetTransactionFeeDelegationsOutput with Success=false at line 33-36 when delegatee count is maxed, but returns Success=true in all other cases. Can callers distinguish between different success scenarios (new add vs update)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c4fbeab-00ef-402e-b343-309b2efe69b5?mode=deep",
+    "timestamp": "2026-02-19 03:07:10.074587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Storage Cost Attack] Can an attacker repeatedly add and remove delegations for the same tokens to inflate storage costs for the delegator without actually using the delegation functionality? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1baf2110-32ea-4838-a946-965c8c38bd0e?mode=deep",
+    "timestamp": "2026-02-19 03:07:37.850441",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Event Data Integrity] At lines 58-63, the TransactionFeeDelegationAdded event sets both Caller and Delegatee to Context.Sender. Is this redundant, and could it cause confusion in event processing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c3e756a-ad7f-4135-b9fe-9388b9bcd2fb?mode=deep",
+    "timestamp": "2026-02-19 03:08:07.591980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Duplicate Key Handling] In the foreach loop at line 45, if input.Delegations contains duplicate keys, how is this handled by the dictionary operations at line 50? Can this cause unexpected overwrites? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ae0bd67-f849-4273-a4d7-e506f573de55?mode=deep",
+    "timestamp": "2026-02-19 03:08:36.297014",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: SetTransactionFeeDelegations()] [Memory Exhaustion] At line 19, if a delegator has accumulated a large number of delegatees over time, can loading TransactionFeeDelegateesMap cause out-of-memory errors or excessive gas consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c39a00e5-4888-4c0e-8a25-abf04501e2d3?mode=deep",
+    "timestamp": "2026-02-19 03:09:05.675456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegator()] [Authorization Bypass] Can any sender remove themselves as a delegatee from any arbitrary delegator address without the delegator's consent, since the check at lines 116-120 only verifies the sender is in the delegatee list, not that they have permission to remove themselves? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90c540b7-3546-409c-bbf4-56e8e12b89d8?mode=deep",
+    "timestamp": "2026-02-19 03:09:34.627001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegator()] [Silent Failure] At lines 111-114, if TransactionFeeDelegateesMap is null for the given delegator, the function returns Empty without error or event. Can this hide legitimate errors or make debugging difficult? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69a432a7-b607-41d3-89e2-384b4ed95250?mode=deep",
+    "timestamp": "2026-02-19 03:10:05.580609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegator()] [State Inconsistency] At line 123, the function removes the delegatee but doesn't check if this was the last delegatee. Should the TransactionFeeDelegateesMap entry be removed entirely when empty to save storage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89b342c7-0746-49e8-906e-8190047f0477?mode=deep",
+    "timestamp": "2026-02-19 03:10:34.957925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegator()] [Event Spam] Can a malicious delegatee repeatedly call RemoveTransactionFeeDelegator on the same delegator after already being removed (lines 116-120 handle this silently), but is there a gas cost attack vector here? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c33f75ae-9b3e-483d-9c1d-6b8d358bf780?mode=deep",
+    "timestamp": "2026-02-19 03:11:07.088692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Delegation.cs] [Function: RemoveTransactionFeeDelegator()] [Missing Validation] At line 109, only null check is performed on DelegatorAddress. Can an attacker pass an invalid or malformed address that passes null check but causes issues downstream? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa2749b8-0d8c-45dd-be98-31bb01266459?mode=deep",
+    "timestamp": "2026-02-19 03:11:38.733099",
+    "report_generated": false
+  }
+]
