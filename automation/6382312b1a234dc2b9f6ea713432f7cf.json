@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Properties: TokenContract & ParliamentContract] [Cascading Failure] If either referenced contract enters an error state or is paused, could this cascade to make the entire Vote contract inoperable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0c7ebf3-c34c-446c-a6bd-242b0ae1965c?mode=deep",
+    "timestamp": "2026-02-19 06:16:30.713212",
+    "report_generated": false
+  }
+]
