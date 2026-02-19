@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Unclaimed Profit DOS] Can DistributedProfitsMap accumulate unclaimed profits indefinitely without cleanup mechanism, causing storage bloat? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c54950c-f7a0-4853-a441-0fbcf4c4959b?mode=deep",
+    "timestamp": "2026-02-19 02:56:51.203117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Symbol Injection] Can attacker inject arbitrary token symbols into DistributedProfitsMap[addr].AmountsMap, bypassing token whitelist checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5385e5f1-e325-4f32-8026-d74de579af98?mode=deep",
+    "timestamp": "2026-02-19 02:57:13.389669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Double Distribution] Can DistributeProfits() be called twice for same period without IsReleased flag properly set in DistributedProfitsMap, causing double-spending? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_057adde0-1790-4686-ba03-31960c8e6d70?mode=deep",
+    "timestamp": "2026-02-19 02:57:36.015790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Race Condition] Can concurrent ClaimProfits() calls read same DistributedProfitsMap[addr] state, both claiming full amount before state updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61a5885f-92c3-44f6-9cb7-7bb4accaf881?mode=deep",
+    "timestamp": "2026-02-19 02:57:59.251852",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Virtual Address Spoof] Can attacker craft custom virtual address that matches legitimate period address in DistributedProfitsMap, stealing profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69380b14-18e3-4ecd-afb6-78f38cff8a96?mode=deep",
+    "timestamp": "2026-02-19 02:58:23.899778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Zero Shares Exploit] Can DistributeProfits() write TotalShares=0 to DistributedProfitsMap, causing division by zero in profit calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a36b8dbc-0648-4904-8112-4995aadd121d?mode=deep",
+    "timestamp": "2026-02-19 02:58:49.006584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Historical Data Tampering] Can ResetManager() or scheme updates retroactively modify DistributedProfitsMap for past periods, changing historical profit distributions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08c06774-2018-45cf-ba3c-a6e140450613?mode=deep",
+    "timestamp": "2026-02-19 02:59:14.841504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Burn Profits Leak] Does BurnProfits() properly clear DistributedProfitsMap[addr] after burning, or can residual state enable profit claims? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7cc105b9-923b-44d6-9b75-1b7a7347e455?mode=deep",
+    "timestamp": "2026-02-19 02:59:41.376287",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [AmountsMap Overflow] Can repeated ContributeProfits() calls overflow DistributedProfitsMap[addr].AmountsMap[symbol], wrapping to negative values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4c70644-9af4-4d05-8014-b084134a7cff?mode=deep",
+    "timestamp": "2026-02-19 03:00:10.927296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Stale Data] Can ClaimProfits() read stale DistributedProfitsMap data from previous transaction in same block, causing incorrect profit calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc363fb3-d3de-4d2d-8125-79a96af3838c?mode=deep",
+    "timestamp": "2026-02-19 03:00:42.314388",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Double Mapping Collision] Can two schemes use same beneficiary address in ProfitDetailsMap[schemeId][beneficiary], causing cross-scheme profit leakage? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_184479f2-3a3f-4c40-b501-36a443ee839d?mode=deep",
+    "timestamp": "2026-02-19 03:01:11.130220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Period Boundary Exploit] Can beneficiary's ProfitDetailsMap entry have StartPeriod > EndPeriod, bypassing profit distribution logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4294cc2c-44de-40a9-8890-6f1d4ab56e3d?mode=deep",
+    "timestamp": "2026-02-19 03:01:43.475664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [LastProfitPeriod Manipulation] Can attacker reset LastProfitPeriod=0 in ProfitDetailsMap after claiming, enabling double-claim from same periods? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3160f855-e73e-4e40-8554-598ea82c1152?mode=deep",
+    "timestamp": "2026-02-19 03:02:13.349106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Shares Overflow] Can ProfitDetailsMap[schemeId][beneficiary].Details accumulate unlimited ProfitDetail entries, causing gas exhaustion during ClaimProfits()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9570560-f9bd-4c98-93c2-7ecc53136d99?mode=deep",
+    "timestamp": "2026-02-19 03:02:44.662247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [IsWeightRemoved Bypass] Can beneficiary claim profits after IsWeightRemoved=true flag set in ProfitDetailsMap, withdrawing more than entitled? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1335eac-8408-4dc6-890d-97d108d6eeca?mode=deep",
+    "timestamp": "2026-02-19 03:03:12.881068",
+    "report_generated": false
+  }
+]
