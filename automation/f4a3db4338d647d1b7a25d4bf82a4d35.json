@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: TokenConverterContract Integration] [Bancor Configuration] Constants define balances but TokenConverter also has internal validation. Could mismatch between constant values and TokenConverter's expected ranges cause initialization rejection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e09804fb-b8e1-4502-a913-a7b176d546a6?mode=deep",
+    "timestamp": "2026-02-19 14:32:58.843303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: ElectionContract Integration] [Token Distribution] ElectionContract receives all VOTE and SHARE tokens. Does ElectionContract have sufficient access controls to prevent unauthorized distribution of these 2 billion tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9acca61-c9f0-4a67-b74c-a4f61115144a?mode=deep",
+    "timestamp": "2026-02-19 14:33:20.942678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: All Constants] [Test Coverage] Are there unit tests verifying each constant is used correctly in EconomicContract initialization? Could untested constants contain typos or magnitude errors discovered only in production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0dbf397-9fe9-4504-ba14-3a553ea7ad2e?mode=deep",
+    "timestamp": "2026-02-19 14:33:43.336966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Balance Ratios] [Economic Modeling] Have the ratios between NativeTokenConnectorInitialVirtualBalance (100M), NativeTokenToResourceBalance (10M), and ResourceTokenInitialVirtualBalance (0.001) been validated through economic simulations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5d479a0-fb0c-413a-acae-5b92f1eb7b1f?mode=deep",
+    "timestamp": "2026-02-19 14:34:06.488354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: TokenConverterFeeRate] [Fee Revenue Projection] Has the 0.5% fee rate been analyzed for long-term sustainability? Could it be too low to cover converter operational costs or too high to encourage trading? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bcbe2ed-a56a-4837-ad2f-7dd83a874ce6?mode=deep",
+    "timestamp": "2026-02-19 14:34:30.107400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: All Constants] [Documentation Gap] Constants lack inline comments explaining rationale for specific values. Could future developers misunderstand intended values and introduce bugs during updates? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85a4e29e-172f-48ad-9fcc-b5212d90c210?mode=deep",
+    "timestamp": "2026-02-19 14:34:54.563102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Symbol Strings] [Naming Collision] The symbols 'VOTE', 'SHARE', and 'nt' prefix could collide with user-created tokens or other chain ecosystems. Is there documentation warning about reserved symbols? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_373d790b-3030-4433-9eb0-1157efa9ee8e?mode=deep",
+    "timestamp": "2026-02-19 14:35:20.083666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: MemoMaxLength] [Boundary Testing] Has the 64-byte limit been tested with exactly 64 bytes of UTF-8 data including edge cases like emoji, Chinese characters, and mixed encodings? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc2939f1-9ada-43b4-b519-8232dd3dbe62?mode=deep",
+    "timestamp": "2026-02-19 14:35:48.498239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Token Supplies] [Maximum Value Testing] Have maximum values like ResourceTokenTotalSupply been tested in multiplication and division operations to ensure no overflow in any code path? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01dc7c2a-a939-4690-b209-1554b72343f3?mode=deep",
+    "timestamp": "2026-02-19 14:36:15.207103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ResourceTokenInitialVirtualBalance] [Minimum Value Testing] The extremely small value of 100_000 (0.001 tokens) represents a near-zero edge case. Has this been tested in Bancor formulas that divide by balance, potentially causing division by near-zero? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ed0756d-cd26-4014-b7f1-8e51f30e9dd4?mode=deep",
+    "timestamp": "2026-02-19 14:36:42.039984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: Production Constants] [Test Divergence] If test constants differ from production constants, could bugs in production go undetected because tests pass with different values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d7d3ade-da2b-4b98-851f-244d3501cde2?mode=deep",
+    "timestamp": "2026-02-19 14:37:11.612017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: All Constants] [Configuration Management] Are production constants clearly distinguished from test constants in deployment scripts to prevent accidental use of test values in production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80b97e28-2b04-4701-924a-213be3209d7c?mode=deep",
+    "timestamp": "2026-02-19 14:37:42.971835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ResourceTokenTotalSupply] [Immediate Issuance] The full 500M supply is issued immediately to TokenConverter rather than using gradual vesting. Could this create liquidity shocks if TokenConverter is exploited in early blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9e99c0b-2418-467c-ad8e-bfa704d0f3e8?mode=deep",
+    "timestamp": "2026-02-19 14:38:15.435049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ElectionTokenTotalSupply] [No Vesting Schedule] Unlike typical token launches with vesting, all 1B VOTE and SHARE tokens are immediately available. Does this create dump risk if ElectionContract distribution logic has bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c051f9ef-47d8-4fa4-b53d-4cbf6563f341?mode=deep",
+    "timestamp": "2026-02-19 14:38:48.867621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: Token Ownership] [Owner Centralization] All tokens created by constants set Owner=Context.Self (EconomicContract). Does EconomicContract have sufficient access controls to prevent owner privilege abuse? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e83d0d3-5010-4714-9d1e-335b0b1e4265?mode=deep",
+    "timestamp": "2026-02-19 14:39:21.530320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: Token Issuance] [Issuer Centralization] All tokens set Issuer=Context.Self (EconomicContract). After initial issuance, can EconomicContract issue more tokens, potentially inflating supply beyond constant values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4321937e-c722-47df-b488-44c749d63f17?mode=deep",
+    "timestamp": "2026-02-19 14:39:53.549167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Symbol List Names] [Variable Injection] Context.Variables.GetStringArray() retrieves symbol lists at runtime. Could malicious genesis configuration inject symbols containing special characters or excessively long names? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef5d2848-139c-4c3b-8ef4-cda1473c6334?mode=deep",
+    "timestamp": "2026-02-19 14:40:26.074910",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Symbol List Names] [List Order Dependency] If CreateResourceTokens() depends on symbol list order for connector pairing, could reordering symbols in context variables break connector relationships? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d440ab3-1c8d-4738-b85f-4a7714bbd77a?mode=deep",
+    "timestamp": "2026-02-19 14:41:00.135924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: TokenConverterFeeRate] [Fee Recipient] Where do 0.5% fees go? If there's no explicit fee collection mechanism tied to this constant, could fees accumulate in TokenConverter without distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3c009be-0941-4c8a-8a44-a9bfae0bb700?mode=deep",
+    "timestamp": "2026-02-19 14:41:33.354331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: TokenConverterFeeRate] [Fee Calculation Precision] With 0.5% fee on potentially small trades, could rounding errors cause fees to be 0 for micro-transactions, allowing fee bypass through trade splitting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c8ff143-c312-41ea-b663-fec21a569695?mode=deep",
+    "timestamp": "2026-02-19 14:42:08.589635",
+    "report_generated": false
+  }
+]
