@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Missing Validation] Does the function verify that ProposerWhiteList is a subset of or separate from OrganizationMemberList, or can non-members be proposers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04f1d5e8-8f8c-463f-a6e2-8a5528341c63?mode=deep",
+    "timestamp": "2026-02-19 02:14:53.241510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Count Accuracy] At line 71, does organizationMemberCount accurately reflect unique members if OrganizationMemberList somehow contains duplicates despite line 66 check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_046f3e34-8c2b-4fe8-918a-a8b13f0d49e3?mode=deep",
+    "timestamp": "2026-02-19 02:15:15.688190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [Null Check] At line 85, if ToAddress is null, validation fails, but are there other critical proposal fields that should be validated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7a4f5a7-26e5-457b-adbc-b8ecd61f9876?mode=deep",
+    "timestamp": "2026-02-19 02:15:38.401919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [String Validation] At line 85, IsNullOrWhiteSpace checks ContractMethodName, but does it prevent method name injection or invalid method signatures? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f70cf0a-785f-4583-b8df-ccb7b148a94c?mode=deep",
+    "timestamp": "2026-02-19 02:15:52.690681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [URL Validation] At line 86, ValidateDescriptionUrlScheme is called—can an attacker bypass validation with malformed URLs that pass Uri.TryCreate but are malicious? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08c3401b-3ced-43f2-bb94-feacebdcbe62?mode=deep",
+    "timestamp": "2026-02-19 02:16:17.019069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [Time Validation] At line 89, does Context.CurrentBlockTime < proposal.ExpiredTime handle block timestamp manipulation attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f38e611-015c-4c29-82d3-6743f678e3df?mode=deep",
+    "timestamp": "2026-02-19 02:16:43.588288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [Null Reference] At line 89, if proposal.ExpiredTime is null, does line 89 throw exception despite null check at line 89? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d87d508c-4734-4224-9abd-d75b99e3f32a?mode=deep",
+    "timestamp": "2026-02-19 02:17:09.383207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [Time Boundary] Can ExpiredTime be set to far future (e.g., DateTime.MaxValue) causing proposals to never expire and DOS governance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ff08565-71ce-4843-9fa7-e636bc622949?mode=deep",
+    "timestamp": "2026-02-19 02:17:36.050834",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [Missing Validation] Does the function verify that proposal.Params is valid and won't cause execution issues when the proposal is released? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8466b328-402e-4ef5-8837-44baeb373543?mode=deep",
+    "timestamp": "2026-02-19 02:18:03.475434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(ProposalInfo)] [Missing Validation] Are proposal.OrganizationAddress, proposal.ProposalId, or proposal.Proposer validated in this function? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e88159e-e399-4aca-b748-622d98d90f55?mode=deep",
+    "timestamp": "2026-02-19 02:18:31.237037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Validation Bypass] At line 94, if uriString is empty string, function returns true at line 95—can this allow proposals with invalid description URLs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b399880e-25e4-4f90-bf34-98f7db31c15a?mode=deep",
+    "timestamp": "2026-02-19 02:18:59.565668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [URL Parsing] At lines 96-97, Uri.TryCreate with UriKind.Absolute—can attackers use file:// or other schemes that pass TryCreate but aren't http/https? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1418893-a098-423a-9864-f6dabda3a3aa?mode=deep",
+    "timestamp": "2026-02-19 02:19:27.406618",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [SSRF Risk] At line 97, allowing http (not just https) could enable SSRF attacks if URLs are later fetched—is http necessary? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2feb4993-0530-41d6-baaf-c945d86d556b?mode=deep",
+    "timestamp": "2026-02-19 02:19:54.765534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Exception Handling] Does Uri.TryCreate at line 96 handle all malformed URL edge cases without throwing exceptions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_057acb82-00dc-42b7-9132-59ce68da0ecd?mode=deep",
+    "timestamp": "2026-02-19 02:20:22.544383",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [URL Length] Does this function validate URL length before Uri.TryCreate to prevent extremely long URLs from causing memory issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99d21f6c-3cf3-4347-996a-1610ce4c9432?mode=deep",
+    "timestamp": "2026-02-19 02:20:50.981701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Null String] At line 94, if uriString is null, IsNullOrEmpty returns true and function returns true at line 95—should null be explicitly rejected? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3bd99af-fe31-44fb-ad9f-07849ad98f8c?mode=deep",
+    "timestamp": "2026-02-19 02:21:19.257043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GetValidProposal()] [Null Check Order] At line 103, if State.Proposals[proposalId] is null, assertion fails at line 104, but should proposalId itself be validated first? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_785e4d45-1663-4bde-8b17-3de1b400dd1f?mode=deep",
+    "timestamp": "2026-02-19 02:21:48.606731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GetValidProposal()] [TOCTOU] Between line 103 and line 105, can proposal state change making Validate() result inconsistent with actual stored proposal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47c3c633-0891-457e-8c2f-6956ca879f5b?mode=deep",
+    "timestamp": "2026-02-19 02:22:18.297584",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GetValidProposal()] [Double Validation] If proposal passed Validate() during creation, does calling Validate() again at line 105 catch state mutations, or is it redundant? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cdeccb1-f55c-4fe5-8c5d-a74df8db79a0?mode=deep",
+    "timestamp": "2026-02-19 02:22:46.085508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GetValidProposal()] [Expiry Check] Does Validate() at line 105 check proposal expiration—can expired proposals still be retrieved and appear valid? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2a0f843-c2d0-4d5f-b04d-94aa5acb19a2?mode=deep",
+    "timestamp": "2026-02-19 02:23:12.597643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GetValidProposal()] [State Consistency] Can proposal be deleted from State.Proposals between line 103 and line 106 return, causing null reference? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8c2ac6a-28ea-49e2-8dac-01ce554bba9c?mode=deep",
+    "timestamp": "2026-02-19 02:23:40.340293",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Hash Collision] At line 112, does HashHelper.ComputeFrom(createOrganizationInput) prevent collision attacks where different inputs produce same hash? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5bb52646-f946-4277-9f2b-909d416edc56?mode=deep",
+    "timestamp": "2026-02-19 02:24:08.682026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Input Validation] Does the function validate that createOrganizationInput is not null before computing hash at line 112? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_817ee852-24b6-49a3-8a80-2b4a038241d9?mode=deep",
+    "timestamp": "2026-02-19 02:24:35.895590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Virtual Hash] At line 116, does CalculateVirtualHash handle null creationToken correctly to prevent address prediction attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_597ebd30-ec55-4686-8460-13784988c4c4?mode=deep",
+    "timestamp": "2026-02-19 02:25:03.561568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Address Collision] Can two different createOrganizationInput values produce the same organizationAddress at lines 114-116? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86b49789-9818-496d-841c-e2cf89bbb32f?mode=deep",
+    "timestamp": "2026-02-19 02:25:31.148565",
+    "report_generated": false
+  }
+]
