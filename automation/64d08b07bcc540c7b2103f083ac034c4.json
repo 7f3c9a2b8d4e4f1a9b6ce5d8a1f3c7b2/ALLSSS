@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Authorization Bypass] Can an unauthorized caller invoke GetConsensusCommand() with arbitrary pubkey parameter to obtain consensus commands for other miners, potentially enabling impersonation attacks where attacker learns mining schedules of legitimate miners? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a2d57af-9170-4f0f-af44-95fbaa0b705e?mode=deep",
+    "timestamp": "2026-02-19 06:20:38.344021",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Authorization Bypass] If GetConsensusCommand() lacks caller verification, can a malicious actor call it with pubkey of a legitimate miner to extract their consensus command and mining time, then front-run their block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75778515-edc5-4a4c-9391-641374715d3b?mode=deep",
+    "timestamp": "2026-02-19 06:21:00.523226",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Privilege Escalation] Does GetConsensusCommand() verify that the caller's address matches the pubkey parameter, or can any address query consensus commands for any miner, leaking sensitive mining schedule information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6e7d948-fff7-4b48-acc6-620ba01a471e?mode=deep",
+    "timestamp": "2026-02-19 06:21:23.699447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Logic Flaw] Can an attacker bypass SolitaryMinerDetection() check at line 23 by manipulating currentRound.RoundNumber to be <= 3, allowing continuous solo mining even when other miners are present? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a7b203e-8ac8-4c49-900f-9df74e185f85?mode=deep",
+    "timestamp": "2026-02-19 06:21:46.871737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [DoS Attack] If SolitaryMinerDetection() returns true at line 23, InvalidConsensusCommand is returned; can an attacker force this condition for all honest miners by manipulating GetMinedMiners() to return empty lists, halting consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8a6117a-fc8e-4e73-9f62-6ed7b0f9405c?mode=deep",
+    "timestamp": "2026-02-19 06:22:10.846581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [State Manipulation] Can an attacker manipulate currentRound.RealTimeMinersInformation to artificially inflate miner count above 2 at line 70 check but keep actual active miners at 1, bypassing solitary detection while maintaining monopoly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9b59d2b-1f8a-4579-95b9-a9054af966c4?mode=deep",
+    "timestamp": "2026-02-19 06:22:35.608613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Logic Error] In switch statement at line 32, if behaviour is UpdateValue but currentRound.RoundNumber == 1 at line 28, FirstRoundCommandStrategy is used; can this create inconsistency where UpdateValue behaviour gets first-round treatment inappropriately? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3bc3242-8c92-4e60-9149-2dec259ae318?mode=deep",
+    "timestamp": "2026-02-19 06:23:01.941936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Missing Validation] At line 34 case UpdateValue, TryToGetPreviousRoundInformation() is called; if it fails but no error is thrown, can this cause NormalBlockCommandStrategy to receive null/invalid previousRound.RoundId at line 37, corrupting consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ac23dfc-19d0-4afe-b6f2-9c2c132c5e4f?mode=deep",
+    "timestamp": "2026-02-19 06:23:32.125831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [State Inconsistency] At lines 39-43, NextRound and NextTerm behaviours use same TerminateRoundCommandStrategy; can an attacker force NextTerm when only NextRound is appropriate, prematurely ending term and disrupting miner rotation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0706c6d8-01ba-4fe1-81fe-64eb4a74434c?mode=deep",
+    "timestamp": "2026-02-19 06:24:03.780739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Logic Bypass] Default case at line 54 returns InvalidConsensusCommand; can an attacker inject unexpected AElfConsensusBehaviour enum value not covered by switch cases to force mining halt for targeted miners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b12ae99c-f644-4318-aa8f-ce2092cb8969?mode=deep",
+    "timestamp": "2026-02-19 06:24:36.697763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Race Condition] Between line 28 check for RoundNumber == 1 and line 29 FirstRoundCommandStrategy instantiation, if round transitions occur, can this cause first-round strategy to execute on non-first round, breaking consensus assumptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5889e9c9-c50d-4af4-957f-6463de0a9707?mode=deep",
+    "timestamp": "2026-02-19 06:25:10.472050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Null Pointer] At line 36, if currentRound is null or corrupted, can NormalBlockCommandStrategy constructor receive invalid parameters causing crash or undefined behavior in subsequent GetConsensusCommand() call? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f14fe2fa-6ffe-4eda-a232-ecbe0456bb34?mode=deep",
+    "timestamp": "2026-02-19 06:25:43.377746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Invalid State] At line 42, if currentRound.RoundId is 0 or uninitialized when TerminateRoundCommandStrategy is created, can this produce invalid consensus command that corrupts round transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_277fbd0e-e43f-46d9-8f3a-cb39c7537bb3?mode=deep",
+    "timestamp": "2026-02-19 06:26:15.320511",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Resource Exhaustion] At line 50, GetMaximumBlocksCount() is called for TinyBlock strategy; if this returns extremely large value, can it enable DoS where miner floods network with tiny blocks within single time slot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0be690d-c4fa-4661-9183-a9cc717514f0?mode=deep",
+    "timestamp": "2026-02-19 06:26:48.592375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Parameter Injection] Can attacker provide malicious currentBlockTime timestamp at line 21 that causes strategies at lines 29, 36, 42, 49 to calculate absurdly far future or past mining times, disrupting consensus schedule? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4b4afc3-d7cd-4c78-9b90-794b95708b0c?mode=deep",
+    "timestamp": "2026-02-19 06:27:21.833087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Logic Error] At line 28, condition checks RoundNumber == 1 AND behaviour == UpdateValue; can an attacker trigger this with non-first round that has manipulated RoundNumber to 1, causing incorrect FirstRoundCommandStrategy execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49a3e2c2-6b58-4ddd-83f5-533cf0f81cfd?mode=deep",
+    "timestamp": "2026-02-19 06:27:56.868279",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Bypass] If currentRound.RoundNumber is 1 but behaviour is NOT UpdateValue at line 28, control flows to switch at line 32; can this allow invalid behaviors like TinyBlock in first round, violating first-round invariants? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_695703c4-1276-4e53-af4f-45540a8d6023?mode=deep",
+    "timestamp": "2026-02-19 06:28:33.231979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [State Corruption] At lines 29-30, FirstRoundCommandStrategy receives behaviour parameter; if behaviour is UpdateValue but round was just transitioned, can stale behaviour parameter corrupt first round initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_089869dc-af6e-45a5-99f9-069e15885b2e?mode=deep",
+    "timestamp": "2026-02-19 06:29:03.722325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [DoS Vector] At lines 46-52, TinyBlock case calls GetMaximumBlocksCount(); if blockchain status is manipulated to return 1 when network is healthy, can this artificially limit throughput causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f3eb613-3ee8-4a83-aa00-d6e19969ebab?mode=deep",
+    "timestamp": "2026-02-19 06:29:38.095939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Logic Flaw] TinyBlockCommandStrategy at line 49 uses GetMaximumBlocksCount() result; if this value changes between consecutive calls within same time slot, can it cause inconsistent tiny block limits breaking consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f95e21b-1086-4d35-81d9-2d5338b4a532?mode=deep",
+    "timestamp": "2026-02-19 06:30:12.577378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Missing Check] TinyBlock case at line 46 doesn't verify if miner is in current round's miner list before creating strategy; can unauthorized miner produce tiny blocks by directly calling with TinyBlock behaviour? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d4e4593-9b16-4635-89e6-be58d12ad71c?mode=deep",
+    "timestamp": "2026-02-19 06:30:45.967377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Timestamp Manipulation] Parameter currentBlockTime at line 21 is nullable with default null; if caller provides timestamp far in future, can strategies at lines 29, 36, 42, 49 calculate invalid ArrangedMiningTime allowing time-travel attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2561951a-a904-4616-bd10-a921c2fbe84a?mode=deep",
+    "timestamp": "2026-02-19 06:31:20.607419",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Null Handling] If currentBlockTime is null when passed to strategies, do they handle it correctly or can null propagation cause exceptions or use of uninitialized timestamps in mining calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e016d50-6eae-43c0-aacb-a932d48288d3?mode=deep",
+    "timestamp": "2026-02-19 06:31:55.757082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Timestamp Validation] No validation exists for currentBlockTime at line 21; can attacker provide timestamp from year 1970 or 2100+ to cause integer overflow in mining interval calculations within strategies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d5d59f6-97a2-4add-890d-5f13ddf84592?mode=deep",
+    "timestamp": "2026-02-19 06:32:26.915773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Replay Attack] If currentBlockTime is reused across multiple GetConsensusCommand calls, can it cause identical consensus commands to be generated, enabling replay of mining operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0a8ac70-775a-4627-b210-bb334cea5677?mode=deep",
+    "timestamp": "2026-02-19 06:32:55.874448",
+    "report_generated": false
+  }
+]
