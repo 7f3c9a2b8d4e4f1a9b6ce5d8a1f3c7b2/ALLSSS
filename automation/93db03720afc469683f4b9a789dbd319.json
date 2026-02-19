@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [State Desync Risk] Since GetMethodFee() returns hardcoded values instead of reading State.TransactionFees[input.Value], can this cause desynchronization where governance believes fees are updated but runtime still uses hardcoded values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ff209dc-4e91-4217-8e83-153da1bbd525?mode=deep",
+    "timestamp": "2026-02-19 08:44:21.030586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Missing IsSizeFeeFree Flag] Does GetMethodFee() fail to set the IsSizeFeeFree flag for any methods, meaning all NFT operations including view methods might incorrectly charge transaction size fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ece6d55b-3936-4567-8b39-dae22a70c4fb?mode=deep",
+    "timestamp": "2026-02-19 08:44:43.263605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Null Input Handling] Does GetMethodFee() fail to validate that input.Value is non-null before the string comparison on line 22, potentially causing NullReferenceException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8c7cf2e-4530-4063-8ccc-bff7942e0462?mode=deep",
+    "timestamp": "2026-02-19 08:45:05.875292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Symbol List Missing] Does GetMethodFee() only return a single MethodFee with one Symbol, while other contracts support multiple fee symbols (e.g., pay in ELF or other tokens), limiting payment flexibility? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfc07a53-baf9-43e7-8908-b04d924a2277?mode=deep",
+    "timestamp": "2026-02-19 08:45:28.564494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Method Name Typo Risk] If the Create method is renamed or has different casing in the actual contract implementation, would GetMethodFee() fail to return fees since it uses nameof(Create) which resolves at compile time? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81ae3aab-b63c-49b8-9e2f-a49f41905424?mode=deep",
+    "timestamp": "2026-02-19 08:45:52.541532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Empty Controller Return] Does GetMethodFeeController() return an empty AuthorityInfo with null OwnerAddress and ContractAddress, meaning callers receive invalid controller data that cannot be used for authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20a8703c-d445-4213-8385-74a40d7cc4c4?mode=deep",
+    "timestamp": "2026-02-19 08:46:17.012286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Missing RequiredMethodFeeControllerSet] Does the absence of RequiredMethodFeeControllerSet() mean the controller is never initialized to Parliament's default organization, leaving the contract without proper governance oversight? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_384fce8e-8c09-46e8-9f6e-2bed34351ed0?mode=deep",
+    "timestamp": "2026-02-19 08:46:42.852398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [State Variable Missing] Since there's no State.MethodFeeController in NFTContractState.cs and GetMethodFeeController() returns empty, does this mean no actual controller exists and the contract is ungovernable via standard ACS1 mechanisms? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4774b79f-6bd2-49c3-bfe7-a4fdae7913a0?mode=deep",
+    "timestamp": "2026-02-19 08:47:10.079817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Integration Failure Risk] Can external governance tools that call GetMethodFeeController() receive empty AuthorityInfo and fail to display proper controller information, breaking governance UIs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_498c7814-7c34-4ebf-9100-df1743685a1b?mode=deep",
+    "timestamp": "2026-02-19 08:47:36.755183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Parliament Integration Broken] Does the lack of State.ParliamentContract.GetDefaultOrganizationAddress.Call() mean the NFT contract is never properly integrated with Parliament governance system? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9802c9b4-0ef6-4e17-901d-ba4c9ce59c5c?mode=deep",
+    "timestamp": "2026-02-19 08:48:03.575386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Authorization Query Failure] Can authorization contracts trying to validate if an address controls NFT method fees fail because GetMethodFeeController() returns empty data rather than actual controller address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0be8760d-d792-49ab-9741-1c76cf2ed5d0?mode=deep",
+    "timestamp": "2026-02-19 08:48:30.599190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Default Value Confusion] Does returning 'new AuthorityInfo()' instead of null create ambiguity where callers can't distinguish between 'no controller set' and 'controller is Address.Zero'? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc7ef6b5-0fd6-493c-aa51-eb0bcc8a4e51?mode=deep",
+    "timestamp": "2026-02-19 08:49:01.074996",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Audit Trail Gap] Does the empty return mean there's no way to audit who has authority over NFT method fees, creating accountability gaps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bdda0f87-f2b5-4c38-98dd-16f240217da7?mode=deep",
+    "timestamp": "2026-02-19 08:49:32.441904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee(), GetMethodFee()] [State Inconsistency] Can SetMethodFee() be called successfully (returns Empty without error) while GetMethodFee() continues returning hardcoded values, creating false perception that fee updates work? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_970c90eb-66b2-4421-85de-52959bf6c2d9?mode=deep",
+    "timestamp": "2026-02-19 08:50:01.798580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController(), GetMethodFeeController()] [Controller Desync] Can ChangeMethodFeeController() accept valid input and return success while GetMethodFeeController() still returns empty, causing governance systems to believe controller was updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c47441f4-f59b-4532-93fb-a39df8ec015e?mode=deep",
+    "timestamp": "2026-02-19 08:50:33.565151",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All ACS1 Methods] [Missing State Variables] Since NFTContractState.cs has no State.MethodFeeController or State.TransactionFees mappings, are all ACS1 methods fundamentally non-functional stub implementations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35fb2682-ed0d-408a-b631-8cc873ad4284?mode=deep",
+    "timestamp": "2026-02-19 08:51:06.284839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All ACS1 Methods] [ACS1 Compliance Violation] Do the stub implementations violate ACS1 standard expectations where SetMethodFee should 'override all fees of the method' and ChangeMethodFeeController should 'change the method fee controller'? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02d88f48-5d7a-4a4e-b916-6030f7a77710?mode=deep",
+    "timestamp": "2026-02-19 08:51:38.540115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee(), GetMethodFee()] [Race Condition Potential] If SetMethodFee() is ever properly implemented with state writes, could the lack of ReentrancyGuard allow an attacker to call GetMethodFee() mid-update to observe intermediate states? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa44d2d5-5211-4229-8453-f72907eb60b6?mode=deep",
+    "timestamp": "2026-02-19 08:52:09.732868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fixed Fee Economic Risk] Does the hardcoded 100 ELF Create fee remain constant regardless of ELF price volatility, potentially making NFT creation too expensive during price appreciation or too cheap during depreciation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e415761-0601-4300-b1a9-e3a5317483f2?mode=deep",
+    "timestamp": "2026-02-19 08:52:42.064785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fee Collection Bypass] If other NFT methods (Mint, Transfer, Burn, etc.) return empty MethodFees, do they bypass fee collection entirely, allowing free operations that should incur costs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_057665f3-cbc4-495d-b5c1-ad0ebb5e371b?mode=deep",
+    "timestamp": "2026-02-19 08:53:15.741265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Treasury Revenue Loss] Does the non-functional SetMethodFee() prevent governance from adjusting fees to optimize Treasury revenue during high NFT usage periods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7cc8534-3466-43d7-a9c1-7c846183eada?mode=deep",
+    "timestamp": "2026-02-19 08:53:48.602635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Spam Prevention Failure] If minting/transfer operations have no fees (empty MethodFees), can attackers spam the NFT contract with zero-cost operations causing state bloat? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e097abd5-2947-4caa-9d32-9e69a53cfee2?mode=deep",
+    "timestamp": "2026-02-19 08:54:22.137582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Method Fee Provider Failure] Does the entire ACS1 implementation being non-functional mean the NFT contract cannot participate in the method fee provider system, breaking integration with Treasury/Profit contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aea8a9d4-e7ff-444f-bab4-135234e9b7ed?mode=deep",
+    "timestamp": "2026-02-19 08:54:51.082991",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Governance DOS via Stub] Can malicious proposals calling SetMethodFee() pass through Parliament and execute successfully (return Empty) but never take effect, wasting governance resources on ineffective proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f927646-dfe8-40dc-ba52-d19b6aabbf9d?mode=deep",
+    "timestamp": "2026-02-19 08:55:23.067930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [String Comparison DOS] Can an attacker repeatedly call GetMethodFee() with long input.Value strings causing string comparison overhead on line 22, though this is likely negligible? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4760be8-2012-4d8e-9886-439c8b2f6002?mode=deep",
+    "timestamp": "2026-02-19 08:55:51.947903",
+    "report_generated": false
+  }
+]
