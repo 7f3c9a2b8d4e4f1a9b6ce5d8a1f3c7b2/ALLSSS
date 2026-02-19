@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Container State Corruption] Can the ParliamentContractContainer.ParliamentContractReferenceState be corrupted through memory manipulation or serialization attacks, causing governance bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1bc6f683-faf9-49fd-bd2d-7eed19a6559d?mode=deep",
+    "timestamp": "2026-02-19 10:01:37.504090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Container State Corruption] Can TokenContractContainer.TokenContractReferenceState be manipulated to bypass fee requirements or cause incorrect token operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b42e5ef9-e1d0-4e69-9237-db59f80f07fc?mode=deep",
+    "timestamp": "2026-02-19 10:01:59.923033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Reference Overwrite] Can an attacker exploit race conditions during contract initialization to overwrite ParliamentContract reference with a malicious address before it's properly set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1a6c20d-ef6c-4421-ab4e-dc8504734f99?mode=deep",
+    "timestamp": "2026-02-19 10:02:22.348917",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Reference Overwrite] Can concurrent initialization calls cause TokenContract reference to be set multiple times, potentially to different addresses, creating state inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3bf8385-cd5a-417d-8dbc-2853dae52f0d?mode=deep",
+    "timestamp": "2026-02-19 10:02:45.732726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Deserialization Attack] Can an attacker manipulate serialized state data to inject a malicious contract address into ParliamentContract during state restoration or contract upgrade? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc6f72c6-dfe7-4c12-b446-fe1d5c0ca591?mode=deep",
+    "timestamp": "2026-02-19 10:03:10.108611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Deserialization Attack] Can malicious serialized state data override TokenContract reference with an attacker-controlled contract address during state migration? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09502b21-2bc6-4f37-873d-f08fccb94f4f?mode=deep",
+    "timestamp": "2026-02-19 10:03:35.635326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Partial Class: ConfigurationState] [State Persistence Failure] If partial class state isn't properly persisted across transactions, can ParliamentContract and TokenContract references be lost, requiring reinitialization and potentially allowing injection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c22e3c5-1c50-4b8b-bac0-aa6db8aca80b?mode=deep",
+    "timestamp": "2026-02-19 10:04:01.556934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: ParliamentContract] [Authorization Bypass via Reference Swap] Can an attacker swap ParliamentContract reference mid-transaction to bypass authorization checks in ChangeConfigurationController or SetConfiguration operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a87641f-328c-42ca-9e7c-b4ece19cde2a?mode=deep",
+    "timestamp": "2026-02-19 10:04:27.675271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationReferenceState.cs] [Property: TokenContract] [Fee Bypass via Reference Swap] Can an attacker temporarily replace TokenContract reference with a contract that always returns success for fee operations, bypassing actual fee payment? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81208c39-b2c1-4c73-8bd4-b3d7eec668d2?mode=deep",
+    "timestamp": "2026-02-19 10:04:55.182739",
+    "report_generated": false
+  }
+]
