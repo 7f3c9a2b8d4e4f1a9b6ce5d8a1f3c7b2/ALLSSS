@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Logic Error] When checking abstention_votes / total_votes <= 1000/10000, if consuming code doesn't validate that abstention checking occurs BEFORE approval checking, can malicious proposals with 11% abstention still pass if they achieve 67% approval from remaining voters, bypassing the abstention safety mechanism? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d41b95a-9d1c-4199-b7e8-89db49ec6e09?mode=deep",
+    "timestamp": "2026-02-19 11:42:44.289898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Integer Arithmetic] If abstention percentage calculation uses (abstention_count * 10000) / total_votes <= 1000, can integer truncation cause proposals with exactly 10.05% abstention to incorrectly pass the <= 1000 check, allowing over-threshold abstention rates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c7c6cf3-3938-4271-9fbf-4982f65c53d1?mode=deep",
+    "timestamp": "2026-02-19 11:43:06.541903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Invariant Contradiction] Since MaximalAbstentionThreshold is 1000 (10%) and MinimalApprovalThreshold is 6667 (66.67%), if consuming code doesn't ensure abstention + approval + rejection = 100%, can proposals pass with 67% approval, 10% abstention, and only 23% rejection, potentially violating quorum requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18120a2d-6827-4cdc-a03a-8080fe7e1663?mode=deep",
+    "timestamp": "2026-02-19 11:43:29.445333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Strategic Abstention] Can voters collude to keep abstention at exactly 10% or below while having most participants abstain from voting, enabling small cabals to pass proposals with 67% approval of a tiny active voter set (e.g., 67% of 30% = 20% of total), violating participation requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dee9a810-5092-41ab-a6d1-6db6f4a35a5f?mode=deep",
+    "timestamp": "2026-02-19 11:43:52.654080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Comparison Bug] If consuming code compares abstention using strict equality (abstention_rate == 1000) instead of greater-than (abstention_rate > 1000), can proposals with exactly 10% abstention be handled incorrectly, either always passing or always failing regardless of other vote distributions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_104ec270-3c49-4438-88f2-2e3a9f86c67b?mode=deep",
+    "timestamp": "2026-02-19 11:44:16.810598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Zero Total Votes] When calculating abstention percentage as abstention_votes / total_votes against MaximalAbstentionThreshold, if total_votes is zero or very small, can the threshold check produce undefined behavior or always pass, allowing proposals with 100% abstention to proceed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e27d7460-ae8a-443f-83c4-c77ed1c994da?mode=deep",
+    "timestamp": "2026-02-19 11:44:42.733368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalAbstentionThreshold] [Threshold Ordering] If proposal validation checks abstention threshold (10%) after checking approval threshold (66.67%), can proposals that should fail due to high abstention incorrectly pass because the approval check succeeds first, violating the invariant that safety checks should fail-fast? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22e3168c-a19c-4f39-b7b0-03d8742cfc6d?mode=deep",
+    "timestamp": "2026-02-19 11:45:08.337223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Threshold Logic Flaw] With MaximalRejectionThreshold at 1000 (10%), if consuming code allows proposals to pass when rejection_rate <= 10% but doesn't coordinate with MinimalApprovalThreshold (66.67%), can proposals pass with 67% approval, 10% rejection, and 23% abstention, potentially violating safety requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_163c6715-1aa9-4795-ae57-7d846078cfc8?mode=deep",
+    "timestamp": "2026-02-19 11:45:36.810434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Semantic Ambiguity] Does MaximalRejectionThreshold = 1000 mean 'proposals with >10% rejection must fail' or 'proposals can have up to 10% rejection and still pass'? If consuming contracts interpret this inconsistently across different proposal types, can attackers exploit interpretation differences to pass malicious proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34ee8954-53c0-4fa9-9e7c-048f656f0b13?mode=deep",
+    "timestamp": "2026-02-19 11:46:07.108294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Combined Threshold Attack] If consuming code independently checks MaximalRejectionThreshold (10%) and MaximalAbstentionThreshold (10%) without ensuring rejection + abstention + approval = 100%, can proposals pass with 67% approval, 10% rejection, 10% abstention, and 13% unaccounted votes, enabling vote count manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da3390dd-d340-4637-a27d-206b8f5a9786?mode=deep",
+    "timestamp": "2026-02-19 11:46:38.051357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Integer Precision] When calculating rejection_percentage as (rejection_votes * 10000) / total_votes against MaximalRejectionThreshold (1000), can proposals with exactly 10.04% rejection incorrectly pass due to integer truncation, violating the rejection threshold constraint? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ec5a51a-b2a0-4660-8bef-151c5e1a2927?mode=deep",
+    "timestamp": "2026-02-19 11:47:09.470221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Vote Manipulation] Since MaximalRejectionThreshold is only 10%, can attackers keep rejection votes just under threshold (e.g., 9.99%) while having 90% of voters abstain or not participate, enabling proposals to pass with minimal actual support while technically satisfying rejection threshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84c78c89-d6f9-48c0-a474-1677886fa8ae?mode=deep",
+    "timestamp": "2026-02-19 11:47:37.809891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Threshold Bypass] If rejection threshold validation occurs after proposal expiration checking, can attackers time proposal submission so that rejection votes arrive after expiration, bypassing the 1000 (10%) MaximalRejectionThreshold check entirely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d9aca7c-788f-4e63-98bb-6eec851e2a47?mode=deep",
+    "timestamp": "2026-02-19 11:48:10.376366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Comparison Operator] If consuming code uses wrong comparison (rejection_rate >= 1000 instead of > 1000), can proposals with exactly 10% rejection be incorrectly rejected when they should pass, or vice versa, creating exploitable edge cases at the threshold boundary? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4db89777-d025-4cee-ba10-a5b049209530?mode=deep",
+    "timestamp": "2026-02-19 11:48:38.011217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MaximalRejectionThreshold] [Low Participation] With MaximalRejectionThreshold at 10%, if total participation is 10 voters and 1 voter rejects (10%), does the system correctly reject the proposal, or can attackers exploit low-participation scenarios where absolute vote counts (1 rejection) seem negligible despite meeting percentage threshold? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac1a7677-d6ff-46d1-a9fe-4fef24ea06b6?mode=deep",
+    "timestamp": "2026-02-19 11:49:11.337571",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Quorum Bypass] If consuming code checks MinimalVoteThresholdThreshold (8000 = 80%) for voter participation but allows proposals to pass when only 80% of eligible voters participate, can attackers manipulate quorum by preventing 20% of voters from participating, enabling minority control with 67% approval of 80% participation (53.6% absolute)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05b14136-3e78-409b-a23d-a6a2131f2f13?mode=deep",
+    "timestamp": "2026-02-19 11:49:44.689190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Naming Confusion] The constant is named 'MinimalVoteThresholdThreshold' (threshold appears twice). If consuming code confuses this with vote approval threshold instead of participation threshold, can this cause validation logic to check wrong metric, enabling proposals to pass without meeting participation requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cc91864-8671-4aa9-8bad-12f340772261?mode=deep",
+    "timestamp": "2026-02-19 11:50:18.605341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Integer Overflow] When calculating participation as (total_votes * 10000) / eligible_voters >= 8000, if total_votes is extremely large, can multiplication overflow cause the comparison to fail incorrectly, either blocking legitimate proposals or allowing proposals with insufficient participation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e0399e9-6a60-418f-bd6a-9abce2e03293?mode=deep",
+    "timestamp": "2026-02-19 11:50:48.803395",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Eligible Voter Manipulation] If MinimalVoteThresholdThreshold requires 80% of 'eligible voters', but consuming code allows dynamic changes to eligible voter set during proposal voting, can attackers manipulate the denominator to reduce required participation, passing proposals with fewer actual votes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec83b376-de5b-4ca9-8833-087e564a3491?mode=deep",
+    "timestamp": "2026-02-19 11:51:25.162317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Threshold Conflict] With MinimalVoteThresholdThreshold at 8000 (80% participation) and MinimalApprovalThreshold at 6667 (66.67% approval), does the system correctly handle the case where 80% participate but only 66.67% of participants approve, requiring 53.36% absolute approval? If not, can proposals pass with minority support? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_797e6602-0b38-4fbd-ac46-ede1ce0d74e3?mode=deep",
+    "timestamp": "2026-02-19 11:52:00.836194",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Denominator Attack] When checking participation_rate = votes_cast / total_eligible >= 0.8, if consuming code doesn't validate total_eligible > 0 or handles total_eligible = 1 specially, can attackers create organizations with 1 eligible voter where 1 vote = 100% participation, bypassing participation requirements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e52452f3-6f0e-42c5-b9b5-0860583fa5da?mode=deep",
+    "timestamp": "2026-02-19 11:52:34.185104",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Vote Double-Counting] If consuming code counts abstentions toward MinimalVoteThresholdThreshold participation (8000) but doesn't count them toward MinimalApprovalThreshold (6667), can attackers flood votes with abstentions to meet participation while achieving approval through tiny active voter set? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b670c76-062e-449f-acb6-c8bda39e3fde?mode=deep",
+    "timestamp": "2026-02-19 11:53:08.093522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constant: MinimalVoteThresholdThreshold] [Timing Attack] If MinimalVoteThresholdThreshold is checked at proposal expiration time but vote participation can drop during the voting period (e.g., votes being revoked), can proposals that initially met 80% participation fall below threshold and still pass due to stale validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_951064bf-83ee-4609-8a5a-3e6b0cc8300e?mode=deep",
+    "timestamp": "2026-02-19 11:53:40.791422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: MinimalApprovalThreshold + MaximalAbstentionThreshold + MaximalRejectionThreshold] [Arithmetic Inconsistency] Do the thresholds (approval 6667, abstention 1000, rejection 1000) mathematically enforce approval + abstention + rejection <= 10000? If consuming code allows 66.67% approval + 10% abstention + 10% rejection (86.67% > 100%), can vote count manipulation enable impossible vote distributions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08c5b515-2627-4a53-a276-ea62e251e5b9?mode=deep",
+    "timestamp": "2026-02-19 11:54:14.443351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero_Constants.cs] [Constants: ContractProposalExpirationTimePeriod vs DefaultCodeCheckProposalExpirationTimePeriod] [Time Window Attack] With code check proposals expiring in 900 seconds but contract proposals in 259200 seconds, can attackers submit a malicious code check proposal that references a pending contract proposal, exploiting the 288x time difference to deploy backdoored code before defenders can reject the related contract proposal? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96b4f3ef-d533-4a63-8cf2-7428de978b7c?mode=deep",
+    "timestamp": "2026-02-19 11:54:47.037374",
+    "report_generated": false
+  }
+]
