@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Modifier: static] [Thread Safety] Could static constant access cause race conditions in concurrent voting operations, or are const values guaranteed thread-safe? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39f9c8fc-968b-4cd9-8850-41bce9a25b04?mode=deep",
+    "timestamp": "2026-02-19 10:19:54.594838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Usage: AddOption] [TOCTOU] Is there time-of-check-time-of-use gap between checking 'votingItem.Options.Count < MaximumOptionsCount' and actually adding the option? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb226e3c-9c81-4515-9620-8bcdbf564f5a?mode=deep",
+    "timestamp": "2026-02-19 10:20:16.877958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Usage: AddOptions] [Batch Validation] Does AddOptions validate each option length individually, or only check after batch insertion, allowing temporary OptionLengthLimit bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c20171c4-dc6f-4474-90fd-90e5be6f4585?mode=deep",
+    "timestamp": "2026-02-19 10:20:39.503333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Usage: Vote] [Runtime Check] Is OptionLengthLimit checked during Vote operation even for options already added, wasting gas on redundant validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56359ef1-0cb8-4ee7-a3dc-720004efa35a?mode=deep",
+    "timestamp": "2026-02-19 10:21:03.126758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Usage: RemoveOption] [Unnecessary Validation] Why does RemoveOption check OptionLengthLimit when removing existing options, potentially blocking removal of malformed data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1dc6c94-41a6-4418-b7c7-ae7a8de65ab0?mode=deep",
+    "timestamp": "2026-02-19 10:21:28.329494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Missing: MinimumOptionsCount] [Business Logic] Is there a minimum options count required for voting items, or can voting items be created with zero/one option, breaking voting integrity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b46b8a4-1943-494e-ac4c-7ffad50957d5?mode=deep",
+    "timestamp": "2026-02-19 10:21:53.375756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Missing: MinimumOptionLength] [Empty Options] Can empty strings or single-character options be added, potentially causing option collision or display issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_accd0d35-4e0d-4e0f-9979-b24b062cb9b9?mode=deep",
+    "timestamp": "2026-02-19 10:22:18.178557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Missing: DuplicateCheck] [Option Uniqueness] Is duplicate option prevention enforced before length check, or can near-identical 1024-byte options bypass deduplication? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd259c7e-6efe-45dd-b5a3-11690e56355a?mode=deep",
+    "timestamp": "2026-02-19 10:22:45.610672",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Type: int] [Negative Values] Could constants be compiled/interpreted as negative integers through type confusion, causing validation bypass? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_921ebe7a-2b51-4991-81ce-4127ac08d7db?mode=deep",
+    "timestamp": "2026-02-19 10:23:14.009227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Type: int vs long] [Overflow] If option counts are stored as long but MaximumOptionsCount is int, could integer overflow occur in comparison operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cdb91da-4750-4e85-ae0c-d9ce909caa4d?mode=deep",
+    "timestamp": "2026-02-19 10:23:41.178051",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Error Message] [Information Leak] Do error messages referencing VoteContractConstants.MaximumOptionsCount provide attackers exact validation thresholds for exploitation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1325d338-4e24-4199-8aef-3a3233e0d441?mode=deep",
+    "timestamp": "2026-02-19 10:24:11.045001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Error Message] [Inconsistency] Are error messages consistent in how they reference these constants, or could inconsistent messaging indicate validation gaps? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03f25053-d2bd-4e3d-936b-8f096296aad1?mode=deep",
+    "timestamp": "2026-02-19 10:24:42.209939",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Cross-Contract] [Election Contract] Does Election contract respect VoteContractConstants limits, or could it bypass limits through direct state manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46b1edcc-4ba8-4fb3-a49c-24c38395be18?mode=deep",
+    "timestamp": "2026-02-19 10:25:13.159360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Cross-Contract] [Governance] Can Parliament/Referendum/Association contracts create voting items exceeding these limits through privileged operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4835729-22b8-4fd0-a668-2f76ba485b98?mode=deep",
+    "timestamp": "2026-02-19 10:25:43.415445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Upgrade] [Backward Compatibility] If constants change in contract upgrade, do existing voting items with 64 options become invalid or grandfathered? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8eb5a7b5-be1b-4c33-8e89-7caec8381f38?mode=deep",
+    "timestamp": "2026-02-19 10:26:10.405199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Upgrade] [Migration] Could reducing MaximumOptionsCount in future versions brick existing voting items exceeding new limit? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a972fa4-6256-4ddf-81e6-aae9be7e2aaf?mode=deep",
+    "timestamp": "2026-02-19 10:26:40.143117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Economics] [Fee Structure] Are transaction fees proportional to option count/length, or can attackers exploit flat-fee model with maximum-size options? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3487cb1-eef3-4931-a19a-5845a89ab80e?mode=deep",
+    "timestamp": "2026-02-19 10:27:06.454375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Economics] [Storage Rent] If storage rent is implemented later, could 64×1024-byte voting items become economically unsustainable? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3e1ae0c-e1c0-42b3-b972-1a58c18c145c?mode=deep",
+    "timestamp": "2026-02-19 10:27:36.335282",
+    "report_generated": false
+  }
+]
