@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 130] [Sub Operation] profitDetail.EndPeriod.Sub(profitDetail.LastProfitPeriod) - if LastProfitPeriod > EndPeriod, does Sub handle underflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16a3db20-5147-4eea-b0fc-65f69e9893c1?mode=deep",
+    "timestamp": "2026-02-19 05:25:30.546329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 131] [AddProfitToDict Call] Can AddProfitToDict handle null or corrupted dictionaries? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94142004-cb58-4470-afbe-6efe192032e8?mode=deep",
+    "timestamp": "2026-02-19 05:25:52.608793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 132] [If Continue] if(i >= profitableDetailCount) continue - skips details beyond limit. Are users aware of this limitation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a3b45f6-4eb3-4e01-98e5-bc774c3d0387?mode=deep",
+    "timestamp": "2026-02-19 05:26:15.166948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 133] [ProfitAllPeriods Call] Second call with maxProfitReceivingPeriodCount limit. Can limits between line 130 and 133 calls cause calculation inconsistencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc75f1c7-7843-431e-9aee-18d149307737?mode=deep",
+    "timestamp": "2026-02-19 05:26:38.142417",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 134] [AddProfitToDict Call] Adding to claimableProfitsDict - can this overflow or have symbol conflicts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a63b787-ab2a-417a-a6ff-48f6f00bf93b?mode=deep",
+    "timestamp": "2026-02-19 05:27:01.962350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 139] [Dictionary Assignment] AllProfitsMap = { allProfitsDict } - is dictionary deep copied or referenced? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f48c888c-69b1-45cb-91cb-07173c1d6eec?mode=deep",
+    "timestamp": "2026-02-19 05:27:27.290472",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 140] [Dictionary Assignment] OneTimeClaimableProfitsMap = { claimableProfitsDict } - same question about copying. (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ce2ebd6-7b46-4551-a3e3-b4ee6ff158d9?mode=deep",
+    "timestamp": "2026-02-19 05:27:52.166745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 147] [ContainsKey Check] if (profitsDict.ContainsKey(kv.Key)) - can key be null or empty string? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5578cd5c-fe40-4da5-adb2-c4d8ea91f706?mode=deep",
+    "timestamp": "2026-02-19 05:47:31.814198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 148] [Add Operation] profitsDict[kv.Key].Add(kv.Value) - overflow check missing. (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbb2cc21-0507-4161-82e3-36ecc01f690d?mode=deep",
+    "timestamp": "2026-02-19 05:47:53.935670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 150] [Direct Assignment] profitsDict[kv.Key] = kv.Value - can kv.Value be negative? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_383a1c9f-94e6-46a8-aa32-070fba882a06?mode=deep",
+    "timestamp": "2026-02-19 05:48:16.252780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Line 157] [Value Property Access] State.MaximumProfitReceivingPeriodCount.Value - if not initialized, what's default? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a357c308-2617-4432-bf81-858df7d9f343?mode=deep",
+    "timestamp": "2026-02-19 05:48:39.511182",
+    "report_generated": false
+  }
+]
