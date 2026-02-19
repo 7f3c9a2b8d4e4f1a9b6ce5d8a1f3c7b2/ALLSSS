@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForTitle] [Design Flaw] Could the 255-character limit for proposal titles be insufficient for complex governance proposals requiring detailed naming, leading to ambiguous or misleading truncated titles that mask malicious intent? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83dec040-ef4b-46e6-b2a0-3663871f5db6?mode=deep",
+    "timestamp": "2026-02-19 01:44:34.359257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Design Flaw] Could the 10,200-character limit for proposal descriptions be insufficient for complex technical proposals requiring detailed specification, forcing proposers to use external URLs that could contain malicious or misleading information not subject to on-chain validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_361d8e65-71e0-41d0-85e9-3c79096189b4?mode=deep",
+    "timestamp": "2026-02-19 01:44:56.406938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Design Flaw] Could the 255-character limit for description URLs be insufficient for legitimate long URLs with query parameters or deep paths, forcing proposers to use URL shorteners that could mask malicious redirect chains? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11ada69f-50df-4af3-8355-2503d3237751?mode=deep",
+    "timestamp": "2026-02-19 01:45:19.097682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForTitle] [Resource Exhaustion] Could an attacker create thousands of proposals with exactly 255-character titles to maximize storage costs and bloat the blockchain state, causing economic DOS against the network? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0e5c868-7f50-43ba-a597-f1caefbcddc2?mode=deep",
+    "timestamp": "2026-02-19 01:45:42.632780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Resource Exhaustion] Could an attacker spam proposals with 10,200-character descriptions to rapidly consume blockchain storage, especially if proposal creation has low economic barriers, leading to state bloat and increased node synchronization time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa4f8137-8035-48a7-9c64-86592a4b069c?mode=deep",
+    "timestamp": "2026-02-19 01:46:06.633292",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constants: All] [Encoding Attack] Are these byte-length or character-length limits, and could multi-byte UTF-8 characters allow an attacker to exceed intended storage limits by using characters that take 3-4 bytes each while staying under the character count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8e36aff-e23e-4da3-8ebb-f650a4088ff6?mode=deep",
+    "timestamp": "2026-02-19 01:46:32.350660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Phishing Attack] Could the large 10,200-character description limit enable attackers to craft sophisticated phishing content with fake transaction details, misleading voters into approving malicious proposals disguised as legitimate governance actions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b217c2a7-0a80-4369-a20c-70ebd01c416d?mode=deep",
+    "timestamp": "2026-02-19 01:46:57.936217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Validation Bypass] Does the URL length validation prevent attackers from using data URIs (data:text/html,<script>...) that could contain malicious content within the 255-character limit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72c53dc2-db96-4047-8205-541be51d6fd8?mode=deep",
+    "timestamp": "2026-02-19 01:47:24.141827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constants: All] [Consistency Issue] Are these limits consistent with Parliament and Association governance contracts, and could inconsistency enable attacks where malicious proposals are created in one governance system but cannot be properly displayed or validated in cross-contract scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1d90d30-e1ed-40b3-b30c-789ff951237b?mode=deep",
+    "timestamp": "2026-02-19 01:47:54.598504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForTitle] [Information Disclosure] Could the 255-character title limit be exploited to create proposals with identical prefixes but different suffixes, causing UI truncation that hides the actual proposal intent from voters in list views? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_944edd89-8ddb-475d-a7f9-59f34ed9d266?mode=deep",
+    "timestamp": "2026-02-19 01:48:24.728527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Injection Attack] Could the description field accept special characters or control characters that, when combined with the 10,200-character limit, enable injection attacks in downstream systems that display or process proposal content? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4277c44e-6fb2-43d7-852f-459dbb9d2155?mode=deep",
+    "timestamp": "2026-02-19 01:48:51.403636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Redirect Attack] Could an attacker use the maximum 255-character URL to point to a legitimate domain initially, then change the redirect target post-proposal-creation to mask malicious intent from voters who reviewed the original URL? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6d9ab53-ed70-44d9-ab4c-4dd6bc7e920b?mode=deep",
+    "timestamp": "2026-02-19 01:49:19.487448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constants: All] [Gas Limit Issue] Could proposals with maximum-length fields (255 + 10200 + 255 = 10,710 characters) exceed block gas limits during proposal creation, release, or query operations, causing DOS for legitimate large proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9317dd27-30b6-46fb-ae1a-79bcc4d9358b?mode=deep",
+    "timestamp": "2026-02-19 01:49:47.882366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Content Injection] Could attackers use the 10,200-character description to embed formatted content that appears as legitimate system messages or warnings when displayed in governance UIs, manipulating voter perception? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bad01f8e-385c-496b-91d7-19596acdd2a5?mode=deep",
+    "timestamp": "2026-02-19 01:50:16.062637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForTitle] [Collision Attack] Could the 255-character limit combined with truncation in display layers enable attackers to create multiple proposals with intentionally similar titles to cause voter confusion about which proposal they're approving? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_414d2ea8-3a87-4bd7-a77d-361728f42e81?mode=deep",
+    "timestamp": "2026-02-19 01:50:48.510300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constants: All] [Validation Timing] Are these length checks performed before or after UTF-8 encoding normalization, and could attackers use Unicode normalization attacks to bypass the limits through equivalent but differently-encoded strings? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_413d87bc-742d-4eb8-b482-489cbc81565e?mode=deep",
+    "timestamp": "2026-02-19 01:51:16.897829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [Protocol Manipulation] Could the 255-character URL limit allow attackers to use exotic URI schemes (file://, javascript:, etc.) that bypass the http/https validation while fitting within the length constraint? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e76c0d0f-0895-47fd-9c65-c011c3ad1208?mode=deep",
+    "timestamp": "2026-02-19 01:51:47.120651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Storage DOS] If proposal descriptions are stored directly in contract state rather than being hashed, could the 10,200-character limit enable attackers to fill contract storage with malicious content that cannot be easily pruned? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9aa032f-066e-488f-8e49-905e7e2841a3?mode=deep",
+    "timestamp": "2026-02-19 01:52:15.328305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constants: All] [Event Log Bloat] When proposals are created and ProposalCreated events are fired with full title and description fields, could maximum-length inputs cause event log bloat affecting indexing services and block explorers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e840a2e2-598b-403e-afe9-64e7562d0623?mode=deep",
+    "timestamp": "2026-02-19 01:52:44.611158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForTitle] [Homograph Attack] Could attackers use Unicode homoglyphs within the 255-character title limit to create visually identical but functionally different proposal titles that deceive voters? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f94465f-ba60-4ae5-a4a4-60d5cce6143f?mode=deep",
+    "timestamp": "2026-02-19 01:53:11.543633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Markdown Injection] If descriptions support markdown or rich text formatting, could the 10,200-character limit enable complex injection attacks through nested formatting that bypasses sanitization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e66668e7-482d-4a54-afc8-6968153428ea?mode=deep",
+    "timestamp": "2026-02-19 01:53:41.269764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForProposalDescriptionUrl] [SSRF Attack] Could the description URL field be exploited to trigger server-side request forgery attacks in systems that automatically fetch and cache proposal metadata from the provided URLs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c7009cc-0093-4227-80a0-359192fda289?mode=deep",
+    "timestamp": "2026-02-19 01:54:09.788711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constants: All] [Upgrade Path] If these constants need to be changed in the future for legitimate reasons, is there an upgrade mechanism, or would changing them require breaking changes that could invalidate existing proposals? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27ba0462-8d71-4209-9698-0e50909ca2e3?mode=deep",
+    "timestamp": "2026-02-19 01:54:40.541656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForDescription] [Censorship Risk] Could the 10,200-character description be filled with controversial content that causes infrastructure providers to refuse hosting nodes, creating centralization risks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_134f6cf7-4e59-4280-b651-fbd9b8a36cf6?mode=deep",
+    "timestamp": "2026-02-19 01:55:13.504188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ReferendumConstants.cs] [Constant: MaxLengthForTitle] [Display Truncation] Could different client implementations truncate the 255-character title at different points, leading to inconsistent proposal display across wallets and potentially hiding malicious intent from some users? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_934988fa-710a-4236-8023-54c84b28fa20?mode=deep",
+    "timestamp": "2026-02-19 01:55:43.014454",
+    "report_generated": false
+  }
+]
