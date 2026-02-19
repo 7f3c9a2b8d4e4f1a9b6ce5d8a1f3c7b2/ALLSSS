@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Multi-Function] [State Consistency] If UpdateConnector() changes Weight mid-transaction, can ongoing Buy()/Sell() use inconsistent weights? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5381d806-45d1-4c66-ae2a-129be9d1f80a?mode=deep",
+    "timestamp": "2026-02-19 00:47:16.616608",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Multi-Function] [Connector Enable Race] Can EnableConnector() and Buy() execute simultaneously, causing one to use uninitialized DepositBalance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39804b06-2b9c-4dc4-b121-58a2bf71b676?mode=deep",
+    "timestamp": "2026-02-19 00:47:38.682868",
+    "report_generated": false
+  }
+]
