@@ -1,0 +1,140 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: TransactionFees] [Fee State Rollback] Can fee collection succeed but state updates fail, causing users to pay fees for failed operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35dc6c26-8202-4c71-af5c-9942efc757d0?mode=deep",
+    "timestamp": "2026-02-19 03:38:43.592908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Virtual Address Prediction] Can attacker predict future virtual addresses in SchemeInfos.VirtualAddress, front-running profit contributions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0aaba52f-0486-4c7b-8985-3268954e87be?mode=deep",
+    "timestamp": "2026-02-19 03:39:05.708555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Period Address Collision] Can XOR-based virtual address generation for periods create collisions in DistributedProfitsMap keys? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3b705bb-da10-49fa-bc7e-c70422be60ec?mode=deep",
+    "timestamp": "2026-02-19 03:39:28.242865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Sub-Scheme Address Confusion] Can sub-scheme virtual address collide with regular beneficiary address in ProfitDetailsMap? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd5d8ff2-bb46-4e89-84bb-ac3b8af4d04c?mode=deep",
+    "timestamp": "2026-02-19 03:39:51.768236",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Zero Virtual Address] Can ConvertVirtualAddressToContractAddress() return zero address, breaking SchemeInfos.VirtualAddress validity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_662e0d52-e99a-45bb-ac91-b0ce4f575632?mode=deep",
+    "timestamp": "2026-02-19 03:40:16.058301",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Profit Detail Explosion] Can attacker add beneficiary repeatedly with different ProfitDetailIds, causing unbounded ProfitDetailsMap[schemeId][beneficiary].Details growth? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1be6e50a-9ec7-4093-b6fe-3a122cca38de?mode=deep",
+    "timestamp": "2026-02-19 03:40:41.156660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Symbol Map Explosion] Can attacker contribute to DistributedProfitsMap with thousands of different token symbols, causing iteration DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb05b0d7-1ef2-45cd-a51a-e898056cd7f4?mode=deep",
+    "timestamp": "2026-02-19 03:41:06.618081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Sub-Scheme Chain DOS] Can attacker create deep sub-scheme hierarchy in SchemeInfos, causing recursive distribution to exceed gas limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36e60ca0-fb2e-4446-9536-17b2cfda681e?mode=deep",
+    "timestamp": "2026-02-19 03:41:32.339933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ManagingSchemeIds] [Manager Scheme DOS] Can attacker create unlimited schemes for victim manager, making ManagingSchemeIds[victim] unusable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9018ca87-0bb5-4700-8004-9f4853168815?mode=deep",
+    "timestamp": "2026-02-19 03:41:59.812559",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Dust Accumulation] Can rounding errors during profit distribution accumulate dust in DistributedProfitsMap.AmountsMap, becoming inaccessible? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_801a574a-85e4-436b-b0c6-e96b49ce6dcb?mode=deep",
+    "timestamp": "2026-02-19 03:42:32.088810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Share Precision Loss] Can TotalShares in SchemeInfos lose precision during repeated Add/Sub operations, causing profit miscalculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c3847dc-4224-4cd9-a162-d841fe4f0450?mode=deep",
+    "timestamp": "2026-02-19 03:43:02.050570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Decimal Truncation] Can profit calculation from ProfitDetailsMap.Shares truncate decimals, causing beneficiaries to lose small amounts repeatedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2ff0ccf-1c8b-417f-ad2f-c9e06dcd316e?mode=deep",
+    "timestamp": "2026-02-19 03:43:35.802479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [ReceivedTokenSymbols Pollution] Can attacker inject invalid symbols into SchemeInfos.ReceivedTokenSymbols, causing DistributeProfits() to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7426665-ba38-43c4-9003-425328a4c727?mode=deep",
+    "timestamp": "2026-02-19 03:44:10.961146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Multi-Token DOS] Can mixing ELF and non-ELF tokens in DistributedProfitsMap.AmountsMap cause claiming complexity issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f702c86b-9dae-465a-b798-434c0008c574?mode=deep",
+    "timestamp": "2026-02-19 03:44:45.850962",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Token Symbol Case Sensitivity] Can token symbol case differences in SchemeInfos.ReceivedTokenSymbols cause duplicate symbol tracking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bda2968b-ea24-4c7c-995c-5e33081cb3fa?mode=deep",
+    "timestamp": "2026-02-19 03:45:21.262414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Period Overflow] Can SchemeInfos[schemeId].CurrentPeriod overflow after long-running scheme, causing period wrap-around? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4909ad08-6937-4715-9f2b-78ee6cdcea9f?mode=deep",
+    "timestamp": "2026-02-19 03:45:56.396690",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: DistributedProfitsMap] [Historical Period Attack] Can attacker contribute to very old periods in DistributedProfitsMap, manipulating past profit distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f0e5680-78a2-4471-a02c-8fd132eca77f?mode=deep",
+    "timestamp": "2026-02-19 03:46:25.196674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [EndPeriod Overflow] Can ProfitDetail.EndPeriod=long.MaxValue in ProfitDetailsMap cause profit claiming to never expire? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08fc570d-e012-4e59-9f19-962db4e137ef?mode=deep",
+    "timestamp": "2026-02-19 03:46:52.686737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Negative Period] Can CurrentPeriod or CachedDelayTotalShares keys become negative in SchemeInfos, breaking period logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a318d6db-9a68-42ac-8682-a41149722b25?mode=deep",
+    "timestamp": "2026-02-19 03:47:20.097535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Zero Shares Scheme] Can scheme operate with TotalShares=0 in SchemeInfos, causing division-by-zero in distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d53d2f6-157a-4d26-b38d-e48b74b614f6?mode=deep",
+    "timestamp": "2026-02-19 03:47:48.651926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Zero Shares Beneficiary] Can beneficiary have Shares=0 in ProfitDetailsMap but still exist, causing accounting confusion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_138587dc-93a9-4f09-af9f-36a900c025d6?mode=deep",
+    "timestamp": "2026-02-19 03:48:21.953278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: SchemeInfos] [Share Underflow] Can repeated RemoveBeneficiary() cause TotalShares underflow in SchemeInfos, wrapping to large positive value? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee21838f-7e74-44fc-b931-9af2e751b420?mode=deep",
+    "timestamp": "2026-02-19 03:48:51.140300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContractState.cs] [State: ProfitDetailsMap] [Maximum Shares] Can beneficiary set Shares=long.MaxValue in ProfitDetailsMap, causing overflow when calculating profits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c9f4a46-f784-49f7-a56b-53f170503a8b?mode=deep",
+    "timestamp": "2026-02-19 03:49:25.885809",
+    "report_generated": false
+  }
+]
