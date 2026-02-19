@@ -1,6 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Invariant: Term Change Consensus] Term changes require 2/3 consensus via NeedToChangeTerm - can miners just below the threshold (e.g., 66%) manipulate timing to swing the vote? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [GetVictories Dependency] Returning NextTerm eventually calls ElectionContract.GetVictories - can manipulation of election state cause GetVictories to return malicious miner list? (Critical)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Election Timing] If term change occurs before votes are properly tallied, can this result in wrong miners being selected? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/MainChainConsensusBehaviourProvider.cs] [Function: GetConsensusBehaviourToTerminateCurrentRound()] [Minimum Candidate Check] When NextTerm is returned, does the election contract ensure minimum candidate count before miner list update? (Medium)"
-]
