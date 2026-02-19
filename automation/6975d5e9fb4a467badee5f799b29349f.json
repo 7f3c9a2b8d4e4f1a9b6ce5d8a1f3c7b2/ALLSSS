@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [DOS via Exception] If Proposers collection is in corrupted state, does Count() throw exception that propagates through Empty() to Validate(), DOS-ing organization operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ac3a740-78d0-47a4-ab5b-f9b70db100b6?mode=deep",
+    "timestamp": "2026-02-19 06:31:13.669715",
+    "report_generated": false
+  }
+]
