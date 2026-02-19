@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ExtractInformationToUpdateConsensus.cs] [Function: ExtractInformationToUpdateConsensus()] [Authorization Bypass] Can an attacker call this method with an arbitrary pubkey parameter to extract sensitive consensus information for any miner without permission checks, potentially leaking encrypted pieces, signatures, and round state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_536c2e02-487f-42ab-b73c-dc8732d0b1b4?mode=deep",
+    "timestamp": "2026-02-19 02:36:54.039249",
+    "report_generated": false
+  }
+]
