@@ -1,0 +1,98 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Fee-Free Bypass] Can an attacker rename or create methods with names matching ProposeCrossChainIndexing or ReleaseCrossChainIndexingProposal at line 41 to exploit the free-fee logic and avoid paying fees for malicious operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04221370-92f7-42b0-abee-eb6541893437?mode=deep",
+    "timestamp": "2026-02-19 12:27:25.460506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Overwrite Attack] Can the controller repeatedly call SetMethodFee at line 19 to overwrite fees immediately after they're set, creating a griefing attack that prevents stable fee configurations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_417f5c68-cd18-4acf-a094-c9e1dd152aab?mode=deep",
+    "timestamp": "2026-02-19 12:27:47.694767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Controller Oscillation] Can two competing controllers call ChangeMethodFeeController alternatingly to create unstable fee governance where neither controller can maintain control long enough to set fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91fac383-cdbe-40d8-b0ce-0e88ad8856c0?mode=deep",
+    "timestamp": "2026-02-19 12:28:10.052793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Parliament Dependency] If the Parliament contract is compromised or contains vulnerabilities, does this automatically compromise fee control since RequiredMethodFeeControllerSet at line 68 defaults to Parliament's default organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_698bad25-a855-45bc-b0f5-237e1aac0c75?mode=deep",
+    "timestamp": "2026-02-19 12:28:33.436696",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Multiple Token Fees] If input.Fees at line 14 contains multiple MethodFee entries with different tokens, does the contract support collecting fees in multiple tokens simultaneously, or can this create accounting errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93a72385-939b-440a-88eb-241aa3cd623d?mode=deep",
+    "timestamp": "2026-02-19 12:28:57.821589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Token Contract Upgrade] If the TokenContract is upgraded after State.TokenContract is initialized at line 92, can new tokens or fee rules be invalidated, requiring manual re-initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7061822-5332-419b-91a9-b7feaa2b9c69?mode=deep",
+    "timestamp": "2026-02-19 12:29:22.820253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Null State] If State.TransactionFees[input.Value] at line 48 has never been set, returning null could cause downstream fee collection to fail - should GetMethodFee return a default zero-fee MethodFees instead? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55e204a1-df49-439c-a88e-68cc3168148f?mode=deep",
+    "timestamp": "2026-02-19 12:29:50.962040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: All Functions] [No Event Emissions] The file at lines 1-99 does not emit any events for SetMethodFee, ChangeMethodFeeController, or other state changes - can this lack of event logging make security monitoring and auditing impossible? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b5b3dd5-e8ac-4b24-b8ee-ab1bd3d4dacc?mode=deep",
+    "timestamp": "2026-02-19 12:30:18.332769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Irreversible Transfer] If the controller at line 31 is changed to an address that has no ability to call ChangeMethodFeeController again (e.g., a burn address), does this permanently lock the fee controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bec3faba-297b-46a1-8485-21c70a2110ff?mode=deep",
+    "timestamp": "2026-02-19 12:30:46.287314",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Collection Guarantee] Does setting fees at line 19 guarantee that those fees will actually be collected during method execution, or can fee collection be bypassed through other mechanisms not visible in this file? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25c97635-20c2-4eff-a0c3-a274008025e0?mode=deep",
+    "timestamp": "2026-02-19 12:31:15.094406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization Delegation] If State.MethodFeeController.Value.OwnerAddress at line 18 is a contract that delegates authorization, can the delegation chain be exploited to grant unauthorized parties the ability to set fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c865ba6f-d112-46dd-912b-1284de80bfd0?mode=deep",
+    "timestamp": "2026-02-19 12:31:47.976995",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Default Organization Security] Does the Parliament's GetDefaultOrganizationAddress at line 68 have proper access controls, or can an attacker manipulate Parliament state to return a malicious organization as the default? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e87ff37-92d3-450b-a66d-9dece40883bb?mode=deep",
+    "timestamp": "2026-02-19 12:32:21.068923",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Multi-Signature Bypass] If the current controller at line 27 is a multi-sig organization requiring N signatures, can a single signer exploit timing windows to change the controller before other signers can veto? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9fdd89bf-9c38-4933-a896-30ae334c7c63?mode=deep",
+    "timestamp": "2026-02-19 12:32:49.567531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Method Name Collision] Can an attacker set fees for internal or private method names at line 19 that should never have fees, creating confusion or enabling unexpected fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_664c973d-9226-446d-9257-f7eead3427a0?mode=deep",
+    "timestamp": "2026-02-19 12:33:24.109636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: AssertValidToken()] [Token Whitelist Manipulation] If an attacker gains control of the TokenContract, can they manipulate IsTokenAvailableForMethodFee at line 94 to approve malicious tokens for method fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9f5cd6a-7c4e-4b15-898b-d33321a7b168?mode=deep",
+    "timestamp": "2026-02-19 12:33:56.158230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Input.MethodName Validation] Does SetMethodFee validate that input.MethodName at line 19 is not null, empty, or contains special characters that could cause state corruption or injection attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2de2d8d3-7842-45ec-b4af-19a1e35463c4?mode=deep",
+    "timestamp": "2026-02-19 12:34:23.254210",
+    "report_generated": false
+  }
+]
