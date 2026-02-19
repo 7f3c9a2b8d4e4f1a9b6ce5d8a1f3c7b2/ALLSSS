@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [External Call] State.TokenContract.GetTokenInfo.Call at line 80 is external call - can reentrancy during this call allow double protocol creation before line 79 assertion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b10f3499-8853-45b3-b0db-c321167924a7?mode=deep",
+    "timestamp": "2026-02-19 15:05:02.544522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [State Race] Between checking State.NftProtocolMap (line 79) and setting it (line 108), can concurrent CrossChainCreate calls create duplicate protocols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96fc4571-be16-439c-b8a6-bc053a0e3c37?mode=deep",
+    "timestamp": "2026-02-19 15:05:25.050277",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Initialization Race] InitialNFTTypeNameMap() at line 78 and MakeSureTokenContractAddressSet() at line 77 - can concurrent calls cause race conditions in initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c4e0cae-002b-489c-94de-166523048f4a?mode=deep",
+    "timestamp": "2026-02-19 15:05:47.562886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Authorization Bypass] AssertSenderIsParliamentDefaultAddress() at line 133 - can the Parliament address be manipulated, uninitialized, or compromised to allow unauthorized NFT type additions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_707ad2f4-af95-4a96-8313-f598a33fc14c?mode=deep",
+    "timestamp": "2026-02-19 15:06:10.829701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Parliament Contract Manipulation] If State.ParliamentContract.Value at line 174 is null and GetContractAddressByName returns wrong address, can unauthorized users bypass authorization at line 181? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddfb8972-eb16-4b3a-b95b-681254821b45?mode=deep",
+    "timestamp": "2026-02-19 15:06:35.142648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Default Address Override] State.ParliamentDefaultAddress.Value at line 178 relies on Parliament contract - if Parliament is compromised, can attackers change default address to authorize themselves? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1033dffc-b219-4bdf-9dcf-9f5804f292ac?mode=deep",
+    "timestamp": "2026-02-19 15:07:00.278227",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Context.Sender Spoofing] Line 181 checks Context.Sender == State.ParliamentDefaultAddress.Value - can transaction origin spoofing bypass this check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_912abd2b-e92b-4d84-9d06-bfb9939bdf44?mode=deep",
+    "timestamp": "2026-02-19 15:07:25.978906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Short Name Length] Line 136 asserts input.ShortName.Length == 2, but doesn't validate characters - can special chars, unicode, or control characters corrupt NFT type mappings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0e8c226-fe6d-4509-92f5-7c6bf777f2f8?mode=deep",
+    "timestamp": "2026-02-19 15:07:52.707661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Short Name Collision] Line 137 checks State.NFTTypeFullNameMap[input.ShortName] == null - can case sensitivity issues (e.g., 'AR' vs 'ar') allow duplicate NFT types? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_802f6728-bd22-49b0-9ef7-b3a506602844?mode=deep",
+    "timestamp": "2026-02-19 15:08:20.960586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Full Name Validation] input.FullName at line 135 has no length/character validation - can empty strings, extremely long names, or SQL injection-like strings corrupt state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7273d3ae-ab3b-4727-b40c-14a8960e99a7?mode=deep",
+    "timestamp": "2026-02-19 15:08:48.780772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Full Name Collision] Line 138 checks State.NFTTypeShortNameMap[fullName] == null - what if fullName exactly matches an existing NFT type's string representation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf9a43a3-5c45-4d2d-aeeb-01844a11dcaf?mode=deep",
+    "timestamp": "2026-02-19 15:09:16.600891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Null Input] No validation that input, input.ShortName, or input.FullName are not null before line 135 - can null inputs cause NullReferenceException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cfd9ccb-9f9a-4b21-80b6-f4d645448757?mode=deep",
+    "timestamp": "2026-02-19 15:09:45.728606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [State Atomicity] Lines 139-140 set two-way mappings separately - if transaction fails after line 139, can this leave State.NFTTypeFullNameMap inconsistent with State.NFTTypeShortNameMap? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c9fcaac-e4aa-4dbc-ac71-7835feb43c35?mode=deep",
+    "timestamp": "2026-02-19 15:10:14.767717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [NFTTypes.Value Sync] Lines 141-143 modify State.NFTTypes.Value separately from individual mappings - can failures leave State.NFTTypes desynchronized from mapping states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65db1388-8c9f-450d-8d43-06bca3a9f8e7?mode=deep",
+    "timestamp": "2026-02-19 15:10:43.910173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Dictionary Mutation] Line 142 uses nftTypes.Value.Add() on potentially concurrent state - can race conditions corrupt the NFTTypes dictionary? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eab046d9-b5e6-4f0b-85ac-c332dc627dbd?mode=deep",
+    "timestamp": "2026-02-19 15:11:15.467758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Initialization Dependency] InitialNFTTypeNameMap() at line 134 may initialize default types - can this interfere with custom type additions or cause duplicate entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03603b1b-f205-4765-b826-7bc72e2568e8?mode=deep",
+    "timestamp": "2026-02-19 15:11:46.012365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [NFT Type Spam] No limit on how many NFT types can be added - can Parliament governance spam AddNFTType to exhaust state storage or cause gas issues in InitialNFTTypeNameMap()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd9e7d7e-e1c2-4b23-badc-da783dddbf4d?mode=deep",
+    "timestamp": "2026-02-19 15:12:14.953350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Symbol Space Exhaustion] Each NFT type claims 2-character prefix space - can malicious additions exhaust all possible 2-char combinations (26^2 = 676), preventing legitimate NFT types? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_444b8de5-d0d6-45b8-a959-332269546645?mode=deep",
+    "timestamp": "2026-02-19 15:12:45.936895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Create() Impact] After AddNFTType, Create() can use new types - can retroactive type additions break existing protocols expecting specific type behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbea4ea1-edfa-4019-8d67-c3e48927ae87?mode=deep",
+    "timestamp": "2026-02-19 15:13:14.465348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Authorization Bypass] AssertSenderIsParliamentDefaultAddress() at line 154 - same Parliament compromise risks as AddNFTType, can unauthorized removal DOS protocol creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd5f1383-547d-4f42-b892-7c3ad999fbbd?mode=deep",
+    "timestamp": "2026-02-19 15:13:44.848003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Remove Default Types] Can RemoveNFTType delete built-in types initialized in InitialNFTTypeNameMap (lines 44-53 of Helpers), breaking existing NFT protocols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63a76e47-cde7-4ade-946c-ca14dfb8ad1a?mode=deep",
+    "timestamp": "2026-02-19 15:14:15.430864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Short Name Validation] Line 156 checks input.Value.Length == 2, but doesn't validate that it's a valid short name - can arbitrary 2-char strings be removed even if never added? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9765ede-14f9-48e4-9f65-eeac3ceaf7a2?mode=deep",
+    "timestamp": "2026-02-19 15:14:46.395844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Existence Check] Line 157 asserts short name exists, but doesn't check if NFT protocols currently use this type - can removal break active protocols? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c49a3bb4-47d6-48e3-963c-bc61e8ba21c9?mode=deep",
+    "timestamp": "2026-02-19 15:15:15.626988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [Orphaned Protocols] After RemoveNFTType, existing protocols with removed type remain in State.NftProtocolMap - can this prevent CrossChainCreate from working at line 90? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18d712cf-c7c8-4715-b697-dda0ab45d544?mode=deep",
+    "timestamp": "2026-02-19 15:15:45.664308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: RemoveNFTType()] [State Consistency] Lines 159-160 remove mappings but line 162 removes from State.NFTTypes.Value separately - can partial removal leave inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fe3863d-3893-4491-afc4-43b633b5c6c1?mode=deep",
+    "timestamp": "2026-02-19 15:16:15.467667",
+    "report_generated": false
+  }
+]
