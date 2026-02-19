@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [IsBurned Flag] Can the IsBurned flag in NFTInfo be reset to allow re-minting of burned tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c26c007e-288c-491a-9bd4-b98064412ae2?mode=deep",
+    "timestamp": "2026-02-19 06:22:03.742542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [Token Reuse] When IsTokenIdReuse is true, can NftInfoMap entries be overwritten, causing loss of original NFT data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1e46ace-e977-4f87-99d9-78c581e42688?mode=deep",
+    "timestamp": "2026-02-19 06:22:26.035713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftInfoMap] [URI Manipulation] Can URI values in NftInfoMap be changed post-minting to redirect to malicious content? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0c4867b-6934-4131-9d49-d8fb45a0e34e?mode=deep",
+    "timestamp": "2026-02-19 06:22:48.371469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Integer Overflow] Can BalanceMap (MappedState<Hash, Address, long>) balances overflow when adding amounts, causing balance corruption? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b44701d0-a279-48c2-bfe2-e4e1658003bc?mode=deep",
+    "timestamp": "2026-02-19 06:23:11.367741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Integer Underflow] Can BalanceMap balances underflow when subtracting amounts, resulting in negative or wrapped balances? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c02293de-8cdb-40cd-8f82-1439ed517eab?mode=deep",
+    "timestamp": "2026-02-19 06:23:35.691500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Double Spend] Can race conditions in BalanceMap updates allow double-spending of NFT tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07bc6a85-8231-4021-9766-fb5479f6f09b?mode=deep",
+    "timestamp": "2026-02-19 06:24:00.930448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Supply Mismatch] Can total balances in BalanceMap exceed NFTInfo.Quantity, violating supply constraints? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca1410a6-855b-4b58-ba29-8a02e4e450cf?mode=deep",
+    "timestamp": "2026-02-19 06:24:26.995925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Zero Balance Edge Case] Are there proper checks to prevent operations on zero balances in BalanceMap that could cause unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0353f2cf-cee6-4f12-9aac-f0de15ee5267?mode=deep",
+    "timestamp": "2026-02-19 06:24:54.564726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Hash Collision] Can hash collisions in BalanceMap keys cause balance transfers between unrelated tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6d39984-437e-49a0-8958-006926b8cb94?mode=deep",
+    "timestamp": "2026-02-19 06:25:23.262737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Negative Balance] Can BalanceMap store negative balance values, breaking accounting invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50dce2ab-3a25-4b9c-b851-66aa0801d78a?mode=deep",
+    "timestamp": "2026-02-19 06:25:50.691130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: BalanceMap] [Self Transfer] Can self-transfers in BalanceMap cause balance duplication or other accounting errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d2f7522-8a1e-4492-9dbb-cd9a4ef53569?mode=deep",
+    "timestamp": "2026-02-19 06:26:20.398809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [Protocol Override] Can an attacker overwrite existing protocol information in NftProtocolMap (MappedState<string, NFTProtocolInfo>)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f99e947f-fd7b-489c-ba76-4d86216406bb?mode=deep",
+    "timestamp": "2026-02-19 06:26:51.010983",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [Supply Manipulation] Can NFTProtocolInfo.Supply in NftProtocolMap be manipulated independently of actual token operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d298910e-9968-4eed-88bb-b9c76fd7e6ce?mode=deep",
+    "timestamp": "2026-02-19 06:27:23.076083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [TotalSupply Bypass] Can NFTProtocolInfo.Issued exceed NFTProtocolInfo.TotalSupply due to improper validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89d0ba2a-8f80-419f-af6a-2c20b728b871?mode=deep",
+    "timestamp": "2026-02-19 06:27:55.272843",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContocolState.cs] [State: NftProtocolMap] [Creator Change] Can the Creator field in NFTProtocolInfo be changed after protocol creation, bypassing authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b369093-c16a-4fb8-beab-eaaad53dd9bb?mode=deep",
+    "timestamp": "2026-02-19 06:28:26.602592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [IsBurnable Toggle] Can the IsBurnable flag in NFTProtocolInfo be toggled after creation to prevent or force burns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e0ec42f-a940-4fa7-a992-0843c1df98a3?mode=deep",
+    "timestamp": "2026-02-19 06:28:58.199203",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [IsTokenIdReuse Manipulation] Can IsTokenIdReuse be changed after protocol creation to allow or prevent token ID reuse unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f33e372-fb43-48b1-96ac-0568db0a4b75?mode=deep",
+    "timestamp": "2026-02-19 06:29:28.880018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [Metadata Modification] Can protocol metadata in NftProtocolMap be modified after creation, violating immutability? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2616ebfd-8f14-4fe8-a5e1-de27e8527cbe?mode=deep",
+    "timestamp": "2026-02-19 06:29:59.599942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: NftProtocolMap] [BaseUri Manipulation] Can BaseUri in NFTProtocolInfo be changed to redirect all tokens to malicious content? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8212e7c4-c4a9-47db-bec1-ee58fe19517a?mode=deep",
+    "timestamp": "2026-02-19 06:30:30.037678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContocolState.cs] [State: NftProtocolMap] [Symbol Collision] Can two different protocols share the same symbol in NftProtocolMap, causing operational conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1850cde0-6170-4369-a248-f41075c39fdc?mode=deep",
+    "timestamp": "2026-02-19 06:31:00.283267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Unlimited Approval] Can AllowanceMap (MappedState<Hash, Address, Address, long>) store unlimited approvals that exceed token supply? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36fc9b48-4812-4fa6-9990-888190d6e99a?mode=deep",
+    "timestamp": "2026-02-19 06:31:31.696407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Double Spend] Can race conditions in AllowanceMap allow a spender to spend more than approved amount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4bad366a-5ed0-4f08-9bb5-42514d4afe9f?mode=deep",
+    "timestamp": "2026-02-19 06:32:03.074009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Approval Without Ownership] Can addresses approve tokens they don't own via AllowanceMap manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d74cff33-e3f7-4020-8842-135ca28f0567?mode=deep",
+    "timestamp": "2026-02-19 06:32:33.727924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Negative Allowance] Can AllowanceMap store negative allowance values, causing underflow exploitation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e869a99-30e4-43cb-957e-fb67bf0b336b?mode=deep",
+    "timestamp": "2026-02-19 06:33:02.238398",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractState.cs] [State: AllowanceMap] [Stale Approvals] After token transfer, are AllowanceMap approvals properly invalidated or can they be reused? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_520a9884-5770-410f-9ce2-e9d3ef02640e?mode=deep",
+    "timestamp": "2026-02-19 06:33:32.269788",
+    "report_generated": false
+  }
+]
