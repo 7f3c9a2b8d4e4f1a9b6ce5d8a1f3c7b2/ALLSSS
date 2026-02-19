@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecord] [Orphaned Records] Can voting records exist in state without corresponding voting items, causing inconsistencies when cross-referencing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64944527-d5c5-4b44-806b-f24a20f3ee0a?mode=deep",
+    "timestamp": "2026-02-19 15:24:21.745630",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [Snapshot Gaps] Can VotingResults have missing snapshot numbers, causing queries for intermediate snapshots to return null unexpectedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82ca292e-1fc6-4ade-8ec2-6991d97f389a?mode=deep",
+    "timestamp": "2026-02-19 15:24:44.052035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems] [Vote ID References] Can VotedItems reference vote IDs that no longer exist in VotingRecords after data cleanup? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b74afdb6-7abf-41a4-90a1-4a8358de218a?mode=deep",
+    "timestamp": "2026-02-19 15:25:06.598092",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetLatestVotingResult] [CurrentSnapshotNumber Validity] If CurrentSnapshotNumber exceeds TotalSnapshotNumber, can this method return results for invalid snapshots? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1743a6b5-2331-4f34-aa21-5a0a4e20a6a2?mode=deep",
+    "timestamp": "2026-02-19 15:25:30.086478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingIds] [Stale Mappings] Can VotedItemVoteIds contain outdated entries for voting items that have been deleted or ended? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d4f0fa6-eace-494b-8131-5c69891ed739?mode=deep",
+    "timestamp": "2026-02-19 15:25:54.307667",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecords] [Empty Input] What happens if input.Ids is an empty list - does it return empty VotingRecords or fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7817b62-0b6f-4756-a584-7cfe79791ed2?mode=deep",
+    "timestamp": "2026-02-19 15:26:20.579650",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [Zero Snapshot] Does the method handle SnapshotNumber = 0 correctly, or can this cause undefined behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87e89559-a8f7-44b7-93cb-ddb91a3d449b?mode=deep",
+    "timestamp": "2026-02-19 15:26:49.132424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [Negative Snapshot] Can input.SnapshotNumber be negative, causing hash computation issues or retrieval of wrong data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ba598e6c-641f-4ee8-a3bf-40f88cf9eb42?mode=deep",
+    "timestamp": "2026-02-19 15:27:18.078030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems] [Invalid Address] Does the method validate that the input Address is a valid blockchain address format? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8b44f5d-d8e8-4892-a360-106400d78a4e?mode=deep",
+    "timestamp": "2026-02-19 15:27:45.621771",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingIds] [Null Input Fields] Are there null checks for input.Voter and input.VotingItemId before ToHex() calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dffc20aa-c773-42c6-9327-31a1ec7a30a5?mode=deep",
+    "timestamp": "2026-02-19 15:28:14.765878",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecords] [Max Array Size] What is the maximum size of input.Ids before the method fails or runs out of gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a834aefe-24b9-40c1-92b0-d60f8817c652?mode=deep",
+    "timestamp": "2026-02-19 15:28:43.013781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems] [Large VotedItems] If a voter has participated in thousands of voting items, can returning the entire VotedItems cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dc88786-5f2d-488a-948f-4e408a489abc?mode=deep",
+    "timestamp": "2026-02-19 15:29:10.902525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingItem] [Expired Items] Can this method retrieve voting items where EndTimestamp has passed, and should expired items be hidden? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1e142f2-0d09-4e53-974a-74a59f07ca38?mode=deep",
+    "timestamp": "2026-02-19 15:29:39.296579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [Snapshot Beyond Total] Can querying snapshot numbers greater than TotalSnapshotNumber return valid results or cause errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd89c3d1-1c9f-430a-a9de-e4fd1e04211f?mode=deep",
+    "timestamp": "2026-02-19 15:30:08.029741",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetLatestVotingResult] [Zero Total Snapshots] If TotalSnapshotNumber is 0, can this cause CurrentSnapshotNumber to be invalid? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f82e2383-e76a-4a96-8721-76e5db0a43db?mode=deep",
+    "timestamp": "2026-02-19 15:30:36.033823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecord + GetVotingIds] [Complete Voter Profiling] Can combining these methods enable building complete voter profiles including all voting activity, amounts, and choices? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f75cef49-9158-4450-a106-a50ebfee4666?mode=deep",
+    "timestamp": "2026-02-19 15:31:03.580288",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems + GetVotingRecords] [Voter Deanonymization] Can cross-referencing voted items with voting records enable deanonymization in anonymous voting scenarios? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ba5d5ae-de2d-45d2-8483-a82ac26918bc?mode=deep",
+    "timestamp": "2026-02-19 15:31:30.335533",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult + GetLatestVotingResult] [Vote Timing Analysis] Can comparing historical and latest results enable timing analysis of individual votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bd74913-5a6a-44d5-9d48-8c6d5cb43040?mode=deep",
+    "timestamp": "2026-02-19 15:31:57.863701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [All View Methods] [Metadata Leakage] Do error messages, null returns, and success patterns leak metadata about contract state structure? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34b07a7c-8408-4eb1-8563-3babd0d078fe?mode=deep",
+    "timestamp": "2026-02-19 15:32:26.937130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [All View Methods] [Regulatory Compliance] Do these methods violate data protection regulations (GDPR, etc.) by enabling unrestricted access to personal voting data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2615e9d-02c2-41b1-b3fc-a49b1cd7de64?mode=deep",
+    "timestamp": "2026-02-19 15:32:56.288515",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingRecord] [Quadratic Vote Tracking] For quadratic voting items, does exposing Amount in VotingRecord reveal the sequential vote number for that voter? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_137d6ef9-b085-4c46-9c5b-400d0ce3c7de?mode=deep",
+    "timestamp": "2026-02-19 15:33:24.861611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingItem] [IsQuadratic Exploitation] Can knowing is_quadratic and ticket_cost enable attackers to calculate voting costs and manipulate outcomes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fd911dd-380f-48f3-a5a6-fd8ec3d88626?mode=deep",
+    "timestamp": "2026-02-19 15:33:53.501626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetLatestVotingResult] [Snapshot Timing] Does querying immediately after TakeSnapshot() reveal whether the sponsor is actively managing the voting item? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f3c47fe-137f-4ada-8ff3-f0cbba11b755?mode=deep",
+    "timestamp": "2026-02-19 15:34:20.805307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotedItems] [Active vs Withdrawn Analysis] Can analyzing the ratio of active to withdrawn votes reveal voter confidence or strategic behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_935a5ad5-fd87-4976-975c-191e2b1f40ce?mode=deep",
+    "timestamp": "2026-02-19 15:34:47.944562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ViewMethods.cs] [GetVotingResult] [VotersCount Leak] Does exposing voters_count enable determining average vote amount and identifying large individual votes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3be9761a-745a-4c0d-ba83-3285b24991e8?mode=deep",
+    "timestamp": "2026-02-19 15:35:14.883826",
+    "report_generated": false
+  }
+]
