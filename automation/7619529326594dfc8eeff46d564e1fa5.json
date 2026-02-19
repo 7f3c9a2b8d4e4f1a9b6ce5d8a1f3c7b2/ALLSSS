@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetBaseTokenSymbol()] [Multi-Token Support] If system needs to support multiple base tokens, can current singleton State.BaseTokenSymbol.Value architecture be extended or is refactoring required? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_780c770c-a5b2-435b-8cdb-a3533bafb230?mode=deep",
+    "timestamp": "2026-02-19 07:01:09.393312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Query Efficiency] Line 39 and 42: two sequential State.Connectors reads - if storage access is expensive, can this be optimized to single read with validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7bd8946e-2c95-4f67-b290-68f11b4e8636?mode=deep",
+    "timestamp": "2026-02-19 07:01:31.661879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [External Dependency] Lines 62-72: two external contract calls to TokenContract - if TokenContract is malicious or buggy, can it return fake TotalSupply/Balance to manipulate deposit calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63fe5fde-5b78-4a5c-8714-f7ff51a76d75?mode=deep",
+    "timestamp": "2026-02-19 07:01:54.170892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Gas Cost] Lines 62-72: external calls in view function - if called on-chain in another contract's transaction, can high gas cost of these calls cause caller to run out of gas? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72b42d24-4714-4897-a83c-e2651c5dc97b?mode=deep",
+    "timestamp": "2026-02-19 07:02:17.574662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Return Type] Returns Int64Value which wraps long - can caller misinterpret negative Value as valid balance due to signed integer representation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c685a453-b10c-49a4-882c-5faae7dd4d03?mode=deep",
+    "timestamp": "2026-02-19 07:02:41.502704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [UX Issue] Returns false for both 'symbol does not exist' and 'symbol exists but selling disabled' - can UI distinguish these cases to show appropriate error message? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_335be4d8-deda-49a8-9fd1-31c51abeb017?mode=deep",
+    "timestamp": "2026-02-19 07:03:06.951273",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Bancor Slippage] Lines 81-83: if amountOutOfTokenConvert is very large relative to connector balances, can BancorHelper return needDeposit that exceeds reasonable bounds due to exponential price curve? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75ae3fae-d86a-48b4-8b52-e0fa2dbf485e?mode=deep",
+    "timestamp": "2026-02-19 07:03:31.567661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Bancor Numerical Stability] Lines 81-83: BancorHelper uses Exp() and Ln() approximations with limited iterations - for extreme balance ratios, can numerical instability cause needDeposit calculation to be wildly inaccurate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a59e2cfb-2000-44ec-8c62-e0b7d6ecb747?mode=deep",
+    "timestamp": "2026-02-19 07:03:58.065507",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Price Manipulation] Line 77: fromConnector.VirtualBalance can be set to artificially low value - can this make needDeposit calculation return unrealistically small values, allowing cheap token enabling? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_475bb8d5-bdea-4bde-b5ea-c5d0a31491a5?mode=deep",
+    "timestamp": "2026-02-19 07:04:27.085701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Price Manipulation] Lines 78-80: if toConnector.VirtualBalance is set very high when IsVirtualBalanceEnabled=true, can this inflate tb and make needDeposit lower than it should be? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4116a4b-4eac-4c36-b4a7-318f4ab81f42?mode=deep",
+    "timestamp": "2026-02-19 07:04:56.731433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Economic Invariant] Line 73: calculation assumes tokenInfo.TotalSupply >= balance + input.AmountToTokenConvert - what if token was burned from contract address, making balance < TotalSupply - burned? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45b3899f-5eff-4908-8957-86c5ada9d738?mode=deep",
+    "timestamp": "2026-02-19 07:05:22.384813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Reserve Accounting] Line 100: adding VirtualBalance to DepositBalance - if VirtualBalance represents theoretical reserve and DepositBalance is actual deposit, can this double-count reserves? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_181e00f7-3d94-4b80-801d-da8144d5437d?mode=deep",
+    "timestamp": "2026-02-19 07:05:53.153451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Supply Inflation] Line 73: amountOutOfTokenConvert calculation doesn't account for tokens that might be locked/staked elsewhere - can circulating supply divergence from TotalSupply affect pricing accuracy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aeddc5f7-fca5-4888-9cf8-c60705714fb2?mode=deep",
+    "timestamp": "2026-02-19 07:06:24.972699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Global] All view functions are marked as views but read mutable state - if state is modified in same block before view is called, can frontrunners exploit state changes for arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_866a6c5f-0349-476b-b925-a641687451f7?mode=deep",
+    "timestamp": "2026-02-19 07:06:53.021930",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [MEV Risk] Lines 62-72: reading current TotalSupply and balance allows MEV bots to see pending EnableConnector transactions and frontrun with token transfers to manipulate calculation - is this mitigated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd613b9f-745d-4941-9a39-e37caa857c77?mode=deep",
+    "timestamp": "2026-02-19 07:07:25.659956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Test Coverage] Lines 44-48: IsDepositAccount=true branch returns ResourceConnector=relatedConnector - are there tests verifying relatedConnector is not null in this case? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aef57d17-a4a5-493f-8eae-09346149e6e4?mode=deep",
+    "timestamp": "2026-02-19 07:07:59.607570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Test Coverage] Line 75: amountOutOfTokenConvert <= 0 case bypasses needDeposit calculation - are there tests ensuring EnableConnector handles needAmount=0 correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cc8a056-472a-43d9-ad93-ca543f9aca6a?mode=deep",
+    "timestamp": "2026-02-19 07:08:32.726145",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Test Coverage] Line 96: assertion failure case - are there tests verifying error message correctness when wrong symbol type passed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5660f459-64f9-4f07-8f4e-0c53035d4a56?mode=deep",
+    "timestamp": "2026-02-19 07:09:05.703089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Configuration] Lines 37-54: function assumes connector pairs are properly configured with matching RelatedSymbol - can admin error create orphaned or mismatched connectors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f53af7c-3750-4465-b5e9-6fca9f00bfdb?mode=deep",
+    "timestamp": "2026-02-19 07:09:38.893703",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Configuration] Lines 77-80: mixing VirtualBalance and actual balance logic - if IsVirtualBalanceEnabled is inconsistently set across paired connectors, can price calculations become asymmetric? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2674b24c-7886-4a35-bd4c-cadb774454ae?mode=deep",
+    "timestamp": "2026-02-19 07:10:13.793947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Configuration] Line 96-97: assumes every resource connector has valid RelatedSymbol pointing to deposit connector - can misconfiguration break this assumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_482017b2-1a6b-42b0-85c6-56b95dbd822a?mode=deep",
+    "timestamp": "2026-02-19 07:10:49.665188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [User Experience] Line 59: error message '[GetNeededDeposit]Can't find to connector.' doesn't specify which token symbol was invalid - can this be improved for debugging? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ea665df-da9f-4b46-880d-41c5733504aa?mode=deep",
+    "timestamp": "2026-02-19 07:11:20.701974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [User Experience] Line 61: error message '[GetNeededDeposit]Can't find from connector.' doesn't explain that RelatedSymbol is invalid - can users understand the issue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2136e5da-6fc5-4f31-9d1c-faf7b9060151?mode=deep",
+    "timestamp": "2026-02-19 07:11:55.301788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [User Experience] Line 96: error 'token symbol is invalid' is generic - should it specify that symbol must be resource token, not deposit token? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f014394-b07f-4bbe-a202-dea1b673f666?mode=deep",
+    "timestamp": "2026-02-19 07:12:30.187068",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Type Conversion] Line 81-83: BancorHelper.GetAmountToPayFromReturn returns long but may lose fractional needDeposit - can this systematic rounding down allow deposits to be slightly insufficient? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58de420a-43db-41f7-9ad6-efe2de354420?mode=deep",
+    "timestamp": "2026-02-19 07:13:03.819441",
+    "report_generated": false
+  }
+]
