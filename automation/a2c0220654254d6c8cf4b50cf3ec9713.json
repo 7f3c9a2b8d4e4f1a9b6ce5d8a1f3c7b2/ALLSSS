@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Assemble/Disassemble] [Asset Recovery] If Assemble transfers assets to Context.Self at line 130, but Disassemble fails or is blocked, how can users recover locked assets? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fdd1b733-d058-4210-9ed6-e02cb800ec11?mode=deep",
+    "timestamp": "2026-02-19 09:37:00.096403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [AddMinters/RemoveMinters/Burn/Recast] [Minter List Consistency] Can modifications to the minter list via AddMinters (line 345) or RemoveMinters (line 365) affect ongoing Burn (line 92) or Recast (line 260) operations, causing authorization bypasses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5d4ef9e-2660-4aef-a6a0-9f892c289b33?mode=deep",
+    "timestamp": "2026-02-19 09:37:22.407360",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [PerformMint/Burn] [Supply Invariant] Can the supply tracking across PerformMint (lines 403-405) and Burn (lines 95-96) diverge if concurrent operations cause atomicity violations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25a32581-5d34-454d-b40d-b4882bb84098?mode=deep",
+    "timestamp": "2026-02-19 09:37:45.656802",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [ApproveProtocol/TransferFrom] [Operator Privilege] Can operator status granted via ApproveProtocol (line 252) be revoked during an ongoing TransferFrom (line 61) operation, causing inconsistent transfer outcomes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_177907a4-7ef2-4fc3-8583-52769ec10319?mode=deep",
+    "timestamp": "2026-02-19 09:38:09.210625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Assemble()/Disassemble()] [Multi-Step Attack] Can an attacker assemble NFTs with stolen FT allowances, then disassemble to a different address to launder assets, exploiting the receiver parameter at line 200? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9d07e68-abd1-4f60-be5c-a3d4421424e8?mode=deep",
+    "timestamp": "2026-02-19 09:38:33.505313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: PerformMint()/Burn()] [Supply Manipulation] Can an attacker mint tokens up to TotalSupply limit at line 405, burn tokens to reduce Supply at line 95, then mint again to exceed the original TotalSupply by exploiting the Issued counter? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5f13940-4085-4e94-8eec-87b0005ee669?mode=deep",
+    "timestamp": "2026-02-19 09:38:59.699378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Transfer()/TransferFrom()] [Double-Spend Race] Can an attacker initiate two Transfer calls with the same tokenHash concurrently, exploiting race conditions in DoTransfer balance checks at line 52 to spend the same tokens twice? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ab7405d-bb28-4265-a649-faae5413610d?mode=deep",
+    "timestamp": "2026-02-19 09:39:25.732517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Approve()/TransferFrom()] [Allowance Front-Running] Can an attacker monitor pending Approve transactions at line 298 and front-run with TransferFrom at line 57 to exploit both old and new allowances? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3fe574c-9f59-4f7a-b1be-ebfacd774bb6?mode=deep",
+    "timestamp": "2026-02-19 09:39:55.198091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()/Transfer()] [Metadata Manipulation] Can an attacker recast metadata at line 282, then immediately transfer the token at line 24 to lock in malicious metadata before it can be detected or reverted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_215a145a-c5f2-4d00-8c3f-38ed957ff388?mode=deep",
+    "timestamp": "2026-02-19 09:40:22.805767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: AddMinters()/PerformMint()] [Permission Escalation] Can a protocol creator add themselves as a minter via AddMinters at line 345, mint tokens beyond intended limits via PerformMint at line 383, then remove themselves at RemoveMinters to hide evidence? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9561b0b-4671-42c1-931e-afc5759be420?mode=deep",
+    "timestamp": "2026-02-19 09:40:50.462559",
+    "report_generated": false
+  }
+]
