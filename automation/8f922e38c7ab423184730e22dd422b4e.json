@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: AddProfitToDict()] [ContainsKey Performance] Line 147 checks ContainsKey before accessing. For large dictionaries, can repeated ContainsKey checks cause performance degradation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fec0929-6bd8-4684-9810-41fff1d94308?mode=deep",
+    "timestamp": "2026-02-19 08:34:02.385668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetMaximumProfitReceivingPeriodCount()] [Empty Input] The function takes Empty input (line 153) and ignores it. Is there any validation that should be performed but isn't? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c40b1237-8476-4f15-aca9-885689f97151?mode=deep",
+    "timestamp": "2026-02-19 08:34:24.439726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetMaximumProfitReceivingPeriodCount()] [Overloaded Call] Line 157 calls GetMaximumProfitReceivingPeriodCount() without parameters. If this overload is missing or incorrectly implemented, can this fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0fc3e1a4-12f9-4029-bac9-8ea75d51e475?mode=deep",
+    "timestamp": "2026-02-19 08:34:47.012171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetMaximumProfitReceivingPeriodCount()] [Return Value Validation] The Int32Value.Value is set without validation. If the underlying function returns negative or extremely large values, are they propagated without checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf2dbaa8-a67e-446c-ba8c-7d12f398b00c?mode=deep",
+    "timestamp": "2026-02-19 08:35:10.001025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [State Dependency] All view methods depend on State.SchemeInfos, State.ProfitDetailsMap, etc. If these state variables are corrupted by transaction reordering, can all view methods return incorrect data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2de51402-4654-463c-8889-976c1fd7856e?mode=deep",
+    "timestamp": "2026-02-19 08:35:34.231722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [Virtual Address Reuse] GetSchemeAddress (line 29), GetDistributedProfitsInfo (line 37), and GetDistributedPeriodProfitsVirtualAddress (line 51) all derive virtual addresses. Can inconsistent address derivation across these methods cause profit misrouting? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e146cb5-97cf-4caa-a280-4549e27416da?mode=deep",
+    "timestamp": "2026-02-19 08:35:59.175745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [Null Handling Inconsistency] GetScheme (line 17) has no null check, GetDistributedProfitsInfo (line 40) uses null coalescing, GetAllProfitsMap (line 106) uses Assert. Can inconsistent null handling cause exploitable behavior differences? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68d899f9-20f1-4d10-942f-8eedd8a0decd?mode=deep",
+    "timestamp": "2026-02-19 08:36:24.194540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [Symbol Parameter Propagation] GetProfitAmount (line 62), GetAllProfitAmount (line 72), and GetAllProfitsMap (line 103) all accept symbol parameters. Can inconsistent symbol handling across methods cause profit calculation discrepancies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ee880e8-772d-4d7b-842c-40cc9946d948?mode=deep",
+    "timestamp": "2026-02-19 08:36:49.323701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [Period Boundary Validation] GetSchemeAddress (line 29), GetDistributedProfitsInfo (line 37), and GetAllProfitsMap (line 113) handle periods. Is there consistent validation of period bounds across all methods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fab673e4-cb08-46b6-aad6-bf9236c597c8?mode=deep",
+    "timestamp": "2026-02-19 08:37:17.807662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [Beneficiary Resolution] GetAllProfitsMap uses 'beneficiary ?? Context.Sender' (line 107). Do other methods consistently resolve null beneficiaries, or can this cause query result mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2dd7abe0-b33d-4398-af3e-12c86c5cc7ee?mode=deep",
+    "timestamp": "2026-02-19 08:37:43.645274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Cross-Function] [Dictionary Key Consistency] Multiple methods use string keys for symbol lookups (lines 68, 77, 81). Are symbol strings consistently normalized (case, whitespace), or can case differences cause lookup failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_367135ba-172e-4810-afb9-a10140901af9?mode=deep",
+    "timestamp": "2026-02-19 08:38:10.546526",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [ProfitAllPeriods Dependency] GetAllProfitsMap calls ProfitAllPeriods on lines 130 and 133. If ProfitAllPeriods is defined elsewhere and has bugs, can it cause incorrect profit calculations here? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb3fa6e4-005e-4bcd-a6b9-4df1d5c34244?mode=deep",
+    "timestamp": "2026-02-19 08:38:38.640045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [GetMaximumPeriodCountForProfitableDetail Dependency] Line 121 calls GetMaximumPeriodCountForProfitableDetail. If this function has incorrect logic, can it limit claimable profits unfairly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d43e398-d442-47ed-90d6-3eae334ecf38?mode=deep",
+    "timestamp": "2026-02-19 08:39:06.757585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [Context.ConvertVirtualAddressToContractAddress] Lines 31 and 53 call Context.ConvertVirtualAddressToContractAddress. If the conversion has bugs, can it produce wrong addresses for profit distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c20381c-c187-4221-8721-90b4a167bb83?mode=deep",
+    "timestamp": "2026-02-19 08:39:40.891972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [HashHelper.XorAndCompute] Line 59 uses HashHelper.XorAndCompute. If XorAndCompute has collision vulnerabilities, can attackers generate address collisions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4466807a-070d-47e6-bb3a-148cd1c692d4?mode=deep",
+    "timestamp": "2026-02-19 08:40:15.186722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [HashHelper.ComputeFrom] Line 59 uses HashHelper.ComputeFrom(period). If ComputeFrom is predictable or has poor distribution, can it weaken virtual address uniqueness? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a849ca14-5e1c-4771-a9db-4374c13e85f6?mode=deep",
+    "timestamp": "2026-02-19 08:40:43.072089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [State.ManagingSchemeIds] Line 14 accesses State.ManagingSchemeIds. If this mapping is not properly maintained by write methods, can GetManagingSchemeIds return stale or incorrect data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9dd54560-4110-4e2f-b5df-dcefd3c27eb4?mode=deep",
+    "timestamp": "2026-02-19 08:41:17.315901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [State.SchemeInfos] Line 19 and 105 access State.SchemeInfos. If schemes can be deleted or modified without proper cleanup, can view methods return dangling references? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da2d2164-7257-49de-afd4-8eb2bb236467?mode=deep",
+    "timestamp": "2026-02-19 08:41:51.589532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [State.DistributedProfitsMap] Line 40 accesses State.DistributedProfitsMap. If profit distribution logic has bugs, can this map contain incorrect TotalShares or profit amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0bdbb719-fb52-4409-b667-08860868ddc8?mode=deep",
+    "timestamp": "2026-02-19 08:42:26.155637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [State.ProfitDetailsMap] Lines 48 and 108 access State.ProfitDetailsMap. If detail updates are not atomic, can concurrent reads return partially updated details? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea507425-ee57-470a-a79a-fad0b18d10ac?mode=deep",
+    "timestamp": "2026-02-19 08:43:00.934563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Integration] [ProfitContractConstants.ProfitReceivingLimitForEachTime] Line 120 uses this constant. If it's set too low (<10), can it effectively disable profit claiming for users with many details? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35139e0e-2ccc-4a19-806b-b838e38dcd6d?mode=deep",
+    "timestamp": "2026-02-19 08:43:36.242820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Zero SchemeId] If input.SchemeId is Hash.Empty across multiple methods, does this consistently return empty/null results, or can it access unintended default scheme data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffabf2a2-2379-4e0d-b5ba-e67aa3818630?mode=deep",
+    "timestamp": "2026-02-19 08:44:13.137604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Zero Address Beneficiary] If beneficiary is Address.FromPublicKey(new byte[33]) (zero address), do profit lookups fail or return system account profits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a511a32b-96d7-415b-bf9f-92720bd70a8a?mode=deep",
+    "timestamp": "2026-02-19 08:44:49.574497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [MaxValue Period] If input.Period or profitDetail.EndPeriod is Int64.MaxValue, can arithmetic operations (Sub on line 130) overflow or produce wrong results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36893d2a-6160-43ad-b2cc-9532d34fa7c8?mode=deep",
+    "timestamp": "2026-02-19 08:45:22.388175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [MinValue Period] If period is Int64.MinValue, does HashHelper.ComputeFrom handle it correctly, or can it cause hash computation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f82140d-5262-4028-98b7-05d74fad60d8?mode=deep",
+    "timestamp": "2026-02-19 08:45:54.943437",
+    "report_generated": false
+  }
+]
