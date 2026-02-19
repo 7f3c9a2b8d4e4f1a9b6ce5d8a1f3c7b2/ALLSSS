@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() private] [AddProfitToDict Safety] At line 131, AddProfitToDict is called. If totalProfitsDictForEachProfitDetail contains negative values due to overflow bugs, can this corrupt allProfitsDict? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e2936bf-e06f-4454-b533-53650a11db74?mode=deep",
+    "timestamp": "2026-02-19 15:22:49.825342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() private] [Index Check] At line 132, 'if(i >= profitableDetailCount) continue' skips claimable calculation for details beyond the first 10. Is this intentional limitation documented, or a potential bug? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01751884-7283-4c7c-a406-0539f38ee2ec?mode=deep",
+    "timestamp": "2026-02-19 15:23:11.856933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() private] [Claimable vs Total Divergence] Lines 133-134 calculate claimableProfits with maxProfitReceivingPeriodCount limit, but line 130 calculates total with full EndPeriod range. Can this large divergence confuse users or enable claim-display mismatches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1a40b2f-2f7e-4dc1-9293-fb4e00dfa955?mode=deep",
+    "timestamp": "2026-02-19 15:23:34.146370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() private] [Dictionary Return] At lines 137-141, raw dictionaries are returned in protobuf message. Can these be manipulated by caller if protobuf serialization has vulnerabilities? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c65427c-98d3-4c95-9754-f52e3f1c40bd?mode=deep",
+    "timestamp": "2026-02-19 15:23:57.946758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: AddProfitToDict()] [Integer Overflow] At line 148, profitsDict[kv.Key].Add(kv.Value) could overflow if accumulated profits exceed long.MaxValue. Is this checked anywhere? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3fd4735-33e8-4aab-8281-e5841aa32ce2?mode=deep",
+    "timestamp": "2026-02-19 15:24:22.036135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: AddProfitToDict()] [Null Dictionary] If profitsDict is null (shouldn't happen but defensive), will this throw NullReferenceException? Should there be null checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_405f4a88-b026-425c-8741-cdf0fa15e06f?mode=deep",
+    "timestamp": "2026-02-19 15:24:47.036513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: AddProfitToDict()] [Negative Values] If profitsToAdd contains negative values (from overflow bugs elsewhere), line 148's Add could result in smaller-than-expected profits. Should negatives be validated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63332398-34a1-43c9-be22-30927badf44e?mode=deep",
+    "timestamp": "2026-02-19 15:25:12.149858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: AddProfitToDict()] [Symbol Injection] If profitsToAdd contains a symbol key not in profitsDict, line 150 adds it. Can an attacker inject arbitrary symbol keys to pollute the profits map? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_842c65a0-5521-40b7-994f-da46db29f1d8?mode=deep",
+    "timestamp": "2026-02-19 15:25:38.863985",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetMaximumProfitReceivingPeriodCount()] [Uninitialized State] If State.MaximumProfitReceivingPeriodCount.Value is 0 (uninitialized), does this default to constant or can it cause issues in period calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_303e00b7-8c39-479a-a90b-23823e8e371f?mode=deep",
+    "timestamp": "2026-02-19 15:26:05.143250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetMaximumProfitReceivingPeriodCount()] [Governance Risk] Since this value can be set via SetMaximumProfitReceivingPeriodCount (in main contract), can governance set it to 1, effectively limiting all users to claim only 1 period at a time, causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e154069-af53-47fb-b278-b63baa5a20af?mode=deep",
+    "timestamp": "2026-02-19 15:26:31.475859",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Multiple Functions] [State Consistency] If State.SchemeInfos, State.DistributedProfitsMap, and State.ProfitDetailsMap become inconsistent (scheme exists but details don't, or vice versa), can any view method return data that causes calling contracts to make incorrect decisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc3d3a48-2809-4f69-801a-a546009af33d?mode=deep",
+    "timestamp": "2026-02-19 15:27:00.609803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Multiple Functions] [Gas Griefing] Can an attacker create schemes with thousands of beneficiaries, sub-schemes, or periods, then call view methods to consume excessive gas and DoS the network? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85f54096-a218-4a98-830d-e9d55482e613?mode=deep",
+    "timestamp": "2026-02-19 15:27:26.724241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Multiple Functions] [Information Aggregation] By calling GetScheme, GetProfitDetails, and GetDistributedProfitsInfo with different parameters, can an attacker reconstruct the complete profit distribution graph and identify high-value targets? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ea6202f-cb39-4139-8a1a-6e8ed3d8acee?mode=deep",
+    "timestamp": "2026-02-19 15:27:56.650980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Multiple Functions] [Reentrancy in View] Although these are view methods, if they call external contracts via Context operations, could reentrancy attacks manipulate the returned data mid-query? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04a37f47-1dc6-4a6c-a3e6-f167538dddd7?mode=deep",
+    "timestamp": "2026-02-19 15:28:25.783813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() at line 130,133] [ProfitAllPeriods Integration] When calling ProfitAllPeriods with isView=true, if the main contract's ProfitAllPeriods has bugs in view mode (lines 845-920 in ProfitContract.cs), can incorrect profit calculations propagate to all view method responses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e73ab2bd-2563-40b7-8925-ed89898178cc?mode=deep",
+    "timestamp": "2026-02-19 15:28:56.506167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() at line 130] [EndPeriod.Sub Safety] If EndPeriod.Sub(LastProfitPeriod) at line 130 results in negative or zero, will ProfitAllPeriods handle this gracefully or return unexpected results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35d94b54-9364-46a6-8a23-4896698b4e3e?mode=deep",
+    "timestamp": "2026-02-19 15:29:24.835322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetSchemeAddress()] [Period Zero Special Case] At line 32, when input.Period == 0, the general ledger address is returned. Can this be exploited to confuse users about which address receives profits, potentially leading to lost funds sent to wrong address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c238cca-958b-4d98-aa3c-6e35a25d93f2?mode=deep",
+    "timestamp": "2026-02-19 15:29:54.934026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetDistributedProfitsInfo()] [Negative TotalShares Sentinel] The return value at line 42 with TotalShares = -1 is used as a sentinel. If any arithmetic in SafeCalculateProfits (line 956-962 in main contract) doesn't check for -1, can this cause division errors or negative profit amounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09c989d6-fc1d-421c-bbf9-0a1a7e59652d?mode=deep",
+    "timestamp": "2026-02-19 15:30:25.108414",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() at line 114-116] [Zero Period Edge Case] If both LastProfitPeriod and StartPeriod are 0, and EndPeriod >= StartPeriod evaluates true, can this incorrectly include uninitialized profit details in calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_675af55b-d5bd-4520-b718-5bc2982f001a?mode=deep",
+    "timestamp": "2026-02-19 15:30:55.397142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() at line 121] [Division in GetMaximumPeriodCountForProfitableDetail] If this function divides by profitableDetailCount and profitableDetailCount is 0 due to filtering, can it return invalid period counts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9692265b-8625-4dcf-8b1c-7cecf7344ffe?mode=deep",
+    "timestamp": "2026-02-19 15:31:22.981076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() at line 128] [LastProfitPeriod Side Effect] Modifying profitDetail.LastProfitPeriod in a view method at line 128 suggests in-memory mutation. If this object is cached or reused, can it cause stale data issues in subsequent queries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c9e7273-7ba3-40af-85d1-e9bb640583ad?mode=deep",
+    "timestamp": "2026-02-19 15:31:51.477854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetSchemeAddress()] [Virtual Address Squatting] Can an attacker precompute GetDistributedPeriodProfitsVirtualAddress results for future periods and deploy malicious contracts at those addresses to intercept profit transfers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d60e36f-0260-48e6-beb4-dad71f8a0aaf?mode=deep",
+    "timestamp": "2026-02-19 15:32:21.353144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GeneratePeriodVirtualAddressFromHash()] [Hash Reversal] If an attacker observes virtual addresses from GetSchemeAddress queries and knows the XOR operation at line 59, can they reverse-engineer the schemeId from period and address, compromising scheme privacy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0af40c83-5780-4263-bcd1-a9b5fb6d3298?mode=deep",
+    "timestamp": "2026-02-19 15:32:51.075432",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap()] [Detail Limit Exploitation] Given the 10-detail limit at line 119-120, can a malicious scheme manager register 1000 beneficiaries with 1 share each, then register the attacker with 10000 shares, ensuring attacker's detail is always in top 10 while legitimate users can't query their profits? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec58165d-210d-49f4-a034-f760b995381f?mode=deep",
+    "timestamp": "2026-02-19 15:33:21.098849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitAmount()] [Zero Return Ambiguity] When TryGetValue returns false at line 68 and 0 is returned, can this be exploited where 0 means 'no profits yet' vs 'not registered' vs 'symbol doesn't exist', causing UI/integration errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2bfe689f-45eb-405e-83de-ba847fdbfab6?mode=deep",
+    "timestamp": "2026-02-19 15:33:53.466160",
+    "report_generated": false
+  }
+]
