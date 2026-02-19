@@ -1,0 +1,68 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Cross-Function] [Gas Optimization] Can calling multiple view functions in sequence (e.g., GetSideChainIdAndHeight followed by GetSideChainBalance for each chain) cause excessive gas consumption compared to a batched operation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_427c8a81-c53d-4eab-8a4f-c09c1d39a1a5?mode=deep",
+    "timestamp": "2026-02-19 02:40:22.729842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [General] [Assert Failures] Do all Assert statements provide sufficient context in error messages to debug failures, or can generic assertion failures hide the root cause of validation errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70c98566-2702-46f6-874a-0c22bef3d166?mode=deep",
+    "timestamp": "2026-02-19 02:40:45.101098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [General] [Input Sanitization] Are all Int32Value and Int64Value inputs sanitized to prevent negative values, zero values, or extreme values from causing unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e066d49c-a7d2-4689-bf55-acaef5d6e872?mode=deep",
+    "timestamp": "2026-02-19 02:41:07.765379",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [General] [Null Reference] Are all state variable accesses protected against null references, or can uninitialized state cause NullReferenceException in certain execution paths? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b55b043-0be4-47af-8196-e3fb402e1c9f?mode=deep",
+    "timestamp": "2026-02-19 02:41:31.184594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [General] [Return Value Sanitization] Do all functions properly initialize return objects, or can partial initialization lead to undefined behavior in callers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ed8306e-9f59-475d-b17e-2595e9d60f07?mode=deep",
+    "timestamp": "2026-02-19 02:41:55.184814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [General] [Data Structure Limits] Are there limits on dictionary sizes (e.g., IdHeightDict) to prevent memory exhaustion attacks through excessive side chain creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91ef0dfd-8f02-4645-abdf-d2b71ba668de?mode=deep",
+    "timestamp": "2026-02-19 02:42:20.279753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Integration] [External Contract Calls] Does the Context.Call in GetIndexingProposalStatus properly handle exceptions or unexpected return values from the authorization contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbd9313a-d1fd-4d58-9997-3a485f6ba0e1?mode=deep",
+    "timestamp": "2026-02-19 02:42:44.647657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Integration] [State Synchronization] When parent chain or side chain state is updated in other contract methods, are all view functions guaranteed to see consistent updated state immediately? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d846998a-55a3-4585-982b-1d9bb2421e5e?mode=deep",
+    "timestamp": "2026-02-19 02:43:09.616840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Integration] [Controller Dependencies] If GetCrossChainIndexingController, GetSideChainLifetimeController, or GetSideChainIndexingFeeController delegate to external contracts, can those contracts return malicious or manipulated controller information? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a3c4555-6432-4ffa-a861-885dfbc5ce6d?mode=deep",
+    "timestamp": "2026-02-19 02:43:37.585750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Merkle Verification] [ComputeRootWithTransactionStatusMerklePath] Does the merkle path computation properly handle different hash algorithms and node ordering conventions used by different chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_622e0708-4993-4cc8-b792-9836b75159d8?mode=deep",
+    "timestamp": "2026-02-19 02:44:03.806704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Merkle Verification] [GetMerkleTreeRoot\n\n### Citations\n\n**File:** contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs (L1-215)\n```csharp\nusing System.Linq;\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS3;\nusing AElf.Standards.ACS7;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.CrossChain;\n\n// ReSharper disable once PossibleNullReferenceException\npublic partial class CrossChainContract\n{\n    public override IndexedSideChainBlockData GetIndexedSideChainBlockDataByHeight(Int64Value input)\n    {\n        var indexedSideChainBlockData = State.IndexedSideChainBlockData[input.Value];\n        return indexedSideChainBlockData ?? new IndexedSideChainBlockData();\n    }\n\n    public override CrossChainMerkleProofContext GetBoundParentChainHeightAndMerklePathByHeight(Int64Value input)\n    {\n        var boundParentChainHeight = State.ChildHeightToParentChainHeight[input.Value];\n        Assert(boundParentChainHeight != 0);\n        var merklePath = State.TxRootMerklePathInParentChain[input.Value];\n        Assert(merklePath != null);\n        return new CrossChainMerkleProofContext\n        {\n            MerklePathFromParentChain = merklePath,\n            BoundParentChainHeight = boundParentChainHeight\n        };\n    }\n\n    /// <summary>\n    ///     Cross chain txn verification.\n    /// </summary>\n    /// <param name=",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e731b43-a415-4f09-8633-f76fd2624c3f?mode=deep",
+    "timestamp": "2026-02-19 02:44:34.643571",
+    "report_generated": false
+  }
+]
