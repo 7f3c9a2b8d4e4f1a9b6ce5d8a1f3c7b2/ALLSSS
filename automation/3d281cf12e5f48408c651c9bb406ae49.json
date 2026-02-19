@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GenerateProposalId()] [Token Nullability] If input.Token is null on line 142, does HashHelper.ComputeFrom(input) provide sufficient entropy to prevent collisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a212640c-1e99-4223-a51f-fcb4d22156c9?mode=deep",
+    "timestamp": "2026-02-19 04:23:54.516919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GenerateProposalId()] [Deterministic ID] Is GenerateId() deterministic, allowing attackers to pre-calculate proposal IDs and front-run proposal creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62f2560e-87a2-4999-bc74-12b198cad4d2?mode=deep",
+    "timestamp": "2026-02-19 04:24:16.840140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: GenerateProposalId()] [Input Hash Collision] Can two different CreateProposalInput objects produce the same hash via HashHelper.ComputeFrom, causing proposal ID collision? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6507c3c4-a2c4-43d7-b691-05199c6a3ecd?mode=deep",
+    "timestamp": "2026-02-19 04:24:39.090455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [Input Validation] Does CheckCreateProposalInput on line 147 run BEFORE GenerateProposalId, preventing invalid proposals from consuming proposal ID space? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa0b80d4-38a5-4d36-9029-974d80af34b2?mode=deep",
+    "timestamp": "2026-02-19 04:25:02.048454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [TOCTOU Race] Can an attacker exploit the time between GenerateProposalId (line 148) and checking proposal existence (line 163), creating the same proposal ID through parallel transactions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73002c9f-29f7-4808-ba4e-4ef1fb87afcf?mode=deep",
+    "timestamp": "2026-02-19 04:25:26.197191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [State Mutation] Can proposal fields (lines 149-161) be modified after Validate() on line 162 but before storage on line 164, bypassing validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59c23e49-19ce-48a7-8aa9-52a7253d3319?mode=deep",
+    "timestamp": "2026-02-19 04:25:50.855466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [Null Field Injection] Can any fields in ProposalInfo (lines 149-161) be set to null despite Validate() passing, causing issues in voting/release logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7da58730-c976-44b7-b3b7-aa535f8299c8?mode=deep",
+    "timestamp": "2026-02-19 04:26:16.545180",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [Proposer Override] Does line 157 correctly set Proposer to Context.Sender, or can this be spoofed through transaction manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa431010-65c6-48d8-b585-23000de2932d?mode=deep",
+    "timestamp": "2026-02-19 04:26:42.715129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [Event Emission] Does ProposalCreated event on lines 165-171 emit before or after state storage on line 164 - can this create inconsistent state if storage fails? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8986a70c-90dd-47cb-bc89-376f044b7f0c?mode=deep",
+    "timestamp": "2026-02-19 04:27:11.914128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [Duplicate Proposal] Does line 163 assertion prevent proposal ID reuse, or can an attacker delete a proposal and recreate with same ID? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86259395-fc2a-46a9-a9e8-068f9915013a?mode=deep",
+    "timestamp": "2026-02-19 04:27:41.082303",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CreateNewProposal()] [Return Value] Does returning proposalId on line 172 expose proposal creation success before transaction confirmation, enabling MEV attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7683fc6a-ee94-434c-94dd-b5ae54b5d255?mode=deep",
+    "timestamp": "2026-02-19 04:28:14.139892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckCreateProposalInput()] [Length Validation] Does line 178 correctly validate Title.Length against MaxLengthForTitle (255), or can Unicode/multi-byte characters bypass this check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_905f690b-8666-4d27-902d-403beb12d494?mode=deep",
+    "timestamp": "2026-02-19 04:28:41.763444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckCreateProposalInput()] [Description Length] Can input.Description exceed MaxLengthForDescription (10200) on line 180 through encoding tricks that make byte length differ from character length? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bfa73cc-da87-4180-860a-1c4072043959?mode=deep",
+    "timestamp": "2026-02-19 04:29:09.406202",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckCreateProposalInput()] [URL Length] Does line 182-183 check ProposalDescriptionUrl length correctly, or can attackers use percent-encoding to bypass MaxLengthForProposalDescriptionUrl (255)? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53500346-fa02-444f-9220-46d2f0de8b85?mode=deep",
+    "timestamp": "2026-02-19 04:29:37.785735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckCreateProposalInput()] [Null String] Can null strings bypass the Length property checks on lines 178, 180, 182, causing NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5f7eede-1ec5-4eaf-9cd4-6182939337bb?mode=deep",
+    "timestamp": "2026-02-19 04:30:09.135204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckCreateProposalInput()] [Incomplete Validation] Does this function validate ALL required fields from CreateProposalInput, or are ToAddress, ContractMethodName, ExpiredTime validated elsewhere? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f29ee3a8-9c1c-4496-bfcf-ef13f16ef8ae?mode=deep",
+    "timestamp": "2026-02-19 04:30:38.509913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Cross-Function: IsReleaseThresholdReached + CheckEnoughVoteAndApprovals] [Vote Counting Inconsistency] If proposal.Approvals contains non-members, does IsReleaseThresholdReached filter them correctly while CheckEnoughVoteAndApprovals doesn't, causing inconsistent release decisions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73f616dd-bfbc-46a1-a132-a72e1d9207db?mode=deep",
+    "timestamp": "2026-02-19 04:31:06.856189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Cross-Function: Validate(Organization) + IsReleaseThresholdReached] [Threshold Validation] Can organization thresholds that pass Validate() still create impossible-to-release proposals due to edge cases in IsReleaseThresholdReached logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1014c11-5bdc-489c-bdcb-8b60b7ced077?mode=deep",
+    "timestamp": "2026-02-19 04:31:37.616298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Cross-Function: AssertIsAuthorizedProposer + CreateNewProposal] [Authorization Bypass] Is AssertIsAuthorizedProposer called BEFORE CreateNewProposal in all code paths, or can proposals be created without authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dc9e634-7483-47ac-96fa-7bdce77b2225?mode=deep",
+    "timestamp": "2026-02-19 04:32:08.261220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Cross-Function: AssertProposalNotYetVotedBySender + voting functions] [Double Vote] If AssertProposalNotYetVotedBySender is called before vote is recorded, can concurrent transactions exploit the gap to vote twice? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd9d3e48-b221-4a0d-9dc1-404cac00ddc7?mode=deep",
+    "timestamp": "2026-02-19 04:32:38.519291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Cross-Function: GetValidProposal + IsReleaseThresholdReached] [Expired Proposal Release] Can an expired proposal (that fails GetValidProposal) still be released if IsReleaseThresholdReached is checked before validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed09bbb9-152f-49c6-b3a8-17cc399acd4c?mode=deep",
+    "timestamp": "2026-02-19 04:33:06.590337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Math: CheckEnoughVoteAndApprovals line 56] [Count Precision] Does Concat().Count() on line 56 handle lists with 2^31+ addresses correctly, or can integer overflow cause incorrect vote threshold validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ae78f80-2fec-4319-9dec-a7e3fc9e990a?mode=deep",
+    "timestamp": "2026-02-19 04:33:33.130813",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Math: Validate(Organization) line 71] [Member Count] Can Count() on OrganizationMemberList overflow if list contains billions of members, breaking threshold comparison logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9da17c8-f1e0-4da1-a5ef-af0973264f8b?mode=deep",
+    "timestamp": "2026-02-19 04:34:03.435353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Math: IsProposalRejected line 37] [Count Filter] Does Count(predicate) correctly handle empty organizationMemberList, or does it cause unexpected behavior when filtering rejections? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09cf3850-82c0-48ae-bd5c-14b8b28e4a9b?mode=deep",
+    "timestamp": "2026-02-19 04:34:34.077840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Math: Validate(Organization) lines 77-80] [Sum Overflow] Can adding MaximalAbstentionThreshold + MinimalApprovalThreshold overflow before comparison with organizationMemberCount? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_797cc91e-f517-4f54-997f-0dbb2e831d59?mode=deep",
+    "timestamp": "2026-02-19 04:35:04.916680",
+    "report_generated": false
+  }
+]
