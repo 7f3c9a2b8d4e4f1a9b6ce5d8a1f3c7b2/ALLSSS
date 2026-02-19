@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [Race Condition] If multiple transactions call this function concurrently when State.MethodFeeController.Value is null, can they create multiple initialization sequences causing state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fe5b61a-57ce-4c43-94ac-0316d5138eee?mode=deep",
+    "timestamp": "2026-02-19 11:59:16.421856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [External Call Manipulation] Can GetDefaultOrganizationAddress() at line 59 return malicious address if ParliamentContract is compromised, setting attacker-controlled address as initial controller? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6de59c67-aa44-49c8-816a-dfd0693d853d?mode=deep",
+    "timestamp": "2026-02-19 11:59:38.762016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [State Initialization] If State.ParliamentContract.Value is set but Context.GetContractAddressByName returns different address, does the contract use stale ParliamentContract reference? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_39f61576-8bb8-4b4a-af2b-beb04eae04b5?mode=deep",
+    "timestamp": "2026-02-19 12:00:02.362401",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [Function: RequiredMethodFeeControllerSet()] [DoS Attack] If GetDefaultOrganizationAddress() call reverts or fails, does RequiredMethodFeeControllerSet() prevent all future SetMethodFee and ChangeMethodFeeController operations permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6881d4e-9819-4c8b-87b4-1c44d19ee2d7?mode=deep",
+    "timestamp": "2026-02-19 12:00:25.827557",
+    "report_generated": false
+  }
+]
