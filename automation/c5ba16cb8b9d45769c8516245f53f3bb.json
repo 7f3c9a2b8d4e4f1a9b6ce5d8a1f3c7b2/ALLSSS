@@ -1,0 +1,86 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [Profit Theft] Are there setter functions for ProfitContract reference that lack proper authorization, enabling attacker to redirect AddBeneficiary calls to drain subsidy pool? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a58a879-ee52-4bb6-8790-07fbd52f52c6?mode=deep",
+    "timestamp": "2026-02-19 11:48:27.782301",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [Token Theft] Can TokenContract reference be updated without authorization to point at malicious contract that approves unlimited transfers from election contract balance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7ba58d2-7284-42cc-9068-808b9c34ad80?mode=deep",
+    "timestamp": "2026-02-19 11:48:49.943375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Race Condition] If VoteContract is lazily initialized via Context.GetContractAddressByName, can attacker front-run initialization to register fake vote contract address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79625518-6134-4a37-8595-568abb06c0c6?mode=deep",
+    "timestamp": "2026-02-19 11:49:12.389745",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ParliamentContract] [Race Condition] During concurrent SetVoteWeightInterest calls, can race in ParliamentContract initialization cause wrong default organization to authorize vote weight changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6cddfdd-f5c1-4b83-85b1-dc39b4fc8ef1?mode=deep",
+    "timestamp": "2026-02-19 11:49:35.878567",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: AEDPoSContract] [Race Condition] Can concurrent UpdateCandidateInformation calls during AEDPoSContract initialization bypass sender authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0413462-599b-4186-8d1c-5883963ac45e?mode=deep",
+    "timestamp": "2026-02-19 11:50:00.020002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [State Desync] If VoteContract.TakeSnapshot and ElectionContract snapshot logic desync, can vote weights be calculated from stale voting records causing incorrect miner selection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fcafee8-afe1-4006-b006-ea598536b6f6?mode=deep",
+    "timestamp": "2026-02-19 11:50:25.803862",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [State Desync] If ProfitContract.DistributeProfits fails but ElectionContract increments CurrentTermNumber, can subsequent distributions use wrong period causing reward loss? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37a13a40-688c-4fc1-8c25-bd36e521461a?mode=deep",
+    "timestamp": "2026-02-19 11:50:51.187489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TokenContract] [State Desync] If TokenContract.Lock succeeds but VoteContract.Vote fails, are tokens permanently locked without corresponding vote entry? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f33cfd8-35c1-40a9-9835-4f6fe7a86f5d?mode=deep",
+    "timestamp": "2026-02-19 11:51:17.543517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [Contract Upgrade] If VoteContract is upgraded with incompatible GetVotingRecord return type, will ElectionContract calls revert breaking all withdrawals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc86daad-c294-484c-b889-2d7e7dd5190f?mode=deep",
+    "timestamp": "2026-02-19 11:51:44.951774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [Contract Upgrade] If ProfitContract is upgraded removing GetScheme method, will GetEndPeriod calculations fail preventing all new votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_319f0b87-e92e-4934-8105-5e0f1607b376?mode=deep",
+    "timestamp": "2026-02-19 11:52:16.661901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: TreasuryContract] [Contract Upgrade] If TreasuryContract migration breaks GetProfitsReceiverOrDefault, can candidate subsidy payments fail causing loss of backup miner incentives? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfbf3908-bd0e-4771-a575-f5d683bf16e9?mode=deep",
+    "timestamp": "2026-02-19 11:52:50.428041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: ProfitContract] [DOS Attack] If ProfitContract.GetProfitDetails returns unbounded details list, can attacker create excessive profit entries causing GetProfitDetailByElectionVotingRecord to exhaust gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e89dfb7-14f0-4ccd-b4ec-ddfec6229fdf?mode=deep",
+    "timestamp": "2026-02-19 11:53:23.357881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: DividendPoolContract] [DOS Attack] Can DividendPoolContract.GetSymbolList return large symbol array causing DistributeProfits to exceed gas limit, freezing term transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49698607-2075-4dd6-910b-8c285b3ffccb?mode=deep",
+    "timestamp": "2026-02-19 11:53:57.830645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractReferenceState.cs] [Property: VoteContract] [DOS Attack] If VoteContract.GetVotingRecord has unbounded gas cost for complex vote IDs, can attacker create expensive vote IDs that DOS Withdraw operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eae4cad2-c107-49ff-8c5d-072501dd41a7?mode=deep",
+    "timestamp": "2026-02-19 11:54:33.555430",
+    "report_generated": false
+  }
+]
