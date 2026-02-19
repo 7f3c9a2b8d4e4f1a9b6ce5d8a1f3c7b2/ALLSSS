@@ -1,0 +1,74 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [State] [Initialized Flag] State.Initialized is checked once at line 18 then set at line 38 - could the contract be called between initialization steps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6499d34-93df-48fa-a6c7-fe7d35c56340?mode=deep",
+    "timestamp": "2026-02-19 12:10:38.575589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [State] [TokenContract Reference] State.TokenContract is set once at line 20 and never updated - could this become stale if TokenContract is upgraded? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f3c765c-288a-4fcb-9a1a-bab349cd4e08?mode=deep",
+    "timestamp": "2026-02-19 12:11:01.250913",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [State] [Contract References] Multiple contract references (TokenContract, ElectionContract, ProfitContract, etc.) are set during initialization - are these immutable or could they be changed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d78391f-d6d3-4155-8d89-d353b753431a?mode=deep",
+    "timestamp": "2026-02-19 12:11:25.417927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Token Economics] [Supply Distribution] Native token supply is split between mining rewards (line 30) and issuer - is the remaining supply after mining rewards validated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e342b860-62cd-4cd3-9fc9-28286f4b5863?mode=deep",
+    "timestamp": "2026-02-19 12:11:49.449037",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Token Economics] [Resource Token Oversupply] Each resource token gets 500M total supply (line 88) and all are issued to TokenConverter - could this flood the market? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_938bf1f9-aba2-4e1b-8bda-4c242abbf882?mode=deep",
+    "timestamp": "2026-02-19 12:12:14.200544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Token Economics] [Election Token Concentration] 1B VOTE and 1B SHARE tokens all issued to one contract (line 132) - is this single point of control a security risk? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe707bf3-86a7-4da5-a679-88772069c809?mode=deep",
+    "timestamp": "2026-02-19 12:12:40.632928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Token Economics] [Decimals Inconsistency] Native token decimals are configurable (line 59), resource tokens use 8 decimals (line 89), election tokens use 8 decimals (line 122) - could mismatches break conversions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fcb889e-f620-4cdb-ae29-32370590cbc4?mode=deep",
+    "timestamp": "2026-02-19 12:13:08.514951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Token Economics] [Burnable Tokens] Native token burnable status is configurable (line 60), but resource and election tokens are always burnable - could selective burning break economic balance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5bd5955-8e72-4979-bc07-179beed72201?mode=deep",
+    "timestamp": "2026-02-19 12:13:36.411099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Context] [Variables Manipulation] Context.Variables.NativeSymbol, GetStringArray, etc. are used throughout - could manipulating these variables before initialization corrupt the entire economic system? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_246fdeee-605b-4f93-8344-7a59ba82968a?mode=deep",
+    "timestamp": "2026-02-19 12:14:08.459264",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Context] [Self Reference] Context.Self is used as Issuer and Owner for all tokens - could Context.Self be different in different execution contexts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c390a4e-c0ee-4e05-9f03-6ab30792cd17?mode=deep",
+    "timestamp": "2026-02-19 12:14:41.794815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [Context] [Contract Name Resolution] GetContractAddressByName is called repeatedly - could contract name collisions or front-running during deployment cause wrong addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab1b38a2-b9c7-41b3-b526-8b03a2ca1a96?mode=deep",
+    "timestamp": "2026-02-19 12:15:15.244106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContract.cs] [External] [TokenContract Trust] All token operations are delegated to State.TokenContract - if TokenContract has vulnerabilities, does EconomicContract inherit them? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d38e022-997f-4f48-a44f-f028a4e3b149?mode=deep",
+    "timestamp": "2026-02-19 12:15:47.914781",
+    "report_generated": false
+  }
+]
