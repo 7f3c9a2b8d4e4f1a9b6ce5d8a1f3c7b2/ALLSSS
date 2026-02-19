@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Empty Symbol String] If input.Symbol is",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26f123bd-7982-4b95-90d7-1d700b59f5b0?mode=deep",
+    "timestamp": "2026-02-19 09:50:58.355310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Null Symbol String] If input.Symbol is null, does GetAllProfitsMap pass null to ProfitAllPeriods, and how does that affect profit calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a367b78b-97b9-47a3-8821-99ffa5f7f955?mode=deep",
+    "timestamp": "2026-02-19 09:51:20.401462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Whitespace Symbol] If input.Symbol contains only whitespace, do dictionary lookups treat it as distinct from empty/null symbols? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5aecf832-e50d-4dea-966f-cf21e7f50f8d?mode=deep",
+    "timestamp": "2026-02-19 09:51:42.915729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Unicode Symbol] If input.Symbol contains Unicode characters, can it cause encoding mismatches in dictionary key lookups? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_695c8c56-c3a3-4760-a3eb-54f427fc8690?mode=deep",
+    "timestamp": "2026-02-19 09:52:05.975130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Very Long Symbol] If input.Symbol is extremely long (10000+ characters), can it cause memory issues or DoS in TryGetValue operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5296bc27-f426-4339-aa57-78932e7e971d?mode=deep",
+    "timestamp": "2026-02-19 09:52:30.196958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Zero TotalShares] The sentinel value TotalShares = -1 (line 42) indicates non-existence. If a scheme legitimately has TotalShares = 0, can this cause division-by-zero in profit distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_658b3f86-efbd-4a60-b87f-e71d59057ea3?mode=deep",
+    "timestamp": "2026-02-19 09:52:55.163402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [Negative TotalShares] If TotalShares is negative (other than -1), can this cause incorrect profit per share calculations elsewhere? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c38af681-2fd9-4dd4-a4de-1e44efd6aca4?mode=deep",
+    "timestamp": "2026-02-19 09:53:20.766627",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [CurrentPeriod = 0] If scheme.CurrentPeriod is 0, does the filter on line 114 (LastProfitPeriod < CurrentPeriod) exclude all details? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_627dbf6f-6389-4680-bb83-3fe534c54dec?mode=deep",
+    "timestamp": "2026-02-19 09:53:47.379206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Edge Case] [CurrentPeriod Overflow] If scheme.CurrentPeriod approaches Int64.MaxValue, can period arithmetic fail or overflow in future calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9c8ec14-591f-4870-a7a2-ce89c7277ea5?mode=deep",
+    "timestamp": "2026-02-19 09:54:15.208561",
+    "report_generated": false
+  }
+]
