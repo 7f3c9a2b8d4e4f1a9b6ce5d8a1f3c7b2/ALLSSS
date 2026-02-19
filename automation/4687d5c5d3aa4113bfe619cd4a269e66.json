@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Order Inconsistency] If SupposedOrderOfNextRound differs from FinalOrderOfNextRound for the target miner (lines 38-40), which one is used for next round generation, and can this inconsistency be exploited to cause round transition failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6185d7b8-fc11-4b21-ae47-608dfaeac7fa?mode=deep",
+    "timestamp": "2026-02-19 05:01:17.080488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Missing Order Validation] Orders copied at lines 30, 38-40, and 49 are not validated for uniqueness or sequential consistency - can duplicate or out-of-range orders cause mining schedule conflicts or DOS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_150cc808-6d2f-4647-8c62-76fb6e2399a4?mode=deep",
+    "timestamp": "2026-02-19 05:01:39.304239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Other Miners' Orders] SupposedOrderOfNextRound and FinalOrderOfNextRound for other miners (not the target pubkey) are copied at lines 47-48 - can these be stale or manipulated values that cause incorrect round transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98de71dd-264b-4939-aaec-38995c3c2374?mode=deep",
+    "timestamp": "2026-02-19 05:02:01.697829",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Caller Context Dependency] GetUpdateValueRound assumes the caller has already updated ProducedBlocks and ActualMiningTimes - if the caller forgets this update, does the simplified round contain stale statistics that cause reward calculation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ec702c9-2f4f-455d-95fe-650fc3061173?mode=deep",
+    "timestamp": "2026-02-19 05:02:25.113082",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Pre-Condition Violation] If GetTinyBlockRound is called before the caller updates ProducedTinyBlocks count, does the tiny block round contain incorrect statistics that break tiny block validation or reward distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_980ae774-88a9-4d97-822d-870bddf3b64f?mode=deep",
+    "timestamp": "2026-02-19 05:02:49.295669",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [DeleteSecretSharingInformation Call] The caller deletes secret sharing information after GetUpdateValueRound returns - does this mean the simplified round still contains EncryptedPieces/DecryptedPieces that are then removed, or were they never included? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_564a1152-7e8f-4ded-a325-0046ce1f0ef1?mode=deep",
+    "timestamp": "2026-02-19 05:03:13.496682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Single Miner Round] If RealTimeMinersInformation contains only one miner (the target pubkey), does the loop at lines 35-53 execute correctly, or does it produce a degenerate round that breaks consensus assumptions about minimum miner count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f390c72-e84e-4796-a0c5-fbfbec1667e0?mode=deep",
+    "timestamp": "2026-02-19 05:03:38.644348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Single Miner Round] If only one miner exists and GetTinyBlockRound is called, does line 78's Except produce an empty list, resulting in a tiny block round with only one miner and no empty placeholders for others? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1dc7a29d-a80b-4bfb-9d30-23e779677e43?mode=deep",
+    "timestamp": "2026-02-19 05:04:04.733434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Maximum Miners] If RealTimeMinersInformation contains the maximum allowed miner count (e.g., 2N+1 for Byzantine fault tolerance), does the loop at lines 35-53 complete within gas limits, or can it cause transaction timeout? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75e2fa47-8644-4f9a-bc48-fe3d532326a7?mode=deep",
+    "timestamp": "2026-02-19 05:04:34.365257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Miner List Size] At line 78, if RealTimeMinersInformation.Keys contains thousands of miners, does the Except and Add operations consume excessive gas or memory, enabling resource exhaustion attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c902385b-8771-4266-a550-b43b6358169d?mode=deep",
+    "timestamp": "2026-02-19 05:05:05.979811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Serialization Size] Does the simplified round from GetUpdateValueRound still exceed block header size limits if many miners exist, causing block propagation failures or validation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b325994b-9a46-486f-9bd2-444e5988c273?mode=deep",
+    "timestamp": "2026-02-19 05:05:34.719772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Empty Object Overhead] Adding empty MinerInRound objects at line 79 for all other miners - even though they're empty, does serializing hundreds of empty objects still consume significant space in tiny block headers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c47fdd9-1603-4bbc-931a-4004f6c78d30?mode=deep",
+    "timestamp": "2026-02-19 05:06:09.704605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [ActualMiningTimes Size] If a miner's ActualMiningTimes collection at line 28 contains many timestamps (from producing many blocks in the round), does this make the simplified round too large to fit in consensus header information? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_914a1899-e5bc-446d-b8d0-134fba95f438?mode=deep",
+    "timestamp": "2026-02-19 05:06:39.325747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Hash Object Nullability] Hash objects like OutValue (line 23), Signature (line 24), and PreviousInValue (line 27, 51) can be null in protobuf - does the simplified round handle null Hash values correctly, or do they cause deserialization errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ac48d83-872f-432b-99da-cdb2c2fcc155?mode=deep",
+    "timestamp": "2026-02-19 05:07:14.944832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Integer Overflow] ProducedBlocks and ProducedTinyBlocks at lines 71-72 are int64 - if these counters overflow after a miner produces 2^63 blocks, does the overflow cause negative counts that break reward calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6eb95543-a496-4576-bf0b-9e02232204fe?mode=deep",
+    "timestamp": "2026-02-19 05:07:51.086517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Order Value Range] Order values at lines 30 and 49 are int32 - are there bounds checks ensuring Order is within valid range [1, miner_count], or can out-of-range orders break mining schedule generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27b62527-2f8f-4333-837a-8a1fd7405ba6?mode=deep",
+    "timestamp": "2026-02-19 05:08:25.306739",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Concurrent Modification] If multiple threads/transactions call GetUpdateValueRound concurrently on the same Round object, can race conditions occur when accessing RealTimeMinersInformation dictionary at lines 13 and 35-53? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80d28617-7c12-4154-918c-25acc45480b4?mode=deep",
+    "timestamp": "2026-02-19 05:08:59.373231",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Dictionary Enumeration] Line 78 enumerates RealTimeMinersInformation.Keys - if the dictionary is modified during enumeration, does this throw an exception that crashes tiny block generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cc63dc0-c256-433f-bca8-59750868bb01?mode=deep",
+    "timestamp": "2026-02-19 05:09:35.732711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [State Mutation] If the original Round object's RealTimeMinersInformation is mutated while GetUpdateValueRound executes at lines 13-55, can this cause inconsistent data to be copied into the simplified round? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aff8f8c9-f997-45b8-8a12-83c1c0395ecc?mode=deep",
+    "timestamp": "2026-02-19 05:10:11.191793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Round Completeness] The simplified round lacks ExpectedMiningTime for all miners - does this violate consensus invariants that require time slot information for proper round validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23098878-1acb-4aca-bff7-87541e028219?mode=deep",
+    "timestamp": "2026-02-19 05:10:43.604981",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Minimal Data Assumption] Tiny block rounds contain only 4 fields per miner (Pubkey, ActualMiningTimes, ProducedBlocks, ProducedTinyBlocks, ImpliedIrreversibleBlockHeight) - is this sufficient for consensus validation, or do missing fields cause validation to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ca4e841-b94f-4952-8b82-886cd955c05b?mode=deep",
+    "timestamp": "2026-02-19 05:11:15.730747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [IsExtraBlockProducer Logic] If IsExtraBlockProducer is true for the target miner (lines 31, 50), does the simplified round correctly represent extra block production rights, or can this flag be exploited to produce unauthorized extra blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8899b299-8b70-4c38-a195-5709e1160d1a?mode=deep",
+    "timestamp": "2026-02-19 05:11:48.409331",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [PreviousInValue Consistency] PreviousInValue is copied for all miners (lines 27, 51) - if some miners' PreviousInValue doesn't match their OutValue from the previous round, does this indicate a consensus violation that should be detected but isn't? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c4ea3b3-69cf-4e7a-8bed-975cad2af853?mode=deep",
+    "timestamp": "2026-02-19 05:12:21.431112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetUpdateValueRound()] [Reward Calculation Dependency] ProducedBlocks count at line 25 is used for reward distribution - if this value is manipulated before GetUpdateValueRound is called, can a miner claim excessive mining rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8018fc8-d031-4416-a845-b0738e97b6cb?mode=deep",
+    "timestamp": "2026-02-19 05:12:49.423857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Simplify.cs] [Function: GetTinyBlockRound()] [Tiny Block Rewards] ProducedTinyBlocks at line 72 affects reward calculations - can a miner inflate this count in the simplified round to claim rewards for tiny blocks they didn't actually produce? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f70f5302-7612-42af-812f-c531f3a019d3?mode=deep",
+    "timestamp": "2026-02-19 05:13:23.078523",
+    "report_generated": false
+  }
+]
