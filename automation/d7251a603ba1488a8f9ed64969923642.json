@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Token Theft] Can an attacker call AnnounceElectionFor with input.Admin set to their own address to gain admin control over a candidate they don't own, at lines 127-131? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fcf552f-3bba-4c1c-925e-0da501473b33?mode=deep",
+    "timestamp": "2026-02-19 12:53:29.332935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Logic Error] If input.Admin is null, does line 127 correctly default to Context.Sender, and can this be exploited if Context.Sender is a contract address? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2633ed2-08bb-4f99-b4f0-015f756618de?mode=deep",
+    "timestamp": "2026-02-19 12:53:51.357373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [State Inconsistency] Does setting CandidateSponsorMap[input.Pubkey] at line 140 without verifying candidate registration success allow orphaned sponsor entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ba3bf20-ccfa-47f2-ba4a-1f3f34d6cd2c?mode=deep",
+    "timestamp": "2026-02-19 12:54:13.764794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Double Spending] Can LockCandidateNativeToken at line 132 be called twice in same transaction if AnnounceElection(pubkeyBytes) at line 126 calls it again, causing double token lock? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f97d0970-d5e8-4572-b30a-8d4877d1b728?mode=deep",
+    "timestamp": "2026-02-19 12:54:36.731208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [DoS] Can an attacker register candidates on behalf of others without permission, locking their own tokens and filling DataCentersRankingList to prevent legitimate candidates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5976d155-f7b0-4c3b-b3e6-bdc637be7c28?mode=deep",
+    "timestamp": "2026-02-19 12:55:01.093402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [State Corruption] If the same pubkey is registered via both AnnounceElection and AnnounceElectionFor, can this create duplicate entries in ManagedCandidatePubkeysMap at lines 129-131? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f06e1d73-84f2-4ac5-9001-50230350f071?mode=deep",
+    "timestamp": "2026-02-19 12:55:27.523110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Logic Error] Can the sponsor at line 140 be different from the admin at line 127, creating confusion about who should receive unlocked tokens on quit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f351d097-af08-4497-a177-592c63fc2970?mode=deep",
+    "timestamp": "2026-02-19 12:55:53.144578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElectionFor()] [Input Validation] Does ByteArrayHelper.HexStringToByteArray at line 124 properly validate input.Pubkey format, or can malformed hex cause parsing errors or unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f7ee28d-b0f7-483d-b30f-04d249ea137b?mode=deep",
+    "timestamp": "2026-02-19 12:56:20.915594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(byte[])] [Authorization Bypass] Can initial miners who quit and then try to re-register bypass the check at line 149-150 if they are no longer in InitialMiners.Value.Value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41751f6b-c75d-4c1a-9f34-cdc0b7d474fc?mode=deep",
+    "timestamp": "2026-02-19 12:56:49.845552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(byte[])] [State Manipulation] If candidateInformation exists but IsCurrentCandidate is false at line 156, can an attacker re-announce preserving old CandidateInformation state (terms, missed slots) to gain unfair advantages? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4db1c150-2120-4afb-8e43-b81c3c18e27c?mode=deep",
+    "timestamp": "2026-02-19 12:57:20.530796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(byte[])] [Logic Error] Does setting AnnouncementTransactionId to Context.OriginTransactionId at line 158 allow transaction replay attacks if the same OriginTransactionId is used maliciously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cad1e926-70bc-4fdc-a998-11a397631035?mode=deep",
+    "timestamp": "2026-02-19 12:57:48.427019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(byte[])] [State Inconsistency] If IsPubkeyBanned check at line 165 only applies to new candidates, can previously banned candidates who quit re-announce by going through the candidateInformation != null path? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c136810-a030-4cb6-9327-a18b27e660e2?mode=deep",
+    "timestamp": "2026-02-19 12:58:19.697218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(byte[])] [State Corruption] Can adding the same pubkeyByteString to State.Candidates.Value.Value at line 174 create duplicates if called multiple times due to race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea95e4ac-e03d-4cc0-ba2e-9beb123f1ea5?mode=deep",
+    "timestamp": "2026-02-19 12:58:51.279793",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AnnounceElection(byte[])] [DoS] Can an attacker continuously add candidates to State.Candidates.Value.Value list at line 174 to bloat storage and increase gas costs for all candidate-related operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_096e99b7-dabd-4ac5-9172-d7b0339bde3a?mode=deep",
+    "timestamp": "2026-02-19 12:59:23.803019",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [Token Lock Bypass] Can an attacker call election functions without sufficient token balance if TransferFrom at lines 187-194 doesn't properly check allowance and balance before locking? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7924f2b-a5d7-4e8f-b6c9-653523eb0d83?mode=deep",
+    "timestamp": "2026-02-19 12:59:55.676161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [Authorization] Is the TransferFrom at line 187 vulnerable if Context.Sender hasn't approved the election contract, causing silent failures or allowing locks without actual token transfer? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07cac951-a2ae-410b-bcb0-88667ea45621?mode=deep",
+    "timestamp": "2026-02-19 13:00:27.678252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [Collision Attack] Can an attacker craft transactions with the same OriginTransactionId at line 184 to cause lock ID collision and token recovery conflicts later? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e82fc45-abd0-41a7-b29a-1f56343eea9d?mode=deep",
+    "timestamp": "2026-02-19 13:01:00.098266",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [Virtual Address Manipulation] Can ConvertVirtualAddressToContractAddress at line 185 be exploited with crafted lockId to redirect locked tokens to attacker-controlled addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f3cc6d9-89ec-460a-8029-2bb9ae01cc4a?mode=deep",
+    "timestamp": "2026-02-19 13:01:30.189801",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [Reentrancy] Can TokenContract.TransferFrom.Send trigger callbacks that allow reentrant calls before the lock is registered in state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_db07b124-d56b-452b-9bf7-f2a102e88308?mode=deep",
+    "timestamp": "2026-02-19 13:02:00.697148",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [Fixed Amount Risk] Is ElectionContractConstants.LockTokenForElection at line 192 a hardcoded value that could become insufficient or excessive as token value changes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08d7e08c-b8a8-4a96-83e7-cd2ab7aac80e?mode=deep",
+    "timestamp": "2026-02-19 13:02:31.603013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: LockCandidateNativeToken()] [State Check Missing] Does the function verify that lockVirtualAddress doesn't already hold tokens before transfer, potentially causing fund loss if called multiple times with same lockId? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf92b2e8-ab57-4fcd-8ba6-2dd260dc28d8?mode=deep",
+    "timestamp": "2026-02-19 13:02:59.925838",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AddCandidateAsOption()] [Integration Attack] If VoteContract.AddOption.Send at lines 204-208 fails or is malicious, does it revert the entire transaction or allow partial candidate registration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_077b04ba-ddbb-4305-a744-b05b2ee5ba02?mode=deep",
+    "timestamp": "2026-02-19 13:03:31.345837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AddCandidateAsOption()] [State Inconsistency] Can State.MinerElectionVotingItemId.Value at line 206 be manipulated to add candidates to wrong voting items or uninitialized items? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_712be763-84a1-4cc7-8638-ad9eb8b823f5?mode=deep",
+    "timestamp": "2026-02-19 13:04:02.282469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AddCandidateAsOption()] [DoS] Can the Vote contract reject option additions causing AnnounceElection to fail, enabling DoS by filling vote contract's option capacity? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_482c9190-0b22-4302-ad24-391753d10c45?mode=deep",
+    "timestamp": "2026-02-19 13:04:34.884841",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Candidate.cs] [Function: AddCandidateAsOption()] [External Call Risk] Does the Send call at line 204 properly handle failures from VoteContract, or can silent failures cause inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_137653e9-ceb2-476e-9518-5093589d5f70?mode=deep",
+    "timestamp": "2026-02-19 13:05:07.121839",
+    "report_generated": false
+  }
+]
