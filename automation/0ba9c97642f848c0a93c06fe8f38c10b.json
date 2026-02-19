@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Authorization Bypass] Can an attacker manipulate State.ParliamentContract.Value before first initialization to point to a malicious contract, causing GetDefaultConfigurationController() to return attacker-controlled AuthorityInfo and bypass all configuration access controls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9be5029c-0560-4264-9e19-ec13674644fd?mode=deep",
+    "timestamp": "2026-02-19 01:23:10.699130",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Contract Address Spoofing] If Context.GetContractAddressByName() can be influenced or returns incorrect address during deployment race conditions, could State.ParliamentContract.Value be set to wrong contract address, permanently breaking configuration governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e32e70fe-4116-43db-a101-53300cc605f1?mode=deep",
+    "timestamp": "2026-02-19 01:23:32.811883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [State Corruption] Is there a check that State.ParliamentContract.Value, once set, points to valid Parliament contract? Could cached malicious address persist across all future GetDefaultConfigurationController() calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_baa6d079-ee1d-4748-8ed9-5cda6154480c?mode=deep",
+    "timestamp": "2026-02-19 01:23:55.294125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Cross-Contract Call Risk] When calling State.ParliamentContract.GetDefaultOrganizationAddress.Call(new Empty()), if Parliament contract is malicious or compromised, can it return arbitrary OwnerAddress to hijack ConfigurationController authority? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22356076-fbc7-46be-a7f2-c849d90bd793?mode=deep",
+    "timestamp": "2026-02-19 01:24:20.003165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Null Pointer/Default Value] What happens if State.ParliamentContract.GetDefaultOrganizationAddress.Call() returns null or empty Address? Does AuthorityInfo with null OwnerAddress bypass authorization checks in AssertPerformedByConfigurationController()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb53a116-21e5-483e-97b1-d6dadf238f7b?mode=deep",
+    "timestamp": "2026-02-19 01:24:44.168429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Immutability Violation] Once State.ParliamentContract.Value is set at line 11-12, there's no validation or reset mechanism - if set to wrong value initially, can configuration contract become permanently uncontrollable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cb0b797-a608-4cac-95ec-05cf04002eac?mode=deep",
+    "timestamp": "2026-02-19 01:25:10.196394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Reentrancy] Can State.ParliamentContract.GetDefaultOrganizationAddress.Call() at line 17 trigger reentrant call back into ConfigurationContract before AuthorityInfo is returned, potentially corrupting state or authorization flow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7bb0628e-e3e1-4334-a235-4af5289fd392?mode=deep",
+    "timestamp": "2026-02-19 01:25:35.711315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Race Condition] Between check at line 10 (if State.ParliamentContract.Value == null) and set at line 11-12, can multiple concurrent transactions cause State.ParliamentContract.Value to be set multiple times with different values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef3c21fb-8ba0-41da-ba16-d1e04cbd4518?mode=deep",
+    "timestamp": "2026-02-19 01:26:06.179791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Denial of Service] If SmartContractConstants.ParliamentContractSystemName is malformed or Context.GetContractAddressByName() fails, does function revert? Can attacker trigger DoS by corrupting contract name registry? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90caf4b0-de52-4156-88d4-8a3237db0160?mode=deep",
+    "timestamp": "2026-02-19 01:26:33.332988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Type Confusion] Can AuthorityInfo returned contain inconsistent ContractAddress vs OwnerAddress (e.g., ContractAddress points to Parliament but OwnerAddress is attacker address from compromised GetDefaultOrganizationAddress call)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4dc14d7a-a441-4297-aa3d-9de32d9b29f9?mode=deep",
+    "timestamp": "2026-02-19 01:27:05.285097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Cache Poisoning] Is State.ParliamentContract.Value ever validated or refreshed? Once poisoned with malicious address, does it permanently corrupt all authorization checks across ConfigurationContract lifetime? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a3320ae4-d676-40a3-abb2-c7eefe07d678?mode=deep",
+    "timestamp": "2026-02-19 01:27:36.998436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Initialization Order] If GetDefaultConfigurationController() is called before Parliament contract is properly deployed, can it cache zero address or invalid address, breaking future authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6a3677c-4af5-4e1c-afe6-1362f07019a9?mode=deep",
+    "timestamp": "2026-02-19 01:28:10.566920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Authority Mismatch] Does function verify that ContractAddress and OwnerAddress in returned AuthorityInfo are related/valid? Can they point to completely different governance contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ab3a50c2-8229-44ae-aba0-51bdfc8a4a86?mode=deep",
+    "timestamp": "2026-02-19 01:28:44.392753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Cross-Contract Failure] What if State.ParliamentContract.GetDefaultOrganizationAddress.Call() throws exception or returns error? Is AuthorityInfo created with partial/invalid data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9a983ae-e0c7-4ba5-bf39-9531c1daa1aa?mode=deep",
+    "timestamp": "2026-02-19 01:29:20.042574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [State Consistency] Can State.ConfigurationController.Value in AssertPerformedByConfigurationController() become out of sync with Parliament's actual default organization if Parliament changes its default after caching? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18fcf22b-f1bc-425c-a342-b77097214bf0?mode=deep",
+    "timestamp": "2026-02-19 01:29:54.623438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Authorization Bypass] At line 29, check is 'Context.Sender == State.ConfigurationController.Value.OwnerAddress' - can attacker front-run ChangeConfigurationController to set OwnerAddress to their address before critical SetConfiguration calls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf7248b6-fb83-4c68-a82c-b8e0cefd76ec?mode=deep",
+    "timestamp": "2026-02-19 01:30:28.592392",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Null Check Missing] If State.ConfigurationController.Value.OwnerAddress is null after GetDefaultConfigurationController(), does equality check at line 29 pass for null Context.Sender? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e343d42-c286-44c5-b4dd-2a93d65aceec?mode=deep",
+    "timestamp": "2026-02-19 01:31:01.936380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Race Condition] Between check at line 23 and default assignment at lines 25-26, can concurrent ChangeConfigurationController() transaction modify State.ConfigurationController.Value to attacker's authority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c535fd32-9b13-4d1e-8475-64fac7a2b674?mode=deep",
+    "timestamp": "2026-02-19 01:31:37.110718",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [State Manipulation] Once State.ConfigurationController.Value is set at line 26, there's no subsequent validation - can initial malicious GetDefaultConfigurationController() result permanently corrupt authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4586e9fd-02bf-48e9-9179-24784bc75ff1?mode=deep",
+    "timestamp": "2026-02-19 01:32:12.009727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Denial of Service] If GetDefaultConfigurationController() at line 25 always fails or throws, can any legitimate configuration controller access be permanently blocked? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d2b566a-9e2a-4d3b-beed-3245ecfcd048?mode=deep",
+    "timestamp": "2026-02-19 01:32:47.427506",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Reentrancy] Can GetDefaultConfigurationController() call at line 25 trigger reentrant call that changes State.ConfigurationController.Value before it's used in line 26 assignment? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c44710e-e639-4f6d-8ca5-65c0fccc8645?mode=deep",
+    "timestamp": "2026-02-19 01:33:22.691794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Logic Error] Function sets State.ConfigurationController.Value at line 26 but only if it's null - can attacker call ChangeConfigurationController with zero/invalid authority, then this function never resets to default? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dba620f-66a2-486b-a8dc-454df33bf759?mode=deep",
+    "timestamp": "2026-02-19 01:33:51.663422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Authorization Bypass] Assert message 'No permission.' at line 29 - if exception handling fails or is caught, does function continue execution allowing unauthorized config changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5696c883-2716-4cb8-bee7-3245b1c72b1d?mode=deep",
+    "timestamp": "2026-02-19 01:34:24.313440",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Time-of-Check-Time-of-Use] Between loading State.ConfigurationController.Value.OwnerAddress at line 29 and actual permission-gated operation, can OwnerAddress change via external call? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aca30a90-ec8a-4350-816b-07828ba5b4de?mode=deep",
+    "timestamp": "2026-02-19 01:34:56.080473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Default Value Bypass] If ConfigurationController is changed to AuthorityInfo with empty/zero OwnerAddress, does check at line 29 fail open or fail closed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b0c4d57-b8c2-48c1-a3f4-8f145cda7f75?mode=deep",
+    "timestamp": "2026-02-19 01:35:26.993248",
+    "report_generated": false
+  }
+]
