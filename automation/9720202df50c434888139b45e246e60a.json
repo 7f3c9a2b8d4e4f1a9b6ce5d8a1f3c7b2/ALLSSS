@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constructor: CommandStrategyBase()] [Null Reference] Can an attacker pass a null CurrentRound parameter to the constructor, causing NullReferenceException when accessing CurrentRound.RealTimeMinersInformation in MinerInRound property (line 35), potentially crashing consensus command generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47d84ede-59d2-4f51-b8dc-ce4f7d42670f?mode=deep",
+    "timestamp": "2026-02-19 08:56:49.610370",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constructor: CommandStrategyBase()] [Null Reference] Can an attacker pass a null Pubkey parameter, causing dictionary lookup failures when accessing CurrentRound.RealTimeMinersInformation[Pubkey] in MinerInRound property (line 35), disrupting consensus operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4a72c2e-bc91-415d-b41d-42d7b22f2cf2?mode=deep",
+    "timestamp": "2026-02-19 08:57:11.828469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constructor: CommandStrategyBase()] [Null Reference] Can an attacker pass a null CurrentBlockTime parameter, causing NullReferenceException in subclass methods that use CurrentBlockTime for time calculations, breaking consensus timing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_333e25da-e88c-47b1-8f23-43278d4b217e?mode=deep",
+    "timestamp": "2026-02-19 08:57:34.785505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constructor: CommandStrategyBase()] [Invalid State] Can an attacker pass an empty Round object (RealTimeMinersInformation.Count == 0) causing MinersCount property (line 44) to return 0, leading to division by zero in mining interval calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed8c0cb4-9c3e-4907-9a4d-c41db220c194?mode=deep",
+    "timestamp": "2026-02-19 08:57:58.134384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Constructor: CommandStrategyBase()] [Invalid Pubkey] Can an attacker pass a Pubkey that doesn't exist in CurrentRound.RealTimeMinersInformation, causing KeyNotFoundException when accessing MinerInRound property (line 35), breaking consensus command generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc1121d8-b87e-40c2-b29b-ec0713f291ff?mode=deep",
+    "timestamp": "2026-02-19 08:58:23.480024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MinerInRound] [Dictionary Access] Can an attacker trigger scenarios where Pubkey is removed from CurrentRound.RealTimeMinersInformation after construction but before MinerInRound is accessed, causing KeyNotFoundException and consensus failure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcf90423-7084-4d1b-a2a0-eb1952b4baca?mode=deep",
+    "timestamp": "2026-02-19 08:58:48.699244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MinerInRound] [Race Condition] If CurrentRound.RealTimeMinersInformation is modified concurrently, can accessing MinerInRound (line 35) retrieve stale or inconsistent miner data, causing incorrect consensus commands? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9aad63c3-c71b-4012-b683-ddbeb1efc8ff?mode=deep",
+    "timestamp": "2026-02-19 08:59:14.265972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MinerInRound] [Null Return] Can MinerInRound property return null if the dictionary lookup fails silently in certain edge cases, causing NullReferenceException in subclasses using this property? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fa23f0d-d71e-4978-a21c-ea00631062ad?mode=deep",
+    "timestamp": "2026-02-19 08:59:43.873347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: Order] [Invalid Order] Can GetMiningOrder return int.MaxValue when Pubkey is not found in the round, causing arithmetic overflow when this value is used in calculations by subclasses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1fe560c-410b-44ab-aa4e-d9d1969f68c7?mode=deep",
+    "timestamp": "2026-02-19 09:00:15.441413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: Order] [Invalid Order] Can an attacker manipulate Round data to have duplicate or invalid Order values (0, negative), causing incorrect time slot calculations in subclass strategies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b2b7fd6-f813-457b-9bc9-12dce7282e22?mode=deep",
+    "timestamp": "2026-02-19 09:00:48.765847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: Order] [Invalid Order] If GetMiningOrder returns int.MaxValue for missing pubkey, can this cause integer overflow in time calculations when multiplied by MiningInterval in subclasses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_209503b6-c23d-45a3-a655-31b2ebe53ecd?mode=deep",
+    "timestamp": "2026-02-19 09:01:22.058211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MiningInterval] [Division by Zero] Can GetMiningInterval return 0 in edge cases (e.g., same ExpectedMiningTime for multiple miners), causing division by zero when calculating TinyBlockSlotInterval (line 42)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fff1f713-59d9-4708-9e44-e2437b8fbe28?mode=deep",
+    "timestamp": "2026-02-19 09:01:55.401095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MiningInterval] [Negative Value] Can GetMiningInterval return negative values if ExpectedMiningTime values are ordered incorrectly, causing negative TinyBlockSlotInterval and invalid mining limits? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f1247e0-c4b9-4318-b0a7-7e9f32d9cf43?mode=deep",
+    "timestamp": "2026-02-19 09:02:29.001952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MiningInterval] [Zero Value] For single miner scenario, GetMiningInterval returns hardcoded 4000ms - can an attacker create a round with exactly 1 miner to manipulate timing calculations predictably? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f36583e3-cf22-4c40-a483-517c869ca1d1?mode=deep",
+    "timestamp": "2026-02-19 09:03:01.058876",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: TinyBlockSlotInterval] [Division by Zero] With TinyBlocksCount constant = 8 (line 17), if MiningInterval is less than 8, can Div operation return 0, causing subsequent division by zero in DefaultBlockMiningLimit calculation (line 49)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6eec489-0415-4716-959c-dd8b20ec8bf6?mode=deep",
+    "timestamp": "2026-02-19 09:03:33.447508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: TinyBlockSlotInterval] [Rounding Error] Can integer division MiningInterval.Div(8) (line 42) lose precision for small MiningInterval values (e.g., 1-7ms), resulting in 0ms TinyBlockSlotInterval and breaking all mining limit calculations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a2f096af-f748-427b-9075-d69eb508507c?mode=deep",
+    "timestamp": "2026-02-19 09:04:05.999832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: TinyBlockSlotInterval] [Arithmetic Overflow] Can MiningInterval be int.MaxValue causing overflow when used in Div operation (line 42), throwing OverflowException and halting consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70b6f3b6-1d32-450d-b710-6f2b280848ab?mode=deep",
+    "timestamp": "2026-02-19 09:04:34.378448",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: TinyBlockSlotInterval] [Invalid Constant] Is the hardcoded TinyBlocksCount = 8 (line 17) enforced elsewhere, or can actual tiny block count differ, causing mismatch between calculated slot interval and actual block production? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87ef4ea5-fde1-44c6-87cf-ff73ae082729?mode=deep",
+    "timestamp": "2026-02-19 09:05:09.686348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MinersCount] [Zero Count] Can CurrentRound.RealTimeMinersInformation.Count be 0, causing division by zero or invalid calculations in code that uses MinersCount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96f29356-2244-4f0d-9838-46f38901ddcf?mode=deep",
+    "timestamp": "2026-02-19 09:05:43.800265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: MinersCount] [Inconsistent State] Can MinersCount change between constructor initialization and property access due to concurrent modifications to CurrentRound, causing race conditions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f99e9dfa-a66f-4cfd-97fa-5c45db7fedac?mode=deep",
+    "timestamp": "2026-02-19 09:06:14.138215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: DefaultBlockMiningLimit] [Division by Zero] Can the calculation TinyBlockSlotInterval.Mul(3).Div(5) (line 49) fail with DivideByZeroException if SafeMath.Div encounters edge case, halting consensus command generation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3266408-09b6-4963-b192-b364118019f7?mode=deep",
+    "timestamp": "2026-02-19 09:06:49.270217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: DefaultBlockMiningLimit] [Zero Result] If TinyBlockSlotInterval is 1ms, can Mul(3).Div(5) result in 0ms DefaultBlockMiningLimit, giving miners no time to produce blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35a8c9b0-f2ae-4dd1-a08f-a37b91035675?mode=deep",
+    "timestamp": "2026-02-19 09:07:24.509522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: DefaultBlockMiningLimit] [Arithmetic Overflow] Can TinyBlockSlotInterval.Mul(3) overflow if TinyBlockSlotInterval is greater than int.MaxValue/3, throwing OverflowException in checked SafeMath context? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c98008c-4b5e-4937-a1db-42b7d6dde375?mode=deep",
+    "timestamp": "2026-02-19 09:07:54.409319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: DefaultBlockMiningLimit] [Rounding Loss] For small TinyBlockSlotInterval values (1-4ms), can multiple integer divisions cause DefaultBlockMiningLimit to round down to 0 or 1, making block production impossible? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d98a4694-b314-43a6-8a71-d6c01b7e5c78?mode=deep",
+    "timestamp": "2026-02-19 09:08:29.945625",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/CommandStrategyBase.cs] [Property: DefaultBlockMiningLimit] [Invariant Violation] Is there a check ensuring DefaultBlockMiningLimit >= TinyBlockMinimumInterval (50ms from line 22), or can calculated limit be less than minimum, violating timing constraints? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b857fa3-6293-476d-a240-43380f8f60b0?mode=deep",
+    "timestamp": "2026-02-19 09:09:00.885978",
+    "report_generated": false
+  }
+]
