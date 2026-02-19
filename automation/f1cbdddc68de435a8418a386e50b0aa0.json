@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Null Reference Exploit] If TokenContract reference remains uninitialized when CrossChain methods invoke token operations, could an attacker trigger null pointer exceptions to bypass fee collection during cross-chain transfers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6197f2fd-4933-4817-bda1-378bea244952?mode=deep",
+    "timestamp": "2026-02-19 14:19:49.795891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Authorization Bypass] If the TokenContract reference is improperly initialized to point to a malicious token contract, could cross-chain indexing fees be redirected or eliminated entirely? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_faef1355-ebd9-49de-86d0-6b8148a4eb52?mode=deep",
+    "timestamp": "2026-02-19 14:20:11.907427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Supply Manipulation] If TokenContract reference can be changed after deployment, could an attacker substitute a contract that allows unlimited minting during cross-chain token transfers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_095b132a-4d28-417a-ba93-262202211d31?mode=deep",
+    "timestamp": "2026-02-19 14:20:34.264052",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Fee Bypass] Could an attacker exploit the TokenContract reference to avoid cross-chain indexing fees by setting it to a contract that always returns success without actual token deductions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d9f4ed8-a922-46e3-908e-2dea1106f045?mode=deep",
+    "timestamp": "2026-02-19 14:20:57.547313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: TokenContract] [Allowance Exploit] If TokenContract reference validation is missing, could cross-chain operations succeed without proper allowance checks, enabling unauthorized token movements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef8396fd-7071-4372-aa85-d317107a5b7f?mode=deep",
+    "timestamp": "2026-02-19 14:21:21.774998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: AssociationContract] [Governance Takeover] If AssociationContract reference is mutable or unvalidated, could an attacker replace it with a malicious contract to approve unauthorized cross-chain configurations through fake multi-sig approvals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_209dd6cf-df0d-4201-9c5d-24e2903149e8?mode=deep",
+    "timestamp": "2026-02-19 14:21:46.399753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: AssociationContract] [Threshold Bypass] If the AssociationContract reference points to an incorrect implementation, could cross-chain governance proposals pass with fewer signatures than required? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41701a01-e743-4ff2-9b23-ffe0724c6854?mode=deep",
+    "timestamp": "2026-02-19 14:22:12.174933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: AssociationContract] [Organization Spoofing] Could an attacker exploit unvalidated AssociationContract reference initialization to create fake organizations that control cross-chain parameters? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fdea3d53-cff6-473e-9e81-8834593a6a46?mode=deep",
+    "timestamp": "2026-02-19 14:22:38.661351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: AssociationContract] [Authorization Leak] If AssociationContract reference is not properly set during initialization, could all association-based cross-chain authorization checks fail open? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c850afe-f4ed-4f17-90a5-6f681470504b?mode=deep",
+    "timestamp": "2026-02-19 14:23:05.332641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: GenesisContract] [Deployment Authority Hijack] If GenesisContract (ACS0) reference can be modified post-initialization, could an attacker gain contract deployment authority to deploy malicious cross-chain verification logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_36aeb9b9-13ca-4d22-aae3-fa400166b82b?mode=deep",
+    "timestamp": "2026-02-19 14:23:34.818812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: GenesisContract] [Upgrade Control Exploit] If the GenesisContract reference is unvalidated, could an attacker redirect contract upgrade calls to bypass proper authorization for CrossChain contract updates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b9f16ee7-1e33-4c8d-a393-7c4410cb6751?mode=deep",
+    "timestamp": "2026-02-19 14:24:02.652178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: GenesisContract] [Code Verification Bypass] If GenesisContract reference points to wrong implementation, could malicious contracts be deployed without proper code hash verification in cross-chain scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ccef7aef-6dcc-4cbd-af91-78038346b6ad?mode=deep",
+    "timestamp": "2026-02-19 14:24:34.776524",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: GenesisContract] [Contract Address Manipulation] Could an attacker exploit the GenesisContract reference to resolve contract addresses incorrectly, redirecting cross-chain calls to attacker-controlled contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61af22ee-f378-4419-8642-52010868267f?mode=deep",
+    "timestamp": "2026-02-19 14:25:07.052427",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: ParliamentContract] [Governance Bypass] If ParliamentContract reference is updateable after deployment, could an attacker redirect parliament-based governance to a controlled contract that auto-approves malicious cross-chain proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9da6d401-9f04-42c3-8260-e26550b711d0?mode=deep",
+    "timestamp": "2026-02-19 14:25:38.930382",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: ParliamentContract] [Proposal Forgery] If the ParliamentContract reference initialization is not validated, could cross-chain parameter changes proceed without actual parliament approval? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d99571c-5738-446a-82b4-8dd39c66047a?mode=deep",
+    "timestamp": "2026-02-19 14:26:10.619973",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: ParliamentContract] [Voting Manipulation] Could an attacker exploit unvalidated ParliamentContract reference to manipulate vote counting for cross-chain indexing fee adjustments or chain creation proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3311536a-eb69-4889-874f-f67440c3234b?mode=deep",
+    "timestamp": "2026-02-19 14:26:41.317588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: ParliamentContract] [Default Organization Exploit] If ParliamentContract reference points to incorrect implementation, could the default parliament organization be hijacked to control all cross-chain governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06244da6-d1b2-44a7-863d-327f4e6c5e3c?mode=deep",
+    "timestamp": "2026-02-19 14:27:12.602528",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: CrossChainInteractionContract] [Merkle Proof Forgery] If CrossChainInteractionContract reference can be substituted, could an attacker provide a malicious contract that validates fake merkle proofs for cross-chain transactions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40aa3177-0b93-4a2f-8dcd-2c6389bd2d92?mode=deep",
+    "timestamp": "2026-02-19 14:27:43.538786",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: CrossChainInteractionContract] [Block Header Validation Bypass] If the CrossChainInteractionContract reference is not properly validated during initialization, could side-chain block headers be accepted without proper verification? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_937df28c-8a9a-47e7-8485-68d326ae8eab?mode=deep",
+    "timestamp": "2026-02-19 14:28:14.744902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: CrossChainInteractionContract] [Parent Chain Info Manipulation] Could an attacker exploit the CrossChainInteractionContract reference to inject false parent chain information, corrupting cross-chain indexing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_279ce743-eba5-4251-9beb-e9e625df2654?mode=deep",
+    "timestamp": "2026-02-19 14:28:45.669375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: CrossChainInteractionContract] [Cross-Chain Data Integrity] If CrossChainInteractionContract reference points to a malicious implementation, could cross-chain data verification be completely bypassed? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59aea227-0c37-42d9-b77a-03a3d0a1adbd?mode=deep",
+    "timestamp": "2026-02-19 14:29:14.393884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Property: CrossChainInteractionContract] [Side Chain Creation Exploit] Could an attacker manipulate the CrossChainInteractionContract reference to create unauthorized side chains or validate fake side chain proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5a8614b-bb0d-48df-8e95-e635f8df5eee?mode=deep",
+    "timestamp": "2026-02-19 14:29:43.385590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Class: CrossChainContractState] [Initialization Race Condition] If multiple reference properties are initialized in separate transactions, could an attacker exploit the window where some references are set but others are null to bypass cross-chain security checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8da5db2-971a-4225-95b3-dc10484017da?mode=deep",
+    "timestamp": "2026-02-19 14:30:14.429373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Class: CrossChainContractState] [Reference Consistency] Are all five contract references (TokenContract, AssociationContract, GenesisContract, ParliamentContract, CrossChainInteractionContract) validated for consistency during initialization to prevent mismatched contract versions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66bc3151-4f02-4c8c-902c-a9044664c960?mode=deep",
+    "timestamp": "2026-02-19 14:30:44.445938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainReferenceState.cs] [Class: CrossChainContractState] [Internal Visibility Exploit] Could derived classes or other parts of the CrossChain contract accidentally or maliciously modify the internal reference properties after proper initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ceb075e-120f-47f3-af10-fa75f3aa10ba?mode=deep",
+    "timestamp": "2026-02-19 14:31:13.845909",
+    "report_generated": false
+  }
+]
