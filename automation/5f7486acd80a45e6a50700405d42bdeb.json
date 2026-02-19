@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [State Mutation] The function modifies snapshot.ElectionResult by removing invalid/banned candidates - if this snapshot is cached or shared, can it cause inconsistent reads across different callers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_81434b47-1215-4b94-9cba-93fdd71f20db?mode=deep",
+    "timestamp": "2026-02-19 06:02:15.655351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [Logic Error] GetNewestPubkey(bannedCandidate) could return another banned pubkey - is there validation to prevent infinite replacement chains or circular bans? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93180b13-2777-4143-8f6d-062a26734b20?mode=deep",
+    "timestamp": "2026-02-19 06:02:37.638362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [Duplicate Key] When adding newestPubkey to snapshot.ElectionResult, the code checks ContainsKey but what if newestPubkey is already in ElectionResult with a different vote count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12818db6-034e-4ccb-8fba-cbfd42157efd?mode=deep",
+    "timestamp": "2026-02-19 06:03:00.220728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [DOS Attack] If bannedCandidates list is very large, the foreach loop with GetNewestPubkey lookups could consume excessive gas - is there a limit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d884bdd7-f77d-45ec-9c8f-b3209e89a97f?mode=deep",
+    "timestamp": "2026-02-19 06:03:23.480289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [Logic Error] The code removes bannedCandidate AFTER adding newestPubkey - if they're the same due to logic error, can this create phantom entries? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_620d2c9f-1f83-478b-9147-0ea69c3bc2c1?mode=deep",
+    "timestamp": "2026-02-19 06:03:47.734230",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPreviousTermSnapshotWithNewestPubkey()] [Race Condition] Between checking IsPubkeyBanned and GetNewestPubkey, the ban status could change - can this lead to inconsistent snapshot data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49705dd5-2da3-4f26-ba1d-1eef629acea6?mode=deep",
+    "timestamp": "2026-02-19 06:04:12.768211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(StringValue)] [Input Validation] The Assert checks value != null && value.Length > 1, but what about value.Length == 1 or very long strings - can these bypass validation and cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_512a2819-1992-440e-8ce8-3493e837e2c8?mode=deep",
+    "timestamp": "2026-02-19 06:04:38.417353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [Address Conversion] If AddressHelper.VerifyFormattedAddress(value) is false, it tries to convert from pubkey - can an attacker provide malformed hex causing ByteArrayHelper.HexStringToByteArray to throw? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_811b2649-3e32-4ddc-80f2-e7715cc8997c?mode=deep",
+    "timestamp": "2026-02-19 06:05:04.401814",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [Logic Error] The fallback to converting pubkey to address only happens if voterVotes == null AND address format is invalid - can this miss valid lookups if the order of operations is wrong? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_baa295cf-b601-4788-a2f2-4fe4e63cf26c?mode=deep",
+    "timestamp": "2026-02-19 06:05:31.182492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [Null Reference] If Address.FromPublicKey throws on invalid pubkey bytes, this could DOS the entire function - is there try-catch protection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57bb7725-4382-47c7-878f-f54b1ab9ea11?mode=deep",
+    "timestamp": "2026-02-19 06:05:59.803373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [Index Out of Bounds] The code assumes votes.ActiveVotingRecordIds.Count matches votedRecords.Count - if State.VoteContract returns fewer records, can index++ cause out of bounds access? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d2a3036-a2f8-4092-8813-ed32640b93c5?mode=deep",
+    "timestamp": "2026-02-19 06:06:32.017237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [DOS Attack] If ActiveVotingRecordIds contains thousands of IDs, the GetVotingRecords call and foreach loop could exhaust gas - is there a maximum record limit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d420fe15-3ac2-458c-bf5e-654bf16a656f?mode=deep",
+    "timestamp": "2026-02-19 06:07:00.059167",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [Trust Assumption] The function trusts State.VoteContract.GetVotingRecords to return records in the same order as requested IDs - can order mismatches cause vote attribution errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_76641f42-e4fa-40a9-9ae9-6ed306a95126?mode=deep",
+    "timestamp": "2026-02-19 06:07:30.656925",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [Null Check] The function checks if votes.Address == null && votes.Pubkey == null before returning early - but what if only one is null? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0cad864-9e8c-4698-9322-9e4c306da381?mode=deep",
+    "timestamp": "2026-02-19 06:08:02.608868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithAllRecords()] [Index Out of Bounds] Similar to GetElectorVoteWithRecords, the index++ pattern with WithdrawnVotingRecordIds could mismatch if State.VoteContract returns unexpected record counts - is this validated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c46aa4a7-d734-4281-af51-e6d1860f81e7?mode=deep",
+    "timestamp": "2026-02-19 06:08:30.001198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithAllRecords()] [DOS Attack] Combined active + withdrawn records could create extremely large response data - is there protection against response size DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53e7df92-299c-419e-98ca-f6780e6dd666?mode=deep",
+    "timestamp": "2026-02-19 06:09:00.987333",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithAllRecords()] [Logic Error] If WithdrawnVotingRecordIds.Any() is false, it returns without checking active records - can this skip important validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0bd94ce3-3155-4069-b854-44408b4e400c?mode=deep",
+    "timestamp": "2026-02-19 06:09:31.796193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotersCount()] [Trust Assumption] Directly returns State.VoteContract.GetLatestVotingResult().VotersCount without validation - can a compromised Vote contract return inflated numbers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07e26517-430b-42eb-9ea3-e2510fcaa228?mode=deep",
+    "timestamp": "2026-02-19 06:09:59.469369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotersCount()] [Data Consistency] If State.MinerElectionVotingItemId.Value is stale or incorrect, could this return vote counts from the wrong voting item? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_466e18e4-a065-443c-bb1c-e6c8797b1355?mode=deep",
+    "timestamp": "2026-02-19 06:10:32.152772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotesAmount()] [Trust Assumption] Similar to GetVotersCount, trusts external Vote contract for VotesAmount - can this be manipulated to show false voting activity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b610b1a-66ea-4605-9b03-390b67b03922?mode=deep",
+    "timestamp": "2026-02-19 06:11:00.283349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotesAmount()] [Integer Overflow] If VotesAmount from Vote contract is near Int64.MaxValue, can subsequent calculations overflow? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e84c82c8-9ef5-48f1-a87f-a8de2e00db27?mode=deep",
+    "timestamp": "2026-02-19 06:11:31.819899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [DOS Attack] If input.Start is 0 and input.Length is Int32.MaxValue, Math.Min(input.Length, 20) limits to 20, but can repeated calls with different Start values DOS the contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7aed147-8b35-405f-a346-e259897ae8b2?mode=deep",
+    "timestamp": "2026-02-19 06:12:04.248099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Logic Error] The triple Math.Min with candidates.Value.Count.Sub(input.Start) - if Count < Start due to concurrent modifications, can Sub() underflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1eb95a74-ed2d-40b7-a80a-6a9705796261?mode=deep",
+    "timestamp": "2026-02-19 06:12:31.836413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Integer Overflow] If input.Start + length exceeds Int32.MaxValue, can the Skip().Take() operations fail silently or skip wrong candidates? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6b41a3c-7230-4f29-9d38-689e6dbe52c9?mode=deep",
+    "timestamp": "2026-02-19 06:13:03.468254",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Null Reference] If State.CandidateInformationMap[candidate.ToHex()] returns null, it's still added to output - can this cause issues in consuming contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78870d80-ee0b-4736-b11c-a1670ec1ae49?mode=deep",
+    "timestamp": "2026-02-19 06:13:36.887354",
+    "report_generated": false
+  }
+]
