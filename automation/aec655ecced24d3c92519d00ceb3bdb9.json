@@ -88,5 +88,149 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56c43ea7-f020-4088-96c9-c76774a047ec?mode=deep",
     "timestamp": "2026-02-19 10:23:52.649985",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalAbstained()] [Abstention Count] At Association_Helper.cs line 43-44, does abstention count include non-members who abstained before removal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_156a547c-0271-4d32-ba37-082a2738d82f?mode=deep",
+    "timestamp": "2026-02-19 10:46:09.961594",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: IsProposalAbstained()] [Threshold Logic] Should MaximalAbstentionThreshold block proposal if exceeded, or should it be MinimalAbstentionThreshold for consistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f2399c7c-a673-46ec-a5b4-39235b25af37?mode=deep",
+    "timestamp": "2026-02-19 10:46:31.934614",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Approval Count Race] At Association_Helper.cs line 49, if approvals are filtered by current membership, can approved count drop below threshold after approval but before release? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69852c54-3937-4742-a45a-95512f4b6ee2?mode=deep",
+    "timestamp": "2026-02-19 10:46:54.073097",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Vote Threshold Calculation] At Association_Helper.cs line 56, does Concat count same address multiple times if they appear in multiple vote lists? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e6374f4-9a58-415e-b45a-28a17f129ebe?mode=deep",
+    "timestamp": "2026-02-19 10:47:17.114223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [MinimalVoteThreshold] Can MinimalVoteThreshold be 0, allowing proposals to pass without any votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10e5cd6e-86e1-4f35-b379-062227679814?mode=deep",
+    "timestamp": "2026-02-19 10:47:41.016108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckEnoughVoteAndApprovals()] [Early Return Logic] At Association_Helper.cs line 52-53, if isApprovalEnough is false, are other checks skipped, or should all conditions be evaluated? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07e765f5-3aea-4ab1-bc37-4273cf2f3758?mode=deep",
+    "timestamp": "2026-02-19 10:48:06.189886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AssertProposalNotYetVotedBySender()] [Triple Check Logic] At Association_Helper.cs line 134-135, does OR condition properly prevent voting in any category, or can same-block multi-votes bypass via state update timing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eec89aa8-7872-4c10-9157-8d2c3622b3cc?mode=deep",
+    "timestamp": "2026-02-19 10:48:31.223743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: AssertProposalNotYetVotedBySender()] [Contains Check] Do Contains checks use reference equality allowing address spoofing, or value equality preventing duplicates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7a2c596-03c4-4472-a662-ff65f8ad09ea?mode=deep",
+    "timestamp": "2026-02-19 10:48:56.359788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GenerateProposalId()] [Token Null Handling] At Association_Helper.cs line 142, if input.Token is null, does HashHelper.ComputeFrom(input) create deterministic hash allowing collision attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67e75e72-9cc9-4b03-ae6a-7c97a847dc58?mode=deep",
+    "timestamp": "2026-02-19 10:49:23.482554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GenerateProposalId()] [Context.GenerateId] Does Context.GenerateId include sufficient entropy to prevent proposal ID prediction by attackers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c88e6848-2c52-4de6-bd9a-c2e1952ec032?mode=deep",
+    "timestamp": "2026-02-19 10:49:51.475891",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GenerateProposalId()] [Same Input Collision] Can two proposals with identical CreateProposalInput but different submission times generate same proposalId? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bfc3350-1694-44c6-9f17-b407b581b061?mode=deep",
+    "timestamp": "2026-02-19 10:50:19.821606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateNewProposal()] [Proposer Override] At Association_Helper.cs line 157, does setting Proposer = Context.Sender override input proposer in CreateProposalBySystemContract scenario? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48d3a2ce-802d-453f-a224-4814e3698504?mode=deep",
+    "timestamp": "2026-02-19 10:50:49.811394",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateNewProposal()] [Null Proposal Check] At Association_Helper.cs line 163, does null check prevent overwriting if proposalId collision occurs with different proposal? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62b3e2dd-3238-4a8a-abd3-c7a70a5cd1e9?mode=deep",
+    "timestamp": "2026-02-19 10:51:18.545937",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CreateNewProposal()] [State Consistency] Between Validate check at line 162 and State.Proposals assignment at line 164, can proposal become invalid via organization changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b4a6e5c-4897-4b61-bf73-b560895e4d1b?mode=deep",
+    "timestamp": "2026-02-19 10:51:45.601421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckCreateProposalInput()] [Title Length] At Association_Helper.cs line 178, can title.Length be exactly MaxLengthForTitle (255) without '>' triggering off-by-one? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb7c3fb1-23bc-467e-a485-52aa7ba26eb2?mode=deep",
+    "timestamp": "2026-02-19 10:52:12.057353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckCreateProposalInput()] [Unicode Length] Do length checks at lines 178-183 measure bytes or characters, allowing unicode to bypass limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9afe390c-bb9f-4033-b457-f34bb9531899?mode=deep",
+    "timestamp": "2026-02-19 10:52:40.095219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CheckCreateProposalInput()] [Null Input Fields] If Title, Description, or ProposalDescriptionUrl are null, do .Length calls cause null reference exceptions before validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f1310fe-2d82-4100-b599-d1cbefd35411?mode=deep",
+    "timestamp": "2026-02-19 10:53:07.421466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateOrganizationHashAddressPair()] [Hash Collision] At Association_Helper.cs line 112, can HashHelper.ComputeFrom create same hash for different CreateOrganizationInput values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52eb3017-99fc-4df8-a9b1-6fa2950954dc?mode=deep",
+    "timestamp": "2026-02-19 10:53:37.891826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateOrganizationHashAddressPair()] [Virtual Address Collision] At Association_Helper.cs line 114-116, can different organizationHash and creationToken combinations produce same virtual address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8b28bbc-f03e-4ab0-af2c-c4ce9e1a7f18?mode=deep",
+    "timestamp": "2026-02-19 10:54:07.297410",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateOrganizationHashAddressPair()] [ConvertVirtualAddress Security] Does ConvertVirtualAddressToContractAddressWithContractHashName guarantee unique addresses across all possible inputs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b1a166f-0226-47a4-af00-bcbb5d6d5c6d?mode=deep",
+    "timestamp": "2026-02-19 10:54:33.893153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateVirtualHash()] [Null Token Handling] At Association_Helper.cs line 127-128, if creationToken is null, is organizationHash alone sufficient for secure virtual address generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62b2b178-0f8d-477d-8d68-e5caf0626ed7?mode=deep",
+    "timestamp": "2026-02-19 10:55:01.316570",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateVirtualHash()] [Hash Concatenation] At Association_Helper.cs line 129, can HashHelper.ConcatAndCompute produce collisions if organizationHash and creationToken have specific patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b06475ac-c392-4600-8693-425113a96a18?mode=deep",
+    "timestamp": "2026-02-19 10:55:29.626340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: CalculateVirtualHash()] [Token Reuse Attack] Can same creationToken be used across multiple organizations to create related virtual addresses enabling cross-organization attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6e81814-8484-4393-85bb-53767c07d47c?mode=deep",
+    "timestamp": "2026-02-19 10:55:56.059171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association.cs] [Function: GetValidProposal()] [Null Proposal] At Association_Helper.cs line 103-104, if proposal is null, does assert prevent continuing, or can null proposals bypass validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11d61565-6bbf-451d-bf4b-b0b233a63d4f?mode=deep",
+    "timestamp": "2026-02-19 10:56:22.590302",
+    "report_generated": false
   }
 ]
