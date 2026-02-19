@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Integer Overflow] Can an attacker cause integer overflow when bf + a exceeds decimal max value by providing extremely large paidAmount with maximum fromConnectorBalance, causing incorrect return calculation and underpriced token acquisition? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0d0c7f5-56cd-4fa5-95ed-9b142efb10c5?mode=deep",
+    "timestamp": "2026-02-19 04:02:29.277251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Integer Overflow] Can multiplication of toConnectorBalance * (decimal.One - Exp(y * Ln(x))) overflow when toConnectorBalance is near long.MaxValue, resulting in incorrect token return amount and reserve depletion? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46564f9b-a47f-49fa-8875-30d76e441e5c?mode=deep",
+    "timestamp": "2026-02-19 04:02:51.302796",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Integer Underflow] When casting the final decimal result to long at line 53, can negative intermediate values (if Exp returns value > 1) cause underflow and wrap to large positive values, enabling massive token extraction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cee04739-73c6-4f82-b0bf-8c4999c9c33a?mode=deep",
+    "timestamp": "2026-02-19 04:03:13.759028",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Precision Loss] At line 49, can the division bt / (bf + a) * a lose precision when bf + a is much larger than bt, causing users to receive fewer tokens than mathematically correct and value leakage to reserves? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73033f55-46e8-4035-baba-23e0983d0670?mode=deep",
+    "timestamp": "2026-02-19 04:03:36.810613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Rounding Exploitation] Can an attacker repeatedly call with paidAmount = 1 to exploit rounding in the long cast at line 49, accumulating rounding errors that drain toConnectorBalance over many transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65417e40-2228-4e6c-9583-a32a5c8ede23?mode=deep",
+    "timestamp": "2026-02-19 04:04:01.003129",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Division by Zero] Although line 37 checks fromConnectorBalance > 0, can extreme paidAmount cause bf + a to overflow and wrap to zero or negative, triggering division by zero at line 51 and contract halt? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20e432a5-9158-463e-be3b-421312865611?mode=deep",
+    "timestamp": "2026-02-19 04:04:26.300338",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Division by Zero] In the reduced formula at line 49, if bf + a computation results in zero due to overflow, does the division cause transaction revert, enabling DOS by anyone who can trigger this condition? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8528ffe-9c47-4dac-86d5-e2786a4c862c?mode=deep",
+    "timestamp": "2026-02-19 04:04:51.305593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Weight Edge Case] When fromConnectorWeight equals toConnectorWeight at line 47, the simplified formula is used - can an attacker manipulate connector weights to alternate between formulas and exploit rounding differences to extract value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd0a145b-82b3-4a9e-83d9-2a78c0e6fbda?mode=deep",
+    "timestamp": "2026-02-19 04:05:17.311280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Weight Edge Case] Can fromConnectorWeight or toConnectorWeight be zero, causing y = wf / wt at line 52 to be zero or infinity, leading to Ln(x)^0 = 1 and incorrect return calculations that drain reserves? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d5bb2b9-78e7-4dd7-8b3f-018618a394da?mode=deep",
+    "timestamp": "2026-02-19 04:05:43.846377",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Weight Edge Case] Can extremely small toConnectorWeight (approaching zero) cause y = wf / wt to be extremely large, resulting in Exp overflow and transaction revert, enabling DOS of all buy operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e55fa06-46ff-4d92-9a1a-45ed9b25f06f?mode=deep",
+    "timestamp": "2026-02-19 04:06:11.024887",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Weight Precision] Can fromConnectorWeight / toConnectorWeight calculation lose precision when weights differ by many orders of magnitude, causing incorrect exponential calculation and mispriced swaps? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ba73f0d-0c44-44c2-8034-4fb89193eabc?mode=deep",
+    "timestamp": "2026-02-19 04:06:42.193767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Math Domain Error] At line 51, when paidAmount is very large, can x = bf / (bf + a) approach or equal zero, causing Ln(x) at line 53 to fail the domain check in Ln() and revert all purchases? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_645170fe-ba9a-4236-a79d-fcaae697b470?mode=deep",
+    "timestamp": "2026-02-19 04:07:12.969122",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Math Domain Error] Can x = bf / (bf + a) ever exceed 2, violating the Ln() domain constraint at line 131-132 and reverting transactions when fromConnectorBalance is negative due to accounting errors elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97f2b3a8-ca93-44e4-ad29-508e9b7ed495?mode=deep",
+    "timestamp": "2026-02-19 04:07:43.533704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Math Domain Error] When x approaches 1 (very small paidAmount), does Ln(x) approach 0, causing y * Ln(x) to be near zero and Exp to return ~1, resulting in return ≈ 0 and users losing funds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88dcdcf3-4261-4e11-a3ce-8c4a75d8ae74?mode=deep",
+    "timestamp": "2026-02-19 04:08:14.386054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Reserve Depletion] Can an attacker drain toConnectorBalance by providing paidAmount that causes the formula to return more than toConnectorBalance, as there's no explicit check that return < toConnectorBalance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f6d67dc9-b625-4bd3-a014-be2e9297bcba?mode=deep",
+    "timestamp": "2026-02-19 04:08:44.650947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Reserve Depletion] In the simplified formula at line 49, can return = bt / (bf + a) * a ever exceed bt when a is extremely large relative to bf, draining the reserve beyond its balance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e80e4d6-121f-437c-8460-c5979d0afcd8?mode=deep",
+    "timestamp": "2026-02-19 04:09:16.334106",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Reserve Depletion] Does the function verify that (decimal.One - Exp(y * Ln(x))) is positive before multiplication with bt, or can negative values cause reserve addition instead of subtraction? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d252a034-6eb2-46fd-abf8-9ac391110fea?mode=deep",
+    "timestamp": "2026-02-19 04:09:46.262734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Input Validation] Line 40 checks paidAmount > 0, but can paidAmount = long.MaxValue cause overflow in subsequent calculations, bypassing practical limits and draining reserves? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cfee5a6-a85b-498c-be3b-cdd96a285104?mode=deep",
+    "timestamp": "2026-02-19 04:10:14.441451",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Input Validation] Are fromConnectorWeight and toConnectorWeight validated to be positive and within reasonable bounds, or can zero/negative/extreme weights cause formula failure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b579f53f-8b6e-4b06-9b4b-489c9f831c14?mode=deep",
+    "timestamp": "2026-02-19 04:10:46.186357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Input Validation] Can fromConnectorBalance or toConnectorBalance be long.MaxValue, causing arithmetic overflow when combined with paidAmount in calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_116fa38f-2b4e-4445-bb9b-05a063f747c1?mode=deep",
+    "timestamp": "2026-02-19 04:11:16.925740",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Exponential Overflow] Can y * Ln(x) at line 53 produce values outside the convergence range of the Exp() Taylor series, causing inaccurate results that misprice tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7ee9ebf-077f-47bd-b2e0-1994da571e95?mode=deep",
+    "timestamp": "2026-02-19 04:11:48.494487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Exponential Accuracy] With only 20 iterations in Exp(), can large y * Ln(x) values cause insufficient convergence, leading to pricing errors that can be exploited for arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61081570-37a3-42d0-b513-177c53e6ab9a?mode=deep",
+    "timestamp": "2026-02-19 04:12:20.394461",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetReturnFromPaid()] [Exponential Edge Case] When y * Ln(x) is negative and large in magnitude, can Exp return values very close to zero, causing the return to equal toConnectorBalance and drain reserves? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9ca6311-97d9-482f-ae57-19525f09e440?mode=deep",
+    "timestamp": "2026-02-19 04:12:52.301958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetAmountToPayFromReturn()] [Integer Overflow] Can bt - a at line 91 underflow when amountToReceive exceeds toConnectorBalance, causing x = bt / (bt - a) to divide by negative value and return incorrect (potentially negative) payment amount? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0428833-da9a-479b-9d1a-cf84b3b3e235?mode=deep",
+    "timestamp": "2026-02-19 04:13:24.728276",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Function: GetAmountToPayFromReturn()] [Division by Zero] At line 84, can bt - a equal zero when amountToReceive equals toConnectorBalance, causing division by zero that should be caught by try-catch but may allow reserve depletion to exactly zero? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a64d999-b8d9-4f4b-bd65-7ab8a3db5900?mode=deep",
+    "timestamp": "2026-02-19 04:13:57.489414",
+    "report_generated": false
+  }
+]
