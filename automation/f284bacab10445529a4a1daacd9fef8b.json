@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNftMetadataReservedKeys()] [Metadata Keys] Can the hardcoded reserved keys (lines 101-105) conflict with user-defined metadata causing data loss? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51af47ac-6ff6-406c-9335-da82265ea2a4?mode=deep",
+    "timestamp": "2026-02-19 14:22:06.054832",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetNftMetadataReservedKeys()] [Key Management] If reserved keys are modified in future versions, can existing NFTs break validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_523d36e8-eb51-4fc5-bf89-15027c449908?mode=deep",
+    "timestamp": "2026-02-19 14:22:28.445271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetBalance()] [Type Safety] Is the balance returned as long sufficient to hold maximum possible NFT quantities, or can overflow occur? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eaa8bb5a-7604-40bc-9bbc-7c13b6fdd60a?mode=deep",
+    "timestamp": "2026-02-19 14:22:52.719013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_View.cs] [Function: GetAllowance()] [Type Safety] Can allowance values stored as long overflow if extremely large approvals are granted? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98c017d6-d1b3-447a-9ee4-5bbc587015f4?mode=deep",
+    "timestamp": "2026-02-19 14:23:15.984304",
+    "report_generated": false
+  }
+]
