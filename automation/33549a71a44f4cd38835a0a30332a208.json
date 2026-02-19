@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [Missing Validation] Can an attacker query with negative height values in input.Value to bypass height validation and retrieve unintended blockchain data or cause state corruption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99e95a76-7d6d-49c6-8cea-f910b92e3129?mode=deep",
+    "timestamp": "2026-02-19 03:43:53.409411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [Information Disclosure] Does returning an empty IndexedSideChainBlockData for non-existent heights leak information about which side chain heights have been indexed versus which have not, enabling reconnaissance attacks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b48f1881-7d7c-43c1-9904-767a2834c5cf?mode=deep",
+    "timestamp": "2026-02-19 03:44:15.457885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [DOS Attack] Can an attacker spam queries with extremely large height values (Int64.MaxValue) to cause excessive state reads, memory allocation for empty objects, or gas exhaustion in callers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9303ee02-31bb-47a0-85fe-50f9ebb943c8?mode=deep",
+    "timestamp": "2026-02-19 03:44:37.728126",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [State Consistency] If State.IndexedSideChainBlockData is partially written or corrupted, can returning null-coalesced empty data hide critical indexing failures and allow unverified cross-chain data to be accepted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d88cc7e-eec8-4071-9d99-c57169c24afd?mode=deep",
+    "timestamp": "2026-02-19 03:45:01.251143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [Race Condition] During concurrent indexing operations, can querying a height while State.IndexedSideChainBlockData is being updated return inconsistent or partially-committed block data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eff7d308-7178-4ebb-992e-6d2203e4d184?mode=deep",
+    "timestamp": "2026-02-19 03:45:25.329772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [Data Integrity] Does the function verify that the returned IndexedSideChainBlockData actually corresponds to the requested height, or can state corruption cause height mismatches? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b870a168-2442-426a-b6c8-4e7a894cc6e1?mode=deep",
+    "timestamp": "2026-02-19 03:45:50.212602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [Missing Chain ID Validation] Does this function validate which side chain the height belongs to, or can an attacker query height from chain A but receive data indexed from chain B? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a4f8aaf8-e0b2-4495-87f9-ac81f02e70de?mode=deep",
+    "timestamp": "2026-02-19 03:46:15.390708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetIndexedSideChainBlockDataByHeight()] [Null Pointer] If new IndexedSideChainBlockData() throws an exception due to missing constructor or protobuf issues, can this cause the entire cross-chain verification flow to fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4f5609a-2350-4ddd-af77-b0d8033361bf?mode=deep",
+    "timestamp": "2026-02-19 03:46:40.812987",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Missing Validation] Can an attacker query with input.Value = 0 or negative heights to bypass the Assert(boundParentChainHeight != 0) check if State returns default values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fa81450-49a9-44ac-a082-5958aded7b78?mode=deep",
+    "timestamp": "2026-02-19 03:47:07.933390",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Assertion Failure DOS] If State.ChildHeightToParentChainHeight returns 0 for valid but not-yet-indexed heights, does Assert on line 22 cause legitimate queries to revert, enabling DOS of cross-chain verification? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7798d6dd-fc97-470f-97d2-8daf892cc1cf?mode=deep",
+    "timestamp": "2026-02-19 03:47:36.049542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Merkle Path Integrity] If State.TxRootMerklePathInParentChain returns a non-null but malformed or empty merkle path, does the Assert on line 24 fail to catch this, allowing invalid proof contexts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f332f3c4-ae67-404d-a9d1-9ad107162a7d?mode=deep",
+    "timestamp": "2026-02-19 03:48:03.134617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [State Corruption] If boundParentChainHeight is non-zero but merklePath is null due to state desynchronization, can this create a cross-chain verification bypass where height binding exists without proof? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf262bdc-d631-437c-8238-736b1322dbc2?mode=deep",
+    "timestamp": "2026-02-19 03:48:32.306213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Integer Overflow] Can querying with Int64.MaxValue as input.Value cause overflow when used as a dictionary key in State.ChildHeightToParentChainHeight, returning wrong parent chain height? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfdb248c-2b6f-4d9c-8564-75226555d4b9?mode=deep",
+    "timestamp": "2026-02-19 03:49:02.581517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Race Condition] During parent chain indexing, can querying a height between when ChildHeightToParentChainHeight is set and TxRootMerklePathInParentChain is set cause Assert failure or return incomplete data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68745f3a-9094-4d4c-b51c-c2f2f9a09480?mode=deep",
+    "timestamp": "2026-02-19 03:49:32.934727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Merkle Path Tampering] Does the function validate the merkle path structure (node count, hash lengths) before returning, or can tampered state data create malicious proof contexts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f77f2d6f-b064-489b-8206-43931b38d711?mode=deep",
+    "timestamp": "2026-02-19 03:50:03.327664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Height Binding Manipulation] If an attacker corrupts State.ChildHeightToParentChainHeight to bind child height H to wrong parent height P', can cross-chain transactions be verified against incorrect parent blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21faeef4-6673-47b1-ba6f-f165e8345cc7?mode=deep",
+    "timestamp": "2026-02-19 03:50:31.803257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: GetBoundParentChainHeightAndMerklePathByHeight()] [Missing Parent Chain Validation] Does this function verify the child height actually belongs to this chain's context, or can it return parent chain bindings for side chain heights from different chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddc4a69b-a739-415a-b80e-7cc9b199e12d?mode=deep",
+    "timestamp": "2026-02-19 03:51:00.592497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Merkle Proof Bypass] If GetMerkleTreeRoot returns null for unrecorded parent chain heights, does the Assert on line 41-42 properly prevent verification, or can null == null equality allow fake transactions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_564c2926-28aa-4f29-afd0-a9764276704b?mode=deep",
+    "timestamp": "2026-02-19 03:51:28.126619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Merkle Root Collision] Can an attacker craft a malicious merkle path in input.Path that produces the same rootCalculated as a legitimate transaction's merkle root, allowing transaction replay or forgery? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_91533b85-05fc-4fbe-8b62-e0feb8c8b474?mode=deep",
+    "timestamp": "2026-02-19 03:51:56.991776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Chain ID Spoofing] Does VerifyTransaction validate that input.VerifiedChainId matches the expected parent chain ID, or can an attacker provide a merkle root from a different compromised chain? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a0de0c6-d04d-440c-b4e0-523612d4a36c?mode=deep",
+    "timestamp": "2026-02-19 03:52:26.349769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Preimage Attack] If ComputeRootWithTransactionStatusMerklePath uses weak hashing, can an attacker find a collision where two different transaction IDs produce the same root with crafted paths? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97eb4583-cbda-4d8a-bf17-1ed4a148bace?mode=deep",
+    "timestamp": "2026-02-19 03:52:56.659291",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Height Manipulation] Can an attacker provide an old parentChainHeight value with a valid merkle root from the past to verify a transaction that was later reverted due to parent chain reorganization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f53da3c-9c90-4f94-a91a-02b7f51e3235?mode=deep",
+    "timestamp": "2026-02-19 03:53:24.872517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Missing Transaction Status Check] Does the verification check whether the transaction succeeded or failed on the parent chain, or can failed parent chain transactions be verified as valid for cross-chain execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_922cb9a8-108f-483f-b72e-b606ed283f6f?mode=deep",
+    "timestamp": "2026-02-19 03:53:55.073474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Merkle Path Length] Does ComputeRootWithTransactionStatusMerklePath validate merkle path depth to prevent maliciously short or excessively long paths that could cause verification bypass or DOS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_649e6701-1136-4b6a-8cee-b185ee461de1?mode=deep",
+    "timestamp": "2026-02-19 03:54:24.052468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.CrossChain/CrossChainContract_View.cs] [Function: VerifyTransaction()] [Race Condition] Between GetMerkleTreeRoot query and root comparison, can the parent chain state be updated, causing verification of transactions against stale merkle roots? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e1dc2fe-40b0-43b3-a0a3-dc99f2490b39?mode=deep",
+    "timestamp": "2026-02-19 03:54:55.320177",
+    "report_generated": false
+  }
+]
