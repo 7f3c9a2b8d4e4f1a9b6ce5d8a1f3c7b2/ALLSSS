@@ -1,0 +1,140 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Missing Validation] Can the TransactionFees mapping store MethodFees with zero or null values, breaking fee collection logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a3cd9e7-de21-4e31-bb61-cc667dd24f34?mode=deep",
+    "timestamp": "2026-02-19 04:00:08.070183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Inconsistent State] Can partial updates to TransactionFees leave some methods with old fees and others with new fees, creating arbitrage opportunities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2579432e-532a-46b0-9bd8-77bc4e3990c7?mode=deep",
+    "timestamp": "2026-02-19 04:00:30.492142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Symbol Injection] Can TransactionFees store fees with invalid token symbols, causing runtime errors when fees are collected? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dfb5a9d3-b148-43eb-a7b2-0ff397f7a172?mode=deep",
+    "timestamp": "2026-02-19 04:00:53.520530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Unbounded Growth] Can the TransactionFees mapping grow without bounds as new methods are added, eventually hitting storage limits? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aecb5f4f-4b1d-46a7-90a1-f0587a9ebd01?mode=deep",
+    "timestamp": "2026-02-19 04:01:16.689165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Fee Frontrunning] Can attackers observe pending TransactionFees updates and front-run them to exploit temporary fee mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e340fe85-bab6-442c-9906-2e76ed1a5b21?mode=deep",
+    "timestamp": "2026-02-19 04:01:40.965617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Multi-Token Confusion] Can TransactionFees with multiple fee tokens create confusion about which token is actually charged? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2122429-459c-40bc-9414-a3264abd025c?mode=deep",
+    "timestamp": "2026-02-19 04:02:05.740341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Case Sensitivity] Can the TransactionFees mapping use case-sensitive method name keys, allowing bypasses via case variations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e07557df-58ca-4b84-8353-f0cb933d90b5?mode=deep",
+    "timestamp": "2026-02-19 04:02:31.201317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Deletion Issues] Can deleted entries in TransactionFees be read as null/default, causing free method execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe46c6be-c2a4-4eca-a7aa-2fc0474fc7b7?mode=deep",
+    "timestamp": "2026-02-19 04:02:57.701305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Whitespace Attack] Can method names with leading/trailing whitespace bypass fee checks in TransactionFees mapping? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b079de0a-f8e7-4f2e-b44e-fb61668cc5a9?mode=deep",
+    "timestamp": "2026-02-19 04:03:25.491337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Configuration Injection] Can arbitrary keys be inserted into the Configurations mapping without validation, polluting the configuration space? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7fe02a7-ffd3-4bb5-a7f0-19f9426444b3?mode=deep",
+    "timestamp": "2026-02-19 04:03:54.544416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Value Corruption] Can the Configurations mapping store malformed BytesValue data that crashes deserializers in consuming contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ac62870-6387-442c-bc42-59b4064dc299?mode=deep",
+    "timestamp": "2026-02-19 04:04:22.443329",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Key Squatting] Can an attacker pre-populate critical configuration keys before legitimate initialization, hijacking system parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da0bf091-918f-4e09-8810-a6ee09412c53?mode=deep",
+    "timestamp": "2026-02-19 04:04:53.480458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [DoS via Large Values] Can the Configurations mapping accept arbitrarily large BytesValue entries, causing out-of-memory errors when read? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9003603c-c8bf-4abf-ae26-849d262cff14?mode=deep",
+    "timestamp": "2026-02-19 04:05:24.176311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Missing Key Validation] Can empty string keys or special characters in Configurations keys bypass access control checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de34c051-17cd-4d14-995c-c7e006094214?mode=deep",
+    "timestamp": "2026-02-19 04:05:54.304474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Type Confusion] Can the Configurations BytesValue storage allow type confusion where contracts expect different data formats? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa6ff840-1d6a-4ad7-8589-859041c0fe0c?mode=deep",
+    "timestamp": "2026-02-19 04:06:24.468473",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Immutability Violation] Can critical Configurations be overwritten multiple times, violating assumptions about configuration stability? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1d32fd4-972a-44f3-8e79-ddbe162f14b1?mode=deep",
+    "timestamp": "2026-02-19 04:06:55.779883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Deletion Attack] Can an attacker delete critical configuration entries by setting them to empty BytesValue, breaking dependent systems? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4b1cee9-d3a5-48c7-a0e4-a0d4b53a74c3?mode=deep",
+    "timestamp": "2026-02-19 04:07:25.061380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Encoding Issues] Can the Configurations BytesValue accept improperly encoded protobuf data, causing deserialization failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_616846e4-7e33-4e3f-8427-bfb2c83c5146?mode=deep",
+    "timestamp": "2026-02-19 04:07:54.411332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Version Mismatch] Can the Configurations mapping store values with incompatible schema versions, breaking backward compatibility? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a3f8ec7-8950-4345-bd10-b9c2591545f9?mode=deep",
+    "timestamp": "2026-02-19 04:08:24.282678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Namespace Collision] Can different contracts accidentally use the same configuration keys, causing cross-contract interference? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_172aecd5-484b-406b-873f-01a42b07cbb9?mode=deep",
+    "timestamp": "2026-02-19 04:08:56.447334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Read Before Write] Can reading uninitialized Configurations return default values instead of failing, masking configuration errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e833a67-34b2-47af-989b-d1daa7c0a54a?mode=deep",
+    "timestamp": "2026-02-19 04:09:28.966216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Atomic Update Failure] Can partial Configurations updates leave the system in an inconsistent state if some but not all keys are updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5efd35f8-2e94-4b12-a926-1b2aa5391a77?mode=deep",
+    "timestamp": "2026-02-19 04:09:59.410927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: Configurations] [Key Enumeration] Can the Configurations mapping be enumerated to leak sensitive configuration data or discover attack vectors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_467b4cd2-e823-4710-b316-55f515a0bd5e?mode=deep",
+    "timestamp": "2026-02-19 04:10:29.427943",
+    "report_generated": false
+  }
+]
