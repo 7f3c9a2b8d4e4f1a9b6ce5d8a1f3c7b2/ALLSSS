@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Re-initialization Attack] Can an attacker front-run the initialization call during deployment and set malicious MinimumLockTime/MaximumLockTime values before the legitimate admin initializes, locking the contract with wrong parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_330114a1-9beb-4e14-b6e9-6729b7f0e41f?mode=deep",
+    "timestamp": "2026-02-19 08:25:37.784342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Authorization Bypass] The initialization check only verifies !State.Initialized.Value - if State.Initialized can be manipulated or reset through storage collision, can an attacker re-initialize the contract with different MinerList and TimeEachTerm values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24fbcecd-fa8a-49cd-acab-e18e7e0efb6b?mode=deep",
+    "timestamp": "2026-02-19 08:25:59.796532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [State Inconsistency] Lines 34-43 initialize both State.InitialMiners and State.CandidateInformationMap for input.MinerList - if one update fails but the other succeeds, can this create inconsistent state where InitialMiners exist without CandidateInformation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4cfe8f56-314a-4325-b3b1-0fd3f2d42439?mode=deep",
+    "timestamp": "2026-02-19 08:26:23.352744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Input Validation] No validation on input.MinerList count vs input.MinersCount - can an attacker pass mismatched values where MinerList has 10 entries but MinersCount is 100, causing mining schedule corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50a3d23a-d223-40b3-a2c1-2c4719d40f74?mode=deep",
+    "timestamp": "2026-02-19 08:26:47.138588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Duplicate Entry] Lines 39-43 iterate input.MinerList without checking for duplicate pubkeys - can an attacker include the same pubkey multiple times to gain multiple CandidateInformation entries and voting advantages? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_700df84f-e768-441f-b7a2-18da5d03c59b?mode=deep",
+    "timestamp": "2026-02-19 08:27:11.034857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Invalid Hex String] Line 37 uses ByteStringHelper.FromHexString(m) without validation - can an attacker pass malformed hex strings causing exceptions that prevent initialization or create invalid pubkey entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb042f82-42f1-4113-bae8-7120b6c6e926?mode=deep",
+    "timestamp": "2026-02-19 08:27:35.679760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Time Parameter Manipulation] No validation that MinimumLockTime < MaximumLockTime - can an attacker pass MinimumLockTime >= MaximumLockTime to break vote locking logic in other contract functions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a46a2c4e-da96-4177-97b8-84fb64f0c632?mode=deep",
+    "timestamp": "2026-02-19 08:28:03.117674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Zero/Negative Values] No checks preventing input.TimeEachTerm = 0 or negative values - can this cause division by zero or underflow in term calculation logic elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f35b30f-f215-49a5-afb3-bc6d5edaf3e7?mode=deep",
+    "timestamp": "2026-02-19 08:28:29.533144",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [Empty MinerList] No validation preventing input.MinerList from being empty - can initializing with empty list cause the consensus system to fail since MinersCount would be 0? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_293c7a18-8515-4f07-ad41-1947793678be?mode=deep",
+    "timestamp": "2026-02-19 08:28:58.118797",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: InitialElectionContract()] [CurrentTermNumber Manipulation] Line 45 hardcodes CurrentTermNumber to 1 - if external contracts depend on this starting value, can manipulation of this state variable before init break term-based reward calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d4e0b68-50ee-4682-b0fa-b262f122ea55?mode=deep",
+    "timestamp": "2026-02-19 08:29:25.117076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [Double Registration] Line 56 checks !State.VotingEventRegistered.Value but if this state can be reset, can an attacker re-register with different voting parameters (TotalSnapshotNumber, timestamps) to corrupt existing votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e0baff2-3053-4f55-8743-1242afce0ba4?mode=deep",
+    "timestamp": "2026-02-19 08:29:52.727081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [Race Condition] No authorization check - can any external caller race to call this function immediately after deployment, registering a malicious voting event before the admin? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87fd8bd4-444e-4f0c-9c0c-e56dc5295a1d?mode=deep",
+    "timestamp": "2026-02-19 08:30:24.342449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [VotingItemId Collision] Lines 70-72 compute MinerElectionVotingItemId using HashHelper.ConcatAndCompute - can an attacker craft inputs to State.VoteContract.Register that produce the same hash as an existing voting item, causing vote tallying conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c31313af-9190-4fd1-964d-c7a0708ab163?mode=deep",
+    "timestamp": "2026-02-19 08:30:54.480353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [IsLockToken False] Line 62 sets IsLockToken = false - does this allow voters to vote, immediately withdraw tokens, and vote again with the same tokens, inflating vote counts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c028e2c7-0674-4458-a6af-bc627dc59ed5?mode=deep",
+    "timestamp": "2026-02-19 08:31:29.315263",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [Timestamp Manipulation] Lines 65-66 use TimestampHelper.MinValue/MaxValue for unlimited voting period - can this enable historical vote manipulation if snapshot logic doesn't properly bound vote validity? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9ed723c-287a-4f3b-8a82-28e6786b02c1?mode=deep",
+    "timestamp": "2026-02-19 08:32:00.295495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [TotalSnapshotNumber Overflow] Line 64 sets TotalSnapshotNumber = long.MaxValue - can this cause integer overflow in snapshot indexing logic if term numbers grow large? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fba3eebb-c229-43c2-9c27-0f043dbfd594?mode=deep",
+    "timestamp": "2026-02-19 08:32:30.473676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [External Call Failure] Line 68 calls State.VoteContract.Register.Send without checking return value or handling failures - if registration fails silently, does State.VotingEventRegistered still get set to true, breaking all voting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0bba55a-3fe8-4d21-a1c9-4bccb086af51?mode=deep",
+    "timestamp": "2026-02-19 08:32:58.066761",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: RegisterElectionVotingEvent()] [Contract Address Null] Line 58 gets VoteContract address but doesn't validate it's non-null - can calling this before VoteContract deployment cause silent failures or undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6264f558-44e8-438c-9cfc-8ba197cf511b?mode=deep",
+    "timestamp": "2026-02-19 08:33:28.895894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [Authorization Bypass] Lines 85-88 allow BOTH ConsensusContract OR EmergencyResponseOrganization to call - can a compromised EmergencyResponseOrganization mark legitimate miners as evil nodes without consensus contract involvement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a43bbc14-3a2a-4657-a6da-90da3ad98124?mode=deep",
+    "timestamp": "2026-02-19 08:33:59.955734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [Evil Node Front-Running] Lines 93-112 ban nodes and remove their benefits - can a malicious consensus contract front-run a legitimate miner's block production to mark them as evil just before they claim rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1346c978-c52c-46f9-8bea-32858e645f17?mode=deep",
+    "timestamp": "2026-02-19 08:34:31.635334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [Integer Overflow] Lines 115-117 use .Add() for ProducedBlocks and MissedTimeSlots without overflow checks - can an attacker cause uint overflow by repeatedly calling with large values, wrapping counters to 0? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7540b198-95e2-464c-981f-4446c853e0a0?mode=deep",
+    "timestamp": "2026-02-19 08:35:02.398029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [State Inconsistency on Evil Node] Lines 95-111 perform multiple state updates (BannedPubkeyMap, DataCentersRankingList, Candidates, CandidateInformationMap) - if RemoveBeneficiary fails, can nodes remain in some maps but not others? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f191c7a3-299d-49a2-8a26-59061c0173e6?mode=deep",
+    "timestamp": "2026-02-19 08:35:32.984466",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [DataCenter Manipulation] Lines 98-103 set rankingList.DataCenters[input.Pubkey] = 0 then call UpdateDataCenterAfterMemberVoteAmountChanged - can this be exploited to manipulate subsidy distributions by zeroing out specific nodes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64b4b64c-046b-4c13-935e-5a2c968b5fc4?mode=deep",
+    "timestamp": "2026-02-19 08:36:02.934827",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [Candidate Removal Race] Line 107 removes from CandidateInformationMap but line 90 checks if null and returns early - can concurrent calls cause one to pass the null check while another is removing, leading to double removal attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fde515c2-9e7f-4d95-b838-013df7501c98?mode=deep",
+    "timestamp": "2026-02-19 08:36:34.904365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Maintainence.cs] [Function: UpdateCandidateInformation()] [ByteString Conversion] Line 95 converts pubkey to byte array - if ByteArrayHelper.HexStringToByteArray fails, can this cause unhandled exception before State.BannedPubkeyMap is updated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ca6d291-b7bb-42c2-abf7-bc450cfc299c?mode=deep",
+    "timestamp": "2026-02-19 08:37:05.607905",
+    "report_generated": false
+  }
+]
