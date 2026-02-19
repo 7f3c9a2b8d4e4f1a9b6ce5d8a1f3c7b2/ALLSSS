@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [VotingItemId Validation] Since VotingItemId is a Hash type that could be arbitrary, does GetHash validate that VotingItemId corresponds to an actual registered voting item before computing the result hash, or could attackers generate hashes for non-existent items? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c55e1c3-9519-4546-8908-e191ec980b9f?mode=deep",
+    "timestamp": "2026-02-19 07:04:51.418397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash overloads] [Type Confusion] Could a malicious contract pass objects that implement both VotingRegisterInput and VotingResult interfaces (if such multiple inheritance were possible) to trigger ambiguous method resolution and incorrect hash computation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e2a616a-c0d3-48fb-845a-389c0e9cfd05?mode=deep",
+    "timestamp": "2026-02-19 07:05:13.638940",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingRegisterInput, Address)] [Serialization Bugs] If HashHelper.ComputeFrom has bugs when serializing ProtoBuf messages with cleared repeated fields (like Options after Clear()), could it produce incorrect hashes or throw exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27b2e3b6-e5cb-40c6-926e-672b83fb49dc?mode=deep",
+    "timestamp": "2026-02-19 07:05:35.999359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteExtensions.cs] [Function: GetHash(VotingResult)] [Minimal Object Construction] Creating a VotingResult with only VotingItemId and SnapshotNumber set—are other fields initialized to safe defaults by the constructor, or could uninitialized fields cause undefined behavior in HashHelper.ComputeFrom? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79fb4a3f-14f4-4930-afea-e3098d724f7f?mode=deep",
+    "timestamp": "2026-02-19 07:05:58.932982",
+    "report_generated": false
+  }
+]
