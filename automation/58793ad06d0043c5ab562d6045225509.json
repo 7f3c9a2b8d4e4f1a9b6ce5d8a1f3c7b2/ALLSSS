@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: ConsensusBehaviourProviderBase()] [Null Reference] If CurrentRound.RealTimeMinersInformation is null or empty when accessing _pubkey at line 36, can this cause a KeyNotFoundException that crashes consensus command generation and prevents block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90a881f9-857b-4b00-ba6a-b0a188fbceae?mode=deep",
+    "timestamp": "2026-02-19 05:46:22.602380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: ConsensusBehaviourProviderBase()] [Invalid Input] If _pubkey parameter is null, empty string, or malformed hex at line 31, can this bypass miner list validation in CurrentRound.IsTimeSlotPassed() at line 35 and cause incorrect behaviour determination? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23db47f1-3645-42e7-8742-05cd417ca96d?mode=deep",
+    "timestamp": "2026-02-19 05:46:44.690767",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: ConsensusBehaviourProviderBase()] [Integer Overflow] If maximumBlocksCount parameter at line 32 is set to Int32.MaxValue, can subsequent Add() operations at lines 74-76 overflow and allow unlimited tiny block production? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f05cede-b632-4883-8e42-aea8fc49a575?mode=deep",
+    "timestamp": "2026-02-19 05:47:07.158932",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: ConsensusBehaviourProviderBase()] [Time Manipulation] If currentBlockTime parameter at line 33 is set to a far future timestamp (e.g., year 2100), can this bypass _isTimeSlotPassed check at line 35 and always return false, allowing miners to produce blocks indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6973e31-a7b8-450b-95bb-5165cab5cb6b?mode=deep",
+    "timestamp": "2026-02-19 05:47:30.602868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: ConsensusBehaviourProviderBase()] [Race Condition] If CurrentRound object is modified by another thread between line 29 assignment and line 35 IsTimeSlotPassed() call, can this create inconsistent state where _isTimeSlotPassed reflects old round data but _minerInRound reflects new data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d0d4283-b8f5-4f78-b0c3-7d3785e1e42a?mode=deep",
+    "timestamp": "2026-02-19 05:47:55.039049",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: ConsensusBehaviourProviderBase()] [Denial of Service] If _pubkey is valid but not in RealTimeMinersInformation map at line 36, does the KeyNotFoundException prevent legitimate miners from getting consensus commands during miner list transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95b7e0f0-d67b-43f1-b4f5-ab7187043a9d?mode=deep",
+    "timestamp": "2026-02-19 05:48:20.222731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Logic Bypass] At lines 49-56, if _minerInRound.OutValue is null and HandleMinerInNewRound() returns Nothing, the function continues to line 82 GetConsensusBehaviourToTerminateCurrentRound() - can a malicious miner exploit this path to terminate rounds prematurely without having mined any blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55b887d1-e098-480c-800a-f771d8d12342?mode=deep",
+    "timestamp": "2026-02-19 05:48:45.800811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Missing Validation] The OutValue null check at line 49 doesn't verify if OutValue is Hash.Empty or an invalid hash - can an attacker set OutValue to an empty/zero hash to bypass the new round handling and gain unauthorized TinyBlock production rights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ed46a51-4342-4817-abad-b762088e8234?mode=deep",
+    "timestamp": "2026-02-19 05:49:13.693537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Time Slot Exploitation] At lines 57-58, if !_isTimeSlotPassed evaluates to true when miner has OutValue set, but ActualMiningTimes.Count at line 60 is manipulated to be less than _maximumBlocksCount, can the miner produce unlimited tiny blocks by repeatedly resetting their mining times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed84a26a-2919-477f-9531-71ac9e2650c0?mode=deep",
+    "timestamp": "2026-02-19 05:49:42.018836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Integer Overflow] At line 60, if _minerInRound.ActualMiningTimes.Count approaches Int32.MaxValue and is compared against _maximumBlocksCount, can integer overflow in the comparison allow a miner to bypass the block production limit? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ece95eab-9f65-4a6c-acba-06cf8e1bb77c?mode=deep",
+    "timestamp": "2026-02-19 05:50:08.701708",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Timestamp Manipulation] At lines 64-65, blocksBeforeCurrentRound is calculated by counting ActualMiningTimes <= CurrentRound.GetRoundStartTime() - if an attacker manipulates timestamps in ActualMiningTimes to be slightly before round start, can they artificially inflate blocksBeforeCurrentRound and gain extra block production rights? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48e4c68f-bcdc-4f33-ab59-d4b18482a4a3?mode=deep",
+    "timestamp": "2026-02-19 05:50:40.687914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Authorization Bypass] At lines 71-73, if CurrentRound.ExtraBlockProducerOfPreviousRound can be set to an attacker's pubkey through round manipulation, and IsMinerListJustChanged is false, can the attacker gain (_maximumBlocksCount + blocksBeforeCurrentRound) block production rights without legitimately terminating the previous round? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d97ec2b-2175-4ab6-9d21-c951b62701ce?mode=deep",
+    "timestamp": "2026-02-19 05:51:13.728005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Logic Error] At line 73, IsMinerListJustChanged is negated (!) - if this flag is incorrectly set or can be manipulated, can miners who shouldn't have extra block rights (first round of new term) still produce extra blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31d84384-8aaf-4628-bc0f-f05618432963?mode=deep",
+    "timestamp": "2026-02-19 05:51:47.174828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Arithmetic Overflow] At lines 74-76, the expression _minerInRound.ActualMiningTimes.Count.Add(1) < _maximumBlocksCount.Add(blocksBeforeCurrentRound) uses Add() extensions - if these don't check for overflow, can extremely large values wrap around and bypass the limit check? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_857862f3-f406-4aa1-9c93-fd31db6a7a73?mode=deep",
+    "timestamp": "2026-02-19 05:52:20.914105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Off-by-One Error] At line 74, adding 1 to ActualMiningTimes.Count before comparison - is this off-by-one addition correct, or can it allow one extra block beyond the intended limit when Count is exactly at threshold? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ff42e05-dc5d-43c7-8888-984cf18b9c1a?mode=deep",
+    "timestamp": "2026-02-19 05:52:50.390938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [State Inconsistency] If ActualMiningTimes collection is modified between line 60 and line 74 (two separate Count accesses), can race conditions cause inconsistent block count validation allowing excess block production? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9969309-6abe-4ddf-b525-bd1ae51f9894?mode=deep",
+    "timestamp": "2026-02-19 05:53:26.189564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Missing Bounds Check] At line 65, CurrentRound.GetRoundStartTime() is called without null check - if this returns null or invalid timestamp, can the LINQ Count() operation fail or return incorrect blocksBeforeCurrentRound count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a43825f-93db-4980-aa67-acd02df44e46?mode=deep",
+    "timestamp": "2026-02-19 05:54:01.861061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Privilege Escalation] The extra block producer privilege at lines 71-79 allows up to (maximumBlocksCount + blocksBeforeCurrentRound) blocks - if blocksBeforeCurrentRound isn't properly validated and can be set to a large value, can this grant excessive block production rights? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d608bfab-ebfc-4b30-ad3d-1daaabad2a01?mode=deep",
+    "timestamp": "2026-02-19 05:54:32.970760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: GetConsensusBehaviour()] [Return Path Vulnerability] At line 82, GetConsensusBehaviourToTerminateCurrentRound() is called as fallback - if this abstract method implementation is malicious or returns incorrect behaviour, can it override all previous safety checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6539bfdd-84db-4e20-9ca0-b415aacab898?mode=deep",
+    "timestamp": "2026-02-19 05:55:09.875219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: HandleMinerInNewRound()] [First Round Bypass] At lines 94-102, if CurrentRound.RoundNumber is manipulated to be 1, and _minerInRound.Order is set to non-1 value, can this force NextRound behaviour even when not in first round, disrupting consensus? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46e62892-b9f9-436c-9f52-c46a20021d23?mode=deep",
+    "timestamp": "2026-02-19 05:55:47.694366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: HandleMinerInNewRound()] [Mining Order Manipulation] At line 98, if _minerInRound.Order can be changed after initialization but before this check, can a miner bypass the first-round postponement logic and mine fork blocks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13ca3799-f49f-4912-a389-70ec9c97815a?mode=deep",
+    "timestamp": "2026-02-19 05:56:29.830036",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: HandleMinerInNewRound()] [Null Dereference] At line 100, CurrentRound.FirstMiner().OutValue is accessed - if FirstMiner() returns null or a MinerInRound with null OutValue, is the null check sufficient or can this cause NullReferenceException? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2e722ae-5c36-4f3d-8e27-3886174d8f61?mode=deep",
+    "timestamp": "2026-02-19 05:57:09.734162",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: HandleMinerInNewRound()] [Logic Contradiction] At lines 94-102, miners with Order != 1 are forced to NextRound if FirstMiner hasn't mined - but what if FirstMiner never mines due to being offline? Can this permanently deadlock consensus in round 1? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ef467c9-dbf2-41c1-9137-a26bc22c183e?mode=deep",
+    "timestamp": "2026-02-19 05:57:49.112433",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: HandleMinerInNewRound()] [Extra Block Producer Privilege] At lines 104-112, if CurrentRound.ExtraBlockProducerOfPreviousRound string comparison can be spoofed or is case-sensitive when it shouldn't be, can an attacker gain TinyBlock production rights without being the legitimate extra block producer? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49e87ec7-bad1-4ee8-a8c8-c75717912a83?mode=deep",
+    "timestamp": "2026-02-19 05:58:26.545223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/ConsensusBehaviourProviderBase.cs] [Function: HandleMinerInNewRound()] [Time Comparison Vulnerability] At line 108, _currentBlockTime < CurrentRound.GetRoundStartTime() check - if GetRoundStartTime() returns incorrect or far-past timestamp, can this allow indefinite tiny block production before round officially starts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ef8a7d74-cac1-4a08-b99f-db4d4e5dcc06?mode=deep",
+    "timestamp": "2026-02-19 05:59:04.215805",
+    "report_generated": false
+  }
+]
