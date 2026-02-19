@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ReleaseCodeCheckedContract()] [Status Bypass] Can the assertion at line 297-299 be bypassed if an attacker can change contractProposingInput.Status between CodeCheckProposed and another state during execution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f68435b9-3bd3-4ab0-8ce8-5ce1856788a5?mode=deep",
+    "timestamp": "2026-02-19 11:22:14.946371",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ReleaseCodeCheckedContract()] [Unauthorized Release] Can a non-proposer call this function if they gain control of Context.Sender through a proxy contract or delegation mechanism? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec29c4be-2855-40ce-b588-ca5ed5617253?mode=deep",
+    "timestamp": "2026-02-19 11:22:37.058396",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: DeploySmartContract()] [Authorization Bypass] Can RequireSenderAuthority at line 311 be bypassed if State.CodeCheckController.Value?.OwnerAddress is null, allowing unauthorized deployments? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b7cc2df-0896-4354-9547-d00611fa1835?mode=deep",
+    "timestamp": "2026-02-19 11:22:59.162689",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: DeploySmartContract()] [Author Manipulation] Can DecideNonSystemContractAuthor at line 319 return an incorrect author if contractProposingInput?.Proposer is manipulated or null? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c07a0061-fd74-4e0f-9722-6c215494177b?mode=deep",
+    "timestamp": "2026-02-19 11:23:22.326476",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: DeploySmartContract()] [Proposal Reuse] If TryClearContractProposingData at line 315 fails to clear data properly, can the same inputHash be used to deploy multiple contracts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d20010ad-d6ef-4ad0-b6e2-70afd453c8d2?mode=deep",
+    "timestamp": "2026-02-19 11:23:46.634568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: DeploySmartContract()] [Salt Collision] Can input.ContractOperation?.Salt at line 320 be null or manipulated to cause address collisions with existing contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24bf9a0c-fb4c-4dbd-a70d-4badcafd7c65?mode=deep",
+    "timestamp": "2026-02-19 11:24:12.333502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: UpdateSmartContract()] [Authorization Bypass] Can the fallback condition at line 332 (Context.Sender == info.Author) be exploited if an attacker becomes the author through SetContractAuthor? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63c3573b-ffa9-4179-8880-75a6a8aa5f52?mode=deep",
+    "timestamp": "2026-02-19 11:24:39.920586",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: UpdateSmartContract()] [Proposal Bypass] Can TryClearContractProposingData at line 331 be made to return false to skip the proposal process and update contracts directly? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45ba5aa1-cc71-4fc8-817d-b1c3aace72f8?mode=deep",
+    "timestamp": "2026-02-19 11:25:06.772449",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: Initialize()] [Reentrancy] Can the assertion at line 341 be bypassed if State.Initialized.Value is manipulated during a reentrancy attack before it's set to true at line 344? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de16c090-2d3e-4536-b394-d95bc5f7b91e?mode=deep",
+    "timestamp": "2026-02-19 11:25:35.895579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: Initialize()] [Sender Bypass] Can the Context.Sender == Context.Self check at line 342 be bypassed through delegatecall or proxy patterns to allow external initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_280821a2-f17e-45a2-bfb4-ef642a74bcc0?mode=deep",
+    "timestamp": "2026-02-19 11:26:04.494949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: Initialize()] [Authority Weakening] Can input.ContractDeploymentAuthorityRequired be set to false at line 343 to permanently disable deployment authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c632ba5-6a15-430b-80f8-9a19da1f4e42?mode=deep",
+    "timestamp": "2026-02-19 11:26:36.800174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetInitialControllerAddress()] [Double Initialization] Can the assertion at line 350 be bypassed if one controller is null while the other is set, allowing partial re-initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b827116d-b3ca-4069-be39-ab17c65b8183?mode=deep",
+    "timestamp": "2026-02-19 11:27:08.883146",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetInitialControllerAddress()] [Parliament Takeover] Can an attacker deploy a malicious parliament contract and call this function before the legitimate parliament is deployed? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a7260bf4-89d3-4583-b7ae-02165d0c1acd?mode=deep",
+    "timestamp": "2026-02-19 11:27:36.239907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetInitialControllerAddress()] [Null Input] Can input being null at line 355 be exploited to set null controllers, breaking all authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b8cca743-e5e8-419a-b00d-a1201dbbb62e?mode=deep",
+    "timestamp": "2026-02-19 11:28:02.279091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetInitialControllerAddress()] [Address Collision] Can GetContractAddressByName at line 352 return an attacker-controlled address if State.NameAddressMapping was manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_251cb7d0-313c-4000-9c6c-3f1d6329f368?mode=deep",
+    "timestamp": "2026-02-19 11:28:29.852778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ChangeContractDeploymentController()] [Controller Takeover] Can CheckOrganizationExist at line 369 be manipulated to validate a malicious organization, allowing controller replacement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d94b2b8-9128-4c2a-af8f-e17f1a11bbf9?mode=deep",
+    "timestamp": "2026-02-19 11:28:56.526099",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ChangeContractDeploymentController()] [Reentrancy] Can Context.Call at line 182 in CheckOrganizationExist allow reentrancy to change the controller while validation is pending? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8796941-324c-4305-84db-a1d57bea47d5?mode=deep",
+    "timestamp": "2026-02-19 11:29:27.403529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ChangeContractDeploymentController()] [Authority Bypass] Can AssertSenderAddressWith at line 368 be bypassed if State.ContractDeploymentController.Value.OwnerAddress was previously set to an attacker's address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8174f8fb-352c-4083-ab7c-1f668a17cb27?mode=deep",
+    "timestamp": "2026-02-19 11:29:55.377328",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ChangeCodeCheckController()] [Validation Bypass] Can CheckOrganizationExist at line 378 return true for invalid organizations due to malicious authorization contract logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_615c6a77-0690-4551-b314-ec11ef3412c6?mode=deep",
+    "timestamp": "2026-02-19 11:30:22.564343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: ChangeCodeCheckController()] [Code Check Takeover] After changing the controller at line 380, can an attacker immediately approve malicious code through the new controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b03db512-caad-4f25-ac3f-5800e970d03a?mode=deep",
+    "timestamp": "2026-02-19 11:30:54.309117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetContractProposerRequiredState()] [Initialization Bypass] Can State.Initialized.Value be checked at line 386 but set to true before CreateParliamentOrganizationForInitialControllerAddress completes, allowing multiple calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c114787-8c52-42d5-9517-96ee468a2d82?mode=deep",
+    "timestamp": "2026-02-19 11:31:25.644342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetContractProposerRequiredState()] [Cross-Chain Exploit] Can a malicious CrossChain contract at line 387 call this function to manipulate the genesis contract state? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9466f051-383a-4e92-9276-54c70d78ec26?mode=deep",
+    "timestamp": "2026-02-19 11:31:58.095974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetContractProposerRequiredState()] [Organization Manipulation] Can CreateParliamentOrganizationForInitialControllerAddress at line 390 be exploited to create a parliament with attacker-favorable thresholds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07c5e1e3-8bb4-4ecb-8c70-1eac84175c56?mode=deep",
+    "timestamp": "2026-02-19 11:32:27.193790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetContractProposalExpirationTimePeriod()] [DoS via Expiration] Can input.ExpirationTimePeriod at line 397 be set to 0 or 1 to make all proposals expire instantly, causing denial of service? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cadca6e-047c-4b27-8f92-5a232f6b13dd?mode=deep",
+    "timestamp": "2026-02-19 11:33:00.127050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZero.cs] [Function: SetContractProposalExpirationTimePeriod()] [Overflow Attack] Can a very large ExpirationTimePeriod cause integer overflow when added to Context.CurrentBlockTime? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f8ef91a-220a-4672-8c0f-a4f6cb640f2d?mode=deep",
+    "timestamp": "2026-02-19 11:33:32.550635",
+    "report_generated": false
+  }
+]
