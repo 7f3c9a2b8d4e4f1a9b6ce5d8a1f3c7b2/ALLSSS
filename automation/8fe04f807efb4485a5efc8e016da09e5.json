@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: Initialized] [Initialization] Can the Initialized state be manipulated or re-initialized after initial setup, allowing an attacker to call InitialTreasuryContract multiple times and recreate profit schemes, causing accounting confusion or fund lock? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b581af74-975d-4fcb-b0e6-4e719eef5f2b?mode=deep",
+    "timestamp": "2026-02-19 08:35:21.201846",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: TreasuryHash] [State Integrity] If TreasuryHash is set to null or an invalid Hash after initialization, could subsequent Release() or Donate() operations fail or send funds to wrong schemes, causing permanent fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0b9ea3c-02ef-4243-b697-9edd9148bac8?mode=deep",
+    "timestamp": "2026-02-19 08:35:43.439529",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: WelfareHash, SubsidyHash, RewardHash] [Scheme Corruption] Can an attacker cause these scheme hashes to point to malicious profit schemes they control, redirecting all treasury distributions to attacker addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97dcd3cb-7360-4c0c-baee-7434d0cd2b54?mode=deep",
+    "timestamp": "2026-02-19 08:36:06.161626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: BasicRewardHash, VotesWeightRewardHash, ReElectionRewardHash] [Reward Redirection] If these hash values are modified without proper validation, could mining rewards be redirected to unauthorized beneficiaries instead of legitimate miners? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbb8ed79-61d0-4719-858b-f36b1135f0d2?mode=deep",
+    "timestamp": "2026-02-19 08:36:29.797619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: TransactionFees] [Fee Manipulation] Can the MappedState<string, MethodFees> be manipulated to set zero fees for expensive operations or excessive fees for cheap operations, enabling DOS or economic attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c956629d-9878-4bfd-ae4d-fde7a7bf6772?mode=deep",
+    "timestamp": "2026-02-19 08:36:54.072474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: MethodFeeController] [Authorization Bypass] If MethodFeeController is set to null or an attacker-controlled organization, could unauthorized fee changes be executed, allowing free transactions or denial of service? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c335e2d8-6695-41dd-a29b-62b2519d6b00?mode=deep",
+    "timestamp": "2026-02-19 08:37:20.269173",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: TreasuryController] [Governance Takeover] Can TreasuryController be changed to an attacker's address without proper multi-sig approval, allowing complete control over treasury settings and fund distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_467d60f6-623b-4cbd-84ff-1348d68848ae?mode=deep",
+    "timestamp": "2026-02-19 08:37:48.003911",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: SymbolList] [Token Whitelist] If SymbolList is modified to exclude native token or include malicious tokens, could donations fail or malicious tokens be accepted, causing accounting errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c0832c3-b29b-4c8c-a099-3aada1c5a8cc?mode=deep",
+    "timestamp": "2026-02-19 08:38:17.933350",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: DividendPoolWeightSetting] [Weight Manipulation] Can weight values be set to zero or extreme values, causing division by zero errors or unfair distribution skewing all rewards to one pool? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31b38ff4-db5a-4ac7-856a-bb6247b0aed5?mode=deep",
+    "timestamp": "2026-02-19 08:38:48.592140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: MinerRewardWeightSetting] [Reward Distribution] If BasicMinerRewardWeight is set to zero while others are high, could all rewards go to Welcome/Flexible pools, denying regular miners their earnings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3babb651-f96a-4c24-90c5-abd196099cad?mode=deep",
+    "timestamp": "2026-02-19 08:39:21.421249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: DonatedDividends] [Accounting] Can the MappedState<long, Dividends> be corrupted by setting arbitrary block heights with fake dividend amounts, causing incorrect reward calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b902cd0c-937b-42c9-9598-44044ace27cd?mode=deep",
+    "timestamp": "2026-02-19 08:39:55.419619",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: MiningReward] [Reward Inflation] If MiningReward SingletonState is manipulated to extreme values, could it cause treasury inflation or deflation, breaking economic invariants? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0dc8cce3-6416-4c88-b98b-2c18886f4f09?mode=deep",
+    "timestamp": "2026-02-19 08:40:29.203915",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: LatestMinedTerm] [Miner Tracking] Can LatestMinedTerm mappings be corrupted to mark miners as new when they're not, causing them to receive welcome rewards multiple times? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_081c06f9-cda9-4aba-9ad8-65023ce4ea68?mode=deep",
+    "timestamp": "2026-02-19 08:41:02.733546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: IsReplacedEvilMiner] [Miner Flagging] If IsReplacedEvilMiner flag is cleared prematurely or never set, could evil miners receive full rewards instead of reduced shares? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9dc0137-4514-40ba-945d-5447cd884302?mode=deep",
+    "timestamp": "2026-02-19 08:41:34.906651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: ReplaceCandidateMap] [Candidate Injection] Can attackers inject arbitrary pubkeys into ReplaceCandidateMap for future terms, claiming welcome rewards they shouldn't receive? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc6288c5-84b1-46e2-bfe3-aba6d0732bc0?mode=deep",
+    "timestamp": "2026-02-19 08:42:08.594748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: HasNewMiner] [Term Manipulation] If HasNewMiner flag is manipulated, could flexible rewards be incorrectly routed to Welfare or Basic pools, breaking reward distribution logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87f04af1-3560-4d32-a307-f31885a6e32c?mode=deep",
+    "timestamp": "2026-02-19 08:42:41.147686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: ProfitsReceiverMap] [Receiver Hijacking] Can ProfitsReceiverMap be modified without proper authorization, redirecting miner/candidate rewards to attacker addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b39dac66-9a86-4424-9bc4-13fbf5dcd687?mode=deep",
+    "timestamp": "2026-02-19 08:43:09.446468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContractState.cs] [State: TreasuryVirtualAddress] [Address Poisoning] If TreasuryVirtualAddress is changed to attacker-controlled address, would all treasury funds be redirected, causing total fund loss? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc944a87-962d-4fc9-b0fe-88c5fd6c7ec9?mode=deep",
+    "timestamp": "2026-02-19 08:43:41.734679",
+    "report_generated": false
+  }
+]
