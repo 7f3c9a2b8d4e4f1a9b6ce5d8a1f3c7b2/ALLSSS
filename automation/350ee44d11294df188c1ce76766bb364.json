@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [Null Reference Vulnerability] If proposerWhiteList parameter is null, does the method throw NullReferenceException when accessing proposerWhiteList.Proposers.Count, allowing DOS of organization validation at creation or whitelist change operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53a4cbf1-cd93-45f3-ab43-899ecc24da53?mode=deep",
+    "timestamp": "2026-02-19 03:58:03.398069",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [Null Reference Vulnerability] If proposerWhiteList.Proposers collection itself is null (not just empty), does Count() throw exception during Validate() call in CreateOrganization, blocking all organization creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad99d5c5-0d6d-454b-b5d2-a741f869be46?mode=deep",
+    "timestamp": "2026-02-19 03:58:25.604009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Empty()] [Null Reference Vulnerability] If proposerWhiteList is null, does Empty() crash when calling Count() extension method, causing DOS in Validate() method that checks organization.ProposerWhiteList.Empty()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70a477a6-c2b6-4fa8-9490-aba1f679f077?mode=deep",
+    "timestamp": "2026-02-19 03:58:48.263530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Null Reference Vulnerability] If proposerWhiteList parameter is null, does Contains() throw NullReferenceException during AssertIsAuthorizedProposer check, blocking all proposal creation for legitimate proposers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3bdb6a1-e069-4903-b919-a9ef8e2a54b9?mode=deep",
+    "timestamp": "2026-02-19 03:59:11.330016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Null Reference Vulnerability] If proposerWhiteList.Proposers is null, does Contains() throw exception in AssertIsAuthorizedProposer, permanently locking proposal creation for an organization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f43b45df-5aad-492e-b266-201f6b385eeb?mode=deep",
+    "timestamp": "2026-02-19 03:59:35.656847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Null Parameter Handling] If address parameter is null when calling Contains(), does the method fail to properly reject null addresses, potentially allowing unauthorized proposal creation if null is stored in whitelist? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e365c7de-cc21-4be5-bd20-2b2c003b9cea?mode=deep",
+    "timestamp": "2026-02-19 04:00:00.786772",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Authorization Bypass] Does Contains() perform case-sensitive address comparison allowing attacker to bypass whitelist check by using different address encoding/formatting while representing the same address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_051e3e3c-d785-46c5-acc1-73658da6380d?mode=deep",
+    "timestamp": "2026-02-19 04:00:26.294085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Authorization Bypass] Can an attacker exploit Address equality operator implementation to create collision addresses that pass Contains() check without being in the actual whitelist, bypassing proposal authorization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4d37a3b-b49b-4f42-a4b5-b0eacb06793b?mode=deep",
+    "timestamp": "2026-02-19 04:00:52.561058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Empty()] [Authorization Bypass] In ChangeOrganizationProposerWhiteList, if Empty() returns false positive (not empty when it should be), does this allow setting invalid whitelist that violates Validate() invariant, breaking proposal authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd7a91bc-1a89-4e62-b8d4-db3bc3eaa041?mode=deep",
+    "timestamp": "2026-02-19 04:01:21.530405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Authorization Bypass] Does Contains() check only first occurrence in Proposers list, allowing duplicate addresses to bypass authorization logic if whitelist modification removes first but not second entry? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a4eede5-b3a3-469b-8b81-6a74815e0fc6?mode=deep",
+    "timestamp": "2026-02-19 04:01:48.542954",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Race Condition] If ProposerWhiteList is modified during AssertIsAuthorizedProposer execution, can Contains() check pass for address that gets removed before proposal creation completes, creating unauthorized proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13de1f69-84e8-4b19-8c0a-4e764b58ad1f?mode=deep",
+    "timestamp": "2026-02-19 04:02:19.414889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [State Consistency] If Proposers list is modified between Empty() call in Validate() and actual organization storage, can organization be created with empty whitelist violating the non-empty invariant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c50a8d37-b6f6-4d04-b992-4c5f50b400bd?mode=deep",
+    "timestamp": "2026-02-19 04:02:52.987480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Empty()] [Race Condition] During ChangeOrganizationProposerWhiteList, if Empty() check passes but whitelist is cleared before Validate() runs, can this create organization with empty whitelist breaking proposal creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_894eaf92-f1f7-45ae-a1fb-6db12dd8d9f6?mode=deep",
+    "timestamp": "2026-02-19 04:03:25.540755",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Race Condition] Between ValidateProposerInWhiteList view call and actual CreateProposal transaction, if whitelist changes removing proposer, can stale validation result lead to unauthorized proposal creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_374c77ae-3c64-4bb4-9c79-b9d39077e162?mode=deep",
+    "timestamp": "2026-02-19 04:03:59.105381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Empty()] [Validation Bypass] In Validate() method checking organization.ProposerWhiteList.Empty(), if Empty() incorrectly returns false when Count is 0 due to integer overflow, can organizations with zero proposers be created? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de9d0129-ab2c-4627-8db8-904a726a1c32?mode=deep",
+    "timestamp": "2026-02-19 04:04:33.200312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Authorization Failure] In AssertIsAuthorizedProposer, if Contains() returns true for addresses not actually in whitelist due to hash collision in underlying collection, can unauthorized users create proposals? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8f4fce2-97ab-45ff-aed0-5aba2e214095?mode=deep",
+    "timestamp": "2026-02-19 04:05:07.394140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [Integer Overflow] If Proposers.Count returns negative value due to collection corruption, does Count() propagate this allowing Empty() to return false, bypassing empty whitelist validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69ad8181-bb7b-49c5-a0c7-da6922f53325?mode=deep",
+    "timestamp": "2026-02-19 04:05:42.614605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Logic Error] In ValidateProposerInWhiteList view method, if Contains() has different behavior than in AssertIsAuthorizedProposer context, can off-chain validation pass while on-chain proposal creation fails, causing user experience issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_130cdd90-145d-4c98-b5df-2f28a24dfe85?mode=deep",
+    "timestamp": "2026-02-19 04:06:14.023600",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [DOS Attack] If Proposers collection can grow unbounded, does Count() iteration become expensive enough to DOS organization validation, preventing organization creation or threshold changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4edc55a0-7dfe-4544-abcc-c6da0423c6d0?mode=deep",
+    "timestamp": "2026-02-19 04:06:49.238142",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [DOS Attack] If Proposers list contains millions of addresses, does Contains() linear search cause transaction timeout in AssertIsAuthorizedProposer, blocking all proposal creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_54f4a4fb-9b25-4148-a46a-ca90005b86af?mode=deep",
+    "timestamp": "2026-02-19 04:07:23.775251",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Empty()] [DOS Attack] If calling Count() in Empty() triggers expensive computation, can attacker repeatedly call ChangeOrganizationProposerWhiteList with massive whitelist to DOS organization modification? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_303f078c-be77-49cc-8884-c7856a144f0c?mode=deep",
+    "timestamp": "2026-02-19 04:07:51.962222",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Resource Exhaustion] Can attacker add duplicate addresses to whitelist causing Contains() to perform redundant comparisons, increasing gas cost for legitimate proposal creation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d267ed5a-34d4-43a6-9cbc-af138427e3c0?mode=deep",
+    "timestamp": "2026-02-19 04:08:19.460141",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [Edge Case] If Proposers collection is initialized but empty, does Count() return 0 correctly, or does initialization state cause Empty() to incorrectly return false? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9e06803-0b98-4474-a87e-f4205e675389?mode=deep",
+    "timestamp": "2026-02-19 04:08:50.488047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Empty()] [Logic Error] Does Empty() check Count() == 0 correctly handle the case where Count() might be negative or int.MinValue, potentially returning wrong result? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c9592f9-4ef2-4e58-b0da-efc964bca4f3?mode=deep",
+    "timestamp": "2026-02-19 04:09:23.604134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Contains()] [Edge Case] If address parameter has special zero/null address value, does Contains() match it against whitelist entries, potentially allowing system addresses to bypass authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_077368f4-1614-423b-83ea-82c7e2b425af?mode=deep",
+    "timestamp": "2026-02-19 04:09:51.265155",
+    "report_generated": false
+  }
+]
