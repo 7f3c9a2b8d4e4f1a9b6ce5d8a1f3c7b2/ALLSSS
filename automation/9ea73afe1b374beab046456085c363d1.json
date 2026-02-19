@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCalculateFeeCoefficientsForSender()] [Default Coefficients] GetCalculateFeeCoefficientsForSender() returns new CalculateFeeCoefficients() if FirstOrDefault() returns null - are default-initialized coefficients safe for fee calculations, or can zero coefficients cause fee bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4739363f-5660-4315-bf09-e8e1f5098c4d?mode=deep",
+    "timestamp": "2026-02-19 09:23:24.650666",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCalculateFeeCoefficientsForSender()] [FeeTypeEnum.Tx Filter] The function specifically filters for FeeTypeEnum.Tx - can this fixed filter be exploited if new fee types are added or if Tx type coefficients are manipulated to affect all sender-based fee calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55436c7f-b3d1-40bb-ba08-8158706a1150?mode=deep",
+    "timestamp": "2026-02-19 09:23:47.465899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetOwningRental()] [Symbol List Manipulation] GetOwningRental() iterates over Context.Variables.GetStringArray(TokenContractConstants.PayRentalSymbolListName) - can malicious governance add symbols that don't represent resources, causing the OwningRental to include non-rental tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0954cade-d255-4250-bcec-7f9adb5f9f48?mode=deep",
+    "timestamp": "2026-02-19 09:24:10.793881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetOwningRental()] [State.OwningRental Uninitialized] For each symbol, the function reads State.OwningRental[symbol] - if uninitialized, does it return zero or can uninitialized state cause incorrect rental accounting? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c6a13bc5-6d1a-412c-876a-d9c7829f0254?mode=deep",
+    "timestamp": "2026-02-19 09:24:34.413601",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetOwningRental()] [DOS Vector] If PayRentalSymbolListName contains thousands of symbols, can GetOwningRental() exhaust gas iterating through all symbols and populating the ResourceAmount dictionary? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a82d9085-5dd9-47a8-ae74-457c16b55f71?mode=deep",
+    "timestamp": "2026-02-19 09:24:58.955993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetOwningRentalUnitValue()] [Rental Rate Manipulation] GetOwningRentalUnitValue() reads State.Rental[symbol] for each rental symbol - if rental rates are manipulated through governance, can incorrect unit values cause resource accounting errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a05d85c-acfe-447e-8afb-25fc7c2647da?mode=deep",
+    "timestamp": "2026-02-19 09:25:24.927551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetOwningRentalUnitValue()] [Zero Unit Values] If State.Rental[symbol] is zero or uninitialized for valid rental tokens, can this cause division-by-zero errors in code calculating resource costs based on unit values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7031a41f-4811-4bd9-848d-93aca44adae9?mode=deep",
+    "timestamp": "2026-02-19 09:25:53.285478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetResourceUsage()] [Resource Amount Overflow] GetResourceUsage() reads State.ResourceAmount[symbol] - can accumulated resource amounts overflow long values, causing the dictionary to contain incorrect usage data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4734a45a-3999-4539-b0c6-1438092d0259?mode=deep",
+    "timestamp": "2026-02-19 09:26:24.426664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetResourceUsage()] [Symbol Mismatch] If symbols in PayRentalSymbolListName don't match keys in State.ResourceAmount, can GetResourceUsage() return zero usage for actually-consumed resources? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c97ddd23-513e-4fd8-a352-608bc477eff0?mode=deep",
+    "timestamp": "2026-02-19 09:26:52.964089",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolsToPayTxSizeFee()] [Uninitialized State] GetSymbolsToPayTxSizeFee() directly returns State.SymbolListToPayTxSizeFee.Value - if this is never initialized, does it return null causing null reference exceptions in fee payment logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4aaf1737-0e93-4ed0-a6ab-fb6c91e4d3c5?mode=deep",
+    "timestamp": "2026-02-19 09:27:24.855686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolsToPayTxSizeFee()] [Symbol List Validity] Does the function validate that symbols in the returned list actually exist as tokens and have necessary properties (burnable, sufficient supply) for fee payment? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b644dc9-44b7-47b2-8a94-2eb5e076f182?mode=deep",
+    "timestamp": "2026-02-19 09:27:52.884848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetUserFeeController()] [Initialization Check] GetUserFeeController() asserts State.UserFeeController.Value != null and tells users to call InitializeAuthorizedController - can this assertion be bypassed if State.UserFeeController is initialized with a default/invalid controller? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_831fd706-0bf4-4cec-87b2-ca88d9fa663b?mode=deep",
+    "timestamp": "2026-02-19 09:28:26.436445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetUserFeeController()] [Controller Manipulation] If State.UserFeeController is changed after initialization, can GetUserFeeController() return an attacker-controlled controller that bypasses user fee governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de574aa9-fbd0-42c3-aaf7-2e8735db9cd0?mode=deep",
+    "timestamp": "2026-02-19 09:29:00.086402",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetDeveloperFeeController()] [Same as UserFeeController] GetDeveloperFeeController() has identical assertion logic to GetUserFeeController() - can both controllers being uninitialized cause cascading failures in fee collection mechanisms? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b62e4728-43ed-48db-83ed-061ac402ede5?mode=deep",
+    "timestamp": "2026-02-19 09:29:31.930307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetDeveloperFeeController()] [Developer Fee Bypass] If State.DeveloperFeeController is manipulated to point to an attacker's organization, can GetDeveloperFeeController() enable unauthorized changes to developer fee rates? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47ab08a4-b43e-4dd9-8a79-aada69622981?mode=deep",
+    "timestamp": "2026-02-19 09:30:04.569550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSideChainRentalControllerCreateInfo()] [Double Assertion] GetSideChainRentalControllerCreateInfo() asserts both State.SideChainCreator.Value and State.SideChainRentalController.Value are non-null - can partial initialization where only one is set cause unexpected behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b92a9fa4-8621-46f6-a260-2c9c4b94e827?mode=deep",
+    "timestamp": "2026-02-19 09:30:33.073215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSideChainRentalControllerCreateInfo()] [Side Chain Creator Dependency] The function checks State.SideChainCreator.Value but doesn't use it in the return - is this check necessary, and can side chains be created without proper creator validation if this check is bypassed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_432f7e2b-1314-406e-9ecb-6b259f37f1d2?mode=deep",
+    "timestamp": "2026-02-19 09:31:05.963748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolsToPayTXSizeFeeController()] [Fallback Function] GetSymbolsToPayTXSizeFeeController() calls GetDefaultSymbolToPayTxFeeController() if State.SymbolToPayTxFeeController.Value is null - can an attacker prevent initialization to force use of default controller with weaker governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7f99c9af-87ed-41de-80f1-b1df011a80a3?mode=deep",
+    "timestamp": "2026-02-19 09:31:41.249881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetSymbolsToPayTXSizeFeeController()] [Controller Override] If State.SymbolToPayTxFeeController is set to a malicious controller, can GetSymbolsToPayTXSizeFeeController() return it without validation, allowing unauthorized symbol list changes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dadb286e-7eca-4d20-99e6-98187b45fe5d?mode=deep",
+    "timestamp": "2026-02-19 09:32:16.196854",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Recursive Call Risk] If State.CrossChainTokenContractRegistrationController.Value is null, the function calls GetCrossChainTokenContractRegistrationController() again - is this a recursive call to itself causing infinite recursion, or does it call a different private method? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_843bdd45-52f9-4d89-838f-dcc62c34170b?mode=deep",
+    "timestamp": "2026-02-19 09:32:47.815970",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: GetCrossChainTokenContractRegistrationController()] [Controller Validation] Does GetCrossChainTokenContractRegistrationController() validate the returned controller has proper authority before returning it for cross-chain contract registration decisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_109f6c97-28ec-4fed-9cd1-cbb3e3ccaf5f?mode=deep",
+    "timestamp": "2026-02-19 09:33:24.739598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee()] [Wrapper Function] IsTokenAvailableForMethodFee() wraps the private method of the same name - can inconsistencies between the public and private implementations cause the BoolValue wrapper to return incorrect availability status? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5304c61-6b79-4a2f-8969-e07ec9bcc6c7?mode=deep",
+    "timestamp": "2026-02-19 09:33:59.852380",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee()] [Input Validation] Does IsTokenAvailableForMethodFee() validate input.Value is non-null before passing to the private method, or can null symbols cause exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f37f326-07d0-4f3d-8b1a-ceea300b87b1?mode=deep",
+    "timestamp": "2026-02-19 09:34:33.069616",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee() private] [Single Property Check] The private IsTokenAvailableForMethodFee() only checks tokenInfo.IsBurnable - is this sufficient, or should it also verify token supply, ownership rules, or other properties before approving for method fee use? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_324acad0-84b3-4b95-9053-b011c9ae005b?mode=deep",
+    "timestamp": "2026-02-19 09:35:06.860500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Views.cs] [Function: IsTokenAvailableForMethodFee() private] [Null Token Handling] If GetTokenInfo(symbol) returns null, the function throws AssertionException with 'Token is not found' - can this be exploited to DOS method fee checks by querying non-existent tokens? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d459677f-a637-46d2-9e46-ce52620f6e2c?mode=deep",
+    "timestamp": "2026-02-19 09:35:40.083121",
+    "report_generated": false
+  }
+]
