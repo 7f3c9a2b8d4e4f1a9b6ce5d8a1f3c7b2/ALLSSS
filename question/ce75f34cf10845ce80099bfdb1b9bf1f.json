@@ -1,4 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Cross-Function: ContributeProfits + DistributeProfits] [Period Manipulation] Can an attacker contribute to future periods then manipulate CurrentPeriod advancement to skip periods, causing contributed tokens to be locked forever? (Medium)",
-  "[File: contract/AElf.Contracts.Profit/ProfitContract.cs] [Cross-Function: ResetManager + All Manager Functions] [Authorization Chain] If manager is reset to a multisig that requires multiple approvals, can this brick time-sensitive operations like DistributeProfits that need to execute per period? (Medium)"
-]
