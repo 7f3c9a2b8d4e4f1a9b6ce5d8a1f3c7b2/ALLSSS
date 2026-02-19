@@ -1,0 +1,86 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Metadata Size DOS] input.Metadata at line 186 is unbounded - can extremely large metadata cause gas exhaustion or storage DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7256e008-2f99-4d1a-9ce1-c690ad3089db?mode=deep",
+    "timestamp": "2026-02-19 14:39:56.924368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [BaseUri Length DOS] input.BaseUri stored at line 43 has no length limit - can multi-megabyte URIs cause storage DOS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d072a83-f01a-4619-8121-eb17e7a0dedf?mode=deep",
+    "timestamp": "2026-02-19 14:40:19.149816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [InitialNFTTypeNameMap DOS] Line 78 calls InitialNFTTypeNameMap which iterates State.NFTTypes - if AddNFTType was spammed, can this cause gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56acc734-e979-477d-a1fe-5ab11b9630e8?mode=deep",
+    "timestamp": "2026-02-19 14:40:41.829638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [State Iteration DOS] Line 142 adds to State.NFTTypes.Value dictionary - can excessive additions make InitialNFTTypeNameMap iterations prohibitively expensive? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf509f2a-2c3f-4df3-946d-d977d529b348?mode=deep",
+    "timestamp": "2026-02-19 14:41:05.133286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [TotalSupply Overflow] input.TotalSupply at line 31 is int64 without bounds checking - can MAX_INT64 value cause overflows in minting operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a2ff0d8-87a3-4532-9aeb-bab4438232e9?mode=deep",
+    "timestamp": "2026-02-19 14:41:29.195882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [TotalSupply Manipulation] tokenInfo.TotalSupply at line 98 from external contract - can negative or overflow values corrupt protocol supply tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_43d2fd72-10cc-4756-b9f7-1fc2703ddbc3?mode=deep",
+    "timestamp": "2026-02-19 14:41:54.983332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [ChainId Overflow] input.IssueChainId at line 29 is int32 - can overflow/negative values cause cross-chain issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1272e5f-0a7b-4e80-a7a8-e40fd0efeb6a?mode=deep",
+    "timestamp": "2026-02-19 14:42:20.149245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Event Data Injection] NFTProtocolCreated event at lines 55-67 includes user-controlled data - can malicious values in event fields exploit off-chain listeners? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a739d616-00f4-4af4-9b26-c040d7bd5237?mode=deep",
+    "timestamp": "2026-02-19 14:42:48.614315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: CrossChainCreate()] [Event Data Forgery] NFTProtocolCreated at lines 115-127 trusts tokenInfo data - can malicious mainchain token emit misleading events on sidechain? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e2b3737-f578-4886-9725-587a2177d32d?mode=deep",
+    "timestamp": "2026-02-19 14:43:17.886840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: AddNFTType()] [Event Missing Data] NFTTypeAdded event at lines 144-148 only includes ShortName and FullName - can missing context make event tracking unreliable? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9dbee5cc-90a4-478a-9a93-2ee2e2dd70c3?mode=deep",
+    "timestamp": "2026-02-19 14:43:47.874504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Symbol Return Race] Symbol is returned at line 71 but state is set earlier - can caller receive symbol for protocol that failed to fully initialize? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d23f0bd2-2491-47b5-812d-40b7cbd91550?mode=deep",
+    "timestamp": "2026-02-19 14:44:18.464290",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Decimals Hardcoded] Line 26 hardcodes Decimals = 0 - is this enforced elsewhere, or can TokenContract be called directly with non-zero decimals to break NFT invariant? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_784a85f7-af6e-40b3-8004-a04989e28bce?mode=deep",
+    "timestamp": "2026-02-19 14:44:51.171153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Creator vs Sender Confusion] Lines 22 and 27 allow input.Creator to differ from Context.Sender - can this cause confusion in ownership tracking or authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_575793ed-e68d-4f53-8e38-190d8308a7d3?mode=deep",
+    "timestamp": "2026-02-19 14:45:24.277138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Issuer Permission Scope] TokenContract issuer at line 27 may have different permissions than NFT minters - can this cause permission mismatches in mint operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da1ba482-a475-4a20-ada0-97ad8e03b68f?mode=deep",
+    "timestamp": "2026-02-19 14:45:56.959826",
+    "report_generated": false
+  }
+]
