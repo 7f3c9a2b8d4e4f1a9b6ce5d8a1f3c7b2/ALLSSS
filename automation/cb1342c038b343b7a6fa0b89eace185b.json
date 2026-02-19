@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can a malicious caller pass a null Round object to Create(), causing NullReferenceException that crashes consensus processing during term transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6498b27-c6d7-4c9e-bcf5-500945471a9a?mode=deep",
+    "timestamp": "2026-02-19 12:08:32.915596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with negative RoundNumber, allowing creation of invalid NextTermInput that corrupts round sequence tracking? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2fbc3f63-4db1-4c35-a084-64e60f031a0e?mode=deep",
+    "timestamp": "2026-02-19 12:08:54.992114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with negative TermNumber, enabling term number rollback attacks that bypass election results? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3b1ccaa-0f8b-4461-983b-08b2ee6d924c?mode=deep",
+    "timestamp": "2026-02-19 12:09:17.650249",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with negative ConfirmedIrreversibleBlockHeight, allowing attacker to manipulate LIB calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_402d518f-6062-47a6-a1ba-2772ddf013fc?mode=deep",
+    "timestamp": "2026-02-19 12:09:40.662354",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with negative BlockchainAge, causing arithmetic underflow in reward calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd9019b3-453a-4834-93d5-97c64af97e65?mode=deep",
+    "timestamp": "2026-02-19 12:10:04.762085",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a null randomNumber ByteString, causing VRF verification to fail and block consensus progress? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e098974-fb64-46be-997f-ceb22b89fc61?mode=deep",
+    "timestamp": "2026-02-19 12:10:31.709344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept an empty randomNumber ByteString, bypassing random number requirements for term transitions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15826961-5381-4a3a-a500-ff6333ce1d2d?mode=deep",
+    "timestamp": "2026-02-19 12:10:57.335411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with null RealTimeMinersInformation map, causing ProcessNextTerm to crash when accessing miner data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80e290bf-3a8d-4d70-8f75-774d72a4b507?mode=deep",
+    "timestamp": "2026-02-19 12:11:23.536312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Input Validation] Can Create() accept a Round with empty RealTimeMinersInformation, creating a term with zero miners? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71d84da5-9cad-4564-a266-22c2579693df?mode=deep",
+    "timestamp": "2026-02-19 12:11:50.180134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Data Integrity] Does Create() perform deep copy of RealTimeMinersInformation, or can modifications to the source Round affect the NextTermInput after creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e0891a5-2ae8-47c6-9273-b43e319a8d01?mode=deep",
+    "timestamp": "2026-02-19 12:12:22.030592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can Create() accept a Round where ConfirmedIrreversibleBlockHeight exceeds current blockchain height, violating LIB invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e3d4819-ed4d-4b39-9b89-ca6a84cf2cb4?mode=deep",
+    "timestamp": "2026-02-19 12:12:54.623443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can Create() accept a Round where ConfirmedIrreversibleBlockRoundNumber is greater than RoundNumber, creating temporal inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfd6ea1e-9f89-405a-911e-740335b1aea8?mode=deep",
+    "timestamp": "2026-02-19 12:13:26.430837",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [State Consistency] Can Create() accept a Round where TermNumber doesn't match the expected next term number, allowing term number skipping? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42556bdb-c1ea-4579-90a4-91cc4005cb02?mode=deep",
+    "timestamp": "2026-02-19 12:13:54.874578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can Create() accept a Round with IsMinerListJustChanged=false when miner list actually changed, hiding miner replacement events? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_097c51a3-9aec-44de-a57e-784aeccefefb?mode=deep",
+    "timestamp": "2026-02-19 12:14:24.108284",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can Create() accept a Round with MainChainMinersRoundNumber that doesn't match main chain state, causing side chain consensus desync? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_041ca173-3e77-4287-9f42-a2f248a9cc77?mode=deep",
+    "timestamp": "2026-02-19 12:14:59.856776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Business Logic] Can Create() accept a Round with invalid ExtraBlockProducerOfPreviousRound (non-existent miner), corrupting extra block rewards? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cb1cb3d-31d2-4280-b45c-97d0cef650f2?mode=deep",
+    "timestamp": "2026-02-19 12:15:36.048372",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integer Overflow] Can Create() accept a Round with Int64.MaxValue for RoundNumber, causing overflow when ProcessNextTerm increments it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32e0e979-5a97-4c93-a40c-43f807bf3e60?mode=deep",
+    "timestamp": "2026-02-19 12:16:12.527391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integer Overflow] Can Create() accept a Round with Int64.MaxValue for TermNumber, causing overflow in term transition logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73999ad5-8c03-4ce6-aff6-7a6ef4d5cd7d?mode=deep",
+    "timestamp": "2026-02-19 12:16:46.099711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Integer Overflow] Can Create() accept a Round with Int64.MaxValue for BlockchainAge, causing overflow in mining reward calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed6b500a-961b-4c46-9c3d-b2a4e475b4da?mode=deep",
+    "timestamp": "2026-02-19 12:17:18.866258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: Create()] [Consensus Safety] Can Create() accept a Round with RoundIdForValidation that doesn't match calculated round ID, bypassing round validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_da0cd975-bb65-4f5e-ae5a-4e5af6731b9d?mode=deep",
+    "timestamp": "2026-02-19 12:17:54.980562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Data Integrity] Does ToRound() intentionally exclude RandomNumber field, and can this lost data cause VRF verification failures in downstream processing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fa00a49-8e18-48da-89bb-c8cc4dbf1cc1?mode=deep",
+    "timestamp": "2026-02-19 12:18:32.342016",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Data Integrity] Can calling ToRound() multiple times on the same NextTermInput with mutable RealTimeMinersInformation produce different Round objects? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28092212-2596-4ef6-b216-2c1d33152d90?mode=deep",
+    "timestamp": "2026-02-19 12:19:09.654073",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [State Consistency] Does ToRound() perform deep copy of RealTimeMinersInformation, or can modifications to returned Round affect the original NextTermInput? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a5e11ac-3321-4b99-a8d1-f7084e5028c9?mode=deep",
+    "timestamp": "2026-02-19 12:19:46.088413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Business Logic] Can ToRound() be called on a NextTermInput with inconsistent state (e.g., null RealTimeMinersInformation), producing invalid Round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aae85fa1-e1a0-46ae-9b55-e4a8a37c72e1?mode=deep",
+    "timestamp": "2026-02-19 12:20:22.177502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextTermInput.cs] [Function: ToRound()] [Consensus Safety] Can Round returned by ToRound() be used in NextRound instead of NextTerm, bypassing term transition logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63e66f9c-e20d-4f78-8d5d-86c3401e688b?mode=deep",
+    "timestamp": "2026-02-19 12:20:52.504072",
+    "report_generated": false
+  }
+]
