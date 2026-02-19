@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Class: VoteContractState] [Partial Class Security] Can malicious code in other partial class definitions of VoteContractState modify or shadow the TokenContract and ParliamentContract properties to redirect contract calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38607807-8809-4706-b7d2-601349195187?mode=deep",
+    "timestamp": "2026-02-19 00:53:38.254963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Class: VoteContractState] [Property Visibility] Should TokenContract and ParliamentContract be public for transparency or does internal visibility properly protect against external manipulation attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34c5e083-7dd5-428b-98b5-d2ddf83139b4?mode=deep",
+    "timestamp": "2026-02-19 00:54:00.427592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Class: VoteContractState] [State Migration] During contract upgrades, could the serialization/deserialization of TokenContract and ParliamentContract references fail, leaving the upgraded contract without critical external contract access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc882659-8ddd-4b3e-9646-497d16421f5e?mode=deep",
+    "timestamp": "2026-02-19 00:54:22.657493",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Class: VoteContractState] [Null Reference Handling] Are all usages of TokenContract and ParliamentContract throughout the Vote contract properly guarded against null reference exceptions that could DOS the contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf75c93b-0b5e-4161-868a-f8062b10e784?mode=deep",
+    "timestamp": "2026-02-19 00:54:46.138123",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Name Resolution Attack] When TokenContract.Value is set via Context.GetContractAddressByName(SmartContractConstants.TokenContractSystemName), could an attacker manipulate the system name registry to return a malicious contract address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f0f248f-4a1c-4d1a-bf8f-20b97de64c89?mode=deep",
+    "timestamp": "2026-02-19 00:55:10.769020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Lazy Initialization Exploit] Can an attacker exploit the lazy initialization pattern (checking if Value == null) to force multiple initialization attempts, potentially causing state inconsistencies or gas griefing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc92c1a4-1d45-4ddb-a590-22cae5ef5943?mode=deep",
+    "timestamp": "2026-02-19 00:55:35.839537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: ParliamentContract] [Missing Initialization] If ParliamentContract is never explicitly initialized like TokenContract is, what are the security implications of using an uninitialized Parliament reference? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b4ba622-0177-430d-90f7-087f01c45986?mode=deep",
+    "timestamp": "2026-02-19 00:56:01.942835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Container Type Mismatch] Could an attacker exploit type confusion by providing a contract that implements TokenContractContainer.TokenContractReferenceState interface but behaves maliciously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c37fb2c-913c-46ef-a67c-33341ff6b8e4?mode=deep",
+    "timestamp": "2026-02-19 00:56:28.765224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: ParliamentContract] [Container Type Mismatch] Could an attacker exploit type confusion by providing a contract that implements ParliamentContractContainer.ParliamentContractReferenceState interface but behaves maliciously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d283aa1-9f28-47dd-baf4-2dae406bfd64?mode=deep",
+    "timestamp": "2026-02-19 00:56:56.739286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Properties: TokenContract & ParliamentContract] [Interface Compliance] Do the container types enforce strict interface compliance, or could a partially-implemented contract cause undefined behavior when called through these references? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_83b5ac4f-bfe7-45b2-8cff-ac98a1d3a242?mode=deep",
+    "timestamp": "2026-02-19 00:57:23.921848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Fee Manipulation] If TokenContract charges transaction fees for Lock/Unlock operations, could an attacker manipulate fee structures through the contract reference to make voting economically prohibitive (DOS via high fees)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f37d6523-fa73-488a-a6cf-6910bdf467ec?mode=deep",
+    "timestamp": "2026-02-19 00:57:51.579908",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Gas Griefing] Could a malicious TokenContract implementation consume excessive gas during Lock/Unlock operations called through the reference, causing voter transactions to fail and preventing legitimate voting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06ad7d8a-4ec4-4aa3-a518-11f614353153?mode=deep",
+    "timestamp": "2026-02-19 00:58:20.057871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Economic Denial of Service] Can an attacker exploit the TokenContract reference to make locking operations artificially expensive, pricing out smaller voters and centralizing voting power? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2dd5d5bd-1899-4107-844a-088368794289?mode=deep",
+    "timestamp": "2026-02-19 00:58:47.582310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Balance Verification] Does the Vote contract independently verify token balances and lock states, or does it trust data returned through the TokenContract reference which could be manipulated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0afa0f18-d90f-423b-8011-66230c6a1c7f?mode=deep",
+    "timestamp": "2026-02-19 00:59:16.785006",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Whitelist Data Integrity] When checking IsInWhiteList through TokenContract, could stale or manipulated whitelist data allow registration of voting items with invalid currencies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6ef8371-02bb-4cbc-81a2-6d42357356ff?mode=deep",
+    "timestamp": "2026-02-19 00:59:44.292045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: ParliamentContract] [Governance Data Trust] If ParliamentContract provides governance data (e.g., authorized addresses), does the Vote contract validate this data or blindly trust potentially compromised governance state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15d9a037-28bc-4488-aff8-a84bfb64bc0d?mode=deep",
+    "timestamp": "2026-02-19 01:00:14.441856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Concurrent Access] If multiple transactions concurrently access TokenContract through this reference for Lock operations, could race conditions in the Token contract cause double-locking or failed locks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f80c638-2b6d-4759-ac28-bf9508c58b32?mode=deep",
+    "timestamp": "2026-02-19 01:00:46.277330",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Sequential Dependency] If Lock must complete before voting record is saved, but the cross-contract call fails, are there transaction rollback guarantees or could partial state changes corrupt voting integrity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c6dd9f6-15a9-4cb8-9cd8-fd14446b6f38?mode=deep",
+    "timestamp": "2026-02-19 01:01:18.601850",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Properties: TokenContract & ParliamentContract] [Call Ordering] Could an attacker exploit specific call orderings through these references to create inconsistent states between Vote, Token, and Parliament contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8425a571-c7bb-4827-8adb-b2f5613807dc?mode=deep",
+    "timestamp": "2026-02-19 01:01:49.689870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Contract Upgrade DOS] If TokenContract is upgraded to an incompatible version while Vote contract holds references to the old interface, could this permanently break voting functionality requiring contract redeployment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4251d7dc-e011-4dff-9b6b-a0888234b042?mode=deep",
+    "timestamp": "2026-02-19 01:02:18.686155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: ParliamentContract] [Governance Upgrade Attack] Could an attacker exploit a Parliament contract upgrade to change governance rules mid-vote, invalidating ongoing voting items or redistributing voting power? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffcf0281-9583-4cad-bf69-bc7c9a00be06?mode=deep",
+    "timestamp": "2026-02-19 01:02:49.049890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Class: VoteContractState] [Reference Migration] During Vote contract upgrades, are the TokenContract and ParliamentContract references properly migrated, or could they be lost/reset causing permanent functionality loss? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9fd3f0d2-bd70-48e7-aedc-1f67a3ebb3ca?mode=deep",
+    "timestamp": "2026-02-19 01:03:20.151482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Reverting Lock Operations] If TokenContract.Lock always reverts for specific addresses or conditions, could an attacker prevent targeted voters from participating in IsLockToken=true voting items? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69c7d5ea-8bf7-42ba-a84d-4940cc60db8d?mode=deep",
+    "timestamp": "2026-02-19 01:03:49.494061",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: TokenContract] [Unlock DOS] Could an attacker prevent withdrawal by making TokenContract.Unlock operations always fail, permanently locking voter funds in the contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be90cb0f-cc1c-4446-9386-38c20e679ac3?mode=deep",
+    "timestamp": "2026-02-19 01:04:18.603084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Property: ParliamentContract] [Governance DOS] If ParliamentContract operations become unavailable (DOS'd or compromised), what Vote contract functionalities dependent on Parliament would fail, potentially freezing governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e76cdaed-8273-4424-8401-31deda029dda?mode=deep",
+    "timestamp": "2026-02-19 01:04:47.661847",
+    "report_generated": false
+  }
+]
