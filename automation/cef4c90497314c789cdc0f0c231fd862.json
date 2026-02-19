@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: InitialCoefficients()] [Missing Fee Types] Lines 112-121 only initialize five specific fee types. If the system is extended with new fee types, does initialization handle them, or will they remain uninitialized causing fee calculation to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13e1749b-8734-4599-ba91-e3b0a1edb56d?mode=deep",
+    "timestamp": "2026-02-19 12:20:42.712860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetReadFeeInitialCoefficient()] [Quadratic Growth] Line 164 uses coefficient 25/16 ≈ 1.56 for x^2 term. For x=1000, fee ≈ 1.56*1000000 = 1.56M. Does this grow too fast, making high-read operations prohibitively expensive and blocking legitimate use? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6633b381-1028-4cf9-a0f8-0f40616d28b4?mode=deep",
+    "timestamp": "2026-02-19 12:21:05.043694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetStorageFeeInitialCoefficient()] [Storage Spam] Line 185 shows x/4 + constant for 0-1M bytes. For 1M bytes, fee ≈ 250,000 + 0.00001. If this is too low, can attackers spam the network with 1M byte contracts to fill storage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_442414ae-3b93-479e-adb9-1e3197ff1630?mode=deep",
+    "timestamp": "2026-02-19 12:21:27.716508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetWriteFeeInitialCoefficient()] [Write Amplification] If Write operations are underpriced compared to Storage, can attackers exploit the difference by repeatedly writing small amounts instead of bulk storage to pay less total fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e73a9aaa-2177-4db1-bd3b-44fe8479da75?mode=deep",
+    "timestamp": "2026-02-19 12:21:51.036573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetTrafficFeeInitialCoefficient()] [Traffic Analysis] Lines 256 and 266 show different formulas for traffic. Can attackers analyze actual network traffic patterns to find that these coefficients don't match real costs, enabling economically profitable spam? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b468ddb-2de9-4edb-a2ed-d79439dd1331?mode=deep",
+    "timestamp": "2026-02-19 12:22:15.104306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetTxFeeInitialCoefficient()] [Transaction Fee Comparison] Tx fees (lines 287, 297, 306-307) use different divisors (800, 80, 80+quadratic). Are these economically balanced with resource fee types, or can attackers exploit arbitrage between transaction fees and resource fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44c9c3d3-5533-44b4-9a9f-15c718887906?mode=deep",
+    "timestamp": "2026-02-19 12:22:40.141722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [SingleOrDefault Behavior] Line 40-41 uses SingleOrDefault which returns null if no match found, but also throws if multiple matches exist. Can an attacker corrupt state to have duplicate FeeTokenTypes, causing unexpected exceptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d59c7ad4-90c8-45be-bc6c-42428a0f738a?mode=deep",
+    "timestamp": "2026-02-19 12:23:06.385075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Sub() Method] Line 59 uses Sub(1) method instead of standard subtraction. If Sub() is a custom method with different overflow behavior than expected, can this introduce vulnerabilities not visible in this file? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9411cc5-d985-48a6-86a1-ba47ef0c08e3?mode=deep",
+    "timestamp": "2026-02-19 12:23:32.953468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Loop Increment] Line 81 uses 'i += 3' to skip through coefficient units. If the count formula (3n+1) is correct but array layout changes in the future, can this loop access wrong indices without failing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ce99390-ec29-4c84-8f48-7bb9b8291a3e?mode=deep",
+    "timestamp": "2026-02-19 12:24:00.311453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertPieceUpperBoundsIsInOrder()] [LINQ Complexity] Lines 94, 97-98 use LINQ operations (GroupBy, Select, OrderBy). Do these create intermediate collections that consume memory, and can attackers with large coefficient lists cause out-of-memory errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_625285ee-e10f-4247-9ae0-461aa1030de5?mode=deep",
+    "timestamp": "2026-02-19 12:24:29.786579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: InitialCoefficients()] [Conditional Additions] Lines 112-121 use 'if (All(x => x.FeeTokenType != ...))' before adding each type. If the contract is upgraded and these checks are removed, can duplicate types be added, breaking the SingleOrDefault logic in UpdateCoefficients()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0870e332-8aa1-450e-88c9-4c0df0056bb6?mode=deep",
+    "timestamp": "2026-02-19 12:25:00.188294",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [All Functions] [Missing Input Sanitization] No function explicitly checks for null input parameter (e.g., UpdateCoefficientsInput could be null). Does the framework guarantee non-null inputs, or can null reference exceptions occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4a774ce-7dcf-466b-a6db-a9d035fde696?mode=deep",
+    "timestamp": "2026-02-19 12:25:31.763480",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [All Functions] [Reentrancy] If Context.Fire() at lines 68 and 124 allows external calls or callbacks, can reentrancy occur where a malicious contract receives the event and calls back into UpdateCoefficients() or InitialCoefficients()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb0dfbb3-a489-4c24-b95c-49b491e54b15?mode=deep",
+    "timestamp": "2026-02-19 12:26:04.868268",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [All Functions] [State Variable Access] State.AllCalculateFeeCoefficients is accessed directly. If this state variable can be modified by other contract functions not shown in this file, can those functions bypass all validations here? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd1d2822-4d58-422d-b03d-83e217c7ebf5?mode=deep",
+    "timestamp": "2026-02-19 12:26:37.386738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Math] [Coefficient Encoding] The coefficient format stores power, dividend, divisor in sequence (lines 144-146, 164-166). If the actual fee calculation code reads these in wrong order or misinterprets the formula, can this cause wildly incorrect fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_869042cb-ca4b-4df3-b8a7-34e1e2005e3b?mode=deep",
+    "timestamp": "2026-02-19 12:27:09.185517",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Math] [Polynomial Evaluation] Fee formulas combine multiple terms (e.g., x^2 * 25/16 + x/4). If evaluation doesn't respect order of operations or uses wrong associativity, can intermediate results overflow even if the final result wouldn't? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0431889f-1d08-463a-82a6-7f6fd38c894d?mode=deep",
+    "timestamp": "2026-02-19 12:27:38.947817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Math] [Rounding Direction] All formulas use integer division which rounds down. Can attackers exploit this by choosing resource consumption values where rounding always works in their favor, accumulating significant savings over many transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_879f9993-c19b-4abf-960a-dde36f49422e?mode=deep",
+    "timestamp": "2026-02-19 12:28:11.756291",
+    "report_generated": false
+  }
+]
