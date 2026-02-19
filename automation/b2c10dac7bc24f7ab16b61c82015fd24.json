@@ -1,0 +1,44 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Sort Algorithm Security] Does List.Sort() use a comparison-based sort that could be exploited if ImpliedIrreversibleBlockHeight values are attacker-controlled, potentially causing algorithmic complexity attacks or incorrect ordering? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b0f8e0e3-39d4-4d78-89b5-6748d8bc39cd?mode=deep",
+    "timestamp": "2026-02-19 10:34:05.569228",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Return List Immutability] Should the returned list be immutable to prevent external modification? Could a malicious contract receive the list and modify it before it's used for LIB determination, corrupting consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_698685d6-906c-4438-89af-c14389d1d215?mode=deep",
+    "timestamp": "2026-02-19 10:34:28.022086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Thread Safety] If MinersCountOfConsent is accessed concurrently from multiple threads, and RealTimeMinersInformation is being modified, could race conditions cause inconsistent quorum values to be returned? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e58be5b1-62d8-423c-bd1f-0c8fa602b7b5?mode=deep",
+    "timestamp": "2026-02-19 10:34:50.379544",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Long.MaxValue Edge Case] If a miner reports ImpliedIrreversibleBlockHeight = long.MaxValue, could this dominate the sorted list and prevent meaningful LIB selection, effectively stalling finalization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f20136c-bf64-4ccc-b7da-de4f04d015ff?mode=deep",
+    "timestamp": "2026-02-19 10:35:13.897942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Minimum Threshold] For RealTimeMinersInformation.Count = 3, does MinersCountOfConsent correctly compute to 3 (3*2/3+1 = 2+1 = 3), requiring all three miners? Is this overly restrictive or does it correctly implement 2/3 majority? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87451e5c-8361-47e6-8967-fd7cebeb1a2a?mode=deep",
+    "timestamp": "2026-02-19 10:35:37.897087",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Select Projection] Could the Select(i => i.ImpliedIrreversibleBlockHeight) projection fail or throw if the property accessor itself has side effects or validation logic that rejects certain values? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d865b71-1287-496d-8149-c93e732ef6df?mode=deep",
+    "timestamp": "2026-02-19 10:36:02.446647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Mul(2) Before Div(3)] Does performing multiplication before division (Count.Mul(2).Div(3)) maintain precision better than Div(3) first, and could reversing the order create different quorum values due to integer rounding? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b52d9a3-08a3-4756-a9a9-6e19d768f2bd?mode=deep",
+    "timestamp": "2026-02-19 10:36:28.380630",
+    "report_generated": false
+  }
+]
