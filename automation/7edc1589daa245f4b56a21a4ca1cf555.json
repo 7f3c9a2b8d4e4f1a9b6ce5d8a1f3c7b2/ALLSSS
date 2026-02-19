@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Initialized] [Re-initialization Attack] Can the Initialized flag be bypassed or reset after initial deployment, allowing an attacker to call InitialElectionContract multiple times and reset critical state like MinersCount, MinimumLockTime, or InitialMiners, potentially disrupting the entire election system? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8f392ba8-e037-4468-b62a-988b58e67d14?mode=deep",
+    "timestamp": "2026-02-19 07:34:09.615430",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: Initialized] [Initialization Race Condition] Is there a time window between contract deployment and Initialized flag being set where an attacker could call other contract methods that depend on initialized state, potentially corrupting ElectorVotes, CandidateVotes, or DataCentersRankingList before proper initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc845a2d-e773-4fa2-a971-2b2267bc58e0?mode=deep",
+    "timestamp": "2026-02-19 07:34:31.978621",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: VotingEventRegistered] [Registration Bypass] Can an attacker manipulate the VotingEventRegistered flag to prevent legitimate voting event registration or force re-registration, potentially changing the MinerElectionVotingItemId and breaking all existing vote references in ElectorVotes and CandidateVotes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d10fef55-eef5-4d4c-8f94-f6b433bce402?mode=deep",
+    "timestamp": "2026-02-19 07:34:54.897639",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: TreasuryHash] [Profit Scheme Corruption] If TreasuryHash can be modified after initialization, could an attacker redirect all treasury profits to a malicious profit scheme by calling SetTreasurySchemeIds multiple times, draining funds meant for legitimate miners and voters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f50afea2-c1fa-466c-ada6-598f495a7932?mode=deep",
+    "timestamp": "2026-02-19 07:35:18.500895",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: WelfareHash] [Voter Reward Theft] Can an attacker manipulate WelfareHash to point to a controlled profit scheme, allowing them to steal all voter welfare rewards that should be distributed based on vote weights stored in ElectorVotes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ed657ac-7f34-447e-bc31-4e786145d38d?mode=deep",
+    "timestamp": "2026-02-19 07:35:43.071175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: SubsidyHash] [Candidate Subsidy Redirect] Could SubsidyHash be changed to redirect candidate subsidies tracked in DataCentersRankingList to an attacker-controlled scheme, starving legitimate candidates of rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56283ca9-3de9-4d88-b72f-9462091f37bc?mode=deep",
+    "timestamp": "2026-02-19 07:36:07.955730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: FlexibleHash] [Flexible Profit Manipulation] Is there insufficient access control on FlexibleHash allowing unauthorized parties to modify it and redirect flexible profit distributions away from intended beneficiaries? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d69a543b-76bb-40a5-b5b3-2563aeb47e17?mode=deep",
+    "timestamp": "2026-02-19 07:36:33.616763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: WelcomeHash] [Welcome Bonus Theft] Can WelcomeHash be manipulated to steal welcome bonuses intended for new miners or candidates by redirecting to an attacker's profit scheme? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0be8c5a2-27a4-461d-9588-e8f4af6db2db?mode=deep",
+    "timestamp": "2026-02-19 07:37:01.654649",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: TreasuryHash, WelfareHash, SubsidyHash, FlexibleHash, WelcomeHash] [Profit Scheme Consistency] Are these five profit scheme hashes properly validated to ensure they don't point to the same scheme, which could cause accounting errors or allow double-claiming of profits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6358fcd-dc0f-4903-9fcc-93b8f2f41436?mode=deep",
+    "timestamp": "2026-02-19 07:37:31.504346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectorVotes] [Vote Double Counting] Can an attacker manipulate the ElectorVotes mapping by voting with both a pubkey (old format) and address (new format) for the same account, causing their votes to be double-counted in AllVotedVotesAmount and ActiveVotedVotesAmount? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_27214c07-b503-43e6-b15f-ae4c7c7950a6?mode=deep",
+    "timestamp": "2026-02-19 07:38:06.356810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectorVotes] [Vote Amount Overflow] Could accumulated votes in ElectorVotes.AllVotedVotesAmount overflow if an attacker makes many small votes over time, wrapping around to a small or negative value and corrupting vote tallies? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d77f3a03-771c-437d-ab8a-d5feb3a0c80f?mode=deep",
+    "timestamp": "2026-02-19 07:38:35.049348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectorVotes] [Orphaned Vote Records] When ElectorVotes is migrated from pubkey to address format, can vote records become orphaned, allowing an attacker to claim votes that should belong to another user by registering the old pubkey format? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_186c7d37-adcf-4a0f-8467-c241fa3db468?mode=deep",
+    "timestamp": "2026-02-19 07:39:11.626777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectorVotes] [Vote ID Collision] If multiple electors generate the same vote IDs stored in ActiveVotingRecordIds, could this cause vote tracking corruption where withdrawing one vote accidentally affects another elector's votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2261692e-3a49-4f96-9081-ec39080cd13b?mode=deep",
+    "timestamp": "2026-02-19 07:39:47.661219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectorVotes] [Inconsistent Vote State] Can ActiveVotedVotesAmount and AllVotedVotesAmount in ElectorVotes become desynchronized through reentrancy or race conditions during vote/withdraw operations, leading to incorrect vote weight calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_383ae847-d8e0-44be-81aa-09522939ffe3?mode=deep",
+    "timestamp": "2026-02-19 07:40:24.052086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateVotes] [Candidate Vote Inflation] Can an attacker manipulate CandidateVotes to inflate ObtainedActiveVotedVotesAmount for a specific candidate without actually locking tokens, potentially making an evil candidate appear legitimate and get elected as a miner? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad725d2c-07d1-4a2e-9419-0abcb95e6dd0?mode=deep",
+    "timestamp": "2026-02-19 07:41:01.461791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateVotes] [Vote Withdrawal DoS] If CandidateVotes.ObtainedActiveVotingRecordIds grows unbounded for popular candidates, could removing votes become prohibitively expensive, preventing legitimate vote withdrawals and locking voter funds permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e03e8f7-90d6-443a-a0ae-4fa777c6e4af?mode=deep",
+    "timestamp": "2026-02-19 07:41:37.980378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateVotes] [Candidate Vote Underflow] During vote withdrawals or vote target changes, could CandidateVotes.ObtainedActiveVotedVotesAmount underflow if the subtraction isn't properly bounds-checked, wrapping to a massive value and corrupting election results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03d56bc2-5ad4-4b59-b432-217f83fbc003?mode=deep",
+    "timestamp": "2026-02-19 07:42:15.297033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateVotes] [Stale Vote References] When a candidate quits and rejoins, does CandidateVotes get properly reset, or can stale vote references in ObtainedActiveVotingRecordIds persist, allowing double-counting or ghost votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebdee2a0-0334-4cfa-9317-a80845e17cbd?mode=deep",
+    "timestamp": "2026-02-19 07:42:52.718716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateVotes] [Vote Record ID Manipulation] Can an attacker forge or predict vote record IDs to inject fake entries into CandidateVotes.ObtainedActiveVotingRecordIds, inflating a candidate's perceived support? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f5e161e-1783-4137-96e9-5edb036b67c2?mode=deep",
+    "timestamp": "2026-02-19 07:43:30.334653",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateInformationMap] [Candidate Information Injection] Can an attacker create fake entries in CandidateInformationMap for pubkeys that never announced election, potentially bypassing candidate registration fees or validation checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58ab8902-48d2-4564-b0cf-ff12daf9d70c?mode=deep",
+    "timestamp": "2026-02-19 07:44:07.496041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateInformationMap] [IsCurrentCandidate Flag Manipulation] Could the IsCurrentCandidate flag in CandidateInformationMap be manipulated to mark a banned or quit candidate as active, allowing them to receive votes or subsidies they shouldn't be eligible for? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f36085ec-faee-4555-96f6-9ec9e6af2a03?mode=deep",
+    "timestamp": "2026-02-19 07:44:45.718912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateInformationMap] [Candidate Stats Overflow] Can ProducedBlocks or MissedTimeSlots in CandidateInformationMap overflow with malicious consensus updates, wrapping to show a poorly performing candidate as highly reliable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bed113c-2b05-42f2-8d06-d8e3ff4ce9ec?mode=deep",
+    "timestamp": "2026-02-19 07:45:25.310385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateInformationMap] [Announcement Transaction Reuse] Can an attacker reuse the same AnnouncementTransactionId for multiple candidates in CandidateInformationMap, causing lock ID collisions that could allow unauthorized token unlocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e158cf9-a4ad-499f-b050-c527f7e9a8b1?mode=deep",
+    "timestamp": "2026-02-19 07:46:02.236502",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateInformationMap] [Terms Array Manipulation] Could the Terms array in CandidateInformationMap be manipulated to falsely show continuous service, affecting ContinualAppointmentCount and candidate reputation scores? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33e4e2c6-df3b-48cf-92ca-5b278d43783d?mode=deep",
+    "timestamp": "2026-02-19 07:46:39.397508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CurrentTermNumber] [Term Number Manipulation] Can CurrentTermNumber be decremented or reset by an attacker, causing term-based profit distributions to fail or be duplicated, draining the treasury or welfare funds? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f2d99ff-0c86-4848-b654-99717a99c3f2?mode=deep",
+    "timestamp": "2026-02-19 07:47:15.175023",
+    "report_generated": false
+  }
+]
