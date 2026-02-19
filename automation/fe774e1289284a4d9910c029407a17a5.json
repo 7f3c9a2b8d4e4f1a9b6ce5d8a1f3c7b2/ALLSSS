@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitDetails()] [Stale Data] If a beneficiary's ProfitDetails was updated in a concurrent transaction, can GetProfitDetails return outdated details leading to incorrect profit calculations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93a7352d-d1bc-413f-b664-2d771d7ffba3?mode=deep",
+    "timestamp": "2026-02-19 15:20:36.271842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetDistributedPeriodProfitsVirtualAddress()] [Hash Collision] The function calls GeneratePeriodVirtualAddressFromHash which uses XOR (line 59). Can an attacker find (schemeId1, period1) and (schemeId2, period2) such that XOR produces identical hashes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4cfe822-48ff-4c84-970c-ac39a4ec6032?mode=deep",
+    "timestamp": "2026-02-19 15:20:58.332181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetDistributedPeriodProfitsVirtualAddress()] [Period Manipulation] If period is negative or zero, does GeneratePeriodVirtualAddressFromHash produce a valid but unintended address that could redirect profit distributions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f481f80-f2f8-4ac9-8ae7-c3883fd74758?mode=deep",
+    "timestamp": "2026-02-19 15:21:20.763961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetDistributedPeriodProfitsVirtualAddress()] [Address Precomputation] Can an attacker precompute future period addresses and front-run profit distributions by sending tokens to those addresses before they're officially created? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_845a2103-2feb-4e56-8416-b87eeb6d8ead?mode=deep",
+    "timestamp": "2026-02-19 15:21:44.091748",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GeneratePeriodVirtualAddressFromHash()] [XOR Weakness] HashHelper.XorAndCompute(schemeId, HashHelper.ComputeFrom(period)) uses XOR on line 59. For periods p1 and p2, if Hash(p1) XOR schemeId == Hash(p2) XOR schemeId, do they produce the same virtual address? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18c2487b-b36b-4aef-95af-5231a35e6085?mode=deep",
+    "timestamp": "2026-02-19 15:22:07.798481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GeneratePeriodVirtualAddressFromHash()] [Predictable Hash] If HashHelper.ComputeFrom(period) is deterministic and public, can an attacker brute-force schemeId values that XOR to a target address for address squatting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff783ed7-556a-4d4f-9c16-94bc34814133?mode=deep",
+    "timestamp": "2026-02-19 15:22:32.313195",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GeneratePeriodVirtualAddressFromHash()] [Integer Overflow] If period is Int64.MaxValue, does HashHelper.ComputeFrom handle it correctly, or does it overflow and produce a wrong hash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c61e128-87ea-42a5-a09f-7ed2fcbc233b?mode=deep",
+    "timestamp": "2026-02-19 15:22:57.762192",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GeneratePeriodVirtualAddressFromHash()] [Zero Period] When period = 0, does XorAndCompute(schemeId, Hash(0)) collide with the general ledger address returned by GetSchemeAddress for Period == 0? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73a3ccdc-1881-4838-a25f-ef5ac6e032c5?mode=deep",
+    "timestamp": "2026-02-19 15:23:23.904844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GeneratePeriodVirtualAddressFromHash()] [Negative Period] If period is negative, does ComputeFrom produce a hash that, when XORed, creates an address that points to system-reserved or privileged accounts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_168a53f6-6461-4e8a-a8be-1f6da47134a4?mode=deep",
+    "timestamp": "2026-02-19 15:23:51.013482",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitAmount()] [Null Symbol] If input.Symbol is null or empty, does GetAllProfitsMap handle it correctly, or can it cause TryGetValue on line 68 to behave unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd9ccf91-08a2-434f-888e-c84f6f166ca6?mode=deep",
+    "timestamp": "2026-02-19 15:24:18.546847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitAmount()] [Zero Default] Line 68 returns 0 if TryGetValue fails. Can this zero value be misinterpreted as 'beneficiary has zero profit' vs 'profit data unavailable', causing silent failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55e4ab06-18a7-4116-8f76-9b66cab34f3b?mode=deep",
+    "timestamp": "2026-02-19 15:24:49.069900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitAmount()] [Symbol Case Sensitivity] If input.Symbol is case-sensitive and allProfitsMapResult.AllProfitsMap keys are inconsistently cased, can TryGetValue fail to find existing profits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ebde3890-07d9-4305-bb9d-75e17c3ccd0b?mode=deep",
+    "timestamp": "2026-02-19 15:25:17.256359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitAmount()] [Overflow Risk] The returned Int64Value.Value could theoretically exceed Int64.MaxValue if profit calculations overflow. Is there any validation before assigning to Value on line 68? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcaf351d-4016-4819-8061-f19a16e9f781?mode=deep",
+    "timestamp": "2026-02-19 15:25:49.296688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitAmount()] [Negative Profit] If allProfitsMapResult.AllProfitsMap contains a negative value due to bugs elsewhere, does GetProfitAmount propagate this negative profit without validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e78c1c75-2414-44c8-8d32-d86ccd5d63d0?mode=deep",
+    "timestamp": "2026-02-19 15:26:20.849265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitAmount()] [Dictionary Key Mismatch] Lines 77 and 81 use TryGetValue for input.Symbol. If OneTimeClaimableProfitsMap and AllProfitsMap have different keys, can this cause inconsistent profit reporting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d487706-57f8-41cc-8b0b-808d67bef1ae?mode=deep",
+    "timestamp": "2026-02-19 15:26:48.650958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitAmount()] [Zero Ambiguity] Both AllProfitAmount and OneTimeClaimableProfitAmount default to 0 on lines 78-79 and 83-84. Can legitimate zero profits be confused with missing data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d1238efe-3e08-438b-a0db-8426cc38d3da?mode=deep",
+    "timestamp": "2026-02-19 15:27:20.100790",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitAmount()] [OneTime vs Total Inconsistency] If OneTimeClaimableProfitAmount > AllProfitAmount due to calculation bugs in GetAllProfitsMap, does this function return invalid data that could be exploited? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e657e492-f05e-4697-8e0f-a1c57f689a2d?mode=deep",
+    "timestamp": "2026-02-19 15:27:47.902826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitAmount()] [Negative Values] If TryGetValue retrieves negative amounts, are they returned without validation, potentially causing downstream arithmetic errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_387a793f-5f15-42ff-b946-ee682bb48349?mode=deep",
+    "timestamp": "2026-02-19 15:28:19.496003",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitAmount()] [Symbol Injection] Can input.Symbol contain special characters or control characters that cause unexpected behavior in TryGetValue or subsequent processing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d4d3576-9ef1-4e76-9588-1af61f4d085f?mode=deep",
+    "timestamp": "2026-02-19 15:28:47.951805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitsMap()] [Input Reuse] GetProfitsMap takes ClaimProfitsInput but extracts SchemeId and Beneficiary on line 90. If ClaimProfitsInput has additional fields meant for claiming (not viewing), can they cause unintended side effects? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55ed1ba3-60e8-4e57-a2ad-150d9315c3f0?mode=deep",
+    "timestamp": "2026-02-19 15:29:20.500810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitsMap()] [Map Exposure] Line 94 exposes the entire allProfitsMapResult.AllProfitsMap. If this map is large, can repeated queries cause DoS by forcing the contract to serialize massive data structures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4672dcb-a510-4a58-bbf0-1500597e326f?mode=deep",
+    "timestamp": "2026-02-19 15:29:54.486787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitsMap()] [Protobuf Serialization] The ReceivedProfitsMap.Value is a repeated field (line 94). If AllProfitsMap contains thousands of symbols, can serialization exceed protobuf limits or transaction size caps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ed582a1-0a70-4e94-a531-1264e59b8567?mode=deep",
+    "timestamp": "2026-02-19 15:30:26.919688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetProfitsMap()] [Null Beneficiary] If input.Beneficiary is null, GetAllProfitsMap (line 90) defaults to Context.Sender (line 107). In a view call, is Context.Sender meaningful, or can it return wrong data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e32032d2-7546-4390-ba18-bb88831da77a?mode=deep",
+    "timestamp": "2026-02-19 15:30:59.409803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() public] [Input Forwarding] This function simply forwards to the private GetAllProfitsMap (line 100). Is there any validation missing that should occur before forwarding? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ce256fa-f16b-4b0d-be48-e1d3c33ae2da?mode=deep",
+    "timestamp": "2026-02-19 15:31:33.040693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ViewMethods.cs] [Function: GetAllProfitsMap() public] [Null Input Fields] If input.SchemeId or input.Beneficiary is null, does the private GetAllProfitsMap handle it, or can it cause null reference exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e4deca4-3b91-4212-ab2b-26f566b1853f?mode=deep",
+    "timestamp": "2026-02-19 15:32:02.470959",
+    "report_generated": false
+  }
+]
