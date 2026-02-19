@@ -124,5 +124,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6979b0d6-b8e6-4ad2-abac-53661a27720a?mode=deep",
     "timestamp": "2026-02-19 14:47:29.222655",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [Weight Calculation Manipulation] At line 443, GetVotesWeight calculates voting weight using lockSeconds, but if interest rates or proportions are manipulated between voteId generation and AddBeneficiaryToVoter, can voters receive incorrect welfare shares? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_89314055-632f-48b9-8d1f-152e66be180e?mode=deep",
+    "timestamp": "2026-02-19 15:09:28.668884",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [Beneficiary Addition Failure] At line 443, AddBeneficiaryToVoter adds voter to welfare scheme, but if ProfitContract rejects (scheme full, duplicate beneficiary), does the vote still succeed without welfare eligibility? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be177b14-865f-427e-8ad0-869a94534002?mode=deep",
+    "timestamp": "2026-02-19 15:09:51.829474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [DataCenter Ranking Manipulation] At line 446, if rankingList.DataCenters.ContainsKey(candidate) is checked, but between check and update at line 448, another voter updates the ranking, can votes be added twice causing inflated candidate ranking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df364fee-74de-4d03-85cb-b65cbddeb495?mode=deep",
+    "timestamp": "2026-02-19 15:10:14.705654",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [DataCenter Count Boundary] At line 454, if GetValidationDataCenterCount() returns a value that changes dynamically, can candidates be added/removed from DataCenter unexpectedly causing benefit churn? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11b0dcd7-9e86-4238-942d-1cd97d9c7800?mode=deep",
+    "timestamp": "2026-02-19 15:10:38.536316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [AddBeneficiary DOS] At line 458, AddBeneficiary is called for new DataCenter members, but if ProfitContract limits beneficiary count and limit is reached, can valid candidates be excluded from subsidies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12047004-3efe-4dce-9b8e-53bc0db90dcd?mode=deep",
+    "timestamp": "2026-02-19 15:11:03.179084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Vote()] [TryToBecomeAValidationDataCenter Race] At line 462, if multiple voters simultaneously vote for candidates outside DataCenter, can race condition cause incorrect minimum candidate detection and wrong candidate replacement? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f054b57-9b3c-4999-898d-861cf953e85a?mode=deep",
+    "timestamp": "2026-02-19 15:11:28.876183",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: TryToBecomeAValidationDataCenter()] [Minimum Detection Logic] At lines 475-481, minimumVotes is compared to find smallest DataCenter member, but if multiple candidates have equal minimum votes, only the first is replaced, can this cause unfair replacement selection? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a743cb76-7aa8-45e6-bb25-d675b885f39c?mode=deep",
+    "timestamp": "2026-02-19 15:11:54.787836",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: TryToBecomeAValidationDataCenter()] [Replace Flag Logic] The replaceWillHappen flag is set at line 478 but only checked at line 483, if candidateVotesAmount equals pubkeyToVotesAmount.Value exactly, the replacement doesn't happen even though new candidate should have priority? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fd3963f-eaf8-4971-9263-d47fbd4e7f21?mode=deep",
+    "timestamp": "2026-02-19 15:12:21.936075",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: TryToBecomeAValidationDataCenter()] [DataCenter State Inconsistency] At lines 485-487, minimumVotesCandidate is removed and new candidate added, but if NotifyProfitReplaceCandidateInDataCenter at line 488 fails, can DataCenter list be updated without profit beneficiary updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f9029ae-3ae8-4153-82ce-ecefe58e2f87?mode=deep",
+    "timestamp": "2026-02-19 15:12:51.033090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: TryToBecomeAValidationDataCenter()] [Beneficiary Notification Failure] At line 488, NotifyProfitReplaceCandidateInDataCenter removes old beneficiary and adds new one, but if RemoveBeneficiary succeeds and AddBeneficiary fails, can the subsidy scheme lose a beneficiary slot permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_48fc0aac-e3a7-4bcc-88d7-02bfd8433b48?mode=deep",
+    "timestamp": "2026-02-19 15:13:20.261758",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateElectorInformation()] [Public Key Recovery] At line 500, GetElectorVote uses recoveredPublicKey, but if public key recovery fails (invalid signature), can voterVotes be null and cause incorrect new ElectorVote creation at line 504? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e36067dd-9e6e-4667-aff7-0e06f1e997b5?mode=deep",
+    "timestamp": "2026-02-19 15:13:52.627889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateElectorInformation()] [Address vs PublicKey Storage] At line 519, ElectorVotes are stored by Context.Sender.ToBase58(), but GetElectorVote at line 524 tries to read from same key first then publicKey.ToHex(), can this cause storage fragmentation with duplicate records? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9244cafe-50a9-4e1f-ac7b-903b8c924ef3?mode=deep",
+    "timestamp": "2026-02-19 15:14:20.875124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateElectorInformation()] [Overflow in Vote Accumulation] At lines 515-516, ActiveVotedVotesAmount and AllVotedVotesAmount are incremented by amount, but if a voter votes many times with large amounts, can these values overflow Int64.MaxValue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34addb7f-e025-4251-a0a6-aa128a9574f3?mode=deep",
+    "timestamp": "2026-02-19 15:14:53.251460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateElectorInformation()] [Duplicate VoteId Addition] At line 514, voteId is added to ActiveVotingRecordIds, but there's no check for duplicates, can the same voteId be added multiple times if Vote() is called with identical parameters? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37370542-a861-41ce-b379-aa718261eac4?mode=deep",
+    "timestamp": "2026-02-19 15:15:21.593347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetElectorVote()] [Legacy Migration Issue] At lines 531-536, if ElectorVotes exist under old publicKey.ToHex() format, they're migrated to address-based storage and old entry removed, but if migration fails mid-way, can votes be lost? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be1a3d1a-87a1-44da-a6cb-8fb48f651d4f?mode=deep",
+    "timestamp": "2026-02-19 15:15:48.950545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetElectorVote()] [Null Public Key] At line 527, if recoveredPublicKey is null, the function returns null, but in UpdateElectorInformation at line 502, this causes new ElectorVote creation even if user has existing votes under address key? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f1e08d5-61f0-4d24-a2fe-a7632a97fc54?mode=deep",
+    "timestamp": "2026-02-19 15:16:19.918362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetElectorVote()] [Clone Operation] At line 531, voterVotes is cloned, but if the clone is shallow and contains reference types (like ActiveVotingRecordIds list), can modifications affect the original stored value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c66c91e3-313a-4a67-af8e-568ccad942bd?mode=deep",
+    "timestamp": "2026-02-19 15:16:49.456422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetElectorVote()] [Address Assignment] At line 534, Address is assigned from Context.Sender if null, but if the original votes were created before address tracking, can this cause voter identity confusion? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce161923-37bd-430e-a66a-d3d059e05985?mode=deep",
+    "timestamp": "2026-02-19 15:17:19.072317",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateCandidateInformation()] [Null CandidateVotes Creation] At lines 550-557, if candidateVotes is null, a new CandidateVote is created with ByteStringHelper.FromHexString(candidatePublicKey), but if hex string is invalid, can this throw exception after elector state is already updated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_938f6768-5cbd-4857-aa1a-4a8453ecdbac?mode=deep",
+    "timestamp": "2026-02-19 15:17:49.820421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateCandidateInformation()] [Vote Amount Overflow] At lines 562-565, ObtainedActiveVotedVotesAmount and AllObtainedVotedVotesAmount are incremented, can these overflow if candidate receives excessive votes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9793508-d2ec-4158-a8d2-0e474f4a2bbc?mode=deep",
+    "timestamp": "2026-02-19 15:18:25.265651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateCandidateInformation()] [Duplicate VoteId in Candidate] At line 561, voteId is added to ObtainedActiveVotingRecordIds without duplicate check, if Vote() is called multiple times with same voteId through different paths, can candidate vote count be inflated? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9970320b-b232-4d98-af31-ee6cdadfb34a?mode=deep",
+    "timestamp": "2026-02-19 15:18:57.577674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: UpdateCandidateInformation()] [Return Value Usage] The function returns ObtainedActiveVotedVotesAmount at line 570, but if this value is used for critical decisions in Vote() and it's stale due to race conditions, can incorrect DataCenter updates occur? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34b580f0-9ccf-4af6-a728-36c3dc3170fa?mode=deep",
+    "timestamp": "2026-02-19 15:19:33.056651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Division by Zero] At line 575, lockDays is calculated as lockTime.Div(DaySec), if DaySec constant is modified or lockTime is 0, can this cause incorrect weight calculation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d2a74e2-6ba0-41b7-9f5b-4c68f02f51d5?mode=deep",
+    "timestamp": "2026-02-19 15:20:07.703488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Interest Rate Loop Logic] At lines 579-586, the function iterates VoteWeightInterestInfos and breaks on first instMap.Day > lockDays, but if list is unordered or empty, can this cause wrong interest selection or index out of bounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72ef722b-984c-418e-b041-d2e30b6d5224?mode=deep",
+    "timestamp": "2026-02-19 15:20:34.872604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Interest Calculation Overflow] At line 583, initBase is calculated as 1 + (decimal)instMap.Interest / instMap.Capital, then Pow is called at line 584, if Interest/Capital ratio is large, can Pow result overflow and cause massive vote weight? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d572f879-d588-480d-af8d-2ad7bd0d3bc7?mode=deep",
+    "timestamp": "2026-02-19 15:21:03.161692",
+    "report_generated": false
   }
 ]
