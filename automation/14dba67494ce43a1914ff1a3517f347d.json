@@ -1,0 +1,14 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [Input Validation] Can GetMethodFee at line 36 be abused with specially crafted input.Value strings containing special characters or escape sequences to cause state access errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fa4e722-0b91-4e3f-b1c2-d481cfb7960b?mode=deep",
+    "timestamp": "2026-02-19 01:51:49.382919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs] [State Consistency] If\n\n### Citations\n\n**File:** contract/AElf.Contracts.Election/ElectionContract_ACS1_TransactionFeeProvider.cs (L1-86)\n```csharp\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS1;\nusing AElf.Standards.ACS3;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.Election;\n\npublic partial class ElectionContract\n{\n    public override Empty SetMethodFee(MethodFees input)\n    {\n        foreach (var methodFee in input.Fees) AssertValidToken(methodFee.Symbol, methodFee.BasicFee);\n        RequiredMethodFeeControllerSet();\n\n        Assert(Context.Sender == State.MethodFeeController.Value.OwnerAddress,",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6170dac2-0a8b-46cd-bc9d-9f93365f6e9d?mode=deep",
+    "timestamp": "2026-02-19 01:52:11.519533",
+    "report_generated": false
+  }
+]
