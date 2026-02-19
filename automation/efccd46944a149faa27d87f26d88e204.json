@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [Cross-Contract Call] Can State.VoteContract.GetVotingRecords.Call at line 175 fail or return mismatched records for votes.ActiveVotingRecordIds causing index corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c2748b81-1fc1-448f-baec-aeb5a7f772b7?mode=deep",
+    "timestamp": "2026-02-19 14:10:58.294260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [Index Bounds] At line 182, does incrementing index without bounds checking risk out-of-range access if votedRecords.Count != votes.ActiveVotingRecordIds.Count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5f069dd-4df2-4bbb-a302-6d4e6797b0c6?mode=deep",
+    "timestamp": "2026-02-19 14:11:20.272680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithRecords()] [Record Mismatch] Can votes.ActiveVotingRecordIds contain IDs that GetVotingRecords doesn't return, causing missing records without error indication? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_604747eb-f474-4200-981a-726a9b44d490?mode=deep",
+    "timestamp": "2026-02-19 14:11:42.602626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [Assertion Failure] At line 191, does Assert(value != null && value.Length > 1) with minimal length check allow single-char inputs causing downstream errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afb1e7dc-8e33-45da-b550-29e2e3303bf0?mode=deep",
+    "timestamp": "2026-02-19 14:12:05.808411",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [Address Fallback] At lines 195-199, does fallback to Address.FromPublicKey when not formatted address handle invalid hex strings, causing conversion exceptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d463edb-8355-482f-869e-aa4b2454ad42?mode=deep",
+    "timestamp": "2026-02-19 14:12:29.559332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [State Lookup] Can State.ElectorVotes lookup with both value and derived address miss votes stored under different key formats? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4df971b1-c079-457a-a27d-200999c410f4?mode=deep",
+    "timestamp": "2026-02-19 14:12:54.268853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVote(string)] [Hex Conversion] Does ByteArrayHelper.HexStringToByteArray at line 198 validate hex string format before conversion to prevent runtime exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10277e19-ac03-47e5-8906-210a9fcd3478?mode=deep",
+    "timestamp": "2026-02-19 14:13:19.756091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithAllRecords()] [Early Return] Does returning early at line 208 when !votes.WithdrawnVotingRecordIds.Any() miss scenarios where withdrawn records should exist but list is corrupted? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cff0fcd2-9a4e-4398-89eb-54997b7355fe?mode=deep",
+    "timestamp": "2026-02-19 14:13:47.435752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithAllRecords()] [Cross-Contract Call] Can State.VoteContract.GetVotingRecords.Call at line 210 return different number of records than WithdrawnVotingRecordIds.Count causing index misalignment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87cfd70d-f10f-487d-a636-607b1dd69313?mode=deep",
+    "timestamp": "2026-02-19 14:14:15.539760",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetElectorVoteWithAllRecords()] [Index Safety] At line 217, does index++ without validation risk accessing beyond votedWithdrawnRecords.Count if record counts mismatch? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_02da52e9-fda3-4cba-ac4d-db912625cec1?mode=deep",
+    "timestamp": "2026-02-19 14:14:44.618710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotersCount()] [Cross-Contract Dependency] Can State.VoteContract.GetLatestVotingResult.Call at line 228 return stale VotersCount if vote contract state lags behind election contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c880d720-31b9-49a9-aeb6-49d28de15221?mode=deep",
+    "timestamp": "2026-02-19 14:15:14.019648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotersCount()] [State Validation] Does GetLatestVotingResult validate State.MinerElectionVotingItemId.Value exists before querying, preventing null/invalid voting item access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac381f82-6a0b-4b5f-8720-9847fb7177e9?mode=deep",
+    "timestamp": "2026-02-19 14:15:44.232881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotesAmount()] [Amount Overflow] Can VotesAmount returned at line 236 overflow Int64Value range if total votes exceed maximum long value? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b89a1f7-f163-46fa-b913-59b27949eb28?mode=deep",
+    "timestamp": "2026-02-19 14:16:14.438568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetVotesAmount()] [Stale Data] Does GetLatestVotingResult provide real-time vote amounts or cached values that may not reflect recent voting activity? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e36c2dd9-9050-4414-a577-146845d2a592?mode=deep",
+    "timestamp": "2026-02-19 14:16:44.747783",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Null Candidates] At line 243, does missing null check on candidates.Value before accessing .Count at line 245 cause null reference if State.Candidates.Value is null? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5742f9de-5f33-4f29-95cd-72aee892c26f?mode=deep",
+    "timestamp": "2026-02-19 14:17:14.946356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Bounds Check] Does count <= input.Start at line 246 correctly handle case where Start == Count, or should it be < instead? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_546d7536-d5c7-4773-a861-12768c636d95?mode=deep",
+    "timestamp": "2026-02-19 14:17:44.407874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Length Limit] At line 248, does Math.Min with hardcoded 20 prevent DoS but also prevent legitimate pagination of large candidate sets? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bac12bf-f5ab-458b-a744-1479d56efc03?mode=deep",
+    "timestamp": "2026-02-19 14:18:14.748039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Pagination Math] Can candidates.Value.Count.Sub(input.Start) at line 248 underflow if Sub() is checked subtraction and Count < Start due to race? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74b1f705-e322-49b5-9690-a11b55aea3dd?mode=deep",
+    "timestamp": "2026-02-19 14:18:44.779815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [State Sync] At lines 249-255, can State.CandidateInformationMap[candidate.ToHex()] be null while candidate exists, causing incomplete CandidateDetail objects? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_22e1aefa-41fa-45cf-903f-4d4d08481771?mode=deep",
+    "timestamp": "2026-02-19 14:19:13.726789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Nested Query] Does calling GetCandidateVote for each candidate at line 253 cause O(n) cross-contract calls, risking gas exhaustion on large pages? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_462b4cab-4afe-4d9d-ba22-d39b10d1b9a4?mode=deep",
+    "timestamp": "2026-02-19 14:19:42.972820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVote()] [Default Pubkey] At line 264, does ByteStringHelper.FromHexString(input.Value) validate hex format before conversion in default return, risking invalid ByteString creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_849a13ba-218b-458b-a570-73cde2bc0983?mode=deep",
+    "timestamp": "2026-02-19 14:20:10.910487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVote()] [Null State] Does State.CandidateVotes[input.Value] ?? new CandidateVote mask difference between never-voted candidates and corrupted state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b0db8a2-6c17-42f6-ab51-b9b43ec94ca7?mode=deep",
+    "timestamp": "2026-02-19 14:20:37.131108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithRecords()] [Null Return] Does returning new CandidateVote() at line 272 when votes is null differ from GetCandidateVote() behavior, causing inconsistency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e2583eb-00b7-49bd-8177-f1d0f54393ac?mode=deep",
+    "timestamp": "2026-02-19 14:21:03.828248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithRecords()] [Cross-Contract Call] Can State.VoteContract.GetVotingRecords.Call at line 274 return fewer records than votes.ObtainedActiveVotingRecordIds.Count causing incomplete data? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb4734d1-bcdd-4c8a-8480-5b62c46bd47f?mode=deep",
+    "timestamp": "2026-02-19 14:21:33.040612",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithRecords()] [Index Management] At line 281, does index++ track position correctly if obtainedRecords contains null entries or gaps? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6757c40d-71a1-4d28-8d2a-efc4a43fd5da?mode=deep",
+    "timestamp": "2026-02-19 14:22:01.856594",
+    "report_generated": false
+  }
+]
