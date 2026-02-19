@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Access Control] Can an attacker exploit the internal visibility modifier to bypass authorization checks when calling Parliament contract methods through this reference state, potentially allowing unauthorized proposal execution or governance manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed1a722c-d687-48de-80f4-35b872e31f60?mode=deep",
+    "timestamp": "2026-02-19 06:30:58.167378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Access Control] If the TokenContract reference state is accessible within the contract hierarchy, could an attacker leverage this to directly call sensitive token operations (mint, burn, transfer) without proper authorization validation in the calling context? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d278936-e1f9-4cfe-8cfe-78484a8bd7c9?mode=deep",
+    "timestamp": "2026-02-19 06:31:20.457835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [Access Control] Does the internal visibility of ConsensusContract reference allow malicious contract code within the same assembly to manipulate consensus state or trigger unauthorized consensus operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f322c43-e9bf-4e8a-a07c-2edda4e3d170?mode=deep",
+    "timestamp": "2026-02-19 06:31:42.755785",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [State Initialization] If ParliamentContract reference state is not properly initialized before use, could this lead to null reference exceptions or allow operations to proceed with undefined contract addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ab248b3-8e35-4d10-9f91-d519802b07de?mode=deep",
+    "timestamp": "2026-02-19 06:32:05.450938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [State Initialization] Can an attacker exploit an uninitialized TokenContract reference to redirect token operations to a malicious contract address, enabling token theft or supply manipulation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8521101e-360d-478e-82c1-8cf1a5b093e2?mode=deep",
+    "timestamp": "2026-02-19 06:32:29.316100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [State Initialization] If ConsensusContract is not initialized atomically with BasicContractZero deployment, could there be a time window where consensus operations fail or redirect to incorrect addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8fb03ea-b9eb-4eed-9146-fe751624908f?mode=deep",
+    "timestamp": "2026-02-19 06:32:55.261702",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Cross-Contract Reentrancy] When BasicContractZero calls methods on ParliamentContract through this reference, can the Parliament contract callback into BasicContractZero and exploit state inconsistencies during cross-contract execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d93f9412-ce02-482b-8e98-4764ed1bf0bc?mode=deep",
+    "timestamp": "2026-02-19 06:33:21.762943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Cross-Contract Reentrancy] Could an attacker create a malicious token contract that implements reentrancy callbacks when called through TokenContract reference state, allowing them to manipulate BasicContractZero state during token operations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9feb0afa-a785-4c6b-a46b-1ce4f187484c?mode=deep",
+    "timestamp": "2026-02-19 06:33:48.004112",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [Cross-Contract Reentrancy] If consensus operations called through ConsensusContract reference can trigger callbacks, could this enable reentrancy attacks that corrupt miner lists or round transitions during contract deployment operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_610e68f0-9d0f-4eed-9812-6a0b4277641d?mode=deep",
+    "timestamp": "2026-02-19 06:34:17.111538",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Properties: All] [State Immutability] Are these reference state properties immutable after initialization, or could an attacker with sufficient privileges overwrite them to redirect all Parliament/Token/Consensus operations to malicious contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_25d8efc2-9bd5-4776-b31b-078acbc03665?mode=deep",
+    "timestamp": "2026-02-19 06:34:47.296574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Address Validation] Is there validation that the ParliamentContract reference points to a legitimate Parliament contract implementation, or could it be set to an arbitrary address that mimics the interface but contains malicious logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c2e7b3c-e0da-4703-81f8-c6b8cd458b83?mode=deep",
+    "timestamp": "2026-02-19 06:35:19.232935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Address Validation] Does the system verify that TokenContract reference points to the official MultiToken contract, or could an attacker substitute a malicious token contract that allows unauthorized minting or burning? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5aed669-6a9e-4ffa-8b92-6f5788ebd548?mode=deep",
+    "timestamp": "2026-02-19 06:35:47.168706",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [Address Validation] Can the ConsensusContract reference be manipulated to point to a fake consensus contract that bypasses block validation, miner eligibility checks, or time slot validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f986b7d3-a4f7-43a8-a4d1-41c3743f3143?mode=deep",
+    "timestamp": "2026-02-19 06:36:18.535648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Class: BasicContractZeroState] [Partial Class Security] Since this is a partial class, could malicious code in another partial class definition within the same namespace modify or shadow these reference state properties? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac6bbd6c-f7ba-4a5e-879c-b0a080fce395?mode=deep",
+    "timestamp": "2026-02-19 06:36:50.849778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Properties: All] [Gas Manipulation] If cross-contract calls through these reference states don't properly forward or limit gas, could an attacker drain gas from legitimate operations or cause DoS by setting gas limits that cause critical Parliament/Token/Consensus operations to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a084e4ee-1654-4a09-8c92-6758ff32f11f?mode=deep",
+    "timestamp": "2026-02-19 06:37:22.548462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Authorization Bypass] When BasicContractZero uses ParliamentContract reference to create or approve proposals, are there checks to ensure the calling context (Context.Sender) is properly validated, or could internal calls bypass authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df79b99d-68cc-483b-9f2d-60bba25cc699?mode=deep",
+    "timestamp": "2026-02-19 06:37:55.356804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Fee Manipulation] If contract deployment operations use TokenContract reference to deduct fees, could an attacker exploit this to avoid paying deployment fees or redirect fee payments to their own address? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62454ce6-92f1-4002-a014-83affe599f61?mode=deep",
+    "timestamp": "2026-02-19 06:38:29.345725",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [Consensus Integrity] When BasicContractZero queries or updates consensus state through ConsensusContract reference during contract deployment, could timing attacks or race conditions allow deployment during invalid consensus rounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33cb7669-7570-45a4-a635-138e0a1f1c62?mode=deep",
+    "timestamp": "2026-02-19 06:39:02.350794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Properties: All] [State Corruption] If multiple threads or transactions access these reference states concurrently without proper locking, could this lead to race conditions where contract calls are made with stale or inconsistent reference addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5c50ddfe-d628-4183-a4d1-b62d5c043425?mode=deep",
+    "timestamp": "2026-02-19 06:39:36.181613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Governance Bypass] Could an attacker exploit the reference state pattern to bypass governance checks by directly accessing Parliament functionality without going through proper proposal/approval workflows defined in BasicContractZero? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17d0103c-fdb0-45ae-90b8-ec94bc1eb083?mode=deep",
+    "timestamp": "2026-02-19 06:40:10.747110",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Supply Integrity] If TokenContract reference is used for fee collection during contract operations, could errors in cross-contract call handling lead to token supply inconsistencies or lost fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a87912b1-a829-401a-9864-0854d247a406?mode=deep",
+    "timestamp": "2026-02-19 06:40:45.372634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ConsensusContract] [Block Production] Could manipulation of calls through ConsensusContract reference during critical contract deployment operations affect block production schedules or miner reward distribution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0dc3021b-5b17-44e6-b268-1821fed50507?mode=deep",
+    "timestamp": "2026-02-19 06:41:18.536483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Properties: All] [Error Handling] If cross-contract calls through these reference states fail or revert, does BasicContractZero properly handle errors, or could failed calls leave the contract in an inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_935d0477-1dfb-4dc5-993d-c270f204bdf0?mode=deep",
+    "timestamp": "2026-02-19 06:41:50.970500",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: ParliamentContract] [Return Value Manipulation] When calling Parliament contract methods through this reference, are return values properly validated, or could a compromised Parliament contract return malicious data that corrupts BasicContractZero state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e5d5b34-03e6-4c4c-9582-7a8625ed2c79?mode=deep",
+    "timestamp": "2026-02-19 06:42:23.438658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Genesis/BasicContractZeroReferenceState.cs] [Property: TokenContract] [Balance Manipulation] If BasicContractZero checks token balances or allowances through TokenContract reference for authorization purposes, could an attacker manipulate the timing of these checks to bypass restrictions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bde9f501-eb7b-488c-997c-e1ec0db940f4?mode=deep",
+    "timestamp": "2026-02-19 06:42:56.612229",
+    "report_generated": false
+  }
+]
