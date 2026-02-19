@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Token Existence Check Missing] SetMethodFee does not validate that fee token symbols exist in TokenContract - can non-existent or typo'd symbols be configured as fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74a7ad89-c1cb-4e70-9671-8403c6e22455?mode=deep",
+    "timestamp": "2026-02-19 14:23:39.554761",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fixed Fee Economic Attack] The 100 ELF Create fee is fixed regardless of ELF price - if ELF appreciates 100x, does the $10,000+ creation cost make NFT protocol unusable, causing economic DOS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70f7caa7-761b-4f2a-b8a3-8d21d13aad81?mode=deep",
+    "timestamp": "2026-02-19 14:24:01.627942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fee Collection Bypass] Zero fees returned for non-Create methods means Mint, Transfer, Approve operations cost nothing - can attackers spam thousands of free transactions to bloat chain state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_379231f5-d1a3-467e-adcc-138add5a8200?mode=deep",
+    "timestamp": "2026-02-19 14:24:24.168851",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Fee Change DOS] If SetMethodFee is eventually implemented, lack of rate limiting or proposal thresholds could allow rapid fee changes causing transaction failures and user confusion - is this a governance attack vector? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5069c3db-14de-4614-abba-a656111f6840?mode=deep",
+    "timestamp": "2026-02-19 14:24:46.976660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Revenue Leakage] NFT contract operations generate no method fees for Treasury/Profit distribution unlike MultiToken - does this represent lost revenue for the ecosystem? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c31bcd34-0cd4-4dff-8bd7-8f1e4275a087?mode=deep",
+    "timestamp": "2026-02-19 14:25:10.678994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Stub Implementation Risk] The empty SetMethodFee implementation may be intended as stub - if contract is deployed before completion, can governance be permanently broken requiring contract migration? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09ab944a-2c59-49ba-acea-975cb264b0ee?mode=deep",
+    "timestamp": "2026-02-19 14:25:35.227169",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Stub Implementation Risk] The empty ChangeMethodFeeController may be placeholder - if live on mainnet, can the method fee controller never be properly set, freezing fee governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d38874ab-84a3-4bcd-bc72-2ed61f425243?mode=deep",
+    "timestamp": "2026-02-19 14:26:01.054633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Integration Failure] Other contracts expecting valid AuthorityInfo from GetMethodFeeController will receive empty object - does this break Parliament proposal creation for NFT fee changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cea792c-1adb-44a1-bdd5-bcd3b33ccf66?mode=deep",
+    "timestamp": "2026-02-19 14:26:27.361015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fee Calculation Inconsistency] MultiToken's GetMethodFee returns size-fee-free for system methods - should NFT contract similarly exempt certain methods from size fees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5641021-add1-4d1d-b183-91209f27e8a8?mode=deep",
+    "timestamp": "2026-02-19 14:26:57.080491",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Method Name Mismatch] The check 'input.Value == nameof(Create)' assumes exact string match - if protobuf method names differ from C# method names or get renamed during compilation, could fee lookup fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2eb74670-508f-4667-82d5-ea29c6870d87?mode=deep",
+    "timestamp": "2026-02-19 14:27:23.830111",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Case Sensitivity] String comparison is case-sensitive - if callers pass 'create' or 'CREATE' instead of 'Create', will they incorrectly receive zero fees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_38595c04-65f6-4d05-86a2-9f1edd730202?mode=deep",
+    "timestamp": "2026-02-19 14:27:53.233131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Null Input Handling] GetMethodFee does not check if input or input.Value is null - can null reference exceptions be triggered by malformed calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2e9cf73-3924-467b-a5fe-c8481a21bf17?mode=deep",
+    "timestamp": "2026-02-19 14:28:21.791393",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Missing Assert Statements] No Assert() calls validate preconditions - should there be checks that MethodFees.MethodName is not empty, Fees array is not null, or BasicFee is non-negative? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f61133ca-843e-45f1-9628-caa3fa76674a?mode=deep",
+    "timestamp": "2026-02-19 14:28:51.513269",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Missing Assert Statements] No Assert() validates AuthorityInfo fields - should implementation check that OwnerAddress and ContractAddress are not null or Address.Zero? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_107c108d-c190-436f-90ea-423edc8f631f?mode=deep",
+    "timestamp": "2026-02-19 14:29:21.148409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Re-entrancy Safety] SetMethodFee performs no operations, but if implemented with cross-contract calls (token validation), could re-entrancy be exploited to bypass authorization checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d689a5c8-1bf1-46e3-b983-e387082dc6c6?mode=deep",
+    "timestamp": "2026-02-19 14:29:51.933626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: ChangeMethodFeeController()] [Re-entrancy Safety] ChangeMethodFeeController with CheckOrganizationExist cross-contract call could enable re-entrancy - should checks-effects-interactions pattern be enforced? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fb5e5cb-17a1-43bb-89b8-8212044f31ef?mode=deep",
+    "timestamp": "2026-02-19 14:30:23.064422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Symbol Validation Missing] Context.Variables.NativeSymbol is used without validating it's a registered token - could unregistered symbol cause fee collection to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a37c2f2-69f3-4ea7-8725-c6b5225c1fa4?mode=deep",
+    "timestamp": "2026-02-19 14:30:53.404298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [Multi-Symbol Fee Missing] Implementation doesn't handle multiple fee symbols per method like MultiToken does - is single-symbol fee limitation intentional or missing functionality? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_836f3ce6-fdfe-4b74-b921-c54e74970f65?mode=deep",
+    "timestamp": "2026-02-19 14:31:25.037906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fee Amount Overflow] The BasicFee is hardcoded to 100_00000000 (100 ELF with 8 decimals) - could this value overflow in certain contexts or currencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_79f4aeb8-fe6e-4bc4-ba29-d8beab4d3de4?mode=deep",
+    "timestamp": "2026-02-19 14:31:55.714258",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Partial Class State] This is partial class NFTContract - do other partial files implement state that these methods should use, causing integration bugs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9f56b7d-fa78-482f-aa0a-df08a737abcf?mode=deep",
+    "timestamp": "2026-02-19 14:32:25.431413",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Missing Reference State] NFTContractState does not include MethodFeeController or TransactionFees - were these deliberately omitted to create stub implementation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e79552e-14f4-43fb-932e-25bc28546e50?mode=deep",
+    "timestamp": "2026-02-19 14:32:52.766691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: All Methods] [Contract Base Class] Class inherits from NFTContractContainer.NFTContractBase (seen in other files) - does base class expect ACS1 implementation that's not provided? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f81230a0-0ff2-4b4f-8084-8d42ffa0e64b?mode=deep",
+    "timestamp": "2026-02-19 14:33:20.190558",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFee()] [Fee Consistency Invariant] GetMethodFee should return fees that match what SetMethodFee configured, but implementation returns hardcoded value - is this invariant violation exploitable? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63bd4fe6-e9aa-45ed-a265-87d58d36aa17?mode=deep",
+    "timestamp": "2026-02-19 14:33:50.740903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: GetMethodFeeController()] [Controller Consistency Invariant] GetMethodFeeController should return the authority set by ChangeMethodFeeController, but returns empty - does this break governance workflows? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_273d8b77-bc7c-45f4-b643-abcd4ab13eed?mode=deep",
+    "timestamp": "2026-02-19 14:34:20.842438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_ACS1.cs] [Function: SetMethodFee()] [State Mutation Invariant] SetMethodFee should modify state to reflect new fees, but modifies nothing - can this cause auditor-visible state to diverge from actual behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5824d133-f145-4a5a-840d-f02b92463a08?mode=deep",
+    "timestamp": "2026-02-19 14:34:51.085046",
+    "report_generated": false
+  }
+]
