@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CrossChainVerify()] [Merkle Path Manipulation] Line 243 accepts MerklePath without validation - can attacker supply empty or malformed path that passes verification due to CrossChain contract bug? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cc1273de-b890-4508-a221-b59bd89c1055?mode=deep",
+    "timestamp": "2026-02-19 10:23:51.563024",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CrossChainVerify()] [Parent Chain Height] Line 240 accepts parentChainHeight - can attacker supply future height that hasn't been indexed yet, causing verification to fail or succeed incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6fea63c-bbd0-43e5-bb2a-07b2ea68427d?mode=deep",
+    "timestamp": "2026-02-19 10:24:13.833426",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertCrossChainTransaction()] [Method Name Whitelist] Line 219 checks if methodName is in validMethodNames array - can attacker exploit case sensitivity or whitespace to call unauthorized methods? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70a35ff4-5aa2-4171-b69e-b41b0c779508?mode=deep",
+    "timestamp": "2026-02-19 10:24:36.390013",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertCrossChainTransaction()] [Transaction To Check] Line 220 validates originalTransaction.To == validAddress - can attacker create transaction with To = validAddress but different From to bypass authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b295a67-8a27-42cc-8ec1-48252b3348d4?mode=deep",
+    "timestamp": "2026-02-19 10:24:59.443527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertCrossChainTransaction()] [Params Array Variadic] Line 217 accepts 'params string[] validMethodNames' - can empty array cause all transactions to fail validation, enabling DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f1174d1-9b41-4898-a9a0-ffbdf279837c?mode=deep",
+    "timestamp": "2026-02-19 10:25:23.543804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ExtractTokenContractAddress()] [Parser Exception Handling] Line 207 calls Parser.ParseFrom without try-catch - can malformed bytes cause unhandled exception that crashes contract or leaves it in inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0e7f787-5192-4c33-ba2c-fe2503bb6524?mode=deep",
+    "timestamp": "2026-02-19 10:25:48.003117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ExtractTokenContractAddress()] [Hash Name Validation] Line 211 checks validatedContractHashName equals TokenContractSystemHashName - can attacker brute-force hash collision to validate arbitrary address as token contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10b79373-30e6-4861-bd75-ae614b2fc94e?mode=deep",
+    "timestamp": "2026-02-19 10:26:12.959439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: ExtractTokenContractAddress()] [Address Trust] Line 208 extracts validatedAddress from input without additional verification - can this address be used in privileged operations without proper authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b3c8f8b-b741-438e-8c44-e7fc96b89846?mode=deep",
+    "timestamp": "2026-02-19 10:26:38.641153",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Case Insensitive Duplicate Check] Line 233 stores State.InsensitiveTokenExisting[tokenInfo.Symbol.ToUpper()] but line 226 validates IsValidSymbol(tokenInfo.Symbol) - can 'TOKEN' and 'token' both be registered as different tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf931fb5-7b33-406d-a725-9046163171c7?mode=deep",
+    "timestamp": "2026-02-19 10:27:04.444499",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Total Supply Validation] Line 229 only checks 'TotalSupply > 0' - can attacker set TotalSupply to long.MaxValue causing overflow when tokens are minted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1c47a84-190a-4ad7-83c5-df8628ef4a33?mode=deep",
+    "timestamp": "2026-02-19 10:27:32.273562",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Token Name Empty Check] Line 228 checks '!string.IsNullOrEmpty(tokenInfo.TokenName)' but doesn't validate length - can extremely long token name cause storage DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8be22084-2084-4ade-9885-b7b1427d2af7?mode=deep",
+    "timestamp": "2026-02-19 10:27:57.524727",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [Issuer vs Owner] Lines 230-231 check both Issuer and Owner are non-null but don't validate they're different - can same address be both, enabling single point of failure? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d6beccc-21a7-430e-994d-bc8370259fc1?mode=deep",
+    "timestamp": "2026-02-19 10:28:23.547825",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: RegisterTokenInfo()] [State Write Order] Line 232 writes TokenInfos before line 233 writes InsensitiveTokenExisting - can transaction fail between these causing inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a5be136-d5ba-4b3a-b14b-bcf107d3cd7a?mode=deep",
+    "timestamp": "2026-02-19 10:28:49.733789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Decimals Range] Line 277 checks 'Decimals <= TokenContractConstants.MaxDecimals' - what is MaxDecimals value? Can extreme decimal values (e.g., 255) cause precision loss or overflow in amount calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93585199-6f4c-424f-ad9e-775e44fcb2df?mode=deep",
+    "timestamp": "2026-02-19 10:29:16.024471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Symbol Length Check Call] Line 279 calls CheckSymbolLength with symbolType - can attacker pass wrong symbolType to bypass length restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce0e709b-a665-4797-9f8e-60f9d28f5a14?mode=deep",
+    "timestamp": "2026-02-19 10:29:44.882972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Conditional Validation] Lines 280-282 skip checks for NFT symbolType - can attacker exploit this to create NFTs without token/collection existence validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fe3b8fb-5eac-4aab-a65c-7f717b949012?mode=deep",
+    "timestamp": "2026-02-19 10:30:12.643622",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: AssertValidCreateInput()] [Whitelist Bypass] Line 282 only calls CheckSymbolSeed if sender is in CreateWhiteList - can non-whitelisted addresses create tokens with unseeded symbols? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2e49c36-f6d9-434a-a452-28ca1e84d719?mode=deep",
+    "timestamp": "2026-02-19 10:30:40.070809",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenAndCollectionExists()] [Split Without Validation] Line 287 splits symbol by NFTSymbolSeparator without checking split result length - can empty string splits cause index out of bounds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e350b82-dd03-4fca-a86b-5bfa9cde7d5b?mode=deep",
+    "timestamp": "2026-02-19 10:31:07.166808",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenAndCollectionExists()] [Collection Symbol Construction] Lines 290-291 construct collectionSymbol by appending '-0' - can this collide with existing token symbols? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fcde7c1c-43a8-40a3-8414-31dd08b98e25?mode=deep",
+    "timestamp": "2026-02-19 10:31:34.727610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenExists()] [Empty Object Comparison] Line 298 compares 'existing == null || existing.Equals(empty)' where empty is new TokenInfo() - does Equals() properly handle all fields or can partial match bypass check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_502179c5-c06d-4559-8f59-29174ebd5078?mode=deep",
+    "timestamp": "2026-02-19 10:32:02.772575",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckTokenExists()] [Case Sensitivity Mismatch] Line 302 checks 'InsensitiveTokenExisting[symbol.ToUpper()]' but existing token might be stored case-sensitive - can this allow duplicate tokens with different cases? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f21327d4-85e9-4ca6-9e34-7853724fcd16?mode=deep",
+    "timestamp": "2026-02-19 10:32:31.736489",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckSymbolLength()] [Conditional Length Check] Lines 307-310 check different lengths based on symbolType - can attacker supply wrong symbolType to bypass stricter length limit? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_78adf8f8-0895-4669-865b-d67b061de2e1?mode=deep",
+    "timestamp": "2026-02-19 10:33:00.820484",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckCrossChainTokenContractRegistrationControllerAuthority()] [Lazy Controller Init] Lines 315-317 initialize controller if null - can race condition during initialization allow unauthorized modification? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2febdb4-03f8-4d65-9bd3-9b616d6e2047?mode=deep",
+    "timestamp": "2026-02-19 10:33:30.051540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: CheckCrossChainTokenContractRegistrationControllerAuthority()] [OwnerAddress Check Only] Line 318 only checks OwnerAddress == Context.Sender - can attacker manipulate Context or controller OwnerAddress to bypass this? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fd5cc06-a2c8-4b94-a132-89e9289fdd08?mode=deep",
+    "timestamp": "2026-02-19 10:33:59.650942",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [Function: DealWithExternalInfoDuringLocking()] [Reentrancy via SendInline] Line 331 calls Context.SendInline with callback address - can malicious token with callback reenter and modify state before lock completes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96ee71b8-0bdf-4372-9ece-9c92cb159f22?mode=deep",
+    "timestamp": "2026-02-19 10:34:29.497089",
+    "report_generated": false
+  }
+]
