@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Loop Overflow] In the loops at lines 97 and 109, if CurrentSymbolNumberLength or newSymbolNumberLength is very large, can the loop iterations cause gas exhaustion or integer overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa198629-0e1e-4714-bf8d-a24a6f9066fc?mode=deep",
+    "timestamp": "2026-02-19 03:08:23.483820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Return Value Inconsistency] Does the function always return a consistent value for concurrent callers, or can the return values at lines 112 and 115 differ if state changes during execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e6d4b7a2-a5b1-4ac2-bc01-04c36ad8c21c?mode=deep",
+    "timestamp": "2026-02-19 03:08:45.592342",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Flag Doubling Logic] Is the flag.Mul(2) calculation at line 103 intended to track how many symbols have been created, and can an attacker manipulate symbol creation patterns to cause incorrect length transitions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3af10313-bfe4-4f2b-b009-bc65c9e6ff6c?mode=deep",
+    "timestamp": "2026-02-19 03:09:07.924459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [Multiple Returns] With return statements at lines 112 and 115, can the function's behavior become unpredictable if State.CurrentSymbolNumberLength.Value is modified by other functions during execution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa020db4-b5f9-446b-86d2-0032d683c4f7?mode=deep",
+    "timestamp": "2026-02-19 03:09:31.742045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Metadata Bypass] Can an attacker pass metadataKeys that are substrings or variations of reserved keys to bypass the Contains() check at line 122, injecting reserved metadata? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dc7fb70f-bc82-4c12-9e50-4a1378fe7528?mode=deep",
+    "timestamp": "2026-02-19 03:09:55.778547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Case Sensitivity] Does the Contains() check at line 122 perform case-sensitive comparison, allowing an attacker to use 'ReservedKey' instead of 'reservedkey' to bypass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3e05e484-b856-4c5b-af09-2f0a495f7ade?mode=deep",
+    "timestamp": "2026-02-19 03:10:20.761369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Null/Empty Keys] Does the function validate that metadataKeys collection doesn't contain null or empty strings before checking against reservedMetadataKey, potentially causing assertion failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52b01268-d38e-495b-8701-88567caa8f3a?mode=deep",
+    "timestamp": "2026-02-19 03:10:47.602645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [DOS Attack] Can an attacker pass an extremely large metadataKeys collection causing the foreach loop at lines 121-122 to consume excessive gas and fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae50b4c4-85d6-44ab-b421-c56d10ba632d?mode=deep",
+    "timestamp": "2026-02-19 03:11:16.779488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Reserved Keys Source] What is the implementation of GetNftMetadataReservedKeys() at line 120, and can an attacker manipulate it to return an empty set, bypassing all metadata validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18d3ca98-9e81-44bd-b980-2dbbf4850094?mode=deep",
+    "timestamp": "2026-02-19 03:11:47.314730",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Whitespace Bypass] Can an attacker include leading/trailing whitespace in metadataKeys like ' ReservedKey ' to bypass the exact match check at line 122? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45d7ef0b-f058-4fe1-a534-cba6f019688f?mode=deep",
+    "timestamp": "2026-02-19 03:12:17.668916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Assertion Exception] Does the assertion at line 122 provide enough context in the error message to prevent information leakage about which reserved keys exist? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1cfd305f-655a-44fc-8908-56f60be0fe63?mode=deep",
+    "timestamp": "2026-02-19 03:12:46.930105",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Duplicate Keys] Does the function check for duplicate keys within metadataKeys collection, or can an attacker provide the same non-reserved key multiple times to cause conflicts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_add0e921-6621-45ec-aa21-8aafbdca8f17?mode=deep",
+    "timestamp": "2026-02-19 03:13:14.866521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Special Characters] Can metadataKeys contain special characters, unicode, or control characters that could bypass validation or cause issues in downstream metadata processing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd116eb2-db22-480a-8b8e-8fe1e7cbe9f9?mode=deep",
+    "timestamp": "2026-02-19 03:13:40.919992",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: AssertMetadataKeysAreCorrect()] [Collection Modification] If the metadataKeys IEnumerable is modified during iteration at lines 121-122, can it cause the foreach loop to behave unexpectedly or skip validation checks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_118926da-b5a5-4d2b-beaf-23d63ba6c2ad?mode=deep",
+    "timestamp": "2026-02-19 03:14:06.917974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: Multiple] [State Initialization Order] Can the order of calling MakeSureTokenContractAddressSet() and MakeSureRandomNumberProviderContractAddressSet() affect NFT contract functionality if one depends on the other? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f9452d6-ab70-435f-8038-be8ba58344e9?mode=deep",
+    "timestamp": "2026-02-19 03:14:33.119496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetSymbol() + GenerateSymbolNumber()] [Atomicity Violation] Between GenerateSymbolNumber() returning a number and GetSymbol() setting State.IsCreatedMap[randomNumber] = true at line 27, can race conditions cause symbol collisions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_683790f8-806c-4078-a2fd-4d1a981bd046?mode=deep",
+    "timestamp": "2026-02-19 03:14:59.184750",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: InitialNFTTypeNameMap() + GetSymbol()] [State Consistency] If InitialNFTTypeNameMap() is called during GetSymbol() execution, can partial state updates cause GetSymbol() to see inconsistent NFT type mappings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cbe4aeb-5962-444a-b957-dc305c14282a?mode=deep",
+    "timestamp": "2026-02-19 03:15:26.040966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber() + GetCurrentNumberLength()] [Length Transition Race] If GetCurrentNumberLength() increases the number length while GenerateSymbolNumber() is executing, can the 'from' value become stale causing invalid range calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a4ada61-304c-4a96-8e4d-e7c463aa2ff1?mode=deep",
+    "timestamp": "2026-02-19 03:15:52.775008",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: All] [State Variable Protection] Are State.TokenContract, State.RandomNumberProviderContract, State.IsCreatedMap, and other state variables protected against unauthorized modification by external contracts? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af7318a9-36af-4d01-8fe1-900664e60a61?mode=deep",
+    "timestamp": "2026-02-19 03:16:20.056994",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: All] [Context Validation] Do all functions properly validate that Context.Sender, Context.CurrentHeight, and other context values are within expected ranges before using them in calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b5de1339-c897-42a6-884f-ba2a09518490?mode=deep",
+    "timestamp": "2026-02-19 03:16:47.171098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [State.IsCreatedMap Growth] As State.IsCreatedMap grows with each NFT creation, can the increasing storage size cause gas costs to become prohibitively expensive, leading to DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_10d6ba26-ecd2-4f7e-8515-35341d0db264?mode=deep",
+    "timestamp": "2026-02-19 03:17:18.347700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GetCurrentNumberLength()] [State.NftProtocolNumberFlag Manipulation] Can the flag doubling logic at line 103 be exploited to force premature length increases, exhausting the symbol number space faster than intended? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6491bad1-d6fd-4008-8536-599df044106f?mode=deep",
+    "timestamp": "2026-02-19 03:17:49.073770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: InitialNFTTypeNameMap()] [State.NFTTypes Immutability] After State.NFTTypes.Value is set at line 54, are there any code paths that could modify or reset it, potentially causing inconsistent type mappings? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be6df773-d7a3-4169-8a26-7b4d7ffaff9b?mode=deep",
+    "timestamp": "2026-02-19 03:18:16.629546",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: All] [Helper Function Access Control] Are these helper functions (MakeSure*, Get*, Initial*, Assert*) properly scoped as private to prevent external contracts from calling them directly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2795dce8-b636-4da0-9395-b0373a348ab1?mode=deep",
+    "timestamp": "2026-02-19 03:18:48.195662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Helpers.cs] [Function: GenerateSymbolNumber()] [Front-running Attack] Can an attacker observe pending transactions calling GetSymbol(), predict the randomNumber that will be generated, and front-run with their own transaction to claim desirable symbol numbers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9f5000a-f3c2-4efa-9bc6-c241cf0059ce?mode=deep",
+    "timestamp": "2026-02-19 03:19:19.678529",
+    "report_generated": false
+  }
+]
