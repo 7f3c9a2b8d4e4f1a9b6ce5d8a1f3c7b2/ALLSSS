@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NumberMinLength] [Validation Bypass] Can the NumberMinLength value of 9 be bypassed during symbol generation in GetCurrentNumberLength(), allowing creation of protocols with shorter or longer symbol numbers than intended, potentially causing collision with existing symbols or breaking symbol format assumptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_517c94c8-5639-4069-ab5e-b414366add22?mode=deep",
+    "timestamp": "2026-02-19 12:46:09.386041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NumberMinLength] [Integer Overflow] In GetCurrentNumberLength() where NumberMinLength initializes CurrentSymbolNumberLength, can the multiplication logic (protocolNumber.Mul(10)) eventually overflow when symbol number length grows unbounded, causing symbol generation failures or collisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_947068be-fc19-4e29-a591-0461875d6550?mode=deep",
+    "timestamp": "2026-02-19 12:46:31.517253",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NumberMinLength] [DOS Attack] If NumberMinLength is too small (9 digits = 1B combinations), can an attacker exhaust the symbol space by creating protocols until GenerateSymbolNumber() enters infinite loop when all symbols are taken? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1b9d81f-b863-43bf-87ec-5d8d50557634?mode=deep",
+    "timestamp": "2026-02-19 12:46:54.040952",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NumberMinLength] [State Inconsistency] Can mismatch between hardcoded NumberMinLength and actual CurrentSymbolNumberLength state cause symbol generation to produce invalid formats that break token creation or cross-chain verification? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bf29bf4-605f-4cd8-a4e7-395e9ba97369?mode=deep",
+    "timestamp": "2026-02-19 12:47:17.206185",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTypeMetadataKey] [Metadata Injection] In GetTokenExternalInfo(), can an attacker provide input.Metadata containing 'aelf_nft_type' key that gets overwritten, but then manipulated in CrossChainCreate() where it's read from tokenInfo.ExternalInfo without proper validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5026e6d7-fa6b-46b0-85ed-6f3c26796350?mode=deep",
+    "timestamp": "2026-02-19 12:47:41.147623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTypeMetadataKey] [Type Confusion] Can an attacker create a protocol with invalid NftType in metadata, then in CrossChainCreate() the code reads nftTypeFullName from symbol prefix but trusts ExternalInfo values, causing type mismatch between protocol info and actual token type? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7b05733-d880-4513-aba6-386d0a7f6b69?mode=deep",
+    "timestamp": "2026-02-19 12:48:06.043890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTypeMetadataKey] [Authorization Bypass] Since NftTypeMetadataKey is reserved in GetNftMetadataReservedKeys(), can an attacker bypass this check during Mint() or Recast() by providing metadata that overwrites protocol-level NFT type, changing token classification post-creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b4016380-3439-4269-b37b-cb3ae7341516?mode=deep",
+    "timestamp": "2026-02-19 12:48:31.090468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTypeMetadataKey] [Cross-Chain Inconsistency] In CrossChainCreate(), can NFT type metadata mismatch between mainchain and sidechain lead to protocol info corruption if tokenInfo.ExternalInfo[NftTypeMetadataKey] differs from actual protocol NFT type? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_706e10f5-7885-4b82-907d-aca17f89f69d?mode=deep",
+    "timestamp": "2026-02-19 12:48:58.327698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftBaseUriMetadataKey] [URI Manipulation] In GetTokenExternalInfo(), baseUri is stored in ExternalInfo, then in CrossChainCreate() it's read without validation - can attacker inject malicious URIs containing scripts, redirects, or data:// schemes that violate URI format assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51be6e74-8066-4f73-8139-497655fc3c2e?mode=deep",
+    "timestamp": "2026-02-19 12:49:27.567906",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftBaseUriMetadataKey] [Metadata Override] Can an attacker provide input.Metadata with 'aelf_nft_base_uri' key during Create() that gets overwritten by input.BaseUri, but then exploited in CrossChainCreate() where it's sourced from ExternalInfo without cross-validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5adce928-84c2-4183-81c6-bdb63c1004cb?mode=deep",
+    "timestamp": "2026-02-19 12:49:56.282632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftBaseUriMetadataKey] [Reserved Key Bypass] Is NftBaseUriMetadataKey properly checked in AssertMetadataKeysAreCorrect() during Mint(), Assemble(), and Recast() operations to prevent users from overriding protocol-level baseUri values with custom metadata? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9974c0c5-77cb-40c4-bc8f-eba30bd4c05b?mode=deep",
+    "timestamp": "2026-02-19 12:50:25.726905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftBaseUriMetadataKey] [State Desync] Can baseUri in ExternalInfo diverge from baseUri in NFTProtocolInfo state if CrossChainCreate() reads from token but doesn't validate consistency, causing GetNFTInfo() to return wrong URI values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_732ec0e8-cee2-4aa7-8920-1516b4cc6a42?mode=deep",
+    "timestamp": "2026-02-19 12:50:55.894977",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTokenIdReuseMetadataKey] [Boolean Parsing] In CrossChainCreate(), bool.Parse() is used without try-catch for NftTokenIdReuseMetadataKey - can an attacker provide non-boolean string values in ExternalInfo causing parse exception that breaks protocol creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44757f39-e173-45ff-90a8-84f4557bf592?mode=deep",
+    "timestamp": "2026-02-19 12:51:25.586901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTokenIdReuseMetadataKey] [Token ID Collision] If IsTokenIdReuse flag is incorrectly set or tampered in ExternalInfo, can PerformMint() logic fail to prevent token ID collisions when it should, or wrongly reject valid mints when ID reuse is allowed? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1c1d2bc-ca18-4294-9961-470e2a317d86?mode=deep",
+    "timestamp": "2026-02-19 12:51:55.649904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTokenIdReuseMetadataKey] [Burn Logic Bypass] In Burn(), the check 'if (nftInfo.Quantity == 0 && !nftProtocolInfo.IsTokenIdReuse) nftInfo.IsBurned = true' relies on IsTokenIdReuse flag - can metadata manipulation cause burned tokens to be re-mintable when they shouldn't be? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01fe10ae-83b1-4158-8d71-f3573ffd9dee?mode=deep",
+    "timestamp": "2026-02-19 12:52:25.960677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTokenIdReuseMetadataKey] [Cross-Chain Desync] Can IsTokenIdReuse flag differ between mainchain ExternalInfo and sidechain protocol state after CrossChainCreate(), causing mint operations to behave inconsistently across chains? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e8aeaae-4e64-485b-baff-3915b8419822?mode=deep",
+    "timestamp": "2026-02-19 12:52:55.018046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: NftTokenIdReuseMetadataKey] [Reserved Key Protection] Is NftTokenIdReuseMetadataKey properly blocked in metadata inputs during Mint() and Recast() to prevent users from changing token ID reuse policy after protocol creation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b1c40120-b423-4a38-9ff4-f53d40ecfc27?mode=deep",
+    "timestamp": "2026-02-19 12:53:25.694305",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledNftsKey] [Metadata Injection] In Assemble(), metadata.Value[AssembledNftsKey] is set from input.AssembledNfts.ToString() - can attacker provide custom metadata with this key that gets overwritten, then exploited in Disassemble() if parsing logic trusts metadata content? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42d10f2a-a4fd-4d23-99a3-3d44aeb4b7a9?mode=deep",
+    "timestamp": "2026-02-19 12:53:57.050646",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledNftsKey] [State Inconsistency] Can AssembledNftsKey in NFTInfo.Metadata diverge from State.AssembledNftsMap[tokenHash] if Assemble() updates both but Recast() allows metadata modification, causing Disassemble() to return wrong NFTs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6987c845-93ac-4062-be1e-4775c02620f9?mode=deep",
+    "timestamp": "2026-02-19 12:54:27.028573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledNftsKey] [Reserved Key Bypass] Is AssembledNftsKey properly validated in AssertMetadataKeysAreCorrect() during Mint() and Recast() to prevent users from manually adding assembled NFT data to non-assembled tokens? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d09d89b1-48b4-4301-a39f-9c89b22e6e3e?mode=deep",
+    "timestamp": "2026-02-19 12:54:57.957777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledNftsKey] [Serialization Attack] When Assemble() stores input.AssembledNfts.ToString() in metadata, can attacker manipulate protobuf serialization to inject malicious data that causes Disassemble() to transfer wrong NFT amounts or addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32ca630f-66b9-4ef4-a694-662d7d412f55?mode=deep",
+    "timestamp": "2026-02-19 12:55:26.733670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledFtsKey] [Metadata Tampering] Similar to AssembledNftsKey, can metadata.Value[AssembledFtsKey] be manipulated between Assemble() and Disassemble() operations if Recast() doesn't properly preserve reserved metadata keys? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c951323-c23d-4da8-b834-19d9366ef1ad?mode=deep",
+    "timestamp": "2026-02-19 12:55:56.298953",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledFtsKey] [Double Spend] If State.AssembledFtsMap[tokenHash] and metadata[AssembledFtsKey] become inconsistent, can Disassemble() transfer FTs while metadata claims different amounts, or can attacker disassemble twice? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b406fa5-7534-4268-8811-4e20eeb58402?mode=deep",
+    "timestamp": "2026-02-19 12:56:24.472224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledFtsKey] [Cross-Function Validation] Is AssembledFtsKey properly blocked in GetNftMetadataReservedKeys() to prevent Mint() from creating tokens with assembled FT metadata without actually locking those FTs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c16e56b-db92-43be-bc74-1ffec15e5494?mode=deep",
+    "timestamp": "2026-02-19 12:56:56.646905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContractConstants.cs] [Constant: AssembledFtsKey] [Serialization Integrity] Can attacker provide malformed AssembledFts data that successfully stores in metadata but causes Disassemble() to fail or transfer incorrect token amounts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4176b522-bc9f-4627-ac7e-0b934bcae23f?mode=deep",
+    "timestamp": "2026-02-19 12:57:25.765065",
+    "report_generated": false
+  }
+]
