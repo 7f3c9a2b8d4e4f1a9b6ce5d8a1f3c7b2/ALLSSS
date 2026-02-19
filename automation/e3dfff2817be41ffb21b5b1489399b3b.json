@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Self-Transfer Check Missing] Can Context.Sender == Context.Self, allowing the contract to buy from itself and manipulate State.DepositBalance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5413313-ec09-444c-bb22-30b9254045a5?mode=deep",
+    "timestamp": "2026-02-19 13:33:23.160811",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Virtual Balance Manipulation] After Buy() updates State.DepositBalance[fromConnector.Symbol], does this affect GetSelfBalance() calculations for future transactions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7347c4b6-0c3d-4ae3-98f5-45f5a816a40a?mode=deep",
+    "timestamp": "2026-02-19 13:33:45.316458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Connector Purchase Check Timing] IsPurchaseEnabled is checked only for toConnector - if fromConnector is disabled after this check, can the transaction proceed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65368493-3b41-4210-bdb2-aec5b926fad0?mode=deep",
+    "timestamp": "2026-02-19 13:34:07.720902",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Event Emission Race] TokenBought event is emitted after all state changes - can this cause indexers to miss transactions if they rely on event ordering? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_87edd622-9dcb-42df-9c79-7bc0bf9ae7a4?mode=deep",
+    "timestamp": "2026-02-19 13:34:30.903171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Negative Amount Handling] Does BancorHelper.GetAmountToPayFromReturn() properly handle input.Amount that causes negative amountToPay due to precision errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd9ef5fc-9532-491d-979b-1fc3483f19b8?mode=deep",
+    "timestamp": "2026-02-19 13:34:54.672163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Treasury Fee Bypass] When Context.Sender == TreasuryContract, fee is set to 0 - can an attacker route Sell() calls through Treasury to avoid fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd2e28d1-0cda-428c-b684-8f8fd2277880?mode=deep",
+    "timestamp": "2026-02-19 13:35:19.453221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Fee Subtraction Underflow] Can amountToReceive.Sub(fee) underflow if fee is calculated to be greater than amountToReceive due to rounding errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2910452e-1e5b-4ea7-8425-929ac4282b0d?mode=deep",
+    "timestamp": "2026-02-19 13:35:44.872168",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [ReceiveLimit Bypass] Similar to PayLimit in Buy(), can ReceiveLimit = 0 be exploited as 'no limit' check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58d050a7-577c-4b46-ba56-eeb21e681d87?mode=deep",
+    "timestamp": "2026-02-19 13:36:11.260012",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [DepositBalance Underflow] State.DepositBalance[toConnector.Symbol].Sub(amountToReceive) - can this underflow if DepositBalance is less than amountToReceive? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08a14e16-e918-4b62-bcfc-cbebd0111444?mode=deep",
+    "timestamp": "2026-02-19 13:36:37.799652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Transfer Before Balance Update] Token transfer to Context.Sender happens before State.DepositBalance is decremented - reentrancy risk? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ae288e42-bb4e-4066-bd79-bcfebe643f9d?mode=deep",
+    "timestamp": "2026-02-19 13:37:06.263525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Connector Relationship Mismatch] If fromConnector.RelatedSymbol doesn't match toConnector.Symbol, can mismatched connectors be used in Sell()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e4f378bb-92e8-4376-904f-57220ac1d6bd?mode=deep",
+    "timestamp": "2026-02-19 13:37:36.618938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Zero Fee Edge Case] When fee = 0 for Treasury, is HandleFee() still called? Does this waste gas or cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa474c5f-1e9a-43e6-9ad4-2ce9e11485b0?mode=deep",
+    "timestamp": "2026-02-19 13:38:08.312184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Bancor Calculation Manipulation] Can GetReturnFromPaid() be manipulated by selling tiny amounts repeatedly to drain DepositBalance through rounding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa77af80-eab0-4f3d-9734-adb4755fd82d?mode=deep",
+    "timestamp": "2026-02-19 13:38:38.671166",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Double Connector Check] Both fromConnector.IsPurchaseEnabled and implicit toConnector existence are checked - can this create a state where only one direction works? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_68ffd985-b77a-4a84-b5a6-9a9db5982e99?mode=deep",
+    "timestamp": "2026-02-19 13:39:07.640147",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Sell()] [Event Data Consistency] TokenSold event shows amountToReceive before fee deduction - can this mislead off-chain systems about actual received amounts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65e6127e-2fa2-44a5-b8df-b22b3218d44a?mode=deep",
+    "timestamp": "2026-02-19 13:39:34.539744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Fee Division Rounding] fee.Div(2) for donateFee - does integer division always round down, causing burnFee to sometimes be 1 unit larger? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f359fb32-a622-4dc6-8873-aa607c314ca4?mode=deep",
+    "timestamp": "2026-02-19 13:40:02.263332",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Odd Fee Amount] If fee is odd (e.g., 1), donateFee = 0 and burnFee = 1 - is this acceptable, or should minimum fee be 2? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7811b1fd-b5d9-4d93-8309-4adf156a904e?mode=deep",
+    "timestamp": "2026-02-19 13:40:29.374247",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [DividendPoolContract Initialization] State.DividendPoolContract.Value is initialized on first use - can this be exploited if TreasuryContract address changes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d128ed4-7b4e-4ffd-a2ed-65d53d40a6aa?mode=deep",
+    "timestamp": "2026-02-19 13:40:57.249046",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Approval Race Condition] Approve() is called before Donate() - can another transaction consume the approval before Donate() executes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49156782-96ab-4185-bb3a-7869671d4a99?mode=deep",
+    "timestamp": "2026-02-19 13:41:25.274532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [TransferFrom Triple Call] HandleFee() calls TransferFrom twice (for donate and burn) - can this lead to insufficient balance if the first transfer succeeds but second fails? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11be3704-d9df-420d-b2e0-9115f2328114?mode=deep",
+    "timestamp": "2026-02-19 13:41:55.571281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Burn After Transfer] Burn() is called on tokens already transferred to Context.Self - can this fail if contract balance is insufficient? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8b01bc2-afc5-499d-81a2-ab6e3ea7a39b?mode=deep",
+    "timestamp": "2026-02-19 13:42:26.689215",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Donate Call Failure] If DividendPoolContract.Donate() fails, does the entire HandleFee() revert, or are tokens stuck in contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e77280cd-1e9a-431e-b650-b5e3cab932b7?mode=deep",
+    "timestamp": "2026-02-19 13:42:59.539620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Approval Amount Not Reset] After Donate(), is the approval amount reset to 0? Leftover approvals could be exploited. (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cd006ad-5d1d-4e19-8410-dd497dc5d570?mode=deep",
+    "timestamp": "2026-02-19 13:43:27.193518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: HandleFee()] [Fee Parameter Validation] HandleFee() doesn't validate that fee > 0 before proceeding - can fee = 0 cause unnecessary external calls? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40ffb234-6e0a-46b5-b41c-2b821ad6702c?mode=deep",
+    "timestamp": "2026-02-19 13:43:57.805302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: SetFeeRate()] [Fee Rate Boundary] IsBetweenZeroAndOne() excludes 0 and 1 - but can '0.0000000001' or '0.9999999999' be exploited for near-zero or near-100% fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c330565-ec18-4bfb-9d26-36e5e06ea9cf?mode=deep",
+    "timestamp": "2026-02-19 13:44:25.485866",
+    "report_generated": false
+  }
+]
