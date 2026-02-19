@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Authorization Bypass] Can the ConfigurationController SingletonState be left uninitialized, allowing any caller to set configurations before proper authorization is established, bypassing governance controls? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1847e55-0c26-4d4a-b5a2-8b6f469c8b96?mode=deep",
+    "timestamp": "2026-02-19 11:26:42.854890",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Access Control] Can the ConfigurationController be overwritten after initialization without proper multi-sig approval, allowing a single compromised admin to hijack all configuration authority? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e394375-62e5-49de-b670-636215beb2e5?mode=deep",
+    "timestamp": "2026-02-19 11:27:04.873278",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [State Corruption] Can the ConfigurationController AuthorityInfo be set to a zero address or invalid contract address, permanently locking configuration updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0498f877-59d7-4687-b924-0a0a91a30954?mode=deep",
+    "timestamp": "2026-02-19 11:27:27.058603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Governance Attack] Can an attacker front-run the ConfigurationController initialization with a malicious AuthorityInfo, gaining permanent control over system configurations? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fb6470d4-b246-4b75-afa5-9be0dd932ce4?mode=deep",
+    "timestamp": "2026-02-19 11:27:50.087795",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Privilege Escalation] Can the ConfigurationController be changed to point to a contract that the attacker controls, bypassing organization-based governance? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac2885a1-61c9-4835-b648-989e8228296b?mode=deep",
+    "timestamp": "2026-02-19 11:28:13.849812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [DoS] Can the ConfigurationController be set to a non-existent or self-destructed contract address, permanently disabling all configuration changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9539f417-6f73-4db7-8ff0-d78fbb965332?mode=deep",
+    "timestamp": "2026-02-19 11:28:38.384063",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Race Condition] Can concurrent calls to change ConfigurationController result in inconsistent state where different callers see different controllers during transition? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_616ea4bf-583e-4d0e-b1b8-2a7ce816e167?mode=deep",
+    "timestamp": "2026-02-19 11:29:03.858039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Organization Validity] Can the ConfigurationController reference an organization that was later dissolved or had its members removed, breaking governance? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd8b6219-2961-4cd3-84dc-2440cdfde14b?mode=deep",
+    "timestamp": "2026-02-19 11:29:29.702870",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Circular Dependency] Can the ConfigurationController create a circular reference where the controller contract itself depends on configurations it controls, causing deadlock? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e7e815fb-1ff3-4fad-872b-0d7bbcdc4eca?mode=deep",
+    "timestamp": "2026-02-19 11:29:59.330047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: ConfigurationController] [Immutability Violation] Can the SingletonState implementation allow multiple writes to ConfigurationController in the same transaction, violating singleton semantics? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7c038d0-5ba9-4ad0-bb5e-c09d06933eb2?mode=deep",
+    "timestamp": "2026-02-19 11:30:29.463522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Authorization Bypass] Can the MethodFeeController be uninitialized at deployment, allowing anyone to set method fees before governance is established? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20f878a8-ef3a-42e2-baa9-92da0fd1a89c?mode=deep",
+    "timestamp": "2026-02-19 11:30:59.676724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Economic Attack] Can an attacker who controls MethodFeeController set prohibitively high fees for critical system methods, effectively DoS-ing the entire chain? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_736a80ed-0948-417f-bc9e-709f09c26d66?mode=deep",
+    "timestamp": "2026-02-19 11:31:31.454881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Fee Manipulation] Can the MethodFeeController be changed to a malicious contract that sets zero fees for expensive operations, enabling spam attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e3ee435-c817-4cf5-a897-b7a638471959?mode=deep",
+    "timestamp": "2026-02-19 11:32:03.850188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [State Corruption] Can the MethodFeeController AuthorityInfo be corrupted with mismatched ContractAddress and OwnerAddress, breaking fee updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8204c7ac-05c8-4ff3-ac58-3178795d1f83?mode=deep",
+    "timestamp": "2026-02-19 11:32:37.801047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Privilege Escalation] Can the MethodFeeController be transferred to an attacker-controlled organization, allowing them to extract rent from all contract users? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d473efeb-63db-43a5-907d-ac36b9a1d0fb?mode=deep",
+    "timestamp": "2026-02-19 11:33:12.030041",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [DoS] Can the MethodFeeController be set to an address that always reverts, permanently freezing all fee updates and locking the current fee structure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45eb7ab3-0489-4b02-9993-6e5be482530d?mode=deep",
+    "timestamp": "2026-02-19 11:33:42.629267",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Cross-Contract Attack] Can the MethodFeeController reference a malicious contract that drains fees to attacker addresses instead of proper distribution? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cea52ce-01d4-4bcf-a3f5-5d49461b93ee?mode=deep",
+    "timestamp": "2026-02-19 11:34:17.079131",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Initialization Race] Can multiple initialization attempts for MethodFeeController result in the last caller winning, bypassing intended default authority? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7dc433b-94ec-41a0-8670-e424bae4b872?mode=deep",
+    "timestamp": "2026-02-19 11:34:50.587656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Governance Bypass] Can MethodFeeController be changed without going through the proper proposal and voting process if checks are missing in the setter? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fcf4f4bd-0400-46e1-a5e9-7a0e35990552?mode=deep",
+    "timestamp": "2026-02-19 11:35:23.405271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: MethodFeeController] [Token Whitelist Bypass] Can the MethodFeeController set fees in non-whitelisted or malicious tokens, causing accounting errors or enabling fee evasion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4043f26-f032-4a9d-ac99-c866f1866f1b?mode=deep",
+    "timestamp": "2026-02-19 11:35:56.172201",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Fee Evasion] Can the TransactionFees mapping be left unpopulated for critical methods, allowing attackers to call expensive operations for free? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_592f4af1-9a8c-4b66-bea1-6e9eee344f97?mode=deep",
+    "timestamp": "2026-02-19 11:36:29.254077",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Key Collision] Can similar method names or hash collisions in the TransactionFees mapping cause fee misattribution between different methods? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f84c5b3-ee65-4e15-bd3f-132379ccf6cf?mode=deep",
+    "timestamp": "2026-02-19 11:37:03.326004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Overflow/Underflow] Can the MethodFees stored in TransactionFees mapping contain negative or overflowed values, causing incorrect fee calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e74db45b-e16c-43b3-a851-62c451e914b5?mode=deep",
+    "timestamp": "2026-02-19 11:37:37.500381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [Stale Data] Can the TransactionFees mapping retain outdated fee structures after token prices change dramatically, causing economic imbalance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ce4c798-6f85-41db-900d-c3043bf520a4?mode=deep",
+    "timestamp": "2026-02-19 11:38:12.917095",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationState.cs] [State: TransactionFees] [DoS via Storage] Can an attacker populate the TransactionFees mapping with millions of entries, causing excessive storage costs and lookup delays? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70608e50-0a3d-41bb-bbf1-0cdab6d72851?mode=deep",
+    "timestamp": "2026-02-19 11:38:47.359020",
+    "report_generated": false
+  }
+]
