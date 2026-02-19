@@ -1,8 +1,0 @@
-[
-  {
-    "question": "[File: contract/AElf.Contracts.Profit/Models/RemovedDetails.cs] [Class: RemovedDetails] [Default Constructor] Does RemovedDetails have a parameterized constructor that could validate initial state, or does it rely on the base Dictionary constructor which may allow invalid initialization? (Low)",
-    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f203c3e2-c027-4c87-bbf3-96a1e3a90163?mode=deep",
-    "timestamp": "2026-02-19 05:29:19.416836",
-    "report_generated": false
-  }
-]
