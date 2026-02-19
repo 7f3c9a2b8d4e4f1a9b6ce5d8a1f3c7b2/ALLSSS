@@ -40,5 +40,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05509757-c54a-4880-b232-c80da1161986?mode=deep",
     "timestamp": "2026-02-19 12:34:01.210097",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Count Operation Atomicity] Both Count() operations enumerate the collection. If RealTimeMinersInformation is modified between these two operations (in a concurrent scenario), could the counts be inconsistent, causing false validation failures or passes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29ab6357-c1fb-4cf2-9908-fa1a11a26bf3?mode=deep",
+    "timestamp": "2026-02-19 12:55:45.198250",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Overflow in FinalOrderOfNextRound] If FinalOrderOfNextRound contains Int32.MaxValue and arithmetic is performed on it elsewhere, could integer overflow occur? This validation doesn't check upper bounds. (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eb652d3f-4ebd-49fb-90e7-2d9013d237b8?mode=deep",
+    "timestamp": "2026-02-19 12:56:07.372422",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Semantic Gap] The validation ensures COUNT(distinct orders > 0) == COUNT(OutValue != null), but doesn't ensure that every miner who mined has a valid order or that every order corresponds to a miner who mined. Could there be a scenario where miner A has OutValue and no order, while miner B has order but no OutValue, causing counts to match incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4087deec-bc78-4897-a403-ac2a624e9e56?mode=deep",
+    "timestamp": "2026-02-19 12:56:29.912888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Error Message Insufficient] The error message 'Invalid FinalOrderOfNextRound' doesn't specify which miner has the invalid order, what the expected count was, or what the actual count was, making debugging difficult. Could this obscure attack attempts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14615613-0a04-4cd4-b926-edc41cda0d09?mode=deep",
+    "timestamp": "2026-02-19 12:56:53.089651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [No Miner Identification] The validation operates on aggregate counts without checking individual miner's FinalOrderOfNextRound-OutValue pairing. Could a valid miner's order be swapped with a non-mining miner, keeping counts equal but corrupting the actual order assignments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ad991609-903b-4eaa-9c63-43e45f25e6ba?mode=deep",
+    "timestamp": "2026-02-19 12:57:17.085816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Distinct vs DistinctBy] The code uses Distinct() on the entire MinerInRound object collection. Should it be using DistinctBy(m => m.FinalOrderOfNextRound) to specifically check for duplicate order values? Current implementation may not detect duplicates correctly. (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28d958bb-7cc0-4e8e-a085-2a2fa0fd4d1b?mode=deep",
+    "timestamp": "2026-02-19 12:57:43.015072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [ValidationResult Default State] A new ValidationResult() is created with Success presumably defaulting to false. If the validation framework treats Success=false as 'not yet validated' rather than 'failed validation', could this cause issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6610e804-1451-47c6-a54b-f2e5ccd5a9e3?mode=deep",
+    "timestamp": "2026-02-19 12:58:10.648521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [ProvidedRound Mutability] If validationContext.ProvidedRound references a mutable Round object that other code can modify during validation, could time-of-check-time-of-use (TOCTOU) vulnerabilities allow round data manipulation between validation and usage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e726819e-8187-4940-be03-790f88f16e82?mode=deep",
+    "timestamp": "2026-02-19 12:58:40.395974",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Missing Unit Test Coverage] If this validation logic lacks comprehensive unit tests for edge cases (empty collections, all zeros, all same values, null values, max int values), could undiscovered bugs allow consensus manipulation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_47017087-c0e3-46e1-be6f-3fa75190e32e?mode=deep",
+    "timestamp": "2026-02-19 12:59:11.385588",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [No Exception Handling] The validation doesn't wrap operations in try-catch. If LINQ operations throw (e.g., from corrupted data), could unhandled exceptions crash the validation process and halt block validation entirely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32053d3f-536e-4e14-9358-f08205d26f7c?mode=deep",
+    "timestamp": "2026-02-19 12:59:42.533143",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Equals Implementation] The Distinct() call's effectiveness depends on MinerInRound's Equals() implementation. If MinerInRound is a protobuf-generated class with default reference equality, two different objects with same FinalOrderOfNextRound won't be considered duplicates. Has this been verified? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b03f4c0-8446-430a-81b7-c99b507c7b1c?mode=deep",
+    "timestamp": "2026-02-19 13:00:14.638178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [GetHashCode Consistency] If MinerInRound overrides Equals() but not GetHashCode() (or vice versa), Distinct() may behave unpredictably, potentially allowing duplicate orders. Is the hash code implementation verified for correctness? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fbdac973-78a6-4b73-80c1-2c47fa34b1f4?mode=deep",
+    "timestamp": "2026-02-19 13:00:48.713647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Values Enumeration Cost] Calling .Values on a dictionary creates an enumerator. With two separate LINQ chains enumerating the same collection, if the collection is large, could this create performance issues during block validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf0af2a4-4ac8-466b-a28a-a1376712463c?mode=deep",
+    "timestamp": "2026-02-19 13:01:22.871883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Validation Provider Chain] If multiple validation providers run sequentially and earlier ones modify validationContext.ProvidedRound, could this validation receive already-modified data that doesn't match the original consensus header? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9c04923-0200-4c98-b661-ae23baeae7a4?mode=deep",
+    "timestamp": "2026-02-19 13:01:57.101518",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Success True Path] When validation succeeds, Success is explicitly set to true, but Message is not cleared (remains empty string or previous value). Could downstream code misinterpret an empty message differently than a null message? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4b77fee-1a6e-480b-ac9f-be7bc60032c6?mode=deep",
+    "timestamp": "2026-02-19 13:02:32.495587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Single Miner Edge Case] If there's only one miner in the round, and they mine (OutValue != null) and set FinalOrderOfNextRound = 1, distinctCount = 1 and OutValue count = 1, passing validation. But what if FinalOrderOfNextRound = 0 or negative? The filter would make distinctCount = 0 while OutValue count = 1, correctly failing. Is this scenario tested? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d4613af-fb88-47d2-84c8-e0aed4f1dd2b?mode=deep",
+    "timestamp": "2026-02-19 13:03:08.227873",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [All Miners Mine Scenario] If all miners in a round mine (all have OutValue != null) and all get unique FinalOrderOfNextRound values > 0, validation passes. But if one miner has FinalOrderOfNextRound = 0, distinctCount = N-1 while OutValue count = N, correctly failing. Does the error message help identify the problematic miner? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efa540fd-6d91-46d3-a3d7-de7563f8d7c1?mode=deep",
+    "timestamp": "2026-02-19 13:03:44.482764",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [No Miners Mine Scenario] If no miners mine in a round (all OutValue == null) and all FinalOrderOfNextRound remain at default (0), distinctCount = 0 (empty after filter) and OutValue count = 0, passing validation. Is this a valid scenario for the initial round or after a network partition? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2375208a-da28-4798-83c6-326bc5bce0a5?mode=deep",
+    "timestamp": "2026-02-19 13:04:20.574590",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Partial Mining] If 3 out of 5 miners mine, and only those 3 have FinalOrderOfNextRound > 0, distinctCount = 3 and OutValue count = 3, passing validation. But what if the 3 mining miners all have FinalOrderOfNextRound = 1 (duplicate)? Depending on Distinct() implementation, distinctCount might be 1, failing validation correctly. (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_204dd867-2dc9-4452-8e5a-d6505698f737?mode=deep",
+    "timestamp": "2026-02-19 13:04:57.128246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [OutValue Calculation Attack] If the OutValue calculation in ApplyNormalConsensusData can be manipulated (e.g., using a known InValue), could miners pre-compute OutValues to pass this validation while controlling FinalOrderOfNextRound assignments maliciously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee86bd34-2d04-41c7-89a6-5f019158be46?mode=deep",
+    "timestamp": "2026-02-19 13:05:33.069681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Signature-Based Order Calculation] FinalOrderOfNextRound is calculated from signature via GetAbsModulus(signature.ToInt64(), minersCount) + 1. If an attacker can influence the signature (e.g., by choosing InValue strategically), could they manipulate their mining order to always be first or avoid conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d07a34eb-9b76-452c-939b-0fed213b4595?mode=deep",
+    "timestamp": "2026-02-19 13:06:07.239713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Conflict Resolution Loop] ApplyNormalConsensusData resolves order conflicts by iterating from supposedOrder + 1 to minersCount * 2. If the validation passes but conflicts weren't properly resolved (e.g., loop terminated early), could multiple miners end up with same FinalOrderOfNextRound, causing time slot collisions in next round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8877090-841e-46d9-bbf5-f799cb1dbc5e?mode=deep",
+    "timestamp": "2026-02-19 13:06:40.726680",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [ProvidedRound vs CurrentRound] The validation checks providedRound data, which should represent the round being validated. If an attacker provides an old or future round's data that passes validation but doesn't match the actual chain state, could this allow them to mine out of turn? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5dac4f71-926c-4663-81b9-91e3d6d963b7?mode=deep",
+    "timestamp": "2026-02-19 13:07:13.590255",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Dictionary Key Manipulation] RealTimeMinersInformation uses miner pubkey (string) as key. If an attacker can inject miners with crafted pubkeys that collide or override existing miners, could this affect the count calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9274fd7a-7606-48f1-b235-b839101bb3cb?mode=deep",
+    "timestamp": "2026-02-19 13:07:43.709535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusHeaderInfoValidationProviders/NextRoundMiningOrderValidationProvider.cs] [Function: ValidateHeaderInformation()] [Order Sequence Gaps] The validation doesn't check for sequential orders (1, 2, 3, ..., N). If orders are 1, 5, 10, 100 (with N=4 miners), distinctCount = 4 and if all mined, OutValue count = 4, passing validation. But gaps could break time slot assignment logic. Is this acceptable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a49c30e6-d47d-494b-9843-816bfb77a2e1?mode=deep",
+    "timestamp": "2026-02-19 13:08:19.339305",
+    "report_generated": false
   }
 ]
