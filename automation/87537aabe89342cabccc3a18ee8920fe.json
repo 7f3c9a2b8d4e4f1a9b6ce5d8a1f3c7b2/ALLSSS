@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/ProposerWhiteListExtensions.cs] [Function: Count()] [Access Control] Does public access to Count() allow attackers to enumerate whitelist sizes across all organizations for reconnaissance? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b8e6166-b18b-4345-a178-b424fd1ff24d?mode=deep",
+    "timestamp": "2026-02-19 08:04:29.658359",
+    "report_generated": false
+  }
+]
