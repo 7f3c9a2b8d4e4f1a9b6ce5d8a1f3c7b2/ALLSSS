@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Decryption Bypass] If EncryptedPieces.Count < minimumCount but DecryptedPieces.Count >= minersCount, can partially encrypted shares still reveal secrets? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f2c0c61-7512-4690-beb1-17425805f411?mode=deep",
+    "timestamp": "2026-02-19 06:09:22.025463",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SecretSharing.cs] [Function: RevealSharedInValues()] [Order Manipulation] Can an attacker manipulate the orders list extracted from DecryptedPieces to cause incorrect secret reconstruction via SecretSharingHelper.DecodeSecret? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b9b665f-ac43-47a9-84c4-8b096ceb50fd?mode=deep",
+    "timestamp": "2026-02-19 06:09:44.153132",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [Piece Injection] Can a miner add fake encrypted pieces to minerInRound.EncryptedPieces that don't correspond to real secret shares? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_70d2c5aa-24e1-4485-864d-bc9fd0a1322c?mode=deep",
+    "timestamp": "2026-02-19 06:10:06.589058",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PerformSecretSharing()] [PreviousInValue Override] Can input.MinersPreviousInValues overwrite legitimately revealed PreviousInValue with attacker-controlled values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d893e957-8a66-4dfb-8498-eacf5004c059?mode=deep",
+    "timestamp": "2026-02-19 06:10:29.443700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [Piece Overwrite] Can triggerInformation.DecryptedPieces overwrite existing DecryptedPieces for a miner, allowing piece replacement attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fdafc91-3105-42db-a32d-442361519d7e?mode=deep",
+    "timestamp": "2026-02-19 06:10:53.414551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: UpdateLatestSecretPieces()] [RevealedInValue Injection] Can triggerInformation.RevealedInValues inject PreviousInValue for miners who haven't actually revealed, breaking secret sharing integrity? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3909697-e2e4-4a9f-8d4a-64e61956f5d9?mode=deep",
+    "timestamp": "2026-02-19 06:11:18.213184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_LIB.cs] [Function: LastIrreversibleBlockHeightCalculator.Deconstruct()] [LIB Manipulation] Can a miner manipulate ImpliedIrreversibleBlockHeight to bias the sorted heights list and force incorrect LIB calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fdd6e00-c9af-420d-b58b-8a2dfe712958?mode=deep",
+    "timestamp": "2026-02-19 06:11:44.163924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_LIB.cs] [Function: LastIrreversibleBlockHeightCalculator.Deconstruct()] [Quorum Bypass] If impliedIrreversibleHeights.Count < MinersCountOfConsent, LIB returns 0 - can this be exploited to prevent LIB progression indefinitely? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0156403-8fdc-44f2-af88-1a021c6df20d?mode=deep",
+    "timestamp": "2026-02-19 06:12:13.915551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_LIB.cs] [Function: LastIrreversibleBlockHeightCalculator.Deconstruct()] [Index Calculation Error] Can the index calculation [Count-1/3] be manipulated through specific miner counts to select wrong LIB height? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e7c7df2-fb86-455f-a717-b23e6e1657dc?mode=deep",
+    "timestamp": "2026-02-19 06:12:43.059634",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [LIB Regression] Although code checks currentRound.ConfirmedIrreversibleBlockHeight < libHeight, can race conditions allow LIB to decrease between checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94cf386c-0efe-4437-b90a-68dbb7055c05?mode=deep",
+    "timestamp": "2026-02-19 06:13:13.714889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessUpdateValue()] [LIB Round Number Mismatch] Can ConfirmedIrreversibleBlockRoundNumber be set to currentRound.RoundNumber.Sub(1) incorrectly if rounds are skipped? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8b66d5e2-2251-4bb2-ae76-a316d6e46df1?mode=deep",
+    "timestamp": "2026-02-19 06:13:45.771547",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [VRF Verification Bypass] If Context.ECVrfVerify fails but execution continues, can invalid random numbers be accepted into State.RandomHashes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d96a8f9-80c3-4bbb-83a6-47beabcdcc55?mode=deep",
+    "timestamp": "2026-02-19 06:14:18.217321",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: ProcessConsensusInformation()] [Random Hash Overwrite] Can State.RandomHashes[Context.CurrentHeight] be overwritten by multiple calls at same height, allowing random number manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60a1e1b4-5cfc-4bef-9eab-887ac60522c4?mode=deep",
+    "timestamp": "2026-02-19 06:14:50.433644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract.cs] [Function: GetRandomHash()] [Future Block Access] Can GetRandomHash return Hash.Empty for non-existent future blocks without proper validation, causing contracts to use empty hashes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7179a755-c031-4640-9f63-9b15da6c5066?mode=deep",
+    "timestamp": "2026-02-19 06:15:22.713189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: GetLatestSignature()] [Signature Starvation] If all miners in current and previous rounds have null signatures, can GetLatestSignature return null causing downstream failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6ad8686-8080-4d34-9c3d-71c9fd18bfc8?mode=deep",
+    "timestamp": "2026-02-19 06:15:56.439563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Initial Miner Bypass] Can the initial miner bypass logic (checking if only one miner produced blocks) be exploited to skip validation for malicious blocks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ba620f5-ea85-493e-b0d0-408c284e5229?mode=deep",
+    "timestamp": "2026-02-19 06:16:31.439563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_Validation.cs] [Function: ValidateBeforeExecution()] [Validation Provider Missing] For TinyBlock behavior, no special validation providers are added - can this allow invalid tiny blocks to pass validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfb5c966-8641-4030-a62e-60563a810793?mode=deep",
+    "timestamp": "2026-02-19 06:17:07.862632",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Miner List Time Window] Can a failed miner who is in previousRound but not currentRound perform NextTerm by exploiting the OR condition in miner list check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72659096-35e3-4cad-b005-40bf7bc45846?mode=deep",
+    "timestamp": "2026-02-19 06:17:44.403610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ProcessConsensusInformation.cs] [Function: PreCheck()] [Authorization Downgrade] If PreCheck returns false, transaction still executes successfully with no state changes - can this be used for DOS by flooding with unauthorized txs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7003f697-c33c-4775-a734-49694ee50553?mode=deep",
+    "timestamp": "2026-02-19 06:18:20.336204",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [Replacement Verification Bypass] When checking miner replacements, can GetNewestPubkey return stale data allowing unauthorized replacements to pass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67ccf2fb-94b1-48c9-8682-bfafb14552fc?mode=deep",
+    "timestamp": "2026-02-19 06:18:54.638858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: ValidateConsensusAfterExecution()] [Hash Comparison Bypass] Can IsMinerListJustChanged flag be manipulated to skip hash comparison and accept invalid round information? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bc728f2d-5662-4cc8-90f2-ed2f7f54ba0f?mode=deep",
+    "timestamp": "2026-02-19 06:19:29.995919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Detection Bypass] Can a malicious miner collaborate with one other miner to avoid solitary detection (requires Count > 1 to trigger)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9099aae0-db97-48c5-abe4-8239b1beb355?mode=deep",
+    "timestamp": "2026-02-19 06:20:03.291660",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: SolitaryMinerDetection()] [Round Skip Exploit] Can skipping detection until round 4 allow a miner to monopolize first 3 rounds without solitary mining detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b30bca1-5122-4529-a738-48bccecf69b3?mode=deep",
+    "timestamp": "2026-02-19 06:20:36.008683",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusCommand.cs] [Function: GetConsensusCommand()] [Behavior Downgrade] Can invalid currentBlockTime cause NormalBlockCommandStrategy to return InvalidConsensusCommand, freezing mining? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d31f8988-e8a4-40ce-9536-4b4add129326?mode=deep",
+    "timestamp": "2026-02-19 06:21:09.804892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GetConsensusCommand()] [Tiny Block Counter Manipulation] Can State.LatestPubkeyToTinyBlocksCount.Value.BlocksCount become negative through underflow, forcing unwanted NextRound behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9629ce27-6483-443e-a404-9cf7c3b9f118?mode=deep",
+    "timestamp": "2026-02-19 06:21:45.138490",
+    "report_generated": false
+  }
+]
