@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Authorization Bypass] Can an attacker front-run a legitimate voter's ChangeVotingOption call by transferring the voting record NFT to themselves, then changing the vote option since the check at line 28 only validates Context.Sender matches votingRecord.Voter at execution time? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8705d7e-9c1f-480e-a6a9-d8955520d512?mode=deep",
+    "timestamp": "2026-02-19 12:25:55.115587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [State Inconsistency] If the VoteContract.Withdraw call at line 46 succeeds but VoteContract.Vote at line 52 fails or reverts, will the old candidate's vote count remain decremented (lines 64-70) while the new candidate never receives votes, creating permanent vote count corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6cb2e8e9-f04b-4b15-9224-01ad732c1880?mode=deep",
+    "timestamp": "2026-02-19 12:26:17.301752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Time Manipulation] At line 29, actualLockedSeconds is calculated as Context.CurrentBlockTime.Seconds.Sub(votingRecord.VoteTimestamp.Seconds). Can a miner manipulate block timestamp to make actualLockedSeconds artificially high, bypassing the check at line 31 and allowing premature vote changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cc3cbb8-fdea-453c-99a5-a6783d7e29bc?mode=deep",
+    "timestamp": "2026-02-19 12:26:39.532043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Arithmetic Error] At line 42, State.LockTimeMap[input.VoteId] = State.LockTimeMap[input.VoteId].Sub(actualLockedSeconds). If actualLockedSeconds is only slightly less than claimedLockingSeconds, could this result in a near-zero remaining lock time, allowing immediate withdrawal after vote change? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e0ed1f5-c8cd-4f18-bcaa-d6f3e4c3e0f0?mode=deep",
+    "timestamp": "2026-02-19 12:27:03.004823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Double Spend] If IsResetVotingTime is false (line 39), the lock time is reduced at line 42, but if ExtendVoterWelfareProfits was previously called for this voteId, could the voter receive extended welfare benefits while having a reduced lock time, violating the time-to-reward invariant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66e2da73-0959-4bc4-9f58-8a5cd8c7c7db?mode=deep",
+    "timestamp": "2026-02-19 12:27:27.122554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Data Center Manipulation] At lines 97-109, if a new candidate is added to DataCenters when count < GetValidationDataCenterCount(), but the candidate's CandidateVotes hasn't been properly initialized yet, could this cause a null reference or zero-vote candidate to enter the data center list? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_61025523-59f0-464d-9f0e-20c1dfdd6989?mode=deep",
+    "timestamp": "2026-02-19 12:27:53.071341",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Vote Count Inflation] At lines 76-82, if newCandidateVotes already exists, votes are added. But at lines 86-92, if null, a new CandidateVote is created. Could an attacker exploit race conditions to have both paths execute, doubling the vote count for the new candidate? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0267a05c-a8c6-411b-bbc7-636c3346aae5?mode=deep",
+    "timestamp": "2026-02-19 12:28:18.823661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Candidate Information Bypass] At line 25-26, AssertValidCandidateInformation checks if candidate exists and IsCurrentCandidate is true. However, if a candidate quits between this check and the actual vote change execution, could the vote be transferred to an inactive candidate? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06b53a88-7c59-486a-bd11-db768cdba0b4?mode=deep",
+    "timestamp": "2026-02-19 12:28:47.148171",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Profit Scheme Corruption] Lines 37-38 call ExtendVoterWelfareProfits which modifies profit details. If this call partially succeeds but ChangeVotingOption later reverts, could the voter's profit scheme be left in an inconsistent state with extended end period but old vote target? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a7fe1ff-3b59-49ac-aac7-82448d58037a?mode=deep",
+    "timestamp": "2026-02-19 12:29:14.464805",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Remove Without Validation] At line 65, oldCandidateVotes.ObtainedActiveVotingRecordIds.Remove(input.VoteId) is called. If this voteId doesn't exist in the list, does Remove silently fail, leaving vote counts inconsistent with the actual voting record list? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b561bedb-db4c-4053-af2b-ba3d5917ae8b?mode=deep",
+    "timestamp": "2026-02-19 12:29:41.320905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [Data Center Race] At lines 115-120, if oldVoteOptionPublicKey exists in DataCenters, votes are subtracted and UpdateDataCenterAfterMemberVoteAmountChanged is called. Could concurrent ChangeVotingOption calls from multiple voters for the same old candidate cause race conditions in data center ranking updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24bb411a-e5ba-4d5a-8000-19fbc0c4bf27?mode=deep",
+    "timestamp": "2026-02-19 12:30:12.774662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [IsChangeTarget Flag] At line 59, IsChangeTarget is set to true when calling VoteContract.Vote. If the VoteContract treats IsChangeTarget votes differently (e.g., bypassing certain validations), could this be exploited to create invalid voting states? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f84b739c-bd26-4c97-9578-e7f039036e1d?mode=deep",
+    "timestamp": "2026-02-19 12:30:46.433387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [GetNewestPubkey Manipulation] At line 63, oldVoteOptionPublicKey = GetNewestPubkey(votingRecord.Option). If GetNewestPubkey returns a different pubkey than expected due to candidate re-registration, could votes be subtracted from the wrong candidate's total? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92e2a06c-e7fc-4290-8752-a5868c70e332?mode=deep",
+    "timestamp": "2026-02-19 12:31:15.302688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [AllObtainedVotedVotesAmount Underflow] At lines 68-69, AllObtainedVotedVotesAmount is decremented for old candidate and incremented at lines 79-80 for new candidate. If the old candidate's AllObtainedVotedVotesAmount is less than votingRecord.Amount due to prior corruption, could this cause an underflow? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03140d40-0b6a-4882-a3ee-7f0bcff5643d?mode=deep",
+    "timestamp": "2026-02-19 12:31:48.839442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ChangeVotingOption()] [CandidateReplaceMemberInDataCenter Logic] At line 112, CandidateReplaceMemberInDataCenter is called with voteAmountOfNewCandidate. If this function incorrectly calculates whether replacement should occur due to edge cases in vote amounts, could invalid candidates enter the data center? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c18a0e06-9b09-460d-9ba2-7533251ade10?mode=deep",
+    "timestamp": "2026-02-19 12:32:23.539631",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ExtendVoterWelfareProfits()] [Infinite Extension] At lines 132-137, if lockTime is 0 or very small, lockPeriod could be 0, causing early return. But if called repeatedly with IsResetVotingTime=true in ChangeVotingOption, could a voter extend welfare indefinitely without actual time commitment? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ada77ee1-9257-463f-8ef6-8d09443b450e?mode=deep",
+    "timestamp": "2026-02-19 12:32:53.276596",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ExtendVoterWelfareProfits()] [Division By Zero] At line 133, lockTime.Div(State.TimeEachTerm.Value) is calculated. If State.TimeEachTerm.Value is 0 or not initialized, could this cause a division by zero panic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a4c3f84-a596-41e7-a030-8d84d90fc1e7?mode=deep",
+    "timestamp": "2026-02-19 12:33:29.407651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ExtendVoterWelfareProfits()] [Profit Detail Not Found] At lines 156-159, if extendingDetail is null, an AssertionException is thrown. However, could an attacker deliberately corrupt profit details to cause this assertion to fail, DOS'ing legitimate vote changes that use IsResetVotingTime=true? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5f4e234-7c30-4633-b6fe-678d40e6a331?mode=deep",
+    "timestamp": "2026-02-19 12:34:04.009742",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ExtendVoterWelfareProfits()] [EndPeriod Overflow] At line 139, endPeriod = lockPeriod.Add(treasury.CurrentPeriod). If lockPeriod is extremely large (e.g., max int64) or CurrentPeriod is large, could this overflow and wrap to a small endPeriod, granting eternal profit shares? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f25c8f28-cf6d-41c3-89ec-0d48ad4bc9d2?mode=deep",
+    "timestamp": "2026-02-19 12:34:34.362270",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ExtendVoterWelfareProfits()] [FixProfitDetail Authority] At line 144, State.ProfitContract.FixProfitDetail.Send is called. If the ProfitContract doesn't properly validate that only the scheme owner can fix profit details, could this be exploited to modify other voters' profit details? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c98909d-ca10-4a38-99a4-b1b602000edb?mode=deep",
+    "timestamp": "2026-02-19 12:35:05.805912",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: ExtendVoterWelfareProfits()] [StartPeriod Zero] At line 143, the comment says 'startPeriod is 0, others stay still' but StartPeriod is not explicitly set in the FixProfitDetailInput. Could this cause the ProfitContract to interpret profit periods incorrectly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4689e483-9a47-462e-8479-08bb0f5e1cec?mode=deep",
+    "timestamp": "2026-02-19 12:35:39.710668",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Ector.cs] [Function: GetProfitDetailByElectionVotingRecord()] [Ambiguous Profit Detail Match] At lines 177-182, profitDetail is matched first by Id equals voteId, then falls back to matching by Shares equals Weight. Could two different votes with identical weight cause incorrect profit detail retrieval? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7c8bbe54-effc-4a5d-956b-69169323f936?mode=deep",
+    "timestamp": "2026-02-19 12:36:09.377860",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetProfitDetailByElectionVotingRecord()] [LastOrDefault Risk] At line 181, LastOrDefault is used for old-style matching. If multiple profit details have the same Shares, this returns the last one. Could this cause misattribution of profit details in multi-vote scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_878f7240-0864-49be-b05a-9e28d7634e2c?mode=deep",
+    "timestamp": "2026-02-19 12:36:43.238115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Interest Parameter Bounds] At line 198, only checks info.Interest > 0, but doesn't enforce an upper bound. Could an attacker (if they control the controller) set Interest to max int32, causing massive vote weight inflation in GetVotesWeight calculation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e25c95f-e573-416f-9e86-53a0ff40520d?mode=deep",
+    "timestamp": "2026-02-19 12:37:18.621652",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: SetVoteWeightInterest()] [Capital Zero Edge Case] At line 196, only checks info.Capital > 0. If Capital is set to 1 while Interest is very large, could the ratio Interest/Capital at line 583 become huge, inflating vote weights exponentially? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2367ebc1-0c55-47bc-856d-71fb39e0ea2f?mode=deep",
+    "timestamp": "2026-02-19 12:37:54.997507",
+    "report_generated": false
+  }
+]
