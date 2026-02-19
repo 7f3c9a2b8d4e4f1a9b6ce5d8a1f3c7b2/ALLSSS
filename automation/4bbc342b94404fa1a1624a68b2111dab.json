@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Gas Manipulation] Each iteration calls GetCandidateVote which is another view function - can an attacker craft candidates with expensive vote lookups to DOS pagination? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffb32063-d4b7-4ad0-a617-567db51f606d?mode=deep",
+    "timestamp": "2026-02-19 05:15:37.187359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetPageableCandidateInformation()] [Data Consistency] Between reading candidates list and calling GetCandidateVote, votes could change - can this show inconsistent candidate details? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_437b70d6-9a23-4e50-b1ed-9020f793f737?mode=deep",
+    "timestamp": "2026-02-19 05:15:59.584720",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVote()] [Data Integrity] Returns a new CandidateVote with only Pubkey set if state lookup fails - can consuming contracts misinterpret this as a valid candidate with zero votes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b04fb4d0-8443-49f5-ada6-0d4ae102e3e0?mode=deep",
+    "timestamp": "2026-02-19 05:16:22.546296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVote()] [Input Validation] ByteStringHelper.FromHexString(input.Value) could throw on invalid hex - is there validation before this call? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1625663e-c88d-472a-a839-07086096cb66?mode=deep",
+    "timestamp": "2026-02-19 05:16:45.814397",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithRecords()] [Null Return] If votes == null, it returns new CandidateVote() without any data - can this confuse callers expecting at least the pubkey? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_deb69c23-0c2c-4f51-9be1-f6faaa878a80?mode=deep",
+    "timestamp": "2026-02-19 05:17:09.851686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithRecords()] [Index Out of Bounds] The index++ pattern with ObtainedActiveVotingRecordIds matching obtainedRecords - if VoteContract returns different count, can this crash? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0a62edf5-a2b1-4d70-8955-faa9fa85a383?mode=deep",
+    "timestamp": "2026-02-19 05:17:35.030165",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithRecords()] [DOS Attack] If ObtainedActiveVotingRecordIds contains thousands of IDs, can the GetVotingRecords call and iteration exhaust gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f016f7be-600d-4d61-b789-e8dcd96537b5?mode=deep",
+    "timestamp": "2026-02-19 05:18:00.822737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithAllRecords()] [Logic Error] Calls GetCandidateVoteWithRecords first, then adds withdrawn records - if the first call modifies shared state, can this cause double-counting? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c122ab66-3c75-4afe-b32e-92a1b11bebc3?mode=deep",
+    "timestamp": "2026-02-19 05:18:27.952031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithAllRecords()] [Index Out of Bounds] Same index++ pattern with ObtainedWithdrawnVotingRecordIds and obtainedWithdrawnRecords - can count mismatches cause crashes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0870d015-f211-4bfc-8a5e-ce85542ef3fb?mode=deep",
+    "timestamp": "2026-02-19 05:18:55.602869",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetCandidateVoteWithAllRecords()] [DOS Attack] Combined active + withdrawn records could create massive response datasets - is there size limiting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9e35e97-b8af-4928-80c5-4b49b9238c7a?mode=deep",
+    "timestamp": "2026-02-19 05:19:27.583712",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: TransferVotingRecordToElectionVotingRecord()] [Logic Error] GetNewestPubkey(votingRecord.Option) could return null or different pubkey - is there validation that this matches expected candidate? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86a104de-f96b-4ca1-96cb-7fa3ce5cc40a?mode=deep",
+    "timestamp": "2026-02-19 05:19:56.089729",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: TransferVotingRecordToElectionVotingRecord()] [State Lookup] State.LockTimeMap[voteId] is accessed without null check - can missing lock time data cause exceptions or default to zero? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30a18547-20cf-424a-b3a4-514f385ce375?mode=deep",
+    "timestamp": "2026-02-19 05:20:25.232800",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: TransferVotingRecordToElectionVotingRecord()] [Timestamp Overflow] votingRecord.VoteTimestamp.AddSeconds(lockSeconds) - if lockSeconds is Int64.MaxValue or very large, can this overflow Timestamp? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3bddde2-7559-4f16-af65-dc2e740dfe6f?mode=deep",
+    "timestamp": "2026-02-19 05:21:00.076924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: TransferVotingRecordToElectionVotingRecord()] [Logic Error] Weight is calculated via GetVotesWeight(votingRecord.Amount, lockSeconds) - if lock time is from State but amount is from votingRecord, can they be inconsistent? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6019844-3722-453b-ac9d-5bfd181bd70c?mode=deep",
+    "timestamp": "2026-02-19 05:21:34.533387",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: TransferVotingRecordToElectionVotingRecord()] [Data Consistency] If votingRecord.Option (original candidate) differs significantly from GetNewestPubkey result, can this misattribute votes after candidate replacement? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e46d321-96bd-4cdb-9222-90e030f01b7e?mode=deep",
+    "timestamp": "2026-02-19 05:22:09.901769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Logic Error] If latestSnapshot is null or ElectionResult is empty, alternativeCandidates remains empty - can this allow evil miners to continue if there are valid candidates available? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63f18eeb-313b-4ea4-a7af-b8dd7fe84175?mode=deep",
+    "timestamp": "2026-02-19 05:22:37.791535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [DOS Attack] The Where().OrderByDescending().ToList() chain on ElectionResult - if snapshot has thousands of candidates, can this exhaust gas? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe7ce197-de7f-4b89-9e17-649065ac9d30?mode=deep",
+    "timestamp": "2026-02-19 05:23:09.119556",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Logic Error] Initial miners are excluded via ByteString comparison, but if State.InitialMiners contains stale or duplicated entries, can this fail to properly exclude them? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_792c4991-c39b-4f18-9b0a-93c24f0cf669?mode=deep",
+    "timestamp": "2026-02-19 05:23:36.535009",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Integer Overflow] Math.Min(evilMinersPubKeys.Count, maybeNextCandidates.Count) - if counts are manipulated to be negative, can this cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d467db7-beec-4e02-a8cd-58aa91b5e6a8?mode=deep",
+    "timestamp": "2026-02-19 05:24:05.305464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Logic Error] When diff > 0 and adding initial miners, it filters by !State.BannedPubkeyMap[k] - but what if all initial miners are banned? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96857bdd-087d-47eb-81e0-20f1afe224c0?mode=deep",
+    "timestamp": "2026-02-19 05:24:33.435822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Race Condition] Between identifying evilMinersPubKeys and selecting alternativeCandidates, can candidates be banned or unbanned, causing mismatch? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c31dafdf-c076-4468-8f62-8595d302a655?mode=deep",
+    "timestamp": "2026-02-19 05:25:06.766505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Logic Error] The Take(takeAmount) on selectedInitialMiners - if takeAmount exceeds available unbanned initial miners, can this return fewer alternatives than needed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_caa279e1-bbd8-444d-9048-b4525c0f06b2?mode=deep",
+    "timestamp": "2026-02-19 05:25:42.373840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetMinerReplacementInformation()] [Data Integrity] If input.CurrentMinerList contains duplicates or invalid pubkeys, can this affect evil miner detection accuracy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5679503f-e55c-42a9-af99-633935c4e453?mode=deep",
+    "timestamp": "2026-02-19 05:26:16.553821",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetEvilMinersPubkeys()] [Logic Error] Simply checks State.BannedPubkeyMap[p] for each miner - if banned status is not updated timely, can evil miners evade detection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7cef26e-f04d-4155-a980-e965a6784507?mode=deep",
+    "timestamp": "2026-02-19 05:26:45.604744",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ViewMethods.cs] [Function: GetEvilMinersPubkeys()] [DOS Attack] If currentMinerList is extremely large, the Where().ToList() could consume excessive gas - is there a miner count limit? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ce68c36d-8dd4-4af1-8bf7-fe845efa1378?mode=deep",
+    "timestamp": "2026-02-19 05:27:15.705366",
+    "report_generated": false
+  }
+]
