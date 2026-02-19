@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Decimal to Long Conversion] At line 584, Pow returns decimal but is cast to (long), can this truncation cause vote weight to be lower than expected, giving voters less welfare shares? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_63555c8d-fa17-4879-b34e-cb6709f11566?mode=deep",
+    "timestamp": "2026-02-19 14:33:48.110344",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Proportion Overflow] At lines 585 and 590, votesAmount.Mul(AmountProportion).Div(TimeProportion) is added, if AmountProportion is large and votesAmount is large, can Mul overflow before Div? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa071347-cd68-42c2-ba51-15ca4c8a14a2?mode=deep",
+    "timestamp": "2026-02-19 14:34:10.199320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Fallback Interest Selection] At lines 588-591, if lockDays exceeds all interest infos, maxInterestInfo.Last() is used, but if VoteWeightInterestInfos is empty, can Last() throw exception? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_130b85f9-c541-4c6b-b1c9-82ab170c3807?mode=deep",
+    "timestamp": "2026-02-19 14:34:32.834209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Negative Weight Possibility] If all calculations result in negative intermediate values due to overflows, can the final weight be negative and cause subtraction errors in profit calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bb9f2c48-00ad-4761-af59-7817e59aaad0?mode=deep",
+    "timestamp": "2026-02-19 14:34:55.409318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetVotesWeight()] [Weight Calculation Consistency] If VoteWeightInterestList or VoteWeightProportion changes between a user's vote and withdraw, the weight used for adding beneficiary differs from intended, can users be locked into outdated weight calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fd608a8b-dc06-44b4-8997-6d3c0eec8223?mode=deep",
+    "timestamp": "2026-02-19 14:35:19.091831",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Pow()] [Early Return Error] At line 597, if y == 1, the function returns (long)x, but x is decimal, can this cast lose precision and give incorrect weight? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3d5281f-bd0a-46b2-bfc0-a274211f65b0?mode=deep",
+    "timestamp": "2026-02-19 14:35:43.629424",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Pow()] [Exponent Overflow] At line 601, BitArray is created from y.ToBytes(false), if y is very large (e.g., user locks for 1000+ years), can BitArray or loop iterations cause excessive gas consumption? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98a5fde8-05b1-483c-b70c-2ce8cd69d7dd?mode=deep",
+    "timestamp": "2026-02-19 14:36:09.906743",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Pow()] [Exponential Growth Overflow] At lines 604-606, a *= a causes exponential growth in each iteration, if x > 1 and y is large, can 'a' exceed decimal.MaxValue and overflow? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed1279e0-e114-49a2-80b2-4d5a734a7c18?mode=deep",
+    "timestamp": "2026-02-19 14:36:38.273519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Pow()] [Zero Exponent] At line 599-600, if y == 0, function returns 1, but in GetVotesWeight context, if lockTime is 0, should voting even be allowed? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9aa9cebc-5f45-4215-b3bf-9c2cc732fcad?mode=deep",
+    "timestamp": "2026-02-19 14:37:05.624738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetEndPeriod()] [Division by Zero] At line 615, lockTime.Div(State.TimeEachTerm.Value) is calculated, if TimeEachTerm is 0, can this cause division by zero crash? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc9c13d1-cff3-426c-91da-d985bb983c9e?mode=deep",
+    "timestamp": "2026-02-19 14:37:35.991969",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetEndPeriod()] [Period Overflow] At line 615, lockTime.Div(TimeEachTerm).Add(treasury.CurrentPeriod), if both values are large, can the sum overflow Int64.MaxValue causing period to wrap to negative or small value? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98e713c8-61c2-496b-8ca3-8ed63247bbfe?mode=deep",
+    "timestamp": "2026-02-19 14:38:07.644728",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: GetEndPeriod()] [Treasury State Race] Treasury.CurrentPeriod is fetched at line 614, but if Treasury advances period between GetEndPeriod calculation and AddBeneficiaryToVoter execution, can endPeriod be off? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3182567-9622-408b-b155-e0975e322ecf?mode=deep",
+    "timestamp": "2026-02-19 14:38:38.470901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Withdraw()] [Authorization Check Missing] At line 631, votingRecord is fetched, but there's no explicit check that Context.Sender == votingRecord.Voter until GetElectorVote is called, can any address withdraw someone else's vote? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3746cd0e-b436-4c55-bd95-86fcf388dc84?mode=deep",
+    "timestamp": "2026-02-19 14:39:10.030221",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Withdraw()] [Time Validation Bypass] At line 635, actualLockedTime >= claimedLockDays is required, but if claimedLockDays is 0 (corrupted state), can votes be withdrawn immediately? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75918268-8ada-4ec1-a560-94d4d6f08389?mode=deep",
+    "timestamp": "2026-02-19 14:39:40.313252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContract_Elector.cs] [Function: Withdraw()] [Underflow in Time Calculation] At line 633, actualLockedTime is calculated as CurrentBlockTime.Seconds.Sub(VoteTimestamp.Seconds), if VoteTimestamp > CurrentBlockTime due to clock issues, can this underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c644bb7a-a874-40f7-970e-c87e36a90ec0?mode=deep",
+    "timestamp": "2026-02-19 14:40:07.539760",
+    "report_generated": false
+  }
+]
