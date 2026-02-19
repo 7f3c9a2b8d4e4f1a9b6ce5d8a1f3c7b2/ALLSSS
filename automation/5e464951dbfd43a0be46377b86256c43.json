@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Empty String Bypass] Line 117-118 returns true for null or empty strings. Can proposals have no description URL at all, reducing transparency? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4c899082-41c9-4343-823d-2d6fac38bccc?mode=deep",
+    "timestamp": "2026-02-19 05:57:44.887606",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Malicious URL] Lines 119-120 only validate HTTP/HTTPS schemes. Can attackers host phishing or malicious content on valid HTTP URLs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3951137e-8c74-4b17-8afb-c7bd6aaee65b?mode=deep",
+    "timestamp": "2026-02-19 05:57:58.052629",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [URL Length] There's no validation of URL length in this function. Can extremely long URLs cause DOS or storage issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9a5c72f-b357-4236-8f1c-bbfb6dac2074?mode=deep",
+    "timestamp": "2026-02-19 05:58:20.291469",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Relative URL] The check uses UriKind.Absolute on line 119. Can relative URLs bypass validation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_253fc1b5-9429-47c3-a010-e767052ecad9?mode=deep",
+    "timestamp": "2026-02-19 05:58:43.187699",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: ValidateDescriptionUrlScheme()] [Special Characters] URI.TryCreate on line 119 may accept encoded URLs with special characters. Can these be used for injection attacks in systems consuming this data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29de90b7-ecdd-4312-b07e-a9a7a785f836?mode=deep",
+    "timestamp": "2026-02-19 05:59:06.937858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetValidProposal()] [TOCTOU Race] Lines 126-128 validate the proposal, but can the proposal state be modified between retrieval and validation, causing inconsistent state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35ce9d4f-226d-466c-b143-55d817251844?mode=deep",
+    "timestamp": "2026-02-19 05:59:32.822455",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetValidProposal()] [Null Proposal] Line 127 asserts proposal != null but doesn't prevent proposals from being deleted after validation. Can this cause null reference errors in calling code? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8da309ac-6870-427d-a30a-9371abe51235?mode=deep",
+    "timestamp": "2026-02-19 06:00:01.669238",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetValidProposal()] [Validation Bypass] If the Validate function on line 128 has bugs, can invalid proposals be retrieved and used? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ee05d0a-d7d7-4c6a-abc2-4cb39cd05069?mode=deep",
+    "timestamp": "2026-02-19 06:00:26.418633",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetValidProposal()] [Expired Proposal Use] The Validate check on line 128 verifies expiration, but can an expired proposal still be valid for some operations after this returns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e1eae2e-f61c-4e10-b83f-63a49183e303?mode=deep",
+    "timestamp": "2026-02-19 06:00:53.563648",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetTokenInfo()] [External Call Failure] Line 135 makes an external call to TokenContract. Can this revert if the token contract is paused or upgraded, blocking all referendum operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20081b35-2f0a-4d77-83cd-bbf0d607911f?mode=deep",
+    "timestamp": "2026-02-19 06:01:21.359318",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetTokenInfo()] [Symbol Validation] There's no validation that the symbol parameter is non-empty before calling the token contract on lines 135-138. Can empty symbols cause unexpected behavior? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d54bf830-3270-408b-93cf-14cc583238fa?mode=deep",
+    "timestamp": "2026-02-19 06:01:48.598823",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetTokenInfo()] [Return Value] The function returns TokenInfo but doesn't validate the returned data. Can a malicious or buggy token contract return invalid TokenInfo? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3179d7bf-db8a-4627-94a2-46d56271652c?mode=deep",
+    "timestamp": "2026-02-19 06:02:14.555510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetTokenInfo()] [DOS via Gas] The external call on line 135 could consume unbounded gas if the token contract is malicious. Can this be used for DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ab58048-7acd-42c3-8ceb-8deccfa044f1?mode=deep",
+    "timestamp": "2026-02-19 06:02:44.303400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetAllowance()] [Allowance Check Timing] Line 150 asserts allowance > 0, but can the allowance be reduced or revoked between this check and actual usage in LockToken()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34cbfce4-495f-4313-b70c-c34d2d4eff0b?mode=deep",
+    "timestamp": "2026-02-19 06:03:16.506416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetAllowance()] [Virtual Address Spender] Line 147 uses GetProposalVirtualAddress(proposalId) as the spender. Can this virtual address be manipulated to check allowance for unintended addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca9abced-9b73-4ea3-a8d5-69c5b8d12f02?mode=deep",
+    "timestamp": "2026-02-19 06:03:48.598715",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetAllowance()] [Zero Allowance] Line 150 checks allowance > 0, but can an allowance of exactly 1 wei be set to pass the check while being insufficient for actual locking? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2aac12c-6264-4677-aea9-cd223945731d?mode=deep",
+    "timestamp": "2026-02-19 06:04:22.183788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetAllowance()] [Owner Validation] There's no validation that the owner parameter on line 145 is the actual token holder. Can allowances be checked for arbitrary addresses? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6598b852-cf03-4567-a0d2-d1767c9cb698?mode=deep",
+    "timestamp": "2026-02-19 06:04:53.734979",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetAllowance()] [External Call] The GetAllowance call on line 144 is an external call that could fail or be manipulated. Can this be exploited to DOS referendum operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a0acce9-f525-4d06-af28-cfa9e78af38a?mode=deep",
+    "timestamp": "2026-02-19 06:05:24.062494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GetAllowance()] [Symbol Validation] No validation that tokenSymbol on line 148 matches the organization's required token. Can allowances for wrong tokens be checked? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a443b928-887a-4df4-a797-6d514c9c80a9?mode=deep",
+    "timestamp": "2026-02-19 06:05:54.542936",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GenerateProposalId()] [Token Manipulation] Line 156 uses input.Token if provided, otherwise computes from input. Can an attacker provide a custom Token value to generate predictable or colliding proposal IDs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8afe49d9-cc50-4249-8118-ea0d2bde13e6?mode=deep",
+    "timestamp": "2026-02-19 06:06:24.623812",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GenerateProposalId()] [ID Collision] If input.Token is null, line 156 computes hash from entire input. Can two different inputs generate the same proposal ID? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_65629f80-d376-43d9-962c-e34eefa15734?mode=deep",
+    "timestamp": "2026-02-19 06:06:56.287557",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GenerateProposalId()] [Deterministic ID] The Context.GenerateId on line 156 might be deterministic. Can attackers predict proposal IDs and front-run proposal creation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21a344b6-9f5f-41cc-9727-9bee8573b3ea?mode=deep",
+    "timestamp": "2026-02-19 06:07:29.424031",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: GenerateProposalId()] [Token Reuse] If an attacker reuses the same input.Token value across multiple calls, will they get the same proposalId, causing proposal overwrites? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_550bd3d5-8ae1-4b73-b9f0-ac1f90d963e1?mode=deep",
+    "timestamp": "2026-02-19 06:07:56.756578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Proposal Overwrite] Line 163 checks if proposal already exists but the check is after ID generation on line 162. Can there be a race condition where two proposals get the same ID? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d30197b-8282-4b3b-978f-beacaa4c8e87?mode=deep",
+    "timestamp": "2026-02-19 06:08:27.783671",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: CreateNewProposal()] [Validation Bypass] CheckCreateProposalInput is called on line 161 before GenerateProposalId. Can an attacker modify input after validation but before ID generation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d9bc260-3e86-4f9b-a08f-29ca514f0e4e?mode=deep",
+    "timestamp": "2026-02-19 06:08:59.480286",
+    "report_generated": false
+  }
+]
