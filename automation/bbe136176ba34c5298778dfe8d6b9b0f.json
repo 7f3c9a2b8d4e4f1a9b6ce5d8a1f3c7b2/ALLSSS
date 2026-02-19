@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Counting Error] Does Count() with Contains() at line 43 correctly handle duplicate addresses in proposal.Abstentions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_617c4e80-03a6-412f-bf61-422e9dbb0856?mode=deep",
+    "timestamp": "2026-02-19 11:06:11.005607",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Threshold Logic] Should line 44 use '>' or '>=' operator for MaximalAbstentionThreshold comparison? Does current logic match intended semantics? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0486738d-34f1-4e26-9e7d-52ea5db05f4d?mode=deep",
+    "timestamp": "2026-02-19 11:06:33.858483",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Gas Attack] Can an attacker spam proposal.Abstentions with many addresses to cause gas exhaustion during Count().Contains() iteration? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9b878e4-ce55-4238-b5e4-22b44d4a8c26?mode=deep",
+    "timestamp": "2026-02-19 11:06:57.263093",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Validation Gap] Is there a check ensuring organization.OrganizationMemberList is valid before Contains() usage to prevent NullReferenceException? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07cd7c15-cbbd-4db2-bc2a-57ea36da578d?mode=deep",
+    "timestamp": "2026-02-19 11:07:21.441581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Counting Error] At line 49, does Count() with Contains() correctly count approvals if proposal.Approvals contains duplicate addresses or non-member addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3eb632d8-b894-4ffd-a089-30b057dc1d9e?mode=deep",
+    "timestamp": "2026-02-19 11:07:46.481055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Threshold Bypass] At line 51, using '>=' for MinimalApprovalThreshold—can an attacker exploit edge case where threshold equals approval count to pass proposals prematurely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21160a30-64b7-4760-a68c-606dacbbb890?mode=deep",
+    "timestamp": "2026-02-19 11:08:11.675774",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Short Circuit] If isApprovalEnough is false at line 52, function returns false at line 53 without checking MinimalVoteThreshold—can this allow denial of valid proposals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15feb1c8-494d-4db9-9a9b-6e46d37f200e?mode=deep",
+    "timestamp": "2026-02-19 11:08:38.013663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Counting Overlap] At lines 55-57, Concat() combines Abstentions, Approvals, and Rejections—can overlapping addresses (if a user votes multiple times) inflate the total count incorrectly? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05f37e8a-dbeb-40b5-ab00-06405cefc095?mode=deep",
+    "timestamp": "2026-02-19 11:09:05.265496",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Integer Overflow] At lines 56-57, can the Count() of concatenated lists overflow if proposal contains extremely large vote collections? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c05cf6f3-3cc2-4a1d-9e08-fb4c876cc55b?mode=deep",
+    "timestamp": "2026-02-19 11:09:34.471386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Gas Attack] Can an attacker create proposals with massive Abstentions/Approvals/Rejections lists causing Concat().Count() at lines 56-57 to exceed gas limits? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18aea94f-d4e8-4f45-ae35-d267c95fc0eb?mode=deep",
+    "timestamp": "2026-02-19 11:10:03.180623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Logic Error] Does line 57 correctly compare total votes to MinimalVoteThreshold, or should it count distinct voters only? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ca3cbfb-c35f-4f2e-8424-b152b47ff553?mode=deep",
+    "timestamp": "2026-02-19 11:10:35.177134",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Threshold Semantics] At line 55, using '>=' for MinimalVoteThreshold—should it require strictly greater than threshold to reach consensus? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5cd1ff61-6eda-4016-8b99-7ee50ec7e5f4?mode=deep",
+    "timestamp": "2026-02-19 11:11:03.921694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [State Consistency] Can organization.ProposalReleaseThreshold values change between line 51 and line 57 checks, creating TOCTOU vulnerability? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96acad77-9982-42fe-82fc-e7fcfdd7aa4e?mode=deep",
+    "timestamp": "2026-02-19 11:11:33.716428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Null Check] At line 63, if ProposerWhiteList is null instead of empty, does Empty() throw exception before validation completes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de305c44-4010-42a3-b52f-06b6dc218477?mode=deep",
+    "timestamp": "2026-02-19 11:12:03.537988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Duplicate Detection] At line 64, does AnyDuplicate() on ProposerWhiteList correctly identify all duplicates including null addresses or zero-addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4a975234-b79d-4e05-9824-95e5dc1355e3?mode=deep",
+    "timestamp": "2026-02-19 11:12:35.944404",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [List Validation] At lines 65-66, if OrganizationMemberList contains null or zero-addresses, can AnyDuplicate() still pass validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e12212cd-5e2c-41a0-aeda-c89cbe45c1eb?mode=deep",
+    "timestamp": "2026-02-19 11:13:09.734447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Null Reference] At line 68, are OrganizationAddress and OrganizationHash checked for null, but what if they're valid but point to incorrect/malicious addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69e37656-ff0d-48fb-aa93-780f0176f36f?mode=deep",
+    "timestamp": "2026-02-19 11:13:39.761182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Integer Boundary] At line 72, can MinimalVoteThreshold exceed organizationMemberCount due to integer overflow in large organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dee5a0a7-be8c-4760-ba2b-2060822a74df?mode=deep",
+    "timestamp": "2026-02-19 11:14:11.920319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Threshold Logic] At line 73, does MinimalApprovalThreshold <= MinimalVoteThreshold always make sense, or can this create impossible voting scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bbab0fe9-53bc-4b70-b45e-188a8c4c25ca?mode=deep",
+    "timestamp": "2026-02-19 11:14:42.856355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Zero Threshold] At line 74, MinimalApprovalThreshold > 0 prevents zero-approval proposals, but can an attacker set it to 1 in a large organization to effectively disable approvals? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d8a28ce-ad9f-4248-b225-c8caf47246ba?mode=deep",
+    "timestamp": "2026-02-19 11:15:15.212385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Negative Values] At lines 75-76, checks ensure MaximalAbstentionThreshold and MaximalRejectionThreshold >= 0, but can negative values pass due to integer underflow? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_29153d31-7322-46b8-9dfc-a2276a0c6a46?mode=deep",
+    "timestamp": "2026-02-19 11:30:45.873356",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Arithmetic Overflow] At lines 77-78, can MaximalAbstentionThreshold + MinimalApprovalThreshold overflow before comparison to organizationMemberCount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_33347138-f13f-4284-892c-1f797308bb31?mode=deep",
+    "timestamp": "2026-02-19 11:31:09.006416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Arithmetic Overflow] At lines 79-80, can MaximalRejectionThreshold + MinimalApprovalThreshold overflow before comparison to organizationMemberCount? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e16c00be-36af-470d-acfa-59a11f0bd65b?mode=deep",
+    "timestamp": "2026-02-19 11:31:32.939663",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Logic Inconsistency] Do the threshold checks at lines 77-80 correctly handle edge case where abstention + rejection thresholds could both trigger simultaneously? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bf5ca11b-712a-4d9f-8180-0f1afd9f2714?mode=deep",
+    "timestamp": "2026-02-19 11:31:57.873248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: Validate(Organization)] [Boundary Condition] If organizationMemberCount is 1, can the threshold validations at lines 72-80 create impossible governance scenarios? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca207104-a142-45ff-9a52-641cb4c7f772?mode=deep",
+    "timestamp": "2026-02-19 11:32:23.472525",
+    "report_generated": false
+  }
+]
