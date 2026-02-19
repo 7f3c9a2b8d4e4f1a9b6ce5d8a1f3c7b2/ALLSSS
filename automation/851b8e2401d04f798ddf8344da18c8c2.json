@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Symbol Validation Bypass] Can IsTokenAvailableForMethodFee check be bypassed by donating tokens that later become unavailable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_338cfded-578a-47e5-9c5e-accdc00cc879?mode=deep",
+    "timestamp": "2026-02-19 07:49:07.182054",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Automatic Release DOS] Can Release() be called during normal consensus flow when TokenHolderContract is null, silently failing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6bbae517-58c8-4b55-84b6-0999d828372a?mode=deep",
+    "timestamp": "2026-02-19 07:49:29.472182",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Timing Manipulation] Can (CurrentBlockTime - BlockchainStartTimestamp).Seconds.Div(PeriodSeconds) calculation be manipulated through timestamp attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c0d743f-b231-46be-a9f7-c4125c7d31d4?mode=deep",
+    "timestamp": "2026-02-19 07:49:51.726050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Period Comparison Error] Can scheme.Period - 1 comparison allow premature or delayed dividend distribution? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0794dec0-30eb-4911-8f17-042996414f29?mode=deep",
+    "timestamp": "2026-02-19 07:50:14.911615",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Fee Validation Bypass] Can negative amounts bypass AssertValidToken check and be set as method fees? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a6e4ccb-833a-4c93-b048-709d1aeedc15?mode=deep",
+    "timestamp": "2026-02-19 07:50:38.938789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Controller Race Condition] Can RequiredMethodFeeControllerSet be called multiple times concurrently, allowing unauthorized fee updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1448c344-4a63-4853-b6a0-9b31154f4048?mode=deep",
+    "timestamp": "2026-02-19 07:51:04.304722",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Authority Validation Bypass] Can CheckOrganizationExist return true for malicious contracts that implement ValidateOrganizationExist incorrectly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_189fac49-82ad-49e1-8998-7b4dba6cc688?mode=deep",
+    "timestamp": "2026-02-19 07:51:31.631434",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS1_TransactionFeeProvider.cs] [Function: GetMethodFee()] [Size Fee Bypass] Can core methods (InitialAElfConsensusContract, FirstRound, etc.) with IsSizeFeeFree=true be exploited for large transaction DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d7dc607-3047-490c-a840-0f2c51a65600?mode=deep",
+    "timestamp": "2026-02-19 07:51:57.343119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundNumber()] [Round Jump Attack] If roundNumber validation (oldRoundNumber + 1 != roundNumber) fails but state is partially updated elsewhere, can rounds be skipped? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34f022f0-5f0b-4343-8323-585f080ff4dc?mode=deep",
+    "timestamp": "2026-02-19 07:52:24.429349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Round Removal Logic Error] Can roundNumberToRemove calculation (round.RoundNumber.Sub(KeepRounds)) remove active rounds during abnormal mining status? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3d052d38-ab88-4ba7-8a32-cfff39232221?mode=deep",
+    "timestamp": "2026-02-19 07:52:53.924114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: AddRoundInformation()] [Secret Sharing Event Spam] Can SecretSharingInformation event be fired with invalid PreviousRound data when round.RoundNumber > 1? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f637da00-6fdc-4c72-99ca-c3fd71425412?mode=deep",
+    "timestamp": "2026-02-19 07:53:24.071346",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: TryToUpdateRoundInformation()] [Null Round Override] Can State.Rounds[round.RoundNumber] be set to malicious round if ri check passes but round object is manipulated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe571789-a5da-4769-a328-a70b62c123c3?mode=deep",
+    "timestamp": "2026-02-19 07:53:54.521644",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_HelpMethods.cs] [Function: EnsureTransactionOnlyExecutedOnceInOneBlock()] [Height Equality Bypass] Can multiple transactions execute at same height if LatestExecutedHeight update fails or is delayed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c20719ec-cca2-4679-92f7-7146d4884ca2?mode=deep",
+    "timestamp": "2026-02-19 07:54:22.253117",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextMinerPubkey()] [Null Reference] If no miner has ExpectedMiningTime > CurrentBlockTime and no miner is extra block producer, can this return null causing downstream failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8900329d-aa9a-4db0-94f3-d5a5d56c9fa3?mode=deep",
+    "timestamp": "2026-02-19 07:54:52.570966",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: ConvertAddressToPubkey()] [Ambiguous Key Selection] Can multiple public keys map to same address, causing FirstOrDefault to return wrong pubkey? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f4edff6-8b7b-4837-982c-fb1da7b840d2?mode=deep",
+    "timestamp": "2026-02-19 07:55:24.674587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetNextElectCountDown()] [Negative Countdown] Can (currentTermEndTime - CurrentBlockTime).Seconds return negative value if CurrentBlockTime exceeds term end? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dac0763a-96c2-4b23-96bf-5df3a994f47d?mode=deep",
+    "timestamp": "2026-02-19 07:55:56.810471",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ViewMethods.cs] [Function: GetPreviousTermInformation()] [Invalid Term Query] Can querying term 0 or negative term cause State.FirstRoundNumberOfEachTerm to return invalid data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c2fb6c7-36d5-406c-9dd5-9d4f44e246fb?mode=deep",
+    "timestamp": "2026-02-19 07:56:29.471626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [InValue Nullity] Assert checks triggerInformation.InValue != null, but can empty Hash still pass, leading to predictable OutValue? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e112f4aa-8521-458b-986d-2e08a259e8f4?mode=deep",
+    "timestamp": "2026-02-19 07:57:03.539986",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [Signature Computation Error] Can HashHelper.ConcatAndCompute(outValue, InValue) produce colliding signatures for different InValues? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfc250c7-39e7-4225-8b55-d7b6e7db8759?mode=deep",
+    "timestamp": "2026-02-19 07:57:36.433320",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [PreviousInValue Self-Check Bypass] Can fake PreviousInValue pass self-check if previousRound.RealTimeMinersInformation doesn't contain pubkey? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa323d92-2e97-4465-8991-1783f6ece8c8?mode=deep",
+    "timestamp": "2026-02-19 07:58:09.799174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataToPublishOutValue()] [First Term Detection Error] Can IsFirstRoundOfCurrentTerm return incorrect result causing wrong PreviousInValue logic path? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1996d24e-3a91-4bc8-9cf3-938018f0d121?mode=deep",
+    "timestamp": "2026-02-19 07:58:38.809170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextRound()] [Replacement Miner Handling] When miner is replaced in next round, can they still RevealSharedInValues for current round with stale data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bcecb806-890c-4a89-b0c4-55da13362862?mode=deep",
+    "timestamp": "2026-02-19 07:59:11.650232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_GetConsensusBlockExtraData.cs] [Function: GetConsensusExtraDataForNextTerm()] [Term Generation Failure] Can GenerateFirstRoundOfNextTerm return round with RoundId=0 failing assertion and blocking term transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5525423-a467-47cd-b966-a41869a7aea7?mode=deep",
+    "timestamp": "2026-02-19 07:59:44.455062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateConsensusTransactions()] [Missing Pubkey Check] Can triggerInformation.Pubkey be empty ByteString bypassing the Any() check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60962c02-9e43-4b63-88ab-a6aadc13b209?mode=deep",
+    "timestamp": "2026-02-19 08:00:13.771138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS4_ConsensusInformationProvider.cs] [Function: GenerateTransactionListByExtraData()] [Behavior Mismatch] Can consensusInformation.Behaviour not match actual round state, causing wrong transaction generation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_413b5057-3229-4075-9f6f-96500e3e3c00?mode=deep",
+    "timestamp": "2026-02-19 08:00:41.762268",
+    "report_generated": false
+  }
+]
