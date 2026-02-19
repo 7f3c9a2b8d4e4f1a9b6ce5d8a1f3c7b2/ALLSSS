@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMiningInterval()] [DOS] What if attacker adds 1000 miners with only two having Order 1 and 2? Where() must iterate all entries on every call - excessive gas consumption? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b7fe601-7cdb-4864-8e5b-a9ab3d8494d3?mode=deep",
+    "timestamp": "2026-02-19 15:02:16.315791",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetMiningInterval()] [Inconsistency] GetMiningInterval() uses first two miners, but CheckRoundTimeSlots() validates all consecutive pairs - can intervals be valid per this function but invalid per CheckRoundTimeSlots()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efd4757b-676f-4d30-ac6c-790818aee61c?mode=deep",
+    "timestamp": "2026-02-19 15:02:38.381211",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Round Number Bypass] Function has different logic for RoundNumber == 1 vs others - can attacker manipulate RoundNumber to 1 to bypass standard time slot validation and use weaker first-round logic? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a41272b4-8a39-4ad0-8741-f94a5bfb69d2?mode=deep",
+    "timestamp": "2026-02-19 15:03:01.446076",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Division Logic Error] For round 1, expectedOrder calculation uses runningTime.Seconds.Div(miningInterval.Div(1000)).Add(1) - if miningInterval < 1000ms, Div(1000) returns 0, causing division by zero? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbac1e44-70db-4d94-ac0a-55496ceaea64?mode=deep",
+    "timestamp": "2026-02-19 15:03:25.310963",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [FirstMiner Manipulation] Round 1 logic depends on FirstMiner().ActualMiningTimes - if attacker controls first miner and never produces block (empty ActualMiningTimes), all IsTimeSlotPassed() calls return false, freezing consensus? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3db9710-a0b2-444f-acbd-bf97491e69b9?mode=deep",
+    "timestamp": "2026-02-19 15:03:49.792635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Timestamp Overflow] expectedMiningTime + Duration can overflow if ExpectedMiningTime is near Timestamp max value - does overflow cause comparison to always fail, allowing expired slots to appear current? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6214cc9a-a929-4ade-97f8-1742ece0c325?mode=deep",
+    "timestamp": "2026-02-19 15:04:14.728059",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Order Calculation] expectedOrder = runningTime.Seconds.Div(interval).Add(1) assumes linear time progression - can network delays or clock skew cause order to jump, incorrectly marking slots as passed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa7dc3b2-0e97-49b7-9814-7613ba27c7d0?mode=deep",
+    "timestamp": "2026-02-19 15:04:40.564734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Missing Validation] Function returns false if publicKey not in RealTimeMinersInformation, but doesn't distinguish 'not passed' from 'invalid miner' - can this ambiguity be exploited to bypass time checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_032474ed-a4b9-48ba-88b2-66951e97f52b?mode=deep",
+    "timestamp": "2026-02-19 15:05:07.250602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [First() Risk] actualStartTime = actualStartTimes.First() - if ActualMiningTimes contains out-of-order timestamps, using First() instead of Min() could give wrong start time? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d76a51db-6dfe-45de-9d59-8074876c3f76?mode=deep",
+    "timestamp": "2026-02-19 15:05:34.814531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Integer Arithmetic] Multiple Div() and Add() operations without overflow checks - can attacker craft timestamps to cause arithmetic overflow in expectedOrder calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_864941df-1255-40a5-98fd-3e92c111f262?mode=deep",
+    "timestamp": "2026-02-19 15:06:03.032283",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: IsTimeSlotPassed()] [Comparison Edge Case] Uses '<' not '<=' for comparison - if currentBlockTime exactly equals threshold, is slot considered passed or not? Could cause one-block ambiguity window? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_124f3d29-fe09-4453-9ba9-6393a87bac44?mode=deep",
+    "timestamp": "2026-02-19 15:06:31.845961",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetRoundStartTime()] [Null Return] FirstMiner() can return empty MinerInRound with null ExpectedMiningTime - does GetRoundStartTime() return null, causing null reference exceptions in callers? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_632192e3-75da-4912-9509-75a1434a0329?mode=deep",
+    "timestamp": "2026-02-19 15:07:03.553438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetRoundStartTime()] [Order Integrity] Depends on FirstMiner() finding Order 1 - what if multiple miners claim Order 1? FirstOrDefault() returns first in unordered dictionary, introducing non-determinism? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a44c8e64-41c8-4c29-a25f-fed43fc3666a?mode=deep",
+    "timestamp": "2026-02-19 15:07:33.472686",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetRoundStartTime()] [Time Manipulation] No validation that returned timestamp is reasonable - can attacker set Order 1 miner's ExpectedMiningTime to far future/past to manipulate dependent calculations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7966a08-78ec-4b45-ac22-9e9b464da1e1?mode=deep",
+    "timestamp": "2026-02-19 15:08:02.906889",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [XOR Weakness] Aggregates signatures using XOR - if attacker controls multiple miners, they can cancel out signatures (A XOR B XOR A = B), potentially forging aggregate signature? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea669c26-85d7-40dc-b87e-380f17ce7863?mode=deep",
+    "timestamp": "2026-02-19 15:08:36.716456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Null Signature] No validation that minerInRound.Signature is non-null - XORing with null/empty hash could produce predictable result, enabling signature prediction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8555f248-7123-4c9e-80df-54cc686c1ede?mode=deep",
+    "timestamp": "2026-02-19 15:09:09.285684",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Hash.Empty Seed] Aggregate starts with Hash.Empty - does this create bias in final signature? Could attacker exploit known seed to predict output before all signatures submitted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac643fd5-f675-4fec-9f48-8e8c3d4ec3b0?mode=deep",
+    "timestamp": "2026-02-19 15:09:44.431355",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Order Independence] XOR is commutative - signature doesn't depend on miner order, so attacker could submit miners in any sequence to find favorable signature? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_860d2e72-eb6d-4a92-8db9-23eaecdb2253?mode=deep",
+    "timestamp": "2026-02-19 15:10:15.972307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Withholding Attack] If some miners haven't submitted signatures, does Aggregate still proceed with nulls, weakening final signature security? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6769a2e9-9040-4917-96d1-59e621503459?mode=deep",
+    "timestamp": "2026-02-19 15:10:48.127849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: CalculateSignature()] [Race Condition] Reading RealTimeMinersInformation.Values during Aggregate without lock - can concurrent signature updates cause inconsistent aggregation? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dce7c078-33f0-4278-be43-764a0cfa0e47?mode=deep",
+    "timestamp": "2026-02-19 15:11:22.346138",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Timestamp Overflow] AddMilliseconds() on Timestamp near max value could overflow - does overflow wrap to distant past, allowing extra block at invalid time? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b19a8d08-8680-4570-81a8-5c6215e16403?mode=deep",
+    "timestamp": "2026-02-19 15:11:53.421223",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Order Manipulation] Uses OrderBy().Last() to find last miner - if attacker adds miner with Order = int.MaxValue, would this become last regardless of expected time sequence? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93d04e09-5f22-4efc-9ed8-e5b4a012e0bd?mode=deep",
+    "timestamp": "2026-02-19 15:12:29.223339",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Empty Collection] What if RealTimeMinersInformation is empty? OrderBy().Last() throws exception rather than returning graceful error? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_529e95ec-94d9-49aa-ace3-4d8eec72b4bb?mode=deep",
+    "timestamp": "2026-02-19 15:12:59.431445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Duplicate Orders] If multiple miners have same highest Order, Last() picks arbitrary one - can attacker exploit non-determinism to manipulate extra block timing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9743bfd-ca7b-4c3d-80c5-aded195a6e91?mode=deep",
+    "timestamp": "2026-02-19 15:13:34.500494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round.cs] [Function: GetExtraBlockMiningTime()] [Integer Conversion] GetMiningInterval() returns int, AddMilliseconds may expect long - does implicit conversion risk overflow or precision loss? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c976a439-68fc-4d18-a7e9-0c05c3404bb9?mode=deep",
+    "timestamp": "2026-02-19 15:14:11.005291",
+    "report_generated": false
+  }
+]
