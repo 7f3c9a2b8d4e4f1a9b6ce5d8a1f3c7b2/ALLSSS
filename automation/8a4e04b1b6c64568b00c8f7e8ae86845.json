@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetWelfareRewardAmountSample()] [Native Symbol Hardcode] Line 357 only calculates for Context.Variables.NativeSymbol - if treasury holds multiple tokens per SymbolList, can this underreport total welfare value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_127a11a5-84d3-41c9-88f6-2909867a5848?mode=deep",
+    "timestamp": "2026-02-19 08:16:12.536554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetUndistributedDividends()] [Virtual Address Balance Query] Lines 373-378 query balances of TreasuryVirtualAddress - if this address was computed incorrectly in InitialMiningRewardProfitItem or collides with another address, can this return attacker-controlled balances? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d55a368b-9292-47b9-8f3a-555925f66f92?mode=deep",
+    "timestamp": "2026-02-19 08:16:34.639807",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetUndistributedDividends()] [Symbol List Inconsistency] Uses State.SymbolList.Value which can be changed via SetSymbolList - can this cause undistributed balances of removed symbols to be hidden from users? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afb71bf8-1262-462b-ac4c-b93a3f7ff6a7?mode=deep",
+    "timestamp": "2026-02-19 08:16:56.932950",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Authorization Check] Line 576 only verifies sender is ConsensusContract - if consensus contract address can be manipulated or is not set, can any address record fake replacements? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_693828aa-9bba-472d-892b-55fc95d17214?mode=deep",
+    "timestamp": "2026-02-19 08:17:20.035386",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Evil Miner Flag Abuse] Lines 583-594 branch on IsOldPubkeyEvil - can an attacker trigger both branches by calling multiple times with same NewPubkey but different OldPubkey, accumulating in both LatestMinedTerm and ReplaceCandidateMap? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30a132f7-e745-427f-ae1d-2f67076d8216?mode=deep",
+    "timestamp": "2026-02-19 08:17:43.896701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Latest Mined Term Transfer] Lines 585-587 transfer latestMinedTerm from old to new pubkey - if OldPubkey was never a miner (latestMinedTerm=0), does NewPubkey incorrectly qualify for welcome rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e8bc070-9730-4829-bf0c-1e32b5bb59dd?mode=deep",
+    "timestamp": "2026-02-19 08:18:08.628040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [Replace Candidate Accumulation] Lines 591-593 add NewPubkey to ReplaceCandidateMap without checking for duplicates - can multiple evil miner replacements in same term cause NewPubkey to appear multiple times, claiming multiple shares of welcome rewards? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90d212ae-c3b5-4b83-88ac-3437633be2bf?mode=deep",
+    "timestamp": "2026-02-19 08:18:34.083239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: RecordMinerReplacement()] [IsReplacedEvilMiner Flag Persistence] Line 596 sets flag to true but only cleared in UpdateBasicMinerRewardWeights at line 807 - if UpdateBasicMinerRewardWeights is never called for that miner, can the flag persist and give preferential share calculations indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3c9dc1c8-a334-4569-a78c-077e8f9782b4?mode=deep",
+    "timestamp": "2026-02-19 08:19:01.499436",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Admin Authorization] Lines 608-609 check Context.Sender == admin from GetCandidateAdmin - if admin address is zero or corrupted, can anyone claim to be admin and set profits receiver to drain candidate rewards? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc9618cb-ed5d-441d-ab2b-9dc4c8735b20?mode=deep",
+    "timestamp": "2026-02-19 08:19:28.541984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Candidate Verification Timing] Lines 611-612 verify pubkey is in candidate list - can an attacker set profits receiver, then immediately quit as candidate, but continue receiving rewards through stale ProfitsReceiverMap entry? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4e8e75e4-1ca8-426a-a697-ed8e555bf1e4?mode=deep",
+    "timestamp": "2026-02-19 08:19:57.586438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Same Receiver Early Return] Lines 616-619 return early if receiver unchanged - but this skips the SetProfitsReceiver call to ElectionContract at line 621 - can this cause state desync between Treasury and Election contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6364880-0ea5-41f3-9870-bf821abfe966?mode=deep",
+    "timestamp": "2026-02-19 08:20:27.538580",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Previous Receiver Migration] Lines 614-625 pass previousProfitsReceiver to ElectionContract - if previousProfitsReceiver is null, line 625 passes new Address() - can this cause ElectionContract to fail to migrate beneficiary shares properly? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_281f6d37-00fa-4f16-8e9d-fa36f47607a8?mode=deep",
+    "timestamp": "2026-02-19 08:20:57.337415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: SetProfitsReceiver()] [Pubkey to ByteString Conversion] Line 606 converts hex string to ByteString - if input.Pubkey is malformed or invalid hex, can this cause silent failures or incorrect candidate lookups? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21949ad2-66a7-4a74-9a62-eb674660f9a5?mode=deep",
+    "timestamp": "2026-02-19 08:21:25.521892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ReplaceCandidateProfitsReceiver()] [Election Contract Only] Line 633 checks sender is ElectionContract - if ElectionContract address is not set or reset, can this function become uncallable, blocking miner replacements from updating profit receivers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_941c71d5-423f-4312-9b61-e2db28192182?mode=deep",
+    "timestamp": "2026-02-19 08:21:56.217478",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ReplaceCandidateProfitsReceiver()] [Receiver Transfer Without Validation] Lines 635-637 blindly transfer profitReceiver from OldPubkey to NewPubkey - if profitReceiver is null, does NewPubkey get null receiver causing future rewards to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_73ca3db1-ef78-491a-98e0-807496195911?mode=deep",
+    "timestamp": "2026-02-19 08:22:26.218285",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ReplaceCandidateProfitsReceiver()] [Old Pubkey State Cleanup] Line 636 removes OldPubkey entry - if OldPubkey was replaced multiple times, can removing too early cause loss of receiver mapping needed for pending reward claims? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2accfedf-d868-4f6c-bc79-bb4862f0b720?mode=deep",
+    "timestamp": "2026-02-19 08:22:57.309867",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: UpdateMiningReward()] [Consensus Authorization] Lines 544-546 check sender is ConsensusContract - if consensus contract address changes or is not initialized, can this block all mining reward updates, freezing GetDividends calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f0f0ee61-7e6d-475b-ae7c-62d821dd63c9?mode=deep",
+    "timestamp": "2026-02-19 08:23:28.012769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: UpdateMiningReward()] [Mining Reward Value Validation] Line 547 sets State.MiningReward.Value = input.Value without any bounds checking - can ConsensusContract pass negative or MaxInt values to manipulate GetDividends calculations at line 558? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ac39af9-0195-4b95-8fa9-a397a727e313?mode=deep",
+    "timestamp": "2026-02-19 08:23:55.823271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: UpdateMiningReward()] [Reward Overwrite] Each call overwrites previous MiningReward value - if ConsensusContract calls this multiple times per block, can only last value persist, losing track of total mining rewards for that block? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01891f06-b088-42e1-9fd2-6ac2cdeb7ba7?mode=deep",
+    "timestamp": "2026-02-19 08:24:27.071839",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividends()] [Future Block Query] Line 553 asserts CurrentHeight > input.Value - but if input.Value == CurrentHeight, can this allow querying dividends of current block before UpdateMiningReward is called, returning stale data? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8c980f8-8289-4c75-8b76-7cfdf34aafed?mode=deep",
+    "timestamp": "2026-02-19 08:24:58.214307",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividends()] [Donation vs Mining Reward Addition] Lines 556-568 add MiningReward to donated dividends - if DonatedDividends already contains native symbol from Donate(), line 558 adds them, but what if Donate() called multiple times - is sum correct? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be80065f-ca5b-447e-acfe-2e86d210a38b?mode=deep",
+    "timestamp": "2026-02-19 08:25:29.879352",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: GetDividends()] [Block Height Key Lookup] Uses input.Value as block height key - if block was orphaned/reorganized, can this return dividends from uncle block that were never actually contributed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a77b7a16-cd1e-4084-98c6-95ee458ede67?mode=deep",
+    "timestamp": "2026-02-19 08:26:02.413593",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [Approval Before Sell] Lines 669-674 approve TokenConverter for full amount - if Sell at line 676 fails or converts less than amount due to slippage, can approved but unconverted tokens be stolen by TokenConverter reentrancy? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7202621f-6b91-4b9a-8ec1-3062949deca3?mode=deep",
+    "timestamp": "2026-02-19 08:26:34.256243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [Inline DonateAll Call] Lines 682-685 call DonateAll inline using Context.Self as sender - can this bypass the Context.Sender check in Donate at line 194, causing recursive or unexpected behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9acee3c9-b09a-4ec1-a26f-6eac59664221?mode=deep",
+    "timestamp": "2026-02-19 08:27:02.034579",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Treasury/TreasuryContract.cs] [Function: ConvertToNativeToken()] [Sell Amount Validation] Line 676 calls Sell with full amount without checking TokenConverter reserves - can this revert due to insufficient liquidity, blocking donation of that token permanently? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a16ddbf-c416-42bb-8a3a-7a8e952c119d?mode=deep",
+    "timestamp": "2026-02-19 08:27:29.375996",
+    "report_generated": false
+  }
+]
