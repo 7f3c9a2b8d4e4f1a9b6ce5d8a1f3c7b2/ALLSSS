@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Order Collision Exploitation] If multiple miners manipulate SupposedOrderOfNextRound to the same value (lines 24-25), and FinalOrderOfNextRound (lines 26-27) doesn't properly resolve collisions, can this cause miners to skip their time slots or mine out of turn? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_440a56f4-565c-45f8-ada7-59ee09ea9ffe?mode=deep",
+    "timestamp": "2026-02-19 06:30:30.350864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Cross-Round Attack] No validation that providedRound belongs to the current round - if an attacker provides data from a future round with pre-computed optimal values, can they inject future consensus state into the current round, causing chaos when the future round actually arrives? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c87d937-e4ec-4a9d-9fd8-5558f0713272?mode=deep",
+    "timestamp": "2026-02-19 06:30:52.527901",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Miner List Mismatch] The loop in lines 22-30 assumes all miners in providedRound exist in RealTimeMinersInformation - if providedRound contains extra miners due to a future term or malicious injection, does accessing RealTimeMinersInformation[information.Key] throw an exception causing DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03e7f342-743d-48f3-8fcc-00450ffbbd4f?mode=deep",
+    "timestamp": "2026-02-19 06:31:14.705885",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Tiny Block Spam] No rate limiting on how many times RecoverFromTinyBlock can be called - can a malicious miner produce hundreds of tiny blocks in their time slot, causing ActualMiningTimes (line 44) to accumulate massive lists that DoS the consensus contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8863367c-44fd-4ac4-8000-a6045867aeb9?mode=deep",
+    "timestamp": "2026-02-19 06:31:38.613181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Gas Exhaustion] The loop in lines 22-30 iterates over all miners in providedRound without gas checks - can an attacker provide a Round with thousands of fake miner entries to exhaust gas during validation, causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46d584c3-df69-43de-9817-a8d23513d419?mode=deep",
+    "timestamp": "2026-02-19 06:32:02.867334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Hash Collision Attack] Line 16 copies OutValue which should be a hash - if two different InValues produce the same OutValue due to hash collision, can multiple miners claim the same VRF output, causing order conflicts and consensus breakdown? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_289bd669-c4d7-41f3-9add-286ee5f2babd?mode=deep",
+    "timestamp": "2026-02-19 06:32:28.483874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Signature Malleability] Line 17 copies Signature - if the signature scheme allows malleability (same message, multiple valid signatures), can an attacker modify the signature to change the resulting SupposedOrderOfNextRound without detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b3b30a07-e201-4cfd-9d1f-b98a42beaedb?mode=deep",
+    "timestamp": "2026-02-19 06:32:54.034519",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Integer Overflow in Order Calculation] SupposedOrderOfNextRound (line 24) is calculated as GetAbsModulus(signature.ToInt64(), minersCount) + 1 - if this calculation overflows when converting signature hash to int64, can it produce negative or wraparound order values that break the mining schedule? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d34f2b72-db98-4af1-be36-937a5f890bf7?mode=deep",
+    "timestamp": "2026-02-19 06:33:20.347988",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Dictionary Reference Mutation] Lines 14-15 get a reference to minerInRound, then mutate it - does this correctly update the dictionary entry, or could reference semantics cause the mutations to be lost if MinerInRound is a value type? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d65492d-8b6d-4fa4-9e3b-981149e05489?mode=deep",
+    "timestamp": "2026-02-19 06:33:49.297220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Protobuf Repeated Field Semantics] Line 20 uses Add() on ActualMiningTimes - is this a protobuf repeated field that gets merged/appended, or does it replace the list? Can misunderstanding the semantics cause timestamp loss or duplication? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5791e69e-8358-4e9a-85f7-fd1e21a61ebc?mode=deep",
+    "timestamp": "2026-02-19 06:34:19.412348",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Missing Transaction Atomicity] If RecoverFromUpdateValue partially succeeds (e.g., updates sender fields but fails during the loop), are the partial changes rolled back, or does the round remain in an inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c5e58992-ad6f-494e-a57a-9fa3043441e2?mode=deep",
+    "timestamp": "2026-02-19 06:34:47.323673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Cryptographic Downgrade] If providedInformation contains weaker cryptographic primitives (shorter hashes, weaker signatures) than expected, and these are blindly copied (lines 16-17), can an attacker downgrade the security of the VRF scheme? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3fd0a956-8942-40c9-8706-cdde2227b216?mode=deep",
+    "timestamp": "2026-02-19 06:35:19.576928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [LIB Timestamp Correlation] Is ImpliedIrreversibleBlockHeight (line 43) required to correlate with the timestamp in ActualMiningTimes (line 44)? If not, can a miner claim a high LIB while providing a very old timestamp, causing finality logic to accept stale data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_37d354cd-6354-48fa-a419-9f4c25011edb?mode=deep",
+    "timestamp": "2026-02-19 06:35:53.265880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Quantum Resistance] If OutValue and Signature (lines 16-17) use cryptographic primitives vulnerable to quantum attacks, and recovery accepts them without post-quantum verification, does this create a long-term security vulnerability? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3cd45aa8-bd08-4a98-b9ab-ba7593a9a73f?mode=deep",
+    "timestamp": "2026-02-19 06:36:27.083421",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Empty RealTimeMinersInformation] If providedRound.RealTimeMinersInformation is empty, the loop in lines 22-30 doesn't execute - is this safe, or should empty rounds be rejected? Can miners exploit empty providedRounds to skip order updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3166652-5ce5-4b0e-a05d-ff4b4446a624?mode=deep",
+    "timestamp": "2026-02-19 06:37:02.415232",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Null providedRound] Line 10 checks providedRound.RealTimeMinersInformation but never checks if providedRound itself is null - can passing null cause NullReferenceException DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_497e9a51-b69a-4663-902d-12fbf6bd96f6?mode=deep",
+    "timestamp": "2026-02-19 06:37:36.222218",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Empty Pubkey] Line 10 checks ContainsKey(pubkey) but never validates pubkey is non-empty - can an empty string pubkey cause dictionary lookup failures or match unintended miners? (Low)",
+    "url": "https://deepwiki.com/grass-dev-pa/AElf-016",
+    "timestamp": "2026-02-19 06:38:10.421938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Case Sensitivity] Pubkey is used as a dictionary key (lines 10, 14) - is it case-sensitive? Can an attacker use different casing (e.g., uppercase vs lowercase hex) to bypass checks or cause key mismatches? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_920fab00-7b64-46ea-bc26-8d6602a9e363?mode=deep",
+    "timestamp": "2026-02-19 06:38:45.385260",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Whitespace in Pubkey] If pubkey contains leading/trailing whitespace, does ContainsKey (line 10) fail while the actual miner exists under a trimmed key? Can this cause legitimate recovery to fail or allow injection via whitespace-prefixed keys? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e9d65bf-0f89-4b59-b386-832132ad2a62?mode=deep",
+    "timestamp": "2026-02-19 06:39:20.756399",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Protobuf Default Values] If providedInformation fields are not explicitly set (protobuf default values), lines 16-19 copy zeros/nulls/empty hashes - can this corrupt the round state with invalid sentinel values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d3e4decd-92c3-4e97-ba4b-676b72b462a9?mode=deep",
+    "timestamp": "2026-02-19 06:39:55.922289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromTinyBlock()] [Zero ActualMiningTimes] If providedInformation.ActualMiningTimes is empty/default, line 44 adds an empty repeated field - does this create a zero-timestamp entry that confuses time slot logic, or is it safely ignored? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42c2ab4f-3e26-474e-b954-c02e7d3eb0f5?mode=deep",
+    "timestamp": "2026-02-19 06:40:30.058304",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Maximum Miner Count] Lines 22-30 loop over all miners - is there a maximum miner count enforced? If providedRound contains 10,000 miners, can this cause timeout or gas exhaustion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e1fae87-1c62-4504-9b11-3d0aba6e570a?mode=deep",
+    "timestamp": "2026-02-19 06:41:03.383487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Concurrent Modification] If another contract method modifies RealTimeMinersInformation while RecoverFromUpdateValue is executing (lines 14-29), can this cause race conditions, partial updates, or dictionary modification exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_99514687-e76a-444a-b0a1-8885e46875a4?mode=deep",
+    "timestamp": "2026-02-19 06:41:36.592214",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [ImpliedIrreversibleBlockHeight Sign] Line 19 copies int64 ImpliedIrreversibleBlockHeight - can negative values be provided to indicate special states? If so, does copying negative values break LIB calculation that assumes non-negative heights? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7db584b2-5567-40ac-a1c8-d8b36fab3477?mode=deep",
+    "timestamp": "2026-02-19 06:42:09.570271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [ActualMiningTimes Order] Line 20 adds timestamps but doesn't sort them - if later logic assumes ActualMiningTimes is chronologically sorted, can out-of-order additions break time slot validation or duplicate block detection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56cf9da9-19bd-42c9-b9a0-c9c4ac01aa21?mode=deep",
+    "timestamp": "2026-02-19 06:42:44.344696",
+    "report_generated": false
+  }
+]
