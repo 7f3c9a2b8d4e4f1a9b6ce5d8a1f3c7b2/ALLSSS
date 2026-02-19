@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: AssertSymbolToPayTxFeeIsValid()] [Token Availability Check] At line 1420, IsTokenAvailableForMethodFee is called but its implementation is not in this file - can blacklisted or special tokens bypass this check through that function's logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8795c024-95cf-447f-8709-54e1d2c0dd88?mode=deep",
+    "timestamp": "2026-02-19 06:35:48.359820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeTransactionFees()] [Cross-Contract Call Trust] At line 38-39, GetMethodFee is called on input.ContractAddress - if that contract is malicious, can it return manipulated MethodFees to overcharge or undercharge? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4661f6f7-b6ee-4fd2-a4ac-e928523cd089?mode=deep",
+    "timestamp": "2026-02-19 06:36:10.738770",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeUserContractTransactionFees()] [Configuration Key Injection] At line 143, configuration key is built as 'UserContractMethod_{contractAddress}_{methodName}' - can attacker use contract/method names with '_' to inject wrong key and get different fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8755e04d-c643-469b-a625-08b7fc4cf111?mode=deep",
+    "timestamp": "2026-02-19 06:36:33.272978",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetActualFee()] [MergeFrom Validation] At line 148 and 163, fee.MergeFrom(spec.Value) is called - if spec.Value contains malicious protobuf data, can this cause deserialization vulnerability or state corruption? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_183221d0-307d-42f1-915d-30e67f5ecdb1?mode=deep",
+    "timestamp": "2026-02-19 06:36:56.495904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetActualFee()] [Null vs Empty Differentiation] Lines 146-150 check IsNullOrEmpty and return early - but line 158-164 check IsNullOrEmpty and return empty object - inconsistent null handling can cause different behavior, exploitable? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_106cb19e-21fa-4775-8a2d-40b8ab8ac0a2?mode=deep",
+    "timestamp": "2026-02-19 06:37:20.905124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetBaseFeeDictionary()] [Symbol Null/Empty Filter] At line 324, filters where symbol is not null or empty - but what if symbol is whitespace-only string? Can this cause fee charging with invalid symbol key? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1881486b-e5e1-41db-8390-20a95b185aac?mode=deep",
+    "timestamp": "2026-02-19 06:37:45.934407",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetBaseFeeDictionary()] [Sum Overflow] At line 326, groups fees by symbol and sums BasicFee - if multiple fees for same symbol have values near MAX_LONG, can Sum() overflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4204f37-2498-4b7b-8ac2-bae2b6e6387d?mode=deep",
+    "timestamp": "2026-02-19 06:38:11.497415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetUserContractFeeDictionary()] [Identical Logic] Lines 329-333 are identical to GetBaseFeeDictionary - why separate function? Can inconsistency in future updates cause security issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21ecc127-0d35-4a8f-8f19-282c54ec7d72?mode=deep",
+    "timestamp": "2026-02-19 06:38:37.139713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: TryToChargeTransactionFee()] [Bill Reference Mutation] At line 90 and 94, bill and allowanceBill are passed by ref - if ChargeTransactionFeesToBill or ChargeFromDelegations partially modify these then fail, are changes rolled back or persisted? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b8b24c3-942a-4d37-b40e-f1744ad8857c?mode=deep",
+    "timestamp": "2026-02-19 06:39:03.778252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: TryToChargeTransactionFee()] [Delegation State Paths] Lines 100-102 use ?? operator between TransactionFeeDelegateInfoMap and TransactionFeeDelegateesMap - if contract-method-specific delegate exists but is empty, does it fallback to global or treat as no delegates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_356118b1-8ef8-446c-a1ac-e1193f294c95?mode=deep",
+    "timestamp": "2026-02-19 06:39:30.430158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeFromDelegations()] [Foreach Dictionary Mutation] Lines 183-207 iterate over delegationInfo.Delegatees dictionary, and line 196-199 assigns to bill/allowanceBill/fromAddress - if iteration continues after break, are modified variables safe from corruption? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1e302a23-e2a0-4395-8460-222c9784ff41?mode=deep",
+    "timestamp": "2026-02-19 06:39:59.083573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyDelegation()] [Nested State Access] Lines 218-222 access State.TransactionFeeDelegateInfoMap[delegatorAddress][contractAddress][methodName].Delegatees[delegateeAddress.ToBase58()].Delegations[symbol] - if any intermediate value is null, does this throw or create empty entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_28dbd608-782a-4d35-ac28-deff49aea10b?mode=deep",
+    "timestamp": "2026-02-19 06:40:28.035347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: SetOrRefreshTransactionFeeFreeAllowances()] [Loop State Modification] Lines 308-319 iterate and potentially modify State.TransactionFeeFreeAllowancesLastRefreshTimes and State.TransactionFeeFreeAllowances - can modifying state while iterating cause skipped or duplicate processing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4c3d8c6-9251-4529-aab8-06c768516d8d?mode=deep",
+    "timestamp": "2026-02-19 06:40:58.672710",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeBaseFee()] [Allowance Comparison Edge Case] At line 359, checks existingAllowance > amountToChargeBaseFee - if equal exactly, else branch at line 367 uses Sub() which would return 0, is this handled correctly downstream? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64c57860-5008-4983-bd64-ea3534fe5994?mode=deep",
+    "timestamp": "2026-02-19 06:41:26.904373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GenerateBill()] [Addition Before Comparison] At line 525, checks availableBalance.Add(availableAllowance) > txSizeFeeAmount - if Add causes overflow, comparison becomes invalid, can this bypass fee checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67879ad4-24c1-4b20-9e55-85ed8e928431?mode=deep",
+    "timestamp": "2026-02-19 06:41:57.175657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GenerateBill()] [Subtraction Chain] At line 536, chargeAmount = txSizeFeeAmount.Sub(chargeAllowanceAmount) - if txSizeFeeAmount < chargeAllowanceAmount due to calculation error, does Sub underflow? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51751b5c-7b79-426d-a9d1-655b9d7f342f?mode=deep",
+    "timestamp": "2026-02-19 06:42:26.270030",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: IsDelegationEnough()] [Ternary Overflow] At line 1405-1406, uses delegations.Delegations[txSymbol].Sub(cost) in ternary condition - if Sub underflows, does condition evaluate incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb4dd8cc-1465-4ceb-9d77-a832adade501?mode=deep",
+    "timestamp": "2026-02-19 06:42:53.799984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: PayRental()] [Multiply Chain Overflow] At line 1061, duration.Mul(ResourceAmount).Mul(Rental) - two multiplications in chain, if any intermediate result overflows, final rental is wrong? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5d3b6711-04f3-4a50-9c5b-11d4ec004fa2?mode=deep",
+    "timestamp": "2026-02-19 06:43:21.439450",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeTransactionFees()] [Multi-Delegatee Iteration] Lines 106-114 iterate through delegatees and break on first success - if first delegatee has insufficient balance but second would succeed, does order manipulation allow fee evasion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdd3f16d-21d1-4528-84c4-c4f341476a0d?mode=deep",
+    "timestamp": "2026-02-19 06:43:51.101613",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyBalance()] [Event Before State] At line 249-254, TransactionFeeCharged event is fired but corresponding balance modifications happen before - if event handler triggers actions, do they see updated or stale balances? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_15a44b70-4275-4a7b-8091-5dc1ae3219f5?mode=deep",
+    "timestamp": "2026-02-19 06:44:18.661513",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyBalance()] [Multiple Symbol Processing] Lines 245-255 and 259-265 process fees and allowances in separate loops - if first loop succeeds but second fails, is transaction atomic or partially charged? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d4ec268-40dc-4be9-86ac-3bad8681d076?mode=deep",
+    "timestamp": "2026-02-19 06:44:46.763957",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ClaimTransactionFees()] [Nested Inline Calls] At line 889, TransferTransactionFeesToFeeReceiver is called which itself calls Context.SendInline at lines 1164, 1193, 1204 - can nested inline calls cause gas exhaustion or unexpected execution order? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52339595-1eae-4436-88c8-63a81e65a90d?mode=deep",
+    "timestamp": "2026-02-19 06:45:16.705248",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ChargeTransactionFees()] [Delegatee List DOS] Lines 106-114 iterate unlimited delegatees list - can attacker add thousands of delegatees to cause gas exhaustion and DOS transaction fee collection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3922bc79-43c7-4e36-a849-e5ba8f06ae8e?mode=deep",
+    "timestamp": "2026-02-19 06:45:48.072187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetAvailableSymbolToPayTxFee()] [Symbol List Iteration] Lines 473-511 iterate over allSymbolToTxFee list without bounds check - can huge symbol list cause out-of-gas and prevent fee charging? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_402adf31-dc0e-450e-a80d-23556842d17e?mode=deep",
+    "timestamp": "2026-02-19 06:46:16.117555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: ModifyBalance()] [Allowance Map Iteration] Lines 259-265 iterate freeAllowancesMap - if ConfigTransactionFeeFreeAllowances sets thousands of symbols, can this DOS fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a4a3e81-f792-4baf-9ec5-e7cea801faf1?mode=deep",
+    "timestamp": "2026-02-19 06:46:44.686500",
+    "report_generated": false
+  }
+]
