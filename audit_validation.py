@@ -68,11 +68,12 @@ class Validator:
     def ask_question(self, filename, question_gotten):
         wait = WebDriverWait(self.driver, 1200)
 
+        self.driver.get(BASE_URL)
+
         wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
         )
 
-        self.driver.get(BASE_URL)
 
 
         for _ in range(10):
@@ -119,11 +120,12 @@ class Validator:
     def scan_past_vuln(self, filename, question_gotten):
         wait = WebDriverWait(self.driver, 1200)
 
+        self.driver.get(BASE_URL)
+
         wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
         )
 
-        self.driver.get(BASE_URL)
 
         for _ in range(10):
             try:
