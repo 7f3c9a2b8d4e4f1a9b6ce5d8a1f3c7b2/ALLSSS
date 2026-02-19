@@ -142,5 +142,155 @@
     "url": "https://deepwiki.com/search/-aelf-smart-contract-security_82d74b1e-15f3-4a4d-b3e8-dc679f1a2fd7?mode=deep",
     "timestamp": "2026-02-19 10:41:45.871488",
     "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Authorization Bypass] If providedRound originates from an untrusted or malicious block header with invalid consensus data, can an attacker bypass miner authorization by crafting a providedRound that passes the pubkey existence check but contains malicious values for OutValue, Signature, or PreviousInValue that get blindly copied without cryptographic verification? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f02cb46b-6bc5-45e9-9b74-2700d0ae3ba6?mode=deep",
+    "timestamp": "2026-02-19 11:04:09.333803",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Input Validation] Lines 10-12 only check ContainsKey for pubkey existence but never validate that providedRound itself is well-formed, has valid round number, correct term, or proper miner count - can an attacker supply a providedRound with arbitrary RealTimeMinersInformation entries that don't match the actual consensus state, causing state corruption when fields are copied? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7948b2c1-9bfb-45de-8c36-5e194aca127b?mode=deep",
+    "timestamp": "2026-02-19 11:04:31.495353",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Consensus Manipulation] Line 16 copies OutValue from providedInformation without verifying it was correctly computed from the miner's InValue using HashHelper.ComputeFrom() - can a malicious miner provide a fake OutValue that breaks the VRF randomness and allows prediction or manipulation of next round's mining order? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3414920c-caa9-4051-b03b-0aa72f6c21b0?mode=deep",
+    "timestamp": "2026-02-19 11:04:54.499894",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Signature Forgery] Line 17 copies Signature from providedInformation without verifying it was correctly calculated from current InValue and previous signatures using CalculateSignature() - can an attacker forge arbitrary signatures to manipulate SupposedOrderOfNextRound calculation which depends on signature values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_67e151c3-e4de-43f9-9edd-ac342e4520cb?mode=deep",
+    "timestamp": "2026-02-19 11:05:17.804369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Secret Sharing Attack] Line 18 copies PreviousInValue without validating it matches the miner's committed InValue from the previous round - can a malicious miner provide a fake PreviousInValue that doesn't correspond to their actual VRF secret, breaking the commit-reveal scheme and enabling them to manipulate mining order after seeing other miners' values? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c905f17-4322-4435-8e9c-b2add1c1721b?mode=deep",
+    "timestamp": "2026-02-19 11:05:42.886914",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [LIB Manipulation] Line 19 copies ImpliedIrreversibleBlockHeight without bounds checking - can an attacker provide an arbitrarily high value (e.g., far future block height or MAX_INT64) to manipulate LIB calculation, causing premature finality of malicious blocks or preventing legitimate blocks from becoming irreversible? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbe0a1de-0cb3-4e39-a9d2-0c6e15e2a7ed?mode=deep",
+    "timestamp": "2026-02-19 11:06:08.768119",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Timestamp Manipulation] Line 20 calls ActualMiningTimes.Add() with providedInformation.ActualMiningTimes without validation - can an attacker provide duplicate timestamps, out-of-order timestamps, future timestamps, or timestamps from wrong rounds to corrupt mining time tracking and enable double-mining or skip detection bypass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55c624dd-bc6b-420c-beaf-bd2a6c49fade?mode=deep",
+    "timestamp": "2026-02-19 11:06:34.400900",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Repeated List Addition] Line 20 uses ActualMiningTimes.Add(providedInformation.ActualMiningTimes) where Add() appears to append to a repeated field - if RecoverFromUpdateValue() is called multiple times (e.g., during validation retries or re-org scenarios), can the same timestamp be added repeatedly, causing ActualMiningTimes to contain duplicates that break block production counting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_265fdebe-777e-4b53-8715-62032d1b8312?mode=deep",
+    "timestamp": "2026-02-19 11:07:03.984503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Cross-Miner Pollution] Lines 22-30 iterate through ALL miners in providedRound.RealTimeMinersInformation and overwrite SupposedOrderOfNextRound, FinalOrderOfNextRound, and PreviousInValue for every miner, not just the one matching pubkey - if providedRound contains malicious data for miners other than the sender, can an attacker corrupt the entire mining schedule by injecting bad order values or fake PreviousInValues for all participants? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc527f44-57c1-4d49-99bd-bd663c7494ab?mode=deep",
+    "timestamp": "2026-02-19 11:07:35.349241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Order Manipulation] Lines 24-25 overwrite SupposedOrderOfNextRound from providedRound without validating it was correctly calculated as GetAbsModulus(signature.ToInt64(), minersCount) + 1 - can an attacker provide arbitrary order values (e.g., all miners set to order 1, causing collisions, or setting their own order to 1 to always mine first in next round)? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2f36ff88-0110-4fd0-9ca1-8247b036d7f2?mode=deep",
+    "timestamp": "2026-02-19 11:08:04.480572",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Final Order Bypass] Lines 26-27 overwrite FinalOrderOfNextRound without ensuring conflict resolution was properly performed - if multiple miners had the same SupposedOrderOfNextRound, can an attacker skip the conflict resolution logic by directly setting FinalOrderOfNextRound to their desired position, guaranteeing them a specific mining slot? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0e0b0186-05af-45ec-944e-ae75b34c7c3c?mode=deep",
+    "timestamp": "2026-02-19 11:08:37.472636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [PreviousInValue Overwrite for All Miners] Lines 28-29 overwrite PreviousInValue for ALL miners in the round from providedRound - since only the sender pubkey should be revealing their InValue, why are all miners' PreviousInValue being updated? Can an attacker exploit this to reveal or set fake PreviousInValues for miners who haven't mined yet, breaking the VRF commit-reveal protocol? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_830b3576-84c5-4ae1-85e1-cb78ba4931e8?mode=deep",
+    "timestamp": "2026-02-19 11:09:09.839494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Dictionary Key Mismatch] Lines 24-29 use information.Key to index RealTimeMinersInformation[information.Key] - if providedRound contains miner pubkeys that don't exist in the current round (e.g., from a different term or after miner replacement), does this throw an exception causing DoS, or does it silently fail with undefined behavior? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57c9f113-aff3-44c0-8b99-a46b8e1314b3?mode=deep",
+    "timestamp": "2026-02-19 11:09:45.706495",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Missing Miner Set Validation] The function never validates that providedRound.RealTimeMinersInformation.Keys matches the current round's miner set - can an attacker provide a Round with additional malicious miners not in the current list, and if these get added to RealTimeMinersInformation during recovery, would they gain unauthorized mining privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_44a6f870-ae9d-449f-989d-034b8098653a?mode=deep",
+    "timestamp": "2026-02-19 11:10:22.474102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Round Number Validation] No check that providedRound.RoundNumber matches the current round number - can an attacker provide data from a past round, a future round, or an arbitrary round number to cause stale or premature data to be applied, breaking consensus synchronization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ff3afa4-8c9a-432f-ac41-4a84f1498834?mode=deep",
+    "timestamp": "2026-02-19 11:10:58.634848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Term Number Validation] No check that providedRound's term matches the current term - during term transitions when miner lists change, can an attacker provide old term data to restore kicked-out miners or prevent new miners from being added? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eec0b65c-d2eb-46d7-ba40-98059a76ba86?mode=deep",
+    "timestamp": "2026-02-19 11:11:34.833429",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Return Value Misuse] Line 32 returns 'this' after modifying it in place - if the calling code expects an immutable copy or uses the return value for comparison/validation, can this lead to incorrect validation results or reference aliasing bugs where the same modified object is used in multiple contexts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_90c2cf52-b8bf-4208-ad63-bcbf5d2c6fb5?mode=deep",
+    "timestamp": "2026-02-19 11:12:10.626325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Early Return State] Lines 10-12 return 'this' unchanged if pubkey checks fail - is it safe to continue consensus processing with an unrecovered round, or should this be treated as a validation failure that rejects the block? Can miners exploit this by intentionally providing mismatched pubkeys to skip recovery while still passing later validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_08f644a3-020c-462c-8ae2-4d1d9a98705d?mode=deep",
+    "timestamp": "2026-02-19 11:12:44.610198",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Null Reference Risk] Lines 14-15 directly access RealTimeMinersInformation[pubkey] without null checks - if RealTimeMinersInformation is null or if dictionary access fails, could this cause unhandled exceptions during block validation, leading to DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ed8cbee7-4997-4be7-9444-48ae6db35cb6?mode=deep",
+    "timestamp": "2026-02-19 11:13:21.052794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Field Partial Update] Only specific fields (OutValue, Signature, PreviousInValue, ImpliedIrreversibleBlockHeight, ActualMiningTimes) are copied for the sender, but lines 22-30 update different fields for all miners - is this asymmetric update pattern correct, or can it cause inconsistent state where some fields are from the old round and others from providedRound? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff8e4e55-6f8a-4c6e-abf3-9078f2fac579?mode=deep",
+    "timestamp": "2026-02-19 11:13:57.996749",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Replay Attack] No nonce, sequence number, or timestamp validation - can an attacker capture a valid providedRound from an earlier call and replay it multiple times to repeatedly add the same ActualMiningTimes entries (line 20), corrupting the mining history? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72751df9-1389-4062-b508-18e0f04f3cb8?mode=deep",
+    "timestamp": "2026-02-19 11:14:34.647245",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Timing Attack on VRF] If OutValue and Signature (lines 16-17) are copied without timing validation, can a malicious miner deliberately delay their UpdateValue transaction to first observe other miners' revealed values, then compute an optimal OutValue/Signature combination that gives them favorable ordering in the next round? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3818032c-171c-4f65-a5c6-49a89e070098?mode=deep",
+    "timestamp": "2026-02-19 11:15:11.918610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Out-of-Order Processing] If blocks arrive out of order during network partitions and RecoverFromUpdateValue() is called with providedRound data from a later block before processing earlier blocks, can this cause ActualMiningTimes to be recorded out of sequence (line 20), breaking time-slot validation and enabling double-mining? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16cc9f8b-96a4-4ce0-a3d1-6a8c4faae3e0?mode=deep",
+    "timestamp": "2026-02-19 11:15:47.164698",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Re-org Race Condition] During blockchain reorganizations, if RecoverFromUpdateValue() is called multiple times with different providedRound values for the same miner as competing chain tips are evaluated, can ActualMiningTimes accumulate entries from multiple forks (line 20 keeps adding), causing incorrect mining count that fails to detect double-mining across the re-org? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa8d4a64-6978-4564-9537-73e5b51568d8?mode=deep",
+    "timestamp": "2026-02-19 11:16:23.425521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_Recover.cs] [Function: RecoverFromUpdateValue()] [Time Slot Boundary Manipulation] If providedInformation.ActualMiningTimes contains a timestamp exactly at the boundary between two miners' time slots or two rounds, and it's added without validation (line 20), can an attacker claim mining credit in multiple slots or rounds simultaneously? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19c716b3-e32d-4bdb-a789-3cd3f8b01c89?mode=deep",
+    "timestamp": "2026-02-19 11:16:58.779959",
+    "report_generated": false
   }
 ]
