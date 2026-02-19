@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [State Management] [Immutability] Once State.MethodFeeController.Value is set, there's no reset mechanism - if controller becomes compromised or organization dissolves, is there recovery path or permanent lock? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d140f4c-07bf-4fe3-978e-f63e1abd066a?mode=deep",
+    "timestamp": "2026-02-19 13:00:24.155443",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [State Management] [Caching Issue] State.ParliamentContract.Value and State.TokenContract.Value are cached but never invalidated - if system upgrades these contracts, cached addresses become stale causing broken integrations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b82f218-ee3c-44cd-a935-11b2477f0988?mode=deep",
+    "timestamp": "2026-02-19 13:00:46.336883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [State Management] [Data Persistence] State.TransactionFees mapping grows unbounded as new method names are added - can this cause storage exhaustion or increased gas costs over time leading to economic DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cacf4ec-a89a-4408-bf81-66a6ef26d572?mode=deep",
+    "timestamp": "2026-02-19 13:01:08.697086",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Integration] [Trust Model] All external calls (Parliament, Token, Organization contracts) are trusted without validation - can malicious system admin replace these contracts with trojans? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_80739f1e-2061-4d8b-8a2e-e19dc08a9e43?mode=deep",
+    "timestamp": "2026-02-19 13:01:31.498892",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Integration] [Contract Upgrade] If Parliament or Token contracts are upgraded, does Association contract need redeployment or can it adapt - missing upgrade path could brick fee management? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7fc98c58-f03b-49e7-8021-ede1a1dfd110?mode=deep",
+    "timestamp": "2026-02-19 13:01:55.879468",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Integration] [Error Propagation] External contract failures in RequiredMethodFeeControllerSet(), CheckOrganizationExist(), or AssertValidToken() cause entire transaction revert - can attacker force DOS by making these contracts fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_537f18c7-54fe-4811-ae5c-10b913614053?mode=deep",
+    "timestamp": "2026-02-19 13:02:21.677794",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Integration] [Call Depth] Multiple nested external calls (SetMethodFee -> AssertValidToken -> TokenContract.IsTokenAvailableForMethodFee) could hit call stack limits on some chains causing legitimate operations to fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d6fc64e-8fa3-4a4a-98e8-3cb1eb9a8c95?mode=deep",
+    "timestamp": "2026-02-19 13:02:48.351002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Business Logic] [Fee Bypass] After fees are set via SetMethodFee(), there's no enforcement shown in this file - can methods be called without actually paying fees if enforcement is missing in main contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e86a1d1-b012-4b74-a153-2b1b4b1791e5?mode=deep",
+    "timestamp": "2026-02-19 13:03:17.075102",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Business Logic] [Economic Attack] Fee controller can set BasicFee to 1 (minimum valid) effectively making methods free, undermining economic security model - is there minimum fee threshold validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dd1ab41-d444-4627-a808-4583b01eb08b?mode=deep",
+    "timestamp": "2026-02-19 13:03:46.965252",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Business Logic] [Centralization] Single OwnerAddress in MethodFeeController has full control over all method fees - is multi-sig or time-lock required or can single key compromise entire fee structure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17af3304-e897-4bea-b25e-df97c7dedb07?mode=deep",
+    "timestamp": "2026-02-19 13:04:15.284532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Business Logic] [Fee Volatility] No rate limiting on SetMethodFee() calls - can controller change fees multiple times per block causing user transactions to fail due to unexpected fee increases? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92d199c6-bc92-4c59-88e7-afc202539797?mode=deep",
+    "timestamp": "2026-02-19 13:04:46.970163",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Business Logic] [Token Diversity] Multiple tokens can be set as fees for single method, but is there validation preventing duplicate symbols or conflicts in fee collection logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0915ae5-4f7e-44a6-91df-8ab8b258f5c5?mode=deep",
+    "timestamp": "2026-02-19 13:05:19.816550",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Input Validation] [Method Name] SetMethodFee() doesn't validate input.MethodName exists in contract ABI - can attacker set fees for non-existent methods bloating storage or hiding malicious fee configurations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1fd770ed-b7b2-4dc7-bcdc-39139ae684ef?mode=deep",
+    "timestamp": "2026-02-19 13:05:51.685858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Input Validation] [Collection Size] No limit on input.Fees array size in SetMethodFee() - can attacker submit massive array causing gas exhaustion in AssertValidToken loop or transaction timeout? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14db44a3-32f8-4adb-b968-9d4a99e7dcc6?mode=deep",
+    "timestamp": "2026-02-19 13:06:24.766754",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Input Validation] [String Injection] symbol parameter in AssertValidToken() passed directly to external call without sanitization - can special characters or escape sequences exploit token contract parsing? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_885b52f5-f2c7-4020-8554-cfed707ff6d3?mode=deep",
+    "timestamp": "2026-02-19 13:06:57.105816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Input Validation] [Numeric Overflow] BasicFee is long (int64) type validated only for >= 0, but max value near Int64.MaxValue could cause overflow in fee calculation logic elsewhere? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_432b929d-3909-44d7-9f65-c9d7a74b306b?mode=deep",
+    "timestamp": "2026-02-19 13:07:25.727731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Input Validation] [Duplicate Detection] No check for duplicate method names across multiple SetMethodFee() calls or duplicate symbols within single input.Fees array causing inconsistent fee state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1accc9d2-218f-4e25-99e8-18808bb4d509?mode=deep",
+    "timestamp": "2026-02-19 13:07:55.895787",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Authorization] [Multi-Step] Authorization depends on State.MethodFeeController.Value.OwnerAddress which references external organization - can organization member changes after controller is set invalidate authorization assumptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b7fc782-d3b9-46e1-9552-4b065c031d30?mode=deep",
+    "timestamp": "2026-02-19 13:08:26.428756",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Authorization] [Initialization Window] Between contract deployment and first RequiredMethodFeeControllerSet() call, State.MethodFeeController.Value is null - can attacker exploit this window to manipulate state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00124ae8-6a9d-4e13-b2ed-11739f54fe35?mode=deep",
+    "timestamp": "2026-02-19 13:08:56.510101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Authorization] [Controller Switch] When ChangeMethodFeeController() updates controller, old controller loses access instantly without notice period - can this be exploited to lock out legitimate controller during emergency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e715aaae-e753-4448-997e-dd8d8575f910?mode=deep",
+    "timestamp": "2026-02-19 13:09:27.150734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Authorization] [Cross-Contract] Authorization relies on Context.Sender which works for direct calls but may break with meta-transactions or delegatecall patterns - is this considered? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6912a585-3b74-4e86-83a2-23215c1cbed1?mode=deep",
+    "timestamp": "2026-02-19 13:09:58.739564",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Initialization] [First Call Race] RequiredMethodFeeControllerSet() can be triggered by multiple functions (SetMethodFee, ChangeMethodFeeController, GetMethodFeeController) - can parallel first calls cause inconsistent initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7820210b-ed96-4b7a-9633-449c9193ed7a?mode=deep",
+    "timestamp": "2026-02-19 13:10:29.463602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Initialization] [Deployment Order] Contract assumes Parliament contract exists at deployment via Context.GetContractAddressByName - what if Association is deployed before Parliament causing lookup failure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_579599ea-cc75-4db1-8fde-a5f3737f7047?mode=deep",
+    "timestamp": "2026-02-19 13:11:00.406018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [Initialization] [Default Values] No explicit initialization function - contract relies on lazy initialization which could be triggered by attacker before legitimate admin gets chance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3283c15-38f4-4b9b-b2f6-e9990445cab6?mode=deep",
+    "timestamp": "2026-02-19 13:11:31.539861",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationContract_ACS1_TransactionFeeProvider.cs] [DOS] [Gas Exhaustion] SetMethodFee() with large input.Fees array causes multiple external calls to token contract in loop - can this exceed block gas limit preventing legitimate fee updates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5890d554-6fe7-4b4c-8422-6fbf61f8da21?mode=deep",
+    "timestamp": "2026-02-19 13:12:04.244875",
+    "report_generated": false
+  }
+]
