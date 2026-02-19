@@ -1,0 +1,8 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Edge Case] If ToRound() is called on a default/uninitialized NextRoundInput, does it return a valid but potentially dangerous Round object with all-zero values? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d980d50d-a3b1-442f-89a9-a0c915fab1d3?mode=deep",
+    "timestamp": "2026-02-19 04:27:22.678527",
+    "report_generated": false
+  }
+]
