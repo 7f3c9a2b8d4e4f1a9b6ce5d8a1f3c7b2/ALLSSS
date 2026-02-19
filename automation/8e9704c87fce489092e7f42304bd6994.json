@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Corruption] Can an attacker pass mismatched currentRoundNumber and currentTermNumber where term transition hasn't occurred, violating the invariant that new terms start with incremented term numbers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec4e78a1-c32f-493d-8295-93e0e6d71f70?mode=deep",
+    "timestamp": "2026-02-19 08:28:22.561941",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Integer Overflow] If the Pubkeys collection has Int32.MaxValue miners, can the order calculation i + 1 at line 31 overflow when i approaches Int32.MaxValue? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a84a577b-b4de-4157-9f9d-c17e489c2987?mode=deep",
+    "timestamp": "2026-02-19 08:28:44.941026",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Business Logic] Can the order assignment starting from i + 1 (line 31) cause confusion if other code expects 0-indexed orders, leading to off-by-one errors in miner selection? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7855f4d-32a4-4371-8415-8f6e31b482ac?mode=deep",
+    "timestamp": "2026-02-19 08:29:08.896175",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Corruption] Can an attacker manipulate the loop index to cause specific miners to receive predictable orders and gain scheduling advantages? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a287387-b8af-435b-a50c-f5d439e9d1ab?mode=deep",
+    "timestamp": "2026-02-19 08:29:32.142133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Integer Overflow] Can the i.Mul(miningInterval).Add(miningInterval) calculation at line 33 overflow when both i and miningInterval are large, causing incorrect ExpectedMiningTime assignments? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_85425408-f96a-41d6-897a-89a3bebcda06?mode=deep",
+    "timestamp": "2026-02-19 08:29:57.232002",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Corruption] Does the calculation i.Mul(miningInterval).Add(miningInterval) at line 33 correctly account for the first miner (i=0) getting an extra miningInterval delay before their slot? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fa7e819-cece-48ea-8f34-411ca6b379fb?mode=deep",
+    "timestamp": "2026-02-19 08:30:24.597656",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Time Manipulation] Can an attacker exploit the fact that ExpectedMiningTime increments linearly by miningInterval to predict future mining slots and prepare front-running attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24f413a9-e7f6-4997-aedf-4071d191abd3?mode=deep",
+    "timestamp": "2026-02-19 08:30:51.584197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Timestamp Overflow] Can the AddMilliseconds operation at line 33 cause Timestamp overflow if currentBlockTime is near the maximum timestamp value and large miningInterval * i is added? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f99c9fb-41ad-4384-b8cc-b01d5f2816bd?mode=deep",
+    "timestamp": "2026-02-19 08:31:20.639005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Security] Does setting PreviousInValue to Hash.Empty for all miners at line 35 break the secret-sharing chain and allow miners to skip providing valid InValue for the first block of the new term? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_090eca12-9f57-49af-82c3-37333e00b456?mode=deep",
+    "timestamp": "2026-02-19 08:31:49.586661",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Security] Can an attacker exploit the fact that PreviousInValue is Hash.Empty (line 35) to bypass InValue validation during the first round of a new term and manipulate random number generation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8c2febd-1c5b-4733-83f5-b7624ccac3a7?mode=deep",
+    "timestamp": "2026-02-19 08:32:21.646919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Security] Does the comment 'Should be careful during validation' at line 34 indicate a known vulnerability where Hash.Empty PreviousInValue requires special handling that could be bypassed? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a6b4289-74a5-46df-ae55-ae17a962745c?mode=deep",
+    "timestamp": "2026-02-19 08:32:54.111313",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Corruption] Can miners collude by all submitting the same InValue in the first round since PreviousInValue is Hash.Empty, reducing randomness and enabling predictable outcomes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c29798a2-bf28-46b3-864e-0ea3820702f6?mode=deep",
+    "timestamp": "2026-02-19 08:33:21.709343",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Fairness] Can an attacker with control over pubkey generation craft keys to always appear first in the sorted order (line 18) and consistently become the extra block producer (line 28)? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_999a7d1b-73b4-43d0-ac06-384460dc438b?mode=deep",
+    "timestamp": "2026-02-19 08:33:52.888675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Fairness] Does assigning IsExtraBlockProducer to the first sorted miner (lines 27-28) create a centralization risk where the same miner repeatedly gains extra block production privileges? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31d7434e-35b9-423c-a1a9-49828b6a7a09?mode=deep",
+    "timestamp": "2026-02-19 08:34:21.132406",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Fairness] Can an attacker analyze the sorting algorithm (descending by first byte at line 18) to predict which pubkey will be the extra block producer and manipulate election results? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b99294bf-dc36-4d87-bd3d-b43afce4a4d1?mode=deep",
+    "timestamp": "2026-02-19 08:34:53.433120",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Business Logic] If only one miner exists in the Pubkeys list, does setting IsExtraBlockProducer = true at line 28 grant that miner both regular and extra block production rights unfairly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88b2eb01-9034-4fc0-8537-a13bc14e7331?mode=deep",
+    "timestamp": "2026-02-19 08:35:27.573692",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] Can an attacker provide duplicate pubkeys in the MinerList causing the round.RealTimeMinersInformation.Add() at line 37 to throw ArgumentException and crash term generation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0ddcc2f-feff-44e9-95ca-e05e38775248?mode=deep",
+    "timestamp": "2026-02-19 08:36:02.014853",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Data Integrity] If sortedMiners[i] at line 37 happens to be a duplicate due to sorting instability with identical first bytes, will the Add operation silently overwrite previous miner information? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3dc7f982-c16e-42a3-b303-cea0f9c39414?mode=deep",
+    "timestamp": "2026-02-19 08:36:36.473907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [DoS] Can an attacker provide pubkeys that hash to the same hex string (via ToHex() at line 17), causing dictionary key collision in ToDictionary() and throwing exception? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_88b5eb84-cdb2-4df6-af75-37e677c4d4a4?mode=deep",
+    "timestamp": "2026-02-19 08:37:12.369029",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Logic] Does hardcoding IsMinerListJustChanged = true at line 42 correctly reflect reality if the new miner list is identical to the previous term's list? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16f0a011-b104-49af-8ea2-582c4b4ecd76?mode=deep",
+    "timestamp": "2026-02-19 08:37:47.960840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Logic] Can an attacker exploit the fact that IsMinerListJustChanged is always true (line 42) to trigger miner-change logic even when the list hasn't changed, causing unnecessary state resets? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e787111f-c801-4eb3-aa41-e7cde922ebdf?mode=deep",
+    "timestamp": "2026-02-19 08:38:24.115896",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm()] [Consensus Logic] Does setting IsMinerListJustChanged = true (line 42) without validating actual changes violate the semantic meaning of this flag and confuse downstream consensus logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a9e1548b-ef1b-4361-be1e-789e54df7925?mode=deep",
+    "timestamp": "2026-02-19 08:38:59.313444",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Input Validation] Can an attacker pass a null currentRound object to the second overload at line 47, causing NullReferenceException when accessing currentRound.RoundNumber at line 49? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0dd6118f-52c9-4561-823c-28f1e816680c?mode=deep",
+    "timestamp": "2026-02-19 08:39:34.838899",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Input Validation] Can an attacker pass a currentRound with negative RoundNumber, causing the first overload call at line 49 to receive negative currentRoundNumber and generate corrupted rounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_11f30df7-0546-4422-af0d-87620f191fc0?mode=deep",
+    "timestamp": "2026-02-19 08:40:11.051233",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/MinerList.cs] [Function: GenerateFirstRoundOfNewTerm() overload] [Input Validation] Can an attacker pass a currentRound with negative TermNumber, causing the first overload call at line 49 to receive negative currentTermNumber and corrupt term progression? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_17577986-d14b-4436-9e1d-f3926146a564?mode=deep",
+    "timestamp": "2026-02-19 08:40:44.151433",
+    "report_generated": false
+  }
+]
