@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Integer Division Rounding] Does the integer division in RealTimeMinersInformation.Count.Mul(2).Div(3).Add(1) correctly implement the 2/3 majority consensus threshold, or could edge cases with specific miner counts (e.g., 1, 2, 4, 5) result in incorrect quorum calculations that allow consensus with insufficient miner participation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f654593c-9a89-4005-b46f-1dc191f6b637?mode=deep",
+    "timestamp": "2026-02-19 13:50:23.857299",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Arithmetic Overflow] Can RealTimeMinersInformation.Count.Mul(2) overflow if the miner count approaches int.MaxValue/2, causing MinersCountOfConsent to return a negative or incorrect value that breaks consensus validation logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_102be321-7031-44a5-9ba7-217801aa27df?mode=deep",
+    "timestamp": "2026-02-19 13:50:45.916599",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Zero Miner Count] If RealTimeMinersInformation.Count is 0, does MinersCountOfConsent return 1 (via 0.Mul(2).Div(3).Add(1)), creating a scenario where consensus can be achieved with zero actual miners, potentially allowing invalid block finalization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7cd9cd12-560a-4f89-82cf-97fbedae9217?mode=deep",
+    "timestamp": "2026-02-19 13:51:08.499554",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Single Miner Edge Case] With RealTimeMinersInformation.Count = 1, does MinersCountOfConsent compute to 1 (1*2/3+1 = 0+1 = 1), and does this correctly represent that a single miner can establish consensus alone, or should this case require special handling? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9430014a-ff15-4fd3-a7df-48afbcf475a9?mode=deep",
+    "timestamp": "2026-02-19 13:51:31.569816",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Two Miner Edge Case] With RealTimeMinersInformation.Count = 2, does MinersCountOfConsent return 2 (2*2/3+1 = 1+1 = 2), requiring both miners for consensus? Is this the intended Byzantine fault tolerance behavior or should 2 miners allow 1 to fail? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_518fdf7e-65ee-4f39-a1fc-bb7abd06b4b5?mode=deep",
+    "timestamp": "2026-02-19 13:51:55.889486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Negative Count Input] Can RealTimeMinersInformation.Count ever be negative due to bugs in upstream code, and if so, does the Mul(2).Div(3).Add(1) calculation produce undefined behavior or allow consensus bypass with a nonsensical negative quorum? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f94abaea-0ec4-4d51-860a-ef0d2991a692?mode=deep",
+    "timestamp": "2026-02-19 13:52:22.275858",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [BFT Threshold Correctness] Does the 2n/3+1 formula correctly implement Byzantine Fault Tolerance requiring >2/3 honest nodes, or does the integer division truncation create scenarios where exactly 2/3 (not >2/3) is accepted, violating BFT safety assumptions? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c1736d78-811e-43bf-b5bb-645ddd2c48d0?mode=deep",
+    "timestamp": "2026-02-19 13:52:48.601114",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Race Condition] If RealTimeMinersInformation.Count changes between multiple reads of MinersCountOfConsent within the same transaction or block, could inconsistent quorum thresholds be used for different validation checks, allowing consensus manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_683e53a6-f536-46f5-bb20-e5a3b0279b6a?mode=deep",
+    "timestamp": "2026-02-19 13:53:15.742391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Caching Absence] Since MinersCountOfConsent is computed on every access without caching, could repeated access in hot code paths cause excessive gas consumption or performance degradation that leads to DOS conditions? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a95a4c2b-f26b-4e55-b186-f2ab41e8845e?mode=deep",
+    "timestamp": "2026-02-19 13:53:43.264597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Property: MinersCountOfConsent] [Large Miner Count] For a network with 1000+ miners, does the computation RealTimeMinersInformation.Count.Mul(2).Div(3).Add(1) remain accurate and efficient, or could integer overflow in Mul(2) or precision loss in Div(3) create consensus vulnerabilities? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a525e74b-47ee-4026-b8cb-af48c646b7cf?mode=deep",
+    "timestamp": "2026-02-19 13:54:14.679688",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Empty Input List] If specificPublicKeys is an empty list, does the method return an empty list, and could this empty result be misinterpreted by calling code as 'no irreversible height available' versus 'all heights should be considered', causing incorrect LIB calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f11b5e08-136f-43e0-ac39-74004fd6d04a?mode=deep",
+    "timestamp": "2026-02-19 13:54:45.928488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Null Input] If specificPublicKeys is null, does the Contains() call throw a NullReferenceException that halts consensus processing and prevents new blocks from being finalized? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b6ac930-5a22-4e87-9a93-5fb9e078f8ca?mode=deep",
+    "timestamp": "2026-02-19 13:55:18.585628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Invalid Public Key Format] If specificPublicKeys contains malformed public key strings, does the Contains() comparison fail silently or throw exceptions, and could an attacker inject invalid keys to exclude legitimate miners from LIB calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_588bba7a-ce5d-4115-98a9-fcc92cb97e3c?mode=deep",
+    "timestamp": "2026-02-19 13:55:52.339439",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Duplicate Public Keys] If specificPublicKeys contains duplicate entries for the same public key, could the filtering logic include the same miner's ImpliedIrreversibleBlockHeight multiple times, skewing the sorted results and artificially advancing the LIB? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84427b2b-f25f-4aaf-9560-5eaa6d6eaa25?mode=deep",
+    "timestamp": "2026-02-19 13:56:25.372907",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Case Sensitivity] Are public key comparisons in Contains() case-sensitive, and could an attacker provide public keys with different casing to bypass the filter and exclude certain miners from irreversible height consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0a2983c-8fc8-46b3-a216-c9394f94fb01?mode=deep",
+    "timestamp": "2026-02-19 13:56:55.348458",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Zero Height Filtering] The method filters out miners where ImpliedIrreversibleBlockHeight <= 0. Could an attacker manipulate their own miner info to set ImpliedIrreversibleBlockHeight to 0, effectively excluding themselves from LIB consensus and preventing finalization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00d2ff80-78ab-4130-9603-3fda36723f4b?mode=deep",
+    "timestamp": "2026-02-19 13:57:25.249628",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Negative Height Values] If ImpliedIrreversibleBlockHeight can be negative due to bugs, does the filter 'i.ImpliedIrreversibleBlockHeight > 0' correctly exclude these, or could negative heights pass through and corrupt the sorted list used for LIB determination? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ea7ad4b2-9ff6-446f-a2fd-ecff5624123a?mode=deep",
+    "timestamp": "2026-02-19 13:57:56.954188",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [All Miners Filtered Out] If all miners in RealTimeMinersInformation have ImpliedIrreversibleBlockHeight = 0, the method returns an empty list. Does the caller handle this gracefully, or does it cause the LIB to remain stuck at genesis, preventing any block finalization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9d81ad13-975c-4e65-a5af-0d7ddd8d5a89?mode=deep",
+    "timestamp": "2026-02-19 13:58:25.650487",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Sorting Stability] Does the List.Sort() method maintain stable ordering for miners with identical ImpliedIrreversibleBlockHeight values, and could non-deterministic sorting between nodes cause consensus disagreement on which height to use? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4ee253f-8827-4ff9-8cf6-f6e2f529ed0c?mode=deep",
+    "timestamp": "2026-02-19 13:58:57.169626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Large List DOS] If RealTimeMinersInformation contains thousands of miners and specificPublicKeys is also very large, could the O(n*m) complexity of the Contains() filter cause excessive gas consumption or timeout, halting consensus? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a5476d0-d081-4ab6-9e47-ea13fddfbb02?mode=deep",
+    "timestamp": "2026-02-19 13:59:28.248525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeights] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Public Key Not in Round] If specificPublicKeys contains public keys not present in RealTimeMinersInformation.Values, the Contains() filter simply excludes them. Could an attacker provide a list of non-existent keys to receive an empty result and manipulate LIB selection logic? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_00f97797-4a81-4d7a-802f-02a09db029f3?mode=deep",
+    "timestamp": "2026-02-19 14:00:00.423645",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [LINQ Execution Timing] The method uses LINQ with ToList(), which forces immediate execution. If RealTimeMinersInformation is modified concurrently during LINQ evaluation, could the resulting list contain inconsistent data leading to incorrect LIB calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3114fc2a-90aa-44b2-acfc-ce81fba939c1?mode=deep",
+    "timestamp": "2026-02-19 14:00:34.143150",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Integer Overflow in Heights] If ImpliedIrreversibleBlockHeight values approach long.MaxValue, could sorting these values cause overflow issues or incorrect ordering that places a lower height above a higher one, stalling finalization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3378855a-def4-46b7-bd81-a10c3bc564a9?mode=deep",
+    "timestamp": "2026-02-19 14:01:08.685674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Memory Allocation Attack] Could an attacker cause RealTimeMinersInformation to grow unbounded, making the ToList() and Sort() operations consume excessive memory and crash the node during LIB calculation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b88c1ab-29fb-4532-a70a-028af10ea4e0?mode=deep",
+    "timestamp": "2026-02-19 14:01:44.766664",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/Round_ImpliedIrreversibleBlockHeight.cs] [Function: GetSortedImpliedIrreversibleBlockHeights()] [Return Value Mutation] Since the method returns a List<long> (mutable), could calling code modify the returned list and cause unexpected behavior if this same list is cached or reused elsewhere in consensus logic? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21fd6725-d17f-4ed5-a428-e8b8e0337994?mode=deep",
+    "timestamp": "2026-02-19 14:02:21.984559",
+    "report_generated": false
+  }
+]
