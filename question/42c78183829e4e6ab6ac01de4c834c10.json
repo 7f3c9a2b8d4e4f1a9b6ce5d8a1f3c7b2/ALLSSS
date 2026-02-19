@@ -1,5 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Complete State Corruption] If both State.MainChainRoundNumber and State.MainChainCurrentMinerList updates partially fail, could the contract enter unrecoverable state requiring migration? (Critical)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: DistributeResourceTokensToPreviousMiners()] [Selective Transfer Failure] If transfers succeed for some miners but fail for others, are successful transfers reversed or do some miners receive payment while others don't? (High)",
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Cross-Chain Consensus Liveness] If UpdateInformationFromCrossChain consistently fails due to distribution costs or gas limits, could side chain consensus halt permanently? (Critical)"
-]
