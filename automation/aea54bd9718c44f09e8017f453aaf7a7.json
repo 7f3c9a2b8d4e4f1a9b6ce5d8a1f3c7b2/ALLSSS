@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Count Mismatch DOS] Line 49 asserts PieceNumbers.Count == PieceCoefficientsList.Count. Could an attacker deliberately provide mismatched counts to DOS the coefficient update functionality repeatedly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e81d08c2-49e0-4c66-9ff4-1b7618d70cd5?mode=deep",
+    "timestamp": "2026-02-19 10:16:34.429055",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Gas Exhaustion] The loop at line 52 iterates through all inputPieceCoefficientsList calling AssertCoefficientsValid for each. Could an attacker provide a massive list of coefficients to exhaust gas and prevent legitimate updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_24821143-1d0a-47ea-aaac-e383e91e24ea?mode=deep",
+    "timestamp": "2026-02-19 10:16:56.580373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Loop DOS] The loop at lines 55-62 has no upper bound on inputPieceCount. Could an attacker provide thousands of piece updates in a single transaction to consume excessive gas and block legitimate coefficient updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6b9849d6-5a3e-4d1c-9732-a2677c7ff7ba?mode=deep",
+    "timestamp": "2026-02-19 10:17:18.960921",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertCoefficientsValid()] [Loop DOS] The loop at line 81 iterates count/3 times. If count is extremely large (e.g., 1000000), could this exhaust gas during validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e26f7da0-bdea-4db8-affe-7c6f948c8030?mode=deep",
+    "timestamp": "2026-02-19 10:17:41.787934",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertPieceUpperBoundsIsInOrder()] [Sorting DOS] Lines 98-100 call OrderBy which is O(n log n). Could an attacker force updates with hundreds of pieces to make sorting consume excessive gas and DOS the update mechanism? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ddf13a20-af54-46a6-9175-4bfc4a16daee?mode=deep",
+    "timestamp": "2026-02-19 10:18:05.693103",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: AssertPieceUpperBoundsIsInOrder()] [GroupBy DOS] Line 94 uses GroupBy with a closure. Could an attacker provide specially crafted piece upper bounds that cause GroupBy to consume excessive memory or CPU? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dd372f6b-a006-456d-b94d-2ada626677a5?mode=deep",
+    "timestamp": "2026-02-19 10:18:31.413881",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Event Emission DOS] Line 68 fires CalculateFeeAlgorithmUpdated with the entire currentAllCoefficients object. If this object is very large, could event emission consume excessive gas or fail? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ec01f96-fd05-41c3-ba6c-e15b0ad86a0a?mode=deep",
+    "timestamp": "2026-02-19 10:18:57.767190",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [No Atomicity Check] Lines 37-66 read, modify, and write state without explicit locking. In a concurrent environment, could two transactions update different fee types simultaneously and corrupt State.AllCalculateFeeCoefficients? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b6de7d70-705f-49a9-bbf6-2df73c044af0?mode=deep",
+    "timestamp": "2026-02-19 10:19:25.556788",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Stale Reference] currentAllCoefficients is retrieved at line 37, and currentCoefficients is retrieved from it at line 40. If State.AllCalculateFeeCoefficients is updated between these lines, could currentCoefficients become stale? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6fa8f464-e8a3-459c-9508-02c1da1ed203?mode=deep",
+    "timestamp": "2026-02-19 10:19:51.510128",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Lost Updates] Line 66 assigns State.AllCalculateFeeCoefficients.Value = currentAllCoefficients. If another transaction updated State.AllCalculateFeeCoefficients between line 37 and 66, could those updates be silently overwritten? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d58560d-1ce3-4dd4-8b6d-4b042991e046?mode=deep",
+    "timestamp": "2026-02-19 10:20:21.537459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Reference Aliasing] currentCoefficients at line 40 might be a reference to an object within currentAllCoefficients. If so, modifications to currentCoefficients automatically affect currentAllCoefficients. Could this create unexpected side effects? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6110b34f-bc9e-4822-b7ce-62708047d4b7?mode=deep",
+    "timestamp": "2026-02-19 10:20:52.383505",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: InitialCoefficients()] [State Check Vulnerability] Line 110 checks if State.AllCalculateFeeCoefficients.Value == null. If Value is set to an empty object (not null) through another path, could this check be bypassed and initialization repeated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9acb312b-cdb8-45eb-83ce-b62859cba62b?mode=deep",
+    "timestamp": "2026-02-19 10:21:19.088234",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Reentrancy via AssertDeveloperFeeController] If AssertDeveloperFeeController at line 20 makes external calls that reenter UpdateCoefficientsForContract, could the state be modified multiple times within a single transaction, leading to inconsistent coefficients? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c9553f0-e804-4f3f-9ac2-58a329a4752f?mode=deep",
+    "timestamp": "2026-02-19 10:21:46.049237",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Reentrancy via AssertUserFeeController] If AssertUserFeeController at line 28 triggers callbacks that call back into UpdateCoefficientsForSender, could an attacker modify transaction fee coefficients multiple times in one call? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb5c1d34-e5b4-4ae6-9518-0ce6ba7303d1?mode=deep",
+    "timestamp": "2026-02-19 10:22:17.279415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Reentrancy via Event] The CalculateFeeAlgorithmUpdated event at line 68 might trigger listeners that call back into UpdateCoefficients. Could this cause nested updates that corrupt the coefficient state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7ab16abc-cae2-4205-b140-6cd76095dcc1?mode=deep",
+    "timestamp": "2026-02-19 10:22:45.151498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: InitialCoefficients()] [Reentrancy via Event] CalculateFeeAlgorithmUpdated event at line 124 could trigger callbacks during initialization. Could reentrant calls to InitialCoefficients fail the null check at line 110 inconsistently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1eb98c1a-8be1-4e6b-bc46-fa56f506abd3?mode=deep",
+    "timestamp": "2026-02-19 10:23:15.818220",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Enum Type Safety] Line 19 casts input.Coefficients.FeeTokenType to int and compares with FeeTypeEnum.Tx. Could an attacker provide a value outside the enum range that passes this check but causes undefined behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34974d67-5b45-4181-97dd-caa0569bec39?mode=deep",
+    "timestamp": "2026-02-19 10:23:47.725984",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Forced Enum Cast] Line 29 assigns FeeTokenType = (int)FeeTypeEnum.Tx. Could the cast fail or produce unexpected results if FeeTypeEnum.Tx is modified or redefined? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2b2b5b4-14e6-4ed8-9e8e-1eb45e0f92fe?mode=deep",
+    "timestamp": "2026-02-19 10:24:16.155704",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Type Mismatch] Line 36 retrieves feeType from input.Coefficients.FeeTokenType, then uses it in SingleOrDefault at line 40. If feeType's actual type doesn't match the stored FeeTokenType, could the query fail or return incorrect results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cdf31df-9c49-4a66-b394-8efcd29fad5d?mode=deep",
+    "timestamp": "2026-02-19 10:24:44.963792",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForContract()] [Fee Manipulation] An authorized developer fee controller could set all resource token coefficient divisors to int.MaxValue, making fees approach zero. Could this enable spam attacks that exhaust blockchain resources at minimal cost? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ec76b59a-5d06-499f-a121-1fde5d4c1c45?mode=deep",
+    "timestamp": "2026-02-19 10:25:18.012412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficientsForSender()] [Transaction Fee Manipulation] A user fee controller could set transaction fee coefficients to make fees approach infinity, effectively DOS-ing their own account. But could this be exploited to lock accounts or prevent specific transaction types? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3cecd55-2eca-4f57-a3d3-cb3452d13ecd?mode=deep",
+    "timestamp": "2026-02-19 10:25:51.748523",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: UpdateCoefficients()] [Asymmetric Fee Attack] An attacker with update privileges could set some pieces to have high fees and others to have low fees, creating economic incentives to game piece boundaries. Could this distort resource usage patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cd9cbcb7-11ac-4ee8-b65c-649f66fab58b?mode=deep",
+    "timestamp": "2026-02-19 10:26:19.603864",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetReadFeeInitialCoefficient()] [Default Configuration Exploit] The default read fee coefficients make operations under 10 units very cheap. Could attackers launch read-heavy attacks within this tier to overwhelm the system? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9597df7e-a7fc-4d7f-a062-7e5043e1a000?mode=deep",
+    "timestamp": "2026-02-19 10:26:46.145316",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetStorageFeeInitialCoefficient()] [Storage Fee Exploit] Default storage fees are linear up to 1M units. Could an attacker create many contracts each storing just under 1M units to avoid quadratic pricing while consuming massive storage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d87df05d-8844-47d5-915c-cb41c79a3170?mode=deep",
+    "timestamp": "2026-02-19 10:27:12.594047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fee_Calculate_Coefficient.cs] [Function: GetWriteFeeInitialCoefficient()] [Write Fee Gaming] Write fees are linear up to 100 writes. Could transaction batching services exploit this by batching exactly 100 writes per transaction to minimize per-write fees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51d15938-b7bd-48f6-b24a-09ea5e8e3f4a?mode=deep",
+    "timestamp": "2026-02-19 10:27:38.287711",
+    "report_generated": false
+  }
+]
