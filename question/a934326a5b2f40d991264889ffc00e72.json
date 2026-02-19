@@ -1,6 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: SetOrRefreshTransactionFeeFreeAllowances()] [Unbounded Symbol Loop] Lines 307-319 iterate over all symbols in config - can this be DOS'd by adding many symbols in ConfigTransactionFeeFreeAllowances? (Medium)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: PayRental()] [PayRentalSymbolListName Loop] Lines 1040-1096 iterate symbols from Variables - if list is very large, can rental payment take excessive gas? (Low)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: PayResourceTokens()] [Nested Loops] Lines 962-1016 have nested foreach over billMaps.Value and bill.TokensMap.Value - can attacker create deeply nested structure to cause gas exhaustion? (Medium)",
-  "[File: contract/AElf.Contracts.MultiToken/TokenContract_Fees.cs] [Function: GetTransactionFeeFreeAllowancesConfig()] [Unbounded Config Query] Lines 1300-1303 iterate all symbols in config - can reading config DOS if too many symbols configured? (Low)"
-]
