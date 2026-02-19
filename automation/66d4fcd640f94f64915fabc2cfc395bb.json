@@ -1,0 +1,56 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewOrganization()] [Validation Timing] Line 280 calls Validate(organization) after creating organization object - if validation fails, can partially created organizations leak state? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20376d4b-b6e3-46fa-85a6-6721c2cc42f0?mode=deep",
+    "timestamp": "2026-02-19 06:26:20.186312",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewOrganization()] [Hash Collision] Lines 268-270 calculate organizationAddress from CalculateOrganizationHashAddressPair() - can hash collisions allow organization address conflicts? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5a44040c-474d-43ce-b474-f7d5fcb59c55?mode=deep",
+    "timestamp": "2026-02-19 06:26:42.479826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewOrganization()] [State Override] Lines 281-282 return early if organization exists - can this prevent organization updates or create stale organization data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5fd39948-98f6-450e-927f-6a4a4d4abe8a?mode=deep",
+    "timestamp": "2026-02-19 06:27:05.424488",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CreateNewOrganization()] [Event Consistency] Lines 285-288 fire OrganizationCreated event even if organization already exists (after line 282 return) - wait, no it doesn't, the return happens first. Can the early return cause event/state inconsistencies? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a8dd5587-f0cd-487e-bd87-03ab15e0c038?mode=deep",
+    "timestamp": "2026-02-19 06:27:28.994498",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Hash Collision] Line 296 uses HashHelper.ComputeFrom(createOrganizationInput) - can two different organization inputs produce same hash, causing address collision? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e549284d-7cd0-4636-8566-d581dfa7b39c?mode=deep",
+    "timestamp": "2026-02-19 06:27:54.369670",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Virtual Address] Lines 297-299 use ConvertVirtualAddressToContractAddressWithContractHashName() with virtual hash - can this conversion be exploited to generate predictable or malicious addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ffe6ba2a-ead9-43d5-907b-d61bb421289f?mode=deep",
+    "timestamp": "2026-02-19 06:28:19.488349",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CalculateOrganizationHashAddressPair()] [Token Dependency] Line 299 calls CalculateVirtualHash(organizationHash, createOrganizationInput.CreationToken) - can CreationToken manipulation cause address prediction attacks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_858a2485-b385-4e9b-8951-425015d11131?mode=deep",
+    "timestamp": "2026-02-19 06:28:45.574206",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CalculateVirtualHash()] [Null Token] Lines 309-311 return organizationHash if creationToken is null, otherwise concat and compute - can null vs non-null token create two organizations with same params but different addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7bbb61f-97be-4994-930c-ced87ae43717?mode=deep",
+    "timestamp": "2026-02-19 06:29:12.082403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CalculateVirtualHash()] [Hash Collision] Line 311 uses HashHelper.ConcatAndCompute() - can hash collision allow different (organizationHash, creationToken) pairs to produce same virtual hash? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c557678a-345a-4261-af26-85b855ad9c6e?mode=deep",
+    "timestamp": "2026-02-19 06:29:43.660294",
+    "report_generated": false
+  }
+]
