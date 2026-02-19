@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [IsBurnable Exploitation] At line 28, if input.IsBurnable is set to false, but the attacker later gains control, could they bypass burn restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a1e030da-68b5-465c-bc91-c347389b54ca?mode=deep",
+    "timestamp": "2026-02-19 01:48:50.625257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [TokenName Injection] At line 30, input.ProtocolName is passed directly to TokenName - does this validate against malicious strings, HTML/SQL injection, or extremely long names? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa53fd02-d56e-4c79-8560-d3156917e1c5?mode=deep",
+    "timestamp": "2026-02-19 01:49:12.785539",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Protocol Name Collision] Can two different NFT protocols have identical ProtocolNames at line 30, causing confusion or phishing attacks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_914c995a-1f8f-4604-876b-89d5b272dc82?mode=deep",
+    "timestamp": "2026-02-19 01:49:35.418136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Metadata Injection] At line 21, GetTokenExternalInfo(input) processes user metadata - could malicious metadata keys/values corrupt the ExternalInfo structure? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26a2a68e-c3c4-456f-95f5-8d464ecc949a?mode=deep",
+    "timestamp": "2026-02-19 01:49:58.763844",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Reserved Key Bypass] Does GetTokenExternalInfo() at line 21 properly prevent users from overwriting reserved keys like NftTypeMetadataKey, NftBaseUriMetadataKey? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8293ca2e-e2b1-4866-8a7e-0946d670f60f?mode=deep",
+    "timestamp": "2026-02-19 01:50:22.826920",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [BaseUri Validation] Is input.BaseUri validated for proper URI format, length limits, and malicious content before being stored at line 21? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56d7122b-aa0a-4168-8b4a-b642e769a799?mode=deep",
+    "timestamp": "2026-02-19 01:50:47.911347",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [BaseUri Manipulation] Could an attacker provide a BaseUri pointing to malicious content or infinite redirects, causing issues for NFT resolvers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f8ad57a-e177-45a6-99c8-c8f852db7889?mode=deep",
+    "timestamp": "2026-02-19 01:51:13.441840",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [IsTokenIdReuse Exploitation] If input.IsTokenIdReuse is true, does this allow attackers to reuse burned token IDs in ways that violate uniqueness assumptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94464d30-a340-4669-b3e7-976665654ad9?mode=deep",
+    "timestamp": "2026-02-19 01:51:40.900626",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Metadata Size DOS] Can an attacker provide extremely large metadata dictionaries in input.Metadata causing storage exhaustion and high gas costs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5819cddb-3e73-4c6b-a0f7-5d2364569903?mode=deep",
+    "timestamp": "2026-02-19 01:52:12.784998",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Reentrancy] At line 34, State.TokenContract.Create.Send() is an external call - could a malicious TokenContract reenter Create() before line 38 updates MinterListMap? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b25a7f68-fa94-4bc7-8ace-6e70be371626?mode=deep",
+    "timestamp": "2026-02-19 01:52:40.283385",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [External Call Failure] If State.TokenContract.Create.Send() at line 34 reverts, does Create() properly rollback all state changes or leave partial state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_03f0a4d5-7ed8-402b-9608-3ba02e0a50b1?mode=deep",
+    "timestamp": "2026-02-19 01:53:08.106592",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Symbol Reuse Attack] If TokenContract.Create() fails at line 34, is the generated symbol at line 20 marked as used in IsCreatedMap, preventing reuse? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb25270b-2554-4073-8c94-50da1c35eec5?mode=deep",
+    "timestamp": "2026-02-19 01:53:35.677199",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Token Creation Race] Between lines 34 and 38, if the TokenContract successfully creates the token but this contract fails, could the token exist without an NFT protocol? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d2b8fbf4-508d-4598-8de8-3e9299f2edcd?mode=deep",
+    "timestamp": "2026-02-19 01:54:09.704893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Issuer Mismatch] Does TokenContract.Create() at line 34 verify that the issuer matches the creator, or could there be a mismatch between token issuer and NFT creator? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c59c23e-89fa-4648-b9c7-52026ddceba9?mode=deep",
+    "timestamp": "2026-02-19 01:54:38.042213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Cross-Contract State Inconsistency] If TokenContract state updates at line 34 but NFTContract state updates at lines 38, 53 fail, could the contracts be in inconsistent states? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de95b48b-443b-4c7f-ab23-8047259f756e?mode=deep",
+    "timestamp": "2026-02-19 01:55:14.155043",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Minter Authorization] At lines 36-38, if input.MinterList is null, a new list is created, but are there checks that creator can actually grant minting permissions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d06a744-f01a-463d-880d-455cc06ea501?mode=deep",
+    "timestamp": "2026-02-19 01:55:48.907447",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Minter List Bypass] At line 37, if creator is not in the minterList, it's added, but could an attacker exploit this to add unauthorized addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2584175e-a47d-4b2c-bdb0-d44e0ab204e2?mode=deep",
+    "timestamp": "2026-02-19 01:56:18.758849",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Minter List Duplication] Does line 37 check for duplicate addresses before adding creator to minterList, or could duplicates cause iteration issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d23c4722-12d6-4174-98f1-ed1558487ee2?mode=deep",
+    "timestamp": "2026-02-19 01:56:57.071442",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Minter List Size DOS] Can an attacker provide input.MinterList with thousands of addresses at line 36, causing gas exhaustion when storing at line 38? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6d84fc68-dcca-432d-83cb-44ef4f4859b1?mode=deep",
+    "timestamp": "2026-02-19 01:57:36.577225",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Minter Address Validation] Are addresses in input.MinterList validated to be non-zero and properly formatted before storage at line 38? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d5c29beb-96f2-44b5-8ffd-3d3208b1654b?mode=deep",
+    "timestamp": "2026-02-19 01:58:17.059605",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Minter List Overwrite] At line 38, State.MinterListMap[symbol] directly overwrites - could this conflict with existing data if symbol collision occurs? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf3fa0b6-6ce7-48aa-96a5-66fffa3dd2b0?mode=deep",
+    "timestamp": "2026-02-19 01:58:58.438789",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Creator Removal Attack] Since creator is added at line 37 after checking if minterList contains it, could a malicious input.MinterList exclude the creator initially? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b15ef35d-2c22-46e4-b76d-0ecb09ca3c53?mode=deep",
+    "timestamp": "2026-02-19 01:59:41.814503",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Protocol Info Overwrite] At line 53, State.NftProtocolMap[symbol] stores the protocol - is there a check to prevent overwriting existing protocols with same symbol? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2e976996-cc40-4e29-9247-9c8a0461329d?mode=deep",
+    "timestamp": "2026-02-19 02:00:18.475020",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [Metadata Inconsistency] At line 46, protocolInfo.Metadata copies from tokenExternalInfo, but could modifications to tokenExternalInfo after line 21 cause inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9f2f6854-4a2e-47a5-baf9-4688cd47c7dc?mode=deep",
+    "timestamp": "2026-02-19 02:00:54.693319",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_Create.cs] [Function: Create()] [BaseUri Override] At line 43, protocolInfo.BaseUri is set from input.BaseUri, but is this the same value stored in tokenExternalInfo at line 21? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32729a2b-d408-4ac8-adfd-7f43e2b44839?mode=deep",
+    "timestamp": "2026-02-19 02:01:42.792389",
+    "report_generated": false
+  }
+]
