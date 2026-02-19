@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Initialize()] [Authorization Bypass] Can Initialize() be called multiple times if State.TokenContract.Value is manipulated to null after initialization, allowing an attacker to reset BaseTokenSymbol, FeeRate, and all Connectors? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c9391a1-29a0-426a-a02e-42506a9aa030?mode=deep",
+    "timestamp": "2026-02-19 12:33:50.314757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Initialize()] [Input Validation] Can an attacker initialize the contract with an empty or invalid BaseTokenSymbol by passing an empty string that passes IsValidBaseSymbol() check, potentially breaking all Buy/Sell operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_34adc23a-cfbe-4e78-bfb5-f6a889b76ae3?mode=deep",
+    "timestamp": "2026-02-19 12:34:12.447753",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Initialize()] [Fee Manipulation] Can FeeRate be set to exactly 0 or 1 during initialization since IsBetweenZeroAndOne() only checks > 0 and < 1, causing either no fees or 100% fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_118a022c-ea41-4f94-a03a-080cf0f7b8b7?mode=deep",
+    "timestamp": "2026-02-19 12:34:34.935039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Initialize()] [Connector State Corruption] Can an attacker pass duplicate connector symbols in the Connectors array, overwriting earlier connectors and causing state inconsistency? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1315f469-ffc5-4067-a273-1db21bc5ee4d?mode=deep",
+    "timestamp": "2026-02-19 12:34:57.981679",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Initialize()] [Weight Validation Bypass] Can connectors be initialized with Weight = '0.000...01' (extremely small but still between 0 and 1), causing Bancor calculations to fail or produce incorrect results? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_586b5d55-6bc3-41fd-9652-93deed54c34f?mode=deep",
+    "timestamp": "2026-02-19 12:35:21.931275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: UpdateConnector()] [Race Condition] Can UpdateConnector() be called by ConnectorController right before EnableConnector() is executed, modifying Weight/VirtualBalance and causing incorrect deposit calculations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b096f97-6f72-4839-afe5-3616eb4a1c69?mode=deep",
+    "timestamp": "2026-02-19 12:35:46.822673",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: UpdateConnector()] [State Inconsistency] After UpdateConnector() modifies a connector's Weight, can the related connector's Weight remain unchanged, causing asymmetric Bancor calculations in Buy/Sell? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66af5ae4-692b-4059-8ed9-9c47dbfa6b77?mode=deep",
+    "timestamp": "2026-02-19 12:36:11.946871",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: UpdateConnector()] [Authorization Check Missing] Does AssertPerformedByConnectorController() properly initialize State.ConnectorController if it's null, or can this be exploited to bypass authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1b093d05-c0ba-4ac8-b25e-a4a78143fffc?mode=deep",
+    "timestamp": "2026-02-19 12:36:38.128025",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: UpdateConnector()] [VirtualBalance Manipulation] Can VirtualBalance be updated to an extremely large value before EnableConnector(), causing GetNeededDeposit() to return near-zero deposit requirements? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e342a87f-bb94-4a44-90bd-dbe40bba22f1?mode=deep",
+    "timestamp": "2026-02-19 12:37:04.257691",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: UpdateConnector()] [Purchase Enable Check] The assertion 'connector can not be updated because it has been activated' only checks IsPurchaseEnabled - can this be bypassed if both connectors in a pair are not yet enabled? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f5cc7fc-673b-4b11-a214-79c81321faca?mode=deep",
+    "timestamp": "2026-02-19 12:37:33.447835",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: AddPairConnector()] [Symbol Collision] Can AddPairConnector() create a connector with Symbol that collides with an existing RelatedSymbol, causing state corruption when Buy/Sell operations look up connectors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a81a4325-657c-4e8b-8253-15f6cbb75805?mode=deep",
+    "timestamp": "2026-02-19 12:38:00.826659",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: AddPairConnector()] [Prefix Injection] Can ResourceConnectorSymbol contain NewNtTokenPrefix causing nativeConnectorSymbol to be malformed (e.g., '(NT)(NT)TOKEN')? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c254e592-0f9e-4f1e-9686-011a86a487ab?mode=deep",
+    "timestamp": "2026-02-19 12:38:28.413340",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: AddPairConnector()] [Zero Virtual Balance] Can NativeVirtualBalance be set to 0 during AddPairConnector(), causing division by zero or incorrect Bancor calculations later? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_699fa775-bdd0-476b-95a2-2cf93e42b07d?mode=deep",
+    "timestamp": "2026-02-19 12:38:57.910623",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: AddPairConnector()] [Weight Mismatch Attack] Can attacker-controlled ResourceWeight and NativeWeight be set such that their product enables price manipulation through asymmetric Bancor curves? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ce0d81b-7236-40ad-bb05-698e1a20052c?mode=deep",
+    "timestamp": "2026-02-19 12:39:28.108045",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: AddPairConnector()] [IsDepositAccount Flag] The nativeTokenToResourceConnector sets IsDepositAccount = true - can this cause GetSelfBalance() to read from State.DepositBalance before any balance is deposited, returning 0? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b66abff7-a1ce-4f4b-bb30-2fec585592ad?mode=deep",
+    "timestamp": "2026-02-19 12:39:59.798657",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Reentrancy] Can Buy() be reentered through State.TokenContract.TransferFrom() or State.TokenContract.Transfer() callbacks before State.DepositBalance is updated, allowing double-spending? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1295a4bd-6273-4843-a7f8-54dac4b5d445?mode=deep",
+    "timestamp": "2026-02-19 12:40:31.227731",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Price Manipulation] Can an attacker frontrun a large Buy() transaction with their own Buy() to manipulate the Bancor curve, then backrun with Sell() for profit? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3296eb49-3ada-4513-ad17-b25093345e50?mode=deep",
+    "timestamp": "2026-02-19 12:41:02.918525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Fee Calculation Overflow] Can amountToPay * GetFeeRate() overflow when converting to Int64, especially with large amounts near Int64.MaxValue? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05574062-9370-418c-990b-ea78f753066f?mode=deep",
+    "timestamp": "2026-02-19 12:41:34.690244",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [PayLimit Bypass] Can PayLimit check be bypassed if PayLimit is set to 0 (treated as 'no limit'), allowing unexpectedly high costs? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9a261884-1a12-42a5-b465-3257e14486c1?mode=deep",
+    "timestamp": "2026-02-19 12:42:06.313023",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Balance Update Ordering] State.DepositBalance is updated AFTER token transfers - can this ordering be exploited in cross-contract calls? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_418bc7cc-2a8f-48ac-adee-d52be3bec503?mode=deep",
+    "timestamp": "2026-02-19 12:42:36.602454",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Connector State Check] toConnector and fromConnector are loaded without checking if they're null after RelatedSymbol lookup - can this cause null reference exceptions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f53e3a06-7d5b-467b-81e6-76bd07cfed7b?mode=deep",
+    "timestamp": "2026-02-19 12:43:04.724603",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [TransferFrom Authorization] Does TransferFrom require prior approval from Context.Sender? If not approved, does the call revert or silently fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3184ada8-41f2-4634-96cb-6ea2049c805d?mode=deep",
+    "timestamp": "2026-02-19 12:43:35.194334",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Amount Zero Exploit] Can input.Amount = 0 bypass Bancor calculations and be used to update state or emit events without actual transfers? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40afcac2-9cc1-4995-b448-05034153cab0?mode=deep",
+    "timestamp": "2026-02-19 12:44:04.173773",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [Fee Rounding Error] When fee = Convert.ToInt64(amountToPay * GetFeeRate()), can rounding always floor the fee, allowing users to avoid fees through many small transactions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f5ff4e58-1de7-4f6e-b6a8-af28a5dbc0d5?mode=deep",
+    "timestamp": "2026-02-19 12:44:34.570035",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConverterContract.cs] [Function: Buy()] [HandleFee Failure] If HandleFee() reverts (e.g., TransferFrom fails), does the entire Buy() transaction revert, or are tokens transferred without fees? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa8876c9-3863-4a53-8cb4-9cbd9ad64842?mode=deep",
+    "timestamp": "2026-02-19 12:45:03.081839",
+    "report_generated": false
+  }
+]
