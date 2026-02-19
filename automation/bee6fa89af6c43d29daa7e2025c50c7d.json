@@ -1,0 +1,110 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [AssertValidInputAddress] [Null Value Check] Line 96 checks 'input.Value.IsNullOrEmpty()' - can Address with non-null but invalid Value field bypass this check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_781ce59b-64f4-47a4-a625-b855b8d39f52?mode=deep",
+    "timestamp": "2026-02-19 11:22:50.351883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [AssertApproveToken] [NFT Collection Validation] Lines 57-74 handle NFT symbol validation - can attacker create NFT without corresponding collection token by exploiting split logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c27ffb78-fa79-4b50-846c-433c5a23a985?mode=deep",
+    "timestamp": "2026-02-19 11:23:12.604504",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetCollectionSymbol] [Symbol Collision] Line 78 hardcodes '-0' as collection suffix - can this collide with legitimate NFT item ID '0', causing approval/transfer confusion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b2c2a1f1-a6b1-4031-bb28-ffb434aeafb4?mode=deep",
+    "timestamp": "2026-02-19 11:23:35.835972",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [AssertApproveToken] [All Symbol Pattern Matching] Lines 63-66 handle allSymbolIdentifier matching for collection - can attacker exploit this wildcard for mass approval of all NFTs? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58b2ab43-c7b8-4230-8fe4-ec56a87a4697?mode=deep",
+    "timestamp": "2026-02-19 11:24:00.463098",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [ModifyFreeFeeAllowanceAmount] [Unbounded Loop] Lines 141-154 loop through symbolList - can attacker add excessive entries to transactionFeeFreeAllowancesMap causing gas exhaustion DoS? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f51d5b5c-65d6-48e0-a716-4d7571cdd8a6?mode=deep",
+    "timestamp": "2026-02-19 11:24:25.179306",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetSymbolListSortedByExpirationTime] [Complex Sorting] Lines 160-164 sort with complex calculation - can large number of symbols cause excessive gas consumption in sorting operation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_186b9e53-0788-4280-ba36-3ee47c5e079a?mode=deep",
+    "timestamp": "2026-02-19 11:24:52.532415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetFreeFeeAllowanceAmount] [Map Iteration] Lines 186-191 iterate all map values - can attacker fill map with many entries to cause gas exhaustion when querying allowance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c61f306-f080-46f1-8f10-4c913909c3d3?mode=deep",
+    "timestamp": "2026-02-19 11:25:18.836241",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [AssertCrossChainTransaction] [Method Name Array] Line 219 uses Contains() on validMethodNames array - can large array cause O(n) lookup DoS? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5c5f82b-b6e0-41ed-838c-8360e9421127?mode=deep",
+    "timestamp": "2026-02-19 11:25:48.276462",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [RegisterTokenInfo] [Decimal Precision] Decimals field in TokenInfo can vary per token - can arithmetic operations between tokens with different decimals cause precision loss or truncation errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a2e37dd-bb24-426c-b8a9-b95a8604d6c2?mode=deep",
+    "timestamp": "2026-02-19 11:26:20.015746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [ModifyBalance] [Add Method Implementation] Line 123 uses before.Add(addAmount) - does Add() handle decimals correctly for tokens with different decimal places? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b508fcb0-20aa-4eed-b547-0e9e3a2d77c5?mode=deep",
+    "timestamp": "2026-02-19 11:26:52.913459",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetSymbolListSortedByExpirationTime] [Block Time Manipulation] Lines 161-163 use Context.CurrentBlockTime - can miner manipulate block timestamp to affect expiration ordering and allowance depletion? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4b6f5c84-5fea-41ef-8b57-8013b9fd44a7?mode=deep",
+    "timestamp": "2026-02-19 11:27:20.074281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetSymbolListSortedByExpirationTime] [Seconds Conversion] Line 163 uses .Seconds property of timestamp difference - can this lose precision for sub-second timing requirements? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_857bacda-aff2-45ca-ae9d-e16a5097b280?mode=deep",
+    "timestamp": "2026-02-19 11:27:45.620460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetCrossChainTokenContractRegistrationController] [Parliament Default Org] Lines 259-261 call GetDefaultOrganizationAddress - can attacker manipulate Parliament default organization to gain controller privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f960dc50-390d-4382-b09c-d4dee94f8922?mode=deep",
+    "timestamp": "2026-02-19 11:28:15.047516",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [GetCrossChainTokenContractRegistrationController] [State vs Call Result] Line 258 sets ContractAddress to State.ParliamentContract.Value but also calls parliamentContractAddress - can mismatch between these cause authorization bypass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f08dc9aa-b6c1-47e1-8104-67a2f714160f?mode=deep",
+    "timestamp": "2026-02-19 11:28:44.984508",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [IsValidSymbol] [Regex Denial of Service] Line 20 uses complex regex with optional group - can attacker craft symbol causing catastrophic backtracking ReDoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_895cb95f-d928-4583-8c95-c3c927c36896?mode=deep",
+    "timestamp": "2026-02-19 11:29:14.124187",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [AssertValidMemo] [Encoding Attack] Line 90 uses UTF8 encoding - can attacker use invalid UTF8 sequences to bypass memo size check or cause encoding errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af6f5d4c-d810-48a7-b393-210be3049a73?mode=deep",
+    "timestamp": "2026-02-19 11:29:45.514882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs] [RegisterTokenInfo] [TokenName Length] Line 228 checks TokenName not empty but line 274 checks TokenName.Length <= constant - can mismatch between these validations allow oversized names? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_926a2b31-0c5d-4c5b-ab1e-6181ccca0c84?mode=deep",
+    "timestamp": "2026-02-19 11:30:18.048324",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf\n\n### Citations\n\n**File:** contract/AElf.Contracts.MultiToken/TokenContract_Helper.cs (L1-428)\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text;\nusing System.Text.RegularExpressions;\nusing AElf.Contracts.Parliament;\nusing AElf.CSharp.Core;\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS0;\nusing AElf.Standards.ACS7;\nusing AElf.Types;\nusing Google.Protobuf;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.MultiToken;\n\npublic partial class TokenContract\n{\n    private static bool IsValidSymbol(string symbol)\n    {\n        return Regex.IsMatch(symbol,",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e1005bda-cd01-4dff-ab6d-6a367a3f1a93?mode=deep",
+    "timestamp": "2026-02-19 11:30:51.485463",
+    "report_generated": false
+  }
+]
