@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Initialize()] [Authorization Bypass] Can an attacker call Initialize() multiple times by front-running the first initialization to set their own privileged proposer and gain permanent control over the default organization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a08f0997-e172-4177-ace5-421c5cffbef5?mode=deep",
+    "timestamp": "2026-02-19 01:01:31.905726",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Initialize()] [State Manipulation] If Initialize() is called with a null PrivilegedProposer, does the empty ProposerWhiteList combined with ProposerAuthorityRequired=true create a permanent DOS where no one can create proposals for the default organization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_42f8186f-f199-4aaa-b3fb-b3fa476ddb7d?mode=deep",
+    "timestamp": "2026-02-19 01:01:54.111604",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Initialize()] [Logic Error] Can Initialize() be called with ProposerAuthorityRequired=true and ParliamentMemberProposingAllowed=false to create an unusable default organization if no PrivilegedProposer is provided? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8e3e4aa1-e121-42db-96e6-74ded2de6f4d?mode=deep",
+    "timestamp": "2026-02-19 01:02:16.493980",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Initialize()] [Validation Bypass] Does Initialize() validate that the default organization thresholds (MinimalApprovalThreshold=6667, MinimalVoteThreshold=7500, etc.) are compatible with the actual parliament size, or can initialization succeed with mathematically impossible thresholds? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bc027b2-6933-48d1-90de-5bbc6ae53d99?mode=deep",
+    "timestamp": "2026-02-19 01:02:39.534405",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Initialize()] [Reentrancy] Can an attacker exploit reentrancy during CreateNewOrganization() within Initialize() to manipulate the DefaultOrganizationAddress before State.Initialized is set to true? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_72542be3-92e3-4df1-a13d-15eb762c9c67?mode=deep",
+    "timestamp": "2026-02-19 01:03:03.892810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganizationBySystemContract()] [Authorization Bypass] Can a malicious contract register itself as a system contract in the mapping to bypass the system contract check and create organizations with arbitrary parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60e47522-4360-4699-b434-99e6b346d101?mode=deep",
+    "timestamp": "2026-02-19 01:03:28.933916",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganizationBySystemContract()] [Reentrancy Attack] Can the inline call at line 45 (SendInline) be exploited for reentrancy to call CreateOrganizationBySystemContract again before the function completes, creating duplicate organizations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e3114c20-5684-46b5-ba8c-7ec2162b86b9?mode=deep",
+    "timestamp": "2026-02-19 01:03:54.153056",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganizationBySystemContract()] [DOS Attack] Can an attacker spam CreateOrganizationBySystemContract() calls with invalid OrganizationAddressFeedbackMethod to cause excessive gas consumption in the calling system contract? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40c51a84-acab-44a4-9c6a-86d5179ac905?mode=deep",
+    "timestamp": "2026-02-19 01:04:20.430959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganizationBySystemContract()] [Logic Error] If OrganizationAddressFeedbackMethod is an empty string, does SendInline() fail silently or revert, and can this be exploited to create organizations without proper feedback? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5920aa8b-ea33-46c7-90c6-91b56bdb71cc?mode=deep",
+    "timestamp": "2026-02-19 01:04:48.939072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganizationBySystemContract()] [State Inconsistency] Can the system contract that creates an organization be removed from the system contract mapping after creation, breaking the invariant that only system contracts create system-level organizations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1319c98b-698c-47ee-96ad-61012fef2abc?mode=deep",
+    "timestamp": "2026-02-19 01:05:18.178015",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganization()] [Authorization Bypass] Can an attacker exploit the OR condition in the authorization check (line 52-54) to create organizations by satisfying only one condition when multiple should be required? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_01f22c07-1448-4199-8141-76e83fbad3cb?mode=deep",
+    "timestamp": "2026-02-19 01:05:46.093569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganization()] [Logic Error] Does the check 'State.DefaultOrganizationAddress.Value == Context.Sender' allow the default organization to create unlimited child organizations without whitelist restrictions, enabling organization spam? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9076b0b-f4b8-43c4-929e-a86e43a7cec8?mode=deep",
+    "timestamp": "2026-02-19 01:06:13.749464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganization()] [Race Condition] Can two parliament members simultaneously call CreateOrganization() with identical CreateOrganizationInput parameters, causing organization address collisions or duplicate registrations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e5948a11-2832-49b5-ab5f-ae3eb40dd8f8?mode=deep",
+    "timestamp": "2026-02-19 01:06:41.735638",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganization()] [Validation Bypass] If ValidateAddressInWhiteList() is checked before the ProposerWhiteList state is initialized, can an attacker create organizations during the initialization window? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_976e5c36-96e9-4820-88bf-5ed1166df178?mode=deep",
+    "timestamp": "2026-02-19 01:07:14.824701",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateOrganization()] [DOS Vector] Can an attacker create thousands of organizations with minimal thresholds to bloat state storage and make organization enumeration prohibitively expensive? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b0a8047-e1e4-490b-83fe-598acc8493ba?mode=deep",
+    "timestamp": "2026-02-19 01:07:44.944857",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposal()] [Authorization Bypass] Can an attacker bypass AssertIsAuthorizedProposer() by exploiting race conditions in the parliament member list update from the consensus contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13597251-75d4-4a4f-a816-9739a2f7e80a?mode=deep",
+    "timestamp": "2026-02-19 01:08:17.676569",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposal()] [State Manipulation] Can an attacker create a proposal with OrganizationAddress pointing to a non-existent organization that will be created later, bypassing authorization checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4425cde0-9faf-4336-bd99-b86e39eaf858?mode=deep",
+    "timestamp": "2026-02-19 01:08:50.433904",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposal()] [Collision Attack] Can an attacker predict or brute-force proposal IDs generated by GenerateProposalId() to create proposal ID collisions with legitimate proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_817404a6-374b-4203-86a6-53370f3f74f9?mode=deep",
+    "timestamp": "2026-02-19 01:09:18.575662",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposal()] [DOS Attack] Can an attacker spam CreateProposal() calls with proposals that expire immediately to bloat the Proposals state mapping? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1c758959-af2c-43c7-a515-e1922d7cfcae?mode=deep",
+    "timestamp": "2026-02-19 01:09:51.242378",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposal()] [Front-Running] Can a malicious proposer front-run a legitimate proposal by copying its parameters and submitting it first with the same Token, stealing the proposal ID? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_804bc435-d1ba-4556-9de3-f3457b63d1f9?mode=deep",
+    "timestamp": "2026-02-19 01:10:22.099578",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposalBySystemContract()] [Authorization Bypass] Can a system contract create proposals on behalf of any OriginProposer without verifying that the OriginProposer actually authorized the proposal creation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d609cd7c-3aea-4de5-b319-49c118f9b250?mode=deep",
+    "timestamp": "2026-02-19 01:10:54.626298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposalBySystemContract()] [Logic Error] Does the function verify that OriginProposer matches Context.Origin, or can a system contract forge proposals for arbitrary addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9c8f7bf9-ae6e-414a-9447-7532cf036b8b?mode=deep",
+    "timestamp": "2026-02-19 01:11:24.316124",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposalBySystemContract()] [Replay Attack] Can a malicious system contract replay the same CreateProposalBySystemContractInput multiple times to create duplicate proposals? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_abd922c2-7ffc-4aa2-b2ab-c0a3dac8e29d?mode=deep",
+    "timestamp": "2026-02-19 01:11:51.625752",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: CreateProposalBySystemContract()] [State Inconsistency] If a system contract is removed from the mapping after creating a proposal, does the proposal remain valid or should it be invalidated? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6167944-57a4-4270-95ce-729002c555bd?mode=deep",
+    "timestamp": "2026-02-19 01:12:22.898959",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament.cs] [Function: Approve()] [Vote Manipulation] Can a parliament member who controls multiple managed pubkeys through the Election contract vote multiple times on the same proposal by switching between addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30612c5e-356f-4955-b733-3743afdf4f8a?mode=deep",
+    "timestamp": "2026-02-19 01:12:52.076386",
+    "report_generated": false
+  }
+]
