@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalAbstained()] [Division by Zero] If parliamentMembers.Count is zero, does the multiplication allow all proposals to be marked as abstained incorrectly? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5988e70a-2537-4e7a-9db4-ad2ddefe27e4?mode=deep",
+    "timestamp": "2026-02-19 04:44:47.215271",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsProposalAbstained()] [Duplicate Votes] If proposal.Abstentions contains duplicate addresses, does Count() count them multiple times, inflating abstention count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fa5e4e30-985a-43dc-9149-b5fa03eff9d1?mode=deep",
+    "timestamp": "2026-02-19 04:45:09.094115",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Integer Overflow] The calculation 'approvedMemberCount * AbstractVoteTotal' could overflow - can this cause false approval threshold success? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2313bce0-32e0-46c1-9cc5-b050f060c18b?mode=deep",
+    "timestamp": "2026-02-19 04:45:31.353747",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Integer Overflow] The calculation 'organization.ProposalReleaseThreshold.MinimalApprovalThreshold * parliamentMembers.Count' could overflow - can this bypass approval checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6b15ae1-1643-4fd1-b991-25da945496e9?mode=deep",
+    "timestamp": "2026-02-19 04:45:53.943926",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Rounding Error] The comparison uses '>=' for approval but '>' for rejection/abstention - can this edge case difference allow proposals to pass/fail incorrectly at exact threshold boundaries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21f102c3-ace8-46fc-aba6-1a294b60cea3?mode=deep",
+    "timestamp": "2026-02-19 04:46:17.882100",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Logic Error] The function returns false if !isApprovalEnough at line 88, but doesn't check if isVoteThresholdReached first - can proposals with sufficient total votes but insufficient approvals be blocked incorrectly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18d27199-aeff-4a13-b830-1b5e31976a5d?mode=deep",
+    "timestamp": "2026-02-19 04:46:42.494993",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Duplicate Votes] If proposal.Approvals contains duplicate addresses, does Count(parliamentMembers.Contains) count them multiple times, inflating approval count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_afb366f4-4a57-4f61-9d1a-7ffa83854ce9?mode=deep",
+    "timestamp": "2026-02-19 04:47:08.124107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: CheckEnoughVoteAndApprovals()] [Division by Zero] If parliamentMembers.Count is zero, does the approval calculation always return false or true, bypassing proper threshold checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_959a8158-65e6-44c8-9c4b-1539321e4256?mode=deep",
+    "timestamp": "2026-02-19 04:47:34.363176",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsVoteThresholdReached()] [Integer Overflow] The calculation 'Count(parliamentMembers.Contains) * AbstractVoteTotal' could overflow with large vote counts - can this bypass vote threshold checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d0dfc015-6fcd-4176-a5dc-5b4e738f05ac?mode=deep",
+    "timestamp": "2026-02-19 04:48:00.652540",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsVoteThresholdReached()] [Integer Overflow] The calculation 'organization.ProposalReleaseThreshold.MinimalVoteThreshold * parliamentMembers.Count' could overflow - can this allow proposals with insufficient votes to pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1f5edb77-47f0-4a75-8292-45e244815211?mode=deep",
+    "timestamp": "2026-02-19 04:48:27.838017",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsVoteThresholdReached()] [Duplicate Counting] The Concat operation on Abstentions, Approvals, Rejections doesn't deduplicate - if an address appears in multiple lists, is it counted multiple times toward vote threshold? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ead22002-58f2-4742-b34a-3dd5d9665c42?mode=deep",
+    "timestamp": "2026-02-19 04:49:00.173522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsVoteThresholdReached()] [Division by Zero] If parliamentMembers.Count is zero, does the vote threshold calculation always return true or false, bypassing proper validation? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16f8fa3e-9d4c-40d0-aace-13966dd1f8f7?mode=deep",
+    "timestamp": "2026-02-19 04:49:33.035302",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: IsVoteThresholdReached()] [Logic Error] The function concatenates all three vote types before counting - if proposal.Approvals, Rejections, or Abstentions are null or uninitialized, does Concat throw an exception causing DoS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c9176a7-05b4-4219-9d71-7512d5d521cd?mode=deep",
+    "timestamp": "2026-02-19 04:50:03.022289",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: RequireConsensusContractStateSet()] [State Initialization] If State.ConsensusContract.Value is null initially, the function sets it via GetContractAddressByName - can an attacker front-run this to register a malicious consensus contract? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bab394ef-af11-4709-b708-c0380b702646?mode=deep",
+    "timestamp": "2026-02-19 04:50:34.267139",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: RequireConsensusContractStateSet()] [Name Squatting] The function uses SmartContractConstants.ConsensusContractSystemName - can an attacker register a contract with this name before initialization, causing all parliament operations to use malicious consensus data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55bcc51a-500e-4e47-8b4e-7274d762e4cb?mode=deep",
+    "timestamp": "2026-02-19 04:51:05.705381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: RequireConsensusContractStateSet()] [Null Reference] If Context.GetContractAddressByName() returns null (contract not deployed), State.ConsensusContract.Value is set to null - can subsequent calls to State.ConsensusContract methods throw null reference exceptions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f30c458-89a0-4901-973d-7d15506a43c5?mode=deep",
+    "timestamp": "2026-02-19 04:51:36.921090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [Authorization Bypass] If Context.Sender is in currentParliament list, the function immediately returns at line 116 without checking managed pubkeys - can this bypass delegate restrictions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_554b5ea4-e480-464e-bfe4-48e133551b9a?mode=deep",
+    "timestamp": "2026-02-19 04:52:07.393548",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [State Initialization] If State.ElectionContract.Value is null, it's set via GetContractAddressByName - can an attacker register a malicious election contract name before this initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16cedc94-f645-4373-a3af-75862f88bf40?mode=deep",
+    "timestamp": "2026-02-19 04:52:35.134888",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [Test Environment Bypass] Lines 122-124 throw AssertionException if election contract is null with comment 'only possible in test environment' - can production environments exploit this if election contract deployment fails? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5a78762-ce72-4b78-b6ff-37c1a3c70387?mode=deep",
+    "timestamp": "2026-02-19 04:53:09.010898",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [Authorization Logic] If managedPubkey.Value.Any() returns false (line 130), exception is thrown - but if it returns true with invalid pubkeys, can malformed addresses bypass authorization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c97fabf2-96ab-47b7-b5a1-bba3692e5e15?mode=deep",
+    "timestamp": "2026-02-19 04:53:43.877154",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [Multi-Signature Restriction] Lines 132-133 throw exception if managedPubkey.Value.Count > 1 - can an admin temporarily reduce managed pubkeys to 1, perform unauthorized action, then add back other pubkeys? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21fcbbdb-5479-4e2f-9538-6a3de47c865d?mode=deep",
+    "timestamp": "2026-02-19 04:54:16.546209",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [Race Condition] If currentParliament list changes between line 114 and line 136 checks, can a removed member's admin still vote using stale actualMemberAddress? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_23c18faf-635d-4588-8fb6-ab6cf2d4d183?mode=deep",
+    "timestamp": "2026-02-19 04:54:50.294212",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: GetAndCheckActualParliamentMemberAddress()] [Logic Error] The function calls GetManagedPubkeys with Context.Sender - if election contract returns managed pubkeys for any address, can unauthorized admins gain parliament member privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_953639ff-8ea0-49ec-addc-0a96ab472bdd?mode=deep",
+    "timestamp": "2026-02-19 04:55:24.331079",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: Validate(Organization)] [Threshold Logic] Line 146 checks MinimalVoteThreshold <= AbstractVoteTotal - can organizations be created with MinimalVoteThreshold equal to AbstractVoteTotal, making approval impossible if any vote is not approval? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0457df14-9b0c-4eba-aae4-1f0c1cf82465?mode=deep",
+    "timestamp": "2026-02-19 04:55:59.757018",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/Parliament_Helper.cs] [Function: Validate(Organization)] [Threshold Logic] Line 147 checks MinimalApprovalThreshold <= MinimalVoteThreshold - can organizations have MinimalApprovalThreshold = MinimalVoteThreshold, allowing proposals to pass with zero tolerance for abstention/rejection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21330a6e-27fc-4ed5-9108-dc992009cad6?mode=deep",
+    "timestamp": "2026-02-19 04:56:34.336362",
+    "report_generated": false
+  }
+]
