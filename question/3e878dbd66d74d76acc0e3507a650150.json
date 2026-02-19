@@ -1,3 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Consensus.AEDPoS/Types/NextRoundInput.cs] [Function: ToRound()] [Edge Case] If ToRound() is called on a default/uninitialized NextRoundInput, does it return a valid but potentially dangerous Round object with all-zero values? (Medium)"
-]
