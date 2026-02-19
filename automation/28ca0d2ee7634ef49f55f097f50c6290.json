@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetAssociationControllerCreateInputForUserFee()] [Threshold Immutability] The ProposalReleaseThreshold is set during organization creation and cannot be changed - if the initial threshold calculation is wrong or needs adjustment for security, is the organization permanently stuck with insecure parameters? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_31a48e60-9b5c-42c3-818a-93db4c5ccf1b?mode=deep",
+    "timestamp": "2026-02-19 03:24:31.213281",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDeveloperControllerCreateInput()] [Single Member Organization] Lines 189 and 195-196 create an association with only parliamentAddress as member and proposer - can parliament unilaterally control developer fee decisions without developer input, despite the name 'DeveloperController'? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1888e4f-a7d7-4c0a-a0f6-6849ea4561ab?mode=deep",
+    "timestamp": "2026-02-19 03:24:53.251219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDeveloperControllerCreateInput()] [Threshold Manipulation] Lines 199-201 set MinimalApprovalThreshold and MinimalVoteThreshold to proposers.Count (1), meaning parliament can approve proposals with a single vote - is this sufficient security for developer fee governance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_05129ee0-db49-44d1-b06f-5819f360f475?mode=deep",
+    "timestamp": "2026-02-19 03:25:15.560658",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDeveloperControllerCreateInput()] [Misleading Name] The organization is called 'DeveloperController' but only includes parliament - can this naming confusion lead to developers falsely believing they have control over their fee parameters? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f4eaa900-714a-4e79-90ac-2ebf1b1f8fd4?mode=deep",
+    "timestamp": "2026-02-19 03:25:38.672527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDeveloperControllerCreateInput()] [No Developer Representation] Unlike the UserFeeController which has three-tier governance, DeveloperController is a single-tier parliament-only organization - is this fair to developers who have to pay these fees? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2eceabb3-7ffe-405d-8e6e-80911c46b6df?mode=deep",
+    "timestamp": "2026-02-19 03:26:03.903938",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetAssociationControllerCreateInputForDeveloperFee()] [Unanimous Approval] Lines 231-232 set thresholds to actualProposalCount (2: developer + parliament), requiring unanimous approval - if the DeveloperController organization is compromised, can it block or approve any developer fee proposal in collusion with parliament? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41507f63-dbea-4b47-b11d-95ab995ad610?mode=deep",
+    "timestamp": "2026-02-19 03:26:28.704877",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetAssociationControllerCreateInputForDeveloperFee()] [Variable Naming] Line 220 uses 'actualProposalCount' but means 'actual member count' - can this variable naming confusion lead to threshold miscalculation if the code is modified? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e85dbb0-a2a8-4128-b34d-a6a190afe4fa?mode=deep",
+    "timestamp": "2026-02-19 03:26:54.655438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetAssociationControllerCreateInputForDeveloperFee()] [Member Validation] Lines 216-218 add developerAddress and parliamentAddress as members without validating they are legitimate organization addresses - can attacker-controlled addresses be injected during initialization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf1e1d09-603b-4302-8313-be85ffb613ea?mode=deep",
+    "timestamp": "2026-02-19 03:27:20.805585",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetAssociationControllerCreateInputForDeveloperFee()] [DOS Attack] With unanimous approval required and zero rejection/abstention tolerance, can one compromised organization permanently block developer fee adjustments? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09dec30a-2b46-4c93-aea7-8ab11171212c?mode=deep",
+    "timestamp": "2026-02-19 03:27:47.545716",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetControllerCreateInputForSideChainRental()] [Side Chain Creator Power] Lines 247 and 253-254 include sideChainCreator as a member and proposer with equal voting power to parliament - if the side chain creator is malicious, can they collude with themselves to set rental fees to zero or maximum? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ef49519-0a84-4137-bb66-ce21ff833a53?mode=deep",
+    "timestamp": "2026-02-19 03:28:17.705611",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetControllerCreateInputForSideChainRental()] [Unanimous Approval] Lines 257-259 require unanimous approval from both parliament and sideChainCreator - can either party DOS rental fee adjustments by refusing to approve, locking side chains into current (potentially incorrect) pricing? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dbf12940-8b03-4003-a337-63bf269b1e25?mode=deep",
+    "timestamp": "2026-02-19 03:28:48.941428",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetControllerCreateInputForSideChainRental()] [Creator Selection] The sideChainCreator address is passed as parameter without validation - if State.SideChainCreator.Value is set to an attacker's address before InitializeAuthorizedController(), can they gain permanent control over rental pricing? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32eba7ac-3239-4cbf-9fb4-4ab4de30f553?mode=deep",
+    "timestamp": "2026-02-19 03:29:19.781693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetControllerCreateInputForSideChainRental()] [Economic Attack] If the side chain creator can influence rental pricing through this controller, can they set fees artificially low for their own side chains while blocking competitors, creating unfair market conditions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_be4d9685-63cb-40b3-80e3-ec1cab5af11d?mode=deep",
+    "timestamp": "2026-02-19 03:29:49.942868",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultParliamentController()] [Test Environment Bypass] Lines 282-283 return an empty AuthorityInfo() if Parliament contract doesn't exist - can an attacker deploy the MultiToken contract in an environment without Parliament to bypass all controller authorization checks? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f3e9a6b1-48b6-400b-96f0-f69ece27607d?mode=deep",
+    "timestamp": "2026-02-19 03:30:21.124337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultParliamentController()] [Null State] If State.ParliamentContract.Value is null at line 277 and GetContractAddressByName() at line 279 returns null, the function returns an empty AuthorityInfo with null addresses - will other functions handle this gracefully or will null pointer exceptions occur? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_dae11726-8982-4d06-bc87-4fe1441a986e?mode=deep",
+    "timestamp": "2026-02-19 03:30:50.292641",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultParliamentController()] [Default Organization Attack] Line 288 calls State.ParliamentContract.GetDefaultOrganizationAddress.Call() - if an attacker can manipulate the parliament contract's default organization (e.g., through a malicious upgrade), can they gain control over all MultiToken controllers? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d6f1acbd-3828-4c6d-9300-3cac1401614c?mode=deep",
+    "timestamp": "2026-02-19 03:31:14.425707",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultParliamentController()] [External Call Dependency] The function depends on an external call to GetDefaultOrganizationAddress() - if this call fails or returns an attacker-controlled address, does the entire controller initialization become compromised? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c56d9aa8-3ee3-4e15-92b3-09053c514943?mode=deep",
+    "timestamp": "2026-02-19 03:31:39.509460",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultParliamentController()] [State Caching] State.ParliamentContract.Value is cached at line 285 but never updated - if the Parliament contract is upgraded to a new address, will MultiToken continue using the old address indefinitely? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a43b3fbc-98e3-4633-b37f-3461e88a4e29?mode=deep",
+    "timestamp": "2026-02-19 03:32:06.765717",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultDeveloperFeeController()] [Initialization Order] Lines 309-313 calculate DeveloperController.OwnerAddress using GetDeveloperControllerCreateInput(), but this calculation happens before the organization is actually created - can the calculated address mismatch the actual organization address if creation inputs are modified? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e876849f-c222-4af9-8af5-7e47b77fffb8?mode=deep",
+    "timestamp": "2026-02-19 03:32:34.898286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultDeveloperFeeController()] [State Initialization] Line 299-300 initialize State.AssociationContract.Value without checking if it's already set - can repeated calls cause inconsistency or gas wastage? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d20cb9db-3ef4-4832-9a74-34e12bc0efb0?mode=deep",
+    "timestamp": "2026-02-19 03:33:05.741781",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultDeveloperFeeController()] [Nested Calculation Dependency] Lines 315-320 calculate RootController address based on DeveloperController address calculated at lines 310-313 - if either CalculateOrganizationAddress() call returns wrong results, will the entire controller hierarchy be incorrect? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0f1b4089-c87e-400a-baee-d019763f50c5?mode=deep",
+    "timestamp": "2026-02-19 03:33:34.455576",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultDeveloperFeeController()] [Empty Object Creation] Lines 302-307 create a new DeveloperFeeController with empty AuthorityInfo objects that are immediately overwritten - is this inefficient coding or does it serve a purpose? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ecf0a824-c1f9-48de-a63c-34fd7ab4a099?mode=deep",
+    "timestamp": "2026-02-19 03:34:07.435949",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultDeveloperFeeController()] [Parameter Passing] The function receives defaultParliamentController as parameter but recalculates it in nested calls - if the parameter value differs from recalculated values, which one is used and can this cause inconsistency? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_07c7f4b4-fe41-4c32-a8a5-ae49850bec36?mode=deep",
+    "timestamp": "2026-02-19 03:34:40.528470",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultUserFeeController()] [Multi-Contract Dependency] Lines 326-332 initialize both State.AssociationContract.Value and State.ReferendumContract.Value - if either contract is malicious or compromised, can the entire UserFeeController be manipulated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_031fe6f8-4dfc-4297-a2ff-0c327dd18efb?mode=deep",
+    "timestamp": "2026-02-19 03:35:14.262532",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.MultiToken/TokenContract_Method_Authorization.cs] [Function: GetDefaultUserFeeController()] [Address Calculation Chain] Lines 342-350 calculate RootController address based on ReferendumController address (lines 342-345) which depends on ParliamentController - if any link in this chain is wrong, will all user fee operations fail? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2df81864-e997-422e-9520-4c2d9ddf1a53?mode=deep",
+    "timestamp": "2026-02-19 03:35:48.363624",
+    "report_generated": false
+  }
+]
