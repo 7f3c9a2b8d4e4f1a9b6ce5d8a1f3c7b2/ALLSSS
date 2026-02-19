@@ -1,0 +1,122 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Business Logic] Line 100: Why add VirtualBalance to DepositBalance? Should actual deposited amount be returned instead, or is VirtualBalance part of the effective reserve? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0d29fa27-4198-4c06-b498-95a9b8817324?mode=deep",
+    "timestamp": "2026-02-19 05:20:03.759325",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Naming Confusion] Line 97: 'ntSymbol' variable name is unclear - does 'nt' mean native token, and is this always the base token symbol? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52ad9ce6-c275-4fd8-bc98-d2124c283b28?mode=deep",
+    "timestamp": "2026-02-19 05:20:26.087213",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [Null Handling] Line 106: GetPairConnector() can return PairConnector with null DepositConnector if connector is misconfigured - does line 107 handle null.IsPurchaseEnabled gracefully or throw NullReferenceException? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_790a7385-4691-4880-bd6f-c1b3ff2ca439?mode=deep",
+    "timestamp": "2026-02-19 05:20:48.629777",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [Logic Error] Line 107: checks 'depositConnector != null && depositConnector.IsPurchaseEnabled' - but why is IsPurchaseEnabled used for SELL operation? Shouldn't there be IsSaleEnabled or does IsPurchaseEnabled control both? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_52b4e570-f687-407d-acfe-b25ec6f1456a?mode=deep",
+    "timestamp": "2026-02-19 05:21:11.869062",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [Business Logic] Line 107: if depositConnector is null but resourceConnector exists and is enabled, should selling still be blocked? Or is bidirectional enabling required? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41187166-3485-449a-a5e4-ddbe5cd004d6?mode=deep",
+    "timestamp": "2026-02-19 05:21:35.882856",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: IsSymbolAbleToSell()] [State Validation] Line 106: if input.Value is invalid symbol, GetPairConnector returns empty PairConnector with both connectors null - function returns false, but should it throw error to indicate invalid symbol? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d544477-9d32-45e0-9a2b-f3a9775c6646?mode=deep",
+    "timestamp": "2026-02-19 05:22:01.734848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] If State.Connectors map is modified (connector added/removed) between GetPairConnector() call and actual Buy/Sell transaction, can this cause transaction to use stale connector data? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_685e3f4e-8786-43e6-88de-fb9129f6bb94?mode=deep",
+    "timestamp": "2026-02-19 05:22:26.538415",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] If connector.IsVirtualBalanceEnabled is toggled between GetNeededDeposit() call (line 78-80) and EnableConnector execution, can deposit calculation become incorrect? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0b2884d7-0698-49e7-8c2a-f2de188e6135?mode=deep",
+    "timestamp": "2026-02-19 05:22:51.594935",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] If connector.Weight is updated between view call and transaction execution, Bancor formula calculations will use different weights - can this be exploited for arbitrage? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50e91def-e9df-4cab-9114-096802942ce2?mode=deep",
+    "timestamp": "2026-02-19 05:23:20.621108",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [State Consistency] If connector.IsPurchaseEnabled is toggled between IsSymbolAbleToSell() returning true and actual Sell() call, can transaction proceed with disabled connector? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0738e80-e812-4b10-99f7-8f8caa9f7375?mode=deep",
+    "timestamp": "2026-02-19 05:23:46.192125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Integration] All functions assume State.TokenContract is properly initialized and points to valid MultiToken contract - if this is null or points to malicious contract, can all view functions return manipulated data? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_efdee52d-ca42-44af-8c81-15cdf980e11b?mode=deep",
+    "timestamp": "2026-02-19 05:24:12.741040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Integration] GetNeededDeposit() calls external TokenContract.GetTokenInfo and GetBalance - if these calls are frontrun or manipulated, can deposit calculations be gamed? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_21406b7a-8b9f-483b-85dd-10a6c54359fa?mode=deep",
+    "timestamp": "2026-02-19 05:24:43.767315",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Data Integrity] If targetConnector.RelatedSymbol points back to input.Symbol (circular reference), does line 42 create infinite recursion or just return the same connector twice? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97524a77-c1ec-4361-b28d-ee095b81699f?mode=deep",
+    "timestamp": "2026-02-19 05:25:15.286005",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Bancor Precision] Line 81-83: if fromConnector has weight=0.5 and toConnector has weight=0.5, formula uses equal weights - can rounding in GetWeight() conversion from string to decimal cause slight weight mismatch affecting price? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cdf177b-389d-4a00-8549-20f713952328?mode=deep",
+    "timestamp": "2026-02-19 05:25:46.281155",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Edge Case] Line 73: if input.AmountToTokenConvert equals (tokenInfo.TotalSupply - balance), amountOutOfTokenConvert becomes 0 - is needDeposit=0 the correct economic outcome? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8cf35baa-fa6c-46d2-bdc1-94d049ee2c54?mode=deep",
+    "timestamp": "2026-02-19 05:26:16.293880",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Edge Case] Line 73: if balance > TotalSupply (contract holds more than total supply, which should be impossible), amountOutOfTokenConvert becomes negative - what invariant is violated? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_754d7cf9-bde5-4c11-aea3-ab1ef90c16e2?mode=deep",
+    "timestamp": "2026-02-19 05:26:45.405737",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Semantic Error] Line 96: function requires connector to NOT be deposit account (!IsDepositAccount), but then accesses DepositBalance of the RELATED connector - is the logic that input should be resource token to query its paired deposit? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62a7427b-ce00-473d-a5c2-05dc08ca57bc?mode=deep",
+    "timestamp": "2026-02-19 05:27:16.456066",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetDepositConnectorBalance()] [Missing Validation] Line 100: if State.DepositBalance[ntSymbol] returns negative value due to accounting error, can total balance appear lower than VirtualBalance alone? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c9f451a8-58f8-46be-8e07-5307218fd4e3?mode=deep",
+    "timestamp": "2026-02-19 05:27:44.555685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetPairConnector()] [Asymmetric Pairing] Lines 44-48 vs 49-53: if both connectors in a pair have IsDepositAccount=false, both will consider themselves ResourceConnector - can this break the resource/deposit distinction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_414da674-86e3-4e6e-867d-ce44fc9ff406?mode=deep",
+    "timestamp": "2026-02-19 05:28:15.229617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/TokenConvert_Views.cs] [Function: GetNeededDeposit()] [Weight Validation] Lines 82-83: if GetWeight() returns 0 or negative weight, Bancor formula behavior is undefined - does BancorHelper validate weight ranges? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93662465-754d-42c9-9bcf-304bf1ec0232?mode=deep",
+    "timestamp": "2026-02-19 05:28:43.062656",
+    "report_generated": false
+  }
+]
