@@ -1,0 +1,104 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [ChangeMethodFeeController] [Controller Lock-Out] Can an attacker who temporarily gains controller access immediately change to a new organization controlled by themselves, permanently locking out the original Parliament governance from regaining control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f096112-e6dc-4278-93b7-297b115d755c?mode=deep",
+    "timestamp": "2026-02-19 03:52:45.772545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [ChangeMethodFeeController] [Multi-Step Attack] Can an attacker first create a seemingly legitimate organization, wait for it to pass validation, change controller to it, then modify the organization's parameters in the authorization contract to gain unilateral control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6ff7557c-021a-48eb-b36b-4b806753a2fd?mode=deep",
+    "timestamp": "2026-02-19 03:53:07.719874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [SetMethodFee & ChangeMethodFeeController] [Governance Delay] Do method fee changes and controller changes take effect immediately without any timelock or delay, allowing malicious controllers to make sudden changes that harm users before they can react? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_acc89d96-3636-4a8a-a50e-7ddfe503640a?mode=deep",
+    "timestamp": "2026-02-19 03:53:30.046050",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [RequiredMethodFeeControllerSet] [Default Organization Compromise] If Parliament's default organization is compromised before TokenHolderContract initialization, does the automatic defaultAuthority setting at lines 57-63 give attackers permanent control without any recovery mechanism? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_923d659b-1274-44ce-a402-f318f91cb6df?mode=deep",
+    "timestamp": "2026-02-19 03:53:53.013965",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [All Authorization Checks] [Time-Of-Check-Time-Of-Use] Can authorization checks at lines 16 and 25 pass but the actual privileged operation execute later after the authorization state has changed, creating TOCTOU vulnerabilities? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2c9ce8cd-5c3a-4cb3-9e47-c70fd33f883a?mode=deep",
+    "timestamp": "2026-02-19 03:54:18.338298",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [SetMethodFee] [State Overwrite Attack] Can an attacker repeatedly call SetMethodFee with the same method name but different fees, overwriting State.TransactionFees[input.MethodName] without any restriction on update frequency or versioning? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f148b4e-116f-4d03-b1df-c624cc088665?mode=deep",
+    "timestamp": "2026-02-19 03:54:43.200257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [SetMethodFee] [Orphaned State] If SetMethodFee is called for a method that gets removed from the contract in an upgrade, can orphaned fee configurations remain in State.TransactionFees consuming storage without being cleaned up? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b5a967d-2c58-40b6-aadc-639c9dcd7cd2?mode=deep",
+    "timestamp": "2026-02-19 03:55:10.743275",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [ChangeMethodFeeController] [Previous Controller Loss] When State.MethodFeeController.Value is overwritten at line 29, is there any mechanism to recover the previous controller if the new controller proves to be malicious or dysfunctional? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2cd3c26c-ce13-4b4b-82ea-cf9baa4c5e11?mode=deep",
+    "timestamp": "2026-02-19 03:55:36.718208",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [All State Variables] [Storage Exhaustion] Can an attacker cause unbounded growth of State.TransactionFees by setting fees for arbitrarily many method names, exhausting contract storage and causing performance degradation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93d8ea67-3601-4178-a133-cb20c247ab60?mode=deep",
+    "timestamp": "2026-02-19 03:56:03.556357",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [All State Variables] [State Corruption] If any state write operation (lines 17, 29, 55, 63, 82) fails partially due to transaction reversion, can the contract be left in an inconsistent state where some variables are updated but others are not? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f9a8fa61-72ae-4eaa-8810-ecc1ca107d23?mode=deep",
+    "timestamp": "2026-02-19 03:56:35.510217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [SetMethodFee] [Administrative DOS] Can an attacker who gains temporary controller access set fees for ChangeMethodFeeController itself so high that even Parliament cannot afford to remove the attacker, permanently locking in malicious control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51475f80-6e3a-4955-a27d-9513f509260c?mode=deep",
+    "timestamp": "2026-02-19 03:57:08.586369",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [ChangeMethodFeeController] [Validation DOS] Can an attacker provide an authorityInfo.ContractAddress that always reverts or runs out of gas during ValidateOrganizationExist at line 73-75, preventing any legitimate controller changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3b091f38-caa9-4b0f-85fe-eb1407fab18e?mode=deep",
+    "timestamp": "2026-02-19 03:57:37.738242",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [RequiredMethodFeeControllerSet] [Initialization DOS] If Context.GetContractAddressByName or GetDefaultOrganizationAddress calls fail during RequiredMethodFeeControllerSet, can the contract be permanently stuck in an uninitialized state where no methods requiring controller work? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ee8e0f8e-98af-430b-862a-b750d6de256c?mode=deep",
+    "timestamp": "2026-02-19 03:58:11.513636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [AssertValidToken] [Token Validation DOS] Can an attacker set fees using a token symbol that causes IsTokenAvailableForMethodFee to consume excessive gas or revert, DOS'ing all future SetMethodFee operations for all tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_66f7888c-f0f6-451b-8944-2d957c9ec29d?mode=deep",
+    "timestamp": "2026-02-19 03:58:38.971310",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [All Functions] [Cross-Contract DOS] Can an attacker exploit the dependency on external contracts (Parliament, Token, Authorization) to DOS TokenHolderContract by making those contracts unavailable or expensive to call? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f434f1c3-3c0b-4a3f-bc4f-6eadd5e9215e?mode=deep",
+    "timestamp": "2026-02-19 03:59:05.328326",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs] [All Functions] [ACS1 Standard Compliance] Does the implementation fully comply with the ACS1 standard, or can deviations cause integration issues with other contracts expecting standard ACS1 behavior? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7787578a-ad1b-4995-b253-c3dbd0d7281d?mode=deep",
+    "timestamp": "2026-02-19 03:59:32.149527",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_Transaction\n\n### Citations\n\n**File:** contract/AElf.Contracts.TokenHolder/TokenHolderContract_ACS1_TransactionFeeProvider.cs (L1-90)\n```csharp\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS1;\nusing AElf.Standards.ACS3;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.TokenHolder;\n\npublic partial class TokenHolderContract\n{\n    public override Empty SetMethodFee(MethodFees input)\n    {\n        foreach (var methodFee in input.Fees) AssertValidToken(methodFee.Symbol, methodFee.BasicFee);\n        RequiredMethodFeeControllerSet();\n\n        Assert(Context.Sender == State.MethodFeeController.Value.OwnerAddress,",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a67b303e-64ba-47f3-8384-cd3097ba583b?mode=deep",
+    "timestamp": "2026-02-19 04:00:03.930800",
+    "report_generated": false
+  }
+]
