@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Authorization Bypass] Can an attacker bypass proposer authorization by exploiting the null organization check before whitelist validation, allowing proposal creation with a crafted organization address that returns null but doesn't trigger the assertion? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3ceb511f-f3ce-4d37-b076-747497435d3e?mode=deep",
+    "timestamp": "2026-02-19 13:37:32.472651",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Race Condition] If ProposerWhiteList is modified between the assertion check and actual proposal creation, can an attacker create proposals after being removed from the whitelist, violating the authorization invariant? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7f32666-acd2-4fb5-bacb-af25a31f5849?mode=deep",
+    "timestamp": "2026-02-19 13:37:54.459822",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [DOS Attack] Can an attacker cause DOS by creating an organization with an extremely large ProposerWhiteList (e.g., millions of addresses), making the Contains() check gas-exhaustive for legitimate proposers? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30ab5f7b-c5ea-4d2a-b414-500a1f153e45?mode=deep",
+    "timestamp": "2026-02-19 13:38:16.691779",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Logic Error] Does the Contains() method perform case-sensitive or case-insensitive address comparison, potentially allowing bypass through address case manipulation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8576a2ac-79c8-4833-b936-1edfb19af314?mode=deep",
+    "timestamp": "2026-02-19 13:38:40.141521",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedProposer()] [Data Integrity] If State.Organizations returns a corrupted or partially initialized organization object (non-null but with null ProposerWhiteList), can this cause a null reference exception or bypass the whitelist check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f863a221-2cfa-4bdf-83ff-a740551e3afe?mode=deep",
+    "timestamp": "2026-02-19 13:39:04.126677",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedOrganizationMember()] [Authorization Bypass] Can an attacker vote on proposals by exploiting organizations with empty OrganizationMemberList that still pass this check through Contains() returning false but not throwing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7dff5198-886a-485f-93c7-6089094e973d?mode=deep",
+    "timestamp": "2026-02-19 13:39:29.824072",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedOrganizationMember()] [DOS Attack] Can an attacker create organizations with millions of members to make Contains() operations gas-prohibitive, preventing legitimate members from voting? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0759bac9-79f9-4c57-b98a-d8d81e796dda?mode=deep",
+    "timestamp": "2026-02-19 13:39:55.764597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedOrganizationMember()] [Logic Error] If OrganizationMemberList contains duplicate addresses (despite validation), could this cause double-counting in vote threshold calculations when combined with Contains() checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8761b14c-9f9c-4e04-9192-a8161e592b59?mode=deep",
+    "timestamp": "2026-02-19 13:40:21.869617",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: AssertIsAuthorizedOrganizationMember()] [Null Reference] What happens if organization parameter is null or OrganizationMemberList is null - does this throw before the Contains() check or allow unauthorized access? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a2acf6f-da73-4044-852e-d53f02ac7cdb?mode=deep",
+    "timestamp": "2026-02-19 13:40:49.174170",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsReleaseThresholdReached()] [Logic Error] Can an attacker manipulate vote counts to make IsProposalRejected return true and IsProposalAbstained return false, causing the function to incorrectly return false even when approval threshold is met? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_714a8c05-c622-429e-85b9-234e895247fa?mode=deep",
+    "timestamp": "2026-02-19 13:41:16.795366",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsReleaseThresholdReached()] [Threshold Bypass] If MaximalRejectionThreshold is set to organizationMemberCount, can a single rejection block proposal release even with unanimous approval from all other members? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2ff14006-8cb6-47e1-aacb-3c095488ee02?mode=deep",
+    "timestamp": "2026-02-19 13:41:48.039958",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsReleaseThresholdReached()] [Short-Circuit Logic] Does the early return when isRejected is true prevent valid proposals from being released if rejection threshold is reached but approval threshold is also exceeded? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6902fa38-4b06-4a36-b05a-a11fda119641?mode=deep",
+    "timestamp": "2026-02-19 13:42:16.257368",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsReleaseThresholdReached()] [Race Condition] Can an attacker vote, trigger release check, then quickly revote to change their vote status before the proposal is actually released, bypassing threshold validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_57d25896-bdcb-49e7-a9d4-d51c8f7294da?mode=deep",
+    "timestamp": "2026-02-19 13:42:48.152481",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsReleaseThresholdReached()] [Logic Error] If both isRejected and isAbstained are false, but CheckEnoughVoteAndApprovals returns false, does this correctly prevent release or is there a code path that bypasses this check? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20e0cd35-01ed-4091-8a3e-d2f44577f7a2?mode=deep",
+    "timestamp": "2026-02-19 13:43:19.598362",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalRejected()] [Integer Overflow] Can proposal.Rejections.Count() overflow if an attacker adds billions of rejection addresses (if allowed), causing incorrect comparison with MaximalRejectionThreshold? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_30a4f6d0-8446-4e62-9eef-e176451f9562?mode=deep",
+    "timestamp": "2026-02-19 13:43:52.779207",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalRejected()] [Vote Counting Error] Does Count(organization.OrganizationMemberList.Contains) correctly handle duplicate addresses in Rejections list - could duplicates inflate rejection count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ca129aa-7f56-4f89-9e54-204af4f2c4da?mode=deep",
+    "timestamp": "2026-02-19 13:44:23.229848",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalRejected()] [Threshold Logic] Should the comparison be > (greater than) or >= (greater than or equal) - can an attacker exploit edge case where rejectionMemberCount exactly equals MaximalRejectionThreshold? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b57f481f-32bf-40c3-b025-3f36f1a9c820?mode=deep",
+    "timestamp": "2026-02-19 13:44:54.687620",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalRejected()] [Non-Member Vote Counting] If proposal.Rejections contains addresses not in OrganizationMemberList, are these silently ignored or do they cause unexpected behavior in Count()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_996c9114-c047-458b-a768-f289d2da29b7?mode=deep",
+    "timestamp": "2026-02-19 13:45:21.462004",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalRejected()] [Negative Threshold] Can MaximalRejectionThreshold be negative, causing the comparison to always return false and allowing rejected proposals to pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4805395a-b4be-452d-b099-8260cf5d1671?mode=deep",
+    "timestamp": "2026-02-19 13:45:50.254174",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalRejected()] [Empty List Edge Case] If OrganizationMemberList is empty, does Contains() always return false, making rejectionMemberCount always 0 regardless of rejections? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a042a74-ec4e-4563-9500-ea98825d55c1?mode=deep",
+    "timestamp": "2026-02-19 13:46:16.941681",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Integer Overflow] Can proposal.Abstentions.Count() overflow with extremely large abstention lists, causing incorrect threshold comparison? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_494b1d6d-3cbb-4dc9-8385-c7f00c08fd0c?mode=deep",
+    "timestamp": "2026-02-19 13:46:45.122158",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Vote Counting Error] If Abstentions list contains duplicate member addresses, does Count() count them multiple times, inflating abstention count? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_50000a1a-c4c2-4287-bd1f-2e1bd78e3c97?mode=deep",
+    "timestamp": "2026-02-19 13:47:12.334589",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Threshold Logic] Should comparison be > or >= - can proposals with abstentionMemberCount exactly equal to MaximalAbstentionThreshold still be released? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_155f3797-1c04-4933-944c-a0f09572f841?mode=deep",
+    "timestamp": "2026-02-19 13:47:40.952757",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Non-Member Vote Counting] Are abstentions from non-members correctly filtered by the Contains() check or could this cause issues? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0c124aa6-0ec9-4a37-98d1-dccc5038757b?mode=deep",
+    "timestamp": "2026-02-19 13:48:08.446705",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/Association_Helper.cs] [Function: IsProposalAbstained()] [Negative Threshold] Can MaximalAbstentionThreshold be set to negative values, causing abstained proposals to incorrectly pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_daad365f-0153-4a12-aa3c-262ae1c61979?mode=deep",
+    "timestamp": "2026-02-19 13:48:38.219987",
+    "report_generated": false
+  }
+]
