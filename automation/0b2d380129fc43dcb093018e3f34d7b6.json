@@ -1,0 +1,86 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Line 59-64] [Scheme Manager Auth] ContributeProfits uses Context.Self as SchemeManager - if this contract doesn't have proper permissions in the profit scheme, does the call fail silently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_806c06d0-7157-47e7-b8da-9c43a434cc78?mode=deep",
+    "timestamp": "2026-02-19 01:21:08.765445",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Line 41-42] [Silent Failure Path] IsTokenAvailableForMethodFee returns false causes early return with Empty() - no revert, no event, no error - can this be exploited to make users think donation succeeded? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ed59427-01cc-4797-af2b-77672a4aa404?mode=deep",
+    "timestamp": "2026-02-19 01:21:30.759820",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Line 107-108] [Integer Truncation] When dividing seconds by PeriodSeconds, does integer division truncate and potentially miscalculate the elapsed period count? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4d8fc751-65f0-49ab-8a98-1d2e2b696572?mode=deep",
+    "timestamp": "2026-02-19 01:21:52.958943",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Release()] [Line 114-121] [No State Update] After successful DistributeProfits, no state is updated to mark distribution happened - can Release() be called again immediately with same isTimeToRelease condition? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_32966da0-3466-498c-984a-264dfec238d8?mode=deep",
+    "timestamp": "2026-02-19 01:22:16.063676",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: InitialProfitSchemeForSideChain()] [Line 27-32] [No Duplicate Check] CreateScheme.Send is called without checking if scheme already exists - can this create duplicate schemes or fail due to existing scheme conflict? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_20a4db74-9ec8-42e2-ae86-c97574a785ea?mode=deep",
+    "timestamp": "2026-02-19 01:22:39.841882",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: InitialProfitSchemeForSideChain()] [Line 18-25] [Null Return Logic] If TokenHolderContract address is null, function logs and returns - but State.TokenHolderContract.Value remains uninitialized, breaking all future operations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e768674-d94a-46f6-8694-a13bb81e0f68?mode=deep",
+    "timestamp": "2026-02-19 01:23:05.712391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetUndistributedDividends()] [Line 154-158] [LINQ Performance] Select followed by ToDictionary creates intermediate collections - with many symbols, could this exceed gas limits in a view call? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7a9a5800-561f-4db7-b3bb-fedbda3b9280?mode=deep",
+    "timestamp": "2026-02-19 01:23:30.797322",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetSideChainDividendPoolScheme()] [Line 167-168] [Cache Timing] SchemeId is cached from GetScheme result - if scheme is deleted and recreated with same Context.Self but different SchemeId, does cached value become stale? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5a17811-02df-4856-b7db-8b611b0a1220?mode=deep",
+    "timestamp": "2026-02-19 01:23:57.079425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: GetSideChainDividendPoolScheme()] [Line 171-174] [Generic Context.Call] Using Context.Call with generic type - if ProfitContract has breaking changes, does this call fail without proper error handling? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a89d0fdc-55e3-4fcf-b1e0-1d73dc5cfa27?mode=deep",
+    "timestamp": "2026-02-19 01:24:24.934693",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Global State: SideChainReceivedDividends] [State Storage] Is SideChainReceivedDividends ever cleaned up? If the chain runs for years, does storing dividends for every block height cause unbounded state growth? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a060fdd4-957b-4b97-a0f7-26034ab071ed?mode=deep",
+    "timestamp": "2026-02-19 01:24:54.382815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Global State: TokenHolderContract.Value] [State Mutability] Once State.TokenHolderContract.Value is set in InitialProfitSchemeForSideChain, can it ever be updated? If TokenHolderContract needs migration, is the dividend pool stuck? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_060b6bce-1056-4c6e-919d-6526a8a19a62?mode=deep",
+    "timestamp": "2026-02-19 01:25:25.347224",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Composite Attack] Can an attacker combine: (1) donate malicious token that reverts on TransferFrom after passing IsTokenAvailableForMethodFee check, (2) lock the contract in failed state preventing legitimate donations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f555c40-9ac0-4da4-8042-85b3d8f831f7?mode=deep",
+    "timestamp": "2026-02-19 01:25:56.654738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate() + Release()] [Economic Attack] Can an attacker donate dust amounts across many different symbols to increase ReceivedTokenSymbols size, making GetUndistributedDividends and Release() operations too gas-expensive to execute? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8c55f5b3-eae6-4ad2-8145-5478a70de292?mode=deep",
+    "timestamp": "2026-02-19 01:26:27.077919",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs] [Function: Donate()] [Approval Grief\n\n### Citations\n\n**File:** contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_SideChainDividendsPool.cs (L1-176)\n```csharp\nusing System.Linq;\nusing AElf.Contracts.MultiToken;\nusing AElf.Contracts.Profit;\nusing AElf.Contracts.TokenHolder;\nusing AElf.CSharp.Core;\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS10;\nusing Google.Protobuf.WellKnownTypes;\nusing ContributeProfitsInput = AElf.Contracts.TokenHolder.ContributeProfitsInput;\nusing DistributeProfitsInput = AElf.Contracts.TokenHolder.DistributeProfitsInput;\n\nnamespace AElf.Contracts.Consensus.AEDPoS;\n\npublic partial class AEDPoSContract\n{\n    private void InitialProfitSchemeForSideChain(long periodSeconds)\n    {\n        var tokenHolderContractAddress =\n            Context.GetContractAddressByName(SmartContractConstants.TokenHolderContractSystemName);\n        // No need to continue if Token Holder Contract didn't deployed.\n        if (tokenHolderContractAddress == null)\n        {\n            Context.LogDebug(() =>",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_638966ae-e6a4-45dd-ad45-c2e375830285?mode=deep",
+    "timestamp": "2026-02-19 01:26:58.695487",
+    "report_generated": false
+  }
+]
