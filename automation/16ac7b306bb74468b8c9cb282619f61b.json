@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateAdmins] [Admin Takeover] Can CandidateAdmins mapping be manipulated to change a candidate's admin to an attacker's address, allowing unauthorized control over candidate operations like QuitElection or ReplaceCandidatePubkey? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64ba22d6-aa3c-4d90-b375-56c92393cde0?mode=deep",
+    "timestamp": "2026-02-19 01:55:39.564555",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateAdmins] [Admin Loop] Could an admin in CandidateAdmins also be a candidate themselves, creating circular dependencies that could be exploited to bypass permission checks? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6318ce3a-cbdd-4183-b856-b2e69fcb85f4?mode=deep",
+    "timestamp": "2026-02-19 01:56:01.716161",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateAdmins] [Orphaned Admin] When a candidate is banned or removed, is their entry in CandidateAdmins properly cleaned up, or can stale admin relationships persist causing permission issues? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69976c93-98fe-49d1-a522-6f691164efad?mode=deep",
+    "timestamp": "2026-02-19 01:56:24.410492",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ManagedCandidatePubkeysMap] [Managed Pubkeys Overflow] Can ManagedCandidatePubkeysMap allow an admin to manage unlimited candidates, and could excessive entries cause DoS when iterating through managed pubkeys? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5f46b4dc-af6a-4d7a-808c-8d9824f03394?mode=deep",
+    "timestamp": "2026-02-19 01:56:47.663956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ManagedCandidatePubkeysMap] [Duplicate Managed Entries] Can the same pubkey be added to ManagedCandidatePubkeysMap multiple times for the same admin, causing confusion during admin changes or quit operations? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8564362-cecd-4060-adc9-ade7ccf5c684?mode=deep",
+    "timestamp": "2026-02-19 01:57:11.293534",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ManagedCandidatePubkeysMap] [Admin Pubkey Conflict] When an admin becomes a candidate themselves, is there proper validation to prevent conflicts in ManagedCandidatePubkeysMap where they manage their own pubkey? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c768ea16-6fe9-44c3-8fa7-f598df5cfb24?mode=deep",
+    "timestamp": "2026-02-19 01:57:37.956381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateReplacementMap] [Replacement Chain Attack] Can CandidateReplacementMap create circular replacement chains where pubkey A replaces B, B replaces C, and C replaces A, breaking pubkey resolution logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cfbce9b6-0fbe-41b5-bd16-4910804b0b3d?mode=deep",
+    "timestamp": "2026-02-19 01:58:03.464239",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateReplacementMap] [Replacement Overwrite] Could multiple replacements for the same old pubkey in CandidateReplacementMap cause loss of replacement history, making old votes unresolvable? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_de625db8-dab4-4002-94bd-cf3e5a8e8af0?mode=deep",
+    "timestamp": "2026-02-19 01:58:32.089724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialPubkeyMap] [Initial Pubkey Manipulation] Can InitialPubkeyMap be modified to point to incorrect initial pubkeys, breaking candidate history tracking and admin permission checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af3bf0ab-6e5b-4b97-ae0a-d7ba7cd40414?mode=deep",
+    "timestamp": "2026-02-19 01:59:02.498537",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialPubkeyMap] [Initial Pubkey Collision] If two different pubkeys map to the same initial pubkey in InitialPubkeyMap, could this cause admin permission conflicts where one admin controls multiple candidates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2a1d569b-0fde-4c8a-abe5-1fea619126aa?mode=deep",
+    "timestamp": "2026-02-19 01:59:33.538531",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialToNewestPubkeyMap] [Newest Pubkey Inconsistency] Can InitialToNewestPubkeyMap become desynchronized with CandidateReplacementMap, causing GetNewestPubkey to return incorrect values and misdirect votes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b8afa68-3301-443c-b273-85d8cbf8f824?mode=deep",
+    "timestamp": "2026-02-19 02:00:05.097763",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: InitialToNewestPubkeyMap] [Replacement Cycle] If InitialToNewestPubkeyMap contains replacement cycles, could pubkey resolution enter infinite loops, causing DoS when resolving candidate identities? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3ff4dd0-4f5d-4133-8200-5386aaffbf46?mode=deep",
+    "timestamp": "2026-02-19 02:00:39.190566",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: CandidateReplacementMap, InitialPubkeyMap, InitialToNewestPubkeyMap] [Replacement State Inconsistency] Can these three replacement-related mappings become inconsistent with each other, causing different pubkey resolution results depending on which map is queried first? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b56c43f-398f-4af8-92d7-5a1a7fe9407a?mode=deep",
+    "timestamp": "2026-02-19 02:01:13.199542",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: EmergencyResponseOrganizationAddress] [Emergency Address Takeover] Can EmergencyResponseOrganizationAddress be changed to an attacker's address, granting them emergency powers to ban candidates, update candidate information, or remove nodes? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_96aaed70-0734-4213-9eba-9022f31fcd53?mode=deep",
+    "timestamp": "2026-02-19 02:01:47.497597",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: EmergencyResponseOrganizationAddress] [Emergency Address Not Set] If EmergencyResponseOrganizationAddress is null or not initialized, can emergency response operations be blocked entirely, preventing response to actual malicious candidates? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16eaf59a-d5c4-406c-bee6-46708fef8c2f?mode=deep",
+    "timestamp": "2026-02-19 02:02:20.152351",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: EmergencyResponseOrganizationAddress] [Emergency Powers Abuse] Does EmergencyResponseOrganizationAddress have sufficient limitations to prevent abuse of emergency powers like arbitrary candidate removal without proper evidence? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b968f4f7-239d-4b85-93fe-1a257f0e8ecb?mode=deep",
+    "timestamp": "2026-02-19 02:02:53.204412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateSponsorMap] [Sponsor Theft] Can CandidateSponsorMap be manipulated so that when a candidate quits, their locked tokens are sent to an attacker's address instead of the legitimate sponsor? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b9179e3-6c94-48dd-87b8-f10daa622a7b?mode=deep",
+    "timestamp": "2026-02-19 02:03:26.645240",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateSponsorMap] [Sponsor Overwrite] When a candidate is replaced via ReplaceCandidatePubkey, is the sponsor mapping properly transferred, or could this allow sponsor funds to be lost or misdirected? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14a1ad26-332a-41a4-bac2-8b04a7a83ffd?mode=deep",
+    "timestamp": "2026-02-19 02:03:59.167197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: CandidateSponsorMap] [Missing Sponsor] If CandidateSponsorMap has no entry for a candidate, where do quit election tokens go, and can this cause funds to be locked in the contract permanently? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_eef7a08f-b3d0-4a7b-a1e7-2fa43bd1eac3?mode=deep",
+    "timestamp": "2026-02-19 02:04:31.284883",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectionEnabled] [Election Disable DoS] Can ElectionEnabled flag be set to false by an attacker, completely disabling all election operations and freezing the consensus system? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e0649151-d48f-4e62-a386-bcfc8b0e581d?mode=deep",
+    "timestamp": "2026-02-19 02:05:03.176135",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: ElectionEnabled] [Election Toggle Race] If ElectionEnabled can be toggled rapidly, could this cause race conditions where votes are cast while elections are disabled, creating orphaned or invalid votes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_77e3a804-b849-4b6c-aa50-62ed2333b21d?mode=deep",
+    "timestamp": "2026-02-19 02:05:34.794265",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: WeightsAlreadyFixedMap] [Weight Fix Bypass] Can an attacker manipulate WeightsAlreadyFixedMap to mark votes as already fixed when they're not, preventing proper profit detail removal on withdrawal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_35d01cb4-0e22-4f94-ac64-3b2ca4e529c0?mode=deep",
+    "timestamp": "2026-02-19 02:06:01.343525",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: WeightsAlreadyFixedMap] [Duplicate Weight Removal] If WeightsAlreadyFixedMap is not properly set, could the same profit beneficiary be removed multiple times during withdrawal, causing accounting errors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f337ceb-1d52-4fb6-b51b-dc509cdbb371?mode=deep",
+    "timestamp": "2026-02-19 02:06:33.096193",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [State: WeightsAlreadyFixedMap] [Weight Fix Memory Leak] Does WeightsAlreadyFixedMap get properly cleaned up after withdrawals, or do entries accumulate infinitely causing storage bloat? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ac18ebee-fe7d-4866-9d91-b5e1cc756ea9?mode=deep",
+    "timestamp": "2026-02-19 02:07:04.726337",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Election/ElectionContractState.cs] [States: ElectorVotes, CandidateVotes] [Vote Amount Mismatch] Can the sum of ElectorVotes.ActiveVotedVotesAmount across all voters differ from the sum of CandidateVotes.ObtainedActiveVotedVotesAmount across all candidates, indicating vote double-counting or loss? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3efb05d1-6bc2-4902-8d0f-0bf702bed81b?mode=deep",
+    "timestamp": "2026-02-19 02:07:32.053812",
+    "report_generated": false
+  }
+]
