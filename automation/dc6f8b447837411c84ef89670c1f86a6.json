@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Integer Overflow] Can an attacker manipulate proposal.RejectionCount + proposal.AbstentionCount + proposal.ApprovalCount to cause integer overflow, bypassing the MinimalVoteThreshold check and allowing premature proposal release? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c78782fe-0424-4d70-ae67-b4b179353ef0?mode=deep",
+    "timestamp": "2026-02-19 13:04:49.589197",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Threshold Logic Error] If MaximalRejectionThreshold or MaximalAbstentionThreshold is set to long.MaxValue, can an attacker create a scenario where proposals can never be rejected or abstained, violating governance invariants? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8d90d3c6-2965-4812-ab82-dcdd6b0de04e?mode=deep",
+    "timestamp": "2026-02-19 13:05:11.821568",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Logic Bypass] Can the check on line 20 (proposal.RejectionCount > MaximalRejectionThreshold) be bypassed by setting RejectionCount exactly equal to MaximalRejectionThreshold, allowing a proposal that should be rejected to pass? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_534a6745-6176-4986-bb0e-704144b5b806?mode=deep",
+    "timestamp": "2026-02-19 13:05:34.232810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Logic Bypass] Can the check on line 24 (proposal.AbstentionCount > MaximalAbstentionThreshold) be bypassed by setting AbstentionCount exactly equal to MaximalAbstentionThreshold, allowing excessive abstentions while still passing the proposal? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_41af2379-0b16-42f7-b0fc-ed8de06434c7?mode=deep",
+    "timestamp": "2026-02-19 13:05:56.962178",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Threshold Manipulation] If MinimalApprovalThreshold is set to 0 in the organization configuration, can proposals pass with zero approval votes, violating the governance security model? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6f772056-0263-4b7a-95ad-9b67451fb163?mode=deep",
+    "timestamp": "2026-02-19 13:06:21.131033",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [State Consistency] Can an attacker exploit the sequential checks (lines 15-28) by racing between vote submissions to create inconsistent threshold states where a proposal passes despite violating multiple thresholds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95765e4e-f1e7-4550-a7ba-d13b2639c8cf?mode=deep",
+    "timestamp": "2026-02-19 13:06:46.152563",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Arithmetic Precision] Does the Add() operation on line 15 handle negative values correctly, or can an attacker submit negative vote counts to manipulate the total vote threshold calculation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7204f40f-a8c1-47d0-8761-15960929815d?mode=deep",
+    "timestamp": "2026-02-19 13:07:12.049456",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Edge Case] If MinimalVoteThreshold is set to 0, does line 17 return false immediately, potentially blocking all proposals regardless of vote counts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_46a0048e-0929-40d4-bfc5-9ec27cb443b8?mode=deep",
+    "timestamp": "2026-02-19 13:07:38.232682",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Comparison Logic] Can an attacker exploit the >= comparison on line 28 combined with the > comparisons on lines 20 and 24 to create edge-case scenarios where proposals with borderline vote counts behave unexpectedly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7b2ff336-4634-474a-9ecc-ba2ad63b8609?mode=deep",
+    "timestamp": "2026-02-19 13:08:06.476678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: IsReleaseThresholdReached()] [Invariant Violation] If proposalReleaseThreshold is null or contains default values, can the function fail silently or return incorrect results, allowing invalid proposals to pass? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19906537-720b-43a1-8aff-cc58183770ac?mode=deep",
+    "timestamp": "2026-02-19 13:08:33.082610",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Reentrancy] Can an attacker exploit the TransferFrom call on line 47-55 before State.LockedTokenAmount is updated on line 56, performing a reentrancy attack to lock tokens multiple times for the same proposal? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7c74e44-de4b-4202-81e0-756598084b19?mode=deep",
+    "timestamp": "2026-02-19 13:09:00.108375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Double Lock Check] The assertion on line 42 checks if LockedTokenAmount[lockedAddress][proposalId] is null, but can an attacker bypass this by using Context.Sender on line 56 instead of lockedAddress, allowing duplicate locks from different addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_356db2ff-b493-4e59-b980-5722427177ab?mode=deep",
+    "timestamp": "2026-02-19 13:09:28.316922",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Parameter Mismatch] Lines 42 and 56 use different addresses (lockedAddress vs Context.Sender) for the state check - can an attacker exploit this inconsistency to lock tokens under one address while checking another? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_324bec29-5657-4b47-8acb-298e5194ff34?mode=deep",
+    "timestamp": "2026-02-19 13:09:54.643384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Virtual Address Collision] Can an attacker manipulate the lockId generation on line 44-45 or GetProposalVirtualAddress on line 51 to create hash collisions, redirecting locked tokens to attacker-controlled addresses? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97a84fc3-9dc8-49b5-8d2e-8f7d4a6a337b?mode=deep",
+    "timestamp": "2026-02-19 13:10:21.030300",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Amount Validation] There is no validation that amount > 0 on line 39 - can an attacker lock 0 tokens to manipulate voting records without actual stake? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c49fcd5d-82d1-4e03-97c9-c166ad6e5538?mode=deep",
+    "timestamp": "2026-02-19 13:10:49.305828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Token Symbol Validation] There is no validation that the symbol parameter matches the organization's TokenSymbol - can an attacker lock wrong tokens or non-existent tokens for voting? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f1cadb16-0995-4791-9f94-4bfa145987d0?mode=deep",
+    "timestamp": "2026-02-19 13:11:15.741164",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [TransferFrom Failure] If the TransferFrom call on line 47-55 fails, is the state on line 56 still updated, leading to phantom locked tokens that were never actually transferred? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06800867-fbce-42ad-a067-ca76fd1019ba?mode=deep",
+    "timestamp": "2026-02-19 13:11:42.411137",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Virtual Inline Security] Can an attacker exploit the Context.SendVirtualInline call to manipulate the proposalId parameter, causing tokens to be sent to unexpected virtual addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0ab912df-dbbc-46de-bb23-c44509551e92?mode=deep",
+    "timestamp": "2026-02-19 13:12:09.665001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Receipt Integrity] The Receipt object on line 56-61 stores amount, lockId, and tokenSymbol, but can an attacker modify these values after locking to claim more tokens during unlock? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98acfcd5-047d-4b81-b946-631aa4538a2c?mode=deep",
+    "timestamp": "2026-02-19 13:12:37.251374",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Event Data Integrity] The ReferendumReceiptCreated event uses Context.Sender and Context.CurrentBlockTime - can these be manipulated to create misleading audit trails? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8fabe944-ae7f-4f7d-8194-e084d9a3810c?mode=deep",
+    "timestamp": "2026-02-19 13:13:04.169581",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [Organization Address Validation] The organizationAddress parameter is not validated against the proposal's actual organization - can an attacker emit events with fake organization addresses? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4ea14563-b839-4ce1-b942-f42b956fdfd6?mode=deep",
+    "timestamp": "2026-02-19 13:13:31.353403",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: LockToken()] [State Race Condition] Between the null check on line 42 and the state update on line 56, can multiple transactions execute concurrently, bypassing the duplicate lock protection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b09d95d4-de79-4fe4-9892-22b827d708d0?mode=deep",
+    "timestamp": "2026-02-19 13:13:59.023107",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Reentrancy] Can an attacker exploit the Transfer call on line 79-86 before State.LockedTokenAmount.Remove on line 87, performing a reentrancy attack to unlock tokens multiple times? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8ea212f7-5a5c-4fff-9db4-849671af6baf?mode=deep",
+    "timestamp": "2026-02-19 13:14:25.663280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Address Inconsistency] Line 77 retrieves receipt using lockedAddress but line 83 transfers to Context.Sender and line 87 removes using Context.Sender - can this mismatch allow an attacker to unlock another user's tokens? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7d57c0f8-9567-4536-8045-e312b2bfc5f0?mode=deep",
+    "timestamp": "2026-02-19 13:14:53.162296",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Referendum/Referendum_Helper.cs] [Function: UnlockToken()] [Null Check Race] The assertion on line 78 checks if receipt is not null, but can this be bypassed through race conditions where multiple unlock calls execute before state removal? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_64dd54b6-c813-49e9-ac4e-176f2e6e8c62?mode=deep",
+    "timestamp": "2026-02-19 13:15:21.035027",
+    "report_generated": false
+  }
+]
