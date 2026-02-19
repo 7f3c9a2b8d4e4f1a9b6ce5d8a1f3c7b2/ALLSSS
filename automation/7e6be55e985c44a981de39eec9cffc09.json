@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization Bypass] Can an attacker set method fees before RequiredMethodFeeControllerSet() initializes State.MethodFeeController.Value, bypassing the authorization check at line 16 when Context.Sender is compared against a null OwnerAddress? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7e609b9-9af0-4f96-8cee-ebba5ba6e6ad?mode=deep",
+    "timestamp": "2026-02-19 07:31:58.060125",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Race Condition] If two transactions call SetMethodFee() simultaneously during contract initialization before State.MethodFeeController.Value is set, can both bypass the authorization check at line 16 due to RequiredMethodFeeControllerSet() being called separately in each transaction? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bd4a1b1b-9551-4dab-a8f6-4aab2df2315c?mode=deep",
+    "timestamp": "2026-02-19 07:32:20.085381",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Authorization Bypass] Can an attacker front-run ChangeMethodFeeController() to call SetMethodFee() with the old controller's OwnerAddress before the controller change takes effect, setting malicious fees that persist after controller transition? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_09edeee2-dab0-431b-b28f-286ad930a00c?mode=deep",
+    "timestamp": "2026-02-19 07:32:42.346375",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Privilege Escalation] If State.MethodFeeController.Value.OwnerAddress is set to Address.Zero or an invalid address, can any sender pass the equality check at line 16 and gain unauthorized fee-setting privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_04d27949-e0a9-450b-95ce-66014935fb90?mode=deep",
+    "timestamp": "2026-02-19 07:33:05.140140",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Input Validation] The check at line 14 enforces input.Fees.Count <= ProfitContractConstants.TokenAmountLimit, but can an attacker set TokenAmountLimit fees all with extremely high BasicFee values to create prohibitively expensive method calls that DOS the contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fe29b10f-3068-4648-9465-8dda1f91f3b4?mode=deep",
+    "timestamp": "2026-02-19 07:33:29.118081",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Integer Overflow] Can an attacker set methodFee.BasicFee to long.MaxValue at line 13 validation, causing integer overflow when fees are later multiplied or accumulated during actual fee collection? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e9f1daef-d790-4d78-835a-e49b46cef8e0?mode=deep",
+    "timestamp": "2026-02-19 07:33:53.717886",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Economic Attack] Can the MethodFeeController set BasicFee to 0 for all methods via SetMethodFee(), eliminating transaction fees and potentially enabling spam attacks or breaking economic assumptions of other contracts that depend on fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6510b7a-f2f2-40b2-aa2f-c08f7b504745?mode=deep",
+    "timestamp": "2026-02-19 07:34:19.853109",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [State Corruption] The assignment at line 17 directly overwrites State.TransactionFees[input.MethodName] without checking if the MethodName exists or is valid - can an attacker set fees for non-existent methods and corrupt the state mapping? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0615e1c3-7daf-48f4-a99f-9d0df75e444d?mode=deep",
+    "timestamp": "2026-02-19 07:34:47.221897",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [DOS Attack] Can an attacker repeatedly call SetMethodFee() with ProfitContractConstants.TokenAmountLimit fees, forcing the foreach loop at line 13 to execute maximum iterations and consume excessive gas, pricing out legitimate fee updates? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8bd5efcb-fbf9-4c21-83b5-1a229f442725?mode=deep",
+    "timestamp": "2026-02-19 07:35:15.236391",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Token Validation Bypass] If AssertValidToken() at line 13 only validates token existence but not token approval status, can an attacker set fees using tokens that are blacklisted or frozen, causing fee collection to fail and DOS method execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f8032487-93a5-49ac-b2d6-99859a9ad9ee?mode=deep",
+    "timestamp": "2026-02-19 07:35:42.267732",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Reentrancy] Can AssertValidToken() at line 13 make an external call to State.TokenContract.IsTokenAvailableForMethodFee() that reenters SetMethodFee(), allowing an attacker to manipulate State.TransactionFees mid-execution? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1a81b8e8-a4f6-43ea-b702-6de9616aece4?mode=deep",
+    "timestamp": "2026-02-19 07:36:11.347635",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Front-Running] Can an attacker monitor the mempool for SetMethodFee() transactions and front-run them by calling methods with current low fees before fee increases take effect, avoiding higher costs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97b2e30c-1367-46e5-9d88-6af4343f372f?mode=deep",
+    "timestamp": "2026-02-19 07:36:41.311948",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Critical Method Override] Can the MethodFeeController set fees for SetMethodFee() itself to 0 or an extremely high value, either enabling fee-free manipulation or pricing out legitimate controller operations and locking fee configuration? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13ec75a9-9ebd-4ec8-af38-75241b890223?mode=deep",
+    "timestamp": "2026-02-19 07:37:10.722243",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Symbol Case Sensitivity] Does methodFee.Symbol comparison at line 13 handle case sensitivity correctly - can an attacker set fees using 'ELF' vs 'elf' to bypass validation or create duplicate fee entries? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f501669b-a5d6-423a-862a-25aecee8e639?mode=deep",
+    "timestamp": "2026-02-19 07:37:40.004040",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: SetMethodFee()] [Empty Input] Can an attacker call SetMethodFee() with input.Fees.Count = 0, passing the check at line 14 and setting an empty fee list that causes GetMethodFee() to return default values instead of custom fees? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_edb9ccfe-a8bb-445c-b1ad-2ab3d000d652?mode=deep",
+    "timestamp": "2026-02-19 07:38:09.435879",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Authorization Bypass] Can an attacker call ChangeMethodFeeController() during contract initialization before State.MethodFeeController.Value is set, bypassing AssertSenderAddressWith() at line 25 when comparing against a null OwnerAddress? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7463f09-14f7-4add-b001-3851cc5e8c48?mode=deep",
+    "timestamp": "2026-02-19 07:38:38.916918",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Privilege Escalation] Can the current MethodFeeController change input.OwnerAddress to their own address but set input.ContractAddress to a malicious contract that always returns true for ValidateOrganizationExist(), bypassing governance while appearing valid? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4fe7fff2-e98a-40a0-8dad-9333004300a1?mode=deep",
+    "timestamp": "2026-02-19 07:39:07.996133",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Organization Validation Bypass] The check at line 26 calls CheckOrganizationExist() which makes an external call - can an attacker create a fake contract that always returns BoolValue.Value = true to pass validation at line 27? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_998713eb-e1c3-4598-b362-05129589005f?mode=deep",
+    "timestamp": "2026-02-19 07:39:37.346817",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Reentrancy] Can CheckOrganizationExist() at line 26 reenter ChangeMethodFeeController() through the external Context.Call(), allowing manipulation of State.MethodFeeController.Value during validation? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_16a0c890-2a2d-4548-a207-b10bfab76f40?mode=deep",
+    "timestamp": "2026-02-19 07:40:04.627647",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Address Zero Attack] Can input.OwnerAddress be set to Address.Zero, passing validation at line 27 if the organization check doesn't properly validate zero addresses, permanently locking out fee control? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e2987fa0-29f1-4c29-b4ce-dc56ea7f61a4?mode=deep",
+    "timestamp": "2026-02-19 07:40:33.853636",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Contract Address Manipulation] Can input.ContractAddress be set to a non-existent or destructed contract address that doesn't revert on Context.Call() at line 92, allowing invalid controller state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8fc551c4-7663-4ebe-a83d-d72f9638b583?mode=deep",
+    "timestamp": "2026-02-19 07:41:02.125535",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Self-Referential Attack] Can the controller set input.ContractAddress to the ProfitContract's own address, creating circular references or enabling unauthorized operations through self-calls? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2da07283-490f-496d-9a6f-15d55cd1a7e1?mode=deep",
+    "timestamp": "2026-02-19 07:41:31.560091",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Race Condition] If ChangeMethodFeeController() and SetMethodFee() are called in the same block, can timing allow SetMethodFee() to execute with old controller privileges even after controller change at line 29? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ca237408-aac5-4dd4-aa42-ef3764b479bf?mode=deep",
+    "timestamp": "2026-02-19 07:42:01.510695",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [DOS Through Invalid Organization] Can an attacker who gains controller access set input.ContractAddress to a contract that reverts on ValidateOrganizationExist() calls, permanently locking the controller and preventing future changes? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_56928144-f149-4fc9-892b-4e4858b64a8d?mode=deep",
+    "timestamp": "2026-02-19 07:42:31.484927",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Profit/ProfitContract_ACS1_TransactionFeeProvider.cs] [Function: ChangeMethodFeeController()] [Front-Running Controller Change] Can an attacker front-run a legitimate ChangeMethodFeeController() transaction by calling SetMethodFee() multiple times with the old controller, setting malicious fees that persist after the controller change? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3924ba04-c82a-4336-b2da-25f207964338?mode=deep",
+    "timestamp": "2026-02-19 07:43:02.333562",
+    "report_generated": false
+  }
+]
