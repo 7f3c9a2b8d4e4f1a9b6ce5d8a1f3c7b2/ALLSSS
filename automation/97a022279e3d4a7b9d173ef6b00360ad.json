@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: ApproveProtocol()] [Self-Approval Exploit] Can Context.Sender approve themselves as an operator (input.Operator == Context.Sender) to bypass permission checks in TransferFrom()? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c4c986cb-feec-40b4-93be-4912233ca7c1?mode=deep",
+    "timestamp": "2026-02-19 08:58:37.971933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: ApproveProtocol()] [Duplicate Operator Addition] At line 244, if Contains() check is bypassed or returns false incorrectly, can the same operator be added multiple times, causing list corruption? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9b484ce8-b44b-484b-8646-b5adba643f67?mode=deep",
+    "timestamp": "2026-02-19 08:59:00.012828",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Recast Permission Exploit] At line 260, only minters can recast - but at line 262, the function requires the minter to hold ALL tokens (Quantity == Balance) - can a minter who transferred tokens be unable to recast their minted NFT? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cf7e836d-73dd-4155-b12e-5c24257007d9?mode=deep",
+    "timestamp": "2026-02-19 08:59:22.388453",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Metadata Overwrite Attack] At line 276, reserved keys from input.Metadata are removed - but can an attacker include reserved keys that get partially processed before removal, corrupting metadata state? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_53657583-8a9e-46ff-b5cd-0ba3a2894d29?mode=deep",
+    "timestamp": "2026-02-19 08:59:46.074874",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Quantity Zero Bypass] At line 262, if Quantity is 0, the assertion fails - but what if Quantity becomes 0 between the check and recast execution due to concurrent burns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c8938d12-6236-4903-8073-ca8e1a80d6db?mode=deep",
+    "timestamp": "2026-02-19 09:00:09.698602",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Reserved Key Preservation Bug] At lines 271-277, reserved keys are preserved from old metadata - can an attacker manipulate the reserved key list via GetNftMetadataReservedKeys() to preserve malicious values? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c0cbc575-81e4-46f8-b8b0-cdff928edb7a?mode=deep",
+    "timestamp": "2026-02-19 09:00:34.863438",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Alias/URI Null Check Missing] At lines 264 and 266, if input.Alias or input.Uri is not null, they're assigned - but can empty strings or malicious values bypass validation and corrupt NFT metadata? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cdd63cd3-1783-4a63-9247-1a08f8f0cc6a?mode=deep",
+    "timestamp": "2026-02-19 09:01:00.932637",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Metadata Clone Mutation] At line 268, oldMetadata.Clone() is called - can modifications to the clone affect the original metadata before it's stored in the event? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_758294f5-b8ad-4a9b-a9c8-06fa0e36de70?mode=deep",
+    "timestamp": "2026-02-19 09:01:26.697464",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Recast()] [Balance Requirement DOS] Since line 262 requires the caller to hold ALL tokens, can other holders prevent recasting by refusing to transfer tokens back, causing permanent metadata lock? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60cf9aed-5fb7-438b-8747-6c474365751f?mode=deep",
+    "timestamp": "2026-02-19 09:01:56.419384",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Approve()] [Allowance Overwrite] At line 298, allowance is directly set to input.Amount without checking existing allowance - can an attacker front-run an approval change to exploit the old allowance before the new one takes effect? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9cefaa51-c26d-4641-8d36-b0fd18cebfd3?mode=deep",
+    "timestamp": "2026-02-19 09:02:23.811778",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Approve()] [Negative Allowance] Can input.Amount be negative, allowing the setting of negative allowances that bypass transfer limits in TransferFrom()? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_fc0613ed-d416-4e99-a7d6-09dbc82ba53b?mode=deep",
+    "timestamp": "2026-02-19 09:02:57.446257",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Approve()] [Self-Approval Exploit] Can Context.Sender approve themselves (input.Spender == Context.Sender) to bypass balance checks or create allowance loops? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_842a9571-a705-44d0-ae9f-6739fa8f1ac2?mode=deep",
+    "timestamp": "2026-02-19 09:03:25.514951",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Approve()] [Unlimited Allowance DOS] Can setting allowance to long.MaxValue cause integer overflow issues in TransferFrom's allowance subtraction at line 66? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_75b2f908-fa60-41b3-8bb6-fbcd4dcbf11e?mode=deep",
+    "timestamp": "2026-02-19 09:03:51.060560",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: Approve()] [Zero Address Spender] Can approving the zero address as spender cause unexpected behavior or lock tokens permanently? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2d6fd23e-d093-4414-85bd-a2e25cd1cacb?mode=deep",
+    "timestamp": "2026-02-19 09:04:18.120373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: UnApprove()] [Underflow to Zero Conversion] At lines 314-315, if Sub() underflows, the result is clamped to 0 - can this be exploited to reset allowances without proper authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_98ec6def-030b-400e-ae46-d0690ed066fc?mode=deep",
+    "timestamp": "2026-02-19 09:04:45.926893",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: UnApprove()] [Partial Unapproval Race] Between reading oldAllowance at line 313 and updating at line 317, can the allowance be consumed via TransferFrom, causing incorrect final allowance values? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f89f56c9-91b3-42ce-a873-2854cbde718a?mode=deep",
+    "timestamp": "2026-02-19 09:05:14.328956",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: UnApprove()] [Negative Amount Exploit] Can input.Amount be negative, causing the Sub() operation to actually increase the allowance instead of decreasing it? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_df6eb657-ac4a-43c6-8bdd-c6889ada4d6f?mode=deep",
+    "timestamp": "2026-02-19 09:05:41.513609",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: UnApprove()] [Allowance Zeroing Bypass] At line 315, currentAllowance is set to 0 if it's <=0 - can this be used to reset allowances across multiple spenders by repeatedly calling UnApprove? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13ec9b56-5c93-4010-898d-3f63b7b1e2c0?mode=deep",
+    "timestamp": "2026-02-19 09:06:07.758776",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: CalculateTokenHash()] [Hash Collision] Can different (symbol, tokenId) pairs produce the same hash via string concatenation at line 332, causing token identity confusion? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_097dd84d-aef0-4054-9aed-52b605e62481?mode=deep",
+    "timestamp": "2026-02-19 09:06:34.327011",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: CalculateTokenHash()] [Input Validation Missing] Can empty strings or special characters in symbol cause hash collisions or unexpected behavior when concatenated with tokenId? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cbe16b9f-5dfb-42e1-8724-d5f680f3670d?mode=deep",
+    "timestamp": "2026-02-19 09:07:04.043674",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: CalculateTokenHash()] [String Concatenation Ambiguity] If symbol='ABC' and tokenId=123 vs symbol='AB' and tokenId=C123, do they produce different hashes or can string concatenation create collisions? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3618c1a4-59f7-450f-8892-1d56ecae0d19?mode=deep",
+    "timestamp": "2026-02-19 09:07:32.109494",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: AddMinters()] [Creator Verification Bypass] At line 338, only the creator can add minters - but can the creator address be manipulated or spoofed to gain unauthorized minter addition privileges? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_97866a24-7911-4070-9cd1-83faf3bd8f22?mode=deep",
+    "timestamp": "2026-02-19 09:08:02.748038",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: AddMinters()] [Minter List Bloat] At lines 341-343, minters are added without limit - can an attacker spam minter additions to bloat the list, causing excessive gas costs or DOS? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c3e0d680-a13b-4585-89dc-c6d00709ef03?mode=deep",
+    "timestamp": "2026-02-19 09:08:33.841724",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: AddMinters()] [Duplicate Minter Check Bypass] At line 342, Contains() prevents duplicates - but can concurrent additions bypass this check and add the same minter multiple times? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_55033518-71a5-4e67-a9c1-e8aaba371a61?mode=deep",
+    "timestamp": "2026-02-19 09:09:01.285084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.NFT/NFTContract_UseChain.cs] [Function: AddMinters()] [Null Protocol Info] At line 337, if protocolInfo is null, the creator check at line 338 might access a null reference - is this properly handled? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a0f6a064-4589-45c4-9be6-3d51a1eac515?mode=deep",
+    "timestamp": "2026-02-19 09:17:38.626151",
+    "report_generated": false
+  }
+]
