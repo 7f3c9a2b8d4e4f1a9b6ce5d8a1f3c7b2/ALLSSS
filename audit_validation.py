@@ -72,9 +72,12 @@ class Validator:
             EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
         )
 
+        self.driver.get(BASE_URL)
+
+
         for _ in range(10):
             try:
-                self.driver.get(BASE_URL)
+
 
                 # # wait for the form containing the textarea
                 form = wait.until(
@@ -120,9 +123,10 @@ class Validator:
             EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
         )
 
+        self.driver.get(BASE_URL)
+
         for _ in range(10):
             try:
-                self.driver.get(BASE_URL)
 
                 # # wait for the form containing the textarea
                 form = wait.until(
@@ -151,7 +155,6 @@ class Validator:
                 current_url = self.driver.current_url
 
                 # add the current url to validated
-                self.save_to_validated(filename, current_url)
                 self.save_to_validated(filename, current_url)
                 break
             except Exception as a:

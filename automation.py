@@ -72,9 +72,11 @@ class Deepwiki:
             EC.presence_of_element_located((By.CSS_SELECTOR, 'form'))
         )
 
+        self.driver.get(BASE_URL)
+
         for _ in range(10):
             try:
-                self.driver.get(BASE_URL)
+
 
                 # # wait for the form containing the textarea
                 form = wait.until(
