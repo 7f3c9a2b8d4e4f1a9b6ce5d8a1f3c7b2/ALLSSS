@@ -1,0 +1,20 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Complete State Corruption] If both State.MainChainRoundNumber and State.MainChainCurrentMinerList updates partially fail, could the contract enter unrecoverable state requiring migration? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e85e55aa-61c0-42dd-b219-c460fc18abc9?mode=deep",
+    "timestamp": "2026-02-19 04:49:22.147219",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: DistributeResourceTokensToPreviousMiners()] [Selective Transfer Failure] If transfers succeed for some miners but fail for others, are successful transfers reversed or do some miners receive payment while others don't? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60c2e812-c520-44c9-82d1-3fd79b7f9e7b?mode=deep",
+    "timestamp": "2026-02-19 04:49:44.430121",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/AEDPoSContract_ACS11_CrossChainInformationProvider.cs] [Function: UpdateInformationFromCrossChain()] [Cross-Chain Consensus Liveness] If UpdateInformationFromCrossChain consistently fails due to distribution costs or gas limits, could side chain consensus halt permanently? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19f2b63e-882c-460a-9112-e59196ceebd4?mode=deep",
+    "timestamp": "2026-02-19 04:50:06.939000",
+    "report_generated": false
+  }
+]
