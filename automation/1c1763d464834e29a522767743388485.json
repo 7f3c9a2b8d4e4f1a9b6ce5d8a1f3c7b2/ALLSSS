@@ -1,0 +1,92 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: MaximumOptionsCount + OptionLengthLimit] [Economic Manipulation] If voting weight calculation in quadratic voting (IsQuadratic=true) iterates over all 64 options when determining vote costs, could an attacker exploit the iteration cost to make quadratic votes prohibitively expensive compared to standard votes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_aa6b63dc-d5a3-4c56-884d-0fd0f1fac4e9?mode=deep",
+    "timestamp": "2026-02-19 02:21:49.889574",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: MaximumOptionsCount + OptionLengthLimit] [Vote Counting Overflow] If VotingResult at line 177-179 accumulates votes across 64 options with long names, and VotersCount or VotesAmount approaches maximum long value, could integer overflow occur when processing votes for maximum-sized voting items? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_873ec0a0-e3d5-46e1-9d4b-d7064b3ad903?mode=deep",
+    "timestamp": "2026-02-19 02:22:12.118216",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: MaximumOptionsCount + OptionLengthLimit] [Serialization Attack] When State.VotingItems[votingItemId] is serialized with 64 options of 1024 bytes each, could the protobuf serialization exceed message size limits, causing state save failures and leaving the contract in an inconsistent state? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_af6dfc53-20d7-480d-bdf8-ff8512fba537?mode=deep",
+    "timestamp": "2026-02-19 02:22:35.372545",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: MaximumOptionsCount + OptionLengthLimit] [Griefing Through Legitimate Use] Can a sponsor legitimately create a voting item with 64 options, then call RemoveOptions() repeatedly, each time with options at 1024 bytes, to consume gas and block resources without providing economic value? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e9bb2c2-7142-465c-b148-26c4e1396022?mode=deep",
+    "timestamp": "2026-02-19 02:22:58.806675",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: MaximumOptionsCount + OptionLengthLimit] [Query Performance Attack] If external systems query voting results for items with 64 options of 1024 bytes each, could this cause view method timeouts or denial of service for legitimate result queries, affecting governance decisions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9e3641b5-426f-44b2-86a1-86141b71bcf0?mode=deep",
+    "timestamp": "2026-02-19 02:23:23.094083",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: MaximumOptionsCount] [Off-by-One Error] AddOption uses strict '<' check at line 285 (count < 64), while AddOptions uses '<=' at line 320 (count <= 64). Is this intentional, or could this inconsistency allow adding 65 options through AddOptions when exactly at the limit? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f688db46-3997-4415-bf60-8a6c74170eb6?mode=deep",
+    "timestamp": "2026-02-19 02:23:51.421184",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: OptionLengthLimit] [Unicode Normalization] If two options with different Unicode representations but identical visual appearance (e.g., combining characters vs precomposed) both pass the 1024 byte limit, could this cause duplicate-option validation failures while appearing different to users? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_19be7a11-9075-4019-b5a4-e18b1a7364bd?mode=deep",
+    "timestamp": "2026-02-19 02:24:16.645847",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: Both] [Upgrade Path Missing] Both constants are hardcoded. If a critical vulnerability is found requiring different limits, how can these be changed without contract migration? Could immutability of these constants prevent security patches? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2b9f5efc-c4cf-4e1a-8bc9-6c7453ec6706?mode=deep",
+    "timestamp": "2026-02-19 02:24:46.662361",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: MaximumOptionsCount] [Voting Result Hash Collision] With 64 options, GetVotingResultHash at line 368-374 creates hashes. Could maximum option count combined with specific option patterns create hash collisions affecting result storage/retrieval? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_649ef0fe-4ec7-4f5c-9222-7ec3eb01c378?mode=deep",
+    "timestamp": "2026-02-19 02:25:16.853217",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: OptionLengthLimit] [Fire Event Size] Context.Fire events at lines 65-79 include option data. With 64 options of 1024 bytes each in VotingItemRegistered event, could the event payload exceed blockchain event size limits causing registration failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_95147a35-c32b-42fe-9251-ddc94ce26aab?mode=deep",
+    "timestamp": "2026-02-19 02:25:43.985412",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: Both] [Token Lock Correlation] If IsLockToken=true and voting items have 64 options with 1024-byte names, when tokens are locked with LockId=voteId (line 128), could option metadata in the lock affect token unlock operations or create lock identification conflicts? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d50bdf3e-3559-498a-9c08-5f89bfa871a3?mode=deep",
+    "timestamp": "2026-02-19 02:26:12.024713",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: MaximumOptionsCount] [VotedItems Map Bloat] UpdateVotedItems at line 146-161 tracks active votes per voter per item. With MaximumOptionsCount=64, could a single voter voting on all 64 options create excessive state bloat in VotedItemsMap affecting withdrawal operations? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_58dcbb8a-3cd5-4327-8dd2-95637bedcd23?mode=deep",
+    "timestamp": "2026-02-19 02:26:41.811734",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: OptionLengthLimit] [Quadratic Vote Cost Calculation] In quadratic voting at line 100-103, TicketCost multiplies by vote count. If option names are stored with votes and checked against OptionLengthLimit during cost calculation, could 1024-byte options affect arithmetic precision or gas costs? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_94150db4-3449-422d-b2fc-3b1459d4f0f0?mode=deep",
+    "timestamp": "2026-02-19 02:27:16.577522",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constants: Both] [Sponsor Authorization Scope] AddOption/RemoveOption check sponsor authorization at lines 283 and 306. If a sponsor creates a voting item with 64 options then transfers sponsor rights, could the new sponsor be unable to modify options due to state locks? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_adba0783-d701-4a5b-9216-bc32dda6a080?mode=deep",
+    "timestamp": "2026-02-19 02:27:45.155815",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Vote/VoteContractConstants.cs] [Constant: MaximumOptionsCount] [AssertOption Ordering] AssertOption at line 292-296 checks OptionLengthLimit before checking if option exists. With 64 existing options, could this ordering cause unnecessary gas consumption when attempting to add duplicate long options? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7a28d3e-259d-4492-926b-da19859d83ab?mode=deep",
+    "timestamp": "2026-02-19 02:28:20.006202",
+    "report_generated": false
+  }
+]
