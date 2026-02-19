@@ -1,0 +1,80 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Precision] Does the 20-iteration limit in Exp at line 154 cause convergence errors for large exponents that can be exploited? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_955e82fc-c1be-4fc1-a1b5-349b34c29106?mode=deep",
+    "timestamp": "2026-02-19 07:14:54.492027",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Precision] Can binary exponentiation in Pow accumulate floating-point errors that affect Bancor formula accuracy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4f31dd0e-959f-4c67-b3cb-f1170a6cf565?mode=deep",
+    "timestamp": "2026-02-19 07:15:17.178090",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Precision] Can the factorial division at line 160 lose precision for small terms, affecting Exp accuracy and thus swap prices? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e8561fc4-8ac8-4e76-ac9e-1b4ea5812501?mode=deep",
+    "timestamp": "2026-02-19 07:15:40.435001",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Consistency] Are GetReturnFromPaid and GetAmountToPayFromReturn pure functions, or can external state changes between calls cause inconsistent pricing? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7964fb26-9b98-4c44-94e9-d5ee81f8e25b?mode=deep",
+    "timestamp": "2026-02-19 07:16:04.312766",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Consistency] Can connector balances change between calculation and execution, causing the return value to be incorrect when actually applied? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d44c6605-5b1f-4c84-a9c5-0600591937fe?mode=deep",
+    "timestamp": "2026-02-19 07:16:29.976510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Consistency] Can connector weights be modified between GetReturnFromPaid call and actual swap execution, breaking the pricing model? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_943abcd8-15cf-408e-97b0-69206963d02b?mode=deep",
+    "timestamp": "2026-02-19 07:16:56.974084",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Stability] When bf >> a in GetReturnFromPaid, can cancellation errors in bf + a at line 51 cause loss of significance? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8a9df6f6-b872-4a6e-b00a-c9007ae83a90?mode=deep",
+    "timestamp": "2026-02-19 07:17:23.058928",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Stability] When bt >> a in GetAmountToPayFromReturn, can bt - a at line 91 suffer from catastrophic cancellation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_71093f9c-5d09-4de5-9162-72a7203fd611?mode=deep",
+    "timestamp": "2026-02-19 07:17:53.090964",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Stability] Can x very close to 1 in Ln cause numerical instability in the series expansion at line 138? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f5ab35c-80a5-4114-aa75-f8ebe42a8e46?mode=deep",
+    "timestamp": "2026-02-19 07:18:25.773373",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Stability] Can y near 0 in Exp cause alternating series problems affecting final result accuracy at line 160? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6e26daf7-4514-4567-a4d8-3cb759aeb8dc?mode=deep",
+    "timestamp": "2026-02-19 07:18:59.611678",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Stability] Can repeated squaring in Pow amplify rounding errors exponentially at line 115? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3a18a66a-a06b-4ff8-99ff-bed21059cac2?mode=deep",
+    "timestamp": "2026-02-19 07:19:35.306425",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Formula] Is the Bancor formula at line 53 correctly implemented according to the documented formula in comments at lines 24-26? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_40b327bf-b9c8-4c27-b71b-d8826b703b40?mode=deep",
+    "timestamp": "2026-02-19 07:20:12.468047",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.TokenConverter/BancorHelper.cs] [Formula] Is the inverse formula at line 93 correctly implemented according to the documented formula at lines 58-59? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_146f67dd-c369-4c06-a086-81684c82a1b9?mode=deep",
+    "timestamp": "2026-02-19 07:20:49.142623",
+    "report_generated": false
+  }
+]
