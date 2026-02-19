@@ -1,0 +1,98 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Authorization Bypass] If the ParliamentContract reference is not properly initialized before use, could an attacker exploit uninitialized state to bypass method fee controller validation when State.ParliamentContract.Value is accessed without null checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_f7586f8b-1e6b-4a9c-93e5-c10118ba4437?mode=deep",
+    "timestamp": "2026-02-19 05:23:57.870810",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Contract Address Manipulation] Could the ParliamentContract reference be pointed to a malicious contract address if Context.GetContractAddressByName can be manipulated, allowing unauthorized control over method fee controller initialization? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51f13c4f-ce90-4e7c-af7a-c16c1ab7d7af?mode=deep",
+    "timestamp": "2026-02-19 05:24:19.931780",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Authorization Bypass] If the TokenContract reference is not properly initialized before use, could State.TokenContract.Value access result in null reference exceptions or bypass token validation in AssertValidToken? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_06c9bd8b-d829-46c3-8c3f-b199479129bb?mode=deep",
+    "timestamp": "2026-02-19 05:24:42.583039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Contract Address Manipulation] Could the TokenContract reference be pointed to a malicious contract that always returns true for IsTokenAvailableForMethodFee, bypassing token validation constraints? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff3f258e-2ed2-4d5c-aecd-511ab43a5cc3?mode=deep",
+    "timestamp": "2026-02-19 05:25:05.602842",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Reentrancy] Could cross-contract calls through State.ParliamentContract enable reentrancy attacks if the Parliament contract is compromised or malicious? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5566db97-071a-440a-b4a0-eeff679ab5b7?mode=deep",
+    "timestamp": "2026-02-19 05:25:29.696189",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Reentrancy] Could cross-contract calls through State.TokenContract enable reentrancy attacks during method fee validation or token checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_74627fc5-bb91-4bc7-8ccc-07d66e693f78?mode=deep",
+    "timestamp": "2026-02-19 05:25:55.439039",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [State Consistency] If ParliamentContract reference is set once but the underlying contract address changes in the system, could stale references lead to calls to wrong contract versions? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cae2fd45-c2e6-48ce-822a-d36a6e58825e?mode=deep",
+    "timestamp": "2026-02-19 05:26:20.713643",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [State Consistency] If TokenContract reference is set once but the underlying contract address changes in the system, could stale references lead to incorrect token validation? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5002507d-03d8-4a3b-b2bb-61913eb8c05e?mode=deep",
+    "timestamp": "2026-02-19 05:26:47.779479",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Access Control] Are there any access control mechanisms preventing malicious contracts from reading the ParliamentContract reference and exploiting cross-contract call patterns? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_60662353-e4cd-4ade-8389-78efce169b66?mode=deep",
+    "timestamp": "2026-02-19 05:27:19.587933",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Access Control] Are there any access control mechanisms preventing malicious contracts from reading the TokenContract reference and exploiting its interface? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_faa799ff-d4b8-4c99-911f-4c06485d2af2?mode=deep",
+    "timestamp": "2026-02-19 05:27:52.999552",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Properties: ParliamentContract, TokenContract] [Initialization Race] Could a race condition during contract initialization allow both references to be used before proper initialization, bypassing security checks? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0dfdf14c-740a-424e-a3c8-5c71726f605c?mode=deep",
+    "timestamp": "2026-02-19 05:28:28.423735",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [Trust Assumption] Does the code assume ParliamentContract is always a legitimate system contract, and could this assumption be violated during deployment or upgrade scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_8fe8d364-62ee-4359-acb1-2762047093b5?mode=deep",
+    "timestamp": "2026-02-19 05:29:03.942286",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [Trust Assumption] Does the code assume TokenContract is always a legitimate system contract, and could this assumption be violated during deployment or upgrade scenarios? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_962e8220-1477-4c1f-8829-254e5acbed40?mode=deep",
+    "timestamp": "2026-02-19 05:29:38.328280",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Properties: ParliamentContract, TokenContract] [Dependency Risk] If either referenced contract has vulnerabilities, could the Association contract inherit those security flaws through these direct references? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1ce9ef71-1f2f-4130-961a-9e86c5a37a01?mode=deep",
+    "timestamp": "2026-02-19 05:30:11.300587",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: ParliamentContract] [DOS] Could repeatedly calling methods that initialize ParliamentContract reference cause performance degradation or state bloat? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_13bb9e92-a48a-499d-ae43-97d06d392d96?mode=deep",
+    "timestamp": "2026-02-19 05:30:39.570694",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Association/AssociationReferenceState.cs] [Property: TokenContract] [DOS] Could repeatedly calling methods that initialize TokenContract reference cause performance degradation or state bloat? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_92c7f56c-969e-4949-b073-7bbdc4916ee7?mode=deep",
+    "timestamp": "2026-02-19 05:31:07.727571",
+    "report_generated": false
+  }
+]
