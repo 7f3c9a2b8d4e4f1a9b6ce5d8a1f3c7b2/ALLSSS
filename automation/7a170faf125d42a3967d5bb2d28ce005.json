@@ -1,0 +1,62 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [ACS1 Compliance: Controller] Does the AuthorityInfo structure with ContractAddress and OwnerAddress match the expected ACS1 controller pattern? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_1d0fe755-835e-40cd-85bd-0f9c7a766ef5?mode=deep",
+    "timestamp": "2026-02-19 07:16:44.059497",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [ACS1 Compliance: Fee Representation] Should MethodFees support multiple fee tokens per method, and if so, how is priority/selection handled during fee collection? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_e85d1f38-e55e-45fe-92d6-e2f2fb08bedd?mode=deep",
+    "timestamp": "2026-02-19 07:17:06.693865",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Upgrade: State Migration] If the contract is upgraded, will State.TransactionFees, State.MethodFeeController, and State.DefaultOrganizationAddress persist correctly? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_cb319964-2dbc-463c-bab9-863bc9cb08a1?mode=deep",
+    "timestamp": "2026-02-19 07:17:29.242903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Upgrade: Controller Transfer] During upgrade, can the fee controller become inaccessible if the new implementation changes authorization logic? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_304bc5f9-c5d5-4592-a97c-d79f0322f5de?mode=deep",
+    "timestamp": "2026-02-19 07:17:52.954400",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Upgrade: Token Contract Reference] If State.TokenContract.Value points to an old token contract address after system upgrade, will this break all fee validations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c00c32d7-fc78-4a74-91d9-42e682c7664e?mode=deep",
+    "timestamp": "2026-02-19 07:18:17.112924",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Upgrade: Default Organization] Can State.DefaultOrganizationAddress.Value become invalid after system migration, breaking controller initialization? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_4511234e-3dd0-4aa5-8691-ccbc8d4e6c05?mode=deep",
+    "timestamp": "2026-02-19 07:18:42.094136",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Integration: Parliament Methods] Can fees be set for internal Parliament methods that shouldn't be called directly, creating confusion or bypass vectors? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_59cb5d58-4c99-45d0-814f-0b9c1a8913d1?mode=deep",
+    "timestamp": "2026-02-19 07:19:07.640365",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Integration: Proposal Execution] If proposal execution calls SetMethodFee, does the fee for SetMethodFee itself get charged, creating recursive fee charging? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_b7288b1f-7514-4a30-9f14-7d4db60e36e2?mode=deep",
+    "timestamp": "2026-02-19 07:19:34.249530",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs] [Integration: Organization Validation] Does CheckOrganizationExist validate against Parliament's own organization logic, and can this create circular dependencies? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_86936eda-7e2f-4d81-b8e7-5204b934d768?mode=deep",
+    "timestamp": "2026-02-19 07:20:01.292804",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Parliament/\n\n### Citations\n\n**File:** contract/AElf.Contracts.Parliament/ParliamentContract_ACS1_TransactionFeeProvider.cs (L1-92)\n```csharp\nusing AElf.Sdk.CSharp;\nusing AElf.Standards.ACS1;\nusing AElf.Types;\nusing Google.Protobuf.WellKnownTypes;\n\nnamespace AElf.Contracts.Parliament;\n\npublic partial class ParliamentContract\n{\n    public override Empty SetMethodFee(MethodFees input)\n    {\n        foreach (var methodFee in input.Fees) AssertValidToken(methodFee.Symbol, methodFee.BasicFee);\n        RequiredMethodFeeControllerSet();\n\n        Assert(Context.Sender == State.MethodFeeController.Value.OwnerAddress,",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0800d68b-50a5-45c0-9ca9-0a0a4cd6fe1a?mode=deep",
+    "timestamp": "2026-02-19 07:20:29.132511",
+    "report_generated": false
+  }
+]
