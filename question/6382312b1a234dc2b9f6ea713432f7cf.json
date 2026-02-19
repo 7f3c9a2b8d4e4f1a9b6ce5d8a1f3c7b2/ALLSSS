@@ -1,3 +1,0 @@
-[
-  "[File: contract/AElf.Contracts.Vote/ContractsReferences.cs] [Properties: TokenContract & ParliamentContract] [Cascading Failure] If either referenced contract enters an error state or is paused, could this cascade to make the entire Vote contract inoperable? (High)"
-]
