@@ -1,0 +1,32 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] If Pubkey is removed from CurrentRound.RealTimeMinersInformation between strategy construction and command generation, what happens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d4b8684f-748b-439c-b6aa-448363b7c0cb?mode=deep",
+    "timestamp": "2026-02-19 08:54:27.557308",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] Can a miner's Order in RealTimeMinersInformation change during command generation, causing mining time to be calculated for wrong slot? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_901aa3be-e38d-434a-8623-3df498433f56?mode=deep",
+    "timestamp": "2026-02-19 08:54:49.737274",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [State Consistency] If CurrentRound represents a round from a previous term, can this cause miners to generate commands for expired rounds? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_873239cb-830f-43d0-835a-131b1ee6b2ff?mode=deep",
+    "timestamp": "2026-02-19 08:55:12.093261",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Precision Loss] Does AddMilliseconds handle nanosecond precision correctly, or can sub-millisecond timing differences cause mining schedule drift over many rounds? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6c606e03-a23d-439b-8011-4442e0ca27ab?mode=deep",
+    "timestamp": "2026-02-19 08:55:35.294074",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Consensus.AEDPoS/ConsensusCommandGeneration/Strategies/NormalBlockCommandStrategy.cs] [Function: GetAEDPoSConsensusCommand()] [Precision Loss] If MiningInterval is not a clean multiple of milliseconds, can repeated AddMilliseconds operations accumulate rounding errors? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_69f4fe9b-0d35-4fb0-95f7-12afae52c49e?mode=deep",
+    "timestamp": "2026-02-19 08:55:59.727741",
+    "report_generated": false
+  }
+]
