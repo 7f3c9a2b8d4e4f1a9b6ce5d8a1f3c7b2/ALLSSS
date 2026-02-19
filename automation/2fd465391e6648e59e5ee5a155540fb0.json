@@ -1,0 +1,50 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Parliament Contract Dependency] Complete dependency on Parliament contract existence and correctness - can Parliament bugs propagate to Configuration contract? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_51be1aa7-e120-487a-b571-ca4746fadfca?mode=deep",
+    "timestamp": "2026-02-19 03:30:01.941474",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Context Dependency] Relies on Context.GetZeroSmartContractAddress() and Context.Sender - can Context object be manipulated in delegatecall or special execution modes? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_0df9ff0d-ee5b-4874-a99e-016027331248?mode=deep",
+    "timestamp": "2026-02-19 03:30:23.756903",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [System Contract Assumption] Assumes SmartContractConstants.ParliamentContractSystemName is correctly defined and immutable - can constant be tampered with? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e25fe95-a8eb-45e7-bc7b-34d8dd856d5d?mode=deep",
+    "timestamp": "2026-02-19 03:30:46.323359",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [MEV Attack] Can MEV bot front-run legitimate controller's ChangeConfigurationController to change controller to attacker address first? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3f758b6f-0884-4482-b0b5-3a92cb1e1c0b?mode=deep",
+    "timestamp": "2026-02-19 03:31:09.489246",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Cross-Contract Reentrancy] If Zero contract calls back into ConfigurationContract during SetConfiguration, can it bypass authorization checks through reentrancy? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_3bf1d75e-066f-4132-84a1-e97b82e3dace?mode=deep",
+    "timestamp": "2026-02-19 03:31:33.483700",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: GetDefaultConfigurationController()] [Oracle Attack] If Parliament's GetDefaultOrganizationAddress relies on external oracle data, can oracle manipulation corrupt controller address? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_984c7d5f-e3dc-4d21-8a34-82a90394831e?mode=deep",
+    "timestamp": "2026-02-19 03:31:59.532905",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationController()] [Timestamp Manipulation] Does controller authorization depend on block timestamp? Can miner manipulation affect authorization? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_84bbb511-1f97-496f-9c0e-56b1e7c6ae93?mode=deep",
+    "timestamp": "2026-02-19 03:32:24.807080",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Configuration/ConfigurationContract_Helper.cs] [Function: AssertPerformedByConfigurationControllerOrZeroContract()] [Contract Creation Attack] Can attacker create contract at predicted Zero contract address before real Zero contract deployment to hijack authorization? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9baa2f65-adb9-478b-b632-6d0fd4ce5cec?mode=deep",
+    "timestamp": "2026-02-19 03:32:52.591977",
+    "report_generated": false
+  }
+]
