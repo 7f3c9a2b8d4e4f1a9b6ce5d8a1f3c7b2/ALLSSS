@@ -1,0 +1,152 @@
+[
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: TokenConverterFeeRate + ResourceTokenInitialVirtualBalance] [Fee Economics] With a 0.5% fee and tiny initial virtual balance, could the first few trades incur fees larger than the trade value itself due to extreme price volatility from low liquidity? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d9d4bc97-f380-4ac6-9f7a-571a13008190?mode=deep",
+    "timestamp": "2026-02-19 14:02:55.341738",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: All Token Decimals] [Cross-Token Operations] All tokens share 8 decimals, but what if native token is configured with different decimals during deployment? Would this break all TokenConverter operations that assume uniform decimal precision? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a6d0c83f-0e4d-4da2-b021-96557d3b8beb?mode=deep",
+    "timestamp": "2026-02-19 14:03:17.407181",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: PayTxFeeSymbolListName + PayRentalSymbolListName] [Resource Overlap] If symbols appear in both lists, are resource tokens created once with dual-purpose or twice causing errors? Does union() in CreateResourceTokens() properly deduplicate, or could this cause token creation failures? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_9ece1613-c66a-44d7-97a1-9f6506b9628e?mode=deep",
+    "timestamp": "2026-02-19 14:03:39.855947",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: CreateResourceTokens()] [Issuance Vulnerability] Since ResourceTokenTotalSupply is issued entirely to TokenConverter in a single Issue() call, if TokenConverter lacks proper access controls, could an attacker immediately transfer all 500M tokens out? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_bee1b489-5080-41f5-8bd4-7cc1a88fea14?mode=deep",
+    "timestamp": "2026-02-19 14:04:03.019409",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: CreateElectionTokens()] [Single Transaction Risk] Both VOTE and SHARE tokens (2 billion tokens total) are created and issued in a single InitialEconomicSystem transaction. If this transaction fails partially, could the chain end up in an inconsistent state with one token created but not the other? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_45c024cd-123c-4b7e-be69-aef93fd33d57?mode=deep",
+    "timestamp": "2026-02-19 14:04:26.550573",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: InitializeTokenConverterContract()] [Connector Configuration] Constants define connector balances but not weights (hardcoded to '0.5' and '0.005' in code). Could mismatch between hardcoded weights and constant balances create Bancor formula violations? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_5e362595-d1f7-478a-ad43-ce342cc419ca?mode=deep",
+    "timestamp": "2026-02-19 14:04:51.519551",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: AssertValidMemo()] [Validation Inconsistency] MemoMaxLength=64 is enforced in IssueNativeToken() via AssertValidMemo(), but is this validation applied consistently to all token operations (Issue, Transfer, etc.), or could some paths bypass the memo length check? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6a79cf6f-73e9-47b9-9ade-704d334efb8d?mode=deep",
+    "timestamp": "2026-02-19 14:05:17.246191",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: Symbol Lists] [Runtime Dependency] CreateResourceTokens() depends on runtime Context.Variables for symbol lists rather than compile-time constants. Could malicious chain initialization set empty or invalid symbol arrays, causing initialization to succeed with zero resource tokens? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_49089040-8734-4195-9935-318765dc0352?mode=deep",
+    "timestamp": "2026-02-19 14:05:44.241598",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: All Constants] [Immutability Risk] ALL constants in this file are immutable after compilation. If any value is misconfigured (wrong decimal places, incorrect balances, typos in fee rate), is there any recovery mechanism short of chain restart or hard fork? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_998f738c-03c0-4e14-9ebf-b577f53440c9?mode=deep",
+    "timestamp": "2026-02-19 14:06:11.361711",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: TokenConverterFeeRate] [Fee Adjustment] The 0.5% fee rate cannot be changed after InitializeTokenConverterContract() runs. If market conditions require fee adjustments, does the lack of governance-controlled fee updates create economic inflexibility? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_2548b265-edcc-4c55-8793-20d0c634ca4d?mode=deep",
+    "timestamp": "2026-02-19 14:06:39.325769",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Global: All Supplies] [Supply Economics] Token supplies (500M resource, 1B election) are fixed and immediately issued. Does this prevent future supply adjustments needed for network scaling, forcing eventual governance to create new token contracts? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_7e15a47f-ec50-4539-a57f-60958a5b0c49?mode=deep",
+    "timestamp": "2026-02-19 14:07:13.544094",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: All _00000000 suffixes] [Human Error Risk] Many constants use 8-zero suffixes for decimals (e.g., 100_000_00000000). Could developers miscount zeros during deployment configuration, causing 10x or 100x magnitude errors? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_14948fb0-ae97-4ef2-956f-4136cd1ba157?mode=deep",
+    "timestamp": "2026-02-19 14:07:47.047311",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: ResourceTokenInitialVirtualBalance] [Missing Decimals] The value 100_000 lacks the _00000000 suffix pattern used elsewhere. Is this intentionally 0.001 tokens, or is it a bug that should be 100_000_00000000? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_26d43607-8c08-45c6-8e18-2e6c5d435e06?mode=deep",
+    "timestamp": "2026-02-19 14:08:21.025746",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: All Decimal Values] [Overflow in Calculations] When constants like ResourceTokenTotalSupply (5*10^16) are multiplied with prices or balances in Bancor formulas, could intermediate calculations overflow C# long.MaxValue (9.2*10^18)? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_254c57c9-0bb9-4c5e-86d3-1f6b9a4d3f19?mode=deep",
+    "timestamp": "2026-02-19 14:08:55.649685",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: TokenConverterFeeRate] [String Format Risk] The fee rate '0.005' is a string that must be parsed to decimal. Does the parsing handle edge cases like '0.005000', '.005', or locale-specific formats correctly? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_c7d8791e-f290-43de-9eb3-1a784eb67553?mode=deep",
+    "timestamp": "2026-02-19 14:09:30.167830",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: NativeTokenPrefix] [Prefix Validation] The prefix 'nt' has no length or character validation. Could this prefix create tokens with symbols longer than protocol limits when concatenated with resource symbols? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_501ddae2-fe44-4083-99f6-240666dfa909?mode=deep",
+    "timestamp": "2026-02-19 14:10:02.475486",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: PayTxFeeSymbolListName + PayRentalSymbolListName] [Name Collision] Could these constant strings collide with other context variable names in the chain, causing unintended behavior if developers reuse 'SymbolListToPayTxFee' for different purposes? (Low)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_12aa4543-35f9-4f8b-9271-24134d70b125?mode=deep",
+    "timestamp": "2026-02-19 14:10:33.709452",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: InitialEconomicSystem()] [Initialization Order] Constants are used in sequence: CreateNativeToken → CreateResourceTokens → CreateElectionTokens → InitializeTokenConverterContract. If one step fails, are previous token creations rolled back, or could the chain end up with partial economic system? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_ff48be19-ea12-4482-863d-d86df27dcedb?mode=deep",
+    "timestamp": "2026-02-19 14:11:05.182416",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: Initialization] [Re-initialization Risk] Is there protection against calling InitialEconomicSystem() multiple times with different constant values? Could an attacker trigger re-initialization to overwrite economic parameters? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_18b5dce0-33e7-4315-8240-84a17054605d?mode=deep",
+    "timestamp": "2026-02-19 14:11:37.214582",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: Token Creation] [Lock Whitelist Dependency] CreateResourceTokens() adds TokenConverter to lock whitelist. If TokenConverter address is null at initialization, could this create tokens without proper lock controls, allowing unrestricted token movements? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_62bf0a9f-98e3-49f9-a413-9dc06399dada?mode=deep",
+    "timestamp": "2026-02-19 14:12:05.803101",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Connector Balances] [Front-Running Attack] Given public knowledge of NativeTokenConnectorInitialVirtualBalance and ResourceTokenInitialVirtualBalance before chain launch, could sophisticated attackers pre-calculate optimal front-running strategies for first block trades? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_93b811fa-04f1-4c49-8e23-69be2e74cca9?mode=deep",
+    "timestamp": "2026-02-19 14:12:38.443510",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Resource Token Configuration] [MEV Extraction] With all resource tokens sharing identical supply (500M) and decimals (8) but potentially different actual demand, could MEV bots exploit predictable initialization patterns for arbitrage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_6658fed5-f58c-4082-af30-3a96153189d2?mode=deep",
+    "timestamp": "2026-02-19 14:13:06.508826",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constant: TokenConverterFeeRate] [Sandwich Attacks] Does the 0.5% fee provide sufficient protection against sandwich attacks where attackers front-run and back-run user trades to extract value from price slippage? (Medium)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_d7007204-c9d3-4a71-8f16-4ca0bd658722?mode=deep",
+    "timestamp": "2026-02-19 14:13:39.521259",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Constants: Election Token Supply] [Governance Manipulation] Could an attacker who gains control of ElectionContract immediately after initialization distribute 1 billion VOTE tokens to colluding addresses to gain permanent governance control? (Critical)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_a5a553d8-b97d-4a5f-bf60-2a47254f677e?mode=deep",
+    "timestamp": "2026-02-19 14:14:12.643408",
+    "report_generated": false
+  },
+  {
+    "question": "[File: contract/AElf.Contracts.Economic/EconomicContractConstants.cs] [Usage: TokenContract Integration] [Contract Address Risk] Constants are used to configure TokenContract (MultiToken). If TokenContract address resolution fails during initialization, could constants be applied to wrong contract addresses? (High)",
+    "url": "https://deepwiki.com/search/-aelf-smart-contract-security_217d0be6-394d-406f-a22f-2e92caaaac9c?mode=deep",
+    "timestamp": "2026-02-19 14:14:46.556808",
+    "report_generated": false
+  }
+]
