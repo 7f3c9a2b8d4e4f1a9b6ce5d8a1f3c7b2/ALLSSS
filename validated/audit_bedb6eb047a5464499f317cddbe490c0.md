@@ -1,0 +1,1 @@
+Looking at this claim, I need to verify if this is actually a vulnerability in the on-chain smart contract logic or infrastructure code.
